@@ -1,0 +1,429 @@
+@prefix : <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+
+<https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821>
+    a owl:Ontology ;
+    dct:title "Clinical Health Record Schema" ;
+    dct:description "Example schema covering core clinical concepts: visits, lab results, procedures, conditions, severity, treatments, and drugs." ;
+    owl:imports <https://w3id.org/sulo/> .
+
+# ── Classes ──────────────────────────────────────────────────────────────
+
+:AnatomicalStructure
+    a owl:Class ;
+    rdfs:label "Anatomical Structure" ;
+    rdfs:comment "A body part or anatomical site relevant to a clinical finding or procedure." ;
+    rdfs:subClassOf sulo:SpatialObject .
+
+:CarePlan
+    a owl:Class ;
+    rdfs:label "Care Plan" ;
+    rdfs:comment "A structured set of intended actions or treatments for a patient." ;
+    rdfs:subClassOf sulo:InformationObject .
+
+:CareProviderRole
+    a owl:Class ;
+    rdfs:label "Care Provider Role" ;
+    rdfs:comment "The role played by a person or organisation providing care." ;
+    rdfs:subClassOf sulo:Role .
+
+:CareUnit
+    a owl:Class ;
+    rdfs:label "Care Unit" ;
+    rdfs:comment "An organisational unit responsible for delivering a type of care." ;
+    rdfs:subClassOf sulo:SpatialObject .
+
+:ClinicalCondition
+    a owl:Class ;
+    rdfs:label "Clinical Condition" ;
+    rdfs:comment "A medical condition, disease, or disorder affecting a patient." ;
+    rdfs:subClassOf sulo:Process .
+
+:ClinicalVisit
+    a owl:Class ;
+    rdfs:label "Clinical Visit" ;
+    rdfs:comment "A healthcare encounter between a patient and a provider." ;
+    rdfs:subClassOf sulo:Process .
+
+:Device
+    a owl:Class ;
+    rdfs:label "Device" ;
+    rdfs:comment "A physical instrument or medical device used in a clinical or diagnostic process." ;
+    rdfs:subClassOf sulo:SpatialObject .
+
+:DiagnosticStatement
+    a owl:Class ;
+    rdfs:label "Diagnostic Statement" ;
+    rdfs:comment "An information object representing a diagnostic finding or clinical assertion." ;
+    rdfs:subClassOf sulo:InformationObject .
+
+:EvaluationProcess
+    a owl:Class ;
+    rdfs:label "Evaluation Process" ;
+    rdfs:comment "A process of assessing or evaluating a clinical finding, condition, or patient state." ;
+    rdfs:subClassOf :MedicalProcedure ;
+    rdfs:subClassOf sulo:Process .
+
+:InstrumentRole
+    a owl:Class ;
+    rdfs:label "Instrument Role" ;
+    rdfs:comment "The role of a device or tool used in a clinical procedure." ;
+    rdfs:subClassOf sulo:Role .
+
+:Measurement
+    a owl:Class ;
+    rdfs:label "Measurement" ;
+    rdfs:comment "The outcome of a laboratory test or diagnostic analysis." ;
+    rdfs:subClassOf sulo:InformationObject .
+
+:MeasurementProcess
+    a owl:Class ;
+    rdfs:label "Measurement Process" ;
+    rdfs:comment "A process of measuring or quantifying a clinical observable or parameter." ;
+    rdfs:subClassOf :MedicalProcedure ;
+    rdfs:subClassOf sulo:Process .
+
+:MedicalProcedure
+    a owl:Class ;
+    rdfs:label "Medical Procedure" ;
+    rdfs:comment "A clinical action or intervention performed on a patient." ;
+    rdfs:subClassOf sulo:Process .
+
+:MedicationAdministration
+    a owl:Class ;
+    rdfs:label "Medication Administration" ;
+    rdfs:comment "A process of administering a drug or pharmaceutical substance to a patient." ;
+    rdfs:subClassOf :MedicalProcedure ;
+    rdfs:subClassOf sulo:Process .
+
+:Occupation
+    a owl:Class ;
+    rdfs:label "Occupation" ;
+    rdfs:comment "A job, profession, or occupational role held by a person." ;
+    rdfs:subClassOf sulo:SpatialObject .
+
+:OutputRole
+    a owl:Class ;
+    rdfs:label "Output Role" ;
+    rdfs:comment "The role of an entity produced as an output of a clinical process." ;
+    rdfs:subClassOf sulo:Role .
+
+:PerformerRole
+    a owl:Class ;
+    rdfs:label "Performer Role" ;
+    rdfs:comment "The role of an agent who performs a clinical action or procedure." ;
+    rdfs:subClassOf sulo:Role .
+
+:Person
+    a owl:Class ;
+    rdfs:label "Person" ;
+    rdfs:comment "A human being, either as a patient or a care participant." ;
+    rdfs:subClassOf sulo:SpatialObject .
+
+:PharmaceuticalDose
+    a owl:Class ;
+    rdfs:label "Pharmaceutical Dose" ;
+    rdfs:comment "The quantity and form of a drug administered in a single instance." ;
+    rdfs:subClassOf sulo:Quantity .
+
+:PharmaceuticalDoseForm
+    a owl:Class ;
+    rdfs:label "Pharmaceutical Dose Form" ;
+    rdfs:comment "The physical form of a pharmaceutical product (e.g. tablet, capsule, solution)." ;
+    rdfs:subClassOf sulo:Quality .
+
+:PharmaceuticalProduct
+    a owl:Class ;
+    rdfs:label "Pharmaceutical Product" ;
+    rdfs:comment "A drug or medicinal product used in the treatment or prevention of disease." ;
+    rdfs:subClassOf sulo:SpatialObject .
+
+:ProcessStatus
+    a owl:Class ;
+    rdfs:label "Process Status" ;
+    rdfs:comment "The state or status of a clinical process or workflow step." ;
+    rdfs:subClassOf sulo:Quality .
+
+:Severity
+    a owl:Class ;
+    rdfs:label "Severity" ;
+    rdfs:comment "The degree of seriousness of a condition, symptom, or finding." ;
+    rdfs:subClassOf sulo:Quality .
+
+:SubjectOfCareRole
+    a owl:Class ;
+    rdfs:label "Subject of Care Role" ;
+    rdfs:comment "The role played by a person who is the subject of a care activity." ;
+    rdfs:subClassOf sulo:Role .
+
+:TreatmentPlan
+    a owl:Class ;
+    rdfs:label "Treatment / Treatment Plan" ;
+    rdfs:comment "A drug administration event or planned course of treatment." ;
+    rdfs:subClassOf sulo:Process .
+
+# ── Properties ───────────────────────────────────────────────────────────
+
+:hasCareProvider
+    a owl:ObjectProperty ;
+    rdfs:label "Has Care Provider" ;
+    rdfs:comment "Links a clinical visit to the care provider." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/ad669a05-ca17-4374-b935-d1162077a863> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/e3867f24-e249-409f-bdcd-7ca8bce15d82> .
+
+:hasCareUnit
+    a owl:ObjectProperty ;
+    rdfs:label "Has Care Unit" ;
+    rdfs:comment "Links a clinical visit to the care unit where it takes place." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/35a396fc-3bb0-4d14-9a5b-8216451683d9> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/17a43367-c085-468c-ace7-c1b0b55146bc> .
+
+:hasConditionEndDate
+    a owl:DatatypeProperty ;
+    rdfs:label "Has Condition End Date" ;
+    rdfs:comment "Links a clinical condition to the date and time it ended." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/accf1369-5aa3-46ad-841d-ff7d397ab3f3> ;
+    rdfs:range xsd:dateTime .
+
+:hasDevice
+    a owl:ObjectProperty ;
+    rdfs:label "Has Device" ;
+    rdfs:comment "Links a measurement process to the device used as an instrument." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/417f7200-56cf-444e-9075-9aba77d56ff5> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/1f9bba16-596e-4d7b-884b-6487ca81c323> .
+
+:hasDoseForm
+    a owl:ObjectProperty ;
+    rdfs:label "Has Dose Form" ;
+    rdfs:comment "Links a pharmaceutical product to its dose form." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/013b4f90-6bae-413b-b91c-f22502c8644e> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/932307c3-2759-4778-bd86-f72ec4a978b6> .
+
+:hasDoseQuantity
+    a owl:ObjectProperty ;
+    rdfs:label "Has Dose Quantity" ;
+    rdfs:comment "Links a pharmaceutical product to its dose quantity." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/7143dd2d-e17e-4514-84b1-19064905b266> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/67870670-fea2-4ffa-bafd-b39bee40c42e> .
+
+:hasLocatedIn
+    a owl:ObjectProperty ;
+    rdfs:label "Has Located In" ;
+    rdfs:comment "Links a clinical condition to the anatomical structure where it is located." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/464e373f-3c95-4fee-a02b-cc84a019a147> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/0c4c5330-59d7-4baf-ac5f-e5fa0113c386> .
+
+:hasMeasuredDate
+    a owl:DatatypeProperty ;
+    rdfs:label "Has Measured Date" ;
+    rdfs:comment "Links a measurement to the date and time it was recorded." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/81bb2a85-5fb6-470b-838f-48b0b266ddbd> ;
+    rdfs:range xsd:dateTime .
+
+:hasMedicalProcedure
+    a owl:ObjectProperty ;
+    rdfs:label "Has Medical Procedure" ;
+    rdfs:comment "Links a plan to the medical procedure it refers to." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/cb31aaad-62fc-4c2a-8d37-357dcbed48a7> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/ec954e8d-6088-4e20-abf0-b0d72b605153> .
+
+:hasObservation
+    a owl:ObjectProperty ;
+    rdfs:label "Has Observation" ;
+    rdfs:comment "Links an evaluation process to the diagnostic statement produced as its output." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/0b19a6ba-a9c1-4420-9e84-a4daed6cd1ec> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/69058fcd-5b98-4df2-901f-66e03a8a75e4> .
+
+:hasPatient
+    a owl:ObjectProperty ;
+    rdfs:label "Has Patient" ;
+    rdfs:comment "Links a medical procedure to the patient it is performed on." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/5bcf2568-23bd-4bb2-9353-17dc8c6d3cb0> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/9fa5cd24-e7cf-47a9-8681-ed6892e22ee6> .
+
+:hasPatient
+    a owl:ObjectProperty ;
+    rdfs:label "Has Patient" ;
+    rdfs:comment "Links a clinical visit to the patient (subject of care)." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/c5894c50-e636-4c6f-bd46-97dd7bf2dd74> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/3784fcdf-2bb8-4fe3-9301-3a170da18cda> .
+
+:hasPerformedDate
+    a owl:DatatypeProperty ;
+    rdfs:label "Has Performed Date" ;
+    rdfs:comment "Links a medical procedure to the date and time it was performed." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/4fff6d30-41ed-4c86-99b6-41905daefb20> ;
+    rdfs:range xsd:dateTime .
+
+:hasPerformer
+    a owl:ObjectProperty ;
+    rdfs:label "Has Performer" ;
+    rdfs:comment "Links a medical procedure to the person who performed it." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/a43a78c6-ce57-437b-91ec-04e565c01fa0> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/147f3164-abe4-4bd5-917d-268d9e6f9161> .
+
+:hasPharmaceuticalProduct
+    a owl:ObjectProperty ;
+    rdfs:label "Has Pharmaceutical Product" ;
+    rdfs:comment "Links a medication administration to the pharmaceutical product being administered." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/b94cc68a-76d9-4eed-ba99-7e5a01a0e4af> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/bdb8030b-7e90-4e94-b353-d80088041376> .
+
+:hasQuantityValue
+    a owl:DatatypeProperty ;
+    rdfs:label "Has Quantity Value" ;
+    rdfs:comment "Links a measurement to its numeric quantity value." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/4efefd4d-31c8-4cc8-8aa4-42d7184a4441> ;
+    rdfs:range xsd:float .
+
+:hasRecordDate
+    a owl:DatatypeProperty ;
+    rdfs:label "Has Record Date" ;
+    rdfs:comment "Links a clinical condition to the date and time it was recorded." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/5571f6a0-f553-4ea8-8795-717479b98f59> ;
+    rdfs:range xsd:dateTime .
+
+:hasResult
+    a owl:ObjectProperty ;
+    rdfs:label "Has Result" ;
+    rdfs:comment "Links a measurement process to its result via an output role." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/ddcfc06c-3a6c-4d0f-85ee-0742a9969611> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/5f24fefd-575c-45a8-ab14-83a157dc1bbe> .
+
+:hasSeverity
+    a owl:ObjectProperty ;
+    rdfs:label "Has Severity" ;
+    rdfs:comment "Links a clinical condition to its severity." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/a4eb7879-632c-470e-a1a5-cad68fa2b350> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/965d8166-a036-4094-8731-209e5b35d854> .
+
+:hasStatus
+    a owl:ObjectProperty ;
+    rdfs:label "Has Status" ;
+    rdfs:comment "Links a medical procedure to its current status." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/06d8cbe8-6eed-4e8d-a979-b6f0b796edcc> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/d4642186-97a5-4c81-9e4b-f5ee0035fc5b> .
+
+:hasUnit
+    a owl:ObjectProperty ;
+    rdfs:label "Has Unit" ;
+    rdfs:comment "Links a measurement to its unit of measure." ;
+    rdfs:domain <https://w3id.org/shexmap/resource/ontology-class/0dcc254b-cddf-43c0-9982-ae1689e6a09c> ;
+    rdfs:range <https://w3id.org/shexmap/resource/ontology-class/9b175ce9-5f10-4553-b398-99d085796c03> .
+
+# ── Domain / Range class expressions (OWL equivalent axioms) ──────────────
+
+<https://w3id.org/shexmap/resource/ontology-class/ad669a05-ca17-4374-b935-d1162077a863>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :ClinicalVisit [ a owl:Restriction ; owl:onProperty sulo:hasParticipant ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( :CareProviderRole [ a owl:Restriction ; owl:onProperty sulo:isFeatureOf ; owl:someValuesFrom :Person ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/e3867f24-e249-409f-bdcd-7ca8bce15d82>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :Person [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:isFeatureOf ] ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( :CareProviderRole [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:hasParticipant ] ; owl:someValuesFrom :ClinicalVisit ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/35a396fc-3bb0-4d14-9a5b-8216451683d9>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :ClinicalVisit [ a owl:Restriction ; owl:onProperty sulo:isIn ; owl:someValuesFrom :CareUnit ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/17a43367-c085-468c-ace7-c1b0b55146bc>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :CareUnit [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:isIn ] ; owl:someValuesFrom :ClinicalVisit ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/accf1369-5aa3-46ad-841d-ff7d397ab3f3>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :ClinicalCondition [ a owl:Restriction ; owl:onProperty sulo:atTime ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( sulo:EndTime [ a owl:Restriction ; owl:onProperty sulo:hasValue ; owl:someValuesFrom xsd:dateTime ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/417f7200-56cf-444e-9075-9aba77d56ff5>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :MeasurementProcess [ a owl:Restriction ; owl:onProperty sulo:hasParticipant ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( :InstrumentRole [ a owl:Restriction ; owl:onProperty sulo:isFeatureOf ; owl:someValuesFrom :Device ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/1f9bba16-596e-4d7b-884b-6487ca81c323>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :Device [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:isFeatureOf ] ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( :InstrumentRole [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:hasParticipant ] ; owl:someValuesFrom :MeasurementProcess ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/013b4f90-6bae-413b-b91c-f22502c8644e>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :PharmaceuticalProduct [ a owl:Restriction ; owl:onProperty sulo:hasFeature ; owl:someValuesFrom :PharmaceuticalDoseForm ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/932307c3-2759-4778-bd86-f72ec4a978b6>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :PharmaceuticalDoseForm [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:hasFeature ] ; owl:someValuesFrom :PharmaceuticalProduct ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/7143dd2d-e17e-4514-84b1-19064905b266>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :PharmaceuticalProduct [ a owl:Restriction ; owl:onProperty sulo:hasFeature ; owl:someValuesFrom :PharmaceuticalDose ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/67870670-fea2-4ffa-bafd-b39bee40c42e>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :PharmaceuticalDose [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:hasFeature ] ; owl:someValuesFrom :PharmaceuticalProduct ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/464e373f-3c95-4fee-a02b-cc84a019a147>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :ClinicalCondition [ a owl:Restriction ; owl:onProperty sulo:isIn ; owl:someValuesFrom :AnatomicalStructure ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/0c4c5330-59d7-4baf-ac5f-e5fa0113c386>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :AnatomicalStructure [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:isIn ] ; owl:someValuesFrom :ClinicalCondition ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/81bb2a85-5fb6-470b-838f-48b0b266ddbd>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :Measurement [ a owl:Restriction ; owl:onProperty sulo:atTime ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( sulo:TimeInstant [ a owl:Restriction ; owl:onProperty sulo:hasValue ; owl:someValuesFrom xsd:dateTime ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/cb31aaad-62fc-4c2a-8d37-357dcbed48a7>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :CarePlan [ a owl:Restriction ; owl:onProperty sulo:refersTo ; owl:someValuesFrom :MedicalProcedure ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/ec954e8d-6088-4e20-abf0-b0d72b605153>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :MedicalProcedure [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:refersTo ] ; owl:someValuesFrom :CarePlan ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/0b19a6ba-a9c1-4420-9e84-a4daed6cd1ec>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :EvaluationProcess [ a owl:Restriction ; owl:onProperty sulo:hasParticipant ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( :OutputRole [ a owl:Restriction ; owl:onProperty sulo:isFeatureOf ; owl:someValuesFrom :DiagnosticStatement ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/69058fcd-5b98-4df2-901f-66e03a8a75e4>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :DiagnosticStatement [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:isFeatureOf ] ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( :OutputRole [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:hasParticipant ] ; owl:someValuesFrom :EvaluationProcess ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/5bcf2568-23bd-4bb2-9353-17dc8c6d3cb0>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :MedicalProcedure [ a owl:Restriction ; owl:onProperty sulo:hasParticipant ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( :SubjectOfCareRole [ a owl:Restriction ; owl:onProperty sulo:isFeatureOf ; owl:someValuesFrom :Person ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/9fa5cd24-e7cf-47a9-8681-ed6892e22ee6>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :Person [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:isFeatureOf ] ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( :SubjectOfCareRole [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:hasParticipant ] ; owl:someValuesFrom :MedicalProcedure ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/c5894c50-e636-4c6f-bd46-97dd7bf2dd74>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :ClinicalVisit [ a owl:Restriction ; owl:onProperty sulo:hasParticipant ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( :SubjectOfCareRole [ a owl:Restriction ; owl:onProperty sulo:isFeatureOf ; owl:someValuesFrom :Person ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/3784fcdf-2bb8-4fe3-9301-3a170da18cda>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :Person [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:isFeatureOf ] ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( :SubjectOfCareRole [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:hasParticipant ] ; owl:someValuesFrom :ClinicalVisit ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/4fff6d30-41ed-4c86-99b6-41905daefb20>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :MedicalProcedure [ a owl:Restriction ; owl:onProperty sulo:atTime ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( sulo:TimeInstant [ a owl:Restriction ; owl:onProperty sulo:hasValue ; owl:someValuesFrom xsd:dateTime ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/a43a78c6-ce57-437b-91ec-04e565c01fa0>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :MedicalProcedure [ a owl:Restriction ; owl:onProperty sulo:hasParticipant ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( :PerformerRole [ a owl:Restriction ; owl:onProperty sulo:isFeatureOf ; owl:someValuesFrom :Person ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/147f3164-abe4-4bd5-917d-268d9e6f9161>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :Person [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:isFeatureOf ] ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( :PerformerRole [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:hasParticipant ] ; owl:someValuesFrom :MedicalProcedure ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/b94cc68a-76d9-4eed-ba99-7e5a01a0e4af>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :MedicationAdministration [ a owl:Restriction ; owl:onProperty sulo:hasParticipant ; owl:someValuesFrom :PharmaceuticalProduct ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/bdb8030b-7e90-4e94-b353-d80088041376>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :PharmaceuticalProduct [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:hasParticipant ] ; owl:someValuesFrom :MedicationAdministration ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/4efefd4d-31c8-4cc8-8aa4-42d7184a4441>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :Measurement [ a owl:Restriction ; owl:onProperty sulo:hasValue ; owl:someValuesFrom xsd:float ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/5571f6a0-f553-4ea8-8795-717479b98f59>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :ClinicalCondition [ a owl:Restriction ; owl:onProperty sulo:atTime ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( sulo:TimeInstant [ a owl:Restriction ; owl:onProperty sulo:hasValue ; owl:someValuesFrom xsd:dateTime ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/ddcfc06c-3a6c-4d0f-85ee-0742a9969611>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :MeasurementProcess [ a owl:Restriction ; owl:onProperty sulo:hasParticipant ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( :OutputRole [ a owl:Restriction ; owl:onProperty sulo:isFeatureOf ; owl:someValuesFrom :Measurement ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/5f24fefd-575c-45a8-ab14-83a157dc1bbe>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :Measurement [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:isFeatureOf ] ; owl:someValuesFrom [ a owl:Class ; owl:intersectionOf ( :OutputRole [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:hasParticipant ] ; owl:someValuesFrom :MeasurementProcess ] ) ] ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/a4eb7879-632c-470e-a1a5-cad68fa2b350>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :ClinicalCondition [ a owl:Restriction ; owl:onProperty sulo:hasFeature ; owl:someValuesFrom :Severity ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/965d8166-a036-4094-8731-209e5b35d854>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :Severity [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:hasFeature ] ; owl:someValuesFrom :ClinicalCondition ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/06d8cbe8-6eed-4e8d-a979-b6f0b796edcc>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :MedicalProcedure [ a owl:Restriction ; owl:onProperty sulo:hasFeature ; owl:someValuesFrom :ProcessStatus ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/d4642186-97a5-4c81-9e4b-f5ee0035fc5b>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :ProcessStatus [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:hasFeature ] ; owl:someValuesFrom :MedicalProcedure ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/0dcc254b-cddf-43c0-9982-ae1689e6a09c>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( :Measurement [ a owl:Restriction ; owl:onProperty sulo:hasPart ; owl:someValuesFrom sulo:Unit ] ) ] .
+
+<https://w3id.org/shexmap/resource/ontology-class/9b175ce9-5f10-4553-b398-99d085796c03>
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( sulo:Unit [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sulo:hasPart ] ; owl:someValuesFrom :Measurement ] ) ] .

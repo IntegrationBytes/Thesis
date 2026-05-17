@@ -1,0 +1,290 @@
+@prefix : <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sulo: <https://w3id.org/sulo/> .
+# NOTE: @prefix rdfs: added by the author (was missing in the file as supplied
+# by supervisor 22 April 2026) — the file references rdfs:subClassOf and
+# rdfs:label but did not declare the prefix, so it wouldn't parse. Pure
+# hygiene fix; zero semantic change.
+
+:AnatomicalStructureShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :AnatomicalStructure ;
+    rdfs:subClassOf sulo:SpatialObject ;
+    rdfs:label "Anatomical Structure" .
+
+:CarePlanShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :CarePlan ;
+    rdfs:subClassOf sulo:InformationObject ;
+    rdfs:label "Care Plan" ;
+    sh:property [
+        sh:path sulo:refersTo ;
+        sh:name "Has Medical Procedure" ;
+        sh:class :MedicalProcedure ;
+        sh:minCount 0 ;
+    ] .
+
+:CareProviderRoleShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :CareProviderRole ;
+    rdfs:subClassOf sulo:Role ;
+    rdfs:label "Care Provider Role" .
+
+:CareUnitShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :CareUnit ;
+    rdfs:subClassOf sulo:SpatialObject ;
+    rdfs:label "Care Unit" .
+
+:ClinicalConditionShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :ClinicalCondition ;
+    rdfs:subClassOf sulo:Process ;
+    rdfs:label "Clinical Condition" ;
+    sh:property [
+        sh:path ( sulo:atTime sulo:hasValue ) ;
+        sh:name "Has Condition End Date" ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+    ] ;
+    sh:property [
+        sh:path sulo:isIn ;
+        sh:name "Has Located In" ;
+        sh:class :AnatomicalStructure ;
+        sh:minCount 0 ;
+    ] ;
+    sh:property [
+        sh:path ( sulo:atTime sulo:hasValue ) ;
+        sh:name "Has Record Date" ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+    ] ;
+    sh:property [
+        sh:path sulo:hasFeature ;
+        sh:name "Has Severity" ;
+        sh:class :Severity ;
+        sh:minCount 0 ;
+    ] .
+
+:ClinicalVisitShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :ClinicalVisit ;
+    rdfs:subClassOf sulo:Process ;
+    rdfs:label "Clinical Visit" ;
+    sh:property [
+        sh:path ( sulo:hasParticipant sulo:isFeatureOf ) ;
+        sh:name "Has Care Provider" ;
+        sh:class :Person ;
+        sh:minCount 0 ;
+    ] ;
+    sh:property [
+        sh:path sulo:isIn ;
+        sh:name "Has Care Unit" ;
+        sh:class :CareUnit ;
+        sh:minCount 0 ;
+    ] ;
+    sh:property [
+        sh:path ( sulo:hasParticipant sulo:isFeatureOf ) ;
+        sh:name "Has Patient" ;
+        sh:class :Person ;
+        sh:minCount 0 ;
+    ] .
+
+:DeviceShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :Device ;
+    rdfs:subClassOf sulo:SpatialObject ;
+    rdfs:label "Device" .
+
+:DiagnosticStatementShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :DiagnosticStatement ;
+    rdfs:subClassOf sulo:InformationObject ;
+    rdfs:label "Diagnostic Statement" .
+
+:EvaluationProcessShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :EvaluationProcess ;
+    rdfs:subClassOf sulo:Process ;
+    rdfs:subClassOf :MedicalProcedure ;
+    rdfs:label "Evaluation Process" ;
+    sh:property [
+        sh:path ( sulo:hasParticipant sulo:isFeatureOf ) ;
+        sh:name "Has Observation" ;
+        sh:class :DiagnosticStatement ;
+        sh:minCount 0 ;
+    ] .
+
+:InstrumentRoleShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :InstrumentRole ;
+    rdfs:subClassOf sulo:Role ;
+    rdfs:label "Instrument Role" .
+
+:MeasurementShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :Measurement ;
+    rdfs:subClassOf sulo:InformationObject ;
+    rdfs:label "Measurement" ;
+    sh:property [
+        sh:path ( sulo:atTime sulo:hasValue ) ;
+        sh:name "Has Measured Date" ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+    ] ;
+    sh:property [
+        sh:path sulo:hasValue ;
+        sh:name "Has Quantity Value" ;
+        sh:datatype xsd:float ;
+        sh:minCount 0 ;
+    ] ;
+    sh:property [
+        sh:path sulo:hasPart ;
+        sh:name "Has Unit" ;
+        sh:class sulo:Unit ;
+        sh:minCount 0 ;
+    ] .
+
+:MeasurementProcessShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :MeasurementProcess ;
+    rdfs:subClassOf sulo:Process ;
+    rdfs:subClassOf :MedicalProcedure ;
+    rdfs:label "Measurement Process" ;
+    sh:property [
+        sh:path ( sulo:hasParticipant sulo:isFeatureOf ) ;
+        sh:name "Has Device" ;
+        sh:class :Device ;
+        sh:minCount 0 ;
+    ] ;
+    sh:property [
+        sh:path ( sulo:hasParticipant sulo:isFeatureOf ) ;
+        sh:name "Has Result" ;
+        sh:class :Measurement ;
+        sh:minCount 0 ;
+    ] .
+
+:MedicalProcedureShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :MedicalProcedure ;
+    rdfs:subClassOf sulo:Process ;
+    rdfs:label "Medical Procedure" ;
+    sh:property [
+        sh:path ( sulo:hasParticipant sulo:isFeatureOf ) ;
+        sh:name "Has Patient" ;
+        sh:class :Person ;
+        sh:minCount 0 ;
+    ] ;
+    sh:property [
+        sh:path ( sulo:atTime sulo:hasValue ) ;
+        sh:name "Has Performed Date" ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 0 ;
+    ] ;
+    sh:property [
+        sh:path ( sulo:hasParticipant sulo:isFeatureOf ) ;
+        sh:name "Has Performer" ;
+        sh:class :Person ;
+        sh:minCount 0 ;
+    ] ;
+    sh:property [
+        sh:path sulo:hasFeature ;
+        sh:name "Has Status" ;
+        sh:class :ProcessStatus ;
+        sh:minCount 0 ;
+    ] .
+
+:MedicationAdministrationShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :MedicationAdministration ;
+    rdfs:subClassOf sulo:Process ;
+    rdfs:subClassOf :MedicalProcedure ;
+    rdfs:label "Medication Administration" ;
+    sh:property [
+        sh:path sulo:hasParticipant ;
+        sh:name "Has Pharmaceutical Product" ;
+        sh:class :PharmaceuticalProduct ;
+        sh:minCount 0 ;
+    ] .
+
+:OccupationShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :Occupation ;
+    rdfs:subClassOf sulo:SpatialObject ;
+    rdfs:label "Occupation" .
+
+:OutputRoleShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :OutputRole ;
+    rdfs:subClassOf sulo:Role ;
+    rdfs:label "Output Role" .
+
+:PerformerRoleShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :PerformerRole ;
+    rdfs:subClassOf sulo:Role ;
+    rdfs:label "Performer Role" .
+
+:PersonShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :Person ;
+    rdfs:subClassOf sulo:SpatialObject ;
+    rdfs:label "Person" .
+
+:PharmaceuticalDoseShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :PharmaceuticalDose ;
+    rdfs:subClassOf sulo:Quantity ;
+    rdfs:label "Pharmaceutical Dose" .
+
+:PharmaceuticalDoseFormShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :PharmaceuticalDoseForm ;
+    rdfs:subClassOf sulo:Quality ;
+    rdfs:label "Pharmaceutical Dose Form" .
+
+:PharmaceuticalProductShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :PharmaceuticalProduct ;
+    rdfs:subClassOf sulo:SpatialObject ;
+    rdfs:label "Pharmaceutical Product" ;
+    sh:property [
+        sh:path sulo:hasFeature ;
+        sh:name "Has Dose Form" ;
+        sh:class :PharmaceuticalDoseForm ;
+        sh:minCount 0 ;
+    ] ;
+    sh:property [
+        sh:path sulo:hasFeature ;
+        sh:name "Has Dose Quantity" ;
+        sh:class :PharmaceuticalDose ;
+        sh:minCount 0 ;
+    ] .
+
+:ProcessStatusShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :ProcessStatus ;
+    rdfs:subClassOf sulo:Quality ;
+    rdfs:label "Process Status" .
+
+:SeverityShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :Severity ;
+    rdfs:subClassOf sulo:Quality ;
+    rdfs:label "Severity" .
+
+:SubjectOfCareRoleShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :SubjectOfCareRole ;
+    rdfs:subClassOf sulo:Role ;
+    rdfs:label "Subject of Care Role" .
+
+:TreatmentPlanShape
+    a sh:NodeShape, owl:Class ;
+    sh:targetClass :TreatmentPlan ;
+    rdfs:subClassOf sulo:Process ;
+    rdfs:label "Treatment / Treatment Plan" .
