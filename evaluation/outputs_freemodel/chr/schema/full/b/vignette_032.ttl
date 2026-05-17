@@ -1,0 +1,80 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_CaseyElijahParker
+    a chr:Person .
+
+ex:physician_RhettPadberg
+    a chr:Person .
+
+ex:careunit_VIBRA
+    a chr:CareUnit .
+
+ex:visit_20211112_2203
+    a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_RhettPadberg ;
+    chr:hasCareUnit ex:careunit_VIBRA ;
+    chr:hasPatient ex:patient_CaseyElijahParker .
+
+ex:device_PolypMeasurer
+    a chr:Device .
+
+ex:device_HemoglobinAssay
+    a chr:Device .
+
+ex:unit_mm
+    a sulo:Unit .
+
+ex:unit_ng_per_mL
+    a sulo:Unit .
+
+ex:measurementPolyp_20211112_2248
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-12T22:48:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.4093"^^xsd:float ;
+    chr:hasUnit ex:unit_mm .
+
+ex:measurementHemoglobin_20211112_2248
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-12T22:48:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "24.389"^^xsd:float ;
+    chr:hasUnit ex:unit_ng_per_mL .
+
+ex:measPolyp_20211112_2248
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasDevice ex:device_PolypMeasurer ;
+    chr:hasResult ex:measurementPolyp_20211112_2248 .
+
+ex:measHemoglobin_20211112_2248
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasDevice ex:device_HemoglobinAssay ;
+    chr:hasResult ex:measurementHemoglobin_20211112_2248 .
+
+ex:anatomy_Colon
+    a chr:AnatomicalStructure .
+
+ex:severity_Moderate
+    a chr:Severity .
+
+ex:condition_PolypColon_20211112_2248
+    a chr:ClinicalCondition ;
+    chr:hasRecordDate "2021-11-12T22:48:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasLocatedIn ex:anatomy_Colon .
+
+ex:diagPolypColon_20211112_2248
+    a chr:DiagnosticStatement .
+
+ex:evaluation_20211112_2248
+    a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasObservation ex:diagPolypColon_20211112_2248 .
+
+ex:careplan_followup_20211112
+    a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:evaluation_20211112_2248 .

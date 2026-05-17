@@ -1,0 +1,106 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Clinical visit
+ex:visit_2019_03_16_1701 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ;
+    sulo:hasParticipant ex:role_CareProvider_Visit_Physician ;
+    sulo:atTime ex:time_visit .
+
+# Patient
+ex:patient_Daren950 a chr:Person .
+
+# Provider (physician)
+ex:physician_Carroll471 a chr:Person .
+
+# Roles linking patient and provider to the visit
+ex:role_SubjectOfCare_Visit_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_CareProvider_Visit_Physician a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Carroll471 .
+
+# Time instant for the visit
+ex:time_visit a sulo:TimeInstant ;
+    sulo:hasValue "2019-03-16T17:01:00"^^xsd:dateTime .
+
+# Measurement process
+ex:measurementProcess_2019_03_16_1701 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Patient ;
+    sulo:hasParticipant ex:role_Performer_Meas_Physician ;
+    sulo:hasParticipant ex:role_Output_Meas_Measurement ;
+    sulo:atTime ex:time_measurement ;
+    sulo:hasFeature ex:status_completed .
+
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Roles for measurement
+ex:role_SubjectOfCare_Meas_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_Performer_Meas_Physician a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Carroll471 .
+
+ex:role_Output_Meas_Measurement a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_2019_03_16 .
+
+# Measurement result
+ex:measurement_2019_03_16 a chr:Measurement ;
+    sulo:hasValue "37.277"^^xsd:float ;
+    sulo:hasPart ex:unit_Celsius ;
+    sulo:atTime ex:time_measurement .
+
+ex:unit_Celsius a sulo:Unit ;
+    rdfs:label "Cel" .
+
+# Time instant for measurement
+ex:time_measurement a sulo:TimeInstant ;
+    sulo:hasValue "2019-03-16T17:01:00"^^xsd:dateTime .
+
+# Evaluation process
+ex:evaluation_2019_03_16_1701 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eval_Patient ;
+    sulo:hasParticipant ex:role_Performer_Eval_Physician ;
+    sulo:hasParticipant ex:role_Output_Eval_DiagnosticStatement ;
+    sulo:atTime ex:time_evaluation .
+
+# Roles for evaluation
+ex:role_SubjectOfCare_Eval_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_Performer_Eval_Physician a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Carroll471 .
+
+ex:role_Output_Eval_DiagnosticStatement a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnosticStatement_acuteViralPharyngitis .
+
+# Diagnostic statement
+ex:diagnosticStatement_acuteViralPharyngitis a chr:DiagnosticStatement ;
+    rdfs:label "Acute viral pharyngitis" .
+
+# Time instant for evaluation
+ex:time_evaluation a sulo:TimeInstant ;
+    sulo:hasValue "2019-03-16T17:01:00"^^xsd:dateTime .
+
+# Clinical condition (the diagnosis)
+ex:condition_acuteViralPharyngitis a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_condition .
+
+ex:severity_moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+# Time instant for condition recording
+ex:time_condition a sulo:TimeInstant ;
+    sulo:hasValue "2019-03-16T17:01:00"^^xsd:dateTime .
+
+# Care plan
+ex:carePlan_2019_03_16 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "follow-up monitoring and routine review" .

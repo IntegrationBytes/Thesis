@@ -1,0 +1,101 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Dolores502Marisol435Nevárez403 a chr:Person .
+
+ex:careUnit_DrHePrimaryCare a chr:CareUnit .
+
+ex:careProvider_DrCari853Kohler843 a chr:Person .
+
+ex:visit_2020_10_27 a chr:ClinicalVisit ;
+  chr:hasCareProvider ex:careProvider_DrCari853Kohler843 ;
+  chr:hasCareUnit ex:careUnit_DrHePrimaryCare ;
+  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 .
+
+ex:measProc_height_20201027 a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
+  chr:hasResult ex:meas_height_20201027 .
+
+ex:meas_height_20201027 a chr:Measurement ;
+  chr:hasQuantityValue "132.2"^^xsd:float ;
+  chr:hasUnit sulo:centimeter ;
+  chr:hasMeasuredDate "2020-10-27T04:20:00"^^xsd:dateTime .
+
+ex:measProc_pain_20201027 a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
+  chr:hasResult ex:meas_pain_20201027 .
+
+ex:meas_pain_20201027 a chr:Measurement ;
+  chr:hasQuantityValue "4.0"^^xsd:float ;
+  chr:hasUnit ex:unit_score ;
+  chr:hasMeasuredDate "2020-10-27T04:20:00"^^xsd:dateTime .
+
+ex:unit_score a sulo:Unit .
+
+ex:measProc_weight_20201027 a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
+  chr:hasResult ex:meas_weight_20201027 .
+
+ex:meas_weight_20201027 a chr:Measurement ;
+  chr:hasQuantityValue "36.6"^^xsd:float ;
+  chr:hasUnit sulo:kilogram ;
+  chr:hasMeasuredDate "2020-10-27T04:20:00"^^xsd:dateTime .
+
+ex:measProc_bmi_ratio_20201027 a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
+  chr:hasResult ex:meas_bmi_ratio_20201027 .
+
+ex:meas_bmi_ratio_20201027 a chr:Measurement ;
+  chr:hasQuantityValue "20.95"^^xsd:float ;
+  chr:hasUnit ex:unit_kg_m2 ;
+  chr:hasMeasuredDate "2020-10-27T04:20:00"^^xsd:dateTime .
+
+ex:unit_kg_m2 a sulo:Unit .
+
+ex:measProc_bmi_percentile_20201027 a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
+  chr:hasResult ex:meas_bmi_percentile_20201027 .
+
+ex:meas_bmi_percentile_20201027 a chr:Measurement ;
+  chr:hasQuantityValue "95.67"^^xsd:float ;
+  chr:hasUnit sulo:percent ;
+  chr:hasMeasuredDate "2020-10-27T04:20:00"^^xsd:dateTime .
+
+ex:measProc_heartRate_20201027 a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
+  chr:hasResult ex:meas_heartRate_20201027 .
+
+ex:meas_heartRate_20201027 a chr:Measurement ;
+  chr:hasQuantityValue "62.0"^^xsd:float ;
+  chr:hasUnit ex:unit_per_min ;
+  chr:hasMeasuredDate "2020-10-27T04:20:00"^^xsd:dateTime .
+
+ex:unit_per_min a sulo:Unit .
+
+ex:measProc_respRate_20201027 a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
+  chr:hasResult ex:meas_respRate_20201027 .
+
+ex:meas_respRate_20201027 a chr:Measurement ;
+  chr:hasQuantityValue "13.0"^^xsd:float ;
+  chr:hasUnit ex:unit_per_min ;
+  chr:hasMeasuredDate "2020-10-27T04:20:00"^^xsd:dateTime .
+
+ex:eval_20201027 a chr:EvaluationProcess ;
+  chr:hasObservation ex:diag_medicationReviewDue .
+
+ex:diag_medicationReviewDue a chr:DiagnosticStatement .
+
+ex:condition_medicationReviewDue a chr:ClinicalCondition ;
+  chr:hasRecordDate "2020-10-27T04:20:00"^^xsd:dateTime ;
+  chr:hasSeverity ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity .
+
+ex:carePlan_followUp a chr:CarePlan ;
+  chr:hasMedicalProcedure ex:procedure_medicationReview .
+
+ex:procedure_medicationReview a chr:MedicalProcedure .

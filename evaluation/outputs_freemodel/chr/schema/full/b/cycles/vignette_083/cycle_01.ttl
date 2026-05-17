@@ -1,0 +1,225 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_EstelaGrant a chr:Person .
+ex:physician_IvonneTurcotte a chr:Person .
+
+# Care unit
+ex:careUnit_Zion a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2009_01_05_20_35 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_IvonneTurcotte ;
+    chr:hasCareUnit ex:careUnit_Zion ;
+    chr:hasPatient ex:patient_EstelaGrant .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Diagnostic statements
+ex:diag_MedicationReview a chr:DiagnosticStatement .
+ex:diag_PartTimeEmployment a chr:DiagnosticStatement .
+ex:diag_Stress a chr:DiagnosticStatement .
+ex:diag_Gingivitis a chr:DiagnosticStatement .
+
+# Evaluation processes (linking to diagnostic statements)
+ex:evaluation_2009_01_05_20_35 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MedicationReview .
+ex:evaluation_2009_01_05_21_08_1 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_PartTimeEmployment .
+ex:evaluation_2009_01_05_21_08_2 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_Stress .
+ex:evaluation_2009_01_05_22_24 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_Gingivitis .
+
+# Clinical conditions (with severity)
+ex:cond_MedicationReview a chr:ClinicalCondition ;
+    chr:hasRecordDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+ex:cond_PartTimeEmployment a chr:ClinicalCondition ;
+    chr:hasRecordDate "2009-01-05T21:08:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+ex:cond_Stress a chr:ClinicalCondition ;
+    chr:hasRecordDate "2009-01-05T21:08:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+ex:cond_Gingivitis a chr:ClinicalCondition ;
+    chr:hasRecordDate "2009-01-05T22:24:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Units (as sulo:Unit individuals)
+ex:unit_percent a sulo:Unit .
+ex:unit_cm a sulo:Unit .
+ex:unit_score a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_mmol_per_L a sulo:Unit .
+
+# Measurement processes and measurements
+
+# Hemoglobin A1c
+ex:proc_HbA1c_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_HbA1c_2009_01_05_20_35 .
+ex:meas_HbA1c_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.32"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+# Body Height
+ex:proc_Height_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Height_2009_01_05_20_35 .
+ex:meas_Height_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "156.6"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+# Pain severity
+ex:proc_Pain_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Pain_2009_01_05_20_35 .
+ex:meas_Pain_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# Body Weight
+ex:proc_Weight_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Weight_2009_01_05_20_35 .
+ex:meas_Weight_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "73.7"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+# BMI
+ex:proc_BMI_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_BMI_2009_01_05_20_35 .
+ex:meas_BMI_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "30.05"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
+
+# Heart rate
+ex:proc_HeartRate_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_HeartRate_2009_01_05_20_35 .
+ex:meas_HeartRate_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "67"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# Respiratory rate
+ex:proc_RespRate_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_RespRate_2009_01_05_20_35 .
+ex:meas_RespRate_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# Glucose
+ex:proc_Glucose_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Glucose_2009_01_05_20_35 .
+ex:meas_Glucose_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "92.14"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# Urea nitrogen
+ex:proc_UreaNitrogen_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_UreaNitrogen_2009_01_05_20_35 .
+ex:meas_UreaNitrogen_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.24"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# Creatinine
+ex:proc_Creatinine_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Creatinine_2009_01_05_20_35 .
+ex:meas_Creatinine_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.84"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# Calcium
+ex:proc_Calcium_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Calcium_2009_01_05_20_35 .
+ex:meas_Calcium_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.68"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# Sodium
+ex:proc_Sodium_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Sodium_2009_01_05_20_35 .
+ex:meas_Sodium_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "142.27"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# Potassium
+ex:proc_Potassium_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Potassium_2009_01_05_20_35 .
+ex:meas_Potassium_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.36"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# Chloride
+ex:proc_Chloride_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Chloride_2009_01_05_20_35 .
+ex:meas_Chloride_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "101.97"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# Carbon dioxide
+ex:proc_CO2_2009_01_05_20_35 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_CO2_2009_01_05_20_35 .
+ex:meas_CO2_2009_01_05_20_35 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "23.29"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# PHQ-2
+ex:proc_PHQ2_2009_01_05_21_46 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_PHQ2_2009_01_05_21_46 .
+ex:meas_PHQ2_2009_01_05_21_46 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T21:46:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# DAST-10
+ex:proc_DAST10_2009_01_05_22_24 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_DAST10_2009_01_05_22_24 .
+ex:meas_DAST10_2009_01_05_22_24 a chr:Measurement ;
+    chr:hasMeasuredDate "2009-01-05T22:24:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# Care plan (generic) with at least one medical procedure
+ex:proc_GeneralCheckup_2009_01_05 a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasProvider ex:physician_IvonneTurcotte ;
+    chr:hasDate "2009-01-05"^^xsd:date .
+
+ex:carePlan_2009_01_05 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:proc_GeneralCheckup_2009_01_05 .

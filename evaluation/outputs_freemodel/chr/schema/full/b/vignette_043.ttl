@@ -1,0 +1,165 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Cory_Heller a chr:Person .
+ex:physician_Hank_Schneider a chr:Person .
+
+# Care Unit
+ex:careunit_LOWELL a chr:CareUnit .
+
+# Clinical Visit
+ex:visit_2020_04_26_1144 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Hank_Schneider ;
+    chr:hasCareUnit ex:careunit_LOWELL ;
+    chr:hasPatient ex:patient_Cory_Heller .
+
+# Units
+ex:unit_percent a sulo:Unit .
+ex:unit_cm a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+ex:unit_10_3_per_uL a sulo:Unit .
+ex:unit_10_6_per_uL a sulo:Unit .
+ex:unit_g_per_dL a sulo:Unit .
+ex:unit_fL a sulo:Unit .
+ex:unit_pg a sulo:Unit .
+ex:unit_score a sulo:Unit .
+
+# Severity
+ex:severity_moderate a chr:Severity .
+
+# Diagnostic Statements and Clinical Conditions
+ex:diag_fulltime a chr:DiagnosticStatement .
+ex:cond_fulltime a chr:ClinicalCondition ;
+    chr:hasSeverity ex:severity_moderate ;
+    chr:hasRecordDate "2020-04-26T12:29:00"^^xsd:dateTime .
+
+ex:diag_stress a chr:DiagnosticStatement .
+ex:cond_stress a chr:ClinicalCondition ;
+    chr:hasSeverity ex:severity_moderate ;
+    chr:hasRecordDate "2020-04-26T12:29:00"^^xsd:dateTime .
+
+ex:diag_violence a chr:DiagnosticStatement .
+ex:cond_violence a chr:ClinicalCondition ;
+    chr:hasSeverity ex:severity_moderate ;
+    chr:hasRecordDate "2020-04-26T12:29:00"^^xsd:dateTime .
+
+# Evaluation Process
+ex:evaluation_2020_04_26_1229 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_fulltime , ex:diag_stress , ex:diag_violence .
+
+# Care Plan
+ex:careplan_2020_04_26 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_2020_04_26 .
+
+# Medical Procedure
+ex:procedure_2020_04_26 a chr:MedicalProcedure ;
+    chr:hasProcedureCode "PROC-001" ;
+    chr:hasPerformedBy ex:physician_Hank_Schneider ;
+    chr:hasPerformedOn ex:patient_Cory_Heller ;
+    chr:hasProcedureDate "2020-04-26T10:00:00"^^xsd:dateTime .
+
+# Measurement Processes and Results (selected examples)
+
+## FEV1/FVC
+ex:meas_fev1_fvc_process a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasResult ex:meas_fev1_fvc_result .
+ex:meas_fev1_fvc_result a chr:Measurement ;
+    chr:hasMeasuredDate "2020-04-26T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "36.725"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+## Body Height
+ex:meas_height_process a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasResult ex:meas_height_result .
+ex:meas_height_result a chr:Measurement ;
+    chr:hasMeasuredDate "2020-04-26T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "164.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+## Body Weight
+ex:meas_weight_process a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasResult ex:meas_weight_result .
+ex:meas_weight_result a chr:Measurement ;
+    chr:hasMeasuredDate "2020-04-26T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "75.4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+## BMI
+ex:meas_bmi_process a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasResult ex:meas_bmi_result .
+ex:meas_bmi_result a chr:Measurement ;
+    chr:hasMeasuredDate "2020-04-26T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "28.04"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+## Heart Rate
+ex:meas_hr_process a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasResult ex:meas_hr_result .
+ex:meas_hr_result a chr:Measurement ;
+    chr:hasMeasuredDate "2020-04-26T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "69.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+## Respiratory Rate
+ex:meas_rr_process a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasResult ex:meas_rr_result .
+ex:meas_rr_result a chr:Measurement ;
+    chr:hasMeasuredDate "2020-04-26T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+## Leukocytes
+ex:meas_leukocytes_process a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasResult ex:meas_leukocytes_result .
+ex:meas_leukocytes_result a chr:Measurement ;
+    chr:hasMeasuredDate "2020-04-26T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.5073"^^xsd:float ;
+    chr:hasUnit ex:unit_10_3_per_uL .
+
+## Pain Severity
+ex:meas_pain_process a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasResult ex:meas_pain_result .
+ex:meas_pain_result a chr:Measurement ;
+    chr:hasMeasuredDate "2020-04-26T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+## Fall Risk
+ex:meas_fallrisk_process a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasResult ex:meas_fallrisk_result .
+ex:meas_fallrisk_result a chr:Measurement ;
+    chr:hasMeasuredDate "2020-04-26T12:52:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "28.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+## PHQ-2
+ex:meas_phq2_process a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasResult ex:meas_phq2_result .
+ex:meas_phq2_result a chr:Measurement ;
+    chr:hasMeasuredDate "2020-04-26T13:31:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+## AUDIT-C
+ex:meas_auditc_process a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasResult ex:meas_auditc_result .
+ex:meas_auditc_result a chr:Measurement ;
+    chr:hasMeasuredDate "2020-04-26T14:05:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .

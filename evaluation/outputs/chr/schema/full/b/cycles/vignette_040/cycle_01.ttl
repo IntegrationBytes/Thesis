@@ -1,0 +1,53 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Cory323Frank378Heller342 a chr:Person .
+
+ex:visit_2017_04_11 a chr:ClinicalVisit ;
+  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
+  chr:hasCareProvider ex:doctor_Margene509Schamberger479 ;
+  chr:hasCareUnit ex:care_unit_LowellGeneral .
+
+ex:care_unit_LowellGeneral a chr:CareUnit .
+
+ex:doctor_Margene509Schamberger479 a chr:Person .
+
+ex:measurement_process_polyp_size a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
+  chr:hasResult ex:measurement_polyp_size .
+
+ex:measurement_polyp_size a chr:Measurement ;
+  chr:hasQuantityValue "11.962"^^xsd:float ;
+  chr:hasUnit sulo:millimeter ;
+  chr:hasMeasuredDate "2017-04-11T15:00:00"^^xsd:dateTime .
+
+ex:measurement_process_hemoglobin a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
+  chr:hasResult ex:measurement_hemoglobin .
+
+ex:measurement_hemoglobin a chr:Measurement ;
+  chr:hasQuantityValue "242.07"^^xsd:float ;
+  chr:hasUnit sulo:ng_per_mL ;
+  chr:hasMeasuredDate "2017-04-11T15:00:00"^^xsd:dateTime .
+
+ex:evaluation_2017_04_11 a chr:EvaluationProcess ;
+  chr:hasObservation ex:diagnostic_polyp_colon .
+
+ex:diagnostic_polyp_colon a chr:DiagnosticStatement .
+
+ex:clinical_condition_polyp_colon a chr:ClinicalCondition ;
+  chr:hasLocatedIn ex:anatomical_structure_colon ;
+  chr:hasSeverity ex:severity_moderate ;
+  chr:hasRecordDate "2017-04-11T15:00:00"^^xsd:dateTime .
+
+ex:anatomical_structure_colon a chr:AnatomicalStructure .
+
+ex:severity_moderate a chr:Severity .
+
+ex:care_plan_polyp_colon a chr:CarePlan ;
+  chr:hasMedicalProcedure ex:procedure_colonoscopy .
+
+ex:procedure_colonoscopy a chr:MedicalProcedure .

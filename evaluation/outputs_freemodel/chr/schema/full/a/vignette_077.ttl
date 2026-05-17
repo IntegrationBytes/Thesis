@@ -1,0 +1,68 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_EstelaGrant a chr:Person .
+
+ex:physician_IvonneTurcotte a chr:Person .
+
+ex:careunit_ZION a chr:CareUnit .
+
+ex:visit_20020311_2035 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasCareProvider ex:physician_IvonneTurcotte ;
+    chr:hasCareUnit ex:careunit_ZION .
+
+# Hemoglobin A1c measurement
+ex:proc_HbA1c_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_HbA1c_20020311_2035 .
+
+ex:meas_HbA1c_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.26"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+# Body Height measurement
+ex:proc_Height_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Height_20020311_2035 .
+
+ex:meas_Height_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "156.6"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+# Body Weight measurement
+ex:proc_Weight_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Weight_20020311_2035 .
+
+ex:meas_Weight_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "72.3"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+# Pain severity measurement
+ex:proc_Pain_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Pain_20020311_2035 .
+
+ex:meas_Pain_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Clinical condition: Medication review due
+ex:cond_MedReview_20020311_2035 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+# Clinical condition: Gingivitis
+ex:cond_Gingivitis_20020311_2309 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2002-03-11T23:09:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .

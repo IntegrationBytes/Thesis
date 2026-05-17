@@ -1,0 +1,108 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:patient_Daren950Ed239Strosin214 a chr:Person .
+
+# Person (physician)
+ex:physician_DrPing698Weissnat378 a chr:Person .
+
+# Care unit
+ex:careUnit_CommunityHealthProgramsInc a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2024_10_19_10_01 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_DrPing698Weissnat378 ;
+    chr:hasCareUnit ex:careUnit_CommunityHealthProgramsInc ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 .
+
+# Measurement processes and measurements
+
+# Height
+ex:measProcess_Height_2024_10_19_10_01 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasResult ex:measurement_Height_2024_10_19_10_01 .
+ex:measurement_Height_2024_10_19_10_01 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-10-19T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "177.4"^^xsd:float ;
+    chr:hasUnit sulo:centimetre .
+
+# Weight
+ex:measProcess_Weight_2024_10_19_10_01 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasResult ex:measurement_Weight_2024_10_19_10_01 .
+ex:measurement_Weight_2024_10_19_10_01 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-10-19T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "68.0"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+# BMI
+ex:measProcess_BMI_2024_10_19_10_01 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasResult ex:measurement_BMI_2024_10_19_10_01 .
+ex:measurement_BMI_2024_10_19_10_01 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-10-19T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "21.62"^^xsd:float ;
+    chr:hasUnit sulo:kilogramPerSquareMetre .
+
+# Heart rate
+ex:measProcess_HeartRate_2024_10_19_10_01 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasResult ex:measurement_HeartRate_2024_10_19_10_01 .
+ex:measurement_HeartRate_2024_10_19_10_01 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-10-19T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "66.0"^^xsd:float ;
+    chr:hasUnit sulo:beatsPerMinute .
+
+# Respiratory rate
+ex:measProcess_RespRate_2024_10_19_10_01 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasResult ex:measurement_RespRate_2024_10_19_10_01 .
+ex:measurement_RespRate_2024_10_19_10_01 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-10-19T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15.0"^^xsd:float ;
+    chr:hasUnit sulo:breathsPerMinute .
+
+# Pain severity (numeric rating)
+ex:measProcess_PainSeverity_2024_10_19_10_01 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasResult ex:measurement_PainSeverity_2024_10_19_10_01 .
+ex:measurement_PainSeverity_2024_10_19_10_01 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-10-19T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# DAST-10 total score
+ex:measProcess_DAST10_2024_10_19_11_17 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasResult ex:measurement_DAST10_2024_10_19_11_17 .
+ex:measurement_DAST10_2024_10_19_11_17 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-10-19T11:17:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Evaluation process for diagnostic statements
+ex:evaluation_2024_10_19_10_40 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasObservation ex:diagnostic_FullTimeEmployment , ex:diagnostic_SocialIsolation .
+
+ex:diagnostic_FullTimeEmployment a chr:DiagnosticStatement , chr:ClinicalCondition ;
+    chr:hasRecordDate "2024-10-19T10:40:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:diagnostic_SocialIsolation a chr:DiagnosticStatement , chr:ClinicalCondition ;
+    chr:hasRecordDate "2024-10-19T10:40:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+# Medical procedure referenced by the care plan
+ex:procedure_FollowUp a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 .
+
+# Care plan
+ex:carePlan_FollowUp a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_FollowUp .

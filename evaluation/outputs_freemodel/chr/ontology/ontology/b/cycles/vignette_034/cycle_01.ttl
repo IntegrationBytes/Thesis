@@ -1,0 +1,143 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:person_Casey401 a chr:Person .
+
+# Care unit
+ex:careunit_JFCS a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2022_10_27_18_59 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_Subject_Visit_Casey ;
+    sulo:hasParticipant ex:role_Provider_Visit_Eldridge ;
+    sulo:atTime ex:time_Visit_2022_10_27_18_59 .
+
+ex:role_Subject_Visit_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Provider_Visit_Eldridge a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Eldridge .
+
+ex:person_Eldridge a chr:Person .
+
+ex:time_Visit_2022_10_27_18_59 a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-27T18:59:00"^^xsd:dateTime .
+
+# Height measurement process
+ex:proc_Height_2022_10_27_18_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Height_Casey ;
+    sulo:hasFeature ex:status_Height_completed ;
+    sulo:atTime ex:time_Height_2022_10_27_18_59 .
+
+ex:role_Subject_Height_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:status_Height_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:time_Height_2022_10_27_18_59 a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-27T18:59:00"^^xsd:dateTime .
+
+ex:meas_Height_2022_10_27_18_59 a chr:Measurement ;
+    sulo:hasValue "172.7"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_Height_2022_10_27_18_59 .
+
+ex:unit_cm a sulo:Unit .
+
+# Weight measurement
+ex:proc_Weight_2022_10_27_18_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Weight_Casey ;
+    sulo:hasFeature ex:status_Weight_completed ;
+    sulo:atTime ex:time_Weight_2022_10_27_18_59 .
+
+ex:role_Subject_Weight_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:status_Weight_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:time_Weight_2022_10_27_18_59 a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-27T18:59:00"^^xsd:dateTime .
+
+ex:meas_Weight_2022_10_27_18_59 a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_Weight_2022_10_27_18_59 .
+
+ex:unit_kg a sulo:Unit .
+
+# BMI measurement
+ex:proc_BMI_2022_10_27_18_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_BMI_Casey ;
+    sulo:hasFeature ex:status_BMI_completed ;
+    sulo:atTime ex:time_BMI_2022_10_27_18_59 .
+
+ex:role_Subject_BMI_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:status_BMI_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:time_BMI_2022_10_27_18_59 a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-27T18:59:00"^^xsd:dateTime .
+
+ex:meas_BMI_2022_10_27_18_59 a chr:Measurement ;
+    sulo:hasValue "27.56"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_BMI_2022_10_27_18_59 .
+
+ex:unit_kg_per_m2 a sulo:Unit .
+
+# Heart rate measurement
+ex:proc_HeartRate_2022_10_27_18_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HR_Casey ;
+    sulo:hasFeature ex:status_HR_completed ;
+    sulo:atTime ex:time_HR_2022_10_27_18_59 .
+
+ex:role_Subject_HR_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:status_HR_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:time_HR_2022_10_27_18_59 a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-27T18:59:00"^^xsd:dateTime .
+
+ex:meas_HeartRate_2022_10_27_18_59 a chr:Measurement ;
+    sulo:hasValue "89"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_HR_2022_10_27_18_59 .
+
+ex:unit_per_min a sulo:Unit .
+
+# Diagnostic statement
+ex:diagstmt_MedReview a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+# Clinical condition
+ex:condition_2022_10_27 a chr:ClinicalCondition ;
+    sulo:hasParticipant ex:role_Subject_Condition_Casey ;
+    sulo:hasFeature ex:severity_Moderate ;
+    sulo:hasPart ex:diagstmt_MedReview ;
+    sulo:atTime ex:time_Condition_2022_10_27_18_59 .
+
+ex:role_Subject_Condition_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:time_Condition_2022_10_27_18_59 a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-27T18:59:00"^^xsd:dateTime .
+
+# Care plan
+ex:careplan_2022_10_27 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUp .
+
+ex:procedure_FollowUp a chr:MedicalProcedure ;
+    rdfs:label "follow‑up monitoring and routine review" .

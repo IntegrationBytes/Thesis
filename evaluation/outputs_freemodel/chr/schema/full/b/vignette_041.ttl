@@ -1,0 +1,192 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_CoryFrank a chr:Person .
+ex:physician_HankSchneider a chr:Person .
+
+# Care Unit
+ex:careunit_LOWELL a chr:CareUnit .
+
+# Clinical Visit
+ex:visit_20180415_1144 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasCareProvider ex:physician_HankSchneider ;
+    chr:hasCareUnit ex:careunit_LOWELL .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Diagnostic Statements
+ex:diag_MedReview a chr:DiagnosticStatement .
+ex:diag_LimitedSocialContact a chr:DiagnosticStatement .
+
+# Evaluation Processes
+ex:evaluation_20180415_1144 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MedReview ;
+    chr:hasPatient ex:patient_CoryFrank .
+
+ex:evaluation_20180415_1229 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_LimitedSocialContact ;
+    chr:hasPatient ex:patient_CoryFrank .
+
+# Clinical Conditions (recorded evaluations)
+ex:condition_20180415_1144 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2018-04-15T11:44:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:condition_20180415_1229 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2018-04-15T12:29:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Care Plan with at least one MedicalProcedure
+ex:careplan_20180415 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:proc_20180415 .
+
+ex:proc_20180415 a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_CoryFrank .
+
+# Measurement Processes and Measurements
+
+# FEV1/FVC
+ex:mp_FEV1_FVC a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:meas_FEV1_FVC .
+
+ex:meas_FEV1_FVC a chr:Measurement ;
+    chr:hasMeasuredDate "2018-04-15T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "60.042"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+# Body Height
+ex:mp_BodyHeight a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:meas_BodyHeight .
+
+ex:meas_BodyHeight a chr:Measurement ;
+    chr:hasMeasuredDate "2018-04-15T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "164.0"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+# Pain severity
+ex:mp_PainSeverity a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:meas_PainSeverity .
+
+ex:meas_PainSeverity a chr:Measurement ;
+    chr:hasMeasuredDate "2018-04-15T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Body Weight
+ex:mp_BodyWeight a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:meas_BodyWeight .
+
+ex:meas_BodyWeight a chr:Measurement ;
+    chr:hasMeasuredDate "2018-04-15T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "81.4"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+# BMI
+ex:mp_BMI a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:meas_BMI .
+
+ex:meas_BMI a chr:Measurement ;
+    chr:hasMeasuredDate "2018-04-15T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "30.26"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+
+# Heart Rate
+ex:mp_HeartRate a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:meas_HeartRate .
+
+ex:meas_HeartRate a chr:Measurement ;
+    chr:hasMeasuredDate "2018-04-15T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "95.0"^^xsd:float ;
+    chr:hasUnit sulo:beats_per_minute .
+
+# Respiratory Rate
+ex:mp_RespiratoryRate a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:meas_RespiratoryRate .
+
+ex:meas_RespiratoryRate a chr:Measurement ;
+    chr:hasMeasuredDate "2018-04-15T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "16.0"^^xsd:float ;
+    chr:hasUnit sulo:breaths_per_minute .
+
+# Cholesterol total
+ex:mp_CholesterolTotal a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:meas_CholesterolTotal .
+
+ex:meas_CholesterolTotal a chr:Measurement ;
+    chr:hasMeasuredDate "2018-04-15T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "197.96"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Triglyceride
+ex:mp_Triglyceride a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:meas_Triglyceride .
+
+ex:meas_Triglyceride a chr:Measurement ;
+    chr:hasMeasuredDate "2018-04-15T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "108.87"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# LDL Cholesterol
+ex:mp_CholesterolLDL a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:meas_CholesterolLDL .
+
+ex:meas_CholesterolLDL a chr:Measurement ;
+    chr:hasMeasuredDate "2018-04-15T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "120.52"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# HDL Cholesterol
+ex:mp_CholesterolHDL a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:meas_CholesterolHDL .
+
+ex:meas_CholesterolHDL a chr:Measurement ;
+    chr:hasMeasuredDate "2018-04-15T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "55.66"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# GAD-7
+ex:mp_GAD7 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:meas_GAD7 .
+
+ex:meas_GAD7 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-04-15T12:46:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# HARK total score
+ex:mp_HARK a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:meas_HARK .
+
+ex:meas_HARK a chr:Measurement ;
+    chr:hasMeasuredDate "2018-04-15T13:16:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# PHQ-2
+ex:mp_PHQ2 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:meas_PHQ2 .
+
+ex:meas_PHQ2 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-04-15T13:59:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit sulo:score .

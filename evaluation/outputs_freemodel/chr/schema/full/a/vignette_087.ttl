@@ -1,0 +1,113 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_HallieGrant a chr:Person .
+
+ex:careunit_CARING_HEALTH_CENTER a chr:CareUnit .
+
+ex:physician_TeresaTapia a chr:Person .
+
+ex:visit_2022_08_10_1630 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_HallieGrant ;
+    chr:hasCareProvider ex:physician_TeresaTapia ;
+    chr:hasCareUnit ex:careunit_CARING_HEALTH_CENTER .
+
+# Height measurement
+ex:mp_height_2022_08_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_HallieGrant ;
+    chr:hasResult ex:meas_height_2022_08_10_1630 .
+
+ex:meas_height_2022_08_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "77.1"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+# Weight measurement
+ex:mp_weight_2022_08_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_HallieGrant ;
+    chr:hasResult ex:meas_weight_2022_08_10_1630 .
+
+ex:meas_weight_2022_08_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "11.8"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+# Weight-for-length measurement
+ex:mp_wfl_2022_08_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_HallieGrant ;
+    chr:hasResult ex:meas_wfl_2022_08_10_1630 .
+
+ex:meas_wfl_2022_08_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "96.761"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+# Head circumference percentile measurement
+ex:mp_hc_percentile_2022_08_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_HallieGrant ;
+    chr:hasResult ex:meas_hc_percentile_2022_08_10_1630 .
+
+ex:meas_hc_percentile_2022_08_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "57.73"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+# Head circumference measurement
+ex:mp_hc_2022_08_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_HallieGrant ;
+    chr:hasResult ex:meas_hc_2022_08_10_1630 .
+
+ex:meas_hc_2022_08_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "46.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+# Heart rate measurement
+ex:mp_hr_2022_08_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_HallieGrant ;
+    chr:hasResult ex:meas_hr_2022_08_10_1630 .
+
+ex:meas_hr_2022_08_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "65.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# Respiratory rate measurement
+ex:mp_rr_2022_08_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_HallieGrant ;
+    chr:hasResult ex:meas_rr_2022_08_10_1630 .
+
+ex:meas_rr_2022_08_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# Pain severity measurement
+ex:mp_pain_2022_08_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_HallieGrant ;
+    chr:hasResult ex:meas_pain_2022_08_10_1630 .
+
+ex:meas_pain_2022_08_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# Evaluation process
+ex:evaluation_2022_08_10_1630 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_medication_review_2022_08_10 .
+
+ex:diag_medication_review_2022_08_10 a chr:DiagnosticStatement .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Clinical condition (diagnosis)
+ex:condition_2022_08_10_1630 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2022-08-10T16:30:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Care plan
+ex:careplan_2022_08_10 a chr:CarePlan .

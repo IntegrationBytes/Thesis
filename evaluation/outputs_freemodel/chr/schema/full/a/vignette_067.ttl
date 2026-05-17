@@ -1,0 +1,124 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Dolores_Nevarez
+    a chr:Person .
+
+ex:physician_Cari_Kohler
+    a chr:Person .
+
+ex:careunit_DRHEs
+    a chr:CareUnit .
+
+ex:visit_2018_10_16_0520
+    a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Cari_Kohler ;
+    chr:hasCareUnit ex:careunit_DRHEs ;
+    chr:hasPatient ex:patient_Dolores_Nevarez .
+
+# Height measurement
+ex:mp_height_2018_10_16_0520
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_height_2018_10_16_0520 .
+
+ex:meas_height_2018_10_16_0520
+    a chr:Measurement ;
+    chr:hasQuantityValue "118.7"^^xsd:float ;
+    chr:hasUnit sulo:centimeter ;
+    chr:hasMeasuredDate "2018-10-16T05:20:00"^^xsd:dateTime .
+
+# Pain severity measurement
+ex:mp_pain_2018_10_16_0520
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_pain_2018_10_16_0520 .
+
+ex:meas_pain_2018_10_16_0520
+    a chr:Measurement ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit sulo:score ;
+    chr:hasMeasuredDate "2018-10-16T05:20:00"^^xsd:dateTime .
+
+# Weight measurement
+ex:mp_weight_2018_10_16_0520
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_weight_2018_10_16_0520 .
+
+ex:meas_weight_2018_10_16_0520
+    a chr:Measurement ;
+    chr:hasQuantityValue "26.1"^^xsd:float ;
+    chr:hasUnit sulo:kilogram ;
+    chr:hasMeasuredDate "2018-10-16T05:20:00"^^xsd:dateTime .
+
+# BMI (ratio) measurement
+ex:mp_bmi_ratio_2018_10_16_0520
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_bmi_ratio_2018_10_16_0520 .
+
+ex:meas_bmi_ratio_2018_10_16_0520
+    a chr:Measurement ;
+    chr:hasQuantityValue "18.51"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 ;
+    chr:hasMeasuredDate "2018-10-16T05:20:00"^^xsd:dateTime .
+
+# BMI (percentile) measurement
+ex:mp_bmi_percentile_2018_10_16_0520
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_bmi_percentile_2018_10_16_0520 .
+
+ex:meas_bmi_percentile_2018_10_16_0520
+    a chr:Measurement ;
+    chr:hasQuantityValue "94.132"^^xsd:float ;
+    chr:hasUnit sulo:percent ;
+    chr:hasMeasuredDate "2018-10-16T05:20:00"^^xsd:dateTime .
+
+# Heart rate measurement
+ex:mp_heart_rate_2018_10_16_0520
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_heart_rate_2018_10_16_0520 .
+
+ex:meas_heart_rate_2018_10_16_0520
+    a chr:Measurement ;
+    chr:hasQuantityValue "80.0"^^xsd:float ;
+    chr:hasUnit sulo:per_minute ;
+    chr:hasMeasuredDate "2018-10-16T05:20:00"^^xsd:dateTime .
+
+# Respiratory rate measurement
+ex:mp_respiratory_rate_2018_10_16_0520
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_respiratory_rate_2018_10_16_0520 .
+
+ex:meas_respiratory_rate_2018_10_16_0520
+    a chr:Measurement ;
+    chr:hasQuantityValue "15.0"^^xsd:float ;
+    chr:hasUnit sulo:per_minute ;
+    chr:hasMeasuredDate "2018-10-16T05:20:00"^^xsd:dateTime .
+
+# Evaluation and diagnostic statement
+ex:evaluation_2018_10_16_0520
+    a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_medication_review .
+
+ex:diag_medication_review
+    a chr:DiagnosticStatement .
+
+ex:cond_medication_review
+    a chr:ClinicalCondition ;
+    chr:hasRecordDate "2018-10-16T05:20:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+ex:severity_moderate
+    a chr:Severity .
+
+# Care plan
+ex:careplan_2018_10_16_0520
+    a chr:CarePlan .

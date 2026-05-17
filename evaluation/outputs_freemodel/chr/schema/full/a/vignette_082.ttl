@@ -1,0 +1,55 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_EstelaGrant a chr:Person .
+
+ex:careunit_ENCOMPASS a chr:CareUnit .
+
+ex:physician_NickolasSchumm a chr:Person .
+
+ex:visit_2008_10_18T2135 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_NickolasSchumm ;
+    chr:hasCareUnit ex:careunit_ENCOMPASS ;
+    chr:hasPatient ex:patient_EstelaGrant .
+
+ex:unit_cm a sulo:Unit .
+
+# Tumor size measurement
+ex:meas_TumorSize_2008_10_18T2253 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_TumorSize_2008_10_18T2253 .
+
+ex:measurement_TumorSize_2008_10_18T2253 a chr:Measurement ;
+    chr:hasMeasuredDate "2008-10-18T22:53:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.5292"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+# Lymph nodes measurement
+ex:meas_LymphNodes_2008_10_18T2253 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_LymphNodes_2008_10_18T2253 .
+
+ex:measurement_LymphNodes_2008_10_18T2253 a chr:Measurement ;
+    chr:hasMeasuredDate "2008-10-18T22:53:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+# Diagnostic statement and evaluation
+ex:diag_MalignantNeoplasmBreast a chr:DiagnosticStatement .
+
+ex:evaluation_2008_10_18T2135 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MalignantNeoplasmBreast .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Clinical condition (optional)
+ex:condition_BreastCancer a chr:ClinicalCondition ;
+    chr:hasRecordDate "2008-10-18T21:35:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Care plan
+ex:careplan_FollowUp a chr:CarePlan .

@@ -1,0 +1,52 @@
+========================================================================
+APPENDIX — Pipeline Trace: vignette_001
+Schema: chr  Track: schema  Prompt: full  System: B (SHACL loop)
+========================================================================
+
+INPUT CLINICAL TEXT
+----------------------------------------
+CLINICAL VISIT NOTE — BOSTON MEDICAL CENTER CORPORATION-
+========================================================
+
+Patient: Angelic427 Callie226 Schaden604 (ID: P-5e117ba0)
+Date of visit: 2016-08-07 06:24
+Care unit: BOSTON MEDICAL CENTER CORPORATION-
+Attending physician: Dr. Willian804 Batz141
+Encounter type: Encounter for symptom (procedure)
+
+On 2016-08-07 06:24, a Body temperature measurement was performed on
+Angelic427 Callie226 Schaden604. The measurement result was 37.816
+Cel. The measurement process was recorded with status "completed".
+
+Dr. Willian804 Batz141 evaluated the patient on 2016-08-07 06:24. The
+evaluation produced a diagnostic statement of Acute viral pharyngitis
+(disorder). The condition was recorded on 2016-08-07 06:24. Severity
+was assessed as "Moderate".
+
+A care plan was established that refers to follow-up monitoring and
+routine review consistent with the diagnosis.
+
+CYCLE 0  ───────────────────────────────────────────────────────
+Source: zero-shot extraction (System A output)
+
+Extracted graph:
+  Typed instances: 1× CarePlan, 1× CareUnit, 1× ClinicalCondition, 1× ClinicalVisit, 1× DiagnosticStatement, 1× EvaluationProcess, 1× Measurement, 1× MeasurementProcess, 2× Person, 1× Severity
+  Relation triples: 12  |  Predicates used: hasCareProvider, hasCareUnit, hasMeasuredDate, hasObservation, hasPatient, hasQuantityValue, hasRecordDate, hasResult, hasSeverity, hasUnit
+
+SHACL result: FAIL  (1 violation)
+    [[ sh:message Literal("A CarePlan should refer to at least one MedicalProcedure.") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path chr:hasMedicalProcedure ]] on ex:care_plan_follow_up: A CarePlan should refer to at least one MedicalProced
+
+CYCLE 1  ───────────────────────────────────────────────────────
+Source: SHACL-feedback correction (System B retry)
+
+Extracted graph:
+  Typed instances: 1× CarePlan, 1× CareUnit, 1× ClinicalCondition, 1× ClinicalVisit, 1× DiagnosticStatement, 1× EvaluationProcess, 1× Measurement, 1× MeasurementProcess, 1× MedicalProcedure, 2× Person, 1× Severity
+  Relation triples: 13  |  Predicates used: hasCareProvider, hasCareUnit, hasMeasuredDate, hasMedicalProcedure, hasObservation, hasPatient, hasQuantityValue, hasRecordDate, hasResult, hasSeverity, hasUnit
+
+SHACL result: CONFORMS ✓  (0 violations)
+
+────────────────────────────────────────────────────────────────────────
+OUTCOME: Conformant ✓
+LLM correction calls: 1
+
+========================================================================

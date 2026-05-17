@@ -1,0 +1,45 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Daren950Ed239Strosin214 a chr:Person .
+
+ex:physician_Carroll471Eichmann909 a chr:Person .
+
+ex:careunit_BerkshireMedicalCenterInc a chr:CareUnit .
+
+ex:visit_2019_03_16_1701 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasCareProvider ex:physician_Carroll471Eichmann909 ;
+    chr:hasCareUnit ex:careunit_BerkshireMedicalCenterInc .
+
+ex:status_completed a chr:ProcessStatus .
+
+ex:measproc_temp_2019_03_16_1701 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasPerformedDate "2019-03-16T17:01:00"^^xsd:dateTime ;
+    chr:hasStatus ex:status_completed ;
+    chr:hasResult ex:measurement_temp_2019_03_16_1701 .
+
+ex:measurement_temp_2019_03_16_1701 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-16T17:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "37.277"^^xsd:float ;
+    chr:hasUnit ex:unit_Celsius .
+
+ex:unit_Celsius a sulo:Unit .
+
+ex:diag_AcuteViralPharyngitis a chr:DiagnosticStatement .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:condition_AcuteViralPharyngitis a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-03-16T17:01:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:evaluation_2019_03_16_1701 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_AcuteViralPharyngitis .
+
+ex:careplan_followup a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:evaluation_2019_03_16_1701 .

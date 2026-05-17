@@ -1,0 +1,107 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person
+ex:patient_Cory_Heller a chr:Person .
+
+# Care provider
+ex:physician_Hank_Schneider a chr:Person .
+
+# Care unit
+ex:careunit_LOWELL a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2025_05_25_1144 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasCareProvider ex:physician_Hank_Schneider ;
+    chr:hasCareUnit ex:careunit_LOWELL ;
+    chr:hasRecordDate "2025-05-25T11:44:00"^^xsd:dateTime .
+
+# Measurement processes and results (selected examples)
+
+## FEV1/FVC
+ex:meas_FEV1_2025_05_25_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasDevice ex:device_FEV1 ;
+    chr:hasResult ex:result_FEV1_2025_05_25_1144 .
+
+ex:device_FEV1 a chr:Device .
+
+ex:result_FEV1_2025_05_25_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "35.308"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+## Body Height
+ex:meas_Height_2025_05_25_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasDevice ex:device_Height ;
+    chr:hasResult ex:result_Height_2025_05_25_1144 .
+
+ex:device_Height a chr:Device .
+
+ex:result_Height_2025_05_25_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "164.0"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+## Pain severity
+ex:meas_Pain_2025_05_25_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasDevice ex:device_PainScale ;
+    chr:hasResult ex:result_Pain_2025_05_25_1144 .
+
+ex:device_PainScale a chr:Device .
+
+ex:result_Pain_2025_05_25_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+## PHQ-2
+ex:meas_PHQ2_2025_05_25_1301 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasDevice ex:device_PHQ2 ;
+    chr:hasResult ex:result_PHQ2_2025_05_25_1301 .
+
+ex:device_PHQ2 a chr:Device .
+
+ex:result_PHQ2_2025_05_25_1301 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-05-25T13:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Evaluation processes and diagnostic statements
+
+## Part‑time employment
+ex:evaluation_2025_05_25_1229_1 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasCareProvider ex:physician_Hank_Schneider ;
+    chr:hasObservation ex:diag_PartTimeEmployment .
+
+ex:diag_PartTimeEmployment a chr:DiagnosticStatement .
+
+ex:cond_PartTimeEmployment a chr:ClinicalCondition ;
+    chr:hasRecordDate "2025-05-25T12:29:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+## Social isolation
+ex:evaluation_2025_05_25_1229_2 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Cory_Heller ;
+    chr:hasCareProvider ex:physician_Hank_Schneider ;
+    chr:hasObservation ex:diag_SocialIsolation .
+
+ex:diag_SocialIsolation a chr:DiagnosticStatement .
+
+ex:cond_SocialIsolation a chr:ClinicalCondition ;
+    chr:hasRecordDate "2025-05-25T12:29:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Severity individual
+ex:severity_Moderate a chr:Severity .
+
+# Care plan (generic)
+ex:careplan_2025_05_25 a chr:CarePlan .

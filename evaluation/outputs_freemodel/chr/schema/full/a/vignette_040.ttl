@@ -1,0 +1,55 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_CoryFrank a chr:Person .
+
+ex:physician_Margene a chr:Person .
+
+ex:careunit_Lowell a chr:CareUnit .
+
+ex:visit_2017_04_11_1432 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Margene ;
+    chr:hasCareUnit ex:careunit_Lowell ;
+    chr:hasPatient ex:patient_CoryFrank .
+
+ex:unit_mm a sulo:Unit .
+ex:unit_ng_per_mL a sulo:Unit .
+
+ex:measurement_polyp_20170411_1500 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-04-11T15:00:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "11.962"^^xsd:float ;
+    chr:hasUnit ex:unit_mm .
+
+ex:meas_process_polyp_20170411_1500 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:measurement_polyp_20170411_1500 .
+
+ex:measurement_hgb_20170411_1500 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-04-11T15:00:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "242.07"^^xsd:float ;
+    chr:hasUnit ex:unit_ng_per_mL .
+
+ex:meas_process_hgb_20170411_1500 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:measurement_hgb_20170411_1500 .
+
+ex:colon a chr:AnatomicalStructure .
+
+ex:severity_moderate a chr:Severity .
+
+ex:condition_polypColon_20170411_1500 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2017-04-11T15:00:00"^^xsd:dateTime ;
+    chr:hasLocatedIn ex:colon ;
+    chr:hasSeverity ex:severity_moderate .
+
+ex:diag_polypColon_20170411_1500 a chr:DiagnosticStatement .
+
+ex:evaluation_20170411_1500 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasObservation ex:diag_polypColon_20170411_1500 .
+
+ex:careplan_followup_20170411 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:evaluation_20170411_1500 .

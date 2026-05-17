@@ -1,0 +1,170 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Grant
+    a chr:Person .
+
+ex:careunit_CARING_HEALTH_CENTER_INC
+    a chr:CareUnit .
+
+ex:physician_TeresaTapia
+    a chr:Person .
+
+ex:visit_2024_05_08_1630
+    a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Grant ;
+    chr:hasCareProvider ex:physician_TeresaTapia ;
+    chr:hasCareUnit ex:careunit_CARING_HEALTH_CENTER_INC .
+
+# Height
+ex:measproc_height_20240508
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Grant ;
+    chr:hasResult ex:measurement_height_20240508 .
+
+ex:measurement_height_20240508
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-08T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "94.1"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+# Weight
+ex:measproc_weight_20240508
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Grant ;
+    chr:hasResult ex:measurement_weight_20240508 .
+
+ex:measurement_weight_20240508
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-08T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15.9"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+# Weight-for-length percentile
+ex:measproc_wfl_percentile_20240508
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Grant ;
+    chr:hasResult ex:measurement_wfl_percentile_20240508 .
+
+ex:measurement_wfl_percentile_20240508
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-08T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "93.745"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+# Head occipital-frontal circumference percentile
+ex:measproc_hofc_percentile_20240508
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Grant ;
+    chr:hasResult ex:measurement_hofc_percentile_20240508 .
+
+ex:measurement_hofc_percentile_20240508
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-08T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "57.73"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+# Head occipital-frontal circumference length
+ex:measproc_hofc_length_20240508
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Grant ;
+    chr:hasResult ex:measurement_hofc_length_20240508 .
+
+ex:measurement_hofc_length_20240508
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-08T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "48.9"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+# BMI ratio
+ex:measproc_bmi_ratio_20240508
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Grant ;
+    chr:hasResult ex:measurement_bmi_ratio_20240508 .
+
+ex:measurement_bmi_ratio_20240508
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-08T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "17.96"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+
+# BMI percentile
+ex:measproc_bmi_percentile_20240508
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Grant ;
+    chr:hasResult ex:measurement_bmi_percentile_20240508 .
+
+ex:measurement_bmi_percentile_20240508
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-08T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "92.895"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+# Heart rate
+ex:measproc_hr_20240508
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Grant ;
+    chr:hasResult ex:measurement_hr_20240508 .
+
+ex:measurement_hr_20240508
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-08T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "96"^^xsd:float ;
+    chr:hasUnit sulo:per_minute .
+
+# Respiratory rate
+ex:measproc_rr_20240508
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Grant ;
+    chr:hasResult ex:measurement_rr_20240508 .
+
+ex:measurement_rr_20240508
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-08T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasUnit sulo:per_minute .
+
+# Pain severity (numeric rating)
+ex:measproc_pain_20240508
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Grant ;
+    chr:hasResult ex:measurement_pain_20240508 .
+
+ex:measurement_pain_20240508
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-08T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4"^^xsd:float ;
+    chr:hasUnit sulo:unitless .
+
+# Diagnostic statement
+ex:diagstmt_medication_review
+    a chr:DiagnosticStatement .
+
+# Severity
+ex:severity_moderate
+    a chr:Severity .
+
+# Clinical condition (diagnosis)
+ex:condition_medication_review
+    a chr:ClinicalCondition ;
+    chr:hasRecordDate "2024-05-08T16:30:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate ;
+    chr:hasObservation ex:evaluation_20240508 .
+
+# Evaluation process
+ex:evaluation_20240508
+    a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagstmt_medication_review .
+
+# Medical procedure (follow‑up)
+ex:proc_followup
+    a chr:MedicalProcedure ;
+    chr:hasRecordDate "2024-05-08T16:30:00"^^xsd:dateTime .
+
+# Care plan
+ex:careplan_followup
+    a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:proc_followup .

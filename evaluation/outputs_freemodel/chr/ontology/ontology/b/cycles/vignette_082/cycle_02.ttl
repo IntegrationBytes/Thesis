@@ -1,0 +1,123 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:person_Estela_Grant a chr:Person .
+ex:person_Nickolas_Schumm a chr:Person .
+
+# Care unit (place not further detailed)
+ex:careUnit_ENCOMPASS a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2008_10_18_2135 a chr:ClinicalVisit ;
+    sulo:atTime ex:time_visit_2135 ;
+    sulo:hasParticipant ex:role_VisitProvider_Nickolas .
+
+ex:time_visit_2135 a sulo:TimeInstant ;
+    sulo:hasValue "2008-10-18T21:35:00"^^xsd:dateTime .
+
+ex:role_VisitProvider_Nickolas a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Nickolas_Schumm .
+
+# Measurement process – Tumor size
+ex:proc_measure_TumorSize a chr:MeasurementProcess ;
+    sulo:atTime ex:time_meas_2253 ;
+    sulo:hasParticipant ex:role_MeasProvider_Nickolas ;
+    sulo:hasParticipant ex:role_MeasSubject_Estela ;
+    sulo:hasParticipant ex:role_MeasInstrument_Ruler ;
+    sulo:hasParticipant ex:role_MeasOutput_TumorSize ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_MeasProvider_Nickolas a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Nickolas_Schumm .
+
+ex:role_MeasSubject_Estela a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Estela_Grant .
+
+ex:role_MeasInstrument_Ruler a chr:InstrumentRole ;
+    sulo:isFeatureOf ex:device_Ruler .
+
+ex:device_Ruler a chr:Device .
+
+ex:role_MeasOutput_TumorSize a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_TumorSize .
+
+ex:measurement_TumorSize a chr:Measurement ;
+    sulo:hasValue "3.5292"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_meas_2253 .
+
+ex:unit_cm a sulo:Unit .
+
+# Measurement process – Lymph nodes (numeric result 0)
+ex:proc_measure_LymphNodes a chr:MeasurementProcess ;
+    sulo:atTime ex:time_meas_2253 ;
+    sulo:hasParticipant ex:role_MeasProvider_Nickolas ;
+    sulo:hasParticipant ex:role_MeasSubject_Estela ;
+    sulo:hasParticipant ex:role_MeasInstrument_Microscope ;
+    sulo:hasParticipant ex:role_MeasOutput_LymphNodes ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_MeasInstrument_Microscope a chr:InstrumentRole ;
+    sulo:isFeatureOf ex:device_Microscope .
+
+ex:device_Microscope a chr:Device .
+
+ex:role_MeasOutput_LymphNodes a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_LymphNodes .
+
+ex:measurement_LymphNodes a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_none ;
+    sulo:atTime ex:time_meas_2253 .
+
+ex:unit_none a sulo:Unit .
+
+# Shared time instant for the two measurements
+ex:time_meas_2253 a sulo:TimeInstant ;
+    sulo:hasValue "2008-10-18T22:53:00"^^xsd:dateTime .
+
+# Process status
+ex:status_completed a chr:ProcessStatus .
+
+# Evaluation process producing diagnostic statement
+ex:evaluation_2008_10_18_2135 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_eval_2135 ;
+    sulo:hasParticipant ex:role_EvalProvider_Nickolas ;
+    sulo:hasParticipant ex:role_EvalSubject_Estela ;
+    sulo:hasParticipant ex:role_EvalOutput_Diagnostic ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:role_EvalProvider_Nickolas a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Nickolas_Schumm .
+
+ex:role_EvalSubject_Estela a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Estela_Grant .
+
+ex:role_EvalOutput_Diagnostic a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnostic_MalignantBreast .
+
+ex:diagnostic_MalignantBreast a chr:DiagnosticStatement .
+
+ex:time_eval_2135 a sulo:TimeInstant ;
+    sulo:hasValue "2008-10-18T21:35:00"^^xsd:dateTime .
+
+# Clinical condition linked to the diagnostic statement
+ex:condition_BreastCancer a chr:ClinicalCondition ;
+    sulo:atTime ex:time_cond_2135 ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:time_cond_2135 a sulo:TimeInstant ;
+    sulo:hasValue "2008-10-18T21:35:00"^^xsd:dateTime .
+
+# Severity
+ex:severity_moderate a chr:Severity .
+
+# Care plan referring to a follow‑up procedure
+ex:carePlan_1 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUp .
+
+ex:procedure_FollowUp a chr:MedicalProcedure .

@@ -1,0 +1,123 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_DelmaHuel a chr:Person .
+
+ex:physician_DrewSimonis a chr:Person .
+
+ex:careunit_HarborHealth a chr:CareUnit .
+
+ex:visit_2020_09_24_08_12 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_DelmaHuel ;
+    chr:hasCareProvider ex:physician_DrewSimonis ;
+    chr:hasCareUnit ex:careunit_HarborHealth .
+
+# Status individual for completed processes
+ex:status_completed a chr:ProcessStatus .
+
+# Height measurement
+ex:meas_Height_20200924 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "70.9"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+ex:proc_Height_20200924 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DelmaHuel ;
+    chr:hasResult ex:meas_Height_20200924 ;
+    chr:hasStatus ex:status_completed .
+
+# Pain severity measurement
+ex:meas_Pain_20200924 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:proc_Pain_20200924 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DelmaHuel ;
+    chr:hasResult ex:meas_Pain_20200924 ;
+    chr:hasStatus ex:status_completed .
+
+# Weight measurement
+ex:meas_Weight_20200924 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.8"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+ex:proc_Weight_20200924 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DelmaHuel ;
+    chr:hasResult ex:meas_Weight_20200924 ;
+    chr:hasStatus ex:status_completed .
+
+# Weight-for-length measurement
+ex:meas_WeightForLength_20200924 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "91.197"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+ex:proc_WeightForLength_20200924 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DelmaHuel ;
+    chr:hasResult ex:meas_WeightForLength_20200924 ;
+    chr:hasStatus ex:status_completed .
+
+# Head circumference percentile measurement
+ex:meas_HeadCircPercentile_20200924 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "24.46"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+ex:proc_HeadCircPercentile_20200924 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DelmaHuel ;
+    chr:hasResult ex:meas_HeadCircPercentile_20200924 ;
+    chr:hasStatus ex:status_completed .
+
+# Head circumference measurement
+ex:meas_HeadCirc_20200924 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "44.01"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+ex:proc_HeadCirc_20200924 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DelmaHuel ;
+    chr:hasResult ex:meas_HeadCirc_20200924 ;
+    chr:hasStatus ex:status_completed .
+
+# Heart rate measurement
+ex:meas_HeartRate_20200924 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "88"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+ex:proc_HeartRate_20200924 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DelmaHuel ;
+    chr:hasResult ex:meas_HeartRate_20200924 ;
+    chr:hasStatus ex:status_completed .
+
+# Respiratory rate measurement
+ex:meas_RespRate_20200924 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+ex:proc_RespRate_20200924 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DelmaHuel ;
+    chr:hasResult ex:meas_RespRate_20200924 ;
+    chr:hasStatus ex:status_completed .
+
+# Diagnostic statement and evaluation
+ex:diag_MedicationReview a chr:DiagnosticStatement .
+
+ex:evaluation_20200924 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MedicationReview .
+
+# Clinical condition with severity
+ex:severity_Moderate a chr:Severity .
+
+ex:cond_MedicationReview a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Care plan (no medical procedure linked due to class constraints)
+ex:careplan_20200924 a chr:CarePlan .

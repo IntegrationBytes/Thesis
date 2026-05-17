@@ -1,0 +1,260 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:person_Daren950 a chr:Person ;
+    rdfs:label "Daren950 Ed239 Strosin214" .
+
+# Person (provider)
+ex:person_Ping698 a chr:Person ;
+    rdfs:label "Dr. Ping698 Weissnat378" .
+
+# Care unit
+ex:careunit_COMMUNITY_HEALTH_PROGRAMS_INC a chr:CareUnit ;
+    rdfs:label "COMMUNITY HEALTH PROGRAMS INC" .
+
+# Clinical visit
+ex:visit_2019_09_21_10_01 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_VisitPatient_Daren950 ,
+                       ex:role_VisitProvider_Ping698 ;
+    sulo:atTime ex:time_visit_2019_09_21_10_01 .
+
+# Roles for visit
+ex:role_VisitPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_VisitProvider_Ping698 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Ping698 .
+
+# Time instant for visit
+ex:time_visit_2019_09_21_10_01 a sulo:TimeInstant ;
+    sulo:hasValue "2019-09-21T10:01:00"^^xsd:dateTime .
+
+# Measurement processes and measurements
+# Height
+ex:proc_height_2019_09_21_10_01 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HeightPatient_Daren950 ,
+                       ex:role_HeightProvider_Ping698 ;
+    sulo:atTime ex:time_height_2019_09_21_10_01 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_HeightPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_HeightProvider_Ping698 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Ping698 .
+
+ex:height_measurement a chr:Measurement ;
+    sulo:hasValue "171.1"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/cm> ;
+    sulo:atTime ex:time_height_2019_09_21_10_01 .
+
+ex:time_height_2019_09_21_10_01 a sulo:TimeInstant ;
+    sulo:hasValue "2019-09-21T10:01:00"^^xsd:dateTime .
+
+# Weight
+ex:proc_weight_2019_09_21_10_01 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_WeightPatient_Daren950 ,
+                       ex:role_WeightProvider_Ping698 ;
+    sulo:atTime ex:time_weight_2019_09_21_10_01 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_WeightPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_WeightProvider_Ping698 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Ping698 .
+
+ex:weight_measurement a chr:Measurement ;
+    sulo:hasValue "53.7"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/kg> ;
+    sulo:atTime ex:time_weight_2019_09_21_10_01 .
+
+ex:time_weight_2019_09_21_10_01 a sulo:TimeInstant ;
+    sulo:hasValue "2019-09-21T10:01:00"^^xsd:dateTime .
+
+# BMI (ratio)
+ex:proc_bmi_ratio_2019_09_21_10_01 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_BMIPatient_Daren950 ,
+                       ex:role_BMIProvider_Ping698 ;
+    sulo:atTime ex:time_bmi_ratio_2019_09_21_10_01 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_BMIPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_BMIProvider_Ping698 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Ping698 .
+
+ex:bmi_ratio_measurement a chr:Measurement ;
+    sulo:hasValue "18.33"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/kg_per_m2> ;
+    sulo:atTime ex:time_bmi_ratio_2019_09_21_10_01 .
+
+ex:time_bmi_ratio_2019_09_21_10_01 a sulo:TimeInstant ;
+    sulo:hasValue "2019-09-21T10:01:00"^^xsd:dateTime .
+
+# BMI (percentile)
+ex:proc_bmi_percentile_2019_09_21_10_01 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_BMIPercentPatient_Daren950 ,
+                       ex:role_BMIPercentProvider_Ping698 ;
+    sulo:atTime ex:time_bmi_percentile_2019_09_21_10_01 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_BMIPercentPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_BMIPercentProvider_Ping698 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Ping698 .
+
+ex:bmi_percentile_measurement a chr:Measurement ;
+    sulo:hasValue "25.024"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/percent> ;
+    sulo:atTime ex:time_bmi_percentile_2019_09_21_10_01 .
+
+ex:time_bmi_percentile_2019_09_21_10_01 a sulo:TimeInstant ;
+    sulo:hasValue "2019-09-21T10:01:00"^^xsd:dateTime .
+
+# Heart rate
+ex:proc_heart_rate_2019_09_21_10_01 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HRPatient_Daren950 ,
+                       ex:role_HRProvider_Ping698 ;
+    sulo:atTime ex:time_heart_rate_2019_09_21_10_01 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_HRPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_HRProvider_Ping698 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Ping698 .
+
+ex:heart_rate_measurement a chr:Measurement ;
+    sulo:hasValue "86"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/per_min> ;
+    sulo:atTime ex:time_heart_rate_2019_09_21_10_01 .
+
+ex:time_heart_rate_2019_09_21_10_01 a sulo:TimeInstant ;
+    sulo:hasValue "2019-09-21T10:01:00"^^xsd:dateTime .
+
+# Respiratory rate
+ex:proc_resp_rate_2019_09_21_10_01 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_RRPatient_Daren950 ,
+                       ex:role_RRProvider_Ping698 ;
+    sulo:atTime ex:time_resp_rate_2019_09_21_10_01 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_RRPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_RRProvider_Ping698 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Ping698 .
+
+ex:resp_rate_measurement a chr:Measurement ;
+    sulo:hasValue "15"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/per_min> ;
+    sulo:atTime ex:time_resp_rate_2019_09_21_10_01 .
+
+ex:time_resp_rate_2019_09_21_10_01 a sulo:TimeInstant ;
+    sulo:hasValue "2019-09-21T10:01:00"^^xsd:dateTime .
+
+# Pain severity
+ex:proc_pain_severity_2019_09_21_10_01 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PainPatient_Daren950 ,
+                       ex:role_PainProvider_Ping698 ;
+    sulo:atTime ex:time_pain_2019_09_21_10_01 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_PainPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_PainProvider_Ping698 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Ping698 .
+
+ex:pain_severity_measurement a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_pain_2019_09_21_10_01 .
+
+ex:time_pain_2019_09_21_10_01 a sulo:TimeInstant ;
+    sulo:hasValue "2019-09-21T10:01:00"^^xsd:dateTime .
+
+# GAD-7
+ex:proc_gad7_2019_09_21_10_25 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_GAD7Patient_Daren950 ,
+                       ex:role_GAD7Provider_Ping698 ;
+    sulo:atTime ex:time_gad7_2019_09_21_10_25 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_GAD7Patient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_GAD7Provider_Ping698 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Ping698 .
+
+ex:gad7_measurement a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_gad7_2019_09_21_10_25 .
+
+ex:time_gad7_2019_09_21_10_25 a sulo:TimeInstant ;
+    sulo:hasValue "2019-09-21T10:25:00"^^xsd:dateTime .
+
+# PHQ-9
+ex:proc_phq9_2019_09_21_11_06 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PHQ9Patient_Daren950 ,
+                       ex:role_PHQ9Provider_Ping698 ;
+    sulo:atTime ex:time_phq9_2019_09_21_11_06 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_PHQ9Patient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_PHQ9Provider_Ping698 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Ping698 .
+
+ex:phq9_measurement a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_phq9_2019_09_21_11_06 .
+
+ex:time_phq9_2019_09_21_11_06 a sulo:TimeInstant ;
+    sulo:hasValue "2019-09-21T11:06:00"^^xsd:dateTime .
+
+# Evaluation process
+ex:evaluation_2019_09_21_10_01 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalProvider_Ping698 ,
+                       ex:role_EvalPatient_Daren950 ;
+    sulo:atTime ex:time_evaluation_2019_09_21_10_01 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_EvalProvider_Ping698 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Ping698 .
+
+ex:role_EvalPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:diagnostic_statement_2019_09_21_10_01 a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" .
+
+ex:evaluation_2019_09_21_10_01 sulo:hasFeature ex:diagnostic_statement_2019_09_21_10_01 ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+ex:time_evaluation_2019_09_21_10_01 a sulo:TimeInstant ;
+    sulo:hasValue "2019-09-21T10:01:00"^^xsd:dateTime .
+
+# Care plan
+ex:careplan_2019_09_21 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup_monitoring .
+
+ex:procedure_followup_monitoring a chr:MedicalProcedure ;
+    rdfs:label "Follow-up monitoring and routine review" .
+
+# Process status (shared)
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .

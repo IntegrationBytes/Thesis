@@ -1,0 +1,282 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Units
+ex:unit_cm a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+ex:unit_score a sulo:Unit .
+
+# Person (patient)
+ex:person_Casey401 a chr:Person ;
+    rdfs:label "Casey401 Elijah719 Parker433" .
+
+# Person (provider)
+ex:person_EldridgeMarquardt a chr:Person ;
+    rdfs:label "Dr. Eldridge510 Marquardt819" .
+
+# Clinical visit
+ex:visit_2020_10_15_1859 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_Subject_Visit_Casey ;
+    sulo:hasParticipant ex:role_Provider_Visit_Eldridge ;
+    sulo:atTime ex:time_Visit_2020_10_15_1859 .
+
+ex:role_Subject_Visit_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Provider_Visit_Eldridge a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+ex:time_Visit_2020_10_15_1859 a sulo:TimeInstant ;
+    sulo:hasValue "2020-10-15T18:59:00"^^xsd:dateTime .
+
+# Measurement processes and results
+
+## Height
+ex:proc_Height_2020_10_15_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Height_Casey ;
+    sulo:hasParticipant ex:role_Output_Height ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Height_2020_10_15_1859 .
+
+ex:role_Subject_Height_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Output_Height a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Height_2020_10_15_1859 .
+
+ex:meas_Height_2020_10_15_1859 a chr:Measurement ;
+    sulo:hasValue "172.7"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_Height_2020_10_15_1859 .
+
+ex:time_Height_2020_10_15_1859 a sulo:TimeInstant ;
+    sulo:hasValue "2020-10-15T18:59:00"^^xsd:dateTime .
+
+## Weight
+ex:proc_Weight_2020_10_15_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Weight_Casey ;
+    sulo:hasParticipant ex:role_Output_Weight ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Weight_2020_10_15_1859 .
+
+ex:role_Subject_Weight_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Output_Weight a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Weight_2020_10_15_1859 .
+
+ex:meas_Weight_2020_10_15_1859 a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_Weight_2020_10_15_1859 .
+
+ex:time_Weight_2020_10_15_1859 a sulo:TimeInstant ;
+    sulo:hasValue "2020-10-15T18:59:00"^^xsd:dateTime .
+
+## BMI
+ex:proc_BMI_2020_10_15_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_BMI_Casey ;
+    sulo:hasParticipant ex:role_Output_BMI ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_BMI_2020_10_15_1859 .
+
+ex:role_Subject_BMI_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Output_BMI a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_BMI_2020_10_15_1859 .
+
+ex:meas_BMI_2020_10_15_1859 a chr:Measurement ;
+    sulo:hasValue "27.56"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_BMI_2020_10_15_1859 .
+
+ex:time_BMI_2020_10_15_1859 a sulo:TimeInstant ;
+    sulo:hasValue "2020-10-15T18:59:00"^^xsd:dateTime .
+
+## Heart rate
+ex:proc_HeartRate_2020_10_15_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HR_Casey ;
+    sulo:hasParticipant ex:role_Output_HR ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_HR_2020_10_15_1859 .
+
+ex:role_Subject_HR_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Output_HR a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HR_2020_10_15_1859 .
+
+ex:meas_HR_2020_10_15_1859 a chr:Measurement ;
+    sulo:hasValue "98"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_HR_2020_10_15_1859 .
+
+ex:time_HR_2020_10_15_1859 a sulo:TimeInstant ;
+    sulo:hasValue "2020-10-15T18:59:00"^^xsd:dateTime .
+
+## Respiratory rate
+ex:proc_RespRate_2020_10_15_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_RR_Casey ;
+    sulo:hasParticipant ex:role_Output_RR ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_RR_2020_10_15_1859 .
+
+ex:role_Subject_RR_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Output_RR a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_RR_2020_10_15_1859 .
+
+ex:meas_RR_2020_10_15_1859 a chr:Measurement ;
+    sulo:hasValue "14"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_RR_2020_10_15_1859 .
+
+ex:time_RR_2020_10_15_1859 a sulo:TimeInstant ;
+    sulo:hasValue "2020-10-15T18:59:00"^^xsd:dateTime .
+
+## Pain severity
+ex:proc_Pain_2020_10_15_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Pain_Casey ;
+    sulo:hasParticipant ex:role_Output_Pain ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Pain_2020_10_15_1859 .
+
+ex:role_Subject_Pain_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Output_Pain a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Pain_2020_10_15_1859 .
+
+ex:meas_Pain_2020_10_15_1859 a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_Pain_2020_10_15_1859 .
+
+ex:time_Pain_2020_10_15_1859 a sulo:TimeInstant ;
+    sulo:hasValue "2020-10-15T18:59:00"^^xsd:dateTime .
+
+## Total HARK score
+ex:proc_HARK_2020_10_15_2036 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HARK_Casey ;
+    sulo:hasParticipant ex:role_Output_HARK ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_HARK_2020_10_15_2036 .
+
+ex:role_Subject_HARK_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Output_HARK a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HARK_2020_10_15_2036 .
+
+ex:meas_HARK_2020_10_15_2036 a chr:Measurement ;
+    sulo:hasValue "3"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_HARK_2020_10_15_2036 .
+
+ex:time_HARK_2020_10_15_2036 a sulo:TimeInstant ;
+    sulo:hasValue "2020-10-15T20:36:00"^^xsd:dateTime .
+
+## PHQ-2 score
+ex:proc_PHQ2_2020_10_15_2113 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_PHQ2_Casey ;
+    sulo:hasParticipant ex:role_Output_PHQ2 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_PHQ2_2020_10_15_2113 .
+
+ex:role_Subject_PHQ2_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Output_PHQ2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_PHQ2_2020_10_15_2113 .
+
+ex:meas_PHQ2_2020_10_15_2113 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_PHQ2_2020_10_15_2113 .
+
+ex:time_PHQ2_2020_10_15_2113 a sulo:TimeInstant ;
+    sulo:hasValue "2020-10-15T21:13:00"^^xsd:dateTime .
+
+## DAST-10 score
+ex:proc_DAST10_2020_10_15_2151 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_DAST_Casey ;
+    sulo:hasParticipant ex:role_Output_DAST ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_DAST_2020_10_15_2151 .
+
+ex:role_Subject_DAST_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Output_DAST a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_DAST_2020_10_15_2151 .
+
+ex:meas_DAST_2020_10_15_2151 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_DAST_2020_10_15_2151 .
+
+ex:time_DAST_2020_10_15_2151 a sulo:TimeInstant ;
+    sulo:hasValue "2020-10-15T21:51:00"^^xsd:dateTime .
+
+# Process status instance
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Evaluation processes and diagnostic statements
+
+## Evaluation 19:55 (Full-time employment)
+ex:evaluation_2020_10_15_1955 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Eval_Casey ;
+    sulo:hasParticipant ex:role_Performer_Eval_Eldridge ;
+    sulo:hasParticipant ex:role_Output_Eval_FullTime ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Eval_2020_10_15_1955 .
+
+ex:role_Subject_Eval_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Performer_Eval_Eldridge a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+ex:role_Output_Eval_FullTime a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_FullTimeEmployment .
+
+ex:diag_FullTimeEmployment a chr:DiagnosticStatement ;
+    rdfs:label "Full-time employment" .
+
+ex:time_Eval_2020_10_15_1955 a sulo:TimeInstant ;
+    sulo:hasValue "2020-10-15T19:55:00"^^xsd:dateTime .
+
+## Evaluation 20:36 (Victim of intimate partner abuse)
+ex:evaluation_2020_10_15_2036 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Eval2_Casey ;
+    sulo:hasParticipant ex:role_Performer_Eval2_Eldridge ;
+    sulo:hasParticipant ex:role_Output_Eval2_Abuse ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Eval_2020_10_15_2036 .
+
+ex:role_Subject_Eval2_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Performer_Eval2_Eldridge a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+ex:role_Output_Eval2_Abuse a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_VictimAbuse .
+
+ex:diag_VictimAbuse a chr:DiagnosticStatement ;
+    rdfs:label "Victim of intimate partner abuse" .
+
+ex:time_Eval_2020_10_15_2036 a sulo:TimeInstant ;
+    sulo:hasValue "2020-10-15T20:36:00"^^xsd:dateTime .
+
+# Care plan
+ex:careplan_1 a chr:CarePlan ;
+    sulo:refersTo ex:evaluation_2020_10_15_1955 , ex:evaluation_2020_10_15_2036 .

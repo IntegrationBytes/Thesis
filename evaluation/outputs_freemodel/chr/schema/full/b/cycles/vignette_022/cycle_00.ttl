@@ -1,0 +1,228 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_ArturoLaurenHeidenreich a chr:Person .
+
+ex:physician_ManuelaRendon a chr:Person .
+
+# Care Unit
+ex:careunit_FitchburgOutpatientClinic a chr:CareUnit .
+
+# Clinical Visit
+ex:visit_2025_08_17_1739 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_ManuelaRendon ;
+    chr:hasCareUnit ex:careunit_FitchburgOutpatientClinic ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich .
+
+# Measurement Processes and Measurements (selected examples)
+
+# ACT measurement
+ex:proc_ACT_2025_08_17_1739 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasPerformedDate "2025-08-17T17:39:00"^^xsd:dateTime ;
+    chr:hasResult ex:meas_ACT_2025_08_17_1739 .
+
+ex:meas_ACT_2025_08_17_1739 a chr:Measurement ;
+    chr:hasQuantityValue "111.83"^^xsd:float ;
+    chr:hasUnit sulo:second ;
+    chr:hasMeasuredDate "2025-08-17T17:39:00"^^xsd:dateTime .
+
+# Arterial pH
+ex:proc_pH_arterial_2025_08_17_1739 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasPerformedDate "2025-08-17T17:39:00"^^xsd:dateTime ;
+    chr:hasResult ex:meas_pH_arterial_2025_08_17_1739 .
+
+ex:meas_pH_arterial_2025_08_17_1739 a chr:Measurement ;
+    chr:hasQuantityValue "6.9551"^^xsd:float ;
+    chr:hasUnit sulo:pH ;
+    chr:hasMeasuredDate "2025-08-17T17:39:00"^^xsd:dateTime .
+
+# Arterial CO2 partial pressure
+ex:proc_CO2_arterial_2025_08_17_1739 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasPerformedDate "2025-08-17T17:39:00"^^xsd:dateTime ;
+    chr:hasResult ex:meas_CO2_arterial_2025_08_17_1739 .
+
+ex:meas_CO2_arterial_2025_08_17_1739 a chr:Measurement ;
+    chr:hasQuantityValue "39.262"^^xsd:float ;
+    chr:hasUnit sulo:mmHg ;
+    chr:hasMeasuredDate "2025-08-17T17:39:00"^^xsd:dateTime .
+
+# (similar triples would be created for the remaining measurements: O2 arterial, Bicarbonate arterial, O2 sat arterial, pH venous, CO2 venous, O2 venous, Bicarbonate venous, total CO2 venous, Magnesium serum)
+
+# Evaluation Process and Diagnostic Statement
+ex:evaluation_2025_08_17_2353 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasPerformedDate "2025-08-17T23:53:00"^^xsd:dateTime ;
+    chr:hasObservation ex:diag_HistoryCABG .
+
+ex:diag_HistoryCABG a chr:DiagnosticStatement .
+
+ex:condition_HistoryCABG a chr:ClinicalCondition ;
+    chr:hasRecordDate "2025-08-17T23:53:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+# Treatment Plans (Medication Administrations)
+
+# Cefazolin 2000 MG Injection
+ex:med_cefazolin_2000MG a chr:PharmaceuticalProduct ;
+    chr:hasDoseForm ex:doseForm_Injection ;
+    chr:hasDoseQuantity ex:doseQuantity_2000MG .
+
+ex:doseForm_Injection a chr:PharmaceuticalDoseForm .
+ex:doseQuantity_2000MG a chr:PharmaceuticalDose ;
+    chr:hasQuantityValue "2000"^^xsd:float ;
+    chr:hasUnit sulo:MG .
+
+ex:admin_cefazolin_2025_08_17_1739 a chr:MedicationAdministration ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasPerformedDate "2025-08-17T17:39:00"^^xsd:dateTime ;
+    chr:hasPharmaceuticalProduct ex:med_cefazolin_2000MG .
+
+# Heparin sodium 1 ML 5000 UNT/ML Injection
+ex:med_heparin_5000UNTperML a chr:PharmaceuticalProduct ;
+    chr:hasDoseForm ex:doseForm_Injection ;
+    chr:hasDoseQuantity ex:doseQuantity_1ML_5000UNTperML .
+
+ex:doseQuantity_1ML_5000UNTperML a chr:PharmaceuticalDose ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:ML .
+
+ex:admin_heparin_2025_08_17_1739 a chr:MedicationAdministration ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasPerformedDate "2025-08-17T17:39:00"^^xsd:dateTime ;
+    chr:hasPharmaceuticalProduct ex:med_heparin_5000UNTperML .
+
+# Protamine sulfate 25 ML 10 MG/ML Injection
+ex:med_protamine_10MGperML a chr:PharmaceuticalProduct ;
+    chr:hasDoseForm ex:doseForm_Injection ;
+    chr:hasDoseQuantity ex:doseQuantity_25ML_10MGperML .
+
+ex:doseQuantity_25ML_10MGperML a chr:PharmaceuticalDose ;
+    chr:hasQuantityValue "25"^^xsd:float ;
+    chr:hasUnit sulo:ML .
+
+ex:admin_protamine_2025_08_17_1739 a chr:MedicationAdministration ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasPerformedDate "2025-08-17T17:39:00"^^xsd:dateTime ;
+    chr:hasPharmaceuticalProduct ex:med_protamine_10MGperML .
+
+# Insulin 100 UNT/ML Injectable Solution
+ex:med_insulin_100UNTperML a chr:PharmaceuticalProduct ;
+    chr:hasDoseForm ex:doseForm_InjectableSolution ;
+    chr:hasDoseQuantity ex:doseQuantity_100UNTperML .
+
+ex:doseForm_InjectableSolution a chr:PharmaceuticalDoseForm .
+ex:doseQuantity_100UNTperML a chr:PharmaceuticalDose ;
+    chr:hasQuantityValue "100"^^xsd:float ;
+    chr:hasUnit sulo:UNTperML .
+
+ex:admin_insulin_2025_08_17_1742 a chr:MedicationAdministration ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasPerformedDate "2025-08-17T17:42:00"^^xsd:dateTime ;
+    chr:hasPharmaceuticalProduct ex:med_insulin_100UNTperML .
+
+# Ondansetron 2 ML 2 MG/ML Injection
+ex:med_ondansetron_2MGperML a chr:PharmaceuticalProduct ;
+    chr:hasDoseForm ex:doseForm_Injection ;
+    chr:hasDoseQuantity ex:doseQuantity_2ML_2MGperML .
+
+ex:doseQuantity_2ML_2MGperML a chr:PharmaceuticalDose ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit sulo:ML .
+
+ex:admin_ondansetron_2025_08_17_1842 a chr:MedicationAdministration ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasPerformedDate "2025-08-17T18:42:00"^^xsd:dateTime ;
+    chr:hasPharmaceuticalProduct ex:med_ondansetron_2MGperML .
+
+# Midazolam 1 MG/ML Injectable Solution
+ex:med_midazolam_1MGperML a chr:PharmaceuticalProduct ;
+    chr:hasDoseForm ex:doseForm_InjectableSolution ;
+    chr:hasDoseQuantity ex:doseQuantity_1MGperML .
+
+ex:doseQuantity_1MGperML a chr:PharmaceuticalDose ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:MGperML .
+
+ex:admin_midazolam_2025_08_17_1842 a chr:MedicationAdministration ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasPerformedDate "2025-08-17T18:42:00"^^xsd:dateTime ;
+    chr:hasPharmaceuticalProduct ex:med_midazolam_1MGperML .
+
+# Propofol 100 ML 10 MG/ML Injection
+ex:med_propofol_10MGperML a chr:PharmaceuticalProduct ;
+    chr:hasDoseForm ex:doseForm_Injection ;
+    chr:hasDoseQuantity ex:doseQuantity_100ML_10MGperML .
+
+ex:doseQuantity_100ML_10MGperML a chr:PharmaceuticalDose ;
+    chr:hasQuantityValue "100"^^xsd:float ;
+    chr:hasUnit sulo:ML .
+
+ex:admin_propofol_2025_08_17_1842 a chr:MedicationAdministration ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasPerformedDate "2025-08-17T18:42:00"^^xsd:dateTime ;
+    chr:hasPharmaceuticalProduct ex:med_propofol_10MGperML .
+
+# Rocuronium bromide 10 MG/ML Injectable Solution
+ex:med_rocuronium_10MGperML a chr:PharmaceuticalProduct ;
+    chr:hasDoseForm ex:doseForm_InjectableSolution ;
+    chr:hasDoseQuantity ex:doseQuantity_10MGperML .
+
+ex:doseQuantity_10MGperML a chr:PharmaceuticalDose ;
+    chr:hasQuantityValue "10"^^xsd:float ;
+    chr:hasUnit sulo:MGperML .
+
+ex:admin_rocuronium_2025_08_17_1842 a chr:MedicationAdministration ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasPerformedDate "2025-08-17T18:42:00"^^xsd:dateTime ;
+    chr:hasPharmaceuticalProduct ex:med_rocuronium_10MGperML .
+
+# Isoflurane 999 MG/ML Inhalation Solution
+ex:med_isoflurane_999MGperML a chr:PharmaceuticalProduct ;
+    chr:hasDoseForm ex:doseForm_InhalationSolution ;
+    chr:hasDoseQuantity ex:doseQuantity_999MGperML .
+
+ex:doseForm_InhalationSolution a chr:PharmaceuticalDoseForm .
+ex:doseQuantity_999MGperML a chr:PharmaceuticalDose ;
+    chr:hasQuantityValue "999"^^xsd:float ;
+    chr:hasUnit sulo:MGperML .
+
+ex:admin_isoflurane_2025_08_17_1842 a chr:MedicationAdministration ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasPerformedDate "2025-08-17T18:42:00"^^xsd:dateTime ;
+    chr:hasPharmaceuticalProduct ex:med_isoflurane_999MGperML .
+
+# Remifentanil 2 MG Injection
+ex:med_remifentanil_2MG a chr:PharmaceuticalProduct ;
+    chr:hasDoseForm ex:doseForm_Injection ;
+    chr:hasDoseQuantity ex:doseQuantity_2MG .
+
+ex:doseQuantity_2MG a chr:PharmaceuticalDose ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit sulo:MG .
+
+ex:admin_remifentanil_2025_08_17_1842 a chr:MedicationAdministration ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasPerformedDate "2025-08-17T18:42:00"^^xsd:dateTime ;
+    chr:hasPharmaceuticalProduct ex:med_remifentanil_2MG .
+
+# Care Plan linking to treatment plans (using hasMedicalProcedure)
+ex:careplan_2025_08_17 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:admin_cefazolin_2000MG ,
+                           ex:admin_heparin_2025_08_17_1739 ,
+                           ex:admin_protamine_2025_08_17_1739 ,
+                           ex:admin_insulin_2025_08_17_1742 ,
+                           ex:admin_ondansetron_2025_08_17_1842 ,
+                           ex:admin_midazolam_2025_08_17_1842 ,
+                           ex:admin_propofol_2025_08_17_1842 ,
+                           ex:admin_rocuronium_2025_08_17_1842 ,
+                           ex:admin_isoflurane_2025_08_17_1842 ,
+                           ex:admin_remifentanil_2025_08_17_1842 .

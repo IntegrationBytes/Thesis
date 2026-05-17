@@ -1,0 +1,187 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# -----------------------------------------------------------------
+# Persons
+# -----------------------------------------------------------------
+ex:person_EstelaGrant a chr:Person ;
+    rdfs:label "Estela596 Yetta429 Grant908" .
+
+ex:person_IvonneTurcotte a chr:Person ;
+    rdfs:label "Dr. Ivonne773 Turcotte120" .
+
+# -----------------------------------------------------------------
+# Care Unit
+# -----------------------------------------------------------------
+ex:careunit_ZION a chr:CareUnit ;
+    rdfs:label "ZION HEALTH & WELLNESS LLC" .
+
+# -----------------------------------------------------------------
+# Clinical Visit
+# -----------------------------------------------------------------
+ex:visit_2002_03_11_20_35 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_Subject_Estela_Visit ;
+    sulo:hasParticipant ex:role_Provider_Ivonne_Visit ;
+    sulo:isIn ex:careunit_ZION ;
+    sulo:atTime ex:time_2002_03_11_20_35 .
+
+ex:role_Subject_Estela_Visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_EstelaGrant .
+
+ex:role_Provider_Ivonne_Visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_IvonneTurcotte .
+
+ex:time_2002_03_11_20_35 a sulo:TimeInstant ;
+    sulo:hasValue "2002-03-11T20:35:00"^^xsd:dateTime .
+
+# -----------------------------------------------------------------
+# Status instance (used for all completed processes)
+# -----------------------------------------------------------------
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# -----------------------------------------------------------------
+# Measurement: Hemoglobin A1c
+# -----------------------------------------------------------------
+ex:meas_HbA1c a chr:Measurement ;
+    sulo:hasValue "6.26"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_2002_03_11_20_35 .
+
+ex:unit_percent a sulo:Unit ;
+    rdfs:label "%" .
+
+ex:proc_HbA1c a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela_HbA1c ;
+    sulo:hasParticipant ex:role_Provider_Ivonne_HbA1c ;
+    sulo:hasParticipant ex:role_Output_HbA1c ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2002_03_11_20_35 .
+
+ex:role_Subject_Estela_HbA1c a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_EstelaGrant .
+
+ex:role_Provider_Ivonne_HbA1c a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_IvonneTurcotte .
+
+ex:role_Output_HbA1c a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HbA1c .
+
+# -----------------------------------------------------------------
+# Measurement: Body Height
+# -----------------------------------------------------------------
+ex:meas_Height a chr:Measurement ;
+    sulo:hasValue "156.6"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_2002_03_11_20_35 .
+
+ex:unit_cm a sulo:Unit ;
+    rdfs:label "cm" .
+
+ex:proc_Height a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela_Height ;
+    sulo:hasParticipant ex:role_Provider_Ivonne_Height ;
+    sulo:hasParticipant ex:role_Output_Height ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2002_03_11_20_35 .
+
+ex:role_Subject_Estela_Height a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_EstelaGrant .
+
+ex:role_Provider_Ivonne_Height a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_IvonneTurcotte .
+
+ex:role_Output_Height a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Height .
+
+# -----------------------------------------------------------------
+# Measurement: Pain Severity
+# -----------------------------------------------------------------
+ex:meas_PainSeverity a chr:Measurement ;
+    sulo:hasValue "3"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2002_03_11_20_35 .
+
+ex:unit_score a sulo:Unit ;
+    rdfs:label "score" .
+
+ex:proc_PainSeverity a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela_Pain ;
+    sulo:hasParticipant ex:role_Provider_Ivonne_Pain ;
+    sulo:hasParticipant ex:role_Output_Pain ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2002_03_11_20_35 .
+
+ex:role_Subject_Estela_Pain a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_EstelaGrant .
+
+ex:role_Provider_Ivonne_Pain a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_IvonneTurcotte .
+
+ex:role_Output_Pain a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_PainSeverity .
+
+# -----------------------------------------------------------------
+# Evaluation: Medication review (diagnostic statement)
+# -----------------------------------------------------------------
+ex:diag_MedReview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+ex:eval_MedReview a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela_Eval1 ;
+    sulo:hasParticipant ex:role_Provider_Ivonne_Eval1 ;
+    sulo:hasParticipant ex:role_Output_Eval1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2002_03_11_20_35 .
+
+ex:role_Subject_Estela_Eval1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_EstelaGrant .
+
+ex:role_Provider_Ivonne_Eval1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_IvonneTurcotte .
+
+ex:role_Output_Eval1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_MedReview .
+
+# -----------------------------------------------------------------
+# Evaluation: Gingivitis (diagnostic statement)
+# -----------------------------------------------------------------
+ex:diag_Gingivitis a chr:DiagnosticStatement ;
+    rdfs:label "Gingivitis (disorder)" ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:eval_Gingivitis a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela_Eval2 ;
+    sulo:hasParticipant ex:role_Provider_Ivonne_Eval2 ;
+    sulo:hasParticipant ex:role_Output_Eval2 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2002_03_11_23_09 .
+
+ex:role_Subject_Estela_Eval2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_EstelaGrant .
+
+ex:role_Provider_Ivonne_Eval2 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_IvonneTurcotte .
+
+ex:role_Output_Eval2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Gingivitis .
+
+ex:time_2002_03_11_23_09 a sulo:TimeInstant ;
+    sulo:hasValue "2002-03-11T23:09:00"^^xsd:dateTime .
+
+# -----------------------------------------------------------------
+# Care Plan
+# -----------------------------------------------------------------
+ex:careplan_1 a chr:CarePlan ;
+    rdfs:label "Follow‑up monitoring and routine review" ;
+    sulo:refersTo ex:proc_FollowUp .
+
+ex:proc_FollowUp a chr:MedicalProcedure ;
+    rdfs:label "Follow‑up monitoring and routine review procedure" .

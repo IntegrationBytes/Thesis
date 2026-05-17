@@ -1,0 +1,328 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:person_Casey401 a chr:Person .
+ex:person_Eldridge510 a chr:Person .
+
+# Care unit
+ex:careunit_JFCS a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2021_10_21_18_59 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit ;
+    sulo:hasParticipant ex:role_CareProvider_Visit ;
+    sulo:atTime ex:time_Visit_2021_10_21_18_59 .
+
+ex:role_SubjectOfCare_Visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_CareProvider_Visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Eldridge510 .
+
+ex:time_Visit_2021_10_21_18_59 a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T18:59:00"^^xsd:dateTime .
+
+# Units
+ex:unit_cm a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+ex:unit_score a sulo:Unit .
+
+# Height measurement
+ex:proc_Height a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Height ;
+    sulo:hasParticipant ex:role_Performer_Height ;
+    sulo:hasParticipant ex:role_Output_Height ;
+    sulo:atTime ex:time_Height .
+
+ex:role_Subject_Height a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Performer_Height a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Eldridge510 .
+
+ex:role_Output_Height a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Height .
+
+ex:measurement_Height a chr:Measurement ;
+    sulo:hasValue "172.7"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_Height .
+
+ex:time_Height a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T18:59:00"^^xsd:dateTime .
+
+# Weight measurement
+ex:proc_Weight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Weight ;
+    sulo:hasParticipant ex:role_Performer_Weight ;
+    sulo:hasParticipant ex:role_Output_Weight ;
+    sulo:atTime ex:time_Weight .
+
+ex:role_Subject_Weight a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Performer_Weight a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Eldridge510 .
+
+ex:role_Output_Weight a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Weight .
+
+ex:measurement_Weight a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_Weight .
+
+ex:time_Weight a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T18:59:00"^^xsd:dateTime .
+
+# BMI measurement
+ex:proc_BMI a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_BMI ;
+    sulo:hasParticipant ex:role_Performer_BMI ;
+    sulo:hasParticipant ex:role_Output_BMI ;
+    sulo:atTime ex:time_BMI .
+
+ex:role_Subject_BMI a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Performer_BMI a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Eldridge510 .
+
+ex:role_Output_BMI a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI .
+
+ex:measurement_BMI a chr:Measurement ;
+    sulo:hasValue "27.56"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_BMI .
+
+ex:time_BMI a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T18:59:00"^^xsd:dateTime .
+
+# Heart rate measurement
+ex:proc_HeartRate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HeartRate ;
+    sulo:hasParticipant ex:role_Performer_HeartRate ;
+    sulo:hasParticipant ex:role_Output_HeartRate ;
+    sulo:atTime ex:time_HeartRate .
+
+ex:role_Subject_HeartRate a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Performer_HeartRate a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Eldridge510 .
+
+ex:role_Output_HeartRate a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HeartRate .
+
+ex:measurement_HeartRate a chr:Measurement ;
+    sulo:hasValue "70"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_HeartRate .
+
+ex:time_HeartRate a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T18:59:00"^^xsd:dateTime .
+
+# Respiratory rate measurement
+ex:proc_RespRate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_RespRate ;
+    sulo:hasParticipant ex:role_Performer_RespRate ;
+    sulo:hasParticipant ex:role_Output_RespRate ;
+    sulo:atTime ex:time_RespRate .
+
+ex:role_Subject_RespRate a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Performer_RespRate a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Eldridge510 .
+
+ex:role_Output_RespRate a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RespRate .
+
+ex:measurement_RespRate a chr:Measurement ;
+    sulo:hasValue "14"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_RespRate .
+
+ex:time_RespRate a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T18:59:00"^^xsd:dateTime .
+
+# Pain severity measurement
+ex:proc_PainSeverity a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Pain ;
+    sulo:hasParticipant ex:role_Performer_Pain ;
+    sulo:hasParticipant ex:role_Output_Pain ;
+    sulo:atTime ex:time_PainSeverity .
+
+ex:role_Subject_Pain a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Performer_Pain a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Eldridge510 .
+
+ex:role_Output_Pain a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainSeverity .
+
+ex:measurement_PainSeverity a chr:Measurement ;
+    sulo:hasValue "3"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_PainSeverity .
+
+ex:time_PainSeverity a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T18:59:00"^^xsd:dateTime .
+
+# GAD-7 measurement
+ex:proc_GAD7 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_GAD7 ;
+    sulo:hasParticipant ex:role_Performer_GAD7 ;
+    sulo:hasParticipant ex:role_Output_GAD7 ;
+    sulo:atTime ex:time_GAD7 .
+
+ex:role_Subject_GAD7 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Performer_GAD7 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Eldridge510 .
+
+ex:role_Output_GAD7 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GAD7 .
+
+ex:measurement_GAD7 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_GAD7 .
+
+ex:time_GAD7 a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T20:19:00"^^xsd:dateTime .
+
+# Fall risk measurement
+ex:proc_FallRisk a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_FallRisk ;
+    sulo:hasParticipant ex:role_Performer_FallRisk ;
+    sulo:hasParticipant ex:role_Output_FallRisk ;
+    sulo:atTime ex:time_FallRisk .
+
+ex:role_Subject_FallRisk a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Performer_FallRisk a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Eldridge510 .
+
+ex:role_Output_FallRisk a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_FallRisk .
+
+ex:measurement_FallRisk a chr:Measurement ;
+    sulo:hasValue "41"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_FallRisk .
+
+ex:time_FallRisk a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T20:37:00"^^xsd:dateTime .
+
+# HARK total score measurement
+ex:proc_HARK a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HARK ;
+    sulo:hasParticipant ex:role_Performer_HARK ;
+    sulo:hasParticipant ex:role_Output_HARK ;
+    sulo:atTime ex:time_HARK .
+
+ex:role_Subject_HARK a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Performer_HARK a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Eldridge510 .
+
+ex:role_Output_HARK a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HARK .
+
+ex:measurement_HARK a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_HARK .
+
+ex:time_HARK a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T21:04:00"^^xsd:dateTime .
+
+# PHQ-2 measurement
+ex:proc_PHQ2 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_PHQ2 ;
+    sulo:hasParticipant ex:role_Performer_PHQ2 ;
+    sulo:hasParticipant ex:role_Output_PHQ2 ;
+    sulo:atTime ex:time_PHQ2 .
+
+ex:role_Subject_PHQ2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Performer_PHQ2 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Eldridge510 .
+
+ex:role_Output_PHQ2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ2 .
+
+ex:measurement_PHQ2 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_PHQ2 .
+
+ex:time_PHQ2 a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T21:43:00"^^xsd:dateTime .
+
+# DAST-10 measurement
+ex:proc_DAST10 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_DAST10 ;
+    sulo:hasParticipant ex:role_Performer_DAST10 ;
+    sulo:hasParticipant ex:role_Output_DAST10 ;
+    sulo:atTime ex:time_DAST10 .
+
+ex:role_Subject_DAST10 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Performer_DAST10 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Eldridge510 .
+
+ex:role_Output_DAST10 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_DAST10 .
+
+ex:measurement_DAST10 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_DAST10 .
+
+ex:time_DAST10 a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T22:16:00"^^xsd:dateTime .
+
+# Evaluation process
+ex:evaluation_2021_10_21_19_53 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Eval ;
+    sulo:hasParticipant ex:role_Performer_Eval ;
+    sulo:hasParticipant ex:role_Output_Eval ;
+    sulo:atTime ex:time_Eval .
+
+ex:role_Subject_Eval a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_Performer_Eval a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Eldridge510 .
+
+ex:role_Output_Eval a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnostic_SocialIsolation .
+
+ex:diagnostic_SocialIsolation a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:time_Eval a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T19:53:00"^^xsd:dateTime .
+
+# Care plan
+ex:careplan_2021_10_21 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUp .
+
+ex:procedure_FollowUp a chr:MedicalProcedure .

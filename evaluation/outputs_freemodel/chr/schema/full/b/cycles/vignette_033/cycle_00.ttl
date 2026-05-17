@@ -1,0 +1,54 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Casey401Elijah719Parker433 a chr:Person .
+
+ex:physician_JacqueStreich a chr:Person .
+
+ex:careunit_AcclaimHomeHealth a chr:CareUnit .
+
+ex:visit_2022_07_21_1921 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_JacqueStreich ;
+    chr:hasCareUnit ex:careunit_AcclaimHomeHealth ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 .
+
+ex:device_DXA a chr:Device .
+
+ex:status_completed a chr:ProcessStatus .
+
+ex:measproc_DXA_2022_07_21_2000 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasDevice ex:device_DXA ;
+    chr:hasResult ex:measurement_DXA_2022_07_21_2000 ;
+    chr:hasStatus ex:status_completed .
+
+ex:measurement_DXA_2022_07_21_2000 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-21T20:00:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.086642"^^xsd:float ;
+    chr:hasUnit ex:unit_Tscore .
+
+ex:unit_Tscore a sulo:Unit .
+
+ex:severity_moderate a chr:Severity .
+
+ex:diag_fracture_bone a chr:DiagnosticStatement .
+
+ex:diag_fracture_wrist a chr:DiagnosticStatement .
+
+ex:evaluation_2022_07_21_1921 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_fracture_bone , ex:diag_fracture_wrist .
+
+ex:condition_fracture_bone a chr:ClinicalCondition ;
+    chr:hasRecordDate "2022-07-21T19:21:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate ;
+    chr:hasObservation ex:diag_fracture_bone .
+
+ex:condition_fracture_wrist a chr:ClinicalCondition ;
+    chr:hasRecordDate "2022-07-21T19:21:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate ;
+    chr:hasObservation ex:diag_fracture_wrist .
+
+ex:careplan_2022_07_21 a chr:CarePlan .

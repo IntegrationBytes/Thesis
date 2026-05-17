@@ -1,0 +1,263 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person
+ex:person_Delma a chr:Person .
+ex:person_Drew a chr:Person .
+
+# Care Unit
+ex:careunit_Harbor a chr:CareUnit .
+
+# Visit
+ex:visit_2022_09_22_08_12 a chr:ClinicalVisit ;
+    sulo:atTime ex:time_visit_2022_09_22_08_12 ;
+    sulo:hasParticipant ex:role_Subject_Visit_Patient , 
+                       ex:role_Provider_Visit_Drew , 
+                       ex:role_Output_Visit_Location .
+
+ex:time_visit_2022_09_22_08_12 a sulo:TimeInstant ;
+    sulo:hasValue "2022-09-22T08:12:00"^^xsd:dateTime .
+
+# Subject role for visit
+ex:role_Subject_Visit_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Delma .
+
+# Provider role for visit
+ex:role_Provider_Visit_Drew a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Drew .
+
+# Output role linking visit to a location measurement (instead of directly to CareUnit)
+ex:role_Output_Visit_Location a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_VisitLocation .
+
+ex:measurement_VisitLocation a chr:Measurement ;
+    sulo:hasFeature ex:careunit_Harbor .
+
+# Process status (completed)
+ex:status_completed a chr:ProcessStatus ;
+    sulo:hasValue "completed"^^xsd:string .
+
+# Units
+ex:unit_cm a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_percent a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+
+# ------------------------------
+# Height measurement
+ex:proc_Height_2022_09_22_08_12 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Height_Patient , 
+                       ex:role_Output_Height .
+
+ex:role_Subject_Height_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Delma .
+
+ex:role_Output_Height a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Height_2022_09_22 .
+
+ex:measurement_Height_2022_09_22 a chr:Measurement ;
+    sulo:hasValue "90.6"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_measure_2022_09_22_08_12 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_measure_2022_09_22_08_12 a sulo:TimeInstant ;
+    sulo:hasValue "2022-09-22T08:12:00"^^xsd:dateTime .
+
+# ------------------------------
+# Pain severity measurement
+ex:proc_PainSeverity_2022_09_22_08_12 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Pain_Patient , 
+                       ex:role_Output_Pain .
+
+ex:role_Subject_Pain_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Delma .
+
+ex:role_Output_Pain a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainSeverity_2022_09_22 .
+
+ex:measurement_PainSeverity_2022_09_22 a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_measure_2022_09_22_08_12 ;
+    sulo:hasFeature ex:severity_Pain_0 .
+
+ex:severity_Pain_0 a chr:Severity ;
+    sulo:hasValue "0"^^xsd:float .
+
+# ------------------------------
+# Weight measurement
+ex:proc_Weight_2022_09_22_08_12 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Weight_Patient , 
+                       ex:role_Output_Weight .
+
+ex:role_Subject_Weight_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Delma .
+
+ex:role_Output_Weight a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Weight_2022_09_22 .
+
+ex:measurement_Weight_2022_09_22 a chr:Measurement ;
+    sulo:hasValue "14"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_measure_2022_09_22_08_12 ;
+    sulo:hasFeature ex:status_completed .
+
+# ------------------------------
+# Weight-for-length measurement
+ex:proc_WFL_2022_09_22_08_12 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_WFL_Patient , 
+                       ex:role_Output_WFL .
+
+ex:role_Subject_WFL_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Delma .
+
+ex:role_Output_WFL a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_WFL_2022_09_22 .
+
+ex:measurement_WFL_2022_09_22 a chr:Measurement ;
+    sulo:hasValue "77.9"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_measure_2022_09_22_08_12 ;
+    sulo:hasFeature ex:status_completed .
+
+# ------------------------------
+# Head circumference percentile measurement
+ex:proc_HCPercentile_2022_09_22_08_12 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HC_Patient , 
+                       ex:role_Output_HCPercentile .
+
+ex:role_Subject_HC_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Delma .
+
+ex:role_Output_HCPercentile a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HCPercentile_2022_09_22 .
+
+ex:measurement_HCPercentile_2022_09_22 a chr:Measurement ;
+    sulo:hasValue "24.46"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_measure_2022_09_22_08_12 ;
+    sulo:hasFeature ex:status_completed .
+
+# ------------------------------
+# Head circumference measurement (cm)
+ex:proc_HC_2022_09_22_08_12 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HC_Patient2 , 
+                       ex:role_Output_HC .
+
+ex:role_Subject_HC_Patient2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Delma .
+
+ex:role_Output_HC a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HC_2022_09_22 .
+
+ex:measurement_HC_2022_09_22 a chr:Measurement ;
+    sulo:hasValue "47.51"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_measure_2022_09_22_08_12 ;
+    sulo:hasFeature ex:status_completed .
+
+# ------------------------------
+# BMI ratio measurement
+ex:proc_BMI_Ratio_2022_09_22_08_12 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_BMI_Patient , 
+                       ex:role_Output_BMI_Ratio .
+
+ex:role_Subject_BMI_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Delma .
+
+ex:role_Output_BMI_Ratio a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI_Ratio_2022_09_22 .
+
+ex:measurement_BMI_Ratio_2022_09_22 a chr:Measurement ;
+    sulo:hasValue "17.03"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_measure_2022_09_22_08_12 ;
+    sulo:hasFeature ex:status_completed .
+
+# ------------------------------
+# BMI percentile measurement
+ex:proc_BMI_Percentile_2022_09_22_08_12 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_BMI_Patient2 , 
+                       ex:role_Output_BMI_Percentile .
+
+ex:role_Subject_BMI_Patient2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Delma .
+
+ex:role_Output_BMI_Percentile a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI_Percentile_2022_09_22 .
+
+ex:measurement_BMI_Percentile_2022_09_22 a chr:Measurement ;
+    sulo:hasValue "82.118"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_measure_2022_09_22_08_12 ;
+    sulo:hasFeature ex:status_completed .
+
+# ------------------------------
+# Heart rate measurement
+ex:proc_HeartRate_2022_09_22_08_12 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HR_Patient , 
+                       ex:role_Output_HR .
+
+ex:role_Subject_HR_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Delma .
+
+ex:role_Output_HR a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HeartRate_2022_09_22 .
+
+ex:measurement_HeartRate_2022_09_22 a chr:Measurement ;
+    sulo:hasValue "79"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_measure_2022_09_22_08_12 ;
+    sulo:hasFeature ex:status_completed .
+
+# ------------------------------
+# Respiratory rate measurement
+ex:proc_RespRate_2022_09_22_08_12 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_RR_Patient , 
+                       ex:role_Output_RR .
+
+ex:role_Subject_RR_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Delma .
+
+ex:role_Output_RR a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RespRate_2022_09_22 .
+
+ex:measurement_RespRate_2022_09_22 a chr:Measurement ;
+    sulo:hasValue "15"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_measure_2022_09_22_08_12 ;
+    sulo:hasFeature ex:status_completed .
+
+# ------------------------------
+# Evaluation process and diagnostic statement
+ex:evaluation_2022_09_22_08_12 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_eval_2022_09_22_08_12 ;
+    sulo:hasParticipant ex:role_Evaluator_Drew , 
+                       ex:role_Output_Diagnostic .
+
+ex:time_eval_2022_09_22_08_12 a sulo:TimeInstant ;
+    sulo:hasValue "2022-09-22T08:12:00"^^xsd:dateTime .
+
+ex:role_Evaluator_Drew a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Drew .
+
+ex:role_Output_Diagnostic a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnostic_MedicationReview .
+
+ex:diagnostic_MedicationReview a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity ;
+    sulo:hasValue "Moderate"^^xsd:string .
+
+# ------------------------------
+# Care plan
+ex:careplan_2022_09_22 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure .

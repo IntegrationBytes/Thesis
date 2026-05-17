@@ -1,0 +1,259 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:person_Arturo47_Lauren941_Heidenreich818 a chr:Person .
+
+# Person (physician)
+ex:person_Dr_Alan320_Keeling57 a chr:Person .
+
+# Roles for the clinical visit
+ex:role_Subject_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Provider_Physician a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Dr_Alan320_Keeling57 .
+
+# Time instant for the main visit (shared by many processes)
+ex:time_visit_2017_04_24_02_34 a sulo:TimeInstant ;
+    sulo:hasValue "2017-04-24T02:34:00"^^xsd:dateTime .
+
+# Clinical visit
+ex:visit_2017_04_24_02_34 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_Subject_Patient ;
+    sulo:hasParticipant ex:role_Provider_Physician ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 .
+
+# Process status (completed) – reused
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Unit individuals (typed)
+<https://w3id.org/sulo/unit/percent> a sulo:Unit .
+<https://w3id.org/sulo/unit/centimeter> a sulo:Unit .
+<https://w3id.org/sulo/unit/score> a sulo:Unit .
+<https://w3id.org/sulo/unit/kilogram> a sulo:Unit .
+<https://w3id.org/sulo/unit/kg_per_m2> a sulo:Unit .
+<https://w3id.org/sulo/unit/per_minute> a sulo:Unit .
+<https://w3id.org/sulo/unit/mg_per_dL> a sulo:Unit .
+<https://w3id.org/sulo/unit/mmol_per_L> a sulo:Unit .
+
+# Helper function to create measurement individuals
+# (each measurement is a chr:Measurement with value, unit, time, and status)
+
+# Hemoglobin A1c
+ex:measurement_HbA1c a chr:Measurement ;
+    sulo:hasValue "5.89"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/percent> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Body Height
+ex:measurement_BodyHeight a chr:Measurement ;
+    sulo:hasValue "181.4"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/centimeter> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Pain severity
+ex:measurement_PainSeverity a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Body Weight
+ex:measurement_BodyWeight a chr:Measurement ;
+    sulo:hasValue "90.4"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/kilogram> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# BMI
+ex:measurement_BMI a chr:Measurement ;
+    sulo:hasValue "27.47"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/kg_per_m2> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Heart rate
+ex:measurement_HeartRate a chr:Measurement ;
+    sulo:hasValue "89"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/per_minute> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Respiratory rate
+ex:measurement_RespiratoryRate a chr:Measurement ;
+    sulo:hasValue "13"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/per_minute> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Glucose
+ex:measurement_Glucose a chr:Measurement ;
+    sulo:hasValue "98.2"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Urea nitrogen
+ex:measurement_UreaNitrogen a chr:Measurement ;
+    sulo:hasValue "7.64"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Creatinine
+ex:measurement_Creatinine a chr:Measurement ;
+    sulo:hasValue "1.18"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Calcium
+ex:measurement_Calcium a chr:Measurement ;
+    sulo:hasValue "9.55"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Sodium
+ex:measurement_Sodium a chr:Measurement ;
+    sulo:hasValue "139.71"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mmol_per_L> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Potassium
+ex:measurement_Potassium a chr:Measurement ;
+    sulo:hasValue "4.05"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mmol_per_L> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Chloride
+ex:measurement_Chloride a chr:Measurement ;
+    sulo:hasValue "103.07"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mmol_per_L> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Carbon dioxide
+ex:measurement_CO2 a chr:Measurement ;
+    sulo:hasValue "26.07"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mmol_per_L> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Cholesterol (Serum)
+ex:measurement_Cholesterol_Serum a chr:Measurement ;
+    sulo:hasValue "161.52"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# Triglyceride
+ex:measurement_Triglyceride a chr:Measurement ;
+    sulo:hasValue "111.61"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# LDL Cholesterol
+ex:measurement_LDL a chr:Measurement ;
+    sulo:hasValue "82.35"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# HDL Cholesterol
+ex:measurement_HDL a chr:Measurement ;
+    sulo:hasValue "56.85"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_visit_2017_04_24_02_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# GAD-7 score
+ex:measurement_GAD7 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_visit_2017_04_24_03_34 ;
+    sulo:hasFeature ex:status_completed .
+
+# PHQ-2 score
+ex:measurement_PHQ2 a chr:Measurement ;
+    sulo:hasValue "6"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_visit_2017_04_24_04_16 ;
+    sulo:hasFeature ex:status_completed .
+
+# PHQ-9 score
+ex:measurement_PHQ9 a chr:Measurement ;
+    sulo:hasValue "11"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_visit_2017_04_24_04_46 ;
+    sulo:hasFeature ex:status_completed .
+
+# Evaluation processes (diagnostic statements)
+
+# Time instant for evaluations at 02:34
+ex:time_eval_2017_04_24_02_34 a sulo:TimeInstant ;
+    sulo:hasValue "2017-04-24T02:34:00"^^xsd:dateTime .
+
+# Time instant for evaluations at 03:07
+ex:time_eval_2017_04_24_03_07 a sulo:TimeInstant ;
+    sulo:hasValue "2017-04-24T03:07:00"^^xsd:dateTime .
+
+# Severity moderate (reused)
+ex:severity_Moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+# Diagnostic statement: Medication review due
+ex:diag_MedicationReview a chr:DiagnosticStatement , :ProcessStatus ;
+    sulo:hasFeature ex:severity_Moderate .
+
+ex:evaluation_1 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Provider_Physician ;
+    sulo:hasParticipant ex:role_Subject_Patient ;
+    sulo:atTime ex:time_eval_2017_04_24_02_34 ;
+    sulo:hasFeature ex:diag_MedicationReview , ex:status_completed .
+
+# Diagnostic statement: Full-time employment
+ex:diag_FullTimeEmployment a chr:DiagnosticStatement , :ProcessStatus ;
+    sulo:hasFeature ex:severity_Moderate .
+
+ex:evaluation_2 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Provider_Physician ;
+    sulo:hasParticipant ex:role_Subject_Patient ;
+    sulo:atTime ex:time_eval_2017_04_24_03_07 ;
+    sulo:hasFeature ex:diag_FullTimeEmployment , ex:status_completed .
+
+# Diagnostic statement: Limited social contact
+ex:diag_LimitedSocialContact a chr:DiagnosticStatement , :ProcessStatus ;
+    sulo:hasFeature ex:severity_Moderate .
+
+ex:evaluation_3 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Provider_Physician ;
+    sulo:hasParticipant ex:role_Subject_Patient ;
+    sulo:atTime ex:time_eval_2017_04_24_03_07 ;
+    sulo:hasFeature ex:diag_LimitedSocialContact , ex:status_completed .
+
+# Diagnostic statement: Stress
+ex:diag_Stress a chr:DiagnosticStatement , :ProcessStatus ;
+    sulo:hasFeature ex:severity_Moderate .
+
+ex:evaluation_4 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Provider_Physician ;
+    sulo:hasParticipant ex:role_Subject_Patient ;
+    sulo:atTime ex:time_eval_2017_04_24_03_07 ;
+    sulo:hasFeature ex:diag_Stress , ex:status_completed .
+
+# Care plan referencing a follow‑up procedure
+ex:procedure_FollowUp a chr:MedicalProcedure .
+
+ex:careplan_1 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUp .

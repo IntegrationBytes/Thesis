@@ -1,0 +1,182 @@
+@prefix chr: <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex: <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person
+ex:person_angelic a chr:Person .
+
+# Provider (physician)
+ex:person_hudson a chr:Person .
+
+# Roles
+ex:role_Subject_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_angelic .
+
+ex:role_Provider_Hudson a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_hudson .
+
+# Clinical Visit
+ex:visit_2023_12_01_1724 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_Subject_Patient ;
+    sulo:hasParticipant ex:role_Provider_Hudson ;
+    sulo:atTime ex:time_visit_1724 .
+
+ex:time_visit_1724 a sulo:TimeInstant ;
+    sulo:hasValue "2023-12-01T17:24:00"^^xsd:dateTime .
+
+# Care Unit
+ex:careunit_SBC a chr:CareUnit .
+
+# Units
+ex:unit_percent a sulo:Unit .
+ex:unit_centimetre a sulo:Unit .
+ex:unit_kilogram a sulo:Unit .
+ex:unit_score a sulo:Unit .
+
+# Measurement Processes and Measurements (example subset)
+# Hemoglobin A1c
+ex:measproc_HbA1c a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Patient ;
+    sulo:hasParticipant ex:role_Provider_Hudson ;
+    sulo:hasParticipant ex:role_Output_HbA1c ;
+    sulo:atTime ex:time_HbA1c ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_HbA1c a sulo:TimeInstant ;
+    sulo:hasValue "2023-12-01T17:24:00"^^xsd:dateTime .
+
+ex:measurement_HbA1c a chr:Measurement ;
+    sulo:hasValue "6.27"^^xsd:float ;
+    sulo:hasUnit ex:unit_percent ;
+    sulo:atTime ex:time_HbA1c .
+
+ex:role_Output_HbA1c a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HbA1c .
+
+# Body Height
+ex:measproc_Height a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Patient ;
+    sulo:hasParticipant ex:role_Provider_Hudson ;
+    sulo:hasParticipant ex:role_Output_Height ;
+    sulo:atTime ex:time_Height ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_Height a sulo:TimeInstant ;
+    sulo:hasValue "2023-12-01T17:24:00"^^xsd:dateTime .
+
+ex:measurement_Height a chr:Measurement ;
+    sulo:hasValue "161"^^xsd:float ;
+    sulo:hasUnit ex:unit_centimetre ;
+    sulo:atTime ex:time_Height .
+
+ex:role_Output_Height a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Height .
+
+# Body Weight
+ex:measproc_Weight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Patient ;
+    sulo:hasParticipant ex:role_Provider_Hudson ;
+    sulo:hasParticipant ex:role_Output_Weight ;
+    sulo:atTime ex:time_Weight ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_Weight a sulo:TimeInstant ;
+    sulo:hasValue "2023-12-01T17:24:00"^^xsd:dateTime .
+
+ex:measurement_Weight a chr:Measurement ;
+    sulo:hasValue "58.8"^^xsd:float ;
+    sulo:hasUnit ex:unit_kilogram ;
+    sulo:atTime ex:time_Weight .
+
+ex:role_Output_Weight a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Weight .
+
+# Pain Severity
+ex:measproc_PainSeverity a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Patient ;
+    sulo:hasParticipant ex:role_Provider_Hudson ;
+    sulo:hasParticipant ex:role_Output_PainSeverity ;
+    sulo:atTime ex:time_PainSeverity ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_PainSeverity a sulo:TimeInstant ;
+    sulo:hasValue "2023-12-01T17:24:00"^^xsd:dateTime .
+
+ex:measurement_PainSeverity a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasUnit ex:unit_score ;
+    sulo:atTime ex:time_PainSeverity .
+
+ex:role_Output_PainSeverity a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainSeverity .
+
+# Evaluation Processes and Diagnostic Statements
+ex:eval_2023_12_01_1724_MedReview a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Provider_Hudson ;
+    sulo:hasParticipant ex:role_Subject_Patient ;
+    sulo:hasParticipant ex:role_Output_Diag_MedReview ;
+    sulo:atTime ex:time_eval_1724 .
+
+ex:time_eval_1724 a sulo:TimeInstant ;
+    sulo:hasValue "2023-12-01T17:24:00"^^xsd:dateTime .
+
+ex:diag_MedReview a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity .
+
+ex:role_Output_Diag_MedReview a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_MedReview .
+
+# Prediabetes
+ex:eval_2023_12_01_1724_Prediabetes a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Provider_Hudson ;
+    sulo:hasParticipant ex:role_Subject_Patient ;
+    sulo:hasParticipant ex:role_Output_Diag_Prediabetes ;
+    sulo:atTime ex:time_eval_1724 .
+
+ex:diag_Prediabetes a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:role_Output_Diag_Prediabetes a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Prediabetes .
+
+# Anemia
+ex:eval_2023_12_01_1724_Anemia a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Provider_Hudson ;
+    sulo:hasParticipant ex:role_Subject_Patient ;
+    sulo:hasParticipant ex:role_Output_Diag_Anemia ;
+    sulo:atTime ex:time_eval_1724 .
+
+ex:diag_Anemia a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:role_Output_Diag_Anemia a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Anemia .
+
+# Part‑time employment (finding)
+ex:eval_2023_12_01_1804_Employment a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Provider_Hudson ;
+    sulo:hasParticipant ex:role_Subject_Patient ;
+    sulo:hasParticipant ex:role_Output_Diag_Employment ;
+    sulo:atTime ex:time_eval_1804 .
+
+ex:time_eval_1804 a sulo:TimeInstant ;
+    sulo:hasValue "2023-12-01T18:04:00"^^xsd:dateTime .
+
+ex:diag_Employment a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:role_Output_Diag_Employment a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Employment .
+
+# Care Plan
+ex:careplan_2023_12_01 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure .
+
+# Status instance used for all completed processes
+ex:status_completed a chr:ProcessStatus .

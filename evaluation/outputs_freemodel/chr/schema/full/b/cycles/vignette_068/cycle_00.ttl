@@ -1,0 +1,128 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person
+ex:patient_Nevares a chr:Person .
+
+# Care Provider
+ex:physician_CariKohler a chr:Person .
+
+# Care Unit
+ex:careunit_DRHE a chr:CareUnit .
+
+# Clinical Visit
+ex:visit_2019_10_22_0520 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_CariKohler ;
+    chr:hasCareUnit ex:careunit_DRHE ;
+    chr:hasPatient ex:patient_Nevares .
+
+# Medical Procedure (Well child visit)
+ex:procedure_WellChildVisit a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasPerformer ex:physician_CariKohler ;
+    chr:hasPerformedDate "2019-10-22T05:20:00"^^xsd:dateTime ;
+    chr:hasStatus ex:status_completed .
+
+ex:status_completed a chr:ProcessStatus .
+
+# Care Plan
+ex:careplan_2019_10_22 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_WellChildVisit .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Diagnostic Statement
+ex:diag_MedReview a chr:DiagnosticStatement .
+
+# Evaluation Process
+ex:evaluation_2019_10_22_0520 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MedReview ;
+    chr:hasCareProvider ex:physician_CariKohler .
+
+# Clinical Condition (diagnosis)
+ex:condition_MedReview a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-10-22T05:20:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Measurement Processes and Measurements
+
+# Height
+ex:measproc_Height_2019_10_22_0520 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measurement_Height_2019_10_22_0520 ;
+    chr:hasStatus ex:status_completed .
+
+ex:measurement_Height_2019_10_22_0520 a chr:Measurement ;
+    chr:hasQuantityValue "125.8"^^xsd:float ;
+    chr:hasUnit sulo:centimeter ;
+    chr:hasMeasuredDate "2019-10-22T05:20:00"^^xsd:dateTime .
+
+# Weight
+ex:measproc_Weight_2019_10_22_0520 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measurement_Weight_2019_10_22_0520 ;
+    chr:hasStatus ex:status_completed .
+
+ex:measurement_Weight_2019_10_22_0520 a chr:Measurement ;
+    chr:hasQuantityValue "30.1"^^xsd:float ;
+    chr:hasUnit sulo:kilogram ;
+    chr:hasMeasuredDate "2019-10-22T05:20:00"^^xsd:dateTime .
+
+# BMI (Ratio)
+ex:measproc_BMI_Ratio_2019_10_22_0520 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measurement_BMI_Ratio_2019_10_22_0520 ;
+    chr:hasStatus ex:status_completed .
+
+ex:measurement_BMI_Ratio_2019_10_22_0520 a chr:Measurement ;
+    chr:hasQuantityValue "19.02"^^xsd:float ;
+    chr:hasUnit sulo:kilogramPerSquareMeter ;
+    chr:hasMeasuredDate "2019-10-22T05:20:00"^^xsd:dateTime .
+
+# BMI (Percentile)
+ex:measproc_BMI_Percentile_2019_10_22_0520 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measurement_BMI_Percentile_2019_10_22_0520 ;
+    chr:hasStatus ex:status_completed .
+
+ex:measurement_BMI_Percentile_2019_10_22_0520 a chr:Measurement ;
+    chr:hasQuantityValue "93.279"^^xsd:float ;
+    chr:hasUnit sulo:percent ;
+    chr:hasMeasuredDate "2019-10-22T05:20:00"^^xsd:dateTime .
+
+# Heart Rate
+ex:measproc_HeartRate_2019_10_22_0520 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measurement_HeartRate_2019_10_22_0520 ;
+    chr:hasStatus ex:status_completed .
+
+ex:measurement_HeartRate_2019_10_22_0520 a chr:Measurement ;
+    chr:hasQuantityValue "82"^^xsd:float ;
+    chr:hasUnit sulo:beatsPerMinute ;
+    chr:hasMeasuredDate "2019-10-22T05:20:00"^^xsd:dateTime .
+
+# Respiratory Rate
+ex:measproc_RespRate_2019_10_22_0520 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measurement_RespRate_2019_10_22_0520 ;
+    chr:hasStatus ex:status_completed .
+
+ex:measurement_RespRate_2019_10_22_0520 a chr:Measurement ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit sulo:perMinute ;
+    chr:hasMeasuredDate "2019-10-22T05:20:00"^^xsd:dateTime .
+
+# Pain Severity (numeric rating)
+ex:measproc_PainSeverity_2019_10_22_0520 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measurement_PainSeverity_2019_10_22_0520 ;
+    chr:hasStatus ex:status_completed .
+
+ex:measurement_PainSeverity_2019_10_22_0520 a chr:Measurement ;
+    chr:hasQuantityValue "4"^^xsd:float ;
+    chr:hasUnit sulo:score ;
+    chr:hasMeasuredDate "2019-10-22T05:20:00"^^xsd:dateTime .

@@ -1,0 +1,52 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Harvey_Napoleon_Homenick
+    a chr:Person .
+
+ex:careProvider_Dr_Victor_Chavez
+    a chr:Person .
+
+ex:careUnit_4499_Acushnet_Avenue
+    a chr:CareUnit .
+
+ex:visit_2019_07_08_1530
+    a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasCareProvider ex:careProvider_Dr_Victor_Chavez ;
+    chr:hasCareUnit ex:careUnit_4499_Acushnet_Avenue .
+
+ex:measurementProcess_2019_07_08_1530
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_Temperature_2019_07_08_1530 ;
+    chr:hasPerformedDate "2019-07-08T15:30:00"^^xsd:dateTime .
+
+ex:measurement_Temperature_2019_07_08_1530
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-08T15:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "37.063"^^xsd:float ;
+    chr:hasUnit sulo:Celsius .
+
+ex:evaluationProcess_2019_07_08_1530
+    a chr:EvaluationProcess ;
+    chr:hasCareProvider ex:careProvider_Dr_Victor_Chavez ;
+    chr:hasObservation ex:diagnostic_AcuteViralPharyngitis .
+
+ex:diagnostic_AcuteViralPharyngitis
+    a chr:DiagnosticStatement .
+
+ex:clinicalCondition_AcuteViralPharyngitis
+    a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-07-08T15:30:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate
+    a chr:Severity .
+
+ex:carePlan_FollowUp
+    a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:evaluationProcess_2019_07_08_1530 .

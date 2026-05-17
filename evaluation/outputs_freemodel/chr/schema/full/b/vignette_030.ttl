@@ -1,0 +1,104 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:patient_Casey401_Elijah719_Parker433 a chr:Person .
+
+# Care provider (physician)
+ex:physician_Jacque955_Streich926 a chr:Person .
+
+# Care unit
+ex:careunit_ACCLAIM_HOME_HEALTH_CARE a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2021_04_15_13_59 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasCareProvider ex:physician_Jacque955_Streich926 ;
+    chr:hasCareUnit ex:careunit_ACCLAIM_HOME_HEALTH_CARE .
+
+# Measurement processes and results (example subset)
+ex:measproc_Leukocytes_2021_04_15_13_59 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_Leukocytes_2021_04_15_13_59 .
+
+ex:meas_Leukocytes_2021_04_15_13_59 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-04-15T13:59:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12.958"^^xsd:float ;
+    chr:hasUnit sulo:Unit_10e3_per_uL .
+
+ex:measproc_Erythrocytes_2021_04_15_13_59 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_Erythrocytes_2021_04_15_13_59 .
+
+ex:meas_Erythrocytes_2021_04_15_13_59 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-04-15T13:59:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.6656"^^xsd:float ;
+    chr:hasUnit sulo:Unit_10e6_per_uL .
+
+ex:measproc_Hemoglobin_2021_04_15_13_59 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_Hemoglobin_2021_04_15_13_59 .
+
+ex:meas_Hemoglobin_2021_04_15_13_59 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-04-15T13:59:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15.779"^^xsd:float ;
+    chr:hasUnit sulo:Unit_g_per_dL .
+
+# Evaluation processes
+ex:evaluation_2021_04_15_13_59 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_AcuteCholecystitis .
+
+ex:diag_AcuteCholecystitis a chr:DiagnosticStatement .
+
+ex:condition_AcuteCholecystitis a chr:ClinicalCondition ;
+    chr:hasRecordDate "2021-04-15T13:59:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:evaluation_2021_04_15_13_59_2 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_GallbladderCalculus .
+
+ex:diag_GallbladderCalculus a chr:DiagnosticStatement .
+
+ex:condition_GallbladderCalculus a chr:ClinicalCondition ;
+    chr:hasRecordDate "2021-04-15T13:59:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Care plans (formerly TreatmentPlan) with required labels
+ex:treatmentplan_HeparinSodium a chr:CarePlan ;
+    rdfs:label "Heparin Sodium Treatment Plan" ;
+    chr:hasMedicalProcedure ex:medadmin_HeparinSodium_2021_04_15_13_59 .
+
+ex:medadmin_HeparinSodium_2021_04_15_13_59 a chr:MedicationAdministration ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasPharmaceuticalProduct ex:product_HeparinSodium .
+
+ex:product_HeparinSodium a chr:PharmaceuticalProduct ;
+    chr:hasDoseForm ex:doseform_Injection ;
+    chr:hasDoseQuantity ex:dose_HeparinSodium .
+
+ex:doseform_Injection a chr:PharmaceuticalDoseForm .
+
+ex:dose_HeparinSodium a chr:Measurement ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit sulo:Unit_ML .
+
+ex:treatmentplan_Ondansetron a chr:CarePlan ;
+    rdfs:label "Ondansetron Treatment Plan" ;
+    chr:hasMedicalProcedure ex:medadmin_Ondansetron_2021_04_15_13_59 .
+
+ex:medadmin_Ondansetron_2021_04_15_13_59 a chr:MedicationAdministration ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasPharmaceuticalProduct ex:product_Ondansetron .
+
+ex:product_Ondansetron a chr:PharmaceuticalProduct ;
+    chr:hasDoseForm ex:doseform_Injection ;
+    chr:hasDoseQuantity ex:dose_Ondansetron .
+
+ex:dose_Ondansetron a chr:Measurement ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit sulo:Unit_ML .

@@ -1,0 +1,609 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Patient
+ex:person_Arturo47_Lauren941_Heidenreich818 a chr:Person ;
+    rdfs:label "Arturo47 Lauren941 Heidenreich818" .
+
+# Care unit
+ex:careunit_Fitchburg_Outpatient_Clinic a chr:CareUnit ;
+    rdfs:label "Fitchburg Outpatient Clinic" .
+
+# Attending physician
+ex:person_Manuela585_Rendón540 a chr:Person ;
+    rdfs:label "Dr. Manuela585 Rendón540" .
+
+# Clinical visit
+ex:visit_2025_08_17_1739 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Arturo ;
+    sulo:hasParticipant ex:role_CareProvider_Visit_Manuela ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 .
+
+ex:role_SubjectOfCare_Visit_Arturo a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_CareProvider_Visit_Manuela a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:time_Visit_2025_08_17_1739 a sulo:TimeInstant ;
+    sulo:hasValue "2025-08-17T17:39:00"^^xsd:dateTime .
+
+# Measurement processes and results (all share same time and status)
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# ACT measurement
+ex:process_ACT_2025_08_17_1739 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_ACT_Arturo ;
+    sulo:hasParticipant ex:role_Performer_ACT_Manuela ;
+    sulo:hasParticipant ex:role_Instrument_ACT_CoagulationAssay ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 .
+
+ex:role_SubjectOfCare_ACT_Arturo a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_ACT_Manuela a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:role_Instrument_ACT_CoagulationAssay a chr:InstrumentRole ;
+    sulo:isFeatureOf ex:device_CoagulationAssay .
+
+ex:device_CoagulationAssay a chr:Device ;
+    rdfs:label "Coagulation assay" .
+
+ex:measurement_ACT_2025_08_17_1739 a chr:Measurement ;
+    sulo:hasValue "111.83"^^xsd:float ;
+    sulo:hasPart ex:unit_seconds ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 ;
+    sulo:isIn ex:anatomical_Blood .
+
+ex:unit_seconds a sulo:Unit ;
+    rdfs:label "seconds" .
+
+ex:anatomical_Blood a chr:AnatomicalStructure ;
+    rdfs:label "Blood" .
+
+# pH arterial measurement
+ex:process_pH_Arterial_2025_08_17_1739 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_pH_Arturo ;
+    sulo:hasParticipant ex:role_Performer_pH_Manuela ;
+    sulo:hasParticipant ex:role_Instrument_pH_Arterial ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 .
+
+ex:role_SubjectOfCare_pH_Arturo a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_pH_Manuela a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:role_Instrument_pH_Arterial a chr:InstrumentRole ;
+    sulo:isFeatureOf ex:device_ArterialBloodSample .
+
+ex:device_ArterialBloodSample a chr:Device ;
+    rdfs:label "Arterial blood sample" .
+
+ex:measurement_pH_Arterial_2025_08_17_1739 a chr:Measurement ;
+    sulo:hasValue "6.9551"^^xsd:float ;
+    sulo:hasPart ex:unit_pH ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 ;
+    sulo:isIn ex:anatomical_ArterialBlood .
+
+ex:unit_pH a sulo:Unit ;
+    rdfs:label "pH" .
+
+ex:anatomical_ArterialBlood a chr:AnatomicalStructure ;
+    rdfs:label "Arterial blood" .
+
+# Carbon dioxide partial pressure arterial
+ex:process_pCO2_Arterial_2025_08_17_1739 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_pCO2_Arturo ;
+    sulo:hasParticipant ex:role_Performer_pCO2_Manuela ;
+    sulo:hasParticipant ex:role_Instrument_pCO2_Arterial ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 .
+
+ex:role_SubjectOfCare_pCO2_Arturo a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_pCO2_Manuela a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:role_Instrument_pCO2_Arterial a chr:InstrumentRole ;
+    sulo:isFeatureOf ex:device_ArterialBloodSample .
+
+ex:measurement_pCO2_Arterial_2025_08_17_1739 a chr:Measurement ;
+    sulo:hasValue "39.262"^^xsd:float ;
+    sulo:hasPart ex:unit_mmHg ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 ;
+    sulo:isIn ex:anatomical_ArterialBlood .
+
+# Oxygen partial pressure arterial
+ex:process_pO2_Arterial_2025_08_17_1739 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_pO2_Arturo ;
+    sulo:hasParticipant ex:role_Performer_pO2_Manuela ;
+    sulo:hasParticipant ex:role_Instrument_pO2_Arterial ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 .
+
+ex:role_SubjectOfCare_pO2_Arturo a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_pO2_Manuela a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:role_Instrument_pO2_Arterial a chr:InstrumentRole ;
+    sulo:isFeatureOf ex:device_ArterialBloodSample .
+
+ex:measurement_pO2_Arterial_2025_08_17_1739 a chr:Measurement ;
+    sulo:hasValue "99.919"^^xsd:float ;
+    sulo:hasPart ex:unit_mmHg ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 ;
+    sulo:isIn ex:anatomical_ArterialBlood .
+
+# Bicarbonate arterial
+ex:process_HCO3_Arterial_2025_08_17_1739 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HCO3_Arturo ;
+    sulo:hasParticipant ex:role_Performer_HCO3_Manuela ;
+    sulo:hasParticipant ex:role_Instrument_HCO3_Arterial ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 .
+
+ex:role_SubjectOfCare_HCO3_Arturo a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_HCO3_Manuela a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:role_Instrument_HCO3_Arterial a chr:InstrumentRole ;
+    sulo:isFeatureOf ex:device_ArterialBloodSample .
+
+ex:measurement_HCO3_Arterial_2025_08_17_1739 a chr:Measurement ;
+    sulo:hasValue "22.439"^^xsd:float ;
+    sulo:hasPart ex:unit_mmolPerL ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 ;
+    sulo:isIn ex:anatomical_ArterialBlood .
+
+ex:unit_mmolPerL a sulo:Unit ;
+    rdfs:label "mmol/L" .
+
+# Oxygen saturation arterial
+ex:process_O2Sat_Arterial_2025_08_17_1739 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_O2Sat_Arturo ;
+    sulo:hasParticipant ex:role_Performer_O2Sat_Manuela ;
+    sulo:hasParticipant ex:role_Instrument_O2Sat_Arterial ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 .
+
+ex:role_SubjectOfCare_O2Sat_Arturo a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_O2Sat_Manuela a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:role_Instrument_O2Sat_Arterial a chr:InstrumentRole ;
+    sulo:isFeatureOf ex:device_ArterialBloodSample .
+
+ex:measurement_O2Sat_Arterial_2025_08_17_1739 a chr:Measurement ;
+    sulo:hasValue "95.0"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 ;
+    sulo:isIn ex:anatomical_ArterialBlood .
+
+ex:unit_percent a sulo:Unit ;
+    rdfs:label "percent" .
+
+# pH venous measurement
+ex:process_pH_Venous_2025_08_17_1739 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_pHVen_Arturo ;
+    sulo:hasParticipant ex:role_Performer_pHVen_Manuela ;
+    sulo:hasParticipant ex:role_Instrument_pHVenous ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 .
+
+ex:role_SubjectOfCare_pHVen_Arturo a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_pHVen_Manuela a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:role_Instrument_pHVenous a chr:InstrumentRole ;
+    sulo:isFeatureOf ex:device_VenousBloodSample .
+
+ex:device_VenousBloodSample a chr:Device ;
+    rdfs:label "Venous blood sample" .
+
+ex:measurement_pH_Venous_2025_08_17_1739 a chr:Measurement ;
+    sulo:hasValue "7.3848"^^xsd:float ;
+    sulo:hasPart ex:unit_pH ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 ;
+    sulo:isIn ex:anatomical_VenousBlood .
+
+ex:anatomical_VenousBlood a chr:AnatomicalStructure ;
+    rdfs:label "Venous blood" .
+
+# Carbon dioxide venous
+ex:process_pCO2_Venous_2025_08_17_1739 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_pCO2Ven_Arturo ;
+    sulo:hasParticipant ex:role_Performer_pCO2Ven_Manuela ;
+    sulo:hasParticipant ex:role_Instrument_pCO2Venous ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 .
+
+ex:role_SubjectOfCare_pCO2Ven_Arturo a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_pCO2Ven_Manuela a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:role_Instrument_pCO2Venous a chr:InstrumentRole ;
+    sulo:isFeatureOf ex:device_VenousBloodSample .
+
+ex:measurement_pCO2_Venous_2025_08_17_1739 a chr:Measurement ;
+    sulo:hasValue "38.413"^^xsd:float ;
+    sulo:hasPart ex:unit_mmHg ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 ;
+    sulo:isIn ex:anatomical_VenousBlood .
+
+# Oxygen partial pressure venous
+ex:process_pO2_Venous_2025_08_17_1739 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_pO2Ven_Arturo ;
+    sulo:hasParticipant ex:role_Performer_pO2Ven_Manuela ;
+    sulo:hasParticipant ex:role_Instrument_pO2Venous ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 .
+
+ex:role_SubjectOfCare_pO2Ven_Arturo a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_pO2Ven_Manuela a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:role_Instrument_pO2Venous a chr:InstrumentRole ;
+    sulo:isFeatureOf ex:device_VenousBloodSample .
+
+ex:measurement_pO2_Venous_2025_08_17_1739 a chr:Measurement ;
+    sulo:hasValue "46.003"^^xsd:float ;
+    sulo:hasPart ex:unit_mmHg ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 ;
+    sulo:isIn ex:anatomical_VenousBlood .
+
+# Bicarbonate venous
+ex:process_HCO3_Venous_2025_08_17_1739 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HCO3Ven_Arturo ;
+    sulo:hasParticipant ex:role_Performer_HCO3Ven_Manuela ;
+    sulo:hasParticipant ex:role_Instrument_HCO3Venous ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 .
+
+ex:role_SubjectOfCare_HCO3Ven_Arturo a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_HCO3Ven_Manuela a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:role_Instrument_HCO3Venous a chr:InstrumentRole ;
+    sulo:isFeatureOf ex:device_VenousBloodSample .
+
+ex:measurement_HCO3_Venous_2025_08_17_1739 a chr:Measurement ;
+    sulo:hasValue "25.262"^^xsd:float ;
+    sulo:hasPart ex:unit_mmolPerL ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 ;
+    sulo:isIn ex:anatomical_VenousBlood .
+
+# Total carbon dioxide venous
+ex:process_CO2total_Venous_2025_08_17_1739 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_CO2total_Arturo ;
+    sulo:hasParticipant ex:role_Performer_CO2total_Manuela ;
+    sulo:hasParticipant ex:role_Instrument_CO2total_Venous ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 .
+
+ex:role_SubjectOfCare_CO2total_Arturo a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_CO2total_Manuela a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:role_Instrument_CO2total_Venous a chr:InstrumentRole ;
+    sulo:isFeatureOf ex:device_VenousBloodSample .
+
+ex:measurement_CO2total_Venous_2025_08_17_1739 a chr:Measurement ;
+    sulo:hasValue "1.4797"^^xsd:float ;
+    sulo:hasPart ex:unit_mmolPerL ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 ;
+    sulo:isIn ex:anatomical_VenousBlood .
+
+# Magnesium serum measurement
+ex:process_Magnesium_Serum_2025_08_17_1739 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Mg_Arturo ;
+    sulo:hasParticipant ex:role_Performer_Mg_Manuela ;
+    sulo:hasParticipant ex:role_Instrument_Mg_Serum ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 .
+
+ex:role_SubjectOfCare_Mg_Arturo a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_Mg_Manuela a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:role_Instrument_Mg_Serum a chr:InstrumentRole ;
+    sulo:isFeatureOf ex:device_SerumOrPlasmaSample .
+
+ex:device_SerumOrPlasmaSample a chr:Device ;
+    rdfs:label "Serum or Plasma sample" .
+
+ex:measurement_Magnesium_Serum_2025_08_17_1739 a chr:Measurement ;
+    sulo:hasValue "1.7766"^^xsd:float ;
+    sulo:hasPart ex:unit_mgPerdL ;
+    sulo:atTime ex:time_Visit_2025_08_17_1739 ;
+    sulo:isIn ex:anatomical_SerumOrPlasma .
+
+ex:unit_mgPerdL a sulo:Unit ;
+    rdfs:label "mg/dL" .
+
+ex:anatomical_SerumOrPlasma a chr:AnatomicalStructure ;
+    rdfs:label "Serum or Plasma" .
+
+# Evaluation (diagnostic statement)
+ex:evaluation_2025_08_17_2353 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eval_Arturo ;
+    sulo:hasParticipant ex:role_Performer_Eval_Manuela ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Eval_2025_08_17_2353 .
+
+ex:role_SubjectOfCare_Eval_Arturo a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_Eval_Manuela a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:time_Eval_2025_08_17_2353 a sulo:TimeInstant ;
+    sulo:hasValue "2025-08-17T23:53:00"^^xsd:dateTime .
+
+ex:diagnostic_HistoryCABG a chr:DiagnosticStatement ;
+    rdfs:label "History of coronary artery bypass grafting (situation)" ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+ex:evaluation_2025_08_17_2353 sulo:hasParticipant ex:diagnostic_HistoryCABG .
+
+# Treatment plans and medication administrations
+ex:medadmin_status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Cefazolin 2000 MG Injection
+ex:treatment_Cefazolin a chr:TreatmentPlan ;
+    sulo:refersTo ex:medadmin_Cefazolin_2000MG .
+
+ex:medadmin_Cefazolin_2000MG a chr:MedicationAdministration ;
+    sulo:hasParticipant ex:product_Cefazolin_2000MG ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Med_Cefazolin ;
+    sulo:hasParticipant ex:role_Performer_Med_Cefazolin ;
+    sulo:hasFeature ex:medadmin_status_completed ;
+    sulo:atTime ex:time_Med_Cefazolin_2000MG .
+
+ex:product_Cefazolin_2000MG a chr:PharmaceuticalProduct ;
+    rdfs:label "cefazolin 2000 MG Injection" .
+
+ex:role_SubjectOfCare_Med_Cefazolin a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_Med_Cefazolin a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:time_Med_Cefazolin_2000MG a sulo:TimeInstant ;
+    sulo:hasValue "2025-08-17T17:39:00"^^xsd:dateTime .
+
+# Heparin sodium 1 ML Injection
+ex:treatment_Heparin a chr:TreatmentPlan ;
+    sulo:refersTo ex:medadmin_Heparin_1ML .
+
+ex:medadmin_Heparin_1ML a chr:MedicationAdministration ;
+    sulo:hasParticipant ex:product_Heparin_1ML ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Med_Heparin ;
+    sulo:hasParticipant ex:role_Performer_Med_Heparin ;
+    sulo:hasFeature ex:medadmin_status_completed ;
+    sulo:atTime ex:time_Med_Heparin_1ML .
+
+ex:product_Heparin_1ML a chr:PharmaceuticalProduct ;
+    rdfs:label "1 ML heparin sodium, porcine 5000 UNT/ML Injection" .
+
+ex:role_SubjectOfCare_Med_Heparin a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_Med_Heparin a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:time_Med_Heparin_1ML a sulo:TimeInstant ;
+    sulo:hasValue "2025-08-17T17:39:00"^^xsd:dateTime .
+
+# Protamine sulfate 25 ML Injection
+ex:treatment_Protamine a chr:TreatmentPlan ;
+    sulo:refersTo ex:medadmin_Protamine_25ML .
+
+ex:medadmin_Protamine_25ML a chr:MedicationAdministration ;
+    sulo:hasParticipant ex:product_Protamine_25ML ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Med_Protamine ;
+    sulo:hasParticipant ex:role_Performer_Med_Protamine ;
+    sulo:hasFeature ex:medadmin_status_completed ;
+    sulo:atTime ex:time_Med_Protamine_25ML .
+
+ex:product_Protamine_25ML a chr:PharmaceuticalProduct ;
+    rdfs:label "25 ML protamine sulfate (USP) 10 MG/ML Injection" .
+
+ex:role_SubjectOfCare_Med_Protamine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_Med_Protamine a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:time_Med_Protamine_25ML a sulo:TimeInstant ;
+    sulo:hasValue "2025-08-17T17:39:00"^^xsd:dateTime .
+
+# Insulin 100 UNT/ML Injection
+ex:treatment_Insulin a chr:TreatmentPlan ;
+    sulo:refersTo ex:medadmin_Insulin_100UNT .
+
+ex:medadmin_Insulin_100UNT a chr:MedicationAdministration ;
+    sulo:hasParticipant ex:product_Insulin_100UNT ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Med_Insulin ;
+    sulo:hasParticipant ex:role_Performer_Med_Insulin ;
+    sulo:hasFeature ex:medadmin_status_completed ;
+    sulo:atTime ex:time_Med_Insulin_100UNT .
+
+ex:product_Insulin_100UNT a chr:PharmaceuticalProduct ;
+    rdfs:label "insulin, regular, human 100 UNT/ML Injectable Solution" .
+
+ex:role_SubjectOfCare_Med_Insulin a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_Med_Insulin a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:time_Med_Insulin_100UNT a sulo:TimeInstant ;
+    sulo:hasValue "2025-08-17T17:42:00"^^xsd:dateTime .
+
+# Ondansetron 2 ML Injection
+ex:treatment_Ondansetron a chr:TreatmentPlan ;
+    sulo:refersTo ex:medadmin_Ondansetron_2ML .
+
+ex:medadmin_Ondansetron_2ML a chr:MedicationAdministration ;
+    sulo:hasParticipant ex:product_Ondansetron_2ML ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Med_Ondansetron ;
+    sulo:hasParticipant ex:role_Performer_Med_Ondansetron ;
+    sulo:hasFeature ex:medadmin_status_completed ;
+    sulo:atTime ex:time_Med_Ondansetron_2ML .
+
+ex:product_Ondansetron_2ML a chr:PharmaceuticalProduct ;
+    rdfs:label "2 ML Ondansetron 2 MG/ML Injection" .
+
+ex:role_SubjectOfCare_Med_Ondansetron a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_Med_Ondansetron a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:time_Med_Ondansetron_2ML a sulo:TimeInstant ;
+    sulo:hasValue "2025-08-17T18:42:00"^^xsd:dateTime .
+
+# Midazolam Injection
+ex:treatment_Midazolam a chr:TreatmentPlan ;
+    sulo:refersTo ex:medadmin_Midazolam_1MGML .
+
+ex:medadmin_Midazolam_1MGML a chr:MedicationAdministration ;
+    sulo:hasParticipant ex:product_Midazolam_1MGML ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Med_Midazolam ;
+    sulo:hasParticipant ex:role_Performer_Med_Midazolam ;
+    sulo:hasFeature ex:medadmin_status_completed ;
+    sulo:atTime ex:time_Med_Midazolam_1MGML .
+
+ex:product_Midazolam_1MGML a chr:PharmaceuticalProduct ;
+    rdfs:label "Midazolam 1 MG/ML Injectable Solution" .
+
+ex:role_SubjectOfCare_Med_Midazolam a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_Med_Midazolam a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:time_Med_Midazolam_1MGML a sulo:TimeInstant ;
+    sulo:hasValue "2025-08-17T18:42:00"^^xsd:dateTime .
+
+# Propofol 100 ML Injection
+ex:treatment_Propofol a chr:TreatmentPlan ;
+    sulo:refersTo ex:medadmin_Propofol_100ML .
+
+ex:medadmin_Propofol_100ML a chr:MedicationAdministration ;
+    sulo:hasParticipant ex:product_Propofol_100ML ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Med_Propofol ;
+    sulo:hasParticipant ex:role_Performer_Med_Propofol ;
+    sulo:hasFeature ex:medadmin_status_completed ;
+    sulo:atTime ex:time_Med_Propofol_100ML .
+
+ex:product_Propofol_100ML a chr:PharmaceuticalProduct ;
+    rdfs:label "100 ML Propofol 10 MG/ML Injection" .
+
+ex:role_SubjectOfCare_Med_Propofol a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_Med_Propofol a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:time_Med_Propofol_100ML a sulo:TimeInstant ;
+    sulo:hasValue "2025-08-17T18:42:00"^^xsd:dateTime .
+
+# Rocuronium bromide Injection
+ex:treatment_Rocuronium a chr:TreatmentPlan ;
+    sulo:refersTo ex:medadmin_Rocuronium_10MGML .
+
+ex:medadmin_Rocuronium_10MGML a chr:MedicationAdministration ;
+    sulo:hasParticipant ex:product_Rocuronium_10MGML ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Med_Rocuronium ;
+    sulo:hasParticipant ex:role_Performer_Med_Rocuronium ;
+    sulo:hasFeature ex:medadmin_status_completed ;
+    sulo:atTime ex:time_Med_Rocuronium_10MGML .
+
+ex:product_Rocuronium_10MGML a chr:PharmaceuticalProduct ;
+    rdfs:label "Rocuronium bromide 10 MG/ML Injectable Solution" .
+
+ex:role_SubjectOfCare_Med_Rocuronium a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_Med_Rocuronium a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:time_Med_Rocuronium_10MGML a sulo:TimeInstant ;
+    sulo:hasValue "2025-08-17T18:42:00"^^xsd:dateTime .
+
+# Isoflurane Injection
+ex:treatment_Isoflurane a chr:TreatmentPlan ;
+    sulo:refersTo ex:medadmin_Isoflurane_999MGML .
+
+ex:medadmin_Isoflurane_999MGML a chr:MedicationAdministration ;
+    sulo:hasParticipant ex:product_Isoflurane_999MGML ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Med_Isoflurane ;
+    sulo:hasParticipant ex:role_Performer_Med_Isoflurane ;
+    sulo:hasFeature ex:medadmin_status_completed ;
+    sulo:atTime ex:time_Med_Isoflurane_999MGML .
+
+ex:product_Isoflurane_999MGML a chr:PharmaceuticalProduct ;
+    rdfs:label "isoflurane 999 MG/ML Inhalation Solution" .
+
+ex:role_SubjectOfCare_Med_Isoflurane a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_Med_Isoflurane a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:time_Med_Isoflurane_999MGML a sulo:TimeInstant ;
+    sulo:hasValue "2025-08-17T18:42:00"^^xsd:dateTime .
+
+# Remifentanil Injection
+ex:treatment_Remifentanil a chr:TreatmentPlan ;
+    sulo:refersTo ex:medadmin_Remifentanil_2MG .
+
+ex:medadmin_Remifentanil_2MG a chr:MedicationAdministration ;
+    sulo:hasParticipant ex:product_Remifentanil_2MG ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Med_Remifentanil ;
+    sulo:hasParticipant ex:role_Performer_Med_Remifentanil ;
+    sulo:hasFeature ex:medadmin_status_completed ;
+    sulo:atTime ex:time_Med_Remifentanil_2MG .
+
+ex:product_Remifentanil_2MG a chr:PharmaceuticalProduct ;
+    rdfs:label "remifentanil 2 MG Injection" .
+
+ex:role_SubjectOfCare_Med_Remifentanil a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo47_Lauren941_Heidenreich818 .
+
+ex:role_Performer_Med_Remifentanil a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Manuela585_Rendón540 .
+
+ex:time_Med_Remifentanil_2

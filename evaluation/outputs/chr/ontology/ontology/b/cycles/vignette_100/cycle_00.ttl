@@ -1,0 +1,89 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Harvey63_Napoleon578_Homenick806 a chr:Person .
+
+ex:care_unit_4499_Acushnet a chr:CareUnit .
+
+ex:visit_2020_05_29 a chr:ClinicalVisit ;
+  sulo:atTime ex:time_visit_2020_05_29 ;
+  sulo:isIn ex:care_unit_4499_Acushnet .
+
+ex:time_visit_2020_05_29 a sulo:TimeInstant ;
+  sulo:hasValue "2020-05-29T21:49:00"^^xsd:dateTime .
+
+ex:physician_Victor493_Chavez927 a chr:Person .
+
+ex:care_provider_role_Victor493_Chavez927 a chr:CareProviderRole ;
+  sulo:isFeatureOf ex:physician_Victor493_Chavez927 .
+
+ex:visit_2020_05_29 sulo:hasParticipant ex:care_provider_role_Victor493_Chavez927 .
+
+ex:measurement_process_pain_score a chr:MeasurementProcess ;
+  sulo:atTime ex:time_measurement_2020_05_29 ;
+  sulo:hasParticipant ex:subject_of_care_role_Harvey63 .
+
+ex:time_measurement_2020_05_29 a sulo:TimeInstant ;
+  sulo:hasValue "2020-05-29T22:22:00"^^xsd:dateTime .
+
+ex:subject_of_care_role_Harvey63 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
+
+ex:measurement_pain_score a chr:Measurement ;
+  sulo:hasValue "6.0"^^xsd:float ;
+  sulo:hasPart ex:unit_score ;
+  sulo:atTime ex:time_measurement_2020_05_29 .
+
+ex:unit_score a sulo:Unit ;
+  rdfs:label "score" .
+
+ex:measurement_process_pain_score sulo:hasParticipant ex:output_role_measurement_pain_score .
+
+ex:output_role_measurement_pain_score a chr:OutputRole ;
+  sulo:isFeatureOf ex:measurement_pain_score .
+
+ex:process_status_completed a chr:ProcessStatus ;
+  rdfs:label "completed" .
+
+ex:measurement_process_pain_score sulo:hasFeature ex:process_status_completed .
+
+ex:evaluation_2020_05_29 a chr:EvaluationProcess ;
+  sulo:atTime ex:time_evaluation_2020_05_29 ;
+  sulo:hasParticipant ex:performer_role_Victor493_Chavez927 ;
+  sulo:hasParticipant ex:subject_of_care_role_Harvey63 .
+
+ex:time_evaluation_2020_05_29 a sulo:TimeInstant ;
+  sulo:hasValue "2020-05-29T22:22:00"^^xsd:dateTime .
+
+ex:performer_role_Victor493_Chavez927 a chr:PerformerRole ;
+  sulo:isFeatureOf ex:physician_Victor493_Chavez927 .
+
+ex:diagnostic_statement_rectal_polyp a chr:DiagnosticStatement ;
+  rdfs:label "Recurrent rectal polyp (disorder)" .
+
+ex:evaluation_2020_05_29 sulo:hasParticipant ex:output_role_diagnostic_statement .
+
+ex:output_role_diagnostic_statement a chr:OutputRole ;
+  sulo:isFeatureOf ex:diagnostic_statement_rectal_polyp .
+
+ex:clinical_condition_rectal_polyp a chr:ClinicalCondition ;
+  sulo:atTime ex:time_condition_recorded ;
+  sulo:hasFeature ex:severity_moderate .
+
+ex:time_condition_recorded a sulo:TimeInstant ;
+  sulo:hasValue "2020-05-29T22:22:00"^^xsd:dateTime .
+
+ex:severity_moderate a chr:Severity ;
+  rdfs:label "Moderate" .
+
+ex:care_plan a chr:CarePlan ;
+  sulo:refersTo ex:follow_up_monitoring , ex:routine_review .
+
+ex:follow_up_monitoring a chr:MedicalProcedure ;
+  rdfs:label "follow-up monitoring" .
+
+ex:routine_review a chr:MedicalProcedure ;
+  rdfs:label "routine review" .

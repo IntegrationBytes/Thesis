@@ -1,0 +1,117 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Delma_Adriane_Huel a chr:Person .
+
+ex:physician_Drew_Simonis a chr:Person .
+
+ex:careunit_HarborHealth a chr:CareUnit .
+
+ex:visit_20201224_0712 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Delma_Adriane_Huel ;
+    chr:hasCareProvider ex:physician_Drew_Simonis ;
+    chr:hasCareUnit ex:careunit_HarborHealth .
+
+# Height measurement
+ex:meas_Height_20201224_0712 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-12-24T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "74.3"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+ex:proc_Height_20201224_0712 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Adriane_Huel ;
+    chr:hasResult ex:meas_Height_20201224_0712 .
+
+# Pain severity measurement
+ex:meas_Pain_20201224_0712 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-12-24T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:proc_Pain_20201224_0712 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Adriane_Huel ;
+    chr:hasResult ex:meas_Pain_20201224_0712 .
+
+# Weight measurement
+ex:meas_Weight_20201224_0712 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-12-24T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "10.7"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+ex:proc_Weight_20201224_0712 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Adriane_Huel ;
+    chr:hasResult ex:meas_Weight_20201224_0712 .
+
+# Weight-for-length measurement
+ex:meas_WeightForLength_20201224_0712 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-12-24T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "93.377"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+ex:proc_WeightForLength_20201224_0712 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Adriane_Huel ;
+    chr:hasResult ex:meas_WeightForLength_20201224_0712 .
+
+# Head circumference percentile measurement
+ex:meas_HeadCircPercentile_20201224_0712 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-12-24T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "24.46"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+ex:proc_HeadCircPercentile_20201224_0712 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Adriane_Huel ;
+    chr:hasResult ex:meas_HeadCircPercentile_20201224_0712 .
+
+# Head circumference measurement
+ex:meas_HeadCirc_20201224_0712 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-12-24T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "44.85"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+ex:proc_HeadCirc_20201224_0712 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Adriane_Huel ;
+    chr:hasResult ex:meas_HeadCirc_20201224_0712 .
+
+# Heart rate measurement
+ex:meas_HeartRate_20201224_0712 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-12-24T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "63"^^xsd:float ;
+    chr:hasUnit sulo:per_minute .
+
+ex:proc_HeartRate_20201224_0712 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Adriane_Huel ;
+    chr:hasResult ex:meas_HeartRate_20201224_0712 .
+
+# Respiratory rate measurement
+ex:meas_RespRate_20201224_0712 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-12-24T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12"^^xsd:float ;
+    chr:hasUnit sulo:per_minute .
+
+ex:proc_RespRate_20201224_0712 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Adriane_Huel ;
+    chr:hasResult ex:meas_RespRate_20201224_0712 .
+
+# Diagnostic statement and evaluation
+ex:diag_MedicationReview a chr:DiagnosticStatement .
+
+ex:evaluation_20201224_0712 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Delma_Adriane_Huel ;
+    chr:hasObservation ex:diag_MedicationReview .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:condition_20201224_0712 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-12-24T07:12:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Care plan and follow‑up procedure
+ex:proc_FollowUp_20201224 a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Delma_Adriane_Huel ;
+    chr:hasPerformedDate "2020-12-24T07:12:00"^^xsd:dateTime .
+
+ex:careplan_20201224 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:proc_FollowUp_20201224 .

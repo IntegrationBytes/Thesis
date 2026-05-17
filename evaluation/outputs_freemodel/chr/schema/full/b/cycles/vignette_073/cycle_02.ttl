@@ -1,0 +1,156 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Nevares
+    a chr:Person .
+
+ex:physician_CariKohler
+    a chr:Person .
+
+ex:careunit_DRHE
+    a chr:CareUnit .
+
+ex:visit_2025_11_25_0420
+    a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_CariKohler ;
+    chr:hasCareUnit ex:careunit_DRHE ;
+    chr:hasPatient ex:patient_Nevares .
+
+# Height measurement
+ex:measHeightProc_20251125_0420
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measHeight_20251125_0420 .
+
+ex:measHeight_20251125_0420
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "162.9"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+# Weight measurement
+ex:measWeightProc_20251125_0420
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measWeight_20251125_0420 .
+
+ex:measWeight_20251125_0420
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "65.1"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+# BMI (ratio) measurement
+ex:measBMIRatioProc_20251125_0420
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measBMIRatio_20251125_0420 .
+
+ex:measBMIRatio_20251125_0420
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "24.55"^^xsd:float ;
+    chr:hasUnit sulo:kilogram_per_square_meter .
+
+# BMI (percentile) measurement
+ex:measBMIPercProc_20251125_0420
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measBMIPerc_20251125_0420 .
+
+ex:measBMIPerc_20251125_0420
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "91.807"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+# Heart rate measurement
+ex:measHRProc_20251125_0420
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measHR_20251125_0420 .
+
+ex:measHR_20251125_0420
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "72"^^xsd:float ;
+    chr:hasUnit sulo:beats_per_minute .
+
+# Respiratory rate measurement
+ex:measRRProc_20251125_0420
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measRR_20251125_0420 .
+
+ex:measRR_20251125_0420
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasUnit sulo:breaths_per_minute .
+
+# Pain severity measurement
+ex:measPainProc_20251125_0420
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measPain_20251125_0420 .
+
+ex:measPain_20251125_0420
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# PHQ-9 measurement
+ex:measPHQProc_20251125_0457
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasResult ex:measPHQ_20251125_0457 .
+
+ex:measPHQ_20251125_0457
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:57:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Evaluation for Medication review
+ex:evalMedReview_20251125_0420
+    a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagMedReview_20251125_0420 .
+
+ex:diagMedReview_20251125_0420
+    a chr:DiagnosticStatement .
+
+ex:condMedReview_20251125_0420
+    a chr:ClinicalCondition ;
+    chr:hasRecordDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Evaluation for Gingivitis
+ex:evalGingivitis_20251125_0457
+    a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagGingivitis_20251125_0457 .
+
+ex:diagGingivitis_20251125_0457
+    a chr:DiagnosticStatement .
+
+ex:condGingivitis_20251125_0457
+    a chr:ClinicalCondition ;
+    chr:hasRecordDate "2025-11-25T04:57:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate
+    a chr:Severity .
+
+# Clinical condition representing the medication review procedure
+ex:procMedicationReview_20251125
+    a chr:ClinicalCondition ;
+    chr:hasPerformedBy ex:physician_CariKohler ;
+    chr:hasPatient ex:patient_Nevares ;
+    chr:hasRecordDate "2025-11-25T04:20:00"^^xsd:dateTime .
+
+ex:careplan_20251125
+    a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procMedicationReview_20251125 .

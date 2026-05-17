@@ -1,0 +1,18 @@
+@prefix chr: <http://example.org/chr#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/patient/123> rdf:type chr:Patient ;
+  chr:age "65"^^xsd:integer ;
+  chr:gender chr:Male ;
+  chr:hasCondition <http://example.org/condition/456> .
+
+<http://example.org/condition/456> rdf:type chr:Condition ;
+  chr:name "Hypertension" ;
+  chr:bodySite "Cardiovascular System" .
+
+chr:Male rdfs:subClassOf chr:Gender .
+chr:Gender rdfs:subClassOf rdfs:Class .
+chr:Patient rdfs:subClassOf rdfs:Class .
+chr:Condition rdfs:subClassOf rdfs:Class .

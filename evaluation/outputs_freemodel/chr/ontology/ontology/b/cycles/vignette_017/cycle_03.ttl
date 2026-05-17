@@ -1,0 +1,244 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:person_Arturo a chr:Person .
+ex:person_Alan a chr:Person .
+
+# Care unit
+ex:careunit_PRIMARY_CARE_NORTH_PC a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2022_05_23_0234 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_Subject_Arturo_Visit ;
+    sulo:hasParticipant ex:role_Provider_Alan_Visit ;
+    sulo:isIn ex:careunit_PRIMARY_CARE_NORTH_PC ;
+    sulo:atTime ex:time_Visit_2022_05_23_0234 .
+
+ex:role_Subject_Arturo_Visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo .
+
+ex:role_Provider_Alan_Visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Alan .
+
+ex:time_Visit_2022_05_23_0234 sulo:hasValue "2022-05-23T02:34:00"^^xsd:dateTime .
+
+# Units
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_percent a sulo:Unit .
+ex:unit_score a sulo:Unit .
+
+# Hemoglobin A1c
+ex:proc_HbA1c_2022_05_23_0234 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arturo_HbA1c ;
+    sulo:hasParticipant ex:role_Provider_Alan_HbA1c ;
+    sulo:hasFeature ex:status_completed_HbA1c ;
+    sulo:atTime ex:time_HbA1c_2022_05_23_0234 .
+
+ex:role_Subject_Arturo_HbA1c a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo .
+
+ex:role_Provider_Alan_HbA1c a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Alan .
+
+ex:status_completed_HbA1c a chr:ProcessStatus .
+
+ex:meas_HbA1c_2022_05_23_0234 a chr:Measurement ;
+    sulo:hasValue "6.28"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_HbA1c_2022_05_23_0234 .
+
+ex:time_HbA1c_2022_05_23_0234 sulo:hasValue "2022-05-23T02:34:00"^^xsd:dateTime .
+
+# Cholesterol total
+ex:proc_Cholesterol_total_2022_05_23_0234 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arturo_CholTot ;
+    sulo:hasParticipant ex:role_Provider_Alan_CholTot ;
+    sulo:hasFeature ex:status_completed_CholTot ;
+    sulo:atTime ex:time_CholTot_2022_05_23_0234 .
+
+ex:role_Subject_Arturo_CholTot a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo .
+ex:role_Provider_Alan_CholTot a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Alan .
+ex:status_completed_CholTot a chr:ProcessStatus .
+
+ex:meas_Cholesterol_total_2022_05_23_0234 a chr:Measurement ;
+    sulo:hasValue "286.59"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_CholTot_2022_05_23_0234 .
+
+ex:time_CholTot_2022_05_23_0234 sulo:hasValue "2022-05-23T02:34:00"^^xsd:dateTime .
+
+# Triglyceride
+ex:proc_Triglyceride_2022_05_23_0234 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arturo_Trig ;
+    sulo:hasParticipant ex:role_Provider_Alan_Trig ;
+    sulo:hasFeature ex:status_completed_Trig ;
+    sulo:atTime ex:time_Trig_2022_05_23_0234 .
+
+ex:role_Subject_Arturo_Trig a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo .
+ex:role_Provider_Alan_Trig a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Alan .
+ex:status_completed_Trig a chr:ProcessStatus .
+
+ex:meas_Triglyceride_2022_05_23_0234 a chr:Measurement ;
+    sulo:hasValue "109.75"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Trig_2022_05_23_0234 .
+
+ex:time_Trig_2022_05_23_0234 sulo:hasValue "2022-05-23T02:34:00"^^xsd:dateTime .
+
+# LDL Cholesterol
+ex:proc_LDL_2022_05_23_0234 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arturo_LDL ;
+    sulo:hasParticipant ex:role_Provider_Alan_LDL ;
+    sulo:hasFeature ex:status_completed_LDL ;
+    sulo:atTime ex:time_LDL_2022_05_23_0234 .
+
+ex:role_Subject_Arturo_LDL a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo .
+ex:role_Provider_Alan_LDL a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Alan .
+ex:status_completed_LDL a chr:ProcessStatus .
+
+ex:meas_LDL_2022_05_23_0234 a chr:Measurement ;
+    sulo:hasValue "168.08"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_LDL_2022_05_23_0234 .
+
+ex:time_LDL_2022_05_23_0234 sulo:hasValue "2022-05-23T02:34:00"^^xsd:dateTime .
+
+# HDL Cholesterol
+ex:proc_HDL_2022_05_23_0234 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arturo_HDL ;
+    sulo:hasParticipant ex:role_Provider_Alan_HDL ;
+    sulo:hasFeature ex:status_completed_HDL ;
+    sulo:atTime ex:time_HDL_2022_05_23_0234 .
+
+ex:role_Subject_Arturo_HDL a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo .
+ex:role_Provider_Alan_HDL a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Alan .
+ex:status_completed_HDL a chr:ProcessStatus .
+
+ex:meas_HDL_2022_05_23_0234 a chr:Measurement ;
+    sulo:hasValue "55.559"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_HDL_2022_05_23_0234 .
+
+ex:time_HDL_2022_05_23_0234 sulo:hasValue "2022-05-23T02:34:00"^^xsd:dateTime .
+
+# Glucose (Blood)
+ex:proc_Glucose_Blood_2022_05_23_0234 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arturo_GlucB ;
+    sulo:hasParticipant ex:role_Provider_Alan_GlucB ;
+    sulo:hasFeature ex:status_completed_GlucB ;
+    sulo:atTime ex:time_GlucB_2022_05_23_0234 .
+
+ex:role_Subject_Arturo_GlucB a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo .
+ex:role_Provider_Alan_GlucB a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Alan .
+ex:status_completed_GlucB a chr:ProcessStatus .
+
+ex:meas_Glucose_Blood_2022_05_23_0234 a chr:Measurement ;
+    sulo:hasValue "66.12"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_GlucB_2022_05_23_0234 .
+
+ex:time_GlucB_2022_05_23_0234 sulo:hasValue "2022-05-23T02:34:00"^^xsd:dateTime .
+
+# Evaluation for Medication review
+ex:evaluation_MedReview_2022_05_23_0234 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Arturo_EvalMed ;
+    sulo:hasParticipant ex:role_Performer_Alan_EvalMed ;
+    sulo:hasParticipant ex:role_Output_MedReview ;
+    sulo:hasFeature ex:status_MedReview ;
+    sulo:atTime ex:time_EvalMed_2022_05_23_0234 .
+
+ex:role_Subject_Arturo_EvalMed a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo .
+ex:role_Performer_Alan_EvalMed a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Alan .
+
+ex:role_Output_MedReview a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_MedReview .
+
+ex:diag_MedReview a chr:DiagnosticStatement , chr:MedicalProcedure .
+
+ex:status_MedReview a chr:ProcessStatus ;
+    sulo:hasValue "Moderate"^^xsd:string .
+
+ex:time_EvalMed_2022_05_23_0234 sulo:hasValue "2022-05-23T02:34:00"^^xsd:dateTime .
+
+# Evaluation for Hyperlipidemia
+ex:evaluation_Hyperlipidemia_2022_05_23_0234 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Arturo_EvalHyper ;
+    sulo:hasParticipant ex:role_Performer_Alan_EvalHyper ;
+    sulo:hasParticipant ex:role_Output_Hyperlipidemia ;
+    sulo:hasFeature ex:status_Hyperlipidemia ;
+    sulo:atTime ex:time_EvalHyper_2022_05_23_0234 .
+
+ex:role_Subject_Arturo_EvalHyper a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo .
+ex:role_Performer_Alan_EvalHyper a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Alan .
+
+ex:role_Output_Hyperlipidemia a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Hyperlipidemia .
+
+ex:diag_Hyperlipidemia a chr:DiagnosticStatement , chr:MedicalProcedure .
+
+ex:status_Hyperlipidemia a chr:ProcessStatus ;
+    sulo:hasValue "Moderate"^^xsd:string .
+
+ex:time_EvalHyper_2022_05_23_0234 sulo:hasValue "2022-05-23T02:34:00"^^xsd:dateTime .
+
+# Care plan
+ex:careplan_2022_05_23 a chr:CarePlan ;
+    sulo:refersTo ex:diag_MedReview , ex:diag_Hyperlipidemia .
+
+# GAD-7 score
+ex:proc_GAD7_2022_05_23_0348 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arturo_GAD7 ;
+    sulo:hasParticipant ex:role_Provider_Alan_GAD7 ;
+    sulo:hasFeature ex:status_completed_GAD7 ;
+    sulo:atTime ex:time_GAD7_2022_05_23_0348 .
+
+ex:role_Subject_Arturo_GAD7 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo .
+ex:role_Provider_Alan_GAD7 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Alan .
+ex:status_completed_GAD7 a chr:ProcessStatus .
+
+ex:meas_GAD7_2022_05_23_0348 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_GAD7_2022_05_23_0348 .
+
+ex:time_GAD7_2022_05_23_0348 sulo:hasValue "2022-05-23T03:48:00"^^xsd:dateTime .
+
+# PHQ-2 score
+ex:proc_PHQ2_2022_05_23_0421 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arturo_PHQ2 ;
+    sulo:hasParticipant ex:role_Provider_Alan_PHQ2 ;
+    sulo:hasFeature ex:status_completed_PHQ2 ;
+    sulo:atTime ex:time_PHQ2_2022_05_23_0421 .
+
+ex:role_Subject_Arturo_PHQ2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arturo .
+ex:role_Provider_Alan_PHQ2 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Alan .
+ex:status_completed_PHQ2 a chr:ProcessStatus .
+
+ex:meas_PHQ2_2022_05_23_0421 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_PHQ2_2022_05_23_0421 .
+
+ex:time_PHQ2_2022_05_23_0421 sulo:hasValue "2022-05-23T04:21:00"^^xsd:dateTime .

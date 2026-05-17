@@ -1,0 +1,113 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://wido.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Daren950Ed239Strosin214 a chr:Person .
+
+ex:visit_2018_09_15_10_01 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_DrPing698Weissnat378 ;
+    chr:hasCareUnit ex:careUnit_CommunityHealthProgramsInc ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 .
+
+ex:physician_DrPing698Weissnat378 a chr:Person .
+
+ex:careUnit_CommunityHealthProgramsInc a chr:CareUnit .
+
+# Height measurement
+ex:measProcess_Height_2018_09_15_10_01 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasResult ex:meas_Height_2018_09_15_10_01 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Height_2018_09_15_10_01 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-09-15T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "165.3"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+# Weight measurement
+ex:measProcess_Weight_2018_09_15_10_01 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasResult ex:meas_Weight_2018_09_15_10_01 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Weight_2018_09_15_10_01 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-09-15T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "46.5"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+# BMI ratio measurement
+ex:measProcess_BMI_Ratio_2018_09_15_10_01 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasResult ex:meas_BMI_Ratio_2018_09_15_10_01 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_BMI_Ratio_2018_09_15_10_01 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-09-15T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "17.02"^^xsd:float ;
+    chr:hasUnit sulo:kilogramPerSquareMeter .
+
+# BMI percentile measurement
+ex:measProcess_BMI_Percentile_2018_09_15_10_01 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasResult ex:meas_BMI_Percentile_2018_09_15_10_01 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_BMI_Percentile_2018_09_15_10_01 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-09-15T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15.143"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+# Heart rate measurement
+ex:measProcess_HeartRate_2018_09_15_10_01 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasResult ex:meas_HeartRate_2018_09_15_10_01 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_HeartRate_2018_09_15_10_01 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-09-15T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "77"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+# Respiratory rate measurement
+ex:measProcess_RespRate_2018_09_15_10_01 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasResult ex:meas_RespRate_2018_09_15_10_01 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_RespRate_2018_09_15_10_01 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-09-15T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+# Pain severity measurement (treated as Measurement as well)
+ex:measProcess_PainSeverity_2018_09_15_10_01 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasResult ex:meas_PainSeverity_2018_09_15_10_01 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_PainSeverity_2018_09_15_10_01 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-09-15T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Diagnostic statement
+ex:diagnostic_Gingivitis_2018_09_15_10_42 a chr:DiagnosticStatement .
+
+# Clinical condition for gingivitis (now the evaluation)
+ex:evaluation_2018_09_15_10_42 a chr:ClinicalCondition ;
+    chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+    chr:hasObservation ex:diagnostic_Gingivitis_2018_09_15_10_42 ;
+    chr:hasRecordDate "2018-09-15T10:42:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasConditionEndDate "2025-01-01T00:00:00"^^xsd:dateTime .
+
+ex:severity_Moderate a chr:Severity .
+
+# Care plan
+ex:carePlan_FollowUp a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:evaluation_2018_09_15_10_42 .
+
+# Process status
+ex:status_completed a chr:ProcessStatus .

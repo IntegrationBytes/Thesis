@@ -1,0 +1,39 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Angelic427_Callie226_Schaden604 a chr:Person .
+
+ex:visit_2016_08_07 a chr:ClinicalVisit ;
+  chr:hasPatient ex:patient_Angelic427_Callie226_Schaden604 ;
+  chr:hasCareProvider ex:doctor_Willian804_Batz141 ;
+  chr:hasCareUnit ex:care_unit_boston .
+
+ex:care_unit_boston a chr:CareUnit .
+
+ex:doctor_Willian804_Batz141 a chr:Person .
+
+ex:temp_meas_proc_2016_08_07 a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Angelic427_Callie226_Schaden604 ;
+  chr:hasResult ex:temp_meas_2016_08_07 .
+
+ex:temp_meas_2016_08_07 a chr:Measurement ;
+  chr:hasQuantityValue "37.816"^^xsd:float ;
+  chr:hasUnit sulo:Cel ;
+  chr:hasMeasuredDate "2016-08-07T06:24:00"^^xsd:dateTime .
+
+ex:eval_proc_2016_08_07 a chr:EvaluationProcess ;
+  chr:hasObservation ex:diag_acute_viral_pharyngitis ;
+  chr:hasPatient ex:patient_Angelic427_Callie226_Schaden604 .
+
+ex:diag_acute_viral_pharyngitis a chr:DiagnosticStatement .
+
+ex:condition_acute_viral_pharyngitis a chr:ClinicalCondition ;
+  chr:hasSeverity ex:severity_moderate ;
+  chr:hasRecordDate "2016-08-07T06:24:00"^^xsd:dateTime .
+
+ex:severity_moderate a chr:Severity .
+
+ex:care_plan_follow_up a chr:CarePlan .

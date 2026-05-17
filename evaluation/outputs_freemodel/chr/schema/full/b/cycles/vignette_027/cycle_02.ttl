@@ -1,0 +1,64 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_CaseyElijahParker
+    a chr:Person .
+
+ex:visit_2019_05_19_1859
+    a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:person_Dr_Jacque_Streich ;
+    chr:hasCareUnit ex:careunit_ACCLAIM_HOME_HEALTH_CARE_INC ;
+    chr:hasPatient ex:patient_CaseyElijahParker .
+
+ex:careunit_ACCLAIM_HOME_HEALTH_CARE_INC
+    a chr:CareUnit .
+
+ex:person_Dr_Jacque_Streich
+    a chr:Person .
+
+ex:device_DXA_Scanner
+    a chr:Device .
+
+ex:measproc_DXA_Radius_Ulna_20190519_1921
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasDevice ex:device_DXA_Scanner ;
+    chr:hasResult ex:measurement_DXA_Tscore_20190519_1921 ;
+    chr:hasStatus ex:status_completed .
+
+ex:status_completed
+    a chr:ProcessStatus .
+
+ex:measurement_DXA_Tscore_20190519_1921
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2019-05-19T19:21:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.33092"^^xsd:float ;
+    chr:hasUnit sulo:unit_TScore .
+
+ex:diag_FractureBone_20190519_1859
+    a chr:EvaluationProcess , chr:DiagnosticStatement ;
+    chr:hasObservation ex:cond_FractureBone .
+
+ex:cond_FractureBone
+    a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-05-19T18:59:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:diag_FractureAnkle_20190519_1859
+    a chr:EvaluationProcess , chr:DiagnosticStatement ;
+    chr:hasObservation ex:cond_FractureAnkle .
+
+ex:cond_FractureAnkle
+    a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-05-19T18:59:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate
+    a chr:Severity .
+
+ex:careplan_FollowUp_20190519
+    a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:measproc_DXA_Radius_Ulna_20190519_1921 .

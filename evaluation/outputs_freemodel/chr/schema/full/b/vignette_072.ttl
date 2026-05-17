@@ -1,0 +1,121 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:patient_Dolores_Nevarez a chr:Person .
+
+# Care provider
+ex:provider_Cari_Kohler a chr:Person .
+
+# Care unit
+ex:careunit_DRHEsPrimaryCare a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2024_11_19_0420 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasCareProvider ex:provider_Cari_Kohler ;
+    chr:hasCareUnit ex:careunit_DRHEsPrimaryCare .
+
+# Height measurement
+ex:meas_height_20241119_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "157.4"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+ex:proc_height_20241119_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_height_20241119_0420 .
+
+# Weight measurement
+ex:meas_weight_20241119_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "57.0"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+ex:proc_weight_20241119_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_weight_20241119_0420 .
+
+# BMI ratio measurement
+ex:meas_bmi_ratio_20241119_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "23.0"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+
+ex:proc_bmi_ratio_20241119_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_bmi_ratio_20241119_0420 .
+
+# BMI percentile measurement
+ex:meas_bmi_percentile_20241119_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "90.094"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+ex:proc_bmi_percentile_20241119_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_bmi_percentile_20241119_0420 .
+
+# Heart rate measurement
+ex:meas_heart_rate_20241119_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "65.0"^^xsd:float ;
+    chr:hasUnit sulo:beats_per_minute .
+
+ex:proc_heart_rate_20241119_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_heart_rate_20241119_0420 .
+
+# Respiratory rate measurement
+ex:meas_resp_rate_20241119_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.0"^^xsd:float ;
+    chr:hasUnit sulo:breaths_per_minute .
+
+ex:proc_resp_rate_20241119_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_resp_rate_20241119_0420 .
+
+# Pain severity measurement
+ex:meas_pain_severity_20241119_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:proc_pain_severity_20241119_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_pain_severity_20241119_0420 .
+
+# PHQ-9 measurement
+ex:meas_phq9_20241119_0459 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:59:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:proc_phq9_20241119_0459 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_phq9_20241119_0459 .
+
+# Diagnostic statement for Gingivitis
+ex:diag_gingivitis a chr:DiagnosticStatement .
+
+# Severity individual
+ex:severity_Moderate a chr:Severity .
+
+# Clinical condition (Gingivitis)
+ex:condition_gingivitis_20241119_0459 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2024-11-19T04:59:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Evaluation process linking diagnostic statement
+ex:evaluation_20241119_0459 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasPerformedDate "2024-11-19T04:59:00"^^xsd:dateTime ;
+    chr:hasObservation ex:diag_gingivitis .
+
+# Care plan (now includes at least one medical procedure)
+ex:careplan_20241119 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:proc_height_20241119_0420 .

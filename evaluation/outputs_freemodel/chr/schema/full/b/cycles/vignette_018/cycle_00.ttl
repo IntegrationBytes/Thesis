@@ -1,0 +1,52 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_ArturoLaurenHeidenreich
+    a chr:Person .
+
+ex:careUnit_WhittierRehab
+    a chr:CareUnit .
+
+ex:physician_LouisHauck
+    a chr:Person .
+
+ex:visit_2023_04_26_0034
+    a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasCareProvider ex:physician_LouisHauck ;
+    chr:hasCareUnit ex:careUnit_WhittierRehab .
+
+ex:measProc_Temp_2023_04_26_0034
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:measurement_Temp_2023_04_26_0034 .
+
+ex:measurement_Temp_2023_04_26_0034
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2023-04-26T00:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "37.632"^^xsd:float ;
+    chr:hasUnit ex:unit_Celsius .
+
+ex:unit_Celsius
+    a sulo:Unit .
+
+ex:evaluation_2023_04_26_0034
+    a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_AcuteViralPharyngitis .
+
+ex:diag_AcuteViralPharyngitis
+    a chr:DiagnosticStatement .
+
+ex:condition_AcuteViralPharyngitis
+    a chr:ClinicalCondition ;
+    chr:hasRecordDate "2023-04-26T00:34:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate
+    a chr:Severity .
+
+ex:carePlan_FollowUp
+    a chr:CarePlan .

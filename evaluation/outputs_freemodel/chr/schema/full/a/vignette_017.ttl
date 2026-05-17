@@ -1,0 +1,116 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:patient_Arturo_Lauren_Heidenreich a chr:Person .
+
+# Care provider (physician)
+ex:physician_Alan_Keeling a chr:Person .
+
+# Care unit
+ex:careUnit_PRIMARY_CARE_NORTH_PC a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2022_05_23_0234 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Alan_Keeling ;
+    chr:hasCareUnit ex:careUnit_PRIMARY_CARE_NORTH_PC ;
+    chr:hasPatient ex:patient_Arturo_Lauren_Heidenreich .
+
+# Measurement processes and measurements (selected examples)
+
+## Hemoglobin A1c
+ex:measProc_HbA1c_20220523_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Lauren_Heidenreich ;
+    chr:hasResult ex:meas_HbA1c_20220523_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_HbA1c_20220523_0234 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-05-23T02:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.28"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+## Cholesterol total
+ex:measProc_CholesterolTotal_20220523_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Lauren_Heidenreich ;
+    chr:hasResult ex:meas_CholesterolTotal_20220523_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_CholesterolTotal_20220523_0234 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-05-23T02:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "286.59"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+## Body Height
+ex:measProc_Height_20220523_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Lauren_Heidenreich ;
+    chr:hasResult ex:meas_Height_20220523_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Height_20220523_0234 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-05-23T02:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "181.4"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+## Pain severity
+ex:measProc_PainSeverity_20220523_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Lauren_Heidenreich ;
+    chr:hasResult ex:meas_PainSeverity_20220523_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_PainSeverity_20220523_0234 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-05-23T02:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+## GAD-7
+ex:measProc_GAD7_20220523_0348 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Lauren_Heidenreich ;
+    chr:hasResult ex:meas_GAD7_20220523_0348 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_GAD7_20220523_0348 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-05-23T03:48:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+## PHQ-2
+ex:measProc_PHQ2_20220523_0421 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Lauren_Heidenreich ;
+    chr:hasResult ex:meas_PHQ2_20220523_0421 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_PHQ2_20220523_0421 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-05-23T04:21:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Evaluation process producing diagnostic statements
+ex:evaluation_20220523_0234 a chr:EvaluationProcess ;
+    chr:hasCareProvider ex:physician_Alan_Keeling ;
+    chr:hasPatient ex:patient_Arturo_Lauren_Heidenreich ;
+    chr:hasObservation ex:diagStmt_MedicationReview ;
+    chr:hasObservation ex:diagStmt_Hyperlipidemia .
+
+ex:diagStmt_MedicationReview a chr:DiagnosticStatement .
+ex:diagStmt_Hyperlipidemia a chr:DiagnosticStatement .
+
+# Clinical conditions corresponding to diagnostic statements
+ex:condition_MedicationReview a chr:ClinicalCondition ;
+    chr:hasRecordDate "2022-05-23T02:34:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:condition_Hyperlipidemia a chr:ClinicalCondition ;
+    chr:hasRecordDate "2022-05-23T02:34:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+# Care plan
+ex:carePlan_20220523 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:evaluation_20220523_0234 .
+
+# Status individual for completed processes
+ex:status_completed a chr:ProcessStatus .

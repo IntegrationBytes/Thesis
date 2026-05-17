@@ -1,0 +1,125 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_ArleenBergstrom a chr:Person .
+
+ex:physician_CleliaMorissette a chr:Person .
+
+ex:careunit_CircleHealthUrgentCare a chr:CareUnit .
+
+ex:visit_20220520_1513 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasCareProvider ex:physician_CleliaMorissette ;
+    chr:hasCareUnit ex:careunit_CircleHealthUrgentCare .
+
+# Height measurement
+ex:meas_Height_20220520_1513 a chr:Measurement ;
+    chr:hasQuantityValue "159.0"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+ex:proc_Height_20220520_1513 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_Height_20220520_1513 .
+
+# Weight measurement
+ex:meas_Weight_20220520_1513 a chr:Measurement ;
+    chr:hasQuantityValue "63.2"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+ex:proc_Weight_20220520_1513 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_Weight_20220520_1513 .
+
+# BMI measurement
+ex:meas_BMI_20220520_1513 a chr:Measurement ;
+    chr:hasQuantityValue "25.01"^^xsd:float ;
+    chr:hasUnit sulo:kilogramPerSquareMeter .
+
+ex:proc_BMI_20220520_1513 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_BMI_20220520_1513 .
+
+# Heart rate measurement
+ex:meas_HeartRate_20220520_1513 a chr:Measurement ;
+    chr:hasQuantityValue "91.0"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+ex:proc_HeartRate_20220520_1513 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_HeartRate_20220520_1513 .
+
+# Respiratory rate measurement
+ex:meas_RespRate_20220520_1513 a chr:Measurement ;
+    chr:hasQuantityValue "14.0"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+ex:proc_RespRate_20220520_1513 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_RespRate_20220520_1513 .
+
+# Pain severity measurement
+ex:meas_Pain_20220520_1513 a chr:Measurement ;
+    chr:hasQuantityValue "3.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:proc_Pain_20220520_1513 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_Pain_20220520_1513 .
+
+# GAD-7 measurement
+ex:meas_GAD7_20220520_1625 a chr:Measurement ;
+    chr:hasQuantityValue "18.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:proc_GAD7_20220520_1625 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_GAD7_20220520_1625 .
+
+# PHQ-2 measurement
+ex:meas_PHQ2_20220520_1703 a chr:Measurement ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:proc_PHQ2_20220520_1703 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_PHQ2_20220520_1703 .
+
+# AUDIT-C measurement
+ex:meas_AUDITC_20220520_1744 a chr:Measurement ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:proc_AUDITC_20220520_1744 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_AUDITC_20220520_1744 .
+
+# Severity individuals
+ex:severity_Moderate a chr:Severity .
+
+# Diagnostic statements
+ex:diag_Stress a chr:DiagnosticStatement .
+ex:diag_SevereAnxiety a chr:DiagnosticStatement .
+
+# Clinical conditions
+ex:cond_Stress a chr:ClinicalCondition ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasRecordDate "2022-05-20T15:58:00"^^xsd:dateTime .
+
+ex:cond_SevereAnxiety a chr:ClinicalCondition ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasRecordDate "2022-05-20T16:25:00"^^xsd:dateTime .
+
+# Evaluation processes
+ex:eval_Stress_20220520_1558 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasObservation ex:diag_Stress .
+
+ex:eval_Anxiety_20220520_1625 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasObservation ex:diag_SevereAnxiety .
+
+# Care plan (generic, no specific medical procedure linked)
+ex:careplan_1 a chr:CarePlan .

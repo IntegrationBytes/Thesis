@@ -1,0 +1,229 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Patient
+ex:patient_Hallie a chr:Person .
+
+# Care provider (physician)
+ex:physician_Teresa a chr:Person .
+
+# Clinical visit
+ex:visit_2022_11_09_1530 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_Subject_Visit ;
+    sulo:hasParticipant ex:role_Provider_Visit ;
+    sulo:atTime ex:time_visit .
+
+ex:role_Subject_Visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Hallie .
+
+ex:role_Provider_Visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Teresa .
+
+ex:time_visit a sulo:TimeInstant ;
+    sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+# Height measurement
+ex:proc_height a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Height ;
+    sulo:hasParticipant ex:role_Provider_Height ;
+    sulo:hasFeature ex:meas_height ;
+    sulo:atTime ex:time_height .
+
+ex:role_Subject_Height a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Hallie .
+
+ex:role_Provider_Height a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Teresa .
+
+ex:meas_height a chr:Measurement ;
+    sulo:hasValue "80.2"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_height .
+
+ex:time_height a sulo:TimeInstant ;
+    sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+# Weight measurement
+ex:proc_weight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Weight ;
+    sulo:hasParticipant ex:role_Provider_Weight ;
+    sulo:hasFeature ex:meas_weight ;
+    sulo:atTime ex:time_weight .
+
+ex:role_Subject_Weight a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Hallie .
+
+ex:role_Provider_Weight a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Teresa .
+
+ex:meas_weight a chr:Measurement ;
+    sulo:hasValue "12.6"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_weight .
+
+ex:time_weight a sulo:TimeInstant ;
+    sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+# Pain severity measurement
+ex:proc_pain a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Pain ;
+    sulo:hasParticipant ex:role_Provider_Pain ;
+    sulo:hasFeature ex:meas_pain ;
+    sulo:atTime ex:time_pain .
+
+ex:role_Subject_Pain a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Hallie .
+
+ex:role_Provider_Pain a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Teresa .
+
+ex:meas_pain a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_pain .
+
+ex:time_pain a sulo:TimeInstant ;
+    sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+# Weight-for-length measurement
+ex:proc_wfl a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_WFL ;
+    sulo:hasParticipant ex:role_Provider_WFL ;
+    sulo:hasFeature ex:meas_wfl ;
+    sulo:atTime ex:time_wfl .
+
+ex:role_Subject_WFL a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Hallie .
+
+ex:role_Provider_WFL a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Teresa .
+
+ex:meas_wfl a chr:Measurement ;
+    sulo:hasValue "97.225"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_wfl .
+
+ex:time_wfl a sulo:TimeInstant ;
+    sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+# Head circumference percentile measurement
+ex:proc_head_percentile a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HeadPct ;
+    sulo:hasParticipant ex:role_Provider_HeadPct ;
+    sulo:hasFeature ex:meas_head_pct ;
+    sulo:atTime ex:time_head_pct .
+
+ex:role_Subject_HeadPct a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Hallie .
+
+ex:role_Provider_HeadPct a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Teresa .
+
+ex:meas_head_pct a chr:Measurement ;
+    sulo:hasValue "57.73"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_head_pct .
+
+ex:time_head_pct a sulo:TimeInstant ;
+    sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+# Head circumference measurement
+ex:proc_head_cm a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HeadCm ;
+    sulo:hasParticipant ex:role_Provider_HeadCm ;
+    sulo:hasFeature ex:meas_head_cm ;
+    sulo:atTime ex:time_head_cm .
+
+ex:role_Subject_HeadCm a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Hallie .
+
+ex:role_Provider_HeadCm a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Teresa .
+
+ex:meas_head_cm a chr:Measurement ;
+    sulo:hasValue "46.67"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_head_cm .
+
+ex:time_head_cm a sulo:TimeInstant ;
+    sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+# Heart rate measurement
+ex:proc_heart_rate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HR ;
+    sulo:hasParticipant ex:role_Provider_HR ;
+    sulo:hasFeature ex:meas_heart_rate ;
+    sulo:atTime ex:time_heart_rate .
+
+ex:role_Subject_HR a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Hallie .
+
+ex:role_Provider_HR a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Teresa .
+
+ex:meas_heart_rate a chr:Measurement ;
+    sulo:hasValue "92"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_heart_rate .
+
+ex:time_heart_rate a sulo:TimeInstant ;
+    sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+# Respiratory rate measurement
+ex:proc_resp_rate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_RR ;
+    sulo:hasParticipant ex:role_Provider_RR ;
+    sulo:hasFeature ex:meas_resp_rate ;
+    sulo:atTime ex:time_resp_rate .
+
+ex:role_Subject_RR a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Hallie .
+
+ex:role_Provider_RR a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Teresa .
+
+ex:meas_resp_rate a chr:Measurement ;
+    sulo:hasValue "13"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_resp_rate .
+
+ex:time_resp_rate a sulo:TimeInstant ;
+    sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+# Evaluation (diagnostic statement)
+ex:evaluation_2022_11_09 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Evaluator ;
+    sulo:hasParticipant ex:role_EvalSubject ;
+    sulo:hasFeature ex:diag_med_review ;
+    sulo:atTime ex:time_evaluation .
+
+ex:role_Evaluator a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Teresa .
+
+ex:role_EvalSubject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Hallie .
+
+ex:diag_med_review a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity ;
+    sulo:hasFeature "Moderate"^^xsd:string .
+
+ex:time_evaluation a sulo:TimeInstant ;
+    sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+# Care plan
+ex:careplan_2022_11_09 a chr:CarePlan ;
+    sulo:refersTo ex:proc_followup .
+
+ex:proc_followup a chr:MedicalProcedure .
+
+# Units
+ex:unit_cm a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_percent a sulo:Unit .
+ex:unit_score a sulo:Unit .
+ex:unit_per_min a sulo:Unit .

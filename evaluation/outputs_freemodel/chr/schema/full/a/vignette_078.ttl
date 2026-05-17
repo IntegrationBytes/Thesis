@@ -1,0 +1,53 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_EstelaGrant a chr:Person .
+
+ex:physician_IvonneTurcotte a chr:Person .
+
+ex:careUnit_Zion a chr:CareUnit .
+
+ex:visit_2004_12_27_2035 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_IvonneTurcotte ;
+    chr:hasCareUnit ex:careUnit_Zion ;
+    chr:hasPatient ex:patient_EstelaGrant .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:cond_MedicationReview a chr:ClinicalCondition ;
+    chr:hasRecordDate "2004-12-27T20:35:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:cond_BMIObesity a chr:ClinicalCondition ;
+    chr:hasRecordDate "2004-12-27T20:35:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:cond_NotInLaborForce a chr:ClinicalCondition ;
+    chr:hasRecordDate "2004-12-27T21:28:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:cond_Stress a chr:ClinicalCondition ;
+    chr:hasRecordDate "2004-12-27T21:28:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:diag_MedicationReview a chr:DiagnosticStatement .
+
+ex:diag_BMIObesity a chr:DiagnosticStatement .
+
+ex:diag_NotInLaborForce a chr:DiagnosticStatement .
+
+ex:diag_Stress a chr:DiagnosticStatement .
+
+ex:evaluation_2004_12_27_2035 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MedicationReview , ex:diag_BMIObesity ;
+    chr:hasPatient ex:patient_EstelaGrant .
+
+ex:evaluation_2004_12_27_2128 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_NotInLaborForce , ex:diag_Stress ;
+    chr:hasPatient ex:patient_EstelaGrant .
+
+ex:carePlan_2004_12_27 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:evaluation_2004_12_27_2035 , ex:evaluation_2004_12_27_2128 .

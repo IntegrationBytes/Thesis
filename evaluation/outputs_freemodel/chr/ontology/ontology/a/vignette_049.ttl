@@ -1,0 +1,191 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:person_Daren950 a chr:Person .
+ex:person_Ping698 a chr:Person .
+
+# Care unit
+ex:careunit_COMMUNITY_HEALTH_PROGRAMS_INC a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2018_09_15_10_01 a chr:ClinicalVisit ;
+    sulo:atTime ex:time_visit_2018_09_15_10_01 ;
+    sulo:hasParticipant ex:role_VisitSubject_Daren950 ,
+                       ex:role_VisitProvider_Ping698 .
+
+ex:time_visit_2018_09_15_10_01 a sulo:TimeInstant ;
+    sulo:hasValue "2018-09-15T10:01:00"^^xsd:dateTime .
+
+# Roles for visit
+ex:role_VisitSubject_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_VisitProvider_Ping698 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Ping698 .
+
+ex:role_VisitProvider_Ping698 sulo:isIn ex:careunit_COMMUNITY_HEALTH_PROGRAMS_INC .
+
+# Measurement processes and results
+# Height
+ex:proc_Height_2018_09_15_10_01 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_visit_2018_09_15_10_01 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_HeightSubject_Daren950 ,
+                       ex:role_HeightOutput_Height .
+
+ex:role_HeightSubject_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_HeightOutput_Height a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Height_165_3 .
+
+ex:meas_Height_165_3 a chr:Measurement ;
+    sulo:hasValue "165.3"^^xsd:float ;
+    sulo:hasPart ex:unit_cm .
+
+ex:unit_cm a sulo:Unit .
+
+# Weight
+ex:proc_Weight_2018_09_15_10_01 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_visit_2018_09_15_10_01 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_WeightSubject_Daren950 ,
+                       ex:role_WeightOutput_Weight .
+
+ex:role_WeightSubject_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_WeightOutput_Weight a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Weight_46_5 .
+
+ex:meas_Weight_46_5 a chr:Measurement ;
+    sulo:hasValue "46.5"^^xsd:float ;
+    sulo:hasPart ex:unit_kg .
+
+ex:unit_kg a sulo:Unit .
+
+# BMI (ratio)
+ex:proc_BMI_Ratio_2018_09_15_10_01 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_visit_2018_09_15_10_01 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_BMISubject_Daren950 ,
+                       ex:role_BMIOutput_Ratio .
+
+ex:role_BMISubject_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_BMIOutput_Ratio a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_BMI_Ratio_17_02 .
+
+ex:meas_BMI_Ratio_17_02 a chr:Measurement ;
+    sulo:hasValue "17.02"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 .
+
+ex:unit_kg_per_m2 a sulo:Unit .
+
+# BMI (percentile)
+ex:proc_BMI_Percentile_2018_09_15_10_01 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_visit_2018_09_15_10_01 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_BMISubject_Daren950 ,
+                       ex:role_BMIOutput_Percentile .
+
+ex:role_BMIOutput_Percentile a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_BMI_Percentile_15_143 .
+
+ex:meas_BMI_Percentile_15_143 a chr:Measurement ;
+    sulo:hasValue "15.143"^^xsd:float ;
+    sulo:hasPart ex:unit_percent .
+
+ex:unit_percent a sulo:Unit .
+
+# Heart rate
+ex:proc_HeartRate_2018_09_15_10_01 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_visit_2018_09_15_10_01 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_HRSubject_Daren950 ,
+                       ex:role_HROutput .
+
+ex:role_HRSubject_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_HROutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HeartRate_77 .
+
+ex:meas_HeartRate_77 a chr:Measurement ;
+    sulo:hasValue "77"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min .
+
+ex:unit_per_min a sulo:Unit .
+
+# Respiratory rate
+ex:proc_RespRate_2018_09_15_10_01 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_visit_2018_09_15_10_01 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_RRSubject_Daren950 ,
+                       ex:role_RROutput .
+
+ex:role_RRSubject_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_RROutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_RespRate_12 .
+
+ex:meas_RespRate_12 a chr:Measurement ;
+    sulo:hasValue "12"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min .
+
+# Pain severity (numeric rating)
+ex:proc_PainSeverity_2018_09_15_10_01 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_visit_2018_09_15_10_01 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_PainSubject_Daren950 ,
+                       ex:role_PainOutput .
+
+ex:role_PainSubject_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_PainOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_PainScore_2 .
+
+ex:meas_PainScore_2 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score .
+
+ex:unit_score a sulo:Unit .
+
+# Evaluation (diagnostic statement)
+ex:evaluation_2018_09_15_10_42 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_eval_2018_09_15_10_42 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_EvalProvider_Ping698 ,
+                       ex:role_EvalSubject_Daren950 ,
+                       ex:role_EvalOutput_Gingivitis .
+
+ex:time_eval_2018_09_15_10_42 a sulo:TimeInstant ;
+    sulo:hasValue "2018-09-15T10:42:00"^^xsd:dateTime .
+
+ex:role_EvalProvider_Ping698 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Ping698 .
+
+ex:role_EvalSubject_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Daren950 .
+
+ex:role_EvalOutput_Gingivitis a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Gingivitis .
+
+ex:diag_Gingivitis a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+# Care plan
+ex:careplan_2018_09_15 a chr:CarePlan ;
+    sulo:refersTo ex:proc_FollowUpMonitoring .
+
+# Follow‑up monitoring (represented as a placeholder MedicalProcedure)
+ex:proc_FollowUpMonitoring a chr:MedicalProcedure .

@@ -1,0 +1,219 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Patient
+ex:patient_Daren950 a chr:Person .
+
+# Care provider (physician)
+ex:person_Carroll471 a chr:Person .
+
+# Care unit
+ex:careunit_BerkshireMedicalCenter a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2020_12_04_0901 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_VisitPatient_Daren950 ,
+                       ex:role_VisitProvider_Carroll471 ;
+    sulo:isIn ex:careunit_BerkshireMedicalCenter ;
+    sulo:atTime ex:time_visit_2020_12_04_0901 .
+
+ex:role_VisitPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_VisitProvider_Carroll471 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Carroll471 .
+
+ex:time_visit_2020_12_04_0901 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+
+# Measurement processes (temperature, respiratory rate, heart rate, oxygen saturation, weight)
+
+# Body temperature
+ex:process_temp_2020_12_04_0901 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_TempPatient_Daren950 ,
+                       ex:role_TempProvider_Carroll471 ;
+    sulo:hasFeature ex:measurement_bodyTemp_2020_12_04_0901 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_temp_2020_12_04_0901 .
+
+ex:role_TempPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_TempProvider_Carroll471 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Carroll471 .
+
+ex:measurement_bodyTemp_2020_12_04_0901 a chr:Measurement ;
+    sulo:hasValue "38.656"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/Celsius> ;
+    sulo:atTime ex:time_measure_temp_2020_12_04_0901 .
+
+ex:time_measure_temp_2020_12_04_0901 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+
+# Respiratory rate
+ex:process_respRate_2020_12_04_0901 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_RespPatient_Daren950 ,
+                       ex:role_RespProvider_Carroll471 ;
+    sulo:hasFeature ex:measurement_respRate_2020_12_04_0901 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_resp_2020_12_04_0901 .
+
+ex:role_RespPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_RespProvider_Carroll471 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Carroll471 .
+
+ex:measurement_respRate_2020_12_04_0901 a chr:Measurement ;
+    sulo:hasValue "18.345"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/PerMinute> ;
+    sulo:atTime ex:time_measure_resp_2020_12_04_0901 .
+
+ex:time_measure_resp_2020_12_04_0901 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+
+# Heart rate
+ex:process_heartRate_2020_12_04_0901 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HeartPatient_Daren950 ,
+                       ex:role_HeartProvider_Carroll471 ;
+    sulo:hasFeature ex:measurement_heartRate_2020_12_04_0901 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_heart_2020_12_04_0901 .
+
+ex:role_HeartPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_HeartProvider_Carroll471 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Carroll471 .
+
+ex:measurement_heartRate_2020_12_04_0901 a chr:Measurement ;
+    sulo:hasValue "85.723"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/PerMinute> ;
+    sulo:atTime ex:time_measure_heart_2020_12_04_0901 .
+
+ex:time_measure_heart_2020_12_04_0901 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+
+# Oxygen saturation
+ex:process_o2Sat_2020_12_04_0901 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_O2SatPatient_Daren950 ,
+                       ex:role_O2SatProvider_Carroll471 ;
+    sulo:hasFeature ex:measurement_o2Sat_2020_12_04_0901 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_o2Sat_2020_12_04_0901 .
+
+ex:role_O2SatPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_O2SatProvider_Carroll471 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Carroll471 .
+
+ex:measurement_o2Sat_2020_12_04_0901 a chr:Measurement ;
+    sulo:hasValue "82.21"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/Percent> ;
+    sulo:atTime ex:time_measure_o2Sat_2020_12_04_0901 .
+
+ex:time_measure_o2Sat_2020_12_04_0901 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+
+# Body weight
+ex:process_weight_2020_12_04_0901 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_WeightPatient_Daren950 ,
+                       ex:role_WeightProvider_Carroll471 ;
+    sulo:hasFeature ex:measurement_weight_2020_12_04_0901 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_weight_2020_12_04_0901 .
+
+ex:role_WeightPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_WeightProvider_Carroll471 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Carroll471 .
+
+ex:measurement_weight_2020_12_04_0901 a chr:Measurement ;
+    sulo:hasValue "56.1"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/Kilogram> ;
+    sulo:atTime ex:time_measure_weight_2020_12_04_0901 .
+
+ex:time_measure_weight_2020_12_04_0901 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+
+# Status entity (completed)
+ex:status_completed a chr:ProcessStatus .
+
+# Evaluation processes and diagnostic statements
+
+# Helper severity
+ex:severity_moderate a chr:Severity .
+
+# Cough
+ex:evaluation_cough_2020_12_04_0901 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_Daren950 ,
+                       ex:role_EvalProvider_Carroll471 ;
+    sulo:hasFeature ex:diag_cough ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_eval_cough_2020_12_04_0901 .
+
+ex:role_EvalPatient_Daren950 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_EvalProvider_Carroll471 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Carroll471 .
+
+ex:diag_cough a chr:DiagnosticStatement ;
+    rdfs:label "Cough (finding)" .
+
+ex:time_eval_cough_2020_12_04_0901 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+
+# Fever
+ex:evaluation_fever_2020_12_04_0901 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_Daren950 ,
+                       ex:role_EvalProvider_Carroll471 ;
+    sulo:hasFeature ex:diag_fever ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_eval_fever_2020_12_04_0901 .
+
+ex:diag_fever a chr:DiagnosticStatement ;
+    rdfs:label "Fever (finding)" .
+
+ex:time_eval_fever_2020_12_04_0901 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+
+# Loss of taste
+ex:evaluation_tasteLoss_2020_12_04_0901 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_Daren950 ,
+                       ex:role_EvalProvider_Carroll471 ;
+    sulo:hasFeature ex:diag_tasteLoss ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_eval_tasteLoss_2020_12_04_0901 .
+
+ex:diag_tasteLoss a chr:DiagnosticStatement ;
+    rdfs:label "Loss of taste (finding)" .
+
+ex:time_eval_tasteLoss_2020_12_04_0901 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+
+# COVID-19 disease
+ex:evaluation_covid19_2020_12_04_1006 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_Daren950 ,
+                       ex:role_EvalProvider_Carroll471 ;
+    sulo:hasFeature ex:diag_covid19 ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_eval_covid19_2020_12_04_1006 .
+
+ex:diag_covid19 a chr:DiagnosticStatement ;
+    rdfs:label "Disease caused by severe acute respiratory syndrome coronavirus 2 (disorder)" .
+
+ex:time_eval_covid19_2020_12_04_1006 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T10:06:00"^^xsd:dateTime .
+
+# Care plan
+ex:careplan_2020_12_04 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup .
+
+ex:procedure_followup a chr:MedicalProcedure ;
+    rdfs:label "follow-up monitoring and routine review" .

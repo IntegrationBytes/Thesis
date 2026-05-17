@@ -1,0 +1,98 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Daren950_Ed239_Strosin214 a chr:Person .
+
+ex:physician_Carroll471_Eichmann909 a chr:Person .
+
+ex:careunit_BerkshireMedicalCenterInc a chr:CareUnit .
+
+ex:visit_20201204_0901 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Carroll471_Eichmann909 ;
+    chr:hasCareUnit ex:careunit_BerkshireMedicalCenterInc ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 .
+
+# Body temperature measurement
+ex:meas_bodyTemp_20201204_0901 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:result_bodyTemp_20201204_0901 .
+
+ex:result_bodyTemp_20201204_0901 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-12-04T09:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "38.656"^^xsd:float ;
+    chr:hasUnit sulo:degreeCelsius .
+
+# Respiratory rate measurement
+ex:meas_respRate_20201204_0901 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:result_respRate_20201204_0901 .
+
+ex:result_respRate_20201204_0901 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-12-04T09:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "18.345"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+# Heart rate measurement
+ex:meas_heartRate_20201204_0901 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:result_heartRate_20201204_0901 .
+
+ex:result_heartRate_20201204_0901 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-12-04T09:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "85.723"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+# Oxygen saturation measurement
+ex:meas_o2Sat_20201204_0901 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:result_o2Sat_20201204_0901 .
+
+ex:result_o2Sat_20201204_0901 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-12-04T09:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82.21"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+# Body weight measurement
+ex:meas_bodyWeight_20201204_0901 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:result_bodyWeight_20201204_0901 .
+
+ex:result_bodyWeight_20201204_0901 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-12-04T09:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "56.1"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+# Diagnostic statements and conditions
+ex:diag_cough_20201204_0901 a chr:DiagnosticStatement .
+ex:cond_cough_20201204_0901 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-12-04T09:01:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+ex:diag_fever_20201204_0901 a chr:DiagnosticStatement .
+ex:cond_fever_20201204_0901 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-12-04T09:01:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+ex:diag_lossOfTaste_20201204_0901 a chr:DiagnosticStatement .
+ex:cond_lossOfTaste_20201204_0901 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-12-04T09:01:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+ex:diag_covid19_20201204_1006 a chr:DiagnosticStatement .
+ex:cond_covid19_20201204_1006 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-12-04T10:06:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity .
+
+# Care plan with at least one medical procedure
+ex:procedure_followup_20201204 a chr:MedicalProcedure ;
+    chr:hasPerformedBy ex:physician_Carroll471_Eichmann909 ;
+    chr:hasPerformedOn ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasDate "2020-12-04T09:30:00"^^xsd:dateTime .
+
+ex:careplan_followup_20201204 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_followup_20201204 .

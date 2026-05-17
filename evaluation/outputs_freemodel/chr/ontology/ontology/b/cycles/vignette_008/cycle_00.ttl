@@ -1,0 +1,278 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person
+ex:person_Arleen_Bergstrom a chr:Person .
+
+# Care Provider (physician)
+ex:person_Clelia_Morissette a chr:Person .
+
+# Care Unit
+ex:careunit_CIRCLE_HEALTH_URGENT_CARE a chr:CareUnit .
+
+# Clinical Visit
+ex:visit_2022_05_20_15_13 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_VisitPatient_Arleen ;
+    sulo:hasParticipant ex:role_VisitProvider_Clelia ;
+    sulo:isIn ex:careunit_CIRCLE_HEALTH_URGENT_CARE ;
+    sulo:atTime ex:time_visit_2022_05_20_15_13 .
+
+ex:role_VisitPatient_Arleen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen_Bergstrom .
+
+ex:role_VisitProvider_Clelia a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Clelia_Morissette .
+
+ex:time_visit_2022_05_20_15_13 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-20T15:13:00"^^xsd:dateTime .
+
+# ---- Measurement Processes ----
+
+# Height
+ex:proc_height_2022_05_20_15_13 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HeightPatient_Arleen ;
+    sulo:hasParticipant ex:role_HeightOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_height_2022_05_20_15_13 .
+
+ex:role_HeightPatient_Arleen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen_Bergstrom .
+
+ex:role_HeightOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Height .
+
+ex:measurement_Height a chr:Measurement ;
+    sulo:hasValue "159.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/cm> ;
+    sulo:atTime ex:time_height_2022_05_20_15_13 .
+
+ex:time_height_2022_05_20_15_13 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-20T15:13:00"^^xsd:dateTime .
+
+# Weight
+ex:proc_weight_2022_05_20_15_13 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_WeightPatient_Arleen ;
+    sulo:hasParticipant ex:role_WeightOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_weight_2022_05_20_15_13 .
+
+ex:role_WeightPatient_Arleen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen_Bergstrom .
+
+ex:role_WeightOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Weight .
+
+ex:measurement_Weight a chr:Measurement ;
+    sulo:hasValue "63.2"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/kg> ;
+    sulo:atTime ex:time_weight_2022_05_20_15_13 .
+
+ex:time_weight_2022_05_20_15_13 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-20T15:13:00"^^xsd:dateTime .
+
+# BMI
+ex:proc_bmi_2022_05_20_15_13 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_BMIPatient_Arleen ;
+    sulo:hasParticipant ex:role_BMIOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_bmi_2022_05_20_15_13 .
+
+ex:role_BMIPatient_Arleen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen_Bergstrom .
+
+ex:role_BMIOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI .
+
+ex:measurement_BMI a chr:Measurement ;
+    sulo:hasValue "25.01"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/kg_per_m2> ;
+    sulo:atTime ex:time_bmi_2022_05_20_15_13 .
+
+ex:time_bmi_2022_05_20_15_13 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-20T15:13:00"^^xsd:dateTime .
+
+# Heart Rate
+ex:proc_hr_2022_05_20_15_13 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HRPatient_Arleen ;
+    sulo:hasParticipant ex:role_HROutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_hr_2022_05_20_15_13 .
+
+ex:role_HRPatient_Arleen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen_Bergstrom .
+
+ex:role_HROutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HR .
+
+ex:measurement_HR a chr:Measurement ;
+    sulo:hasValue "91.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/per_min> ;
+    sulo:atTime ex:time_hr_2022_05_20_15_13 .
+
+ex:time_hr_2022_05_20_15_13 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-20T15:13:00"^^xsd:dateTime .
+
+# Respiratory Rate
+ex:proc_rr_2022_05_20_15_13 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_RRPatient_Arleen ;
+    sulo:hasParticipant ex:role_RROutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_rr_2022_05_20_15_13 .
+
+ex:role_RRPatient_Arleen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen_Bergstrom .
+
+ex:role_RROutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RR .
+
+ex:measurement_RR a chr:Measurement ;
+    sulo:hasValue "14.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/per_min> ;
+    sulo:atTime ex:time_rr_2022_05_20_15_13 .
+
+ex:time_rr_2022_05_20_15_13 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-20T15:13:00"^^xsd:dateTime .
+
+# Pain Severity
+ex:proc_pain_2022_05_20_15_13 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PainPatient_Arleen ;
+    sulo:hasParticipant ex:role_PainOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_pain_2022_05_20_15_13 .
+
+ex:role_PainPatient_Arleen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen_Bergstrom .
+
+ex:role_PainOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Pain .
+
+ex:measurement_Pain a chr:Measurement ;
+    sulo:hasValue "3.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_pain_2022_05_20_15_13 .
+
+ex:time_pain_2022_05_20_15_13 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-20T15:13:00"^^xsd:dateTime .
+
+# GAD-7
+ex:proc_gad7_2022_05_20_16_25 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_GAD7Patient_Arleen ;
+    sulo:hasParticipant ex:role_GAD7Output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_gad7_2022_05_20_16_25 .
+
+ex:role_GAD7Patient_Arleen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen_Bergstrom .
+
+ex:role_GAD7Output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GAD7 .
+
+ex:measurement_GAD7 a chr:Measurement ;
+    sulo:hasValue "18.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_gad7_2022_05_20_16_25 .
+
+ex:time_gad7_2022_05_20_16_25 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-20T16:25:00"^^xsd:dateTime .
+
+# PHQ-2
+ex:proc_phq2_2022_05_20_17_03 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PHQ2Patient_Arleen ;
+    sulo:hasParticipant ex:role_PHQ2Output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_phq2_2022_05_20_17_03 .
+
+ex:role_PHQ2Patient_Arleen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen_Bergstrom .
+
+ex:role_PHQ2Output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ2 .
+
+ex:measurement_PHQ2 a chr:Measurement ;
+    sulo:hasValue "1.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_phq2_2022_05_20_17_03 .
+
+ex:time_phq2_2022_05_20_17_03 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-20T17:03:00"^^xsd:dateTime .
+
+# AUDIT-C
+ex:proc_auditc_2022_05_20_17_44 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_AUDITCPatient_Arleen ;
+    sulo:hasParticipant ex:role_AUDITCOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_auditc_2022_05_20_17_44 .
+
+ex:role_AUDITCPatient_Arleen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen_Bergstrom .
+
+ex:role_AUDITCOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_AUDITC .
+
+ex:measurement_AUDITC a chr:Measurement ;
+    sulo:hasValue "0.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_auditc_2022_05_20_17_44 .
+
+ex:time_auditc_2022_05_20_17_44 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-20T17:44:00"^^xsd:dateTime .
+
+# Process status (shared)
+ex:status_completed a chr:ProcessStatus .
+
+# ---- Evaluation Processes ----
+
+# Evaluation 1 – Stress
+ex:evaluation_1_2022_05_20_15_58 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_Arleen ;
+    sulo:hasParticipant ex:role_EvalPerformer_Clelia ;
+    sulo:hasParticipant ex:role_EvalOutput_Stress ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_eval_1_2022_05_20_15_58 .
+
+ex:role_EvalPatient_Arleen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen_Bergstrom .
+
+ex:role_EvalPerformer_Clelia a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Clelia_Morissette .
+
+ex:role_EvalOutput_Stress a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Stress .
+
+ex:diag_Stress a chr:DiagnosticStatement .
+
+ex:severity_moderate a chr:Severity .
+
+ex:time_eval_1_2022_05_20_15_58 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-20T15:58:00"^^xsd:dateTime .
+
+# Evaluation 2 – Severe anxiety (panic)
+ex:evaluation_2_2022_05_20_16_25 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Eval2Patient_Arleen ;
+    sulo:hasParticipant ex:role_Eval2Performer_Clelia ;
+    sulo:hasParticipant ex:role_Eval2Output_Anxiety ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_eval_2_2022_05_20_16_25 .
+
+ex:role_Eval2Patient_Arleen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen_Bergstrom .
+
+ex:role_Eval2Performer_Clelia a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Clelia_Morissette .
+
+ex:role_Eval2Output_Anxiety a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_SevereAnxiety .
+
+ex:diag_SevereAnxiety a chr:DiagnosticStatement .
+
+ex:time_eval_2_2022_05_20_16_25 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-20T16:25:00"^^xsd:dateTime .
+
+# ---- Care Plan ----
+ex:careplan_2022_05_20 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure .

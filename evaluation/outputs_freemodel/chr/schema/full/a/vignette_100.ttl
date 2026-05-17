@@ -1,0 +1,52 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_HarveyHomenick a chr:Person .
+
+ex:physician_VictorChavez a chr:Person .
+
+ex:careunit_4499Acushnet a chr:CareUnit .
+
+ex:visit_20200529_2149 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_VictorChavez ;
+    chr:hasCareUnit ex:careunit_4499Acushnet ;
+    chr:hasPatient ex:patient_HarveyHomenick .
+
+ex:unit_score a sulo:Unit .
+
+ex:measurementPainScore_20200529_2222 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-05-29T22:22:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:measPain_20200529_2222 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_HarveyHomenick ;
+    chr:hasResult ex:measurementPainScore_20200529_2222 .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:anatomical_rectum a chr:AnatomicalStructure .
+
+ex:cond_RecurrentRectalPolyp a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-05-29T22:22:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasLocatedIn ex:anatomical_rectum .
+
+ex:diag_RecurrentRectalPolyp a chr:DiagnosticStatement .
+
+ex:evaluation_20200529_2222 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_RecurrentRectalPolyp .
+
+ex:status_completed a chr:ProcessStatus .
+
+ex:procedure_FollowUp a chr:MedicalProcedure ;
+    chr:hasStatus ex:status_completed ;
+    chr:hasPerformedDate "2020-05-29T22:22:00"^^xsd:dateTime ;
+    chr:hasPerformer ex:physician_VictorChavez ;
+    chr:hasPatient ex:patient_HarveyHomenick .
+
+ex:careplan_FollowUp a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_FollowUp .

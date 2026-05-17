@@ -1,0 +1,145 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_CaseyElijahParker a chr:Person .
+ex:physician_EldridgeMarquardt a chr:Person .
+
+# Care Unit
+ex:careunit_JewishFamilyChildren a chr:CareUnit .
+
+# Clinical Visit
+ex:visit_20231102_1759 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_EldridgeMarquardt ;
+    chr:hasCareUnit ex:careunit_JewishFamilyChildren ;
+    chr:hasPatient ex:patient_CaseyElijahParker .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Diagnostic Statements
+ex:diag_MedicationReview a chr:DiagnosticStatement .
+ex:diag_PartTimeEmployment a chr:DiagnosticStatement .
+
+# Evaluation Processes (wrappers for observations)
+ex:eval_MedicationReview a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MedicationReview .
+
+ex:eval_PartTimeEmployment a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_PartTimeEmployment .
+
+# Clinical Conditions
+ex:cond_MedicationReview a chr:ClinicalCondition ;
+    chr:hasRecordDate "2023-11-02T17:59:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasObservation ex:eval_MedicationReview .
+
+ex:cond_PartTimeEmployment a chr:ClinicalCondition ;
+    chr:hasRecordDate "2023-11-02T18:56:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasObservation ex:eval_PartTimeEmployment .
+
+# Care Plan
+ex:careplan_20231102 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:proc_MedicalProcedure_20231102 .
+
+# Medical Procedure (required for CarePlan)
+ex:proc_MedicalProcedure_20231102 a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasPerformedBy ex:physician_EldridgeMarquardt ;
+    chr:hasDate "2023-11-02"^^xsd:date .
+
+# Measurement Processes and Measurements
+
+# Height
+ex:proc_Height_20231102_1759 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:meas_Height_20231102_1759 .
+
+ex:meas_Height_20231102_1759 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-11-02T17:59:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "172.7"^^xsd:float ;
+    chr:hasUnit sulo:cm .
+
+# Weight
+ex:proc_Weight_20231102_1759 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:meas_Weight_20231102_1759 .
+
+ex:meas_Weight_20231102_1759 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-11-02T17:59:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82.2"^^xsd:float ;
+    chr:hasUnit sulo:kg .
+
+# BMI
+ex:proc_BMI_20231102_1759 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:meas_BMI_20231102_1759 .
+
+ex:meas_BMI_20231102_1759 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-11-02T17:59:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.56"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+
+# Heart Rate
+ex:proc_HeartRate_20231102_1759 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:meas_HeartRate_20231102_1759 .
+
+ex:meas_HeartRate_20231102_1759 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-11-02T17:59:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "69"^^xsd:float ;
+    chr:hasUnit sulo:per_min .
+
+# Respiratory Rate
+ex:proc_RespRate_20231102_1759 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:meas_RespRate_20231102_1759 .
+
+ex:meas_RespRate_20231102_1759 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-11-02T17:59:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasUnit sulo:per_min .
+
+# Pain Severity
+ex:proc_PainSeverity_20231102_1759 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:meas_PainSeverity_20231102_1759 .
+
+ex:meas_PainSeverity_20231102_1759 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-11-02T17:59:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Fall Risk (Morse Fall Scale)
+ex:proc_FallRisk_20231102_1924 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:meas_FallRisk_20231102_1924 .
+
+ex:meas_FallRisk_20231102_1924 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-11-02T19:24:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:count .
+
+# HARK total score
+ex:proc_HARK_20231102_2005 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:meas_HARK_20231102_2005 .
+
+ex:meas_HARK_20231102_2005 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-11-02T20:05:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# DAST-10 total score
+ex:proc_DAST10_20231102_2039 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:meas_DAST10_20231102_2039 .
+
+ex:meas_DAST10_20231102_2039 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-11-02T20:39:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit sulo:score .

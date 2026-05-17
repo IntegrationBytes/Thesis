@@ -1,0 +1,41 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Daren950Ed239Strosin214 a chr:Person .
+
+ex:visit_2019_03_16 a chr:ClinicalVisit ;
+  chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+  chr:hasCareProvider ex:doctor_Carroll471Eichmann909 ;
+  chr:hasCareUnit ex:care_unit_Berkshire .
+
+ex:care_unit_Berkshire a chr:CareUnit .
+
+ex:doctor_Carroll471Eichmann909 a chr:Person .
+
+ex:temp_meas_proc_2019_03_16 a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Daren950Ed239Strosin214 ;
+  chr:hasResult ex:temp_meas_2019_03_16 .
+
+ex:temp_meas_2019_03_16 a chr:Measurement ;
+  chr:hasQuantityValue "37.277"^^xsd:float ;
+  chr:hasUnit sulo:Cel ;
+  chr:hasMeasuredDate "2019-03-16T17:01:00"^^xsd:dateTime .
+
+ex:evaluation_2019_03_16 a chr:EvaluationProcess ;
+  chr:hasObservation ex:diagnostic_pharyngitis .
+
+ex:diagnostic_pharyngitis a chr:DiagnosticStatement .
+
+ex:condition_pharyngitis a chr:ClinicalCondition ;
+  chr:hasRecordDate "2019-03-16T17:01:00"^^xsd:dateTime ;
+  chr:hasSeverity ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity .
+
+ex:careplan_pharyngitis a chr:CarePlan ;
+  chr:hasMedicalProcedure ex:medication_amoxicillin .
+
+ex:medication_amoxicillin a chr:MedicalProcedure .

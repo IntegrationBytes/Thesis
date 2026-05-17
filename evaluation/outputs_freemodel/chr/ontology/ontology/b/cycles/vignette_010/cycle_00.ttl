@@ -1,0 +1,97 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Arturo a chr:Person ;
+    rdfs:label "Arturo47 Lauren941 Heidenreich818" .
+
+ex:physician_Louis a chr:Person ;
+    rdfs:label "Dr. Louis204 Hauck852" .
+
+# Clinical Visit
+ex:visit_2016_12_26_01_34 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_VisitPatient ,
+                       ex:role_CareProvider_VisitPhysician ;
+    sulo:atTime ex:time_Visit .
+
+ex:time_Visit a sulo:TimeInstant ;
+    sulo:hasValue "2016-12-26T01:34:00"^^xsd:dateTime .
+
+# Roles for Visit
+ex:role_SubjectOfCare_VisitPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_CareProvider_VisitPhysician a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Louis .
+
+# Measurement Process
+ex:measurementProcess_2016_12_26 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_MeasPatient ,
+                       ex:role_Performer_MeasPhysician ,
+                       ex:role_Output_Measurement ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Meas .
+
+ex:time_Meas a sulo:TimeInstant ;
+    sulo:hasValue "2016-12-26T01:34:00"^^xsd:dateTime .
+
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Roles for Measurement Process
+ex:role_SubjectOfCare_MeasPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_Performer_MeasPhysician a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Louis .
+
+ex:role_Output_Measurement a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HbA1c .
+
+# Measurement
+ex:measurement_HbA1c a chr:Measurement ;
+    sulo:hasValue "6.31"^^xsd:float ;
+    sulo:hasPart sulo:PercentUnit ;
+    sulo:atTime ex:time_Meas .
+
+# Evaluation Process
+ex:evaluation_2016_12_26 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_EvalPatient ,
+                       ex:role_Performer_EvalPhysician ,
+                       ex:role_Output_DiagnosticStatement ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Eval .
+
+ex:time_Eval a sulo:TimeInstant ;
+    sulo:hasValue "2016-12-26T01:34:00"^^xsd:dateTime .
+
+# Roles for Evaluation Process
+ex:role_SubjectOfCare_EvalPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_Performer_EvalPhysician a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Louis .
+
+ex:role_Output_DiagnosticStatement a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnosticStatement_MedReview .
+
+# Diagnostic Statement
+ex:diagnosticStatement_MedReview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" .
+
+# Clinical Condition (derived from diagnostic statement)
+ex:condition_MedReview a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+# Care Plan
+ex:carePlan_1 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "Follow-up monitoring and routine review" .

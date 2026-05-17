@@ -1,0 +1,256 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:person_Cory_Frank_Heller a chr:Person ;
+    rdfs:label "Cory Frank Heller" .
+
+# Care unit
+ex:careUnit_LOWELL a chr:CareUnit ;
+    rdfs:label "LOWELL FAMILY MEDICAL CARE PC" .
+
+# Attending physician
+ex:person_Hank_Schneider a chr:Person ;
+    rdfs:label "Dr. Hank Schneider" .
+
+# Clinical visit
+ex:visit_2022_05_08_1144 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Cory ;
+    sulo:hasParticipant ex:role_CareProvider_Hank ;
+    sulo:isIn ex:careUnit_LOWELL ;
+    sulo:atTime ex:time_visit_2022_05_08_1144 .
+
+# Roles for visit
+ex:role_SubjectOfCare_Cory a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Cory_Frank_Heller .
+
+ex:role_CareProvider_Hank a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Hank_Schneider .
+
+# Time instant for visit
+ex:time_visit_2022_05_08_1144 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-08T11:44:00"^^xsd:dateTime .
+
+# Measurement processes and results (each measurement is a MeasurementProcess with a Measurement output)
+
+# FEV1/FVC
+ex:proc_FEV1_FVC_2022_05_08_1144 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Cory ;
+    sulo:hasParticipant ex:role_Performer_Hank ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_meas_FEV1_FVC_2022_05_08_1144 ;
+    sulo:hasParticipant ex:output_FEV1_FVC .
+
+ex:output_FEV1_FVC a chr:Measurement ;
+    sulo:hasValue "39.825"^^xsd:float ;
+    sulo:hasPart ex:unit_percent .
+
+ex:role_Performer_Hank a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Hank_Schneider .
+
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:time_meas_FEV1_FVC_2022_05_08_1144 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-08T11:44:00"^^xsd:dateTime .
+
+ex:unit_percent a sulo:Unit ;
+    rdfs:label "%" .
+
+# Body Height
+ex:proc_Height_2022_05_08_1144 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Cory ;
+    sulo:hasParticipant ex:role_Performer_Hank ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_meas_Height_2022_05_08_1144 ;
+    sulo:hasParticipant ex:output_Height .
+
+ex:output_Height a chr:Measurement ;
+    sulo:hasValue "164"^^xsd:float ;
+    sulo:hasPart ex:unit_cm .
+
+ex:time_meas_Height_2022_05_08_1144 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-08T11:44:00"^^xsd:dateTime .
+
+ex:unit_cm a sulo:Unit ;
+    rdfs:label "cm" .
+
+# Body Weight
+ex:proc_Weight_2022_05_08_1144 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Cory ;
+    sulo:hasParticipant ex:role_Performer_Hank ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_meas_Weight_2022_05_08_1144 ;
+    sulo:hasParticipant ex:output_Weight .
+
+ex:output_Weight a chr:Measurement ;
+    sulo:hasValue "79"^^xsd:float ;
+    sulo:hasPart ex:unit_kg .
+
+ex:time_meas_Weight_2022_05_08_1144 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-08T11:44:00"^^xsd:dateTime .
+
+ex:unit_kg a sulo:Unit ;
+    rdfs:label "kg" .
+
+# Body Mass Index
+ex:proc_BMI_2022_05_08_1144 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Cory ;
+    sulo:hasParticipant ex:role_Performer_Hank ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_meas_BMI_2022_05_08_1144 ;
+    sulo:hasParticipant ex:output_BMI .
+
+ex:output_BMI a chr:Measurement ;
+    sulo:hasValue "29.39"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 .
+
+ex:unit_kg_per_m2 a sulo:Unit ;
+    rdfs:label "kg/m2" .
+
+ex:time_meas_BMI_2022_05_08_1144 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-08T11:44:00"^^xsd:dateTime .
+
+# Heart Rate
+ex:proc_HeartRate_2022_05_08_1144 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Cory ;
+    sulo:hasParticipant ex:role_Performer_Hank ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_meas_HeartRate_2022_05_08_1144 ;
+    sulo:hasParticipant ex:output_HeartRate .
+
+ex:output_HeartRate a chr:Measurement ;
+    sulo:hasValue "81"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min .
+
+ex:unit_per_min a sulo:Unit ;
+    rdfs:label "/min" .
+
+ex:time_meas_HeartRate_2022_05_08_1144 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-08T11:44:00"^^xsd:dateTime .
+
+# Respiratory Rate
+ex:proc_RespRate_2022_05_08_1144 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Cory ;
+    sulo:hasParticipant ex:role_Performer_Hank ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_meas_RespRate_2022_05_08_1144 ;
+    sulo:hasParticipant ex:output_RespRate .
+
+ex:output_RespRate a chr:Measurement ;
+    sulo:hasValue "15"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min .
+
+ex:time_meas_RespRate_2022_05_08_1144 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-08T11:44:00"^^xsd:dateTime .
+
+# Pain severity
+ex:proc_Pain_2022_05_08_1144 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Cory ;
+    sulo:hasParticipant ex:role_Performer_Hank ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_meas_Pain_2022_05_08_1144 ;
+    sulo:hasParticipant ex:output_Pain .
+
+ex:output_Pain a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score .
+
+ex:unit_score a sulo:Unit ;
+    rdfs:label "score" .
+
+ex:time_meas_Pain_2022_05_08_1144 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-08T11:44:00"^^xsd:dateTime .
+
+# GAD-7
+ex:proc_GAD7_2022_05_08_1304 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Cory ;
+    sulo:hasParticipant ex:role_Performer_Hank ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_meas_GAD7_2022_05_08_1304 ;
+    sulo:hasParticipant ex:output_GAD7 .
+
+ex:output_GAD7 a chr:Measurement ;
+    sulo:hasValue "4"^^xsd:float ;
+    sulo:hasPart ex:unit_score .
+
+ex:time_meas_GAD7_2022_05_08_1304 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-08T13:04:00"^^xsd:dateTime .
+
+# Morse Fall Scale
+ex:proc_MFS_2022_05_08_1320 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Cory ;
+    sulo:hasParticipant ex:role_Performer_Hank ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_meas_MFS_2022_05_08_1320 ;
+    sulo:hasParticipant ex:output_MFS .
+
+ex:output_MFS a chr:Measurement ;
+    sulo:hasValue "28"^^xsd:float ;
+    sulo:hasPart ex:unit_score .
+
+ex:time_meas_MFS_2022_05_08_1320 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-08T13:20:00"^^xsd:dateTime .
+
+# HARK total score
+ex:proc_HARK_2022_05_08_1358 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Cory ;
+    sulo:hasParticipant ex:role_Performer_Hank ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_meas_HARK_2022_05_08_1358 ;
+    sulo:hasParticipant ex:output_HARK .
+
+ex:output_HARK a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score .
+
+ex:time_meas_HARK_2022_05_08_1358 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-08T13:58:00"^^xsd:dateTime .
+
+# PHQ-2
+ex:proc_PHQ2_2022_05_08_1431 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Cory ;
+    sulo:hasParticipant ex:role_Performer_Hank ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_meas_PHQ2_2022_05_08_1431 ;
+    sulo:hasParticipant ex:output_PHQ2 .
+
+ex:output_PHQ2 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score .
+
+ex:time_meas_PHQ2_2022_05_08_1431 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-08T14:31:00"^^xsd:dateTime .
+
+# Evaluation (DiagnosticStatement)
+ex:evaluation_2022_05_08_1237 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Evaluator_Hank ;
+    sulo:hasParticipant ex:role_Evaluatee_Cory ;
+    sulo:hasFeature ex:diagnostic_PartTimeEmployment ;
+    sulo:atTime ex:time_eval_2022_05_08_1237 .
+
+ex:role_Evaluator_Hank a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Hank_Schneider .
+
+ex:role_Evaluatee_Cory a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Cory_Frank_Heller .
+
+ex:diagnostic_PartTimeEmployment a chr:DiagnosticStatement ;
+    rdfs:label "Part-time employment (finding)" ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+ex:time_eval_2022_05_08_1237 a sulo:TimeInstant ;
+    sulo:hasValue "2022-05-08T12:37:00"^^xsd:dateTime .
+
+# Care Plan
+ex:carePlan_2022_05_08 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "Follow-up monitoring and routine review" .

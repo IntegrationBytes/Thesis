@@ -1,0 +1,259 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:person_Dolores_Nevarez a chr:Person ;
+    rdfs:label "Dolores502 Marisol435 Nevárez403" .
+
+# Care unit
+ex:careUnit_DRHE a chr:CareUnit ;
+    rdfs:label "DR. HE'S PRIMARY CARE FOR ADULTS INC" .
+
+# Attending physician (person)
+ex:person_Cari_Kohler a chr:Person ;
+    rdfs:label "Dr. Cari853 Kohler843" .
+
+# Role: patient in the visit
+ex:role_VisitPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Dolores_Nevarez .
+
+# Role: provider in the visit
+ex:role_VisitProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Cari_Kohler .
+
+# Clinical visit
+ex:visit_2023_11_14_0420 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_VisitPatient , ex:role_VisitProvider ;
+    sulo:isIn ex:careUnit_DRHE ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 .
+
+ex:time_Visit_2023_11_14_0420 a sulo:TimeInstant ;
+    sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
+
+# Measurement processes and results (height)
+ex:proc_Height a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_Height ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Height a chr:Measurement ;
+    sulo:hasValue "150.2"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/cm> .
+
+# Measurement processes and results (pain severity)
+ex:proc_PainSeverity a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_PainSeverity ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_PainSeverity a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float .
+
+# Weight
+ex:proc_Weight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_Weight ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Weight a chr:Measurement ;
+    sulo:hasValue "48.6"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/kg> .
+
+# BMI (ratio)
+ex:proc_BMI_Ratio a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_BMI_Ratio ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_BMI_Ratio a chr:Measurement ;
+    sulo:hasValue "21.56"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/kg_per_m2> .
+
+# BMI percentile
+ex:proc_BMI_Percentile a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_BMI_Percentile ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_BMI_Percentile a chr:Measurement ;
+    sulo:hasValue "88.288"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/percent> .
+
+# Heart rate
+ex:proc_HeartRate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_HeartRate ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_HeartRate a chr:Measurement ;
+    sulo:hasValue "62"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/per_min> .
+
+# Respiratory rate
+ex:proc_RespRate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_RespRate ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_RespRate a chr:Measurement ;
+    sulo:hasValue "15"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/per_min> .
+
+# Leukocytes
+ex:proc_Leukocytes a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_Leukocytes ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Leukocytes a chr:Measurement ;
+    sulo:hasValue "5.8138"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/10e3_per_uL> .
+
+# Erythrocytes
+ex:proc_Erythrocytes a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_Erythrocytes ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Erythrocytes a chr:Measurement ;
+    sulo:hasValue "4.9062"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/10e6_per_uL> .
+
+# Hemoglobin
+ex:proc_Hemoglobin a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_Hemoglobin ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Hemoglobin a chr:Measurement ;
+    sulo:hasValue "14.398"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/g_per_dL> .
+
+# Hematocrit
+ex:proc_Hematocrit a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_Hematocrit ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Hematocrit a chr:Measurement ;
+    sulo:hasValue "48.537"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/percent> .
+
+# MCV
+ex:proc_MCV a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_MCV ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_MCV a chr:Measurement ;
+    sulo:hasValue "85.317"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/fL> .
+
+# MCH
+ex:proc_MCH a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_MCH ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_MCH a chr:Measurement ;
+    sulo:hasValue "28.524"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/pg> .
+
+# MCHC
+ex:proc_MCHC a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_MCHC ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_MCHC a chr:Measurement ;
+    sulo:hasValue "33.157"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/g_per_dL> .
+
+# Erythrocyte width
+ex:proc_ErythrocyteWidth a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_ErythrocyteWidth ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_ErythrocyteWidth a chr:Measurement ;
+    sulo:hasValue "40.799"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/fL> .
+
+# Platelets
+ex:proc_Platelets a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_Platelets ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Platelets a chr:Measurement ;
+    sulo:hasValue "381.39"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/10e3_per_uL> .
+
+# Platelet distribution width
+ex:proc_PDW a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_PDW ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_PDW a chr:Measurement ;
+    sulo:hasValue "480.6"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/fL> .
+
+# Platelet mean volume
+ex:proc_PlateletMeanVol a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasFeature ex:meas_PlateletMeanVol ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_PlateletMeanVol a chr:Measurement ;
+    sulo:hasValue "10.635"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/fL> .
+
+# Status entity (completed)
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Evaluation (diagnostic statement)
+ex:evaluation_2023_11_14_0420 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_VisitProvider , ex:role_VisitPatient ;
+    sulo:hasFeature ex:diag_MedicationReview ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 .
+
+ex:diag_MedicationReview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" .
+
+# Clinical condition with severity
+ex:condition_2023_11_14_0420 a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_Moderate ;
+    sulo:atTime ex:time_Visit_2023_11_14_0420 .
+
+ex:severity_Moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+# Care plan referencing follow‑up monitoring (represented as a MedicalProcedure placeholder)
+ex:carePlan_2023_11_14_0420 a chr:CarePlan ;
+    sulo:refersTo ex:proc_FollowUpMonitoring .
+
+ex:proc_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "follow‑up monitoring and routine review" .

@@ -1,0 +1,109 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Arleen_Bergstrom a chr:Person .
+ex:physician_Lynwood_Tromp a chr:Person .
+
+# Care unit
+ex:unit_Nashoba_Valley_Medical_Center a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2019_03_15_1413 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasCareProvider ex:physician_Lynwood_Tromp ;
+    chr:hasCareUnit ex:unit_Nashoba_Valley_Medical_Center .
+
+# Measurement: Body Height
+ex:measproc_Height_20190315_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_Height_20190315_1413 .
+ex:meas_Height_20190315_1413 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "159.0"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+# Measurement: Pain severity (numeric rating)
+ex:measproc_Pain_20190315_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_Pain_20190315_1413 .
+ex:meas_Pain_20190315_1413 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Measurement: Body Weight
+ex:measproc_Weight_20190315_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_Weight_20190315_1413 .
+ex:meas_Weight_20190315_1413 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "58.4"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+# Measurement: BMI
+ex:measproc_BMI_20190315_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_BMI_20190315_1413 .
+ex:meas_BMI_20190315_1413 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "23.11"^^xsd:float ;
+    chr:hasUnit sulo:kilogramPerSquareMeter .
+
+# Measurement: Heart Rate
+ex:measproc_HeartRate_20190315_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_HeartRate_20190315_1413 .
+ex:meas_HeartRate_20190315_1413 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "63.0"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+# Measurement: Respiratory Rate
+ex:measproc_RespRate_20190315_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_RespRate_20190315_1413 .
+ex:meas_RespRate_20190315_1413 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.0"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+# Measurement: Total score HARK
+ex:measproc_HARK_20190315_1529 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_HARK_20190315_1529 .
+ex:meas_HARK_20190315_1529 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T15:29:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Measurement: Total score DAST-10
+ex:measproc_DAST10_20190315_1608 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_DAST10_20190315_1608 .
+ex:meas_DAST10_20190315_1608 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T16:08:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Diagnostic statement and clinical condition
+ex:diag_Stress a chr:DiagnosticStatement .
+ex:severity_Moderate a chr:Severity .
+ex:cond_Stress a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-03-15T14:56:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Evaluation process (the physician's evaluation)
+ex:evaluation_20190315_1456 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasObservation ex:diag_Stress .
+
+# Medical procedure for care plan
+ex:proc_StressAssessment a chr:MedicalProcedure .
+
+# Care plan
+ex:careplan_FollowUp a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:proc_StressAssessment .

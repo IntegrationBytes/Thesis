@@ -1,0 +1,125 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_ArturoHeidenreich a chr:Person .
+ex:physician_AlanKeeling a chr:Person .
+
+# Care unit
+ex:careunit_PRIMARY_CARE_NORTH_PC a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2020_05_11_0234 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasCareProvider ex:physician_AlanKeeling ;
+    chr:hasCareUnit ex:careunit_PRIMARY_CARE_NORTH_PC .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Evaluation processes and diagnostic statements
+ex:evaluation_2020_05_11_0234_1 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasObservation ex:diag_MedicationReviewDue .
+
+ex:diag_MedicationReviewDue a chr:DiagnosticStatement , chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-05-11T02:34:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:evaluation_2020_05_11_0316_1 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasObservation ex:diag_PartTimeEmployment .
+
+ex:diag_PartTimeEmployment a chr:DiagnosticStatement , chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-05-11T03:16:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:evaluation_2020_05_11_0316_2 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasObservation ex:diag_LimitedSocialContact .
+
+ex:diag_LimitedSocialContact a chr:DiagnosticStatement , chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-05-11T03:16:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Care plan
+ex:careplan_FollowUp a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:proc_FollowUp .
+
+ex:proc_FollowUp a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_ArturoHeidenreich .
+
+# Measurement processes and measurements (selected examples; analogous pattern can be repeated for all listed measurements)
+
+## Hemoglobin A1c
+ex:proc_HbA1c_2020_05_11_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_HbA1c_2020_05_11_0234 .
+
+ex:meas_HbA1c_2020_05_11_0234 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.23"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+## Body Height
+ex:proc_Height_2020_05_11_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Height_2020_05_11_0234 .
+
+ex:meas_Height_2020_05_11_0234 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "181.4"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+## Body Weight
+ex:proc_Weight_2020_05_11_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Weight_2020_05_11_0234 .
+
+ex:meas_Weight_2020_05_11_0234 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "90.4"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+## Pain severity (numeric rating)
+ex:proc_Pain_2020_05_11_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Pain_2020_05_11_0234 .
+
+ex:meas_Pain_2020_05_11_0234 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+## Glucose in Blood
+ex:proc_Glucose_2020_05_11_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Glucose_2020_05_11_0234 .
+
+ex:meas_Glucose_2020_05_11_0234 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "71.37"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+## Sodium in Blood
+ex:proc_Sodium_2020_05_11_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Sodium_2020_05_11_0234 .
+
+ex:meas_Sodium_2020_05_11_0234 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "138.27"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+## Cholesterol in LDL
+ex:proc_LDL_2020_05_11_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_LDL_2020_05_11_0234 .
+
+ex:meas_LDL_2020_05_11_0234 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "110.55"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .

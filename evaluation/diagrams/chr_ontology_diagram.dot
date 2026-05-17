@@ -1,0 +1,94 @@
+digraph CHR_Ontology {
+  bgcolor="#0E1B30";
+  compound=true;
+  rankdir=TB;
+  fontcolor=white;
+  node [fontname="Helvetica", fontsize=22, shape=box, style="rounded,filled", fontcolor=white];
+  edge [fontname="Helvetica", fontsize=18, color="#9C7BD0", fontcolor="#C9B8E8", arrowsize=1.0, penwidth=1.5];
+  graph [splines=true, nodesep=0.35, ranksep=1.8];
+  "sulo_InformationObject" [label=<<FONT POINT-SIZE="26" COLOR="#FFFFFF"><B>sulo:InformationObject</B></FONT>>, fillcolor="#3B5998", penwidth=3, color="#E4A93B"];
+  "sulo_Process" [label=<<FONT POINT-SIZE="26" COLOR="#FFFFFF"><B>sulo:Process</B></FONT>>, fillcolor="#3B5998", penwidth=3, color="#E4A93B"];
+  "sulo_Quality" [label=<<FONT POINT-SIZE="26" COLOR="#FFFFFF"><B>sulo:Quality</B></FONT>>, fillcolor="#E48BB1", penwidth=3, color="#E4A93B"];
+  "sulo_Quantity" [label=<<FONT POINT-SIZE="26" COLOR="#FFFFFF"><B>sulo:Quantity</B></FONT>>, fillcolor="#E48BB1", penwidth=3, color="#E4A93B"];
+  "sulo_Role" [label=<<FONT POINT-SIZE="26" COLOR="#FFFFFF"><B>sulo:Role</B></FONT>>, fillcolor="#E4A93B", penwidth=3, color="#E4A93B"];
+  "sulo_SpatialObject" [label=<<FONT POINT-SIZE="26" COLOR="#FFFFFF"><B>sulo:SpatialObject</B></FONT>>, fillcolor="#3B5998", penwidth=3, color="#E4A93B"];
+  subgraph cluster_informationobject {
+    label=<<FONT POINT-SIZE="22" COLOR="#C9B8E8"><I>«sulo:InformationObject»</I></FONT>>;
+    style="rounded,filled"; fillcolor="#1A2540"; penwidth=1.5; color="#3B5998";
+    "CarePlan" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>CarePlan</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+    "DiagnosticStatement" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>DiagnosticStatement</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+    "Measurement" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>Measurement</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+  }
+  "CarePlan" -> "sulo_InformationObject" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "DiagnosticStatement" -> "sulo_InformationObject" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "Measurement" -> "sulo_InformationObject" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  subgraph cluster_process {
+    label=<<FONT POINT-SIZE="22" COLOR="#C9B8E8"><I>«sulo:Process»</I></FONT>>;
+    style="rounded,filled"; fillcolor="#1A2540"; penwidth=1.5; color="#3B5998";
+    "ClinicalCondition" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>ClinicalCondition</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+    "ClinicalVisit" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>ClinicalVisit</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+    "EvaluationProcess" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>EvaluationProcess</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+    "MeasurementProcess" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>MeasurementProcess</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+    "MedicalProcedure" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>MedicalProcedure</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+    "MedicationAdministration" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>MedicationAdministration</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+    "TreatmentPlan" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>TreatmentPlan</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+  }
+  "ClinicalCondition" -> "sulo_Process" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "ClinicalVisit" -> "sulo_Process" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "EvaluationProcess" -> "sulo_Process" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "MeasurementProcess" -> "sulo_Process" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "MedicalProcedure" -> "sulo_Process" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "MedicationAdministration" -> "sulo_Process" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "TreatmentPlan" -> "sulo_Process" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  subgraph cluster_quality {
+    label=<<FONT POINT-SIZE="22" COLOR="#C9B8E8"><I>«sulo:Quality»</I></FONT>>;
+    style="rounded,filled"; fillcolor="#1A2540"; penwidth=1.5; color="#E48BB1";
+    "PharmaceuticalDoseForm" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>PharmaceuticalDoseForm</B></FONT>>, fillcolor="#E48BB1", penwidth=1.5];
+    "ProcessStatus" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>ProcessStatus</B></FONT>>, fillcolor="#E48BB1", penwidth=1.5];
+    "Severity" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>Severity</B></FONT>>, fillcolor="#E48BB1", penwidth=1.5];
+  }
+  "PharmaceuticalDoseForm" -> "sulo_Quality" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "ProcessStatus" -> "sulo_Quality" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "Severity" -> "sulo_Quality" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  subgraph cluster_quantity {
+    label=<<FONT POINT-SIZE="22" COLOR="#C9B8E8"><I>«sulo:Quantity»</I></FONT>>;
+    style="rounded,filled"; fillcolor="#1A2540"; penwidth=1.5; color="#E48BB1";
+    "PharmaceuticalDose" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>PharmaceuticalDose</B></FONT>>, fillcolor="#E48BB1", penwidth=1.5];
+  }
+  "PharmaceuticalDose" -> "sulo_Quantity" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  subgraph cluster_role {
+    label=<<FONT POINT-SIZE="22" COLOR="#C9B8E8"><I>«sulo:Role»</I></FONT>>;
+    style="rounded,filled"; fillcolor="#1A2540"; penwidth=1.5; color="#E4A93B";
+    "CareProviderRole" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>CareProviderRole</B></FONT>>, fillcolor="#E4A93B", penwidth=1.5];
+    "InstrumentRole" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>InstrumentRole</B></FONT>>, fillcolor="#E4A93B", penwidth=1.5];
+    "OutputRole" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>OutputRole</B></FONT>>, fillcolor="#E4A93B", penwidth=1.5];
+    "PerformerRole" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>PerformerRole</B></FONT>>, fillcolor="#E4A93B", penwidth=1.5];
+    "SubjectOfCareRole" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>SubjectOfCareRole</B></FONT>>, fillcolor="#E4A93B", penwidth=1.5];
+  }
+  "CareProviderRole" -> "sulo_Role" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "InstrumentRole" -> "sulo_Role" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "OutputRole" -> "sulo_Role" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "PerformerRole" -> "sulo_Role" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "SubjectOfCareRole" -> "sulo_Role" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  subgraph cluster_spatialobject {
+    label=<<FONT POINT-SIZE="22" COLOR="#C9B8E8"><I>«sulo:SpatialObject»</I></FONT>>;
+    style="rounded,filled"; fillcolor="#1A2540"; penwidth=1.5; color="#3B5998";
+    "AnatomicalStructure" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>AnatomicalStructure</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+    "CareUnit" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>CareUnit</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+    "Device" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>Device</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+    "Occupation" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>Occupation</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+    "Person" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>Person</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+    "PharmaceuticalProduct" [label=<<FONT POINT-SIZE="22" COLOR="#FFFFFF"><B>PharmaceuticalProduct</B></FONT>>, fillcolor="#3B5998", penwidth=1.5];
+  }
+  "AnatomicalStructure" -> "sulo_SpatialObject" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "CareUnit" -> "sulo_SpatialObject" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "Device" -> "sulo_SpatialObject" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "Occupation" -> "sulo_SpatialObject" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "Person" -> "sulo_SpatialObject" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  "PharmaceuticalProduct" -> "sulo_SpatialObject" [label="rdfs:subClassOf", style=dashed, color="#7BA8D0", fontcolor="#7BA8D0", arrowhead=onormal];
+  // The Role-mediated participation pattern (illustrative)
+  "ClinicalVisit" -> "CareProviderRole" [label="sulo:hasParticipant", color="#E4A93B", fontcolor="#E4A93B", penwidth=1.5];
+  "CareProviderRole" -> "Person" [label="sulo:isFeatureOf", color="#E4A93B", fontcolor="#E4A93B", penwidth=1.5];
+  "MeasurementProcess" -> "InstrumentRole" [label="sulo:hasParticipant", color="#E4A93B", fontcolor="#E4A93B", penwidth=1.5];
+  "InstrumentRole" -> "Device" [label="sulo:isFeatureOf", color="#E4A93B", fontcolor="#E4A93B", penwidth=1.5];
+}

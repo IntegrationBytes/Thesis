@@ -1,0 +1,221 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_ArturoLaurenHeidenreich a chr:Person .
+ex:physician_AlanKeeling a chr:Person .
+
+# Care Unit
+ex:careunit_PRIMARY_CARE_NORTH_PC a chr:CareUnit .
+
+# Clinical Visit
+ex:visit_20180430T0234 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasCareProvider ex:physician_AlanKeeling ;
+    chr:hasCareUnit ex:careunit_PRIMARY_CARE_NORTH_PC .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Diagnostic Statements
+ex:diag_MedicationReview a chr:DiagnosticStatement .
+ex:diag_Gingivitis a chr:DiagnosticStatement .
+
+# Clinical Conditions
+ex:cond_MedicationReview a chr:ClinicalCondition ;
+    chr:hasRecordDate "2018-04-30T02:34:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasObservation ex:diag_MedicationReview .
+
+ex:cond_Gingivitis a chr:ClinicalCondition ;
+    chr:hasRecordDate "2018-04-30T04:04:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasObservation ex:diag_Gingivitis .
+
+# Care Plan
+ex:careplan_20180430 a chr:CarePlan .
+
+# Units
+ex:unit_percent a sulo:Unit .
+ex:unit_cm a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_mmol_per_L a sulo:Unit .
+ex:unit_score a sulo:Unit .
+
+# Measurement Processes and Measurements
+
+# Hemoglobin A1c
+ex:mp_HbA1c_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_HbA1c_20180430T0234 .
+
+ex:meas_HbA1c_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "6.1"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# Body Height
+ex:mp_Height_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_Height_20180430T0234 .
+
+ex:meas_Height_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "181.4"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# Body Weight
+ex:mp_Weight_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_Weight_20180430T0234 .
+
+ex:meas_Weight_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "90.4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# Body Mass Index
+ex:mp_BMI_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_BMI_20180430T0234 .
+
+ex:meas_BMI_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "27.47"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# Heart Rate
+ex:mp_HeartRate_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_HeartRate_20180430T0234 .
+
+ex:meas_HeartRate_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "60"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# Respiratory Rate
+ex:mp_RespRate_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_RespRate_20180430T0234 .
+
+ex:meas_RespRate_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# Glucose
+ex:mp_Glucose_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_Glucose_20180430T0234 .
+
+ex:meas_Glucose_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "99.22"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# Urea nitrogen
+ex:mp_UreaNitrogen_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_UreaNitrogen_20180430T0234 .
+
+ex:meas_UreaNitrogen_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "17.68"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# Creatinine
+ex:mp_Creatinine_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_Creatinine_20180430T0234 .
+
+ex:meas_Creatinine_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# Calcium
+ex:mp_Calcium_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_Calcium_20180430T0234 .
+
+ex:meas_Calcium_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "8.87"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# Sodium
+ex:mp_Sodium_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_Sodium_20180430T0234 .
+
+ex:meas_Sodium_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "142.93"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# Potassium
+ex:mp_Potassium_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_Potassium_20180430T0234 .
+
+ex:meas_Potassium_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "4.5"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# Chloride
+ex:mp_Chloride_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_Chloride_20180430T0234 .
+
+ex:meas_Chloride_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "104.57"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# Carbon Dioxide
+ex:mp_CO2_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_CO2_20180430T0234 .
+
+ex:meas_CO2_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "22.6"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# Pain Severity
+ex:mp_PainSeverity_20180430T0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_PainSeverity_20180430T0234 .
+
+ex:meas_PainSeverity_20180430T0234 a chr:Measurement ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2018-04-30T02:34:00"^^xsd:dateTime .
+
+# GAD-7
+ex:mp_GAD7_20180430T0329 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_GAD7_20180430T0329 .
+
+ex:meas_GAD7_20180430T0329 a chr:Measurement ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2018-04-30T03:29:00"^^xsd:dateTime .
+
+# PHQ-2
+ex:mp_PHQ2_20180430T0404 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoLaurenHeidenreich ;
+    chr:hasResult ex:meas_PHQ2_20180430T0404 .
+
+ex:meas_PHQ2_20180430T0404 a chr:Measurement ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2018-04-30T04:04:00"^^xsd:dateTime .

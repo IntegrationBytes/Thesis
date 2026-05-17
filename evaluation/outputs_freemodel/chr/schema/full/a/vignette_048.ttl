@@ -1,0 +1,112 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Daren950 a chr:Person .
+
+ex:careunit_CommunityHealthProgramsInc a chr:CareUnit .
+
+ex:provider_DrPing698Weissnat378 a chr:Person .
+
+ex:visit_2017_09_09_1001 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Daren950 ;
+    chr:hasCareProvider ex:provider_DrPing698Weissnat378 ;
+    chr:hasCareUnit ex:careunit_CommunityHealthProgramsInc .
+
+# Height measurement
+ex:proc_Height_2017_09_09_1001 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950 ;
+    chr:hasResult ex:meas_Height_2017_09_09_1001 .
+
+ex:meas_Height_2017_09_09_1001 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "157.0"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+# Weight measurement
+ex:proc_Weight_2017_09_09_1001 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950 ;
+    chr:hasResult ex:meas_Weight_2017_09_09_1001 .
+
+ex:meas_Weight_2017_09_09_1001 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "38.8"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+# BMI (ratio) measurement
+ex:proc_BMI_Ratio_2017_09_09_1001 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950 ;
+    chr:hasResult ex:meas_BMI_Ratio_2017_09_09_1001 .
+
+ex:meas_BMI_Ratio_2017_09_09_1001 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15.74"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+
+# BMI (percentile) measurement
+ex:proc_BMI_Percentile_2017_09_09_1001 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950 ;
+    chr:hasResult ex:meas_BMI_Percentile_2017_09_09_1001 .
+
+ex:meas_BMI_Percentile_2017_09_09_1001 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "7.4534"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+# Heart rate measurement
+ex:proc_HeartRate_2017_09_09_1001 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950 ;
+    chr:hasResult ex:meas_HeartRate_2017_09_09_1001 .
+
+ex:meas_HeartRate_2017_09_09_1001 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "76.0"^^xsd:float ;
+    chr:hasUnit sulo:beats_per_minute .
+
+# Respiratory rate measurement
+ex:proc_RespRate_2017_09_09_1001 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950 ;
+    chr:hasResult ex:meas_RespRate_2017_09_09_1001 .
+
+ex:meas_RespRate_2017_09_09_1001 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14.0"^^xsd:float ;
+    chr:hasUnit sulo:breaths_per_minute .
+
+# Pain severity measurement
+ex:proc_PainSeverity_2017_09_09_1001 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950 ;
+    chr:hasResult ex:meas_PainSeverity_2017_09_09_1001 .
+
+ex:meas_PainSeverity_2017_09_09_1001 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# PHQ-9 measurement
+ex:proc_PHQ9_2017_09_09_1037 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950 ;
+    chr:hasResult ex:meas_PHQ9_2017_09_09_1037 .
+
+ex:meas_PHQ9_2017_09_09_1037 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:37:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Evaluation and diagnostic statement
+ex:evaluation_2017_09_09_1001 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MedicationReview_2017_09_09_1001 .
+
+ex:diag_MedicationReview_2017_09_09_1001 a chr:DiagnosticStatement .
+
+# Clinical condition (Medication review due)
+ex:condition_MedReview_2017_09_09_1001 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+# Care plan
+ex:careplan_1 a chr:CarePlan .

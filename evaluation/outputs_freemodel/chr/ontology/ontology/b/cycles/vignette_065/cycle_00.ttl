@@ -1,0 +1,249 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:person_Dolores_Nevarez a chr:Person ;
+    rdfs:label "Dolores502 Marisol435 Nevárez403" .
+
+# Care unit
+ex:careUnit_DRHE a chr:CareUnit ;
+    rdfs:label "DR. HE'S PRIMARY CARE FOR ADULTS INC" .
+
+# Attending physician (person)
+ex:person_Cari_Kohler a chr:Person ;
+    rdfs:label "Dr. Cari853 Kohler843" .
+
+# Clinical visit
+ex:visit_2016_10_04_05_20 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Dolores ;
+    sulo:hasParticipant ex:role_CareProvider_Visit_Cari ;
+    sulo:hasParticipant ex:role_CareUnit_Visit_DRHE ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 .
+
+# Roles for the visit
+ex:role_SubjectOfCare_Visit_Dolores a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Dolores_Nevarez .
+
+ex:role_CareProvider_Visit_Cari a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Cari_Kohler .
+
+ex:role_CareUnit_Visit_DRHE a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:careUnit_DRHE .
+
+# Time instant for the visit
+ex:time_Visit_2016_10_04_05_20 a sulo:TimeInstant ;
+    sulo:hasValue "2016-10-04T05:20:00"^^xsd:dateTime .
+
+# Measurement processes and results (all share same time instant)
+# Height
+ex:proc_Height_2016_10_04_05_20 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Height_Dolores ;
+    sulo:hasFeature ex:status_Height_completed ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 ;
+    sulo:hasResult ex:meas_Height .
+
+ex:role_SubjectOfCare_Height_Dolores a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Dolores_Nevarez .
+
+ex:status_Height_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:meas_Height a chr:Measurement ;
+    sulo:hasValue "104.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/cm> ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 .
+
+# Pain severity
+ex:proc_Pain_2016_10_04_05_20 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Pain_Dolores ;
+    sulo:hasFeature ex:status_Pain_completed ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 ;
+    sulo:hasResult ex:meas_Pain .
+
+ex:role_SubjectOfCare_Pain_Dolores a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Dolores_Nevarez .
+
+ex:status_Pain_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:meas_Pain a chr:Measurement ;
+    sulo:hasValue "1.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 .
+
+# Weight
+ex:proc_Weight_2016_10_04_05_20 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Weight_Dolores ;
+    sulo:hasFeature ex:status_Weight_completed ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 ;
+    sulo:hasResult ex:meas_Weight .
+
+ex:role_SubjectOfCare_Weight_Dolores a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Dolores_Nevarez .
+
+ex:status_Weight_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:meas_Weight a chr:Measurement ;
+    sulo:hasValue "19.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/kg> ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 .
+
+# Weight-for-length
+ex:proc_WeightForLength_2016_10_04_05_20 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_WFL_Dolores ;
+    sulo:hasFeature ex:status_WFL_completed ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 ;
+    sulo:hasResult ex:meas_WFL .
+
+ex:role_SubjectOfCare_WFL_Dolores a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Dolores_Nevarez .
+
+ex:status_WFL_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:meas_WFL a chr:Measurement ;
+    sulo:hasValue "88.653"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/percent> ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 .
+
+# Head circumference percentile
+ex:proc_HeadCircPerc_2016_10_04_05_20 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HeadCircPerc_Dolores ;
+    sulo:hasFeature ex:status_HeadCircPerc_completed ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 ;
+    sulo:hasResult ex:meas_HeadCircPerc .
+
+ex:role_SubjectOfCare_HeadCircPerc_Dolores a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Dolores_Nevarez .
+
+ex:status_HeadCircPerc_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:meas_HeadCircPerc a chr:Measurement ;
+    sulo:hasValue "81.33"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/percent> ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 .
+
+# Head circumference (cm)
+ex:proc_HeadCirc_2016_10_04_05_20 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HeadCirc_Dolores ;
+    sulo:hasFeature ex:status_HeadCirc_completed ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 ;
+    sulo:hasResult ex:meas_HeadCirc .
+
+ex:role_SubjectOfCare_HeadCirc_Dolores a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Dolores_Nevarez .
+
+ex:status_HeadCirc_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:meas_HeadCirc a chr:Measurement ;
+    sulo:hasValue "49.99"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/cm> ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 .
+
+# BMI ratio
+ex:proc_BMI_Ratio_2016_10_04_05_20 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_BMI_Ratio_Dolores ;
+    sulo:hasFeature ex:status_BMI_Ratio_completed ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 ;
+    sulo:hasResult ex:meas_BMI_Ratio .
+
+ex:role_SubjectOfCare_BMI_Ratio_Dolores a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Dolores_Nevarez .
+
+ex:status_BMI_Ratio_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:meas_BMI_Ratio a chr:Measurement ;
+    sulo:hasValue "17.59"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/kg_per_m2> ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 .
+
+# BMI percentile
+ex:proc_BMI_Percentile_2016_10_04_05_20 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_BMI_Perc_Dolores ;
+    sulo:hasFeature ex:status_BMI_Perc_completed ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 ;
+    sulo:hasResult ex:meas_BMI_Perc .
+
+ex:role_SubjectOfCare_BMI_Perc_Dolores a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Dolores_Nevarez .
+
+ex:status_BMI_Perc_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:meas_BMI_Perc a chr:Measurement ;
+    sulo:hasValue "92.581"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/percent> ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 .
+
+# Heart rate
+ex:proc_HeartRate_2016_10_04_05_20 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HeartRate_Dolores ;
+    sulo:hasFeature ex:status_HeartRate_completed ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 ;
+    sulo:hasResult ex:meas_HeartRate .
+
+ex:role_SubjectOfCare_HeartRate_Dolores a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Dolores_Nevarez .
+
+ex:status_HeartRate_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:meas_HeartRate a chr:Measurement ;
+    sulo:hasValue "75.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/bpm> ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 .
+
+# Respiratory rate
+ex:proc_RespRate_2016_10_04_05_20 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_RespRate_Dolores ;
+    sulo:hasFeature ex:status_RespRate_completed ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 ;
+    sulo:hasResult ex:meas_RespRate .
+
+ex:role_SubjectOfCare_RespRate_Dolores a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Dolores_Nevarez .
+
+ex:status_RespRate_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:meas_RespRate a chr:Measurement ;
+    sulo:hasValue "13.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/breaths_per_min> ;
+    sulo:atTime ex:time_Visit_2016_10_04_05_20 .
+
+# Evaluation process
+ex:evaluation_2016_10_04_05_20 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Evaluator_Cari ;
+    sulo:hasParticipant ex:role_Evaluatee_Dolores ;
+    sulo:hasResult ex:diag_MedicationReviewDue ;
+    sulo:atTime ex:time_Eval_2016_10_04_05_20 .
+
+ex:role_Evaluator_Cari a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Cari_Kohler .
+
+ex:role_Evaluatee_Dolores a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Dolores_Nevarez .
+
+ex:diag_MedicationReviewDue a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    sulo:hasFeature ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+ex:time_Eval_2016_10_04_05_20 a sulo:TimeInstant ;
+    sulo:hasValue "2016-10-04T05:20:00"^^xsd:dateTime .
+
+# Care plan
+ex:carePlan_2016_10_04 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "follow-up monitoring and routine review" .

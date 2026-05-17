@@ -1,0 +1,152 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:person_Cory_Frank_Heller a chr:Person .
+ex:person_Hank_Schneider a chr:Person .
+
+# Care Unit
+ex:careUnit_LOWELL_FAMILY_MEDICAL_CARE_PC a chr:CareUnit .
+
+# Clinical Visit
+ex:visit_2023_05_14_1144 a chr:ClinicalVisit ;
+    chr:hasPatient ex:person_Cory_Frank_Heller ;
+    chr:hasCareProvider ex:person_Hank_Schneider ;
+    chr:hasCareUnit ex:careUnit_LOWELL_FAMILY_MEDICAL_CARE_PC .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Diagnostic Statement
+ex:diagStmt_FullTimeEmployment a chr:DiagnosticStatement .
+
+# Evaluation Process (as MedicalProcedure per CHR schema)
+ex:evaluation_2023_05_14_1234 a chr:MedicalProcedure ;
+    chr:hasPatient ex:person_Cory_Frank_Heller ;
+    chr:hasCareProvider ex:person_Hank_Schneider ;
+    chr:hasPerformedDate "2023-05-14T12:34:00"^^xsd:dateTime .
+
+# Condition represented as ClinicalCondition
+ex:condition_FullTimeEmployment a chr:ClinicalCondition ;
+    chr:hasRecordDate "2023-05-14T12:34:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasObservation ex:diagStmt_FullTimeEmployment .
+
+# Care Plan
+ex:carePlan_2023_05_14 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:evaluation_2023_05_14_1234 .
+
+# Measurement Processes and Measurements
+
+# FEV1/FVC
+ex:measProc_FEV1_FVC_2023_05_14_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:person_Cory_Frank_Heller ;
+    chr:hasPerformedDate "2023-05-14T11:44:00"^^xsd:dateTime ;
+    chr:hasResult ex:meas_FEV1_FVC_2023_05_14_1144 .
+
+ex:meas_FEV1_FVC_2023_05_14_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-14T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "38.727"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+# Body Height
+ex:measProc_Height_2023_05_14_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:person_Cory_Frank_Heller ;
+    chr:hasPerformedDate "2023-05-14T11:44:00"^^xsd:dateTime ;
+    chr:hasResult ex:meas_Height_2023_05_14_1144 .
+
+ex:meas_Height_2023_05_14_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-14T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "164.0"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+# Pain severity
+ex:measProc_Pain_2023_05_14_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:person_Cory_Frank_Heller ;
+    chr:hasPerformedDate "2023-05-14T11:44:00"^^xsd:dateTime ;
+    chr:hasResult ex:meas_Pain_2023_05_14_1144 .
+
+ex:meas_Pain_2023_05_14_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-14T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Body Weight
+ex:measProc_Weight_2023_05_14_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:person_Cory_Frank_Heller ;
+    chr:hasPerformedDate "2023-05-14T11:44:00"^^xsd:dateTime ;
+    chr:hasResult ex:meas_Weight_2023_05_14_1144 .
+
+ex:meas_Weight_2023_05_14_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-14T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "80.9"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+# BMI
+ex:measProc_BMI_2023_05_14_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:person_Cory_Frank_Heller ;
+    chr:hasPerformedDate "2023-05-14T11:44:00"^^xsd:dateTime ;
+    chr:hasResult ex:meas_BMI_2023_05_14_1144 .
+
+ex:meas_BMI_2023_05_14_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-14T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "30.06"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+
+# Heart Rate
+ex:measProc_HeartRate_2023_05_14_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:person_Cory_Frank_Heller ;
+    chr:hasPerformedDate "2023-05-14T11:44:00"^^xsd:dateTime ;
+    chr:hasResult ex:meas_HeartRate_2023_05_14_1144 .
+
+ex:meas_HeartRate_2023_05_14_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-14T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "78.0"^^xsd:float ;
+    chr:hasUnit sulo:beats_per_minute .
+
+# Respiratory Rate
+ex:measProc_RespRate_2023_05_14_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:person_Cory_Frank_Heller ;
+    chr:hasPerformedDate "2023-05-14T11:44:00"^^xsd:dateTime ;
+    chr:hasResult ex:meas_RespRate_2023_05_14_1144 .
+
+ex:meas_RespRate_2023_05_14_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-14T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15.0"^^xsd:float ;
+    chr:hasUnit sulo:breaths_per_minute .
+
+# Fall risk (Morse)
+ex:measProc_FallRisk_2023_05_14_1249 a chr:MeasurementProcess ;
+    chr:hasPatient ex:person_Cory_Frank_Heller ;
+    chr:hasPerformedDate "2023-05-14T12:49:00"^^xsd:dateTime ;
+    chr:hasResult ex:meas_FallRisk_2023_05_14_1249 .
+
+ex:meas_FallRisk_2023_05_14_1249 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-14T12:49:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "35.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# PHQ-2
+ex:measProc_PHQ2_2023_05_14_1331 a chr:MeasurementProcess ;
+    chr:hasPatient ex:person_Cory_Frank_Heller ;
+    chr:hasPerformedDate "2023-05-14T13:31:00"^^xsd:dateTime ;
+    chr:hasResult ex:meas_PHQ2_2023_05_14_1331 .
+
+ex:meas_PHQ2_2023_05_14_1331 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-14T13:31:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# AUDIT-C
+ex:measProc_AUDITC_2023_05_14_1410 a chr:MeasurementProcess ;
+    chr:hasPatient ex:person_Cory_Frank_Heller ;
+    chr:hasPerformedDate "2023-05-14T14:10:00"^^xsd:dateTime ;
+    chr:hasResult ex:meas_AUDITC_2023_05_14_1410 .
+
+ex:meas_AUDITC_2023_05_14_1410 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-14T14:10:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit sulo:score .

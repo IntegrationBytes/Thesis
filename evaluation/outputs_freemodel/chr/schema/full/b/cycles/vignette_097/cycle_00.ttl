@@ -1,0 +1,50 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_HarveyHomenick a chr:Person .
+
+ex:physician_VictorChavez a chr:Person .
+
+ex:careunit_4499 a chr:CareUnit .
+
+ex:visit_2019_04_25_2111 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_VictorChavez ;
+    chr:hasCareUnit ex:careunit_4499 ;
+    chr:hasPatient ex:patient_HarveyHomenick .
+
+ex:meas_polyp_2019_04_25_2149 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_HarveyHomenick ;
+    chr:hasResult ex:measurement_polyp_2019_04_25_2149 .
+
+ex:measurement_polyp_2019_04_25_2149 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-04-25T21:49:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.8247"^^xsd:float ;
+    chr:hasUnit sulo:millimeter .
+
+ex:meas_hb_2019_04_25_2149 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_HarveyHomenick ;
+    chr:hasResult ex:measurement_hb_2019_04_25_2149 .
+
+ex:measurement_hb_2019_04_25_2149 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-04-25T21:49:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "20.354"^^xsd:float ;
+    chr:hasUnit sulo:ng_per_mL .
+
+ex:condition_polyp_2019_04_25_2149 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-04-25T21:49:00"^^xsd:dateTime ;
+    chr:hasLocatedIn ex:colon ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:colon a chr:AnatomicalStructure .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:evaluation_2019_04_25_2149 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_polyp .
+
+ex:diagnostic_polyp a chr:DiagnosticStatement .
+
+ex:careplan_1 a chr:CarePlan .

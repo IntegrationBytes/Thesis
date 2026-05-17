@@ -1,0 +1,41 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Arturo47_Lauren941_Heidenreich818 a chr:Person .
+
+ex:visit_2023_04_26 a chr:ClinicalVisit ;
+  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
+  chr:hasCareProvider ex:doctor_Louis204_Hauck852 ;
+  chr:hasCareUnit ex:care_unit_WhittierRehab .
+
+ex:care_unit_WhittierRehab a chr:CareUnit .
+
+ex:doctor_Louis204_Hauck852 a chr:Person .
+
+ex:temp_measurement_process_2023_04_26 a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
+  chr:hasResult ex:temp_measurement_2023_04_26 .
+
+ex:temp_measurement_2023_04_26 a chr:Measurement ;
+  chr:hasQuantityValue "37.632"^^xsd:float ;
+  chr:hasUnit sulo:Cel ;
+  chr:hasMeasuredDate "2023-04-26T00:34:00"^^xsd:dateTime .
+
+ex:evaluation_2023_04_26 a chr:EvaluationProcess ;
+  chr:hasObservation ex:diagnostic_statement_pharyngitis .
+
+ex:diagnostic_statement_pharyngitis a chr:DiagnosticStatement .
+
+ex:condition_pharyngitis a chr:ClinicalCondition ;
+  chr:hasRecordDate "2023-04-26T00:34:00"^^xsd:dateTime ;
+  chr:hasSeverity ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity .
+
+ex:care_plan_pharyngitis a chr:CarePlan ;
+  chr:hasMedicalProcedure ex:follow_up_monitoring .
+
+ex:follow_up_monitoring a chr:MedicalProcedure .
