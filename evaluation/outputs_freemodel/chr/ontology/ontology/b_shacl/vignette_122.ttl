@@ -1,0 +1,770 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Arlen68_Olson653 a chr:Person .
+ex:physician_Christeen33_Toy286 a chr:Person .
+
+# Care unit
+ex:careunit_JFSMI a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2017_06_21_16_47 a chr:ClinicalVisit ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasParticipant ex:role_SubjectOfCare_VisitPatient ,
+                        ex:role_CareProvider_VisitPhysician .
+
+ex:time_2017_06_21_16_47 a sulo:TimeInstant ;
+    sulo:hasValue "2017-06-21T16:47:00"^^xsd:dateTime .
+
+ex:role_SubjectOfCare_VisitPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_CareProvider_VisitPhysician a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Christeen33_Toy286 .
+
+# -----------------------------------------------------------------
+# Measurement processes (all share the same time instant 16:47)
+# -----------------------------------------------------------------
+
+# Helper status individual (completed)
+ex:status_completed a chr:ProcessStatus .
+
+# Glucose – Serum
+ex:proc_Glucose_Serum_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_GlucoseSerum ,
+                        ex:role_Output_GlucoseSerum .
+
+ex:role_SubjectOfCare_GlucoseSerum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Glucose_Serum_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "192.64"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_GlucoseSerum a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Glucose_Serum_2017_06_21_16_47 .
+
+# Urea nitrogen – Serum
+ex:proc_UreaN_Serum_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_UreaNSerum ,
+                        ex:role_Output_UreaNSerum .
+
+ex:role_SubjectOfCare_UreaNSerum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_UreaN_Serum_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "18.7"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_UreaNSerum a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_UreaN_Serum_2017_06_21_16_47 .
+
+# Creatinine – Serum
+ex:proc_Creatinine_Serum_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_CreatSerum ,
+                        ex:role_Output_CreatSerum .
+
+ex:role_SubjectOfCare_CreatSerum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Creatinine_Serum_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "1.9778"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_CreatSerum a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Creatinine_Serum_2017_06_21_16_47 .
+
+# Calcium – Serum
+ex:proc_Calcium_Serum_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_CaSerum ,
+                        ex:role_Output_CaSerum .
+
+ex:role_SubjectOfCare_CaSerum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Calcium_Serum_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "9.24"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_CaSerum a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Calcium_Serum_2017_06_21_16_47 .
+
+# Sodium – Serum
+ex:proc_Sodium_Serum_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_NaSerum ,
+                        ex:role_Output_NaSerum .
+
+ex:role_SubjectOfCare_NaSerum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Sodium_Serum_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "139.75"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_NaSerum a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Sodium_Serum_2017_06_21_16_47 .
+
+# Potassium – Serum
+ex:proc_Potassium_Serum_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_KSerum ,
+                        ex:role_Output_KSerum .
+
+ex:role_SubjectOfCare_KSerum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Potassium_Serum_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "4.82"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_KSerum a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Potassium_Serum_2017_06_21_16_47 .
+
+# Chloride – Serum
+ex:proc_Chloride_Serum_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_ClSerum ,
+                        ex:role_Output_ClSerum .
+
+ex:role_SubjectOfCare_ClSerum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Chloride_Serum_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "105.33"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_ClSerum a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Chloride_Serum_2017_06_21_16_47 .
+
+# Carbon dioxide – Serum
+ex:proc_CO2_Serum_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_CO2Serum ,
+                        ex:role_Output_CO2Serum .
+
+ex:role_SubjectOfCare_CO2Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_CO2_Serum_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "24.7"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_CO2Serum a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_CO2_Serum_2017_06_21_16_47 .
+
+# Glomerular filtration rate – Serum (first value)
+ex:proc_GFR_Serum_1_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_GFRSerum1 ,
+                        ex:role_Output_GFRSerum1 .
+
+ex:role_SubjectOfCare_GFRSerum1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_GFR_Serum_1_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "57.586"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mL_per_min_per_1.73_m2> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_GFRSerum1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_GFR_Serum_1_2017_06_21_16_47 .
+
+# Glucose – Urine
+ex:proc_Glucose_Urine_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_GlucUrine ,
+                        ex:role_Output_GlucUrine .
+
+ex:role_SubjectOfCare_GlucUrine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Glucose_Urine_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "2.1913"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_GlucUrine a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Glucose_Urine_2017_06_21_16_47 .
+
+# Bilirubin – Urine
+ex:proc_Bilirubin_Urine_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_BilirUrine ,
+                        ex:role_Output_BilirUrine .
+
+ex:role_SubjectOfCare_BilirUrine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Bilirubin_Urine_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "0.37537"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_BilirUrine a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Bilirubin_Urine_2017_06_21_16_47 .
+
+# Ketones – Urine
+ex:proc_Ketones_Urine_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_KetUrine ,
+                        ex:role_Output_KetUrine .
+
+ex:role_SubjectOfCare_KetUrine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Ketones_Urine_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "1.3386"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_KetUrine a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Ketones_Urine_2017_06_21_16_47 .
+
+# Specific gravity – Urine
+ex:proc_SpecificGravity_Urine_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_SGUrine ,
+                        ex:role_Output_SGUrine .
+
+ex:role_SubjectOfCare_SGUrine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_SpecificGravity_Urine_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "1.0347"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/nominal> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_SGUrine a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_SpecificGravity_Urine_2017_06_21_16_47 .
+
+# pH – Urine
+ex:proc_pH_Urine_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_pHUrine ,
+                        ex:role_Output_pHUrine .
+
+ex:role_SubjectOfCare_pHUrine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_pH_Urine_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "6.5449"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/pH> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_pHUrine a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_pH_Urine_2017_06_21_16_47 .
+
+# Protein – Urine
+ex:proc_Protein_Urine_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_ProtUrine ,
+                        ex:role_Output_ProtUrine .
+
+ex:role_SubjectOfCare_ProtUrine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Protein_Urine_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "369.61"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_ProtUrine a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Protein_Urine_2017_06_21_16_47 .
+
+# Hemoglobin A1c – Blood
+ex:proc_HbA1c_Blood_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HbA1c ,
+                        ex:role_Output_HbA1c .
+
+ex:role_SubjectOfCare_HbA1c a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_HbA1c_Blood_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "5.36"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/percent> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_HbA1c a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HbA1c_Blood_2017_06_21_16_47 .
+
+# Body Height
+ex:proc_Height_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Height ,
+                        ex:role_Output_Height .
+
+ex:role_SubjectOfCare_Height a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Height_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "177"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/cm> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_Height a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Height_2017_06_21_16_47 .
+
+# Pain severity (score)
+ex:proc_PainSeverity_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Pain ,
+                        ex:role_Output_Pain .
+
+ex:role_SubjectOfCare_Pain a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_PainSeverity_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/score> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_Pain a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_PainSeverity_2017_06_21_16_47 .
+
+# Body Weight
+ex:proc_Weight_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Weight ,
+                        ex:role_Output_Weight .
+
+ex:role_SubjectOfCare_Weight a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Weight_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "86"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/kg> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_Weight a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Weight_2017_06_21_16_47 .
+
+# Body Mass Index
+ex:proc_BMI_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_BMI ,
+                        ex:role_Output_BMI .
+
+ex:role_SubjectOfCare_BMI a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_BMI_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "27.45"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/kg_per_m2> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_BMI a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_BMI_2017_06_21_16_47 .
+
+# Heart rate
+ex:proc_HeartRate_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HR ,
+                        ex:role_Output_HR .
+
+ex:role_SubjectOfCare_HR a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_HeartRate_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "79"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/per_min> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_HR a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HeartRate_2017_06_21_16_47 .
+
+# Respiratory rate
+ex:proc_RespRate_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_RR ,
+                        ex:role_Output_RR .
+
+ex:role_SubjectOfCare_RR a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_RespRate_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "13"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/per_min> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_RR a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_RespRate_2017_06_21_16_47 .
+
+# Glucose – Blood
+ex:proc_Glucose_Blood_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_GlucBlood ,
+                        ex:role_Output_GlucBlood .
+
+ex:role_SubjectOfCare_GlucBlood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Glucose_Blood_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "192.64"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_GlucBlood a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Glucose_Blood_2017_06_21_16_47 .
+
+# Urea nitrogen – Blood
+ex:proc_UreaN_Blood_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_UreaNBlood ,
+                        ex:role_Output_UreaNBlood .
+
+ex:role_SubjectOfCare_UreaNBlood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_UreaN_Blood_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "18.7"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_UreaNBlood a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_UreaN_Blood_2017_06_21_16_47 .
+
+# Creatinine – Blood
+ex:proc_Creatinine_Blood_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_CreatBlood ,
+                        ex:role_Output_CreatBlood .
+
+ex:role_SubjectOfCare_CreatBlood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Creatinine_Blood_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "3.85"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_CreatBlood a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Creatinine_Blood_2017_06_21_16_47 .
+
+# Calcium – Blood
+ex:proc_Calcium_Blood_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_CaBlood ,
+                        ex:role_Output_CaBlood .
+
+ex:role_SubjectOfCare_CaBlood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Calcium_Blood_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "9.24"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_CaBlood a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Calcium_Blood_2017_06_21_16_47 .
+
+# Sodium – Blood
+ex:proc_Sodium_Blood_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_NaBlood ,
+                        ex:role_Output_NaBlood .
+
+ex:role_SubjectOfCare_NaBlood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Sodium_Blood_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "139.75"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_NaBlood a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Sodium_Blood_2017_06_21_16_47 .
+
+# Potassium – Blood
+ex:proc_Potassium_Blood_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_KBlood ,
+                        ex:role_Output_KBlood .
+
+ex:role_SubjectOfCare_KBlood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Potassium_Blood_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "4.82"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_KBlood a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Potassium_Blood_2017_06_21_16_47 .
+
+# Chloride – Blood
+ex:proc_Chloride_Blood_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_ClBlood ,
+                        ex:role_Output_ClBlood .
+
+ex:role_SubjectOfCare_ClBlood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Chloride_Blood_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "105.33"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_ClBlood a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Chloride_Blood_2017_06_21_16_47 .
+
+# Carbon dioxide – Blood
+ex:proc_CO2_Blood_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_CO2Blood ,
+                        ex:role_Output_CO2Blood .
+
+ex:role_SubjectOfCare_CO2Blood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_CO2_Blood_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "24.7"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_CO2Blood a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_CO2_Blood_2017_06_21_16_47 .
+
+# Cholesterol – Serum
+ex:proc_Cholesterol_Serum_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_CholSerum ,
+                        ex:role_Output_CholSerum .
+
+ex:role_SubjectOfCare_CholSerum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Cholesterol_Serum_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "240.65"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_CholSerum a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Cholesterol_Serum_2017_06_21_16_47 .
+
+# Triglyceride – Serum
+ex:proc_Triglyceride_Serum_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_TriSerum ,
+                        ex:role_Output_TriSerum .
+
+ex:role_SubjectOfCare_TriSerum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_Triglyceride_Serum_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "226.85"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_TriSerum a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Triglyceride_Serum_2017_06_21_16_47 .
+
+# LDL Cholesterol – Serum
+ex:proc_LDL_Cholesterol_Serum_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_LDLSerum ,
+                        ex:role_Output_LDLSerum .
+
+ex:role_SubjectOfCare_LDLSerum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_LDL_Cholesterol_Serum_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "173.58"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_LDLSerum a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_LDL_Cholesterol_Serum_2017_06_21_16_47 .
+
+# HDL Cholesterol – Serum
+ex:proc_HDL_Cholesterol_Serum_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HDLSerum ,
+                        ex:role_Output_HDLSerum .
+
+ex:role_SubjectOfCare_HDLSerum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_HDL_Cholesterol_Serum_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "21.7"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_HDLSerum a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HDL_Cholesterol_Serum_2017_06_21_16_47 .
+
+# Microalbumin/Creatinine – Urine
+ex:proc_MicroalbuminCreatinine_Urine_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_MicroAlbCr ,
+                        ex:role_Output_MicroAlbCr .
+
+ex:role_SubjectOfCare_MicroAlbCr a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_MicroalbuminCreatinine_Urine_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "229.01"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mg_per_g> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_MicroAlbCr a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_MicroalbuminCreatinine_Urine_2017_06_21_16_47 .
+
+# Glomerular filtration rate – Serum (second value)
+ex:proc_GFR_Serum_2_2017_06_21_16_47 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_GFRSerum2 ,
+                        ex:role_Output_GFRSerum2 .
+
+ex:role_SubjectOfCare_GFRSerum2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_GFR_Serum_2_2017_06_21_16_47 a chr:Measurement ;
+    sulo:hasValue "23.6"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/mL_per_min_per_1.73_m2> ;
+    sulo:atTime ex:time_2017_06_21_16_47 .
+
+ex:role_Output_GFRSerum2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_GFR_Serum_2_2017_06_21_16_47 .
+
+# PHQ-2 total score
+ex:proc_PHQ2_2017_06_21_18_06 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_2017_06_21_18_06 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_SubjectOfCare_PHQ2 ,
+                        ex:role_Output_PHQ2 .
+
+ex:time_2017_06_21_18_06 a sulo:TimeInstant ;
+    sulo:hasValue "2017-06-21T18:06:00"^^xsd:dateTime .
+
+ex:role_SubjectOfCare_PHQ2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:meas_PHQ2_2017_06_21_18_06 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart <http://example.org/unit/score> ;
+    sulo:atTime ex:time_2017_06_21_18_06 .
+
+ex:role_Output_PHQ2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_PHQ2_2017_06_21_18_06 .
+
+# Evaluation 1 – Medication review due
+ex:evaluation_1_2017_06_21_16_47 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_2017_06_21_16_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Performer_Eval1 ,
+                        ex:role_SubjectOfCare_Eval1 ,
+                        ex:role_Output_Eval1 .
+
+ex:role_Performer_Eval1 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Christeen33_Toy286 .
+
+ex:role_SubjectOfCare_Eval1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:diag_MedicationReview_due a chr:DiagnosticStatement .
+ex:cond_MedicationReview_due a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:role_Output_Eval1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_MedicationReview_due .
+
+# Evaluation 2 – Part-time employment
+ex:evaluation_2_2017_06_21_17_34 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_2017_06_21_17_34 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Performer_Eval2 ,
+                        ex:role_SubjectOfCare_Eval2 ,
+                        ex:role_Output_Eval2 .
+
+ex:time_2017_06_21_17_34 a sulo:TimeInstant ;
+    sulo:hasValue "2017-06-21T17:34:00"^^xsd:dateTime .
+
+ex:role_Performer_Eval2 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Christeen33_Toy286 .
+
+ex:role_SubjectOfCare_Eval2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:diag_PartTimeEmployment a chr:DiagnosticStatement .
+ex:cond_PartTimeEmployment a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_Moderate .
+
+ex:role_Output_Eval2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_PartTimeEmployment .
+
+# Care plan referencing a (placeholder) medical procedure
+ex:careplan_2023_01_01 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure .
+
+# Unit declarations
+<http://example.org/unit/kg_per_m2> a sulo:Unit .
+<http://example.org/unit/mg_per_dL> a sulo:Unit .
+<http://example.org/unit/mmol_per_L> a sulo:Unit .
+<http://example.org/unit/mL_per_min_per_1.73_m2> a sulo:Unit .
+<http://example.org/unit/percent> a sulo:Unit .
+<http://example.org/unit/per_min> a sulo:Unit .
+<http://example.org/unit/cm> a sulo:Unit .
+<http://example.org/unit/score> a sulo:Unit .
+<http://example.org/unit/pH> a sulo:Unit .
+<http://example.org/unit/nominal> a sulo:Unit .
+<http://example.org/unit/kg> a sulo:Unit .
+<http://example.org/unit/mg_per_g> a sulo:Unit .

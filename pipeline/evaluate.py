@@ -561,7 +561,14 @@ def hallucination(
 # system without re-running extract.py.
 # ---------------------------------------------------------------------------
 def shacl_conforms(ttl_path: Path, ctx: SchemaContext) -> bool | None:
-    """Return True/False, or None if the file is missing / unparseable."""
+    """Return True/False, or None if the file is missing / unparseable.
+
+    On the ontology track, applies OWL-RL closure to the data graph before
+    SHACL validation so subclass / inverseOf entailments are visible to
+    the shapes. The schema track does NOT use closure (cf. extract.py for
+    rationale: chr:hasPatient's multi-domain declaration produces a flood
+    of spurious cross-class violations under rdfs-inference).
+    """
     if not ttl_path.exists():
         return None
     try:
@@ -569,6 +576,19 @@ def shacl_conforms(ttl_path: Path, ctx: SchemaContext) -> bool | None:
         data = Graph().parse(ttl_path.as_posix(), format="turtle")
         shapes = Graph().parse(ctx.shapes_path.as_posix(), format="turtle")
         ont = Graph().parse(ctx.tbox_path.as_posix(), format="turtle")
+        if ctx.track == "ontology":
+            try:
+                import owlrl
+                for s, p, o in ont:
+                    data.add((s, p, o))
+                owlrl.DeductiveClosure(
+                    owlrl.OWLRL_Semantics,
+                    rdfs_closure=True,
+                    axiomatic_triples=False,
+                    datatype_axioms=False,
+                ).expand(data)
+            except ImportError:
+                pass  # owlrl missing — fall back to no-closure SHACL
         conforms, _, _ = pyshacl.validate(
             data, shacl_graph=shapes, ont_graph=ont,
             inference="none", abort_on_first=True,

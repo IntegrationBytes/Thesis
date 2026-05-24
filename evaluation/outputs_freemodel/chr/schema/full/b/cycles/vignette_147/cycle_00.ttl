@@ -1,0 +1,49 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Arlen68Olson653 a chr:Person .
+
+ex:person_Irvin970_Emard19 a chr:Person .
+
+ex:careunit_SpectrumHomeHealth a chr:CareUnit .
+
+ex:visit_2021_01_09_1656 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:person_Irvin970_Emard19 ;
+    chr:hasCareUnit ex:careunit_SpectrumHomeHealth ;
+    chr:hasPatient ex:patient_Arlen68Olson653 .
+
+ex:measproc_DXA_Radius_Ulna_20210109_1733 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Tscore_20210109_1733 .
+
+ex:measurement_Tscore_20210109_1733 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-01-09T17:33:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "-0.028448"^^xsd:float ;
+    chr:hasUnit ex:unit_Tscore .
+
+ex:unit_Tscore a sulo:Unit .
+
+ex:evaluation_20210109_1656_1 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_FractureBone_20210109_1656 .
+
+ex:evaluation_20210109_1656_2 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_FractureAnkle_20210109_1656 .
+
+ex:diag_FractureBone_20210109_1656 a chr:DiagnosticStatement .
+
+ex:diag_FractureAnkle_20210109_1656 a chr:DiagnosticStatement .
+
+ex:condition_FractureBone_20210109_1656 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2021-01-09T16:56:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:condition_FractureAnkle_20210109_1656 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2021-01-09T16:56:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:careplan_20210109_1656 a chr:CarePlan .

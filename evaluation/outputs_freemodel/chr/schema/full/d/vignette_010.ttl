@@ -1,0 +1,41 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Arturo47_Lauren941_Heidenreich818 a chr:Person .
+
+ex:person_Dr_Louis204_Hauck852 a chr:Person .
+
+ex:careunit_WHITTIER_REHABILTATION_HOSPITAL a chr:CareUnit .
+
+ex:visit_2016_12_26_0134 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:person_Dr_Louis204_Hauck852 ;
+    chr:hasCareUnit ex:careunit_WHITTIER_REHABILTATION_HOSPITAL ;
+    chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 .
+
+ex:measproc_HbA1c_2016_12_26_0134 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
+    chr:hasResult ex:measurement_HbA1c_2016_12_26_0134 .
+
+ex:measurement_HbA1c_2016_12_26_0134 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-12-26T01:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.31"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+ex:unit_percent a sulo:Unit .
+
+ex:evaluation_2016_12_26_0134 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
+    chr:hasObservation ex:diagnostic_MedicationReview_due_situation .
+
+ex:diagnostic_MedicationReview_due_situation a chr:DiagnosticStatement .
+
+ex:condition_2016_12_26_0134 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2016-12-26T01:34:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:careplan_followup_2016_12_26_0134 a chr:CarePlan .

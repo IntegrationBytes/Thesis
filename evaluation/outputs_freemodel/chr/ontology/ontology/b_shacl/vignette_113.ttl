@@ -1,0 +1,493 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons -------------------------------------------------
+ex:person_Aracely_Devon_Collins a chr:Person .
+ex:physician_Margaret_Reinger a chr:Person .
+
+# Care unit -------------------------------------------------
+ex:careunit_CarneyHospital a chr:CareUnit .
+
+# Clinical visit -------------------------------------------------
+ex:visit_2025_05_16_15_04 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_Subject_Visit_2025_05_16_15_04 ,
+                       ex:role_Provider_Visit_2025_05_16_15_04 ;
+    sulo:isIn ex:careunit_CarneyHospital ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:role_Subject_Visit_2025_05_16_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Provider_Visit_2025_05_16_15_04 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Margaret_Reinger .
+
+# Time instants -------------------------------------------------
+ex:time_2025_05_16_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2025-05-16T15:04:00"^^xsd:dateTime .
+
+ex:time_2025_05_16_15_38 a sulo:TimeInstant ;
+    sulo:hasValue "2025-05-16T15:38:00"^^xsd:dateTime .
+
+ex:time_2025_05_16_16_07 a sulo:TimeInstant ;
+    sulo:hasValue "2025-05-16T16:07:00"^^xsd:dateTime .
+
+ex:time_2025_05_16_16_39 a sulo:TimeInstant ;
+    sulo:hasValue "2025-05-16T16:39:00"^^xsd:dateTime .
+
+# Process status -------------------------------------------------
+ex:status_completed a chr:ProcessStatus .
+
+# Severity -------------------------------------------------
+ex:severity_moderate a chr:Severity .
+
+# Evaluation processes -------------------------------------------------
+ex:evaluation_2025_05_16_15_04 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Eval_2025_05_16_15_04 ,
+                       ex:role_Provider_Eval_2025_05_16_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:role_Subject_Eval_2025_05_16_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Provider_Eval_2025_05_16_15_04 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Margaret_Reinger .
+
+ex:evaluation_2025_05_16_15_38 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Eval_2025_05_16_15_38 ,
+                       ex:role_Provider_Eval_2025_05_16_15_38 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_05_16_15_38 .
+
+ex:role_Subject_Eval_2025_05_16_15_38 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Provider_Eval_2025_05_16_15_38 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Margaret_Reinger .
+
+# Diagnostic statements -------------------------------------------------
+ex:diagnostic_2025_05_16_15_04 a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:diagnostic_2025_05_16_15_38 a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+# Clinical conditions -------------------------------------------------
+ex:condition_2025_05_16_15_04 a chr:ClinicalCondition ;
+    sulo:atTime ex:time_2025_05_16_15_04 ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:condition_2025_05_16_15_38 a chr:ClinicalCondition ;
+    sulo:atTime ex:time_2025_05_16_15_38 ;
+    sulo:hasFeature ex:severity_moderate .
+
+# Care plan -------------------------------------------------
+ex:careplan_2025_05_16 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup_monitoring .
+
+ex:procedure_followup_monitoring a chr:MedicalProcedure .
+
+# Units -------------------------------------------------
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_mmol_per_L a sulo:Unit .
+ex:unit_mL_per_min_per_1_73_m2 a sulo:Unit .
+ex:unit_cm a sulo:Unit .
+ex:unit_score a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+ex:unit_nominal a sulo:Unit .
+ex:unit_pH a sulo:Unit .
+
+# Measurements and measurement processes -------------------------------------------------
+# Serum / Plasma measurements (all share same time instant)
+ex:measurement_Glucose_Serum a chr:Measurement ;
+    sulo:hasValue "76.07"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Glucose_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Glucose_Serum ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Glucose_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_UreaNitrogen_Serum a chr:Measurement ;
+    sulo:hasValue "12.41"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_UreaNitrogen_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_UreaNitrogen_Serum ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_UreaNitrogen_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Creatinine_Serum a chr:Measurement ;
+    sulo:hasValue "2.0485"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Creatinine_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Creatinine_Serum ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Creatinine_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Calcium_Serum a chr:Measurement ;
+    sulo:hasValue "9.71"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Calcium_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Calcium_Serum ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Calcium_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Sodium_Serum a chr:Measurement ;
+    sulo:hasValue "137.55"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Sodium_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Sodium_Serum ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Sodium_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Potassium_Serum a chr:Measurement ;
+    sulo:hasValue "4.92"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Potassium_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Potassium_Serum ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Potassium_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Chloride_Serum a chr:Measurement ;
+    sulo:hasValue "103.49"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Chloride_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Chloride_Serum ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Chloride_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_CO2_Serum a chr:Measurement ;
+    sulo:hasValue "20.33"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_CO2_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_CO2_Serum ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_CO2_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_GFR_Serum a chr:Measurement ;
+    sulo:hasValue "69.418"^^xsd:float ;
+    sulo:hasPart ex:unit_mL_per_min_per_1_73_m2 ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_GFR_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_GFR_Serum ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_GFR_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+# Urine measurements (same time instant)
+ex:measurement_Glucose_Urine a chr:Measurement ;
+    sulo:hasValue "1.4181"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Glucose_Urine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Glucose_Urine ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Glucose_Urine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Bilirubin_Urine a chr:Measurement ;
+    sulo:hasValue "0.20607"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Bilirubin_Urine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Bilirubin_Urine ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Bilirubin_Urine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Ketones_Urine a chr:Measurement ;
+    sulo:hasValue "7.0873"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Ketones_Urine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Ketones_Urine ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Ketones_Urine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_SpecificGravity_Urine a chr:Measurement ;
+    sulo:hasValue "1.0059"^^xsd:float ;
+    sulo:hasPart ex:unit_nominal ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_SpecificGravity_Urine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_SpecificGravity_Urine ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_SpecificGravity_Urine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_pH_Urine a chr:Measurement ;
+    sulo:hasValue "6.7556"^^xsd:float ;
+    sulo:hasPart ex:unit_pH ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_pH_Urine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_pH_Urine ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_pH_Urine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Protein_Urine a chr:Measurement ;
+    sulo:hasValue "186.11"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Protein_Urine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Protein_Urine ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Protein_Urine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+# Blood measurements (same time instant)
+ex:measurement_HbA1c_Blood a chr:Measurement ;
+    sulo:hasValue "2.86"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_HbA1c_Blood a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HbA1c_Blood ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_HbA1c_Blood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_BodyHeight a chr:Measurement ;
+    sulo:hasValue "172"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_BodyHeight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_BodyHeight ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_BodyHeight a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_PainSeverity a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_PainSeverity a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_PainSeverity ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_PainSeverity a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_BodyWeight a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_BodyWeight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_BodyWeight ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_BodyWeight a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_BMI a chr:Measurement ;
+    sulo:hasValue "27.79"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_BMI a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_BMI ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_BMI a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_HeartRate a chr:Measurement ;
+    sulo:hasValue "86"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_HeartRate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HeartRate ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_HeartRate a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_RespiratoryRate a chr:Measurement ;
+    sulo:hasValue "14"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_RespiratoryRate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_RespiratoryRate ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_RespiratoryRate a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Glucose_Blood a chr:Measurement ;
+    sulo:hasValue "76.07"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Glucose_Blood a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Glucose_Blood ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Glucose_Blood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_UreaNitrogen_Blood a chr:Measurement ;
+    sulo:hasValue "12.41"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_UreaNitrogen_Blood a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_UreaNitrogen_Blood ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_UreaNitrogen_Blood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Creatinine_Blood a chr:Measurement ;
+    sulo:hasValue "1.3"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Creatinine_Blood a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Creatinine_Blood ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Creatinine_Blood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Calcium_Blood a chr:Measurement ;
+    sulo:hasValue "9.71"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Calcium_Blood a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Calcium_Blood ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Calcium_Blood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Sodium_Blood a chr:Measurement ;
+    sulo:hasValue "137.55"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Sodium_Blood a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Sodium_Blood ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Sodium_Blood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Potassium_Blood a chr:Measurement ;
+    sulo:hasValue "4.92"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Potassium_Blood a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Potassium_Blood ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Potassium_Blood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Chloride_Blood a chr:Measurement ;
+    sulo:hasValue "103.49"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_Chloride_Blood a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Chloride_Blood ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Chloride_Blood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_CO2_Blood a chr:Measurement ;
+    sulo:hasValue "20.33"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2025_05_16_15_04 .
+
+ex:proc_CO2_Blood a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_CO2_Blood ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_CO2_Blood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+# GAD-7 score (16:07)
+ex:measurement_GAD7 a chr:Measurement ;
+    sulo:hasValue "4"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2025_05_16_16_07 .
+
+ex:proc_GAD7 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_GAD7 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_GAD7 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+# DAST-10 total score (16:39)
+ex:measurement_DAST10 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2025_05_16_16_39 .
+
+ex:proc_DAST10 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_DAST10 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_DAST10 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .

@@ -1,0 +1,197 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_AracelyDevonCollins a chr:Person .
+ex:physician_EdmundoEichmann a chr:Person .
+
+# Care unit
+ex:careunit_FatherBillPlace a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2025_07_25_1504 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_EdmundoEichmann ;
+    chr:hasCareUnit ex:careunit_FatherBillPlace ;
+    chr:hasPatient ex:patient_AracelyDevonCollins .
+
+# Units
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_mmol_per_L a sulo:Unit .
+ex:unit_mL_per_min_per_1_73_m2 a sulo:Unit .
+ex:unit_nominal a sulo:Unit .
+ex:unit_pH a sulo:Unit .
+ex:unit_percent a sulo:Unit .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Diagnostic statement
+ex:diagstmt_MedicationReviewDue a chr:DiagnosticStatement .
+
+# Evaluation process
+ex:evaluation_2025_07_25_1504 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasObservation ex:diagstmt_MedicationReviewDue .
+
+# Clinical condition (derived from evaluation)
+ex:condition_2025_07_25_1504 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Care plan
+ex:careplan_FollowupMonitoring a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_FollowupMonitoring .
+
+# Medical procedure linked to the care plan
+ex:procedure_FollowupMonitoring a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasPerformedBy ex:physician_EdmundoEichmann ;
+    chr:hasDate "2025-07-25T15:04:00"^^xsd:dateTime .
+
+# Measurement processes and results
+# 1. Glucose in Serum (mg/dL)
+ex:measproc_Glucose_Serum_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Glucose_Serum_1 .
+ex:measurement_Glucose_Serum_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "89.83"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 2. Urea nitrogen in Serum (mg/dL)
+ex:measproc_UreaNitrogen_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_UreaNitrogen_Serum .
+ex:measurement_UreaNitrogen_Serum a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "17.73"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 3. Creatinine in Serum (mg/dL)
+ex:measproc_Creatinine_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Creatinine_Serum .
+ex:measurement_Creatinine_Serum a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.013"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 4. Calcium in Serum (mg/dL)
+ex:measproc_Calcium_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Calcium_Serum .
+ex:measurement_Calcium_Serum a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.64"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 5. Sodium in Serum (mmol/L)
+ex:measproc_Sodium_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Sodium_Serum .
+ex:measurement_Sodium_Serum a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "140.55"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 6. Potassium in Serum (mmol/L)
+ex:measproc_Potassium_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Potassium_Serum .
+ex:measurement_Potassium_Serum a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.86"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 7. Chloride in Serum (mmol/L)
+ex:measproc_Chloride_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Chloride_Serum .
+ex:measurement_Chloride_Serum a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "104.92"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 8. Carbon dioxide, total in Serum (mmol/L)
+ex:measproc_CO2total_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_CO2total_Serum .
+ex:measurement_CO2total_Serum a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "24.89"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 9. Glomerular filtration rate in Serum (mL/min/1.73 m2)
+ex:measproc_GFR_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_GFR_Serum .
+ex:measurement_GFR_Serum a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "65.536"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 .
+
+# 10. Glucose in Urine (mg/dL)
+ex:measproc_Glucose_Urine a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Glucose_Urine .
+ex:measurement_Glucose_Urine a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.56497"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 11. Bilirubin.total in Urine (mg/dL)
+ex:measproc_Bilirubin_Urine a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Bilirubin_Urine .
+ex:measurement_Bilirubin_Urine a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.80533"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 12. Ketones in Urine (mg/dL)
+ex:measproc_Ketones_Urine a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Ketones_Urine .
+ex:measurement_Ketones_Urine a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "10.932"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 13. Specific gravity of Urine (nominal)
+ex:measproc_SpecificGravity_Urine a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_SpecificGravity_Urine .
+ex:measurement_SpecificGravity_Urine a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0309"^^xsd:float ;
+    chr:hasUnit ex:unit_nominal .
+
+# 14. pH of Urine
+ex:measproc_pH_Urine a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_pH_Urine .
+ex:measurement_pH_Urine a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.0071"^^xsd:float ;
+    chr:hasUnit ex:unit_pH .
+
+# 15. Protein in Urine (mg/dL)
+ex:measproc_Protein_Urine a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Protein_Urine .
+ex:measurement_Protein_Urine a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "319.8"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 16. Hemoglobin A1c/Hemoglobin.total in Blood (%)
+ex:measproc_HbA1c_Blood a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_HbA1c_Blood .
+ex:measurement_HbA1c_Blood a chr:Measurement ;
+    chr:hasMeasuredDate "2025-07-25T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.18"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .

@@ -1,0 +1,101 @@
+@prefix chr: <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex: <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Dolores_Nevarez a chr:Person .
+
+ex:physician_Cari_Kohler a chr:Person .
+
+ex:careunit_DR_HEs_primary_care a chr:CareUnit .
+
+ex:visit_2019_10_22_05_20 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Cari_Kohler ;
+    chr:hasCareUnit ex:careunit_DR_HEs_primary_care ;
+    chr:hasPatient ex:patient_Dolores_Nevarez .
+
+ex:measproc_Height_2019_10_22_05_20 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_Height_2019_10_22_05_20 .
+
+ex:measurement_Height_2019_10_22_05_20 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-10-22T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "125.8"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+ex:measproc_Weight_2019_10_22_05_20 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_Weight_2019_10_22_05_20 .
+
+ex:measurement_Weight_2019_10_22_05_20 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-10-22T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "30.1"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+ex:measproc_BMI_Ratio_2019_10_22_05_20 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_BMI_Ratio_2019_10_22_05_20 .
+
+ex:measurement_BMI_Ratio_2019_10_22_05_20 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-10-22T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "19.02"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+
+ex:measproc_BMI_Percentile_2019_10_22_05_20 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_BMI_Percentile_2019_10_22_05_20 .
+
+ex:measurement_BMI_Percentile_2019_10_22_05_20 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-10-22T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "93.279"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+ex:measproc_HeartRate_2019_10_22_05_20 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_HeartRate_2019_10_22_05_20 .
+
+ex:measurement_HeartRate_2019_10_22_05_20 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-10-22T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82"^^xsd:float ;
+    chr:hasUnit sulo:bpm .
+
+ex:measproc_RespiratoryRate_2019_10_22_05_20 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_RespiratoryRate_2019_10_22_05_20 .
+
+ex:measurement_RespiratoryRate_2019_10_22_05_20 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-10-22T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit sulo:bpm .
+
+ex:measproc_PainSeverity_2019_10_22_05_20 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_PainSeverity_2019_10_22_05_20 .
+
+ex:measurement_PainSeverity_2019_10_22_05_20 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-10-22T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:evaluation_2019_10_22_05_20 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_MedicationReview .
+
+ex:diagnostic_MedicationReview a chr:DiagnosticStatement .
+
+ex:condition_MedicationReview_2019_10_22_05_20 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-10-22T05:20:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:careplan_2019_10_22 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_WellChildVisit_2019_10_22_05_20 .
+
+ex:procedure_WellChildVisit_2019_10_22_05_20 a chr:MedicalProcedure ;
+    chr:hasPerformedDate "2019-10-22T05:20:00"^^xsd:dateTime ;
+    chr:hasPerformer ex:physician_Cari_Kohler ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasStatus ex:status_completed .
+
+ex:status_completed a chr:ProcessStatus .

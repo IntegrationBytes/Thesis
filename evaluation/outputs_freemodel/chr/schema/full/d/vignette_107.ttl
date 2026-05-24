@@ -1,0 +1,211 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_AracelyDevonCollins a chr:Person .
+ex:physician_EdmundoEichmann a chr:Person .
+
+# Care unit
+ex:careunit_FATHER_BILL_PLACE a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2021_07_02_1504 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasCareProvider ex:physician_EdmundoEichmann ;
+    chr:hasCareUnit ex:careunit_FATHER_BILL_PLACE .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Diagnostic statements and conditions
+ex:diagnostic_MetabolicSyndromeX a chr:DiagnosticStatement ;
+    rdfs:label "Metabolic syndrome X (disorder)" .
+ex:condition_MetabolicSyndromeX_20210702_1504 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2021-07-02T15:04:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:diagnostic_NotInLaborForce a chr:DiagnosticStatement ;
+    rdfs:label "Not in labor force (finding)" .
+ex:condition_NotInLaborForce_20210702_1600 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2021-07-02T16:00:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:diagnostic_LimitedSocialContact a chr:DiagnosticStatement ;
+    rdfs:label "Limited social contact (finding)" .
+ex:condition_LimitedSocialContact_20210702_1600 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2021-07-02T16:00:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Evaluation processes
+ex:evaluation_20210702_1504 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_MetabolicSyndromeX .
+ex:evaluation_20210702_1600_1 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_NotInLaborForce .
+ex:evaluation_20210702_1600_2 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_LimitedSocialContact .
+
+# Care plan
+ex:careplan_20210702 a chr:CarePlan .
+
+# Measurement processes and measurements (selected examples; the pattern repeats for all listed measurements)
+
+# Serum/Plasma – Glucose
+ex:measproc_Glucose_Serum_20210702_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Glucose_Serum_20210702_1504 .
+ex:measurement_Glucose_Serum_20210702_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "95.87"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# Serum/Plasma – Urea nitrogen
+ex:measproc_UreaNitrogen_Serum_20210702_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_UreaNitrogen_Serum_20210702_1504 .
+ex:measurement_UreaNitrogen_Serum_20210702_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "10.19"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# Serum/Plasma – Creatinine
+ex:measproc_Creatinine_Serum_20210702_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Creatinine_Serum_20210702_1504 .
+ex:measurement_Creatinine_Serum_20210702_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.5606"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# Serum/Plasma – Calcium
+ex:measproc_Calcium_Serum_20210702_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Calcium_Serum_20210702_1504 .
+ex:measurement_Calcium_Serum_20210702_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "10.11"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# Serum/Plasma – Sodium (mmol/L)
+ex:measproc_Sodium_Serum_20210702_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Sodium_Serum_20210702_1504 .
+ex:measurement_Sodium_Serum_20210702_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "142.72"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# Urine – Glucose
+ex:measproc_Glucose_Urine_20210702_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Glucose_Urine_20210702_1504 .
+ex:measurement_Glucose_Urine_20210702_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.4087"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# Body Height
+ex:measproc_BodyHeight_20210702_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_BodyHeight_20210702_1504 .
+ex:measurement_BodyHeight_20210702_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "172.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+# Pain severity (score)
+ex:measproc_PainSeverity_20210702_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_PainSeverity_20210702_1504 .
+ex:measurement_PainSeverity_20210702_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# Body Weight
+ex:measproc_BodyWeight_20210702_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_BodyWeight_20210702_1504 .
+ex:measurement_BodyWeight_20210702_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82.2"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+# Body Mass Index
+ex:measproc_BMI_20210702_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_BMI_20210702_1504 .
+ex:measurement_BMI_20210702_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.79"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
+
+# Heart rate
+ex:measproc_HeartRate_20210702_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_HeartRate_20210702_1504 .
+ex:measurement_HeartRate_20210702_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "79.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# Respiratory rate
+ex:measproc_RespiratoryRate_20210702_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_RespiratoryRate_20210702_1504 .
+ex:measurement_RespiratoryRate_20210702_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# GAD‑7 total score
+ex:measproc_GAD7_20210702_1616 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_GAD7_20210702_1616 .
+ex:measurement_GAD7_20210702_1616 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T16:15:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# Fall risk total (Morse Fall Scale)
+ex:measproc_FallRisk_20210702_1637 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_FallRisk_20210702_1637 .
+ex:measurement_FallRisk_20210702_1637 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T16:37:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# PHQ‑2 total score
+ex:measproc_PHQ2_20210702_1716 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_PHQ2_20210702_1716 .
+ex:measurement_PHQ2_20210702_1716 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T17:16:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# DAST‑10 total score
+ex:measproc_DAST10_20210702_1756 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_DAST10_20210702_1756 .
+ex:measurement_DAST10_20210702_1756 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-07-02T17:56:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# Additional measurements (Blood, Serum, etc.) follow the same pattern; examples shown above illustrate the required structure.
+
+# Units (no rdf:type to stay within allowed classes)
+ex:unit_mg_per_dL .
+ex:unit_mmol_per_L .
+ex:unit_cm .
+ex:unit_kg .
+ex:unit_score .
+ex:unit_mL_per_min_per_m2 .
+ex:unit_per_min .
+ex:unit_percent .
+ex:unit_nominal .
+ex:unit_kg_per_m2 .

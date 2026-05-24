@@ -1,0 +1,764 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Grimes a chr:Person ;
+    rdfs:label "Bryant814 Clarence5 Grimes165" .
+
+ex:physician_Wilkinson a chr:Person ;
+    rdfs:label "Dr. Dana512 Wilkinson796" .
+
+# Care unit
+ex:careunit_UrgentCarePhysiciansPC a chr:CareUnit ;
+    rdfs:label "URGENT CARE PHYSICIANS PC" .
+
+# Clinical visit
+ex:visit_2013_01_23_1547 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_2013_01_23_1547 ,
+                       ex:role_CareProvider_Visit_2013_01_23_1547 ;
+    sulo:isIn ex:careunit_UrgentCarePhysiciansPC ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Visit_2013_01_23_1547 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+
+ex:role_CareProvider_Visit_2013_01_23_1547 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+
+ex:time_2013_01_23_1547 a sulo:TimeInstant ;
+    sulo:hasValue "2013-01-23T15:47:00"^^xsd:dateTime .
+
+# Process status (completed)
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Severity (moderate)
+ex:severity_moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+# Units
+ex:unit_mg_per_dL a sulo:Unit ; rdfs:label "mg/dL" .
+ex:unit_mmol_per_L a sulo:Unit ; rdfs:label "mmol/L" .
+ex:unit_cm a sulo:Unit ; rdfs:label "cm" .
+ex:unit_kg a sulo:Unit ; rdfs:label "kg" .
+ex:unit_score a sulo:Unit ; rdfs:label "score" .
+ex:unit_percent a sulo:Unit ; rdfs:label "%" .
+ex:unit_mL_per_min_per_m2 a sulo:Unit ; rdfs:label "mL/min/1.73 m²" .
+ex:unit_kg_per_m2 a sulo:Unit ; rdfs:label "kg/m²" .
+ex:unit_per_min a sulo:Unit ; rdfs:label "/min" .
+ex:unit_pH a sulo:Unit ; rdfs:label "pH" .
+ex:unit_nominal a sulo:Unit ; rdfs:label "nominal" .
+
+#########################
+# Measurement processes
+#########################
+
+# Helper to create measurement triples (process, output role, measurement, value)
+# Glucose Serum (Mass/volume) – 77.8 mg/dL
+ex:measProc_Glucose_Serum_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Glucose_Serum_1 ,
+                       ex:role_CareProvider_Meas_Glucose_Serum_1 ,
+                       ex:outputRole_Meas_Glucose_Serum_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Glucose_Serum_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+
+ex:role_CareProvider_Meas_Glucose_Serum_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+
+ex:outputRole_Meas_Glucose_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Serum_1 .
+
+ex:measurement_Glucose_Serum_1 a chr:Measurement ;
+    sulo:hasValue "77.8"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Urea nitrogen Serum – 13.59 mg/dL
+ex:measProc_UreaNitrogen_Serum_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_UreaNitrogen_Serum_1 ,
+                       ex:role_CareProvider_Meas_UreaNitrogen_Serum_1 ,
+                       ex:outputRole_Meas_UreaNitrogen_Serum_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_UreaNitrogen_Serum_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_UreaNitrogen_Serum_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_UreaNitrogen_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen_Serum_1 .
+ex:measurement_UreaNitrogen_Serum_1 a chr:Measurement ;
+    sulo:hasValue "13.59"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Creatinine Serum – 2.0182 mg/dL
+ex:measProc_Creatinine_Serum_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Creatinine_Serum_1 ,
+                       ex:role_CareProvider_Meas_Creatinine_Serum_1 ,
+                       ex:outputRole_Meas_Creatinine_Serum_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Creatinine_Serum_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Creatinine_Serum_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Creatinine_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine_Serum_1 .
+ex:measurement_Creatinine_Serum_1 a chr:Measurement ;
+    sulo:hasValue "2.0182"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Calcium Serum – 9.99 mg/dL
+ex:measProc_Calcium_Serum_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Calcium_Serum_1 ,
+                       ex:role_CareProvider_Meas_Calcium_Serum_1 ,
+                       ex:outputRole_Meas_Calcium_Serum_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Calcium_Serum_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Calcium_Serum_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Calcium_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium_Serum_1 .
+ex:measurement_Calcium_Serum_1 a chr:Measurement ;
+    sulo:hasValue "9.99"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Sodium Serum – 142.25 mmol/L
+ex:measProc_Sodium_Serum_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Sodium_Serum_1 ,
+                       ex:role_CareProvider_Meas_Sodium_Serum_1 ,
+                       ex:outputRole_Meas_Sodium_Serum_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Sodium_Serum_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Sodium_Serum_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Sodium_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium_Serum_1 .
+ex:measurement_Sodium_Serum_1 a chr:Measurement ;
+    sulo:hasValue "142.25"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Potassium Serum – 5.16 mmol/L
+ex:measProc_Potassium_Serum_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Potassium_Serum_1 ,
+                       ex:role_CareProvider_Meas_Potassium_Serum_1 ,
+                       ex:outputRole_Meas_Potassium_Serum_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Potassium_Serum_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Potassium_Serum_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Potassium_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium_Serum_1 .
+ex:measurement_Potassium_Serum_1 a chr:Measurement ;
+    sulo:hasValue "5.16"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Chloride Serum – 110.49 mmol/L
+ex:measProc_Chloride_Serum_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Chloride_Serum_1 ,
+                       ex:role_CareProvider_Meas_Chloride_Serum_1 ,
+                       ex:outputRole_Meas_Chloride_Serum_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Chloride_Serum_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Chloride_Serum_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Chloride_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride_Serum_1 .
+ex:measurement_Chloride_Serum_1 a chr:Measurement ;
+    sulo:hasValue "110.49"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Carbon dioxide total Serum – 28.01 mmol/L
+ex:measProc_CO2_Serum_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_CO2_Serum_1 ,
+                       ex:role_CareProvider_Meas_CO2_Serum_1 ,
+                       ex:outputRole_Meas_CO2_Serum_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_CO2_Serum_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_CO2_Serum_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_CO2_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2_Serum_1 .
+ex:measurement_CO2_Serum_1 a chr:Measurement ;
+    sulo:hasValue "28.01"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# GFR (MDRD) – 45.16 mL/min/1.73 m²
+ex:measProc_GFR_MDRD_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_GFR_MDRD_1 ,
+                       ex:role_CareProvider_Meas_GFR_MDRD_1 ,
+                       ex:outputRole_Meas_GFR_MDRD_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_GFR_MDRD_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_GFR_MDRD_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_GFR_MDRD_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GFR_MDRD_1 .
+ex:measurement_GFR_MDRD_1 a chr:Measurement ;
+    sulo:hasValue "45.16"^^xsd:float ;
+    sulo:hasPart ex:unit_mL_per_min_per_m2 ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Glucose Urine (Test strip) – 1.8994 mg/dL
+ex:measProc_Glucose_Urine_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Glucose_Urine_1 ,
+                       ex:role_CareProvider_Meas_Glucose_Urine_1 ,
+                       ex:outputRole_Meas_Glucose_Urine_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Glucose_Urine_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Glucose_Urine_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Glucose_Urine_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Urine_1 .
+ex:measurement_Glucose_Urine_1 a chr:Measurement ;
+    sulo:hasValue "1.8994"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Bilirubin.total Urine – 0.87502 mg/dL
+ex:measProc_Bilirubin_Urine_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Bilirubin_Urine_1 ,
+                       ex:role_CareProvider_Meas_Bilirubin_Urine_1 ,
+                       ex:outputRole_Meas_Bilirubin_Urine_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Bilirubin_Urine_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Bilirubin_Urine_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Bilirubin_Urine_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Bilirubin_Urine_1 .
+ex:measurement_Bilirubin_Urine_1 a chr:Measurement ;
+    sulo:hasValue "0.87502"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Ketones Urine – 10.129 mg/dL
+ex:measProc_Ketones_Urine_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Ketones_Urine_1 ,
+                       ex:role_CareProvider_Meas_Ketones_Urine_1 ,
+                       ex:outputRole_Meas_Ketones_Urine_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Ketones_Urine_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Ketones_Urine_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Ketones_Urine_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Ketones_Urine_1 .
+ex:measurement_Ketones_Urine_1 a chr:Measurement ;
+    sulo:hasValue "10.129"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Specific gravity Urine – 1.0135 (nominal)
+ex:measProc_SpecificGravity_Urine_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_SpecificGravity_Urine_1 ,
+                       ex:role_CareProvider_Meas_SpecificGravity_Urine_1 ,
+                       ex:outputRole_Meas_SpecificGravity_Urine_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_SpecificGravity_Urine_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_SpecificGravity_Urine_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_SpecificGravity_Urine_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_SpecificGravity_Urine_1 .
+ex:measurement_SpecificGravity_Urine_1 a chr:Measurement ;
+    sulo:hasValue "1.0135"^^xsd:float ;
+    sulo:hasPart ex:unit_nominal ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# pH Urine – 6.403 pH
+ex:measProc_pH_Urine_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_pH_Urine_1 ,
+                       ex:role_CareProvider_Meas_pH_Urine_1 ,
+                       ex:outputRole_Meas_pH_Urine_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_pH_Urine_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_pH_Urine_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_pH_Urine_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_pH_Urine_1 .
+ex:measurement_pH_Urine_1 a chr:Measurement ;
+    sulo:hasValue "6.403"^^xsd:float ;
+    sulo:hasPart ex:unit_pH ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Protein Urine – 353.76 mg/dL
+ex:measProc_Protein_Urine_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Protein_Urine_1 ,
+                       ex:role_CareProvider_Meas_Protein_Urine_1 ,
+                       ex:outputRole_Meas_Protein_Urine_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Protein_Urine_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Protein_Urine_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Protein_Urine_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Protein_Urine_1 .
+ex:measurement_Protein_Urine_1 a chr:Measurement ;
+    sulo:hasValue "353.76"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Hemoglobin A1c – 3.1 %
+ex:measProc_HbA1c_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_HbA1c_1 ,
+                       ex:role_CareProvider_Meas_HbA1c_1 ,
+                       ex:outputRole_Meas_HbA1c_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_HbA1c_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_HbA1c_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_HbA1c_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HbA1c_1 .
+ex:measurement_HbA1c_1 a chr:Measurement ;
+    sulo:hasValue "3.1"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Body Height – 195.1 cm
+ex:measProc_BodyHeight_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_BodyHeight_1 ,
+                       ex:role_CareProvider_Meas_BodyHeight_1 ,
+                       ex:outputRole_Meas_BodyHeight_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_BodyHeight_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_BodyHeight_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_BodyHeight_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyHeight_1 .
+ex:measurement_BodyHeight_1 a chr:Measurement ;
+    sulo:hasValue "195.1"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Pain severity – 2 score
+ex:measProc_PainSeverity_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_PainSeverity_1 ,
+                       ex:role_CareProvider_Meas_PainSeverity_1 ,
+                       ex:outputRole_Meas_PainSeverity_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_PainSeverity_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_PainSeverity_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_PainSeverity_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainSeverity_1 .
+ex:measurement_PainSeverity_1 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Body Weight – 106.6 kg
+ex:measProc_BodyWeight_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_BodyWeight_1 ,
+                       ex:role_CareProvider_Meas_BodyWeight_1 ,
+                       ex:outputRole_Meas_BodyWeight_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_BodyWeight_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_BodyWeight_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_BodyWeight_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyWeight_1 .
+ex:measurement_BodyWeight_1 a chr:Measurement ;
+    sulo:hasValue "106.6"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Body Mass Index – 28.01 kg/m²
+ex:measProc_BMI_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_BMI_1 ,
+                       ex:role_CareProvider_Meas_BMI_1 ,
+                       ex:outputRole_Meas_BMI_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_BMI_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_BMI_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_BMI_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI_1 .
+ex:measurement_BMI_1 a chr:Measurement ;
+    sulo:hasValue "28.01"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Heart rate – 77 /min
+ex:measProc_HeartRate_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_HeartRate_1 ,
+                       ex:role_CareProvider_Meas_HeartRate_1 ,
+                       ex:outputRole_Meas_HeartRate_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_HeartRate_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_HeartRate_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_HeartRate_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HeartRate_1 .
+ex:measurement_HeartRate_1 a chr:Measurement ;
+    sulo:hasValue "77"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Respiratory rate – 15 /min
+ex:measProc_RespiratoryRate_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_RespiratoryRate_1 ,
+                       ex:role_CareProvider_Meas_RespiratoryRate_1 ,
+                       ex:outputRole_Meas_RespiratoryRate_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_RespiratoryRate_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_RespiratoryRate_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_RespiratoryRate_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RespiratoryRate_1 .
+ex:measurement_RespiratoryRate_1 a chr:Measurement ;
+    sulo:hasValue "15"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Glucose Blood – 77.8 mg/dL
+ex:measProc_Glucose_Blood_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Glucose_Blood_1 ,
+                       ex:role_CareProvider_Meas_Glucose_Blood_1 ,
+                       ex:outputRole_Meas_Glucose_Blood_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Glucose_Blood_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Glucose_Blood_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Glucose_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Blood_1 .
+ex:measurement_Glucose_Blood_1 a chr:Measurement ;
+    sulo:hasValue "77.8"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Urea nitrogen Blood – 13.59 mg/dL
+ex:measProc_UreaNitrogen_Blood_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_UreaNitrogen_Blood_1 ,
+                       ex:role_CareProvider_Meas_UreaNitrogen_Blood_1 ,
+                       ex:outputRole_Meas_UreaNitrogen_Blood_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_UreaNitrogen_Blood_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_UreaNitrogen_Blood_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_UreaNitrogen_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen_Blood_1 .
+ex:measurement_UreaNitrogen_Blood_1 a chr:Measurement ;
+    sulo:hasValue "13.59"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Creatinine Blood – 4.25 mg/dL
+ex:measProc_Creatinine_Blood_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Creatinine_Blood_1 ,
+                       ex:role_CareProvider_Meas_Creatinine_Blood_1 ,
+                       ex:outputRole_Meas_Creatinine_Blood_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Creatinine_Blood_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Creatinine_Blood_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Creatinine_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine_Blood_1 .
+ex:measurement_Creatinine_Blood_1 a chr:Measurement ;
+    sulo:hasValue "4.25"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Calcium Blood – 9.99 mg/dL
+ex:measProc_Calcium_Blood_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Calcium_Blood_1 ,
+                       ex:role_CareProvider_Meas_Calcium_Blood_1 ,
+                       ex:outputRole_Meas_Calcium_Blood_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Calcium_Blood_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Calcium_Blood_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Calcium_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium_Blood_1 .
+ex:measurement_Calcium_Blood_1 a chr:Measurement ;
+    sulo:hasValue "9.99"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Sodium Blood – 142.25 mmol/L
+ex:measProc_Sodium_Blood_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Sodium_Blood_1 ,
+                       ex:role_CareProvider_Meas_Sodium_Blood_1 ,
+                       ex:outputRole_Meas_Sodium_Blood_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Sodium_Blood_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Sodium_Blood_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Sodium_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium_Blood_1 .
+ex:measurement_Sodium_Blood_1 a chr:Measurement ;
+    sulo:hasValue "142.25"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Potassium Blood – 5.16 mmol/L
+ex:measProc_Potassium_Blood_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Potassium_Blood_1 ,
+                       ex:role_CareProvider_Meas_Potassium_Blood_1 ,
+                       ex:outputRole_Meas_Potassium_Blood_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Potassium_Blood_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Potassium_Blood_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Potassium_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium_Blood_1 .
+ex:measurement_Potassium_Blood_1 a chr:Measurement ;
+    sulo:hasValue "5.16"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Chloride Blood – 110.49 mmol/L
+ex:measProc_Chloride_Blood_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Chloride_Blood_1 ,
+                       ex:role_CareProvider_Meas_Chloride_Blood_1 ,
+                       ex:outputRole_Meas_Chloride_Blood_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_Chloride_Blood_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_Chloride_Blood_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_Chloride_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride_Blood_1 .
+ex:measurement_Chloride_Blood_1 a chr:Measurement ;
+    sulo:hasValue "110.49"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Carbon dioxide total Blood – 28.01 mmol/L
+ex:measProc_CO2_Blood_2013_01_23_1547_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_CO2_Blood_1 ,
+                       ex:role_CareProvider_Meas_CO2_Blood_1 ,
+                       ex:outputRole_Meas_CO2_Blood_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Meas_CO2_Blood_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_CO2_Blood_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_CO2_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2_Blood_1 .
+ex:measurement_CO2_Blood_1 a chr:Measurement ;
+    sulo:hasValue "28.01"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+# Total score HARK – 0 score (17:03)
+ex:time_2013_01_23_1703 a sulo:TimeInstant ;
+    sulo:hasValue "2013-01-23T17:03:00"^^xsd:dateTime .
+
+ex:measProc_HARK_2013_01_23_1703_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_HARK_1 ,
+                       ex:role_CareProvider_Meas_HARK_1 ,
+                       ex:outputRole_Meas_HARK_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1703 .
+
+ex:role_SubjectOfCare_Meas_HARK_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_HARK_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_HARK_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HARK_1 .
+ex:measurement_HARK_1 a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2013_01_23_1703 .
+
+# PHQ-2 total score – 1 score (18:45)
+ex:time_2013_01_23_1845 a sulo:TimeInstant ;
+    sulo:hasValue "2013-01-23T18:45:00"^^xsd:dateTime .
+
+ex:measProc_PHQ2_2013_01_23_1845_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_PHQ2_1 ,
+                       ex:role_CareProvider_Meas_PHQ2_1 ,
+                       ex:outputRole_Meas_PHQ2_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1845 .
+
+ex:role_SubjectOfCare_Meas_PHQ2_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_PHQ2_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_PHQ2_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ2_1 .
+ex:measurement_PHQ2_1 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2013_01_23_1845 .
+
+# AUDIT-C total score – 2 score (18:20)
+ex:time_2013_01_23_1820 a sulo:TimeInstant ;
+    sulo:hasValue "2013-01-23T18:20:00"^^xsd:dateTime .
+
+ex:measProc_AUDITC_2013_01_23_1820_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_AUDITC_1 ,
+                       ex:role_CareProvider_Meas_AUDITC_1 ,
+                       ex:outputRole_Meas_AUDITC_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2013_01_23_1820 .
+
+ex:role_SubjectOfCare_Meas_AUDITC_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Meas_AUDITC_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Meas_AUDITC_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_AUDITC_1 .
+ex:measurement_AUDITC_1 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2013_01_23_1820 .
+
+#########################
+# Evaluation processes (diagnostic statements)
+#########################
+
+# Medication review due (situation)
+ex:evaluation_MedReview_2013_01_23_1547 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eval_MedReview_1 ,
+                       ex:role_CareProvider_Eval_MedReview_1 ,
+                       ex:outputRole_Diag_MedReview_1 ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Eval_MedReview_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Eval_MedReview_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Diag_MedReview_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_MedReview_1 .
+
+ex:diag_MedReview_1 a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    sulo:hasFeature ex:severity_moderate .
+
+# Chronic kidney disease stage 3 (disorder)
+ex:evaluation_CKD_2013_01_23_1547 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eval_CKD_1 ,
+                       ex:role_CareProvider_Eval_CKD_1 ,
+                       ex:outputRole_Diag_CKD_1 ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Eval_CKD_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Eval_CKD_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Diag_CKD_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_CKD_1 .
+
+ex:diag_CKD_1 a chr:DiagnosticStatement ;
+    rdfs:label "Chronic kidney disease stage 3 (disorder)" ;
+    sulo:hasFeature ex:severity_moderate .
+
+# Proteinuria due to type 2 diabetes mellitus (disorder)
+ex:evaluation_Proteinuria_2013_01_23_1547 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eval_Proteinuria_1 ,
+                       ex:role_CareProvider_Eval_Proteinuria_1 ,
+                       ex:outputRole_Diag_Proteinuria_1 ;
+    sulo:atTime ex:time_2013_01_23_1547 .
+
+ex:role_SubjectOfCare_Eval_Proteinuria_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+ex:role_CareProvider_Eval_Proteinuria_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Wilkinson .
+ex:outputRole_Diag_Proteinuria_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Proteinuria_1 .
+
+ex:diag_Proteinuria_1 a chr:DiagnosticStatement ;
+    rdfs:label "Proteinuria due to type 2 diabetes mellitus (disorder)" ;
+    sulo:hasFeature ex:severity_moderate .
+
+#########################
+# Care plan
+#########################
+ex:carePlan_2013_01_23 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "Follow‑up monitoring and routine review" .

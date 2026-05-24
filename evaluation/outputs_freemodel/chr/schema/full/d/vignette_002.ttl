@@ -1,0 +1,148 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Angelic_Callie_Schaden a chr:Person .
+ex:person_Sherita_Hudson a chr:Person .
+
+# Care unit
+ex:careunit_SouthBostonCommunityHealthCenter a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2016_11_18_1724 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:person_Sherita_Hudson ;
+    chr:hasCareUnit ex:careunit_SouthBostonCommunityHealthCenter ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden .
+
+# Severity
+ex:severity_moderate a chr:Severity .
+
+# Clinical conditions (diagnostic statements)
+ex:condition_education_2016_11_18_1822 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2016-11-18T18:22:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+ex:condition_employment_2016_11_18_1822 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2016-11-18T18:22:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+# Diagnostic statements
+ex:diag_education_2016_11_18_1822 a chr:DiagnosticStatement .
+ex:diag_employment_2016_11_18_1822 a chr:DiagnosticStatement .
+
+# Evaluation processes
+ex:evaluation_education_2016_11_18_1822 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasObservation ex:diag_education_2016_11_18_1822 .
+
+ex:evaluation_employment_2016_11_18_1822 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasObservation ex:diag_employment_2016_11_18_1822 .
+
+# Measurements and measurement processes
+
+## Height
+ex:measproc_height_2016_11_18_1724 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_height_2016_11_18_1724 .
+
+ex:measurement_height_2016_11_18_1724 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-11-18T17:24:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "160.8"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+## Weight
+ex:measproc_weight_2016_11_18_1724 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_weight_2016_11_18_1724 .
+
+ex:measurement_weight_2016_11_18_1724 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-11-18T17:24:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "47.9"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+## BMI (ratio)
+ex:measproc_bmi_ratio_2016_11_18_1724 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_bmi_ratio_2016_11_18_1724 .
+
+ex:measurement_bmi_ratio_2016_11_18_1724 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-11-18T17:24:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "18.5"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+
+## BMI (percentile)
+ex:measproc_bmi_percentile_2016_11_18_1724 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_bmi_percentile_2016_11_18_1724 .
+
+ex:measurement_bmi_percentile_2016_11_18_1724 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-11-18T17:24:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12.909"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+## Heart rate
+ex:measproc_heart_rate_2016_11_18_1724 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_heart_rate_2016_11_18_1724 .
+
+ex:measurement_heart_rate_2016_11_18_1724 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-11-18T17:24:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "63"^^xsd:float ;
+    chr:hasUnit sulo:beats_per_minute .
+
+## Respiratory rate
+ex:measproc_respiratory_rate_2016_11_18_1724 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_respiratory_rate_2016_11_18_1724 .
+
+ex:measurement_respiratory_rate_2016_11_18_1724 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-11-18T17:24:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasUnit sulo:breaths_per_minute .
+
+## Pain severity
+ex:measproc_pain_severity_2016_11_18_1724 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_pain_severity_2016_11_18_1724 .
+
+ex:measurement_pain_severity_2016_11_18_1724 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-11-18T17:24:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:unitless .
+
+## GAD-7
+ex:measproc_gad7_2016_11_18_1847 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_gad7_2016_11_18_1847 .
+
+ex:measurement_gad7_2016_11_18_1847 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-11-18T18:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit sulo:unitless .
+
+## PHQ-2
+ex:measproc_phq2_2016_11_18_1929 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_phq2_2016_11_18_1929 .
+
+ex:measurement_phq2_2016_11_18_1929 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-11-18T19:29:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit sulo:unitless .
+
+## DAST-10
+ex:measproc_dast10_2016_11_18_2004 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_dast10_2016_11_18_2004 .
+
+ex:measurement_dast10_2016_11_18_2004 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-11-18T20:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit sulo:unitless .
+
+# Care plan
+ex:careplan_followup a chr:CarePlan .

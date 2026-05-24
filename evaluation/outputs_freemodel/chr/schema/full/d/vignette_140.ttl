@@ -1,0 +1,258 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Arlen68Olson653 a chr:Person .
+ex:physician_IrvinEmard a chr:Person .
+
+# Care unit
+ex:careunit_SpectrumHomeHealth a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2020_01_08_1547 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_IrvinEmard ;
+    chr:hasCareUnit ex:careunit_SpectrumHomeHealth ;
+    chr:hasPatient ex:patient_Arlen68Olson653 .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Clinical conditions
+ex:cond_AcuteCholecystitis a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:cond_GallbladderCalculus a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Diagnostic statements
+ex:diag_AcuteCholecystitis a chr:DiagnosticStatement .
+ex:diag_GallbladderCalculus a chr:DiagnosticStatement .
+
+# Evaluation process
+ex:evaluation_2020_01_08_1547 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_AcuteCholecystitis , ex:diag_GallbladderCalculus .
+
+# Units (all typed as sulo:Unit)
+ex:unit_10_3_per_uL a sulo:Unit .
+ex:unit_10_6_per_uL a sulo:Unit .
+ex:unit_g_per_dL a sulo:Unit .
+ex:unit_percent a sulo:Unit .
+ex:unit_fL a sulo:Unit .
+ex:unit_K_per_uL a sulo:Unit .
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_iU_per_L a sulo:Unit .
+ex:unit_mmol_per_L a sulo:Unit .
+
+# Measurements and measurement processes
+
+ex:meas_Leukocytes_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "11.03"^^xsd:float ;
+    chr:hasUnit ex:unit_10_3_per_uL .
+
+ex:measproc_Leukocytes_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Leukocytes_20200108_1547 .
+
+ex:meas_Erythrocytes_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.0975"^^xsd:float ;
+    chr:hasUnit ex:unit_10_6_per_uL .
+
+ex:measproc_Erythrocytes_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Erythrocytes_20200108_1547 .
+
+ex:meas_Hemoglobin_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.944"^^xsd:float ;
+    chr:hasUnit ex:unit_g_per_dL .
+
+ex:measproc_Hemoglobin_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Hemoglobin_20200108_1547 .
+
+ex:meas_Hematocrit_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "44.812"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+ex:measproc_Hematocrit_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Hematocrit_20200108_1547 .
+
+ex:meas_MCV_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "90.938"^^xsd:float ;
+    chr:hasUnit ex:unit_fL .
+
+ex:measproc_MCV_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_MCV_20200108_1547 .
+
+ex:meas_ErythrocyteDistWidth_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12.213"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+ex:measproc_ErythrocyteDistWidth_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_ErythrocyteDistWidth_20200108_1547 .
+
+ex:meas_Platelets_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "408.58"^^xsd:float ;
+    chr:hasUnit ex:unit_K_per_uL .
+
+ex:measproc_Platelets_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Platelets_20200108_1547 .
+
+ex:meas_BilirubinTotal_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.4657"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_BilirubinTotal_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_BilirubinTotal_20200108_1547 .
+
+ex:meas_ALT_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "131.28"^^xsd:float ;
+    chr:hasUnit ex:unit_iU_per_L .
+
+ex:measproc_ALT_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_ALT_20200108_1547 .
+
+ex:meas_AST_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "167.38"^^xsd:float ;
+    chr:hasUnit ex:unit_iU_per_L .
+
+ex:measproc_AST_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_AST_20200108_1547 .
+
+ex:meas_Glucose_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "146.16"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_Glucose_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Glucose_20200108_1547 .
+
+ex:meas_UreaNitrogen_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_UreaNitrogen_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_UreaNitrogen_20200108_1547 .
+
+ex:meas_Creatinine_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.08"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_Creatinine_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Creatinine_20200108_1547 .
+
+ex:meas_Calcium_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.65"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_Calcium_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Calcium_20200108_1547 .
+
+ex:meas_Sodium_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "137.21"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:measproc_Sodium_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Sodium_20200108_1547 .
+
+ex:meas_Potassium_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.84"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:measproc_Potassium_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Potassium_20200108_1547 .
+
+ex:meas_Chloride_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "109.16"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:measproc_Chloride_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Chloride_20200108_1547 .
+
+ex:meas_CO2_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "28.86"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:measproc_CO2_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_CO2_20200108_1547 .
+
+ex:meas_AnionGap_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.4993"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:measproc_AnionGap_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_AnionGap_20200108_1547 .
+
+ex:meas_Protein_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "7.0635"^^xsd:float ;
+    chr:hasUnit ex:unit_g_per_dL .
+
+ex:measproc_Protein_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Protein_20200108_1547 .
+
+ex:meas_Albumin_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.3798"^^xsd:float ;
+    chr:hasUnit ex:unit_g_per_dL .
+
+ex:measproc_Albumin_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Albumin_20200108_1547 .
+
+ex:meas_Globulin_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.9734"^^xsd:float ;
+    chr:hasUnit ex:unit_g_per_dL .
+
+ex:measproc_Globulin_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Globulin_20200108_1547 .
+
+ex:meas_AlkalinePhosphatase_20200108_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-01-08T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82.639"^^xsd:float ;
+    chr:hasUnit ex:unit_iU_per_L .
+
+ex:measproc_AlkalinePhosphatase_20200108_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_AlkalinePhosphatase_20200108_1547 .

@@ -1,0 +1,92 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Aracely711_Devon268_Collins926 a chr:Person .
+
+ex:visit_2019_06_28 a chr:ClinicalVisit ;
+  sulo:atTime ex:time_visit_2019_06_28 ;
+  sulo:isIn ex:care_unit_Carney .
+
+ex:time_visit_2019_06_28 a sulo:TimeInstant ;
+  sulo:hasValue "2019-06-28T15:04:00"^^xsd:dateTime .
+
+ex:care_unit_Carney a chr:CareUnit .
+
+ex:role_VisitSubject_Aracely711 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Aracely711_Devon268_Collins926 .
+
+ex:visit_2019_06_28 sulo:hasParticipant ex:role_VisitSubject_Aracely711 .
+
+ex:physician_Margaret865_Reinger292 a chr:Person .
+
+ex:role_VisitProvider_Margaret865 a chr:CareProviderRole ;
+  sulo:isFeatureOf ex:physician_Margaret865_Reinger292 .
+
+ex:visit_2019_06_28 sulo:hasParticipant ex:role_VisitProvider_Margaret865 .
+
+ex:body_temp_measurement_2019_06_28 a chr:MeasurementProcess ;
+  sulo:atTime ex:time_body_temp_measurement ;
+  sulo:hasParticipant ex:role_MeasurementSubject_Aracely711 .
+
+ex:role_MeasurementSubject_Aracely711 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Aracely711_Devon268_Collins926 .
+
+ex:time_body_temp_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2019-06-28T15:04:00"^^xsd:dateTime .
+
+ex:body_temp_measurement_result a chr:Measurement ;
+  sulo:hasValue "37.279"^^xsd:float ;
+  sulo:hasPart ex:unit_Cel .
+
+ex:unit_Cel a sulo:Unit .
+
+ex:role_MeasurementOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:body_temp_measurement_result .
+
+ex:body_temp_measurement_2019_06_28 sulo:hasParticipant ex:role_MeasurementOutput .
+
+ex:process_status_completed a chr:ProcessStatus .
+
+ex:body_temp_measurement_2019_06_28 sulo:hasFeature ex:process_status_completed .
+
+ex:evaluation_2019_06_28 a chr:EvaluationProcess ;
+  sulo:atTime ex:time_evaluation ;
+  sulo:hasParticipant ex:role_EvaluationSubject_Aracely711 ;
+  sulo:hasParticipant ex:role_EvaluationPerformer_Margaret865 .
+
+ex:role_EvaluationSubject_Aracely711 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Aracely711_Devon268_Collins926 .
+
+ex:role_EvaluationPerformer_Margaret865 a chr:PerformerRole ;
+  sulo:isFeatureOf ex:physician_Margaret865_Reinger292 .
+
+ex:time_evaluation a sulo:TimeInstant ;
+  sulo:hasValue "2019-06-28T15:04:00"^^xsd:dateTime .
+
+ex:diagnostic_statement_pharyngitis a chr:DiagnosticStatement ;
+  sulo:atTime ex:time_diagnosis ;
+  sulo:hasFeature ex:severity_moderate .
+
+ex:role_DiagnosisOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:diagnostic_statement_pharyngitis .
+
+ex:evaluation_2019_06_28 sulo:hasParticipant ex:role_DiagnosisOutput .
+
+ex:time_diagnosis a sulo:TimeInstant ;
+  sulo:hasValue "2019-06-28T15:04:00"^^xsd:dateTime .
+
+ex:acute_viral_pharyngitis a chr:ClinicalCondition .
+
+ex:diagnostic_statement_pharyngitis rdfs:label "Acute viral pharyngitis (disorder)" .
+
+ex:severity_moderate a chr:Severity .
+
+ex:care_plan_follow_up a chr:CarePlan ;
+  sulo:refersTo ex:follow_up_monitoring , ex:routine_review .
+
+ex:follow_up_monitoring a chr:MedicalProcedure .
+
+ex:routine_review a chr:MedicalProcedure .

@@ -1,0 +1,356 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Bryant814_Clarence5_Grimes165 a chr:Person .
+ex:physician_Dana512_Wilkinson796 a chr:Person .
+
+# Care unit
+ex:careunit_UrgentCarePhysiciansPC a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2014_02_19_1547 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Dana512_Wilkinson796 ;
+    chr:hasCareUnit    ex:careunit_UrgentCarePhysiciansPC ;
+    chr:hasPatient     ex:patient_Bryant814_Clarence5_Grimes165 .
+
+# Units
+ex:unit_mg_per_dL          a sulo:Unit .
+ex:unit_mmol_per_L        a sulo:Unit .
+ex:unit_mL_per_min_per_1_73_m2 a sulo:Unit .
+ex:unit_percent           a sulo:Unit .
+ex:unit_cm                a sulo:Unit .
+ex:unit_score             a sulo:Unit .
+ex:unit_nominal           a sulo:Unit .
+ex:unit_pH                a sulo:Unit .
+ex:unit_kg                a sulo:Unit .
+ex:unit_kg_per_m2         a sulo:Unit .
+ex:unit_per_min           a sulo:Unit .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Diagnostic statements
+ex:diag_Medication_review_due a chr:DiagnosticStatement .
+ex:diag_Social_isolation      a chr:DiagnosticStatement .
+
+# Evaluation processes
+ex:evaluation_2014_02_19_1547 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_Medication_review_due .
+
+ex:evaluation_2014_02_19_1635 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_Social_isolation .
+
+# Clinical conditions
+ex:condition_2014_02_19_1547 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasSeverity   ex:severity_Moderate .
+
+ex:condition_2014_02_19_1635 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2014-02-19T16:35:00"^^xsd:dateTime ;
+    chr:hasSeverity   ex:severity_Moderate .
+
+# Care plan
+ex:careplan_followup a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_Followup_2014_02_19 .
+
+ex:procedure_Followup_2014_02_19 a chr:MedicalProcedure .
+
+# -----------------------------------------------------------------
+# Measurement processes and measurements (Serum/Plasma)
+ex:measproc_Glucose_Serum_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Glucose_Serum_20140219_1547 .
+
+ex:measurement_Glucose_Serum_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "75.07"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_UreaNitrogen_Serum_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_UreaNitrogen_Serum_20140219_1547 .
+
+ex:measurement_UreaNitrogen_Serum_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "10.06"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_Creatinine_Serum_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Creatinine_Serum_20140219_1547 .
+
+ex:measurement_Creatinine_Serum_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.9617"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_Calcium_Serum_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Calcium_Serum_20140219_1547 .
+
+ex:measurement_Calcium_Serum_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.78"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_Sodium_Serum_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Sodium_Serum_20140219_1547 .
+
+ex:measurement_Sodium_Serum_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "140.8"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:measproc_Potassium_Serum_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Potassium_Serum_20140219_1547 .
+
+ex:measurement_Potassium_Serum_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.88"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:measproc_Chloride_Serum_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Chloride_Serum_20140219_1547 .
+
+ex:measurement_Chloride_Serum_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "106.23"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:measproc_CO2_Serum_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_CO2_Serum_20140219_1547 .
+
+ex:measurement_CO2_Serum_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "25.83"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:measproc_GFR_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_GFR_20140219_1547 .
+
+ex:measurement_GFR_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "31.38"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 .
+
+# -----------------------------------------------------------------
+# Urine measurements
+ex:measproc_Glucose_Urine_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Glucose_Urine_20140219_1547 .
+
+ex:measurement_Glucose_Urine_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.61645"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_Bilirubin_Urine_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Bilirubin_Urine_20140219_1547 .
+
+ex:measurement_Bilirubin_Urine_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.71857"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_Ketones_Urine_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Ketones_Urine_20140219_1547 .
+
+ex:measurement_Ketones_Urine_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "7.2273"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_SpecificGravity_Urine_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_SpecificGravity_Urine_20140219_1547 .
+
+ex:measurement_SpecificGravity_Urine_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0213"^^xsd:float ;
+    chr:hasUnit ex:unit_nominal .
+
+ex:measproc_pH_Urine_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_pH_Urine_20140219_1547 .
+
+ex:measurement_pH_Urine_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.9244"^^xsd:float ;
+    chr:hasUnit ex:unit_pH .
+
+ex:measproc_Protein_Urine_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Protein_Urine_20140219_1547 .
+
+ex:measurement_Protein_Urine_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "345.78"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# -----------------------------------------------------------------
+# Blood measurements
+ex:measproc_HbA1c_Blood_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_HbA1c_Blood_20140219_1547 .
+
+ex:measurement_HbA1c_Blood_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.07"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+ex:measproc_BodyHeight_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_BodyHeight_20140219_1547 .
+
+ex:measurement_BodyHeight_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "195.1"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+ex:measproc_PainSeverity_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_PainSeverity_20140219_1547 .
+
+ex:measurement_PainSeverity_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:measproc_BodyWeight_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_BodyWeight_20140219_1547 .
+
+ex:measurement_BodyWeight_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "106.6"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+ex:measproc_BMI_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_BMI_20140219_1547 .
+
+ex:measurement_BMI_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "28.01"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
+
+ex:measproc_HeartRate_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_HeartRate_20140219_1547 .
+
+ex:measurement_HeartRate_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "95"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+ex:measproc_RespiratoryRate_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_RespiratoryRate_20140219_1547 .
+
+ex:measurement_RespiratoryRate_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# Duplicate blood chemistry (Glucose, Urea nitrogen, Creatinine, Calcium, Sodium, Potassium, Chloride, CO2)
+ex:measproc_Glucose_Blood_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Glucose_Blood_20140219_1547 .
+
+ex:measurement_Glucose_Blood_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "75.07"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_UreaNitrogen_Blood_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_UreaNitrogen_Blood_20140219_1547 .
+
+ex:measurement_UreaNitrogen_Blood_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "10.06"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_Creatinine_Blood_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Creatinine_Blood_20140219_1547 .
+
+ex:measurement_Creatinine_Blood_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.83"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_Calcium_Blood_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Calcium_Blood_20140219_1547 .
+
+ex:measurement_Calcium_Blood_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.78"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_Sodium_Blood_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Sodium_Blood_20140219_1547 .
+
+ex:measurement_Sodium_Blood_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "140.8"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:measproc_Potassium_Blood_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Potassium_Blood_20140219_1547 .
+
+ex:measurement_Potassium_Blood_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.88"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:measproc_Chloride_Blood_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_Chloride_Blood_20140219_1547 .
+
+ex:measurement_Chloride_Blood_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "106.23"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:measproc_CO2_Blood_20140219_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_CO2_Blood_20140219_1547 .
+
+ex:measurement_CO2_Blood_20140219_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "25.83"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# Additional scores later in the day
+ex:measproc_TotalScore_HARK_20140219_1719 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_TotalScore_HARK_20140219_1719 .
+
+ex:measurement_TotalScore_HARK_20140219_1719 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T17:19:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:measproc_TotalScore_DAST10_20140219_1759 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult  ex:measurement_TotalScore_DAST10_20140219_1759 .
+
+ex:measurement_TotalScore_DAST10_20140219_1759 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-02-19T17:59:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit ex:unit_score .

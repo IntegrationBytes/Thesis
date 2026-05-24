@@ -1,0 +1,306 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:person_Casey401 a chr:Person .
+ex:person_EldridgeMarquardt a chr:Person .
+
+# Care unit
+ex:careunit_JFCS a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2018_10_04_1859 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_VisitPatient_Casey401 ,
+                       ex:role_VisitProvider_EldridgeMarquardt ;
+    sulo:atTime ex:time_visit_1859 ;
+    sulo:isIn ex:careunit_JFCS .
+
+ex:time_visit_1859 a sulo:TimeInstant ;
+    sulo:hasValue "2018-10-04T18:59:00"^^xsd:dateTime .
+
+# Roles for visit
+ex:role_VisitPatient_Casey401 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_VisitProvider_EldridgeMarquardt a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+# Measurement processes and results ------------------------------------------------
+
+# Height
+ex:proc_height_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HeightPatient_Casey401 ,
+                       ex:role_HeightProvider_EldridgeMarquardt ,
+                       ex:role_HeightOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_1859 .
+
+ex:role_HeightPatient_Casey401 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_HeightProvider_EldridgeMarquardt a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+ex:role_HeightOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Height .
+
+ex:meas_Height a chr:Measurement ;
+    sulo:hasValue "172.7"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_visit_1859 .
+
+# Weight
+ex:proc_weight_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_WeightPatient_Casey401 ,
+                       ex:role_WeightProvider_EldridgeMarquardt ,
+                       ex:role_WeightOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_1859 .
+
+ex:role_WeightPatient_Casey401 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_WeightProvider_EldridgeMarquardt a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+ex:role_WeightOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Weight .
+
+ex:meas_Weight a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_visit_1859 .
+
+# BMI
+ex:proc_bmi_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_BMIPatient_Casey401 ,
+                       ex:role_BMIProvider_EldridgeMarquardt ,
+                       ex:role_BMIOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_1859 .
+
+ex:role_BMIPatient_Casey401 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_BMIProvider_EldridgeMarquardt a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+ex:role_BMIOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_BMI .
+
+ex:meas_BMI a chr:Measurement ;
+    sulo:hasValue "27.56"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_visit_1859 .
+
+# Heart rate
+ex:proc_heartRate_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HRPatient_Casey401 ,
+                       ex:role_HRProvider_EldridgeMarquardt ,
+                       ex:role_HROutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_1859 .
+
+ex:role_HRPatient_Casey401 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_HRProvider_EldridgeMarquardt a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+ex:role_HROutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HeartRate .
+
+ex:meas_HeartRate a chr:Measurement ;
+    sulo:hasValue "66"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_visit_1859 .
+
+# Respiratory rate
+ex:proc_respRate_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_RRPatient_Casey401 ,
+                       ex:role_RRProvider_EldridgeMarquardt ,
+                       ex:role_RROutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_1859 .
+
+ex:role_RRPatient_Casey401 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_RRProvider_EldridgeMarquardt a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+ex:role_RROutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_RespRate .
+
+ex:meas_RespRate a chr:Measurement ;
+    sulo:hasValue "15"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_visit_1859 .
+
+# Pain severity
+ex:proc_pain_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PainPatient_Casey401 ,
+                       ex:role_PainProvider_EldridgeMarquardt ,
+                       ex:role_PainOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_1859 .
+
+ex:role_PainPatient_Casey401 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_PainProvider_EldridgeMarquardt a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+ex:role_PainOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Pain .
+
+ex:meas_Pain a chr:Measurement ;
+    sulo:hasValue "4"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_visit_1859 .
+
+# GAD-7
+ex:proc_gad7_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_GAD7Patient_Casey401 ,
+                       ex:role_GAD7Provider_EldridgeMarquardt ,
+                       ex:role_GAD7Output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_gad7 .
+
+ex:time_gad7 a sulo:TimeInstant ;
+    sulo:hasValue "2018-10-04T20:04:00"^^xsd:dateTime .
+
+ex:role_GAD7Patient_Casey401 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_GAD7Provider_EldridgeMarquardt a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+ex:role_GAD7Output a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_GAD7 .
+
+ex:meas_GAD7 a chr:Measurement ;
+    sulo:hasValue "7"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_gad7 .
+
+# Morse Fall Scale
+ex:proc_fallRisk_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_FallRiskPatient_Casey401 ,
+                       ex:role_FallRiskProvider_EldridgeMarquardt ,
+                       ex:role_FallRiskOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_fallRisk .
+
+ex:time_fallRisk a sulo:TimeInstant ;
+    sulo:hasValue "2018-10-04T20:21:00"^^xsd:dateTime .
+
+ex:role_FallRiskPatient_Casey401 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_FallRiskProvider_EldridgeMarquardt a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+ex:role_FallRiskOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_FallRisk .
+
+ex:meas_FallRisk a chr:Measurement ;
+    sulo:hasValue "38"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_fallRisk .
+
+# PHQ-2
+ex:proc_phq2_1859 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PHQ2Patient_Casey401 ,
+                       ex:role_PHQ2Provider_EldridgeMarquardt ,
+                       ex:role_PHQ2Output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_phq2 .
+
+ex:time_phq2 a sulo:TimeInstant ;
+    sulo:hasValue "2018-10-04T20:53:00"^^xsd:dateTime .
+
+ex:role_PHQ2Patient_Casey401 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_PHQ2Provider_EldridgeMarquardt a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+ex:role_PHQ2Output a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_PHQ2 .
+
+ex:meas_PHQ2 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_phq2 .
+
+# Evaluation processes --------------------------------------------------------------
+
+# Evaluation 19:35 – Full-time employment
+ex:eval_1935 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_Casey401 ,
+                       ex:role_EvalProvider_EldridgeMarquardt ,
+                       ex:role_EvalOutput_FullTime ;
+    sulo:atTime ex:time_eval_1935 .
+
+ex:time_eval_1935 a sulo:TimeInstant ;
+    sulo:hasValue "2018-10-04T19:35:00"^^xsd:dateTime .
+
+ex:role_EvalPatient_Casey401 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_EvalProvider_EldridgeMarquardt a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+ex:role_EvalOutput_FullTime a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_FullTimeEmployment .
+
+ex:diag_FullTimeEmployment a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+# Evaluation 20:53 – Gingivitis
+ex:eval_2053 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient2_Casey401 ,
+                       ex:role_EvalProvider2_EldridgeMarquardt ,
+                       ex:role_EvalOutput_Gingivitis ;
+    sulo:atTime ex:time_eval_2053 .
+
+ex:time_eval_2053 a sulo:TimeInstant ;
+    sulo:hasValue "2018-10-04T20:53:00"^^xsd:dateTime .
+
+ex:role_EvalPatient2_Casey401 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401 .
+
+ex:role_EvalProvider2_EldridgeMarquardt a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_EldridgeMarquardt .
+
+ex:role_EvalOutput_Gingivitis a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Gingivitis .
+
+ex:diag_Gingivitis a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+# Severity instance
+ex:severity_moderate a chr:Severity .
+
+# Process status instance
+ex:status_completed a chr:ProcessStatus .
+
+# Units
+ex:unit_cm a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+ex:unit_score a sulo:Unit .
+
+# Care plan --------------------------------------------------------------
+
+ex:careplan_2018_10_04 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure .
+
+# End of ABox

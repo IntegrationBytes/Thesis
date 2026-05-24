@@ -4,636 +4,584 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Casey401_Elijah719_Parker433 a chr:Person .
+ex:visit_2021_04_15_1359 a chr:ClinicalVisit ;
+  sulo:hasPart ex:visit_role_care_unit , ex:visit_role_time .
 
-ex:visit_2021_04_15 a chr:ClinicalVisit ;
-  sulo:hasPart ex:care_unit_ACCLAIM .
+ex:visit_role_care_unit a sulo:Role, chr:LocationRole ;
+  sulo:isFeatureOf ex:care_unit_acclaim ;
+  sulo:isIn ex:visit_2021_04_15_1359 .
 
-ex:care_unit_ACCLAIM a chr:CareUnit .
+ex:visit_role_time a sulo:Role, chr:TimeRole ;
+  sulo:isFeatureOf ex:time_visit_2021_04_15_1359 ;
+  sulo:isIn ex:visit_2021_04_15_1359 .
 
-ex:role_VisitSubject_Casey401 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:visit_2021_04_15 sulo:hasParticipant ex:role_VisitSubject_Casey401 .
-
-ex:role_VisitProvider_Streich926 a chr:CareProviderRole ;
-  sulo:isFeatureOf ex:doctor_Streich926 .
-
-ex:doctor_Streich926 a chr:Person .
-
-ex:visit_2021_04_15 sulo:hasParticipant ex:role_VisitProvider_Streich926 .
-
-ex:time_Visit a sulo:TimeInstant ;
+ex:time_visit_2021_04_15_1359 a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:visit_2021_04_15 sulo:atTime ex:time_Visit .
+ex:care_unit_acclaim a chr:CareUnit ;
+  rdfs:label "ACCLAIM HOME HEALTH CARE, INC" .
 
-ex:measurement_Leukocytes a chr:Measurement ;
+ex:patient_casey401 a chr:Person ;
+  rdfs:label "Casey401 Elijah719 Parker433" .
+
+ex:physician_streich926 a chr:Person ;
+  rdfs:label "Dr. Jacque955 Streich926" .
+
+ex:emergency_room_admission a chr:MedicalProcedure ;
+  rdfs:label "Emergency room admission" .
+
+ex:leukocytes_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_leukocytes , ex:role_output_leukocytes ;
+  sulo:atTime ex:time_leukocytes_measurement .
+
+ex:time_leukocytes_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
+
+ex:role_patient_leukocytes a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
+
+ex:role_output_leukocytes a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:leukocytes_measurement .
+
+ex:leukocytes_measurement a chr:Measurement ;
   sulo:hasValue "12.958"^^xsd:float ;
-  sulo:hasPart ex:unit_10_3_per_uL .
+  sulo:hasPart ex:unit_10_3_uL ;
+  sulo:atTime ex:time_leukocytes_measurement .
 
-ex:measurement_Leukocytes sulo:atTime ex:time_Measurement_Leukocytes .
+ex:unit_10_3_uL a sulo:Unit ;
+  rdfs:label "10*3/uL" .
 
-ex:unit_10_3_per_uL a sulo:Unit .
+ex:erythrocytes_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_erythrocytes , ex:role_output_erythrocytes ;
+  sulo:atTime ex:time_erythrocytes_measurement .
 
-ex:time_Measurement_Leukocytes a sulo:TimeInstant ;
+ex:time_erythrocytes_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_Leukocytes a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_Leukocytes ;
-  sulo:hasOutput ex:measurement_Leukocytes .
+ex:role_patient_erythrocytes a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_Leukocytes sulo:atTime ex:time_Measurement_Leukocytes .
+ex:role_output_erythrocytes a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:erythrocytes_measurement .
 
-ex:role_Subject_Leukocytes a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_status_completed a chr:ProcessStatus .
-
-ex:process_Measurement_Leukocytes sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_Erythrocytes a chr:Measurement ;
+ex:erythrocytes_measurement a chr:Measurement ;
   sulo:hasValue "4.6656"^^xsd:float ;
-  sulo:hasPart ex:unit_10_6_per_uL .
+  sulo:hasPart ex:unit_10_6_uL ;
+  sulo:atTime ex:time_erythrocytes_measurement .
 
-ex:measurement_Erythrocytes sulo:atTime ex:time_Measurement_Erythrocytes .
+ex:unit_10_6_uL a sulo:Unit ;
+  rdfs:label "10*6/uL" .
 
-ex:unit_10_6_per_uL a sulo:Unit .
+ex:hemoglobin_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_hemoglobin , ex:role_output_hemoglobin ;
+  sulo:atTime ex:time_hemoglobin_measurement .
 
-ex:time_Measurement_Erythrocytes a sulo:TimeInstant ;
+ex:time_hemoglobin_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_Erythrocytes a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_Erythrocytes ;
-  sulo:hasOutput ex:measurement_Erythrocytes .
+ex:role_patient_hemoglobin a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_Erythrocytes sulo:atTime ex:time_Measurement_Erythrocytes .
+ex:role_output_hemoglobin a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:hemoglobin_measurement .
 
-ex:role_Subject_Erythrocytes a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_Erythrocytes sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_Hemoglobin a chr:Measurement ;
+ex:hemoglobin_measurement a chr:Measurement ;
   sulo:hasValue "15.779"^^xsd:float ;
-  sulo:hasPart ex:unit_g_per_dL .
+  sulo:hasPart ex:unit_g_dL ;
+  sulo:atTime ex:time_hemoglobin_measurement .
 
-ex:measurement_Hemoglobin sulo:atTime ex:time_Measurement_Hemoglobin .
+ex:unit_g_dL a sulo:Unit ;
+  rdfs:label "g/dL" .
 
-ex:unit_g_per_dL a sulo:Unit .
+ex:hematocrit_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_hematocrit , ex:role_output_hematocrit ;
+  sulo:atTime ex:time_hematocrit_measurement .
 
-ex:time_Measurement_Hemoglobin a sulo:TimeInstant ;
+ex:time_hematocrit_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_Hemoglobin a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_Hemoglobin ;
-  sulo:hasOutput ex:measurement_Hemoglobin .
+ex:role_patient_hematocrit a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_Hemoglobin sulo:atTime ex:time_Measurement_Hemoglobin .
+ex:role_output_hematocrit a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:hematocrit_measurement .
 
-ex:role_Subject_Hemoglobin a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_Hemoglobin sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_Hematocrit a chr:Measurement ;
+ex:hematocrit_measurement a chr:Measurement ;
   sulo:hasValue "50.596"^^xsd:float ;
-  sulo:hasPart ex:unit_percent .
+  sulo:hasPart ex:unit_percent ;
+  sulo:atTime ex:time_hematocrit_measurement .
 
-ex:measurement_Hematocrit sulo:atTime ex:time_Measurement_Hematocrit .
+ex:unit_percent a sulo:Unit ;
+  rdfs:label "%" .
 
-ex:unit_percent a sulo:Unit .
+ex:mcv_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_mcv , ex:role_output_mcv ;
+  sulo:atTime ex:time_mcv_measurement .
 
-ex:time_Measurement_Hematocrit a sulo:TimeInstant ;
+ex:time_mcv_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_Hematocrit a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_Hematocrit ;
-  sulo:hasOutput ex:measurement_Hematocrit .
+ex:role_patient_mcv a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_Hematocrit sulo:atTime ex:time_Measurement_Hematocrit .
+ex:role_output_mcv a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:mcv_measurement .
 
-ex:role_Subject_Hematocrit a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_Hematocrit sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_MCV a chr:Measurement ;
+ex:mcv_measurement a chr:Measurement ;
   sulo:hasValue "91.228"^^xsd:float ;
-  sulo:hasPart ex:unit_fL .
+  sulo:hasPart ex:unit_fL ;
+  sulo:atTime ex:time_mcv_measurement .
 
-ex:measurement_MCV sulo:atTime ex:time_Measurement_MCV .
+ex:unit_fL a sulo:Unit ;
+  rdfs:label "fL" .
 
-ex:unit_fL a sulo:Unit .
+ex:erythrocyte_distwidth_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_erythrocyte_distwidth , ex:role_output_erythrocyte_distwidth ;
+  sulo:atTime ex:time_erythrocyte_distwidth_measurement .
 
-ex:time_Measurement_MCV a sulo:TimeInstant ;
+ex:time_erythrocyte_distwidth_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_MCV a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_MCV ;
-  sulo:hasOutput ex:measurement_MCV .
+ex:role_patient_erythrocyte_distwidth a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_MCV sulo:atTime ex:time_Measurement_MCV .
+ex:role_output_erythrocyte_distwidth a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:erythrocyte_distwidth_measurement .
 
-ex:role_Subject_MCV a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_MCV sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_ErythrocyteDistWidth a chr:Measurement ;
+ex:erythrocyte_distwidth_measurement a chr:Measurement ;
   sulo:hasValue "13.536"^^xsd:float ;
-  sulo:hasPart ex:unit_percent2 .
+  sulo:hasPart ex:unit_percent2 ;
+  sulo:atTime ex:time_erythrocyte_distwidth_measurement .
 
-ex:measurement_ErythrocyteDistWidth sulo:atTime ex:time_Measurement_ErythrocyteDistWidth .
+ex:unit_percent2 a sulo:Unit ;
+  rdfs:label "%" .
 
-ex:unit_percent2 a sulo:Unit .
+ex:platelets_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_platelets , ex:role_output_platelets ;
+  sulo:atTime ex:time_platelets_measurement .
 
-ex:time_Measurement_ErythrocyteDistWidth a sulo:TimeInstant ;
+ex:time_platelets_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_ErythrocyteDistWidth a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_ErythrocyteDistWidth ;
-  sulo:hasOutput ex:measurement_ErythrocyteDistWidth .
+ex:role_patient_platelets a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_ErythrocyteDistWidth sulo:atTime ex:time_Measurement_ErythrocyteDistWidth .
+ex:role_output_platelets a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:platelets_measurement .
 
-ex:role_Subject_ErythrocyteDistWidth a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_ErythrocyteDistWidth sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_Platelets a chr:Measurement ;
+ex:platelets_measurement a chr:Measurement ;
   sulo:hasValue "155.27"^^xsd:float ;
-  sulo:hasPart ex:unit_K_per_uL .
+  sulo:hasPart ex:unit_K_uL ;
+  sulo:atTime ex:time_platelets_measurement .
 
-ex:measurement_Platelets sulo:atTime ex:time_Measurement_Platelets .
+ex:unit_K_uL a sulo:Unit ;
+  rdfs:label "K/uL" .
 
-ex:unit_K_per_uL a sulo:Unit .
+ex:bilirubin_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_bilirubin , ex:role_output_bilirubin ;
+  sulo:atTime ex:time_bilirubin_measurement .
 
-ex:time_Measurement_Platelets a sulo:TimeInstant ;
+ex:time_bilirubin_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_Platelets a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_Platelets ;
-  sulo:hasOutput ex:measurement_Platelets .
+ex:role_patient_bilirubin a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_Platelets sulo:atTime ex:time_Measurement_Platelets .
+ex:role_output_bilirubin a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:bilirubin_measurement .
 
-ex:role_Subject_Platelets a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_Platelets sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_BilirubinTotal a chr:Measurement ;
+ex:bilirubin_measurement a chr:Measurement ;
   sulo:hasValue "2.215"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_per_dL .
+  sulo:hasPart ex:unit_mg_dL ;
+  sulo:atTime ex:time_bilirubin_measurement .
 
-ex:measurement_BilirubinTotal sulo:atTime ex:time_Measurement_BilirubinTotal .
+ex:unit_mg_dL a sulo:Unit ;
+  rdfs:label "mg/dL" .
 
-ex:unit_mg_per_dL a sulo:Unit .
+ex:alanine_aminotransferase_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_alanine_aminotransferase , ex:role_output_alanine_aminotransferase ;
+  sulo:atTime ex:time_alanine_aminotransferase_measurement .
 
-ex:time_Measurement_BilirubinTotal a sulo:TimeInstant ;
+ex:time_alanine_aminotransferase_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_BilirubinTotal a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_BilirubinTotal ;
-  sulo:hasOutput ex:measurement_BilirubinTotal .
+ex:role_patient_alanine_aminotransferase a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_BilirubinTotal sulo:atTime ex:time_Measurement_BilirubinTotal .
+ex:role_output_alanine_aminotransferase a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:alanine_aminotransferase_measurement .
 
-ex:role_Subject_BilirubinTotal a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_BilirubinTotal sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_AlanineAminotransferase a chr:Measurement ;
+ex:alanine_aminotransferase_measurement a chr:Measurement ;
   sulo:hasValue "109.6"^^xsd:float ;
-  sulo:hasPart ex:unit_iU_per_L .
+  sulo:hasPart ex:unit_iU_L ;
+  sulo:atTime ex:time_alanine_aminotransferase_measurement .
 
-ex:measurement_AlanineAminotransferase sulo:atTime ex:time_Measurement_AlanineAminotransferase .
+ex:unit_iU_L a sulo:Unit ;
+  rdfs:label "[iU]/L" .
 
-ex:unit_iU_per_L a sulo:Unit .
+ex:aspartate_aminotransferase_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_aspartate_aminotransferase , ex:role_output_aspartate_aminotransferase ;
+  sulo:atTime ex:time_aspartate_aminotransferase_measurement .
 
-ex:time_Measurement_AlanineAminotransferase a sulo:TimeInstant ;
+ex:time_aspartate_aminotransferase_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_AlanineAminotransferase a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_AlanineAminotransferase ;
-  sulo:hasOutput ex:measurement_AlanineAminotransferase .
+ex:role_patient_aspartate_aminotransferase a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_AlanineAminotransferase sulo:atTime ex:time_Measurement_AlanineAminotransferase .
+ex:role_output_aspartate_aminotransferase a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:aspartate_aminotransferase_measurement .
 
-ex:role_Subject_AlanineAminotransferase a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_AlanineAminotransferase sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_AspartateAminotransferase a chr:Measurement ;
+ex:aspartate_aminotransferase_measurement a chr:Measurement ;
   sulo:hasValue "140.14"^^xsd:float ;
-  sulo:hasPart ex:unit_iU_per_L2 .
+  sulo:hasPart ex:unit_iU_L2 ;
+  sulo:atTime ex:time_aspartate_aminotransferase_measurement .
 
-ex:measurement_AspartateAminotransferase sulo:atTime ex:time_Measurement_AspartateAminotransferase .
+ex:unit_iU_L2 a sulo:Unit ;
+  rdfs:label "[iU]/L" .
 
-ex:unit_iU_per_L2 a sulo:Unit .
+ex:glucose_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_glucose , ex:role_output_glucose ;
+  sulo:atTime ex:time_glucose_measurement .
 
-ex:time_Measurement_AspartateAminotransferase a sulo:TimeInstant ;
+ex:time_glucose_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_AspartateAminotransferase a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_AspartateAminotransferase ;
-  sulo:hasOutput ex:measurement_AspartateAminotransferase .
+ex:role_patient_glucose a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_AspartateAminotransferase sulo:atTime ex:time_Measurement_AspartateAminotransferase .
+ex:role_output_glucose a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:glucose_measurement .
 
-ex:role_Subject_AspartateAminotransferase a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_AspartateAminotransferase sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_Glucose a chr:Measurement ;
+ex:glucose_measurement a chr:Measurement ;
   sulo:hasValue "78.02"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_per_dL2 .
+  sulo:hasPart ex:unit_mg_dL2 ;
+  sulo:atTime ex:time_glucose_measurement .
 
-ex:measurement_Glucose sulo:atTime ex:time_Measurement_Glucose .
+ex:unit_mg_dL2 a sulo:Unit ;
+  rdfs:label "mg/dL" .
 
-ex:unit_mg_per_dL2 a sulo:Unit .
+ex:urea_nitrogen_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_urea_nitrogen , ex:role_output_urea_nitrogen ;
+  sulo:atTime ex:time_urea_nitrogen_measurement .
 
-ex:time_Measurement_Glucose a sulo:TimeInstant ;
+ex:time_urea_nitrogen_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_Glucose a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_Glucose ;
-  sulo:hasOutput ex:measurement_Glucose .
+ex:role_patient_urea_nitrogen a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_Glucose sulo:atTime ex:time_Measurement_Glucose .
+ex:role_output_urea_nitrogen a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:urea_nitrogen_measurement .
 
-ex:role_Subject_Glucose a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_Glucose sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_UreaNitrogen a chr:Measurement ;
+ex:urea_nitrogen_measurement a chr:Measurement ;
   sulo:hasValue "16.05"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_per_dL3 .
+  sulo:hasPart ex:unit_mg_dL3 ;
+  sulo:atTime ex:time_urea_nitrogen_measurement .
 
-ex:measurement_UreaNitrogen sulo:atTime ex:time_Measurement_UreaNitrogen .
+ex:unit_mg_dL3 a sulo:Unit ;
+  rdfs:label "mg/dL" .
 
-ex:unit_mg_per_dL3 a sulo:Unit .
+ex:creatinine_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_creatinine , ex:role_output_creatinine ;
+  sulo:atTime ex:time_creatinine_measurement .
 
-ex:time_Measurement_UreaNitrogen a sulo:TimeInstant ;
+ex:time_creatinine_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_UreaNitrogen a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_UreaNitrogen ;
-  sulo:hasOutput ex:measurement_UreaNitrogen .
+ex:role_patient_creatinine a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_UreaNitrogen sulo:atTime ex:time_Measurement_UreaNitrogen .
+ex:role_output_creatinine a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:creatinine_measurement .
 
-ex:role_Subject_UreaNitrogen a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_UreaNitrogen sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_Creatinine a chr:Measurement ;
+ex:creatinine_measurement a chr:Measurement ;
   sulo:hasValue "0.82"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_per_dL4 .
+  sulo:hasPart ex:unit_mg_dL4 ;
+  sulo:atTime ex:time_creatinine_measurement .
 
-ex:measurement_Creatinine sulo:atTime ex:time_Measurement_Creatinine .
+ex:unit_mg_dL4 a sulo:Unit ;
+  rdfs:label "mg/dL" .
 
-ex:unit_mg_per_dL4 a sulo:Unit .
+ex:calcium_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_calcium , ex:role_output_calcium ;
+  sulo:atTime ex:time_calcium_measurement .
 
-ex:time_Measurement_Creatinine a sulo:TimeInstant ;
+ex:time_calcium_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_Creatinine a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_Creatinine ;
-  sulo:hasOutput ex:measurement_Creatinine .
+ex:role_patient_calcium a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_Creatinine sulo:atTime ex:time_Measurement_Creatinine .
+ex:role_output_calcium a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:calcium_measurement .
 
-ex:role_Subject_Creatinine a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_Creatinine sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_Calcium a chr:Measurement ;
+ex:calcium_measurement a chr:Measurement ;
   sulo:hasValue "9.54"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_per_dL5 .
+  sulo:hasPart ex:unit_mg_dL5 ;
+  sulo:atTime ex:time_calcium_measurement .
 
-ex:measurement_Calcium sulo:atTime ex:time_Measurement_Calcium .
+ex:unit_mg_dL5 a sulo:Unit ;
+  rdfs:label "mg/dL" .
 
-ex:unit_mg_per_dL5 a sulo:Unit .
+ex:sodium_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_sodium , ex:role_output_sodium ;
+  sulo:atTime ex:time_sodium_measurement .
 
-ex:time_Measurement_Calcium a sulo:TimeInstant ;
+ex:time_sodium_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_Calcium a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_Calcium ;
-  sulo:hasOutput ex:measurement_Calcium .
+ex:role_patient_sodium a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_Calcium sulo:atTime ex:time_Measurement_Calcium .
+ex:role_output_sodium a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:sodium_measurement .
 
-ex:role_Subject_Calcium a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_Calcium sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_Sodium a chr:Measurement ;
+ex:sodium_measurement a chr:Measurement ;
   sulo:hasValue "142.95"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_per_L .
+  sulo:hasPart ex:unit_mmol_L ;
+  sulo:atTime ex:time_sodium_measurement .
 
-ex:measurement_Sodium sulo:atTime ex:time_Measurement_Sodium .
+ex:unit_mmol_L a sulo:Unit ;
+  rdfs:label "mmol/L" .
 
-ex:unit_mmol_per_L a sulo:Unit .
+ex:potassium_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_potassium , ex:role_output_potassium ;
+  sulo:atTime ex:time_potassium_measurement .
 
-ex:time_Measurement_Sodium a sulo:TimeInstant ;
+ex:time_potassium_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_Sodium a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_Sodium ;
-  sulo:hasOutput ex:measurement_Sodium .
+ex:role_patient_potassium a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_Sodium sulo:atTime ex:time_Measurement_Sodium .
+ex:role_output_potassium a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:potassium_measurement .
 
-ex:role_Subject_Sodium a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_Sodium sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_Potassium a chr:Measurement ;
+ex:potassium_measurement a chr:Measurement ;
   sulo:hasValue "4.97"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_per_L2 .
+  sulo:hasPart ex:unit_mmol_L2 ;
+  sulo:atTime ex:time_potassium_measurement .
 
-ex:measurement_Potassium sulo:atTime ex:time_Measurement_Potassium .
+ex:unit_mmol_L2 a sulo:Unit ;
+  rdfs:label "mmol/L" .
 
-ex:unit_mmol_per_L2 a sulo:Unit .
+ex:chloride_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_chloride , ex:role_output_chloride ;
+  sulo:atTime ex:time_chloride_measurement .
 
-ex:time_Measurement_Potassium a sulo:TimeInstant ;
+ex:time_chloride_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_Potassium a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_Potassium ;
-  sulo:hasOutput ex:measurement_Potassium .
+ex:role_patient_chloride a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_Potassium sulo:atTime ex:time_Measurement_Potassium .
+ex:role_output_chloride a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:chloride_measurement .
 
-ex:role_Subject_Potassium a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_Potassium sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_Chloride a chr:Measurement ;
+ex:chloride_measurement a chr:Measurement ;
   sulo:hasValue "103.23"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_per_L3 .
+  sulo:hasPart ex:unit_mmol_L3 ;
+  sulo:atTime ex:time_chloride_measurement .
 
-ex:measurement_Chloride sulo:atTime ex:time_Measurement_Chloride .
+ex:unit_mmol_L3 a sulo:Unit ;
+  rdfs:label "mmol/L" .
 
-ex:unit_mmol_per_L3 a sulo:Unit .
+ex:carbon_dioxide_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_carbon_dioxide , ex:role_output_carbon_dioxide ;
+  sulo:atTime ex:time_carbon_dioxide_measurement .
 
-ex:time_Measurement_Chloride a sulo:TimeInstant ;
+ex:time_carbon_dioxide_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_Chloride a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_Chloride ;
-  sulo:hasOutput ex:measurement_Chloride .
+ex:role_patient_carbon_dioxide a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_Chloride sulo:atTime ex:time_Measurement_Chloride .
+ex:role_output_carbon_dioxide a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:carbon_dioxide_measurement .
 
-ex:role_Subject_Chloride a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_Chloride sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_CarbonDioxideTotal a chr:Measurement ;
+ex:carbon_dioxide_measurement a chr:Measurement ;
   sulo:hasValue "23.15"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_per_L4 .
+  sulo:hasPart ex:unit_mmol_L4 ;
+  sulo:atTime ex:time_carbon_dioxide_measurement .
 
-ex:measurement_CarbonDioxideTotal sulo:atTime ex:time_Measurement_CarbonDioxideTotal .
+ex:unit_mmol_L4 a sulo:Unit ;
+  rdfs:label "mmol/L" .
 
-ex:unit_mmol_per_L4 a sulo:Unit .
+ex:anion_gap_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_anion_gap , ex:role_output_anion_gap ;
+  sulo:atTime ex:time_anion_gap_measurement .
 
-ex:time_Measurement_CarbonDioxideTotal a sulo:TimeInstant ;
+ex:time_anion_gap_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_CarbonDioxideTotal a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_CarbonDioxideTotal ;
-  sulo:hasOutput ex:measurement_CarbonDioxideTotal .
+ex:role_patient_anion_gap a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_CarbonDioxideTotal sulo:atTime ex:time_Measurement_CarbonDioxideTotal .
+ex:role_output_anion_gap a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:anion_gap_measurement .
 
-ex:role_Subject_CarbonDioxideTotal a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_CarbonDioxideTotal sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_AnionGap a chr:Measurement ;
+ex:anion_gap_measurement a chr:Measurement ;
   sulo:hasValue "2.5318"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_per_L5 .
+  sulo:hasPart ex:unit_mmol_L5 ;
+  sulo:atTime ex:time_anion_gap_measurement .
 
-ex:measurement_AnionGap sulo:atTime ex:time_Measurement_AnionGap .
+ex:unit_mmol_L5 a sulo:Unit ;
+  rdfs:label "mmol/L" .
 
-ex:unit_mmol_per_L5 a sulo:Unit .
+ex:protein_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_protein , ex:role_output_protein ;
+  sulo:atTime ex:time_protein_measurement .
 
-ex:time_Measurement_AnionGap a sulo:TimeInstant ;
+ex:time_protein_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_AnionGap a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_AnionGap ;
-  sulo:hasOutput ex:measurement_AnionGap .
+ex:role_patient_protein a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_AnionGap sulo:atTime ex:time_Measurement_AnionGap .
+ex:role_output_protein a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:protein_measurement .
 
-ex:role_Subject_AnionGap a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_AnionGap sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_Protein a chr:Measurement ;
+ex:protein_measurement a chr:Measurement ;
   sulo:hasValue "7.324"^^xsd:float ;
-  sulo:hasPart ex:unit_g_per_dL2 .
+  sulo:hasPart ex:unit_g_dL2 ;
+  sulo:atTime ex:time_protein_measurement .
 
-ex:measurement_Protein sulo:atTime ex:time_Measurement_Protein .
+ex:unit_g_dL2 a sulo:Unit ;
+  rdfs:label "g/dL" .
 
-ex:unit_g_per_dL2 a sulo:Unit .
+ex:albumin_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_albumin , ex:role_output_albumin ;
+  sulo:atTime ex:time_albumin_measurement .
 
-ex:time_Measurement_Protein a sulo:TimeInstant ;
+ex:time_albumin_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_Protein a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_Protein ;
-  sulo:hasOutput ex:measurement_Protein .
+ex:role_patient_albumin a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_Protein sulo:atTime ex:time_Measurement_Protein .
+ex:role_output_albumin a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:albumin_measurement .
 
-ex:role_Subject_Protein a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_Protein sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_Albumin a chr:Measurement ;
+ex:albumin_measurement a chr:Measurement ;
   sulo:hasValue "5.0186"^^xsd:float ;
-  sulo:hasPart ex:unit_g_per_dL3 .
+  sulo:hasPart ex:unit_g_dL3 ;
+  sulo:atTime ex:time_albumin_measurement .
 
-ex:measurement_Albumin sulo:atTime ex:time_Measurement_Albumin .
+ex:unit_g_dL3 a sulo:Unit ;
+  rdfs:label "g/dL" .
 
-ex:unit_g_per_dL3 a sulo:Unit .
+ex:globulin_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_globulin , ex:role_output_globulin ;
+  sulo:atTime ex:time_globulin_measurement .
 
-ex:time_Measurement_Albumin a sulo:TimeInstant ;
+ex:time_globulin_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_Albumin a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_Albumin ;
-  sulo:hasOutput ex:measurement_Albumin .
+ex:role_patient_globulin a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_Albumin sulo:atTime ex:time_Measurement_Albumin .
+ex:role_output_globulin a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:globulin_measurement .
 
-ex:role_Subject_Albumin a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_Albumin sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_Globulin a chr:Measurement ;
+ex:globulin_measurement a chr:Measurement ;
   sulo:hasValue "3.3724"^^xsd:float ;
-  sulo:hasPart ex:unit_g_per_dL4 .
+  sulo:hasPart ex:unit_g_dL4 ;
+  sulo:atTime ex:time_globulin_measurement .
 
-ex:measurement_Globulin sulo:atTime ex:time_Measurement_Globulin .
+ex:unit_g_dL4 a sulo:Unit ;
+  rdfs:label "g/dL" .
 
-ex:unit_g_per_dL4 a sulo:Unit .
+ex:alkaline_phosphatase_measurement_process a chr:MeasurementProcess ;
+  sulo:hasParticipant ex:role_patient_alkaline_phosphatase , ex:role_output_alkaline_phosphatase ;
+  sulo:atTime ex:time_alkaline_phosphatase_measurement .
 
-ex:time_Measurement_Globulin a sulo:TimeInstant ;
+ex:time_alkaline_phosphatase_measurement a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_Globulin a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_Globulin ;
-  sulo:hasOutput ex:measurement_Globulin .
+ex:role_patient_alkaline_phosphatase a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_Globulin sulo:atTime ex:time_Measurement_Globulin .
+ex:role_output_alkaline_phosphatase a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:alkaline_phosphatase_measurement .
 
-ex:role_Subject_Globulin a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:process_Measurement_Globulin sulo:hasFeature ex:process_status_completed .
-
-ex:measurement_AlkalinePhosphatase a chr:Measurement ;
+ex:alkaline_phosphatase_measurement a chr:Measurement ;
   sulo:hasValue "96.323"^^xsd:float ;
-  sulo:hasPart ex:unit_iU_per_L3 .
+  sulo:hasPart ex:unit_iU_L3 ;
+  sulo:atTime ex:time_alkaline_phosphatase_measurement .
 
-ex:measurement_AlkalinePhosphatase sulo:atTime ex:time_Measurement_AlkalinePhosphatase .
+ex:unit_iU_L3 a sulo:Unit ;
+  rdfs:label "[iU]/L" .
 
-ex:unit_iU_per_L3 a sulo:Unit .
+ex:evaluation_2021_04_15_1359 a chr:EvaluationProcess ;
+  sulo:hasParticipant ex:role_patient_evaluation , ex:role_performer_streich926 , ex:role_output_acute_cholecystitis ;
+  sulo:atTime ex:time_evaluation_2021_04_15_1359 .
 
-ex:time_Measurement_AlkalinePhosphatase a sulo:TimeInstant ;
+ex:time_evaluation_2021_04_15_1359 a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:process_Measurement_AlkalinePhosphatase a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_Subject_AlkalinePhosphatase ;
-  sulo:hasOutput ex:measurement_AlkalinePhosphatase .
+ex:role_patient_evaluation a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:process_Measurement_AlkalinePhosphatase sulo:atTime ex:time_Measurement_AlkalinePhosphatase .
+ex:role_performer_streich926 a sulo:Role, chr:PerformerRole ;
+  sulo:isFeatureOf ex:physician_streich926 .
 
-ex:role_Subject_AlkalinePhosphatase a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
+ex:role_output_acute_cholecystitis a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:diagnostic_statement_acute_cholecystitis .
 
-ex:process_Measurement_AlkalinePhosphatase sulo:hasFeature ex:process_status_completed .
+ex:diagnostic_statement_acute_cholecystitis a chr:DiagnosticStatement ;
+  rdfs:label "Acute cholecystitis (disorder)" .
 
-ex:evaluation_2021_04_15 a chr:EvaluationProcess ;
-  sulo:hasParticipant ex:role_Evaluator_Streich926 ;
-  sulo:hasOutput ex:diagnostic_AcuteCholecystitis .
+ex:acute_cholecystitis_condition a chr:ClinicalCondition ;
+  sulo:hasFeature ex:severity_moderate ;
+  sulo:atTime ex:time_condition_acute_cholecystitis .
 
-ex:evaluation_2021_04_15 sulo:atTime ex:time_Evaluation_performed .
-
-ex:role_Evaluator_Streich926 a chr:PerformerRole ;
-  sulo:isFeatureOf ex:doctor_Streich926 .
-
-ex:diagnostic_AcuteCholecystitis a chr:DiagnosticStatement .
-
-ex:time_Evaluation_performed a sulo:TimeInstant ;
+ex:time_condition_acute_cholecystitis a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:condition_AcuteCholecystitis a chr:ClinicalCondition ;
-  sulo:hasFeature ex:severity_Moderate .
+ex:severity_moderate a chr:Severity ;
+  rdfs:label "Moderate" .
 
-ex:condition_AcuteCholecystitis sulo:atTime ex:time_Condition_recorded .
+ex:evaluation_2_2021_04_15_1359 a chr:EvaluationProcess ;
+  sulo:hasParticipant ex:role_patient_evaluation_2 , ex:role_performer_streich926_2 , ex:role_output_gallbladder_calculus ;
+  sulo:atTime ex:time_evaluation_2_2021_04_15_1359 .
 
-ex:time_Condition_recorded a sulo:TimeInstant ;
+ex:time_evaluation_2_2021_04_15_1359 a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:severity_Moderate a chr:Severity .
+ex:role_patient_evaluation_2 a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:evaluation_2021_04_15_2 a chr:EvaluationProcess ;
-  sulo:hasParticipant ex:role_Evaluator_Streich926_2 ;
-  sulo:hasOutput ex:diagnostic_GallbladderCalculus .
+ex:role_performer_streich926_2 a sulo:Role, chr:PerformerRole ;
+  sulo:isFeatureOf ex:physician_streich926 .
 
-ex:evaluation_2021_04_15_2 sulo:atTime ex:time_Evaluation_performed_2 .
+ex:role_output_gallbladder_calculus a sulo:Role, chr:OutputRole ;
+  sulo:isFeatureOf ex:diagnostic_statement_gallbladder_calculus .
 
-ex:role_Evaluator_Streich926_2 a chr:PerformerRole ;
-  sulo:isFeatureOf ex:doctor_Streich926 .
+ex:diagnostic_statement_gallbladder_calculus a chr:DiagnosticStatement ;
+  rdfs:label "Gallbladder calculus (disorder)" .
 
-ex:diagnostic_GallbladderCalculus a chr:DiagnosticStatement .
+ex:gallbladder_calculus_condition a chr:ClinicalCondition ;
+  sulo:hasFeature ex:severity_moderate ;
+  sulo:atTime ex:time_condition_gallbladder_calculus .
 
-ex:time_Evaluation_performed_2 a sulo:TimeInstant ;
+ex:time_condition_gallbladder_calculus a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:condition_GallbladderCalculus a chr:ClinicalCondition ;
-  sulo:hasFeature ex:severity_Moderate .
+ex:treatment_plan_heparin a chr:TreatmentPlan ;
+  sulo:refersTo ex:medication_administration_heparin .
 
-ex:condition_GallbladderCalculus sulo:atTime ex:time_Condition_recorded_2 .
+ex:medication_administration_heparin a chr:MedicationAdministration ;
+  sulo:hasParticipant ex:pharmaceutical_product_heparin , ex:role_patient_heparin , ex:role_performer_heparin ;
+  sulo:atTime ex:time_medication_heparin .
 
-ex:time_Condition_recorded_2 a sulo:TimeInstant ;
+ex:time_medication_heparin a sulo:TimeInstant ;
   sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
 
-ex:treatment_plan_Heparin a chr:TreatmentPlan ;
-  sulo:refersTo ex:medication_administration_Heparin .
+ex:role_patient_heparin a sulo:Role, chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_casey401 .
 
-ex:medication_administration_Heparin a chr:MedicationAdministration .
+ex:role_performer_heparin a sulo:Role, chr:PerformerRole ;
+  sulo:isFeatureOf ex:physician_streich926 .
 
-ex:pharmaceutical_product_Heparin a chr:PharmaceuticalProduct .
-
-ex:role_Subject_Heparin a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:role_Performer_Heparin a chr:PerformerRole ;
-  sulo:isFeatureOf ex:clinical_staff .
-
-ex:clinical_staff a chr:Person .
-
-ex:time_Administration_Heparin a sulo:TimeInstant ;
-  sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
-
-ex:treatment_plan_Ondansetron a chr:TreatmentPlan ;
-  sulo:refersTo ex:medication_administration_Ondansetron .
-
-ex:medication_administration_Ondansetron a chr:MedicationAdministration .
-
-ex:pharmaceutical_product_Ondansetron a chr:PharmaceuticalProduct .
-
-ex:role_Subject_Ondansetron a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:role_Performer_Ondansetron a chr:PerformerRole ;
-  sulo:isFeatureOf ex:clinical_staff .
-
-ex:time_Administration_Ondansetron a sulo:TimeInstant ;
-  sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
-
-ex:treatment_plan_Morphine a chr:TreatmentPlan ;
-  sulo:refersTo ex:medication_administration_Morphine .
-
-ex:medication_administration_Morphine a chr:MedicationAdministration .
-
-ex:pharmaceutical_product_Morphine a chr:PharmaceuticalProduct .
-
-ex:role_Subject_Morphine a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:role_Performer_Morphine a chr:PerformerRole ;
-  sulo:isFeatureOf ex:clinical_staff .
-
-ex:medication_administration_Morphine sulo:atTime ex:time_Administration_Morphine .
-
-ex:time_Administration_Morphine a sulo:TimeInstant ;
-  sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
-
-ex:medication_administration_Heparin sulo:hasParticipant ex:pharmaceutical_product_Heparin, ex:role_Subject_Heparin, ex:role_Performer_Heparin .
-
-ex:medication
+ex:pharmaceutical_product_heparin a chr:PharmaceuticalProduct .

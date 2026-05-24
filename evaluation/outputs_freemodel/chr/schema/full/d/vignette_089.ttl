@@ -1,0 +1,119 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Hallie_Tasha_Grant a chr:Person .
+ex:person_Teresa_Tapia a chr:Person .
+
+# Care unit
+ex:careunit_CaringHealthCenter a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2023_05_10_1630 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasCareProvider ex:person_Teresa_Tapia ;
+    chr:hasCareUnit ex:careunit_CaringHealthCenter .
+
+# Units
+ex:unit_cm a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_percent a sulo:Unit .
+ex:unit_score a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+
+# Height measurement
+ex:measproc_Height_2023_05_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:measurement_Height_2023_05_10_1630 .
+ex:measurement_Height_2023_05_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "85.8"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+# Pain severity measurement
+ex:measproc_PainSeverity_2023_05_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:measurement_PainSeverity_2023_05_10_1630 .
+ex:measurement_PainSeverity_2023_05_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# Weight measurement
+ex:measproc_Weight_2023_05_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:measurement_Weight_2023_05_10_1630 .
+ex:measurement_Weight_2023_05_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.9"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+# Weight‑for‑length measurement
+ex:measproc_WeightForLength_2023_05_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:measurement_WeightForLength_2023_05_10_1630 .
+ex:measurement_WeightForLength_2023_05_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "95.953"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+# Head circumference percentile measurement
+ex:measproc_HeadCircumferencePercentile_2023_05_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:measurement_HeadCircumferencePercentile_2023_05_10_1630 .
+ex:measurement_HeadCircumferencePercentile_2023_05_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "57.73"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+# Head circumference measurement
+ex:measproc_HeadCircumference_2023_05_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:measurement_HeadCircumference_2023_05_10_1630 .
+ex:measurement_HeadCircumference_2023_05_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "47.68"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+# Heart rate measurement
+ex:measproc_HeartRate_2023_05_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:measurement_HeartRate_2023_05_10_1630 .
+ex:measurement_HeartRate_2023_05_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "70"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# Respiratory rate measurement
+ex:measproc_RespiratoryRate_2023_05_10_1630 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:measurement_RespiratoryRate_2023_05_10_1630 .
+ex:measurement_RespiratoryRate_2023_05_10_1630 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-05-10T16:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# Evaluation and diagnostic statement
+ex:evaluation_2023_05_10_1630 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasObservation ex:diagnostic_MedicationReview .
+ex:diagnostic_MedicationReview a chr:DiagnosticStatement .
+
+# Clinical condition with severity
+ex:condition_MedicationReview a chr:ClinicalCondition ;
+    chr:hasRecordDate "2023-05-10T16:30:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+ex:severity_Moderate a chr:Severity .
+
+# Care plan and follow‑up procedure
+ex:careplan_Followup a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_Followup .
+ex:procedure_Followup a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasPerformer ex:person_Teresa_Tapia ;
+    chr:hasPerformedDate "2023-05-10T16:30:00"^^xsd:dateTime ;
+    chr:hasStatus ex:status_completed .
+ex:status_completed a chr:ProcessStatus .

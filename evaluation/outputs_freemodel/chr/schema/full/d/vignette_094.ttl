@@ -1,0 +1,235 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person
+ex:patient_Harvey a chr:Person .
+ex:physician_AssuntaHaley a chr:Person .
+
+# Care Unit
+ex:careunit_CHILD_FAMILY_SERVICES a chr:CareUnit .
+
+# Clinical Visit
+ex:visit_2016_07_01_2030 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_AssuntaHaley ;
+    chr:hasCareUnit ex:careunit_CHILD_FAMILY_SERVICES ;
+    chr:hasPatient ex:patient_Harvey .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Clinical Conditions
+ex:condition_medreview_20160701_2030 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:condition_employment_20160701_2101 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2016-07-01T21:01:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Diagnostic Statements
+ex:diag_medreview a chr:DiagnosticStatement .
+ex:diag_employment a chr:DiagnosticStatement .
+
+# Evaluation Processes
+ex:evaluation_20160701_2030 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasObservation ex:diag_medreview .
+
+ex:evaluation_20160701_2101 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasObservation ex:diag_employment .
+
+# Units
+ex:unit_percent          a sulo:Unit .
+ex:unit_cm              a sulo:Unit .
+ex:unit_score           a sulo:Unit .
+ex:unit_kg              a sulo:Unit .
+ex:unit_kg_per_m2       a sulo:Unit .
+ex:unit_per_min         a sulo:Unit .
+ex:unit_mg_per_dL       a sulo:Unit .
+ex:unit_mmol_per_L      a sulo:Unit .
+
+# Measurement Processes and Results
+
+# 1. Hemoglobin A1c
+ex:meas_HbA1c_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_HbA1c_20160701_2030 .
+
+ex:result_HbA1c_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.24"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+# 2. Body Height
+ex:meas_Height_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_Height_20160701_2030 .
+
+ex:result_Height_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "172.9"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+# 3. Pain Severity
+ex:meas_PainSeverity_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_PainSeverity_20160701_2030 .
+
+ex:result_PainSeverity_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# 4. Body Weight
+ex:meas_Weight_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_Weight_20160701_2030 .
+
+ex:result_Weight_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82.3"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+# 5. BMI
+ex:meas_BMI_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_BMI_20160701_2030 .
+
+ex:result_BMI_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.53"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
+
+# 6. Heart Rate
+ex:meas_HeartRate_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_HeartRate_20160701_2030 .
+
+ex:result_HeartRate_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "75"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# 7. Respiratory Rate
+ex:meas_RespRate_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_RespRate_20160701_2030 .
+
+ex:result_RespRate_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# 8. Glucose
+ex:meas_Glucose_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_Glucose_20160701_2030 .
+
+ex:result_Glucose_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "89.27"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 9. Urea Nitrogen
+ex:meas_UreaNitrogen_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_UreaNitrogen_20160701_2030 .
+
+ex:result_UreaNitrogen_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15.25"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 10. Creatinine
+ex:meas_Creatinine_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_Creatinine_20160701_2030 .
+
+ex:result_Creatinine_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.01"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 11. Calcium
+ex:meas_Calcium_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_Calcium_20160701_2030 .
+
+ex:result_Calcium_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.58"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 12. Sodium
+ex:meas_Sodium_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_Sodium_20160701_2030 .
+
+ex:result_Sodium_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "140.43"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 13. Potassium
+ex:meas_Potassium_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_Potassium_20160701_2030 .
+
+ex:result_Potassium_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.79"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 14. Chloride
+ex:meas_Chloride_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_Chloride_20160701_2030 .
+
+ex:result_Chloride_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "104.2"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 15. Carbon Dioxide
+ex:meas_CO2_20160701_2030 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_CO2_20160701_2030 .
+
+ex:result_CO2_20160701_2030 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T20:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "25.18"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 16. GAD-7 Score
+ex:meas_GAD7_20160701_2117 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_GAD7_20160701_2117 .
+
+ex:result_GAD7_20160701_2117 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T21:17:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# 17. PHQ-2 Score
+ex:meas_PHQ2_20160701_2149 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_PHQ2_20160701_2149 .
+
+ex:result_PHQ2_20160701_2149 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T21:49:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# 18. DAST-10 Score
+ex:meas_DAST10_20160701_2219 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey ;
+    chr:hasResult ex:result_DAST10_20160701_2219 .
+
+ex:result_DAST10_20160701_2219 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-07-01T22:19:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score .

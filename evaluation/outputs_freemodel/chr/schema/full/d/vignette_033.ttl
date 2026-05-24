@@ -1,0 +1,52 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Casey401Elijah719Parker433 a chr:Person .
+
+ex:physician_Jacque955_Streich926 a chr:Person .
+
+ex:careunit_ACCLAIM_HOME_HEALTH_CARE_INC a chr:CareUnit .
+
+ex:visit_2022_07_21_1921 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasCareProvider ex:physician_Jacque955_Streich926 ;
+    chr:hasCareUnit ex:careunit_ACCLAIM_HOME_HEALTH_CARE_INC .
+
+ex:device_DXA a chr:Device .
+
+ex:unit_Tscore a sulo:Unit .
+
+ex:measurement_Tscore_20220721_2000 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-21T20:00:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.086642"^^xsd:float ;
+    chr:hasUnit ex:unit_Tscore .
+
+ex:measproc_DXA_Radius_Ulna_20220721_2000 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:measurement_Tscore_20220721_2000 ;
+    chr:hasDevice ex:device_DXA .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:condition_Fracture_of_bone_20220721_1921_1 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2022-07-21T19:21:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:diag_Fracture_of_bone_20220721_1921_1 a chr:DiagnosticStatement .
+
+ex:evaluation_20220721_1921_1 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_Fracture_of_bone_20220721_1921_1 .
+
+ex:condition_Fracture_subluxation_of_wrist_20220721_1921_2 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2022-07-21T19:21:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:diag_Fracture_subluxation_of_wrist_20220721_1921_2 a chr:DiagnosticStatement .
+
+ex:evaluation_20220721_1921_2 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_Fracture_subluxation_of_wrist_20220721_1921_2 .
+
+ex:careplan_20220721 a chr:CarePlan .

@@ -1,0 +1,669 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Arlen68_Olson653 a chr:Person .
+ex:physician_Domenic_Blick a chr:Person .
+
+# Roles
+ex:role_SubjectOfCare_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_CareProvider_Domenic a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Domenic_Blick .
+
+# Care unit
+ex:careunit_VIBRA_HOSPITAL a chr:CareUnit .
+
+# Time instants
+ex:time_visit_2019_12_18_1547 a sulo:TimeInstant ;
+    sulo:hasValue "2019-12-18T15:47:00"^^xsd:dateTime .
+
+ex:time_evaluation_2019_12_18_1626 a sulo:TimeInstant ;
+    sulo:hasValue "2019-12-18T16:26:00"^^xsd:dateTime .
+
+ex:time_evaluation_2019_12_18_1741 a sulo:TimeInstant ;
+    sulo:hasValue "2019-12-18T17:41:00"^^xsd:dateTime .
+
+ex:time_phq2_2019_12_18_1658 a sulo:TimeInstant ;
+    sulo:hasValue "2019-12-18T16:58:00"^^xsd:dateTime .
+
+ex:time_auditc_2019_12_18_1741 a sulo:TimeInstant ;
+    sulo:hasValue "2019-12-18T17:41:00"^^xsd:dateTime .
+
+# Process status (completed)
+ex:status_completed a chr:ProcessStatus .
+
+# Severity (moderate)
+ex:severity_moderate a chr:Severity .
+
+# Clinical visit
+ex:visit_2019_12_18_1547 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:role_CareProvider_Domenic ;
+    sulo:isIn ex:careunit_VIBRA_HOSPITAL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+# Units
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_mmol_per_L a sulo:Unit .
+ex:unit_mL_per_min_per_1_73_m2 a sulo:Unit .
+ex:unit_cm a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_score a sulo:Unit .
+ex:unit_percent a sulo:Unit .
+ex:unit_pH a sulo:Unit .
+ex:unit_nominal a sulo:Unit .
+ex:unit_bpm a sulo:Unit .
+ex:unit_breaths_per_min a sulo:Unit .
+
+# Helper function to create measurement triples (repeated pattern)
+# ---------------------------------------------------------------
+
+# 1. Glucose in Serum (Mass/volume) – 191.38 mg/dL
+ex:measurement_Glucose_Serum_1547 a chr:Measurement ;
+    sulo:hasValue "191.38"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Glucose_Serum_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Glucose_Serum_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Glucose_Serum_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Serum_1547 .
+
+# 2. Urea nitrogen in Serum – 8.57 mg/dL
+ex:measurement_UreaNitrogen_Serum_1547 a chr:Measurement ;
+    sulo:hasValue "8.57"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_UreaNitrogen_Serum_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_UreaNitrogen_Serum_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_UreaNitrogen_Serum_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen_Serum_1547 .
+
+# 3. Creatinine in Serum – 2.0905 mg/dL
+ex:measurement_Creatinine_Serum_1547 a chr:Measurement ;
+    sulo:hasValue "2.0905"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Creatinine_Serum_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Creatinine_Serum_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Creatinine_Serum_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine_Serum_1547 .
+
+# 4. Calcium in Serum – 8.76 mg/dL
+ex:measurement_Calcium_Serum_1547 a chr:Measurement ;
+    sulo:hasValue "8.76"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Calcium_Serum_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Calcium_Serum_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Calcium_Serum_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium_Serum_1547 .
+
+# 5. Sodium in Serum – 138.26 mmol/L
+ex:measurement_Sodium_Serum_1547 a chr:Measurement ;
+    sulo:hasValue "138.26"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Sodium_Serum_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Sodium_Serum_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Sodium_Serum_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium_Serum_1547 .
+
+# 6. Potassium in Serum – 4.62 mmol/L
+ex:measurement_Potassium_Serum_1547 a chr:Measurement ;
+    sulo:hasValue "4.62"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Potassium_Serum_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Potassium_Serum_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Potassium_Serum_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium_Serum_1547 .
+
+# 7. Chloride in Serum – 105.71 mmol/L
+ex:measurement_Chloride_Serum_1547 a chr:Measurement ;
+    sulo:hasValue "105.71"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Chloride_Serum_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Chloride_Serum_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Chloride_Serum_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride_Serum_1547 .
+
+# 8. Carbon dioxide, total in Serum – 21.03 mmol/L
+ex:measurement_CO2_Serum_1547 a chr:Measurement ;
+    sulo:hasValue "21.03"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_CO2_Serum_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_CO2_Serum_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_CO2_Serum_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2_Serum_1547 .
+
+# 9. GFR in Serum – 51.638 mL/min/1.73 m2
+ex:measurement_GFR_Serum_1547 a chr:Measurement ;
+    sulo:hasValue "51.638"^^xsd:float ;
+    sulo:hasPart ex:unit_mL_per_min_per_1_73_m2 ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_GFR_Serum_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_GFR_Serum_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_GFR_Serum_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GFR_Serum_1547 .
+
+# 10. Glucose in Urine – 0.75849 mg/dL
+ex:measurement_Glucose_Urine_1547 a chr:Measurement ;
+    sulo:hasValue "0.75849"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Glucose_Urine_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Glucose_Urine_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Glucose_Urine_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Urine_1547 .
+
+# 11. Bilirubin.total in Urine – 0.20201 mg/dL
+ex:measurement_Bilirubin_Urine_1547 a chr:Measurement ;
+    sulo:hasValue "0.20201"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Bilirubin_Urine_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Bilirubin_Urine_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Bilirubin_Urine_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Bilirubin_Urine_1547 .
+
+# 12. Ketones in Urine – 1.4649 mg/dL
+ex:measurement_Ketones_Urine_1547 a chr:Measurement ;
+    sulo:hasValue "1.4649"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Ketones_Urine_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Ketones_Urine_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Ketones_Urine_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Ketones_Urine_1547 .
+
+# 13. Specific gravity of Urine – 1.0296 (nominal)
+ex:measurement_SpecificGravity_Urine_1547 a chr:Measurement ;
+    sulo:hasValue "1.0296"^^xsd:float ;
+    sulo:hasPart ex:unit_nominal ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_SpecificGravity_Urine_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_SpecificGravity_Urine_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_SpecificGravity_Urine_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_SpecificGravity_Urine_1547 .
+
+# 14. pH of Urine – 6.3626 pH
+ex:measurement_pH_Urine_1547 a chr:Measurement ;
+    sulo:hasValue "6.3626"^^xsd:float ;
+    sulo:hasPart ex:unit_pH ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_pH_Urine_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_pH_Urine_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_pH_Urine_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_pH_Urine_1547 .
+
+# 15. Protein in Urine – 261.08 mg/dL
+ex:measurement_Protein_Urine_1547 a chr:Measurement ;
+    sulo:hasValue "261.08"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Protein_Urine_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Protein_Urine_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Protein_Urine_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Protein_Urine_1547 .
+
+# 16. Hemoglobin A1c in Blood – 5.36 %
+ex:measurement_HbA1c_Blood_1547 a chr:Measurement ;
+    sulo:hasValue "5.36"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_HbA1c_Blood_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_HbA1c_Blood_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_HbA1c_Blood_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HbA1c_Blood_1547 .
+
+# 17. Body Height – 177 cm
+ex:measurement_BodyHeight_1547 a chr:Measurement ;
+    sulo:hasValue "177"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_BodyHeight_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_BodyHeight_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_BodyHeight_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyHeight_1547 .
+
+# 18. Pain severity – 2 score
+ex:measurement_PainSeverity_1547 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_PainSeverity_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_PainSeverity_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_PainSeverity_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainSeverity_1547 .
+
+# 19. Body Weight – 86 kg
+ex:measurement_BodyWeight_1547 a chr:Measurement ;
+    sulo:hasValue "86"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_BodyWeight_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_BodyWeight_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_BodyWeight_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyWeight_1547 .
+
+# 20. Body mass index – 27.45 kg/m2 (ratio)
+ex:measurement_BMI_1547 a chr:Measurement ;
+    sulo:hasValue "27.45"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;  # unit placeholder for ratio
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_BMI_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_BMI_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_BMI_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI_1547 .
+
+# 21. Heart rate – 94 /min
+ex:measurement_HeartRate_1547 a chr:Measurement ;
+    sulo:hasValue "94"^^xsd:float ;
+    sulo:hasPart ex:unit_bpm ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_HeartRate_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_HeartRate_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_HeartRate_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HeartRate_1547 .
+
+# 22. Respiratory rate – 13 /min
+ex:measurement_RespiratoryRate_1547 a chr:Measurement ;
+    sulo:hasValue "13"^^xsd:float ;
+    sulo:hasPart ex:unit_breaths_per_min ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_RespiratoryRate_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_RespiratoryRate_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_RespiratoryRate_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RespiratoryRate_1547 .
+
+# 23. Glucose in Blood – 191.38 mg/dL
+ex:measurement_Glucose_Blood_1547 a chr:Measurement ;
+    sulo:hasValue "191.38"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Glucose_Blood_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Glucose_Blood_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Glucose_Blood_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Blood_1547 .
+
+# 24. Urea nitrogen in Blood – 8.57 mg/dL
+ex:measurement_UreaNitrogen_Blood_1547 a chr:Measurement ;
+    sulo:hasValue "8.57"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_UreaNitrogen_Blood_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_UreaNitrogen_Blood_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_UreaNitrogen_Blood_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen_Blood_1547 .
+
+# 25. Creatinine in Blood – 3.74 mg/dL
+ex:measurement_Creatinine_Blood_1547 a chr:Measurement ;
+    sulo:hasValue "3.74"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Creatinine_Blood_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Creatinine_Blood_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Creatinine_Blood_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine_Blood_1547 .
+
+# 26. Calcium in Blood – 8.76 mg/dL
+ex:measurement_Calcium_Blood_1547 a chr:Measurement ;
+    sulo:hasValue "8.76"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Calcium_Blood_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Calcium_Blood_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Calcium_Blood_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium_Blood_1547 .
+
+# 27. Sodium in Blood – 138.26 mmol/L
+ex:measurement_Sodium_Blood_1547 a chr:Measurement ;
+    sulo:hasValue "138.26"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Sodium_Blood_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Sodium_Blood_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Sodium_Blood_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium_Blood_1547 .
+
+# 28. Potassium in Blood – 4.62 mmol/L
+ex:measurement_Potassium_Blood_1547 a chr:Measurement ;
+    sulo:hasValue "4.62"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Potassium_Blood_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Potassium_Blood_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Potassium_Blood_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium_Blood_1547 .
+
+# 29. Chloride in Blood – 105.71 mmol/L
+ex:measurement_Chloride_Blood_1547 a chr:Measurement ;
+    sulo:hasValue "105.71"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Chloride_Blood_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Chloride_Blood_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Chloride_Blood_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride_Blood_1547 .
+
+# 30. Carbon dioxide, total in Blood – 21.03 mmol/L
+ex:measurement_CO2_Blood_1547 a chr:Measurement ;
+    sulo:hasValue "21.03"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_CO2_Blood_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_CO2_Blood_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_CO2_Blood_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2_Blood_1547 .
+
+# 31. Cholesterol in Serum – 254.35 mg/dL
+ex:measurement_Cholesterol_Serum_1547 a chr:Measurement ;
+    sulo:hasValue "254.35"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Cholesterol_Serum_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Cholesterol_Serum_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Cholesterol_Serum_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Cholesterol_Serum_1547 .
+
+# 32. Triglyceride in Serum – 368.86 mg/dL
+ex:measurement_Triglyceride_Serum_1547 a chr:Measurement ;
+    sulo:hasValue "368.86"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_Triglyceride_Serum_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_Triglyceride_Serum_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_Triglyceride_Serum_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Triglyceride_Serum_1547 .
+
+# 33. LDL Cholesterol in Serum – 158.23 mg/dL
+ex:measurement_LDL_Cholesterol_Serum_1547 a chr:Measurement ;
+    sulo:hasValue "158.23"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_LDL_Cholesterol_Serum_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_LDL_Cholesterol_Serum_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_LDL_Cholesterol_Serum_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_LDL_Cholesterol_Serum_1547 .
+
+# 34. HDL Cholesterol in Serum – 22.34 mg/dL
+ex:measurement_HDL_Cholesterol_Serum_1547 a chr:Measurement ;
+    sulo:hasValue "22.34"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_HDL_Cholesterol_Serum_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_HDL_Cholesterol_Serum_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_HDL_Cholesterol_Serum_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HDL_Cholesterol_Serum_1547 .
+
+# 35. Microalbumin/Creatinine ratio in Urine – 243.18 mg/g
+ex:measurement_MicroalbuminCreatinine_Urine_1547 a chr:Measurement ;
+    sulo:hasValue "243.18"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;  # using mg/g placeholder
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_MicroalbuminCreatinine_Urine_1547 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_MicroalbuminCreatinine_Urine_1547 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_MicroalbuminCreatinine_Urine_1547 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_MicroalbuminCreatinine_Urine_1547 .
+
+# 36. GFR in Serum (second entry) – 23.61 mL/min/1.73 m2
+ex:measurement_GFR_Serum_1547_2 a chr:Measurement ;
+    sulo:hasValue "23.61"^^xsd:float ;
+    sulo:hasPart ex:unit_mL_per_min_per_1_73_m2 ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:proc_measure_GFR_Serum_1547_2 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_GFR_Serum_1547_2 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2019_12_18_1547 .
+
+ex:output_role_GFR_Serum_1547_2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GFR_Serum_1547_2 .
+
+# 37. PHQ-2 total score – 2 score
+ex:measurement_PHQ2_1658 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_phq2_2019_12_18_1658 .
+
+ex:proc_measure_PHQ2_1658 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_PHQ2_1658 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_phq2_2019_12_18_1658 .
+
+ex:output_role_PHQ2_1658 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ2_1658 .
+
+# 38. AUDIT-C total score – 3 score
+ex:measurement_AUDITC_1741 a chr:Measurement ;
+    sulo:hasValue "3"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_auditc_2019_12_18_1741 .
+
+ex:proc_measure_AUDITC_1741 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:output_role_AUDITC_1741 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_auditc_2019_12_18_1741 .
+
+ex:output_role_AUDITC_1741 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_AUDITC_1741 .
+
+# Evaluation 1 – Limited social contact (Moderate)
+ex:diagnostic_LimitedSocialContact a chr:DiagnosticStatement ;
+    rdfs:label "Limited social contact" .
+
+ex:evaluation_1626 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:role_CareProvider_Domenic ,
+                       ex:output_role_LimitedSocialContact_1626 ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_evaluation_2019_12_18_1626 .
+
+ex:output_role_LimitedSocialContact_1626 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnostic_LimitedSocialContact .
+
+# Evaluation 2 – Gingivitis (Moderate)
+ex:diagnostic_Gingivitis a chr:DiagnosticStatement ;
+    rdfs:label "Gingivitis" .
+
+ex:evaluation_1741 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Patient ,
+                       ex:role_CareProvider_Domenic ,
+                       ex:output_role_Gingivitis_1741 ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_evaluation_2019_12_18_1741 .
+
+ex:output_role_Gingivitis_1741 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnostic_Gingivitis .
+
+# Care plan
+ex:careplan_1 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "Follow‑up monitoring and routine review" .

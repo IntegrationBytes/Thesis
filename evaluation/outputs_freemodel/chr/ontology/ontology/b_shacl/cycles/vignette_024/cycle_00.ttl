@@ -1,0 +1,272 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:person_Casey401_Elijah719_Parker433 a chr:Person .
+
+# Person (provider)
+ex:provider_Eldridge510_Marquardt819 a chr:Person .
+
+# Care unit
+ex:careunit_JFCS a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2016_09_22_18_59 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_CareProvider_visit_2016_09_22_18_59 ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 ;
+    sulo:isIn ex:careunit_JFCS .
+
+ex:role_SubjectOfCare_visit_2016_09_22_18_59 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_CareProvider_visit_2016_09_22_18_59 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:provider_Eldridge510_Marquardt819 .
+
+ex:time_visit_2016_09_22_18_59 a sulo:TimeInstant ;
+    sulo:hasValue "2016-09-22T18:59:00"^^xsd:dateTime .
+
+# ---- Measurements ----
+
+# Height
+ex:proc_Height_2016_09_22_18_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_Output_Height_2016_09_22_18_59 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:meas_Height_2016_09_22_18_59 a chr:Measurement ;
+    sulo:hasValue "172.7"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:role_Output_Height_2016_09_22_18_59 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Height_2016_09_22_18_59 .
+
+# Weight
+ex:proc_Weight_2016_09_22_18_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_Output_Weight_2016_09_22_18_59 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:meas_Weight_2016_09_22_18_59 a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:role_Output_Weight_2016_09_22_18_59 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Weight_2016_09_22_18_59 .
+
+# BMI
+ex:proc_BMI_2016_09_22_18_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_Output_BMI_2016_09_22_18_59 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:meas_BMI_2016_09_22_18_59 a chr:Measurement ;
+    sulo:hasValue "27.56"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:role_Output_BMI_2016_09_22_18_59 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_BMI_2016_09_22_18_59 .
+
+# Heart rate
+ex:proc_HeartRate_2016_09_22_18_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_Output_HeartRate_2016_09_22_18_59 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:meas_HeartRate_2016_09_22_18_59 a chr:Measurement ;
+    sulo:hasValue "95"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:role_Output_HeartRate_2016_09_22_18_59 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HeartRate_2016_09_22_18_59 .
+
+# Respiratory rate
+ex:proc_RespRate_2016_09_22_18_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_Output_RespRate_2016_09_22_18_59 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:meas_RespRate_2016_09_22_18_59 a chr:Measurement ;
+    sulo:hasValue "12"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:role_Output_RespRate_2016_09_22_18_59 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_RespRate_2016_09_22_18_59 .
+
+# Cholesterol total
+ex:proc_CholesterolTotal_2016_09_22_18_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_Output_CholesterolTotal_2016_09_22_18_59 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:meas_CholesterolTotal_2016_09_22_18_59 a chr:Measurement ;
+    sulo:hasValue "159.14"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:role_Output_CholesterolTotal_2016_09_22_18_59 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_CholesterolTotal_2016_09_22_18_59 .
+
+# Triglyceride
+ex:proc_Triglyceride_2016_09_22_18_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_Output_Triglyceride_2016_09_22_18_59 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:meas_Triglyceride_2016_09_22_18_59 a chr:Measurement ;
+    sulo:hasValue "122.84"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:role_Output_Triglyceride_2016_09_22_18_59 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Triglyceride_2016_09_22_18_59 .
+
+# LDL Cholesterol
+ex:proc_LDL_2016_09_22_18_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_Output_LDL_2016_09_22_18_59 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:meas_LDL_2016_09_22_18_59 a chr:Measurement ;
+    sulo:hasValue "81.72"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:role_Output_LDL_2016_09_22_18_59 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_LDL_2016_09_22_18_59 .
+
+# HDL Cholesterol
+ex:proc_HDL_2016_09_22_18_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_Output_HDL_2016_09_22_18_59 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:meas_HDL_2016_09_22_18_59 a chr:Measurement ;
+    sulo:hasValue "52.85"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:role_Output_HDL_2016_09_22_18_59 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HDL_2016_09_22_18_59 .
+
+# Fall risk (Morse)
+ex:proc_FallRisk_2016_09_22_20_08 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_Output_FallRisk_2016_09_22_20_08 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_fallrisk_2016_09_22_20_08 .
+
+ex:time_fallrisk_2016_09_22_20_08 a sulo:TimeInstant ;
+    sulo:hasValue "2016-09-22T20:08:00"^^xsd:dateTime .
+
+ex:meas_FallRisk_2016_09_22_20_08 a chr:Measurement ;
+    sulo:hasValue "103"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_fallrisk_2016_09_22_20_08 .
+
+ex:role_Output_FallRisk_2016_09_22_20_08 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_FallRisk_2016_09_22_20_08 .
+
+# HARK total score
+ex:proc_HARK_2016_09_22_20_42 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_Output_HARK_2016_09_22_20_42 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_hark_2016_09_22_20_42 .
+
+ex:time_hark_2016_09_22_20_42 a sulo:TimeInstant ;
+    sulo:hasValue "2016-09-22T20:42:00"^^xsd:dateTime .
+
+ex:meas_HARK_2016_09_22_20_42 a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_hark_2016_09_22_20_42 .
+
+ex:role_Output_HARK_2016_09_22_20_42 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HARK_2016_09_22_20_42 .
+
+# Pain severity
+ex:proc_PainSeverity_2016_09_22_18_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_Output_PainSeverity_2016_09_22_18_59 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:meas_PainSeverity_2016_09_22_18_59 a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_visit_2016_09_22_18_59 .
+
+ex:role_Output_PainSeverity_2016_09_22_18_59 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_PainSeverity_2016_09_22_18_59 .
+
+# ---- Evaluation processes and diagnostic statements ----
+
+# Severity instance
+ex:severity_moderate a chr:Severity .
+
+# Evaluation 1 (Unemployed)
+ex:evaluation_2016_09_22_19_42 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_CareProvider_visit_2016_09_22_18_59 ,
+                       ex:role_Output_Diag_Unemployed_2016_09_22_19_42 ;
+    sulo:atTime ex:time_eval_2016_09_22_19_42 .
+
+ex:time_eval_2016_09_22_19_42 a sulo:TimeInstant ;
+    sulo:hasValue "2016-09-22T19:42:00"^^xsd:dateTime .
+
+ex:diag_Unemployed_2016_09_22_19_42 a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:role_Output_Diag_Unemployed_2016_09_22_19_42 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Unemployed_2016_09_22_19_42 .
+
+# Evaluation 2 (Gingivitis)
+ex:evaluation_2016_09_22_20_42 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_2016_09_22_18_59 ,
+                       ex:role_CareProvider_visit_2016_09_22_18_59 ,
+                       ex:role_Output_Diag_Gingivitis_2016_09_22_20_42 ;
+    sulo:atTime ex:time_eval_2016_09_22_20_42 .
+
+ex:time_eval_2016_09_22_20_42 a sulo:TimeInstant ;
+    sulo:hasValue "2016-09-22T20:42:00"^^xsd:dateTime .
+
+ex:diag_Gingivitis_2016_09_22_20_42 a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:role_Output_Diag_Gingivitis_2016_09_22_20_42 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Gingivitis_2016_09_22_20_42 .
+
+# ---- Care Plan ----
+ex:careplan_1 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followupMonitoring .
+
+ex:procedure_followupMonitoring a chr:MedicalProcedure .
+
+# ---- Units (simple placeholders) ----
+ex:unit_cm a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_score a sulo:Unit .
+
+# ---- Process status ----
+ex:status_completed a chr:ProcessStatus .

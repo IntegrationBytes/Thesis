@@ -1,0 +1,400 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Arlen68_Olson653 a chr:Person .
+ex:physician_Domenic627_Blick895 a chr:Person .
+
+# Care unit and visit
+ex:careunit_VIBRA_HOSPITAL_CENTRAL a chr:CareUnit .
+ex:visit_2023_01_04_1547 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Domenic627_Blick895 ;
+    chr:hasCareUnit ex:careunit_VIBRA_HOSPITAL_CENTRAL .
+
+# Evaluation and diagnosis
+ex:evaluation_2023_01_04_1834 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_Gingivitis .
+ex:diag_Gingivitis a chr:DiagnosticStatement .
+ex:condition_Gingivitis a chr:ClinicalCondition ;
+    chr:hasRecordDate "2023-01-04T18:34:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+ex:severity_Moderate a chr:Severity .
+
+# Units (no rdf:type required)
+ex:unit_mg_per_dL .
+ex:unit_mmol_per_L .
+ex:unit_mL_per_min_per_1_73_m2 .
+ex:unit_cm .
+ex:unit_score .
+ex:unit_kg .
+ex:unit_kg_per_m2 .
+ex:unit_per_min .
+ex:unit_percent .
+ex:unit_nominal .
+ex:unit_pH .
+ex:unit_mg_per_g .
+
+# Helper function to create measurement triples (written explicitly below)
+
+# 1 Glucose Serum
+ex:proc_Glucose_Serum_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Glucose_Serum_20230104T1547 .
+ex:meas_Glucose_Serum_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "176.27"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 2 Urea nitrogen Serum
+ex:proc_UreaNitrogen_Serum_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_UreaNitrogen_Serum_20230104T1547 .
+ex:meas_UreaNitrogen_Serum_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "17.12"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 3 Creatinine Serum
+ex:proc_Creatinine_Serum_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Creatinine_Serum_20230104T1547 .
+ex:meas_Creatinine_Serum_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0121"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 4 Calcium Serum
+ex:proc_Calcium_Serum_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Calcium_Serum_20230104T1547 .
+ex:meas_Calcium_Serum_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.88"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 5 Sodium Serum
+ex:proc_Sodium_Serum_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Sodium_Serum_20230104T1547 .
+ex:meas_Sodium_Serum_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "140.87"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 6 Potassium Serum
+ex:proc_Potassium_Serum_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Potassium_Serum_20230104T1547 .
+ex:meas_Potassium_Serum_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.32"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 7 Chloride Serum
+ex:proc_Chloride_Serum_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Chloride_Serum_20230104T1547 .
+ex:meas_Chloride_Serum_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "102.48"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 8 Carbon dioxide Serum
+ex:proc_CO2_Serum_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_CO2_Serum_20230104T1547 .
+ex:meas_CO2_Serum_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "22.8"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 9 GFR Serum (first value)
+ex:proc_GFR_Serum_20230104T1547_a a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_GFR_Serum_20230104T1547_a .
+ex:meas_GFR_Serum_20230104T1547_a a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "52.419"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 .
+
+# 10 Glucose Urine
+ex:proc_Glucose_Urine_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Glucose_Urine_20230104T1547 .
+ex:meas_Glucose_Urine_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.6923"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 11 Bilirubin Urine
+ex:proc_Bilirubin_Urine_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Bilirubin_Urine_20230104T1547 .
+ex:meas_Bilirubin_Urine_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.47543"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 12 Ketones Urine
+ex:proc_Ketones_Urine_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Ketones_Urine_20230104T1547 .
+ex:meas_Ketones_Urine_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.43007"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 13 Specific gravity Urine
+ex:proc_SpecificGravity_Urine_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_SpecificGravity_Urine_20230104T1547 .
+ex:meas_SpecificGravity_Urine_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0136"^^xsd:float ;
+    chr:hasUnit ex:unit_nominal .
+
+# 14 pH Urine
+ex:proc_pH_Urine_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_pH_Urine_20230104T1547 .
+ex:meas_pH_Urine_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.4541"^^xsd:float ;
+    chr:hasUnit ex:unit_pH .
+
+# 15 Protein Urine
+ex:proc_Protein_Urine_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Protein_Urine_20230104T1547 .
+ex:meas_Protein_Urine_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "281.06"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 16 Hemoglobin A1c (Blood)
+ex:proc_HbA1c_Blood_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_HbA1c_Blood_20230104T1547 .
+ex:meas_HbA1c_Blood_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.36"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+# 17 Body Height
+ex:proc_Height_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Height_20230104T1547 .
+ex:meas_Height_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "177"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+# 18 Pain severity (score)
+ex:proc_PainSeverity_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_PainSeverity_20230104T1547 .
+ex:meas_PainSeverity_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# 19 Body Weight
+ex:proc_Weight_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Weight_20230104T1547 .
+ex:meas_Weight_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "86"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+# 20 Body Mass Index
+ex:proc_BMI_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_BMI_20230104T1547 .
+ex:meas_BMI_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.45"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
+
+# 21 Heart rate
+ex:proc_HeartRate_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_HeartRate_20230104T1547 .
+ex:meas_HeartRate_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "71"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# 22 Respiratory rate
+ex:proc_RespiratoryRate_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_RespiratoryRate_20230104T1547 .
+ex:meas_RespiratoryRate_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# 23 Glucose Blood
+ex:proc_Glucose_Blood_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Glucose_Blood_20230104T1547 .
+ex:meas_Glucose_Blood_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "176.27"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 24 Urea nitrogen Blood
+ex:proc_UreaNitrogen_Blood_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_UreaNitrogen_Blood_20230104T1547 .
+ex:meas_UreaNitrogen_Blood_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "17.12"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 25 Creatinine Blood
+ex:proc_Creatinine_Blood_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Creatinine_Blood_20230104T1547 .
+ex:meas_Creatinine_Blood_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.81"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 26 Calcium Blood
+ex:proc_Calcium_Blood_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Calcium_Blood_20230104T1547 .
+ex:meas_Calcium_Blood_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.88"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 27 Sodium Blood
+ex:proc_Sodium_Blood_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Sodium_Blood_20230104T1547 .
+ex:meas_Sodium_Blood_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "140.87"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 28 Potassium Blood
+ex:proc_Potassium_Blood_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Potassium_Blood_20230104T1547 .
+ex:meas_Potassium_Blood_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.32"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 29 Chloride Blood
+ex:proc_Chloride_Blood_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Chloride_Blood_20230104T1547 .
+ex:meas_Chloride_Blood_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "102.48"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 30 Carbon dioxide Blood
+ex:proc_CO2_Blood_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_CO2_Blood_20230104T1547 .
+ex:meas_CO2_Blood_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "22.8"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 31 Cholesterol Serum
+ex:proc_Cholesterol_Serum_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Cholesterol_Serum_20230104T1547 .
+ex:meas_Cholesterol_Serum_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "256.21"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 32 Triglyceride Serum
+ex:proc_Triglyceride_Serum_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_Triglyceride_Serum_20230104T1547 .
+ex:meas_Triglyceride_Serum_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "359.53"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 33 LDL Cholesterol Serum
+ex:proc_LDL_Cholesterol_Serum_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_LDL_Cholesterol_Serum_20230104T1547 .
+ex:meas_LDL_Cholesterol_Serum_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "147.83"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 34 HDL Cholesterol Serum
+ex:proc_HDL_Cholesterol_Serum_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_HDL_Cholesterol_Serum_20230104T1547 .
+ex:meas_HDL_Cholesterol_Serum_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "36.47"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 35 Microalbumin/Creatinine Urine
+ex:proc_MicroalbuminCreatinine_Urine_20230104T1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_MicroalbuminCreatinine_Urine_20230104T1547 .
+ex:meas_MicroalbuminCreatinine_Urine_20230104T1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "133.86"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_g .
+
+# 36 GFR Serum (second value)
+ex:proc_GFR_Serum_20230104T1547_b a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_GFR_Serum_20230104T1547_b .
+ex:meas_GFR_Serum_20230104T1547_b a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "17.64"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 .
+
+# 37 GAD-7 total score
+ex:proc_GAD7_20230104T1652 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_GAD7_20230104T1652 .
+ex:meas_GAD7_20230104T1652 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T16:52:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# 38 PHQ-2 total score
+ex:proc_PHQ2_20230104T1733 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_PHQ2_20230104T1733 .
+ex:meas_PHQ2_20230104T1733 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T17:33:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# 39 PHQ-9 total score
+ex:proc_PHQ9_20230104T1800 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_PHQ9_20230104T1800 .
+ex:meas_PHQ9_20230104T1800 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T18:00:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# 40 AUDIT-C total score
+ex:proc_AUDITC_20230104T1834 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_AUDITC_20230104T1834 .
+ex:meas_AUDITC_20230104T1834 a chr:Measurement ;
+    chr:hasMeasuredDate "2023-01-04T18:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .

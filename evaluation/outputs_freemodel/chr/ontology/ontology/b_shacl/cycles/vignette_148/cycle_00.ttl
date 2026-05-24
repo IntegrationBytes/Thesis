@@ -1,0 +1,602 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Arlen68_Olson653 a chr:Person ;
+    rdfs:label "Arlen68 Olson653" .
+
+ex:provider_Domenic627_Blick895 a chr:Person ;
+    rdfs:label "Dr. Domenic627 Blick895" .
+
+# Care unit
+ex:careunit_VIBRA_HOSPITAL a chr:CareUnit ;
+    rdfs:label "VIBRA HOSPITAL OF WESTERN MASS - CENTRAL CAMPUS" .
+
+# Clinical visit
+ex:visit_2021_02_10_15_47 a chr:ClinicalVisit ;
+    sulo:isIn ex:careunit_VIBRA_HOSPITAL ;
+    sulo:atTime ex:time_visit_2021_02_10_15_47 .
+
+ex:time_visit_2021_02_10_15_47 sulo:hasValue "2021-02-10T15:47:00"^^xsd:dateTime .
+
+# Roles for the visit
+ex:role_subject_visit_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_provider_visit_2021_02_10_15_47 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:visit_2021_02_10_15_47 sulo:hasParticipant ex:role_subject_visit_2021_02_10_15_47 ,
+                                 ex:role_provider_visit_2021_02_10_15_47 .
+
+# Process status (shared)
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Helper function to create measurement triples (pattern repeated)
+# --------------------------------------------------------------
+
+# Example: Glucose in Serum (Mass/volume) – 195.87 mg/dL
+ex:proc_measure_Glucose_Serum_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_Glucose_Serum_2021_02_10_15_47 ,
+                       ex:role_performer_Glucose_Serum_2021_02_10_15_47 ,
+                       ex:role_output_Glucose_Serum_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_Glucose_Serum_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_Glucose_Serum_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_Glucose_Serum_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Serum_2021_02_10_15_47 .
+
+ex:measurement_Glucose_Serum_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "195.87"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> .
+
+# Urea nitrogen in Serum – 19.84 mg/dL
+ex:proc_measure_UreaNitrogen_Serum_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_UreaNitrogen_Serum_2021_02_10_15_47 ,
+                       ex:role_performer_UreaNitrogen_Serum_2021_02_10_15_47 ,
+                       ex:role_output_UreaNitrogen_Serum_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_UreaNitrogen_Serum_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_UreaNitrogen_Serum_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_UreaNitrogen_Serum_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen_Serum_2021_02_10_15_47 .
+
+ex:measurement_UreaNitrogen_Serum_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "19.84"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> .
+
+# Creatinine in Serum – 1.9924 mg/dL
+ex:proc_measure_Creatinine_Serum_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_Creatinine_Serum_2021_02_10_15_47 ,
+                       ex:role_performer_Creatinine_Serum_2021_02_10_15_47 ,
+                       ex:role_output_Creatinine_Serum_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_Creatinine_Serum_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_Creatinine_Serum_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_Creatinine_Serum_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine_Serum_2021_02_10_15_47 .
+
+ex:measurement_Creatinine_Serum_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "1.9924"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> .
+
+# Calcium in Serum – 9.85 mg/dL
+ex:proc_measure_Calcium_Serum_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_Calcium_Serum_2021_02_10_15_47 ,
+                       ex:role_performer_Calcium_Serum_2021_02_10_15_47 ,
+                       ex:role_output_Calcium_Serum_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_Calcium_Serum_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_Calcium_Serum_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_Calcium_Serum_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium_Serum_2021_02_10_15_47 .
+
+ex:measurement_Calcium_Serum_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "9.85"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> .
+
+# Sodium in Serum – 140.17 mmol/L
+ex:proc_measure_Sodium_Serum_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_Sodium_Serum_2021_02_10_15_47 ,
+                       ex:role_performer_Sodium_Serum_2021_02_10_15_47 ,
+                       ex:role_output_Sodium_Serum_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_Sodium_Serum_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_Sodium_Serum_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_Sodium_Serum_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium_Serum_2021_02_10_15_47 .
+
+ex:measurement_Sodium_Serum_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "140.17"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mmol_per_L> .
+
+# Potassium in Serum – 4.21 mmol/L
+ex:proc_measure_Potassium_Serum_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_Potassium_Serum_2021_02_10_15_47 ,
+                       ex:role_performer_Potassium_Serum_2021_02_10_15_47 ,
+                       ex:role_output_Potassium_Serum_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_Potassium_Serum_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_Potassium_Serum_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_Potassium_Serum_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium_Serum_2021_02_10_15_47 .
+
+ex:measurement_Potassium_Serum_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "4.21"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mmol_per_L> .
+
+# Chloride in Serum – 104.47 mmol/L
+ex:proc_measure_Chloride_Serum_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_Chloride_Serum_2021_02_10_15_47 ,
+                       ex:role_performer_Chloride_Serum_2021_02_10_15_47 ,
+                       ex:role_output_Chloride_Serum_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_Chloride_Serum_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_Chloride_Serum_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_Chloride_Serum_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride_Serum_2021_02_10_15_47 .
+
+ex:measurement_Chloride_Serum_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "104.47"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mmol_per_L> .
+
+# Carbon dioxide, total in Serum – 24.68 mmol/L
+ex:proc_measure_CO2_Serum_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_CO2_Serum_2021_02_10_15_47 ,
+                       ex:role_performer_CO2_Serum_2021_02_10_15_47 ,
+                       ex:role_output_CO2_Serum_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_CO2_Serum_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_CO2_Serum_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_CO2_Serum_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2_Serum_2021_02_10_15_47 .
+
+ex:measurement_CO2_Serum_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "24.68"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mmol_per_L> .
+
+# Glomerular filtration rate (Serum) – 55.963 mL/min/1.73 m2
+ex:proc_measure_GFR_Serum_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_GFR_Serum_2021_02_10_15_47 ,
+                       ex:role_performer_GFR_Serum_2021_02_10_15_47 ,
+                       ex:role_output_GFR_Serum_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_GFR_Serum_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_GFR_Serum_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_GFR_Serum_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GFR_Serum_2021_02_10_15_47 .
+
+ex:measurement_GFR_Serum_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "55.963"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mL_per_min_per_1.73_m2> .
+
+# Glucose in Urine – 0.53412 mg/dL
+ex:proc_measure_Glucose_Urine_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_Glucose_Urine_2021_02_10_15_47 ,
+                       ex:role_performer_Glucose_Urine_2021_02_10_15_47 ,
+                       ex:role_output_Glucose_Urine_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_Glucose_Urine_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_Glucose_Urine_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_Glucose_Urine_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Urine_2021_02_10_15_47 .
+
+ex:measurement_Glucose_Urine_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "0.53412"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> .
+
+# Bilirubin.total in Urine – 1.08 mg/dL
+ex:proc_measure_Bilirubin_Urine_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_Bilirubin_Urine_2021_02_10_15_47 ,
+                       ex:role_performer_Bilirubin_Urine_2021_02_10_15_47 ,
+                       ex:role_output_Bilirubin_Urine_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_Bilirubin_Urine_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_Bilirubin_Urine_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_Bilirubin_Urine_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Bilirubin_Urine_2021_02_10_15_47 .
+
+ex:measurement_Bilirubin_Urine_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "1.08"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> .
+
+# Ketones in Urine – 12.963 mg/dL
+ex:proc_measure_Ketones_Urine_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_Ketones_Urine_2021_02_10_15_47 ,
+                       ex:role_performer_Ketones_Urine_2021_02_10_15_47 ,
+                       ex:role_output_Ketones_Urine_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_Ketones_Urine_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_Ketones_Urine_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_Ketones_Urine_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Ketones_Urine_2021_02_10_15_47 .
+
+ex:measurement_Ketones_Urine_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "12.963"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> .
+
+# Specific gravity of Urine – 1.0253 (nominal)
+ex:proc_measure_SpecificGravity_Urine_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_SpecificGravity_Urine_2021_02_10_15_47 ,
+                       ex:role_performer_SpecificGravity_Urine_2021_02_10_15_47 ,
+                       ex:role_output_SpecificGravity_Urine_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_SpecificGravity_Urine_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_SpecificGravity_Urine_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_SpecificGravity_Urine_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_SpecificGravity_Urine_2021_02_10_15_47 .
+
+ex:measurement_SpecificGravity_Urine_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "1.0253"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/nominal> .
+
+# pH of Urine – 5.6015 pH
+ex:proc_measure_pH_Urine_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_pH_Urine_2021_02_10_15_47 ,
+                       ex:role_performer_pH_Urine_2021_02_10_15_47 ,
+                       ex:role_output_pH_Urine_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_pH_Urine_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_pH_Urine_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_pH_Urine_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_pH_Urine_2021_02_10_15_47 .
+
+ex:measurement_pH_Urine_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "5.6015"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/pH> .
+
+# Protein in Urine – 378.76 mg/dL
+ex:proc_measure_Protein_Urine_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_Protein_Urine_2021_02_10_15_47 ,
+                       ex:role_performer_Protein_Urine_2021_02_10_15_47 ,
+                       ex:role_output_Protein_Urine_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_Protein_Urine_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_Protein_Urine_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_Protein_Urine_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Protein_Urine_2021_02_10_15_47 .
+
+ex:measurement_Protein_Urine_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "378.76"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> .
+
+# Hemoglobin A1c in Blood – 5.36 %
+ex:proc_measure_HbA1c_Blood_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_HbA1c_Blood_2021_02_10_15_47 ,
+                       ex:role_performer_HbA1c_Blood_2021_02_10_15_47 ,
+                       ex:role_output_HbA1c_Blood_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_HbA1c_Blood_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_HbA1c_Blood_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_HbA1c_Blood_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HbA1c_Blood_2021_02_10_15_47 .
+
+ex:measurement_HbA1c_Blood_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "5.36"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/percent> .
+
+# Body Height – 177 cm
+ex:proc_measure_BodyHeight_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_BodyHeight_2021_02_10_15_47 ,
+                       ex:role_performer_BodyHeight_2021_02_10_15_47 ,
+                       ex:role_output_BodyHeight_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_BodyHeight_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_BodyHeight_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_BodyHeight_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyHeight_2021_02_10_15_47 .
+
+ex:measurement_BodyHeight_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "177"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/cm> .
+
+# Pain severity – 4 (score)
+ex:proc_measure_PainSeverity_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_PainSeverity_2021_02_10_15_47 ,
+                       ex:role_performer_PainSeverity_2021_02_10_15_47 ,
+                       ex:role_output_PainSeverity_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_PainSeverity_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_PainSeverity_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_PainSeverity_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainSeverity_2021_02_10_15_47 .
+
+ex:measurement_PainSeverity_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "4"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/score> .
+
+# Body Weight – 86 kg
+ex:proc_measure_BodyWeight_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_BodyWeight_2021_02_10_15_47 ,
+                       ex:role_performer_BodyWeight_2021_02_10_15_47 ,
+                       ex:role_output_BodyWeight_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_BodyWeight_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_BodyWeight_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_BodyWeight_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyWeight_2021_02_10_15_47 .
+
+ex:measurement_BodyWeight_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "86"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/kg> .
+
+# Body Mass Index – 27.45 kg/m2
+ex:proc_measure_BMI_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_BMI_2021_02_10_15_47 ,
+                       ex:role_performer_BMI_2021_02_10_15_47 ,
+                       ex:role_output_BMI_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_BMI_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_BMI_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_BMI_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI_2021_02_10_15_47 .
+
+ex:measurement_BMI_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "27.45"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/kg_per_m2> .
+
+# Heart rate – 69 /min
+ex:proc_measure_HeartRate_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_HeartRate_2021_02_10_15_47 ,
+                       ex:role_performer_HeartRate_2021_02_10_15_47 ,
+                       ex:role_output_HeartRate_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_HeartRate_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_HeartRate_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_HeartRate_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HeartRate_2021_02_10_15_47 .
+
+ex:measurement_HeartRate_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "69"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/bpm> .
+
+# Respiratory rate – 15 /min
+ex:proc_measure_RespiratoryRate_2021_02_10_15_47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_RespiratoryRate_2021_02_10_15_47 ,
+                       ex:role_performer_RespiratoryRate_2021_02_10_15_47 ,
+                       ex:role_output_RespiratoryRate_2021_02_10_15_47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2021_02_10_15_47 .
+
+ex:role_subject_RespiratoryRate_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_RespiratoryRate_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_RespiratoryRate_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RespiratoryRate_2021_02_10_15_47 .
+
+ex:measurement_RespiratoryRate_2021_02_10_15_47 a chr:Measurement ;
+    sulo:hasValue "15"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/breaths_per_min> .
+
+# Fall risk total – 13 (score) at 16:45
+ex:time_fallrisk_2021_02_10_16_45 sulo:hasValue "2021-02-10T16:45:00"^^xsd:dateTime .
+
+ex:proc_measure_FallRisk_2021_02_10_16_45 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_FallRisk_2021_02_10_16_45 ,
+                       ex:role_performer_FallRisk_2021_02_10_16_45 ,
+                       ex:role_output_FallRisk_2021_02_10_16_45 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_fallrisk_2021_02_10_16_45 .
+
+ex:role_subject_FallRisk_2021_02_10_16_45 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_FallRisk_2021_02_10_16_45 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_FallRisk_2021_02_10_16_45 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_FallRisk_2021_02_10_16_45 .
+
+ex:measurement_FallRisk_2021_02_10_16_45 a chr:Measurement ;
+    sulo:hasValue "13"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/score> .
+
+# Total score AUDIT-C – 1 (score) at 17:18
+ex:time_auditc_2021_02_10_17_18 sulo:hasValue "2021-02-10T17:18:00"^^xsd:dateTime .
+
+ex:proc_measure_AUDITC_2021_02_10_17_18 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_AUDITC_2021_02_10_17_18 ,
+                       ex:role_performer_AUDITC_2021_02_10_17_18 ,
+                       ex:role_output_AUDITC_2021_02_10_17_18 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_auditc_2021_02_10_17_18 .
+
+ex:role_subject_AUDITC_2021_02_10_17_18 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_AUDITC_2021_02_10_17_18 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_AUDITC_2021_02_10_17_18 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_AUDITC_2021_02_10_17_18 .
+
+ex:measurement_AUDITC_2021_02_10_17_18 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/score> .
+
+# Evaluation 1 – Medication review due (situation) – severity Moderate – 15:47
+ex:time_eval1_2021_02_10_15_47 sulo:hasValue "2021-02-10T15:47:00"^^xsd:dateTime .
+
+ex:evaluation_1_2021_02_10_15_47 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_subject_eval1_2021_02_10_15_47 ,
+                       ex:role_performer_eval1_2021_02_10_15_47 ,
+                       ex:role_output_eval1_2021_02_10_15_47 ;
+    sulo:atTime ex:time_eval1_2021_02_10_15_47 .
+
+ex:role_subject_eval1_2021_02_10_15_47 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_eval1_2021_02_10_15_47 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_eval1_2021_02_10_15_47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_MedicationReview_due_2021_02_10_15_47 .
+
+ex:diag_MedicationReview_due_2021_02_10_15_47 a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+# Evaluation 2 – Full-time employment (finding) – severity Moderate – 16:27
+ex:time_eval2_2021_02_10_16_27 sulo:hasValue "2021-02-10T16:27:00"^^xsd:dateTime .
+
+ex:evaluation_2_2021_02_10_16_27 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_subject_eval2_2021_02_10_16_27 ,
+                       ex:role_performer_eval2_2021_02_10_16_27 ,
+                       ex:role_output_eval2_2021_02_10_16_27 ;
+    sulo:atTime ex:time_eval2_2021_02_10_16_27 .
+
+ex:role_subject_eval2_2021_02_10_16_27 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:role_performer_eval2_2021_02_10_16_27 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Domenic627_Blick895 .
+
+ex:role_output_eval2_2021_02_10_16_27 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_FullTimeEmployment_2021_02_10_16_27 .
+
+ex:diag_FullTimeEmployment_2021_02_10_16_27 a chr:DiagnosticStatement ;
+    rdfs:label "Full-time employment (finding)" ;
+    sulo:hasFeature ex:severity_moderate .
+
+# Care plan referencing a follow‑up monitoring procedure
+ex:careplan_2021_02_10 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "Follow‑up monitoring and routine review" .

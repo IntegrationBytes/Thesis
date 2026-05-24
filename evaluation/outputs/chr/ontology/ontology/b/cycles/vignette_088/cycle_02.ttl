@@ -1,0 +1,537 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:visit_2022_11_09
+  a chr:ClinicalVisit ;
+  sulo:hasPart ex:visit_2022_11_09_time_role ;
+  sulo:hasPart ex:visit_2022_11_09_location_role .
+
+ex:visit_2022_11_09_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_visit_2022_11_09 .
+
+ex:time_visit_2022_11_09
+  a sulo:Object ;
+  sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+ex:visit_2022_11_09_location_role
+  a sulo:Role ;
+  a sulo:LocationRole ;
+  sulo:isFeatureOf ex:care_unit_caring .
+
+ex:care_unit_caring
+  a sulo:Object ;
+  a chr:CareUnit .
+
+ex:patient_Hallie315
+  a sulo:Object ;
+  a chr:Person .
+
+ex:role_visit_patient_Hallie315
+  a sulo:Role ;
+  a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Hallie315 .
+
+ex:visit_2022_11_09
+  sulo:hasParticipant ex:role_visit_patient_Hallie315 .
+
+ex:physician_Tapia475
+  a sulo:Object ;
+  a chr:Person .
+
+ex:role_visit_provider_Tapia475
+  a sulo:Role ;
+  a chr:CareProviderRole ;
+  sulo:isFeatureOf ex:physician_Tapia475 .
+
+ex:visit_2022_11_09
+  sulo:hasParticipant ex:role_visit_provider_Tapia475 .
+
+ex:well_child_visit
+  a sulo:Object ;
+  a chr:MedicalProcedure ;
+  rdfs:label "Well child visit" .
+
+ex:visit_2022_11_09
+  sulo:refersTo ex:well_child_visit .
+
+ex:height_measurement_process
+  a sulo:Process ;
+  a chr:MeasurementProcess ;
+  sulo:hasPart ex:height_measurement_process_time_role .
+
+ex:height_measurement_process_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_height_measurement .
+
+ex:time_height_measurement
+  a sulo:Object ;
+  sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+ex:role_height_patient
+  a sulo:Role ;
+  a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Hallie315 .
+
+ex:height_measurement_process
+  sulo:hasParticipant ex:role_height_patient .
+
+ex:height_measurement
+  a sulo:Object ;
+  a chr:Measurement ;
+  sulo:hasValue "80.2"^^xsd:float ;
+  sulo:hasPart ex:unit_cm ;
+  sulo:hasPart ex:height_measurement_time_role .
+
+ex:height_measurement_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_height_measurement .
+
+ex:unit_cm
+  a sulo:Object ;
+  a sulo:Unit ;
+  rdfs:label "cm" .
+
+ex:role_height_output
+  a sulo:Role ;
+  a chr:OutputRole ;
+  sulo:isFeatureOf ex:height_measurement .
+
+ex:height_measurement_process
+  sulo:hasParticipant ex:role_height_output .
+
+ex:process_status_completed
+  a sulo:Object ;
+  a chr:ProcessStatus ;
+  rdfs:label "completed" .
+
+ex:height_measurement_process
+  sulo:hasFeature ex:process_status_completed .
+
+ex:pain_measurement_process
+  a sulo:Process ;
+  a chr:MeasurementProcess ;
+  sulo:hasPart ex:pain_measurement_process_time_role .
+
+ex:pain_measurement_process_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_pain_measurement .
+
+ex:time_pain_measurement
+  a sulo:Object ;
+  sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+ex:role_pain_patient
+  a sulo:Role ;
+  a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Hallie315 .
+
+ex:pain_measurement_process
+  sulo:hasParticipant ex:role_pain_patient .
+
+ex:pain_measurement
+  a sulo:Object ;
+  a chr:Measurement ;
+  sulo:hasValue "1.0"^^xsd:float ;
+  sulo:hasPart ex:unit_score ;
+  sulo:hasPart ex:pain_measurement_time_role .
+
+ex:pain_measurement_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_pain_measurement .
+
+ex:unit_score
+  a sulo:Object ;
+  a sulo:Unit ;
+  rdfs:label "score" .
+
+ex:role_pain_output
+  a sulo:Role ;
+  a chr:OutputRole ;
+  sulo:isFeatureOf ex:pain_measurement .
+
+ex:pain_measurement_process
+  sulo:hasParticipant ex:role_pain_output .
+
+ex:pain_measurement_process
+  sulo:hasFeature ex:process_status_completed .
+
+ex:weight_measurement_process
+  a sulo:Process ;
+  a chr:MeasurementProcess ;
+  sulo:hasPart ex:weight_measurement_process_time_role .
+
+ex:weight_measurement_process_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_weight_measurement .
+
+ex:time_weight_measurement
+  a sulo:Object ;
+  sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+ex:role_weight_patient
+  a sulo:Role ;
+  a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Hallie315 .
+
+ex:weight_measurement_process
+  sulo:hasParticipant ex:role_weight_patient .
+
+ex:weight_measurement
+  a sulo:Object ;
+  a chr:Measurement ;
+  sulo:hasValue "12.6"^^xsd:float ;
+  sulo:hasPart ex:unit_kg ;
+  sulo:hasPart ex:weight_measurement_time_role .
+
+ex:weight_measurement_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_weight_measurement .
+
+ex:unit_kg
+  a sulo:Object ;
+  a sulo:Unit ;
+  rdfs:label "kg" .
+
+ex:role_weight_output
+  a sulo:Role ;
+  a chr:OutputRole ;
+  sulo:isFeatureOf ex:weight_measurement .
+
+ex:weight_measurement_process
+  sulo:hasParticipant ex:role_weight_output .
+
+ex:weight_measurement_process
+  sulo:hasFeature ex:process_status_completed .
+
+ex:weight_for_length_measurement_process
+  a sulo:Process ;
+  a chr:MeasurementProcess ;
+  sulo:hasPart ex:weight_for_length_measurement_process_time_role .
+
+ex:weight_for_length_measurement_process_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_weight_for_length_measurement .
+
+ex:time_weight_for_length_measurement
+  a sulo:Object ;
+  sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+ex:role_weight_for_length_patient
+  a sulo:Role ;
+  a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Hallie315 .
+
+ex:weight_for_length_measurement_process
+  sulo:hasParticipant ex:role_weight_for_length_patient .
+
+ex:weight_for_length_measurement
+  a sulo:Object ;
+  a chr:Measurement ;
+  sulo:hasValue "97.225"^^xsd:float ;
+  sulo:hasPart ex:unit_percent ;
+  sulo:hasPart ex:weight_for_length_measurement_time_role .
+
+ex:weight_for_length_measurement_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_weight_for_length_measurement .
+
+ex:unit_percent
+  a sulo:Object ;
+  a sulo:Unit ;
+  rdfs:label "%" .
+
+ex:role_weight_for_length_output
+  a sulo:Role ;
+  a chr:OutputRole ;
+  sulo:isFeatureOf ex:weight_for_length_measurement .
+
+ex:weight_for_length_measurement_process
+  sulo:hasParticipant ex:role_weight_for_length_output .
+
+ex:weight_for_length_measurement_process
+  sulo:hasFeature ex:process_status_completed .
+
+ex:head_circumference_percentile_measurement_process
+  a sulo:Process ;
+  a chr:MeasurementProcess ;
+  sulo:hasPart ex:head_circumference_percentile_measurement_process_time_role .
+
+ex:head_circumference_percentile_measurement_process_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_head_circumference_percentile_measurement .
+
+ex:time_head_circumference_percentile_measurement
+  a sulo:Object ;
+  sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+ex:role_head_circumference_percentile_patient
+  a sulo:Role ;
+  a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Hallie315 .
+
+ex:head_circumference_percentile_measurement_process
+  sulo:hasParticipant ex:role_head_circumference_percentile_patient .
+
+ex:head_circumference_percentile_measurement
+  a sulo:Object ;
+  a chr:Measurement ;
+  sulo:hasValue "57.73"^^xsd:float ;
+  sulo:hasPart ex:unit_percent ;
+  sulo:hasPart ex:head_circumference_percentile_measurement_time_role .
+
+ex:head_circumference_percentile_measurement_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_head_circumference_percentile_measurement .
+
+ex:role_head_circumference_percentile_output
+  a sulo:Role ;
+  a chr:OutputRole ;
+  sulo:isFeatureOf ex:head_circumference_percentile_measurement .
+
+ex:head_circumference_percentile_measurement_process
+  sulo:hasParticipant ex:role_head_circumference_percentile_output .
+
+ex:head_circumference_percentile_measurement_process
+  sulo:hasFeature ex:process_status_completed .
+
+ex:head_circumference_measurement_process
+  a sulo:Process ;
+  a chr:MeasurementProcess ;
+  sulo:hasPart ex:head_circumference_measurement_process_time_role .
+
+ex:head_circumference_measurement_process_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_head_circumference_measurement .
+
+ex:time_head_circumference_measurement
+  a sulo:Object ;
+  sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+ex:role_head_circumference_patient
+  a sulo:Role ;
+  a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Hallie315 .
+
+ex:head_circumference_measurement_process
+  sulo:hasParticipant ex:role_head_circumference_patient .
+
+ex:head_circumference_measurement
+  a sulo:Object ;
+  a chr:Measurement ;
+  sulo:hasValue "46.67"^^xsd:float ;
+  sulo:hasPart ex:unit_cm ;
+  sulo:hasPart ex:head_circumference_measurement_time_role .
+
+ex:head_circumference_measurement_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_head_circumference_measurement .
+
+ex:role_head_circumference_output
+  a sulo:Role ;
+  a chr:OutputRole ;
+  sulo:isFeatureOf ex:head_circumference_measurement .
+
+ex:head_circumference_measurement_process
+  sulo:hasParticipant ex:role_head_circumference_output .
+
+ex:head_circumference_measurement_process
+  sulo:hasFeature ex:process_status_completed .
+
+ex:heart_rate_measurement_process
+  a sulo:Process ;
+  a chr:MeasurementProcess ;
+  sulo:hasPart ex:heart_rate_measurement_process_time_role .
+
+ex:heart_rate_measurement_process_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_heart_rate_measurement .
+
+ex:time_heart_rate_measurement
+  a sulo:Object ;
+  sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+ex:role_heart_rate_patient
+  a sulo:Role ;
+  a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Hallie315 .
+
+ex:heart_rate_measurement_process
+  sulo:hasParticipant ex:role_heart_rate_patient .
+
+ex:heart_rate_measurement
+  a sulo:Object ;
+  a chr:Measurement ;
+  sulo:hasValue "92.0"^^xsd:float ;
+  sulo:hasPart ex:unit_per_min ;
+  sulo:hasPart ex:heart_rate_measurement_time_role .
+
+ex:heart_rate_measurement_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_heart_rate_measurement .
+
+ex:unit_per_min
+  a sulo:Object ;
+  a sulo:Unit ;
+  rdfs:label "/min" .
+
+ex:role_heart_rate_output
+  a sulo:Role ;
+  a chr:OutputRole ;
+  sulo:isFeatureOf ex:heart_rate_measurement .
+
+ex:heart_rate_measurement_process
+  sulo:hasParticipant ex:role_heart_rate_output .
+
+ex:heart_rate_measurement_process
+  sulo:hasFeature ex:process_status_completed .
+
+ex:respiratory_rate_measurement_process
+  a sulo:Process ;
+  a chr:MeasurementProcess ;
+  sulo:hasPart ex:respiratory_rate_measurement_process_time_role .
+
+ex:respiratory_rate_measurement_process_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_respiratory_rate_measurement .
+
+ex:time_respiratory_rate_measurement
+  a sulo:Object ;
+  sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+ex:role_respiratory_rate_patient
+  a sulo:Role ;
+  a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Hallie315 .
+
+ex:respiratory_rate_measurement_process
+  sulo:hasParticipant ex:role_respiratory_rate_patient .
+
+ex:respiratory_rate_measurement
+  a sulo:Object ;
+  a chr:Measurement ;
+  sulo:hasValue "13.0"^^xsd:float ;
+  sulo:hasPart ex:unit_per_min ;
+  sulo:hasPart ex:respiratory_rate_measurement_time_role .
+
+ex:respiratory_rate_measurement_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_respiratory_rate_measurement .
+
+ex:role_respiratory_rate_output
+  a sulo:Role ;
+  a chr:OutputRole ;
+  sulo:isFeatureOf ex:respiratory_rate_measurement .
+
+ex:respiratory_rate_measurement_process
+  sulo:hasParticipant ex:role_respiratory_rate_output .
+
+ex:respiratory_rate_measurement_process
+  sulo:hasFeature ex:process_status_completed .
+
+ex:evaluation_process
+  a sulo:Process ;
+  a chr:EvaluationProcess ;
+  sulo:hasPart ex:evaluation_process_time_role .
+
+ex:evaluation_process_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_evaluation .
+
+ex:time_evaluation
+  a sulo:Object ;
+  sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+ex:role_evaluation_patient
+  a sulo:Role ;
+  a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Hallie315 .
+
+ex:evaluation_process
+  sulo:hasParticipant ex:role_evaluation_patient .
+
+ex:role_evaluation_performer
+  a sulo:Role ;
+  a chr:PerformerRole ;
+  sulo:isFeatureOf ex:physician_Tapia475 .
+
+ex:evaluation_process
+  sulo:hasParticipant ex:role_evaluation_performer .
+
+ex:diagnostic_statement
+  a sulo:Object ;
+  a chr:DiagnosticStatement ;
+  rdfs:label "Medication review due (situation)" .
+
+ex:role_evaluation_output
+  a sulo:Role ;
+  a chr:OutputRole ;
+  sulo:isFeatureOf ex:diagnostic_statement .
+
+ex:evaluation_process
+  sulo:hasParticipant ex:role_evaluation_output .
+
+ex:medication_review_condition
+  a sulo:Object ;
+  a chr:ClinicalCondition ;
+  sulo:hasPart ex:medication_review_condition_time_role ;
+  rdfs:label "Medication review due (situation)" .
+
+ex:medication_review_condition_time_role
+  a sulo:Role ;
+  a sulo:TimeRole ;
+  sulo:isFeatureOf ex:time_condition_recorded .
+
+ex:time_condition_recorded
+  a sulo:Object ;
+  sulo:hasValue "2022-11-09T15:30:00"^^xsd:dateTime .
+
+ex:severity_moderate
+  a sulo:Object ;
+  a chr:Severity ;
+  rdfs:label "Moderate" .
+
+ex:medication_review_condition
+  sulo:hasFeature ex:severity_moderate .
+
+ex:care_plan
+  a sulo:Object ;
+  a chr:CarePlan ;
+  rdfs:label "Care plan for follow-up monitoring and routine review" .
+
+ex:follow_up_monitoring
+  a sulo:Object ;
+  a chr:MedicalProcedure ;
+  rdfs:label "Follow-up monitoring" .
+
+ex:routine_review
+  a sulo:Object ;
+  a chr:MedicalProcedure ;
+  rdfs:label "Routine review" .
+
+ex:care_plan
+  sulo:refersTo ex:follow_up_monitoring .
+
+ex:care_plan
+  sulo:refersTo ex:routine_review .

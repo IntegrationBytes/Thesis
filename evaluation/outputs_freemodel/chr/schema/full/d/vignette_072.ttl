@@ -1,0 +1,107 @@
+@prefix chr: <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex: <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_P_70538f53 a chr:Person .
+ex:person_Cari_Kohler a chr:Person .
+
+# Care Unit
+ex:careunit_DR_HES_PrimaryCare a chr:CareUnit .
+
+# Clinical Visit
+ex:visit_2024_11_19_0420 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:person_Cari_Kohler ;
+    chr:hasCareUnit ex:careunit_DR_HES_PrimaryCare ;
+    chr:hasPatient ex:patient_P_70538f53 .
+
+# Measurement Processes and Measurements
+ex:measproc_Height_20241119_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_Height_20241119_0420 .
+
+ex:measurement_Height_20241119_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "157.4"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+ex:measproc_Weight_20241119_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_Weight_20241119_0420 .
+
+ex:measurement_Weight_20241119_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "57.0"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+ex:measproc_BMI_Ratio_20241119_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_BMI_Ratio_20241119_0420 .
+
+ex:measurement_BMI_Ratio_20241119_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "23.0"^^xsd:float ;
+    chr:hasUnit sulo:kilogramPerSquareMeter .
+
+ex:measproc_BMI_Percentile_20241119_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_BMI_Percentile_20241119_0420 .
+
+ex:measurement_BMI_Percentile_20241119_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "90.094"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+ex:measproc_HeartRate_20241119_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_HeartRate_20241119_0420 .
+
+ex:measurement_HeartRate_20241119_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "65.0"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+ex:measproc_RespRate_20241119_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_RespRate_20241119_0420 .
+
+ex:measurement_RespRate_20241119_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.0"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+ex:measproc_PainSeverity_20241119_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_PainSeverity_20241119_0420 .
+
+ex:measurement_PainSeverity_20241119_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:measproc_PHQ9_20241119_0459 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_PHQ9_20241119_0459 .
+
+ex:measurement_PHQ9_20241119_0459 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-11-19T04:59:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Evaluation Process and Diagnostic Statement
+ex:evaluation_2024_11_19_0459 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_Gingivitis .
+
+ex:diagnostic_Gingivitis a chr:DiagnosticStatement .
+
+# Clinical Condition
+ex:condition_Gingivitis a chr:ClinicalCondition ;
+    chr:hasRecordDate "2024-11-19T04:59:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+# Care Plan
+ex:careplan_FollowUp a chr:CarePlan .

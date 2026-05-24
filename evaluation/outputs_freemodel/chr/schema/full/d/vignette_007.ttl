@@ -1,0 +1,211 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_ArleenBergstrom a chr:Person .
+ex:physician_LynwoodTromp a chr:Person .
+
+# Care unit and visit
+ex:careunit_NashobaValley a chr:CareUnit .
+ex:visit_2022_03_18_1413 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_LynwoodTromp ;
+    chr:hasCareUnit ex:careunit_NashobaValley ;
+    chr:hasPatient ex:patient_ArleenBergstrom .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Clinical condition
+ex:condition_MedicationReview a chr:ClinicalCondition ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasRecordDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+# Diagnostic statement
+ex:diag_MedicationReview a chr:DiagnosticStatement .
+
+# Evaluation process
+ex:evaluation_2022_03_18_1413 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MedicationReview .
+
+# Care plan and follow‑up procedure
+ex:status_completed a chr:ProcessStatus .
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    chr:hasPerformedDate "2022-03-18T14:13:00"^^xsd:dateTime ;
+    chr:hasPerformer ex:physician_LynwoodTromp ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasStatus ex:status_completed .
+ex:careplan_2022_03_18 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_FollowUpMonitoring .
+
+# Measurement processes and measurements
+
+ex:measproc_Height_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_Height_20220318_1413 .
+ex:meas_Height_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "159.0"^^xsd:float ;
+    chr:hasUnit sulo:cm ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_PainSeverity_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_PainSeverity_20220318_1413 .
+ex:meas_PainSeverity_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit sulo:score ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_Weight_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_Weight_20220318_1413 .
+ex:meas_Weight_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "63.2"^^xsd:float ;
+    chr:hasUnit sulo:kg ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_BMI_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_BMI_20220318_1413 .
+ex:meas_BMI_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "25.01"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_HeartRate_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_HeartRate_20220318_1413 .
+ex:meas_HeartRate_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "63.0"^^xsd:float ;
+    chr:hasUnit sulo:per_min ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_RespiratoryRate_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_RespiratoryRate_20220318_1413 .
+ex:meas_RespiratoryRate_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "12.0"^^xsd:float ;
+    chr:hasUnit sulo:per_min ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_Leukocytes_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_Leukocytes_20220318_1413 .
+ex:meas_Leukocytes_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "8.6497"^^xsd:float ;
+    chr:hasUnit sulo:10_3_per_uL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_Erythrocytes_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_Erythrocytes_20220318_1413 .
+ex:meas_Erythrocytes_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "5.0555"^^xsd:float ;
+    chr:hasUnit sulo:10_6_per_uL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_Hemoglobin_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_Hemoglobin_20220318_1413 .
+ex:meas_Hemoglobin_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "17.362"^^xsd:float ;
+    chr:hasUnit sulo:g_per_dL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_Hematocrit_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_Hematocrit_20220318_1413 .
+ex:meas_Hematocrit_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "41.118"^^xsd:float ;
+    chr:hasUnit sulo:percent ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_MCV_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_MCV_20220318_1413 .
+ex:meas_MCV_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "91.275"^^xsd:float ;
+    chr:hasUnit sulo:fL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_MCH_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_MCH_20220318_1413 .
+ex:meas_MCH_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "28.121"^^xsd:float ;
+    chr:hasUnit sulo:pg ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_MCHC_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_MCHC_20220318_1413 .
+ex:meas_MCHC_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "35.27"^^xsd:float ;
+    chr:hasUnit sulo:g_per_dL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_ErythrocyteDistWidth_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_ErythrocyteDistWidth_20220318_1413 .
+ex:meas_ErythrocyteDistWidth_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "44.402"^^xsd:float ;
+    chr:hasUnit sulo:fL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_Platelets_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_Platelets_20220318_1413 .
+ex:meas_Platelets_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "301.32"^^xsd:float ;
+    chr:hasUnit sulo:10_3_per_uL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_PlateletDistributionWidth_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_PlateletDistributionWidth_20220318_1413 .
+ex:meas_PlateletDistributionWidth_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "217.5"^^xsd:float ;
+    chr:hasUnit sulo:fL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_PlateletMeanVolume_20220318_1413 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_PlateletMeanVolume_20220318_1413 .
+ex:meas_PlateletMeanVolume_20220318_1413 a chr:Measurement ;
+    chr:hasQuantityValue "12.265"^^xsd:float ;
+    chr:hasUnit sulo:fL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+
+ex:measproc_GAD7_20220318_1524 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_GAD7_20220318_1524 .
+ex:meas_GAD7_20220318_1524 a chr:Measurement ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit sulo:score ;
+    chr:hasMeasuredDate "2022-03-18T15:24:00"^^xsd:dateTime .
+
+ex:measproc_HARK_20220318_1607 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_HARK_20220318_1607 .
+ex:meas_HARK_20220318_1607 a chr:Measurement ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit sulo:score ;
+    chr:hasMeasuredDate "2022-03-18T16:07:00"^^xsd:dateTime .
+
+ex:measproc_PHQ2_20220318_1646 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_PHQ2_20220318_1646 .
+ex:meas_PHQ2_20220318_1646 a chr:Measurement ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit sulo:score ;
+    chr:hasMeasuredDate "2022-03-18T16:46:00"^^xsd:dateTime .
+
+ex:measproc_AUDITC_20220318_1730 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:meas_AUDITC_20220318_1730 .
+ex:meas_AUDITC_20220318_1730 a chr:Measurement ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit sulo:score ;
+    chr:hasMeasuredDate "2022-03-18T17:30:00"^^xsd:dateTime .

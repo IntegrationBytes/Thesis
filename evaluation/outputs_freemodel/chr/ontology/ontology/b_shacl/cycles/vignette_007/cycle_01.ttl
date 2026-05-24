@@ -1,0 +1,194 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:person_Arleen_Bergstrom a chr:Person ;
+    rdfs:label "Arleen939 Marlyn309 Bergstrom287" .
+
+# Care unit
+ex:careunit_NashobaValley a chr:CareUnit ;
+    rdfs:label "NASHOBA VALLEY MEDICAL CENTER" .
+
+# Clinical visit
+ex:visit_2022_03_18_1413 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arleen ;
+    sulo:hasParticipant ex:role_CareProvider_DrLynwood ;
+    sulo:isIn ex:careunit_NashobaValley ;
+    sulo:atTime ex:time_visit_2022_03_18_1413 .
+
+# Roles for visit
+ex:role_SubjectOfCare_Arleen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen_Bergstrom .
+
+ex:role_CareProvider_DrLynwood a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_DrLynwood_Tromp .
+
+# Attending physician
+ex:person_DrLynwood_Tromp a chr:Person ;
+    rdfs:label "Dr. Lynwood354 Tromp100" .
+
+# Time instant for visit
+ex:time_visit_2022_03_18_1413 a sulo:TimeInstant ;
+    sulo:hasValue "2022-03-18T14:13:00"^^xsd:dateTime .
+
+# ---- Measurements (each as MeasurementProcess with Measurement output) ----
+
+# Body Height
+ex:proc_height_2022_03_18_1413 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arleen ;
+    sulo:hasParticipant ex:role_Output_height ;
+    sulo:atTime ex:time_measure_2022_03_18_1413 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_height a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_height .
+
+ex:meas_height a chr:Measurement ;
+    sulo:hasValue "159.0"^^xsd:float ;
+    sulo:hasPart ex:unit_cm .
+
+ex:unit_cm a sulo:Unit ;
+    rdfs:label "cm" .
+
+# Pain severity
+ex:proc_pain_2022_03_18_1413 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arleen ;
+    sulo:hasParticipant ex:role_Output_pain ;
+    sulo:atTime ex:time_measure_2022_03_18_1413 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_pain a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_pain .
+
+ex:meas_pain a chr:Measurement ;
+    sulo:hasValue "1.0"^^xsd:float ;
+    sulo:hasPart ex:unit_score .
+
+ex:unit_score a sulo:Unit ;
+    rdfs:label "score" .
+
+# Body Weight
+ex:proc_weight_2022_03_18_1413 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arleen ;
+    sulo:hasParticipant ex:role_Output_weight ;
+    sulo:atTime ex:time_measure_2022_03_18_1413 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_weight a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_weight .
+
+ex:meas_weight a chr:Measurement ;
+    sulo:hasValue "63.2"^^xsd:float ;
+    sulo:hasPart ex:unit_kg .
+
+ex:unit_kg a sulo:Unit ;
+    rdfs:label "kg" .
+
+# Body Mass Index
+ex:proc_bmi_2022_03_18_1413 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arleen ;
+    sulo:hasParticipant ex:role_Output_bmi ;
+    sulo:atTime ex:time_measure_2022_03_18_1413 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_bmi a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_bmi .
+
+ex:meas_bmi a chr:Measurement ;
+    sulo:hasValue "25.01"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 .
+
+ex:unit_kg_per_m2 a sulo:Unit ;
+    rdfs:label "kg/m2" .
+
+# Heart rate
+ex:proc_hr_2022_03_18_1413 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arleen ;
+    sulo:hasParticipant ex:role_Output_hr ;
+    sulo:atTime ex:time_measure_2022_03_18_1413 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_hr a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_hr .
+
+ex:meas_hr a chr:Measurement ;
+    sulo:hasValue "63.0"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min .
+
+ex:unit_per_min a sulo:Unit ;
+    rdfs:label "/min" .
+
+# Respiratory rate
+ex:proc_rr_2022_03_18_1413 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arleen ;
+    sulo:hasParticipant ex:role_Output_rr ;
+    sulo:atTime ex:time_measure_2022_03_18_1413 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_rr a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_rr .
+
+ex:meas_rr a chr:Measurement ;
+    sulo:hasValue "12.0"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min .
+
+# Leukocytes
+ex:proc_leukocytes_2022_03_18_1413 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arleen ;
+    sulo:hasParticipant ex:role_Output_leukocytes ;
+    sulo:atTime ex:time_measure_2022_03_18_1413 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_leukocytes a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_leukocytes .
+
+ex:meas_leukocytes a chr:Measurement ;
+    sulo:hasValue "8.6497"^^xsd:float ;
+    sulo:hasPart ex:unit_10e3_per_uL .
+
+ex:unit_10e3_per_uL a sulo:Unit ;
+    rdfs:label "10*3/uL" .
+
+# Evaluation process (diagnostic statement)
+ex:evaluation_2022_03_18_1413 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arleen ;
+    sulo:hasParticipant ex:role_Performer_DrLynwood ;
+    sulo:atTime ex:time_evaluation_2022_03_18_1413 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Performer_DrLynwood a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_DrLynwood_Tromp .
+
+ex:diagnostic_med_review a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+# Condition (the diagnostic statement is also a ClinicalCondition)
+ex:condition_med_review a chr:ClinicalCondition ;
+    sulo:isFeatureOf ex:diagnostic_med_review ;
+    sulo:atTime ex:time_condition_2022_03_18_1413 .
+
+ex:time_condition_2022_03_18_1413 a sulo:TimeInstant ;
+    sulo:hasValue "2022-03-18T14:13:00"^^xsd:dateTime .
+
+# Care plan referencing the evaluation (as a MedicalProcedure placeholder)
+ex:careplan_2022_03_18 a chr:CarePlan ;
+    sulo:refersTo ex:evaluation_2022_03_18_1413 .
+
+# Process status (shared instance)
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Time instant shared for all measurements (same timestamp)
+ex:time_measure_2022_03_18_1413 a sulo:TimeInstant ;
+    sulo:hasValue "2022-03-18T14:13:00"^^xsd:dateTime .
+
+# Time instant for evaluation
+ex:time_evaluation_2022_03_18_1413 a sulo:TimeInstant ;
+    sulo:hasValue "2022-03-18T14:13:00"^^xsd:dateTime .

@@ -1,0 +1,52 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Harvey63_Napoleon578_Homenick806
+    a chr:Person .
+
+ex:person_Victor493_Chavez927
+    a chr:Person .
+
+ex:careunit_4499_ACUSHNET_AVENUE_OPERATING_COMPANY_LLC
+    a chr:CareUnit .
+
+ex:visit_2020_05_29_2149
+    a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Harvey63_Napoleon578_Homenick806 ;
+    chr:hasCareProvider ex:person_Victor493_Chavez927 ;
+    chr:hasCareUnit ex:careunit_4499_ACUSHNET_AVENUE_OPERATING_COMPANY_LLC .
+
+ex:measproc_PainSeverity_2020_05_29_2222
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Harvey63_Napoleon578_Homenick806 ;
+    chr:hasResult ex:measurement_PainScore_2020_05_29_2222 .
+
+ex:measurement_PainScore_2020_05_29_2222
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2020-05-29T22:22:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.0"^^xsd:float .
+
+ex:evaluation_2020_05_29_2222
+    a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_RecurrentRectalPolyp .
+
+ex:diag_RecurrentRectalPolyp
+    a chr:DiagnosticStatement .
+
+ex:condition_RecurrentRectalPolyp
+    a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-05-29T22:22:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate
+    a chr:Severity .
+
+ex:careplan_FollowUp
+    a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring
+    a chr:MedicalProcedure .

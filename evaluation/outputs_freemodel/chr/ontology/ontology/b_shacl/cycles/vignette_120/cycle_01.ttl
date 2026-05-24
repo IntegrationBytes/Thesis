@@ -1,0 +1,191 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Arlen68_Olson653 a chr:Person .
+ex:physician_Christeen33_Toy286 a chr:Person .
+
+# Care unit
+ex:careunit_JFSSWMA a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2016-06-15_16-47 a chr:ClinicalVisit ;
+    sulo:isIn ex:careunit_JFSSWMA ;
+    sulo:atTime ex:time_visit_2016-06-15_16-47 .
+
+ex:time_visit_2016-06-15_16-47 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-15T16:47:00"^^xsd:dateTime .
+
+# Roles for the visit
+ex:role_SubjectOfCare_Visit_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+ex:role_CareProvider_Visit_Physician a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Christeen33_Toy286 .
+
+ex:visit_2016-06-15_16-47 sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                                 ex:role_CareProvider_Visit_Physician .
+
+# Process status (completed)
+ex:status_completed a chr:ProcessStatus .
+
+# -----------------------------------------------------------------
+# Measurement processes and results (selected examples; pattern repeated for each)
+# -----------------------------------------------------------------
+
+# Glucose in Serum (Mass/volume) – 129.76 mg/dL
+ex:proc_Glucose_Serum_2016-06-15_16-47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Glucose_Serum_Patient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Glucose_Serum_2016-06-15_16-47 .
+
+ex:role_SubjectOfCare_Glucose_Serum_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:time_Glucose_Serum_2016-06-15_16-47 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-15T16:47:00"^^xsd:dateTime .
+
+ex:meas_Glucose_Serum_2016-06-15_16-47 a chr:Measurement ;
+    sulo:hasValue "129.76"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Glucose_Serum_2016-06-15_16-47 .
+
+# Urea nitrogen in Serum – 12.77 mg/dL
+ex:proc_UreaNitrogen_Serum_2016-06-15_16-47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_UreaNitrogen_Serum_Patient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_UreaNitrogen_Serum_2016-06-15_16-47 .
+
+ex:role_SubjectOfCare_UreaNitrogen_Serum_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:time_UreaNitrogen_Serum_2016-06-15_16-47 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-15T16:47:00"^^xsd:dateTime .
+
+ex:meas_UreaNitrogen_Serum_2016-06-15_16-47 a chr:Measurement ;
+    sulo:hasValue "12.77"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_UreaNitrogen_Serum_2016-06-15_16-47 .
+
+# Creatinine in Serum – 2.0898 mg/dL
+ex:proc_Creatinine_Serum_2016-06-15_16-47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Creatinine_Serum_Patient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Creatinine_Serum_2016-06-15_16-47 .
+
+ex:role_SubjectOfCare_Creatinine_Serum_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:time_Creatinine_Serum_2016-06-15_16-47 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-15T16:47:00"^^xsd:dateTime .
+
+ex:meas_Creatinine_Serum_2016-06-15_16-47 a chr:Measurement ;
+    sulo:hasValue "2.0898"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Creatinine_Serum_2016-06-15_16-47 .
+
+# Calcium in Serum – 8.55 mg/dL
+ex:proc_Calcium_Serum_2016-06-15_16-47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Calcium_Serum_Patient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Calcium_Serum_2016-06-15_16-47 .
+
+ex:role_SubjectOfCare_Calcium_Serum_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:time_Calcium_Serum_2016-06-15_16-47 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-15T16:47:00"^^xsd:dateTime .
+
+ex:meas_Calcium_Serum_2016-06-15_16-47 a chr:Measurement ;
+    sulo:hasValue "8.55"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Calcium_Serum_2016-06-15_16-47 .
+
+# Sodium in Serum – 143.79 mmol/L
+ex:proc_Sodium_Serum_2016-06-15_16-47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Sodium_Serum_Patient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Sodium_Serum_2016-06-15_16-47 .
+
+ex:role_SubjectOfCare_Sodium_Serum_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+
+ex:time_Sodium_Serum_2016-06-15_16-47 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-15T16:47:00"^^xsd:dateTime .
+
+ex:meas_Sodium_Serum_2016-06-15_16-47 a chr:Measurement ;
+    sulo:hasValue "143.79"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_Sodium_Serum_2016-06-15_16-47 .
+
+# -----------------------------------------------------------------
+# Unit definitions (required for SHACL validation)
+# -----------------------------------------------------------------
+ex:unit_mg_per_dL a sulo:Unit ;
+    rdfs:label "mg/dL" .
+
+ex:unit_mmol_per_L a sulo:Unit ;
+    rdfs:label "mmol/L" .
+
+# -----------------------------------------------------------------
+# Evaluation processes producing diagnostic statements
+# -----------------------------------------------------------------
+
+# First evaluation – Medication review due (situation)
+ex:evaluation_1 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eval1_Patient ,
+                       ex:role_CareProvider_Eval1_Physician ,
+                       ex:role_Output_Eval1_Diagnostic ;
+    sulo:atTime ex:time_evaluation_1 .
+
+ex:role_SubjectOfCare_Eval1_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+ex:role_CareProvider_Eval1_Physician a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Christeen33_Toy286 .
+ex:role_Output_Eval1_Diagnostic a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Medication_review .
+
+ex:diag_Medication_review a chr:DiagnosticStatement .
+ex:time_evaluation_1 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-15T16:47:00"^^xsd:dateTime .
+
+# Clinical condition linked to the diagnostic statement
+ex:cond_Medication_review a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_cond_Medication_review .
+
+ex:severity_moderate a chr:Severity .
+ex:time_cond_Medication_review a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-15T16:47:00"^^xsd:dateTime .
+
+# Second evaluation – Social isolation (finding)
+ex:evaluation_2 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eval2_Patient ,
+                       ex:role_CareProvider_Eval2_Physician ,
+                       ex:role_Output_Eval2_Diagnostic ;
+    sulo:atTime ex:time_evaluation_2 .
+
+ex:role_SubjectOfCare_Eval2_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arlen68_Olson653 .
+ex:role_CareProvider_Eval2_Physician a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Christeen33_Toy286 .
+ex:role_Output_Eval2_Diagnostic a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Social_isolation .
+
+ex:diag_Social_isolation a chr:DiagnosticStatement .
+ex:time_evaluation_2 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-15T17:36:00"^^xsd:dateTime .
+
+ex:cond_Social_isolation a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_cond_Social_isolation .
+
+ex:time_cond_Social_isolation a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-15T17:36:00"^^xsd:dateTime .
+
+# -----------------------------------------------------------------
+# Care plan (reference to a medical procedure placeholder)
+# -----------------------------------------------------------------
+ex:careplan_1 a chr:CarePlan .

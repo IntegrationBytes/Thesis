@@ -1,0 +1,767 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons -------------------------------------------------
+ex:patient_Grimes a chr:Person .
+ex:physician_Miyoko a chr:Person .
+
+# Roles ---------------------------------------------------
+ex:role_SubjectOfCare_Grimes a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Grimes .
+
+ex:role_CareProvider_Miyoko a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Miyoko .
+
+# Care unit -----------------------------------------------
+ex:careunit_ENCOMPASS a chr:CareUnit .
+
+# Clinical visit -------------------------------------------
+ex:visit_2014_06_18_16_47 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_CareProvider_Miyoko ;
+    sulo:isIn ex:careunit_ENCOMPASS ;
+    sulo:atTime ex:time_visit_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_visit_2014_06_18_16_47 a sulo:TimeInstant ;
+    sulo:hasValue "2014-06-18T16:47:00"^^xsd:dateTime .
+
+ex:status_completed a chr:ProcessStatus .
+
+# Units ----------------------------------------------------
+ex:unit_mg_per_dL          a sulo:Unit .
+ex:unit_mmol_per_L         a sulo:Unit .
+ex:unit_mL_per_min_per_1_73_m2 a sulo:Unit .
+ex:unit_cm                 a sulo:Unit .
+ex:unit_kg                 a sulo:Unit .
+ex:unit_kg_per_m2          a sulo:Unit .
+ex:unit_per_min            a sulo:Unit .
+ex:unit_score              a sulo:Unit .
+ex:unit_percent            a sulo:Unit .
+ex:unit_fL                 a sulo:Unit .
+ex:unit_pg                 a sulo:Unit .
+ex:unit_g_per_dL           a sulo:Unit .
+ex:unit_10_3_per_uL        a sulo:Unit .
+ex:unit_10_6_per_uL        a sulo:Unit .
+ex:unit_nominal            a sulo:Unit .
+ex:unit_pH                 a sulo:Unit .
+
+# Shared time instant for all measurements (same datetime) --
+ex:time_measure_2014_06_18_16_47 a sulo:TimeInstant ;
+    sulo:hasValue "2014-06-18T16:47:00"^^xsd:dateTime .
+
+# -----------------------------------------------------------------
+# Helper function to create measurement triples (process, measurement, output role)
+# -----------------------------------------------------------------
+# Glucose in Serum (mg/dL) – 88.83
+ex:mp_Glucose_Serum_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Glucose_Serum_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Glucose_Serum_1 a chr:Measurement ;
+    sulo:hasValue "88.83"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Glucose_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Glucose_Serum_1 .
+
+# Urea nitrogen in Serum (mg/dL) – 8.25
+ex:mp_UreaNitrogen_Serum_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_UreaNitrogen_Serum_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_UreaNitrogen_Serum_1 a chr:Measurement ;
+    sulo:hasValue "8.25"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_UreaNitrogen_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_UreaNitrogen_Serum_1 .
+
+# Creatinine in Serum (mg/dL) – 1.9746
+ex:mp_Creatinine_Serum_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Creatinine_Serum_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Creatinine_Serum_1 a chr:Measurement ;
+    sulo:hasValue "1.9746"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Creatinine_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Creatinine_Serum_1 .
+
+# Calcium in Serum (mg/dL) – 10.17
+ex:mp_Calcium_Serum_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Calcium_Serum_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Calcium_Serum_1 a chr:Measurement ;
+    sulo:hasValue "10.17"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Calcium_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Calcium_Serum_1 .
+
+# Sodium in Serum (mmol/L) – 140.33
+ex:mp_Sodium_Serum_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Sodium_Serum_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Sodium_Serum_1 a chr:Measurement ;
+    sulo:hasValue "140.33"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Sodium_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Sodium_Serum_1 .
+
+# Potassium in Serum (mmol/L) – 4.93
+ex:mp_Potassium_Serum_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Potassium_Serum_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Potassium_Serum_1 a chr:Measurement ;
+    sulo:hasValue "4.93"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Potassium_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Potassium_Serum_1 .
+
+# Chloride in Serum (mmol/L) – 104.34
+ex:mp_Chloride_Serum_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Chloride_Serum_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Chloride_Serum_1 a chr:Measurement ;
+    sulo:hasValue "104.34"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Chloride_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Chloride_Serum_1 .
+
+# Carbon dioxide, total in Serum (mmol/L) – 24.54
+ex:mp_CO2_Serum_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_CO2_Serum_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_CO2_Serum_1 a chr:Measurement ;
+    sulo:hasValue "24.54"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_CO2_Serum_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_CO2_Serum_1 .
+
+# GFR (mL/min/1.73 m2) – 39.431
+ex:mp_GFR_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_GFR_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_GFR_1 a chr:Measurement ;
+    sulo:hasValue "39.431"^^xsd:float ;
+    sulo:hasPart ex:unit_mL_per_min_per_1_73_m2 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_GFR_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_GFR_1 .
+
+# Glucose in Urine (mg/dL) – 2.3224
+ex:mp_Glucose_Urine_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Glucose_Urine_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Glucose_Urine_1 a chr:Measurement ;
+    sulo:hasValue "2.3224"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Glucose_Urine_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Glucose_Urine_1 .
+
+# Bilirubin.total in Urine (mg/dL) – 0.61233
+ex:mp_Bilirubin_Urine_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Bilirubin_Urine_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Bilirubin_Urine_1 a chr:Measurement ;
+    sulo:hasValue "0.61233"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Bilirubin_Urine_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Bilirubin_Urine_1 .
+
+# Ketones in Urine (mg/dL) – 10.406
+ex:mp_Ketones_Urine_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Ketones_Urine_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Ketones_Urine_1 a chr:Measurement ;
+    sulo:hasValue "10.406"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Ketones_Urine_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Ketones_Urine_1 .
+
+# Specific gravity of Urine (nominal) – 1.0053
+ex:mp_SpecificGravity_Urine_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_SpecificGravity_Urine_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_SpecificGravity_Urine_1 a chr:Measurement ;
+    sulo:hasValue "1.0053"^^xsd:float ;
+    sulo:hasPart ex:unit_nominal ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_SpecificGravity_Urine_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_SpecificGravity_Urine_1 .
+
+# pH of Urine – 5.4526
+ex:mp_pH_Urine_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_pH_Urine_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_pH_Urine_1 a chr:Measurement ;
+    sulo:hasValue "5.4526"^^xsd:float ;
+    sulo:hasPart ex:unit_pH ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_pH_Urine_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_pH_Urine_1 .
+
+# Protein in Urine (mg/dL) – 335.94
+ex:mp_Protein_Urine_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Protein_Urine_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Protein_Urine_1 a chr:Measurement ;
+    sulo:hasValue "335.94"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Protein_Urine_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Protein_Urine_1 .
+
+# Hemoglobin A1c/Hemoglobin.total in Blood (%) – 2.93
+ex:mp_HbA1c_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_HbA1c_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_HbA1c_Blood_1 a chr:Measurement ;
+    sulo:hasValue "2.93"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_HbA1c_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HbA1c_Blood_1 .
+
+# Body Height (cm) – 195.1
+ex:mp_Height_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Height_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Height_1 a chr:Measurement ;
+    sulo:hasValue "195.1"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Height_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Height_1 .
+
+# Pain severity (score) – 2
+ex:mp_PainSeverity_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_PainSeverity_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_PainSeverity_1 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_PainSeverity_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_PainSeverity_1 .
+
+# Body Weight (kg) – 106.6
+ex:mp_Weight_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Weight_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Weight_1 a chr:Measurement ;
+    sulo:hasValue "106.6"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Weight_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Weight_1 .
+
+# Body Mass Index (kg/m2) – 28.01
+ex:mp_BMI_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_BMI_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_BMI_1 a chr:Measurement ;
+    sulo:hasValue "28.01"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_BMI_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_BMI_1 .
+
+# Heart rate (per min) – 73
+ex:mp_HeartRate_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_HeartRate_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_HeartRate_1 a chr:Measurement ;
+    sulo:hasValue "73"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_HeartRate_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HeartRate_1 .
+
+# Respiratory rate (per min) – 15
+ex:mp_RespiratoryRate_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_RespiratoryRate_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_RespiratoryRate_1 a chr:Measurement ;
+    sulo:hasValue "15"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_RespiratoryRate_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_RespiratoryRate_1 .
+
+# Glucose in Blood (mg/dL) – 88.83
+ex:mp_Glucose_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Glucose_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Glucose_Blood_1 a chr:Measurement ;
+    sulo:hasValue "88.83"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Glucose_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Glucose_Blood_1 .
+
+# Urea nitrogen in Blood (mg/dL) – 8.25
+ex:mp_UreaNitrogen_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_UreaNitrogen_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_UreaNitrogen_Blood_1 a chr:Measurement ;
+    sulo:hasValue "8.25"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_UreaNitrogen_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_UreaNitrogen_Blood_1 .
+
+# Creatinine in Blood (mg/dL) – 7.7
+ex:mp_Creatinine_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Creatinine_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Creatinine_Blood_1 a chr:Measurement ;
+    sulo:hasValue "7.7"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Creatinine_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Creatinine_Blood_1 .
+
+# Calcium in Blood (mg/dL) – 10.17
+ex:mp_Calcium_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Calcium_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Calcium_Blood_1 a chr:Measurement ;
+    sulo:hasValue "10.17"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Calcium_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Calcium_Blood_1 .
+
+# Sodium in Blood (mmol/L) – 140.33
+ex:mp_Sodium_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Sodium_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Sodium_Blood_1 a chr:Measurement ;
+    sulo:hasValue "140.33"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Sodium_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Sodium_Blood_1 .
+
+# Potassium in Blood (mmol/L) – 4.93
+ex:mp_Potassium_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Potassium_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Potassium_Blood_1 a chr:Measurement ;
+    sulo:hasValue "4.93"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Potassium_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Potassium_Blood_1 .
+
+# Chloride in Blood (mmol/L) – 104.34
+ex:mp_Chloride_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Chloride_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Chloride_Blood_1 a chr:Measurement ;
+    sulo:hasValue "104.34"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Chloride_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Chloride_Blood_1 .
+
+# Carbon dioxide, total in Blood (mmol/L) – 24.54
+ex:mp_CO2_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_CO2_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_CO2_Blood_1 a chr:Measurement ;
+    sulo:hasValue "24.54"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_CO2_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_CO2_Blood_1 .
+
+# Leukocytes in Blood (10*3/uL) – 6.8742
+ex:mp_Leukocytes_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Leukocytes_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Leukocytes_Blood_1 a chr:Measurement ;
+    sulo:hasValue "6.8742"^^xsd:float ;
+    sulo:hasPart ex:unit_10_3_per_uL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Leukocytes_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Leukocytes_Blood_1 .
+
+# Erythrocytes in Blood (10*6/uL) – 4.6622
+ex:mp_Erythrocytes_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Erythrocytes_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Erythrocytes_Blood_1 a chr:Measurement ;
+    sulo:hasValue "4.6622"^^xsd:float ;
+    sulo:hasPart ex:unit_10_6_per_uL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Erythrocytes_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Erythrocytes_Blood_1 .
+
+# Hemoglobin in Blood (g/dL) – 16.562
+ex:mp_Hemoglobin_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Hemoglobin_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Hemoglobin_Blood_1 a chr:Measurement ;
+    sulo:hasValue "16.562"^^xsd:float ;
+    sulo:hasPart ex:unit_g_per_dL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Hemoglobin_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Hemoglobin_Blood_1 .
+
+# Hematocrit in Blood (%) – 40.296
+ex:mp_Hematocrit_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Hematocrit_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Hematocrit_Blood_1 a chr:Measurement ;
+    sulo:hasValue "40.296"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Hematocrit_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Hematocrit_Blood_1 .
+
+# MCV (fL) – 82.892
+ex:mp_MCV_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_MCV_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_MCV_Blood_1 a chr:Measurement ;
+    sulo:hasValue "82.892"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_MCV_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_MCV_Blood_1 .
+
+# MCH (pg) – 31.036
+ex:mp_MCH_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_MCH_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_MCH_Blood_1 a chr:Measurement ;
+    sulo:hasValue "31.036"^^xsd:float ;
+    sulo:hasPart ex:unit_pg ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_MCH_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_MCH_Blood_1 .
+
+# MCHC (g/dL) – 35.211
+ex:mp_MCHC_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_MCHC_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_MCHC_Blood_1 a chr:Measurement ;
+    sulo:hasValue "35.211"^^xsd:float ;
+    sulo:hasPart ex:unit_g_per_dL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_MCHC_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_MCHC_Blood_1 .
+
+# Erythrocyte (fL) – 42.395
+ex:mp_Erythrocyte_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Erythrocyte_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Erythrocyte_Blood_1 a chr:Measurement ;
+    sulo:hasValue "42.395"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Erythrocyte_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Erythrocyte_Blood_1 .
+
+# Platelets (10*3/uL) – 309.79
+ex:mp_Platelets_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Platelets_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Platelets_Blood_1 a chr:Measurement ;
+    sulo:hasValue "309.79"^^xsd:float ;
+    sulo:hasPart ex:unit_10_3_per_uL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Platelets_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Platelets_Blood_1 .
+
+# Platelet distribution width (fL) – 239.77
+ex:mp_PDW_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_PDW_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_PDW_Blood_1 a chr:Measurement ;
+    sulo:hasValue "239.77"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_PDW_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_PDW_Blood_1 .
+
+# Platelet mean volume (fL) – 10.334
+ex:mp_Platelet_MeanVol_Blood_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_Platelet_MeanVol_Blood_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:meas_Platelet_MeanVol_Blood_1 a chr:Measurement ;
+    sulo:hasValue "10.334"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_measure_2014_06_18_16_47 .
+
+ex:role_Output_Platelet_MeanVol_Blood_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Platelet_MeanVol_Blood_1 .
+
+# Total score HARK (score) – 0
+ex:mp_TotalScore_HARK_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_TotalScore_HARK_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_17_54 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_measure_2014_06_18_17_54 a sulo:TimeInstant ;
+    sulo:hasValue "2014-06-18T17:54:00"^^xsd:dateTime .
+
+ex:meas_TotalScore_HARK_1 a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_measure_2014_06_18_17_54 .
+
+ex:role_Output_TotalScore_HARK_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_TotalScore_HARK_1 .
+
+# PHQ-2 total score – 0
+ex:mp_PHQ2_TotalScore_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_PHQ2_TotalScore_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_18_28 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_measure_2014_06_18_18_28 a sulo:TimeInstant ;
+    sulo:hasValue "2014-06-18T18:28:00"^^xsd:dateTime .
+
+ex:meas_PHQ2_TotalScore_1 a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_measure_2014_06_18_18_28 .
+
+ex:role_Output_PHQ2_TotalScore_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_PHQ2_TotalScore_1 .
+
+# AUDIT-C total score – 3
+ex:mp_AUDITC_TotalScore_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_Output_AUDITC_TotalScore_1 ;
+    sulo:atTime ex:time_measure_2014_06_18_19_07 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_measure_2014_06_18_19_07 a sulo:TimeInstant ;
+    sulo:hasValue "2014-06-18T19:07:00"^^xsd:dateTime .
+
+ex:meas_AUDITC_TotalScore_1 a chr:Measurement ;
+    sulo:hasValue "3"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_measure_2014_06_18_19_07 .
+
+ex:role_Output_AUDITC_TotalScore_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_AUDITC_TotalScore_1 .
+
+# Evaluation 1 – Medication review (moderate)
+ex:evaluation_1 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_CareProvider_Miyoko ,
+                       ex:role_Output_Diag_MedReview_1 ;
+    sulo:atTime ex:time_eval_2014_06_18_16_47 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_eval_2014_06_18_16_47 a sulo:TimeInstant ;
+    sulo:hasValue "2014-06-18T16:47:00"^^xsd:dateTime .
+
+ex:diag_MedReview_1 a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity .
+
+ex:role_Output_Diag_MedReview_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_MedReview_1 .
+
+# Evaluation 2 – Gingivitis (moderate)
+ex:evaluation_2 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Grimes ,
+                       ex:role_CareProvider_Miyoko ,
+                       ex:role_Output_Diag_Gingivitis_1 ;
+    sulo:atTime ex:time_eval_2014_06_18_19_07 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_eval_2014_06_18_19_07 a sulo:TimeInstant ;
+    sulo:hasValue "2014-06-18T19:07:00"^^xsd:dateTime .
+
+ex:diag_Gingivitis_1 a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:role_Output_Diag_Gingivitis_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Gingivitis_1 .
+
+# Care plan referencing a generic follow‑up procedure
+ex:followup_procedure a chr:MedicalProcedure .
+ex:careplan_1 a chr:CarePlan ;
+    sulo:refersTo ex:followup_procedure .

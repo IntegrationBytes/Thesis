@@ -1,0 +1,105 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:person_Casey a chr:Person .
+ex:physician_Jacque a chr:Person .
+
+# Care unit
+ex:careUnit_Accclaim a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2019_05_19_18_59 a chr:ClinicalVisit ;
+    sulo:atTime ex:time_visit ;
+    sulo:isIn ex:careUnit_Accclaim ;
+    sulo:hasParticipant ex:role_Subject_Visit , ex:role_Provider_Visit .
+
+ex:time_visit a sulo:TimeInstant ;
+    sulo:hasValue "2019-05-19T18:59:00"^^xsd:dateTime .
+
+ex:role_Subject_Visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey .
+
+ex:role_Provider_Visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Jacque .
+
+# Measurement process (DXA)
+ex:measProc_2019_05_19_19_21 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_measProc ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_Meas , ex:role_Performer_Meas , ex:role_Output_Meas , ex:role_Unit_DXA .
+
+ex:time_measProc a sulo:TimeInstant ;
+    sulo:hasValue "2019-05-19T19:21:00"^^xsd:dateTime .
+
+ex:status_completed a chr:ProcessStatus .
+
+ex:role_Subject_Meas a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey .
+
+ex:role_Performer_Meas a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Jacque .
+
+ex:role_Output_Meas a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_DXA .
+
+ex:role_Unit_DXA a chr:UnitRole ;
+    sulo:isFeatureOf <unit-iri-of-type-sulo:Unit> .
+
+ex:measurement_DXA a chr:Measurement ;
+    sulo:hasValue "0.33092"^^xsd:float ;
+    sulo:atTime ex:time_measProc .
+
+<unit-iri-of-type-sulo:Unit> a sulo:Unit .
+
+# Evaluation process (Fracture of bone)
+ex:evaluation_2019_05_19_18_59 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_eval ;
+    sulo:hasParticipant ex:role_Subject_Eval , ex:role_Performer_Eval , ex:role_Output_DiagBone .
+
+ex:time_eval a sulo:TimeInstant ;
+    sulo:hasValue "2019-05-19T18:59:00"^^xsd:dateTime .
+
+ex:role_Subject_Eval a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey .
+
+ex:role_Performer_Eval a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Jacque .
+
+ex:role_Output_DiagBone a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_FractureBone .
+
+ex:diag_FractureBone a chr:DiagnosticStatement .
+ex:cond_FractureBone a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_eval .
+
+ex:severity_moderate a chr:Severity .
+
+# Evaluation process (Fracture of ankle)
+ex:evaluation_ankle_2019_05_19_18_59 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_eval ;
+    sulo:hasParticipant ex:role_Subject_Eval_Ankle , ex:role_Performer_Eval_Ankle , ex:role_Output_DiagAnkle .
+
+ex:role_Subject_Eval_Ankle a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey .
+
+ex:role_Performer_Eval_Ankle a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Jacque .
+
+ex:role_Output_DiagAnkle a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_FractureAnkle .
+
+ex:diag_FractureAnkle a chr:DiagnosticStatement .
+ex:cond_FractureAnkle a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_eval .
+
+# Care plan
+ex:carePlan_1 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUp .
+
+ex:procedure_FollowUp a chr:MedicalProcedure .

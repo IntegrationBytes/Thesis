@@ -1,0 +1,198 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_CoryFrankHeller a chr:Person .
+ex:physician_HankSchneider a chr:Person .
+
+# Care unit
+ex:careunit_LOWELL_FAMILY_MEDICAL_CARE_PC a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2024_05_19_1144 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_HankSchneider ;
+    chr:hasCareUnit ex:careunit_LOWELL_FAMILY_MEDICAL_CARE_PC ;
+    chr:hasPatient ex:patient_CoryFrankHeller .
+
+# Severity
+ex:severity_moderate a chr:Severity .
+
+# Clinical condition
+ex:condition_2024_05_19_1144 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2024-05-19T11:44:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+# Diagnostic statement
+ex:diagstmt_MedicationReview_due a chr:DiagnosticStatement .
+
+# Evaluation process (produces diagnostic statement)
+ex:evaluation_2024_05_19_1144 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagstmt_MedicationReview_due .
+
+# Medical procedure for evaluation (to link to care plan)
+ex:evalproc_2024_05_19_1144 a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasPerformer ex:physician_HankSchneider ;
+    chr:hasPerformedDate "2024-05-19T11:44:00"^^xsd:dateTime ;
+    chr:hasStatus ex:status_completed .
+
+ex:status_completed a chr:ProcessStatus .
+
+# Care plan
+ex:careplan_2024_05_19 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:evalproc_2024_05_19_1144 .
+
+# Measurement processes and measurements
+
+## FEV1/FVC
+ex:measproc_FEV1_FVC_20240519_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_FEV1_FVC_20240519_1144 .
+
+ex:meas_FEV1_FVC_20240519_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "35.905"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+## Body Height
+ex:measproc_BodyHeight_20240519_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_BodyHeight_20240519_1144 .
+
+ex:meas_BodyHeight_20240519_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "164.0"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+## Pain severity
+ex:measproc_PainSeverity_20240519_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_PainSeverity_20240519_1144 .
+
+ex:meas_PainSeverity_20240519_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+## Body Weight
+ex:measproc_BodyWeight_20240519_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_BodyWeight_20240519_1144 .
+
+ex:meas_BodyWeight_20240519_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "81.4"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+## BMI
+ex:measproc_BMI_20240519_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_BMI_20240519_1144 .
+
+ex:meas_BMI_20240519_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "30.26"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+
+## Heart rate
+ex:measproc_HeartRate_20240519_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_HeartRate_20240519_1144 .
+
+ex:meas_HeartRate_20240519_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "78.0"^^xsd:float ;
+    chr:hasUnit sulo:per_minute .
+
+## Respiratory rate
+ex:measproc_RespiratoryRate_20240519_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_RespiratoryRate_20240519_1144 .
+
+ex:meas_RespiratoryRate_20240519_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14.0"^^xsd:float ;
+    chr:hasUnit sulo:per_minute .
+
+## Cholesterol total
+ex:measproc_CholesterolTotal_20240519_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_CholesterolTotal_20240519_1144 .
+
+ex:meas_CholesterolTotal_20240519_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "148.35"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+## Triglyceride
+ex:measproc_Triglyceride_20240519_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_Triglyceride_20240519_1144 .
+
+ex:meas_Triglyceride_20240519_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "116.65"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+## LDL Cholesterol
+ex:measproc_CholesterolLDL_20240519_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_CholesterolLDL_20240519_1144 .
+
+ex:meas_CholesterolLDL_20240519_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "67.61"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+## HDL Cholesterol
+ex:measproc_CholesterolHDL_20240519_1144 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_CholesterolHDL_20240519_1144 .
+
+ex:meas_CholesterolHDL_20240519_1144 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T11:44:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "57.41"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+## GAD-7 total score
+ex:measproc_GAD7_20240519_1248 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_GAD7_20240519_1248 .
+
+ex:meas_GAD7_20240519_1248 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T12:48:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+## Fall risk (Morse Fall Scale)
+ex:measproc_FallRisk_20240519_1317 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_FallRisk_20240519_1317 .
+
+ex:meas_FallRisk_20240519_1317 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T13:17:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "28.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+## PHQ-2 total score
+ex:measproc_PHQ2_20240519_1355 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_PHQ2_20240519_1355 .
+
+ex:meas_PHQ2_20240519_1355 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T13:55:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+## DAST-10 total score
+ex:measproc_DAST10_20240519_1439 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrankHeller ;
+    chr:hasResult ex:meas_DAST10_20240519_1439 .
+
+ex:meas_DAST10_20240519_1439 a chr:Measurement ;
+    chr:hasMeasuredDate "2024-05-19T14:39:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit sulo:score .

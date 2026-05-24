@@ -1,0 +1,336 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Aracely711_Devon268_Collins926 a chr:Person .
+ex:physician_Edmundo94_Eichmann909 a chr:Person .
+
+# Care unit
+ex:careunit_FATHER_BILL_PLACE a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2019_06_21_1504 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Edmundo94_Eichmann909 ;
+    chr:hasCareUnit ex:careunit_FATHER_BILL_PLACE ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Diagnostic statements and conditions
+ex:diag_EssentialHypertension a chr:DiagnosticStatement .
+ex:cond_EssentialHypertension a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:diag_MedicationReviewDue a chr:DiagnosticStatement .
+ex:cond_MedicationReviewDue a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:diag_FullTimeEmployment a chr:DiagnosticStatement .
+ex:cond_FullTimeEmployment a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-06-21T15:46:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:diag_SocialIsolation a chr:DiagnosticStatement .
+ex:cond_SocialIsolation a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-06-21T15:46:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:diag_VictimIntimatePartnerAbuse a chr:DiagnosticStatement .
+ex:cond_VictimIntimatePartnerAbuse a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-06-21T15:46:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:diag_SevereAnxietyPanic a chr:DiagnosticStatement .
+ex:cond_SevereAnxietyPanic a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-06-21T16:15:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Evaluation processes linking to diagnostic statements
+ex:evaluation_EssentialHypertension_2019_06_21_1504 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_EssentialHypertension .
+
+ex:evaluation_MedicationReviewDue_2019_06_21_1504 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MedicationReviewDue .
+
+ex:evaluation_FullTimeEmployment_2019_06_21_1546 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_FullTimeEmployment .
+
+ex:evaluation_SocialIsolation_2019_06_21_1546 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_SocialIsolation .
+
+ex:evaluation_VictimIntimatePartnerAbuse_2019_06_21_1546 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_VictimIntimatePartnerAbuse .
+
+ex:evaluation_SevereAnxietyPanic_2019_06_21_1615 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_SevereAnxietyPanic .
+
+# Care plan
+ex:careplan_followup a chr:CarePlan .
+
+# Measurement processes and measurements
+# 1. Hemoglobin A1c
+ex:measproc_HbA1c_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_HbA1c_2019_06_21_1504 .
+ex:measurement_HbA1c_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.13"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+# 2. Body Height
+ex:measproc_BodyHeight_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_BodyHeight_2019_06_21_1504 .
+ex:measurement_BodyHeight_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "172.0"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+# 3. Pain severity (0-10)
+ex:measproc_PainSeverity_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_PainSeverity_2019_06_21_1504 .
+ex:measurement_PainSeverity_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# 4. Body Weight
+ex:measproc_BodyWeight_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_BodyWeight_2019_06_21_1504 .
+ex:measurement_BodyWeight_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82.2"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+# 5. Body Mass Index (BMI)
+ex:measproc_BMI_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_BMI_2019_06_21_1504 .
+ex:measurement_BMI_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.79"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+
+# 6. Heart rate
+ex:measproc_HeartRate_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_HeartRate_2019_06_21_1504 .
+ex:measurement_HeartRate_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "74.0"^^xsd:float ;
+    chr:hasUnit sulo:per_minute .
+
+# 7. Respiratory rate
+ex:measproc_RespiratoryRate_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_RespiratoryRate_2019_06_21_1504 .
+ex:measurement_RespiratoryRate_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15.0"^^xsd:float ;
+    chr:hasUnit sulo:per_minute .
+
+# 8. Glucose
+ex:measproc_Glucose_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_Glucose_2019_06_21_1504 .
+ex:measurement_Glucose_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "79.39"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# 9. Urea nitrogen
+ex:measproc_UreaNitrogen_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_UreaNitrogen_2019_06_21_1504 .
+ex:measurement_UreaNitrogen_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "17.56"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# 10. Creatinine
+ex:measproc_Creatinine_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_Creatinine_2019_06_21_1504 .
+ex:measurement_Creatinine_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.66"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# 11. Calcium
+ex:measproc_Calcium_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_Calcium_2019_06_21_1504 .
+ex:measurement_Calcium_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "10.01"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# 12. Sodium
+ex:measproc_Sodium_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_Sodium_2019_06_21_1504 .
+ex:measurement_Sodium_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "138.48"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# 13. Potassium
+ex:measproc_Potassium_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_Potassium_2019_06_21_1504 .
+ex:measurement_Potassium_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.08"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# 14. Chloride
+ex:measproc_Chloride_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_Chloride_2019_06_21_1504 .
+ex:measurement_Chloride_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "101.97"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# 15. Carbon dioxide, total
+ex:measproc_CO2Total_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_CO2Total_2019_06_21_1504 .
+ex:measurement_CO2Total_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.1"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# 16. Leukocytes
+ex:measproc_Leukocytes_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_Leukocytes_2019_06_21_1504 .
+ex:measurement_Leukocytes_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.4337"^^xsd:float ;
+    chr:hasUnit sulo:10pow3_per_uL .
+
+# 17. Erythrocytes
+ex:measproc_Erythrocytes_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_Erythrocytes_2019_06_21_1504 .
+ex:measurement_Erythrocytes_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.3919"^^xsd:float ;
+    chr:hasUnit sulo:10pow6_per_uL .
+
+# 18. Hemoglobin
+ex:measproc_Hemoglobin_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_Hemoglobin_2019_06_21_1504 .
+ex:measurement_Hemoglobin_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.863"^^xsd:float ;
+    chr:hasUnit sulo:g_per_dL .
+
+# 19. Hematocrit
+ex:measproc_Hematocrit_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_Hematocrit_2019_06_21_1504 .
+ex:measurement_Hematocrit_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "45.681"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+# 20. MCV
+ex:measproc_MCV_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_MCV_2019_06_21_1504 .
+ex:measurement_MCV_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "85.827"^^xsd:float ;
+    chr:hasUnit sulo:fL .
+
+# 21. MCH
+ex:measproc_MCH_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_MCH_2019_06_21_1504 .
+ex:measurement_MCH_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "29.544"^^xsd:float ;
+    chr:hasUnit sulo:pg .
+
+# 22. MCHC
+ex:measproc_MCHC_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_MCHC_2019_06_21_1504 .
+ex:measurement_MCHC_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "33.48"^^xsd:float ;
+    chr:hasUnit sulo:g_per_dL .
+
+# 23. Erythrocyte (DistWidth)
+ex:measproc_ErythrocyteDistWidth_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_ErythrocyteDistWidth_2019_06_21_1504 .
+ex:measurement_ErythrocyteDistWidth_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "42.638"^^xsd:float ;
+    chr:hasUnit sulo:fL .
+
+# 24. Platelets
+ex:measproc_Platelets_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_Platelets_2019_06_21_1504 .
+ex:measurement_Platelets_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "374.02"^^xsd:float ;
+    chr:hasUnit sulo:10pow3_per_uL .
+
+# 25. Platelet distribution width
+ex:measproc_PlateletDW_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_PlateletDW_2019_06_21_1504 .
+ex:measurement_PlateletDW_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "377.68"^^xsd:float ;
+    chr:hasUnit sulo:fL .
+
+# 26. Platelet mean volume
+ex:measproc_PlateletMeanVol_2019_06_21_1504 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_PlateletMeanVol_2019_06_21_1504 .
+ex:measurement_PlateletMeanVol_2019_06_21_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "11.608"^^xsd:float ;
+    chr:hasUnit sulo:fL .
+
+# 27. GAD-7 total score
+ex:measproc_GAD7_2019_06_21_1615 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_GAD7_2019_06_21_1615 .
+ex:measurement_GAD7_2019_06_21_1615 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T16:15:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "17.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# 28. Fall risk total (Morse Fall Scale)
+ex:measproc_FallRisk_2019_06_21_1633 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_FallRisk_2019_06_21_1633 .
+ex:measurement_FallRisk_2019_06_21_1633 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T16:33:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# 29. PHQ-2 total score
+ex:measproc_PHQ2_2019_06_21_1712 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Aracely711_Devon268_Collins926 ;
+    chr:hasResult ex:measurement_PHQ2_2019_06_21_1712 .
+ex:measurement_PHQ2_2019_06_21_1712 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-21T17:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit sulo:score .

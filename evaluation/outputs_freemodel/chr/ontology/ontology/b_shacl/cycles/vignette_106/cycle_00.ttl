@@ -1,0 +1,563 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_P_4f0dee62 a chr:Person .
+ex:physician_Paulene_Kihn a chr:Person .
+
+# Care unit
+ex:careunit_CARECENTRAL_URGENT_CARE a chr:CareUnit .
+
+# Roles for the visit (re‑used for all processes)
+ex:role_SubjectOfCare_Visit_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_P_4f0dee62 .
+ex:role_CareProvider_Visit_Physician a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Paulene_Kihn .
+
+# Time instants
+ex:time_2021_01_08T14_04 a sulo:TimeInstant ;
+    sulo:hasValue "2021-01-08T14:04:00"^^xsd:dateTime .
+ex:time_2021_01_08T15_07 a sulo:TimeInstant ;
+    sulo:hasValue "2021-01-08T15:07:00"^^xsd:dateTime .
+ex:time_2021_01_08T15_38 a sulo:TimeInstant ;
+    sulo:hasValue "2021-01-08T15:38:00"^^xsd:dateTime .
+ex:time_2021_01_08T14_42 a sulo:TimeInstant ;
+    sulo:hasValue "2021-01-08T14:42:00"^^xsd:dateTime .
+
+# Process status and severity (re‑used)
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+ex:severity_moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+# Units
+ex:unit_mg_per_dL      a sulo:Unit .
+ex:unit_mmol_per_L     a sulo:Unit .
+ex:unit_mL_per_min_per_m2 a sulo:Unit .
+ex:unit_cm             a sulo:Unit .
+ex:unit_kg             a sulo:Unit .
+ex:unit_kg_per_m2      a sulo:Unit .
+ex:unit_per_min        a sulo:Unit .
+ex:unit_score          a sulo:Unit .
+ex:unit_nominal        a sulo:Unit .
+ex:unit_pH             a sulo:Unit .
+ex:unit_percent        a sulo:Unit .
+
+# Clinical visit
+ex:visit_2021_01_08T14_04 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ;
+    sulo:isIn ex:careunit_CARECENTRAL_URGENT_CARE ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# ------------------------------
+# Measurement processes (all at 14:04)
+# ------------------------------
+
+# 1 Glucose Serum
+ex:proc_Glucose_Serum_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Glucose_Serum_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Glucose_Serum_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Serum_2021_01_08T14_04_1 .
+ex:measurement_Glucose_Serum_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "90.02"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 2 Urea nitrogen Serum
+ex:proc_UreaNitrogen_Serum_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_UreaNitrogen_Serum_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_UreaNitrogen_Serum_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen_Serum_2021_01_08T14_04_1 .
+ex:measurement_UreaNitrogen_Serum_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "14.54"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 3 Creatinine Serum
+ex:proc_Creatinine_Serum_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Creatinine_Serum_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Creatinine_Serum_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine_Serum_2021_01_08T14_04_1 .
+ex:measurement_Creatinine_Serum_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "1.5295"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 4 Calcium Serum
+ex:proc_Calcium_Serum_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Calcium_Serum_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Calcium_Serum_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium_Serum_2021_01_08T14_04_1 .
+ex:measurement_Calcium_Serum_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "10.09"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 5 Sodium Serum
+ex:proc_Sodium_Serum_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Sodium_Serum_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Sodium_Serum_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium_Serum_2021_01_08T14_04_1 .
+ex:measurement_Sodium_Serum_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "143.66"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 6 Potassium Serum
+ex:proc_Potassium_Serum_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Potassium_Serum_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Potassium_Serum_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium_Serum_2021_01_08T14_04_1 .
+ex:measurement_Potassium_Serum_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "4"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 7 Chloride Serum
+ex:proc_Chloride_Serum_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Chloride_Serum_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Chloride_Serum_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride_Serum_2021_01_08T14_04_1 .
+ex:measurement_Chloride_Serum_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "102.1"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 8 Carbon dioxide total Serum
+ex:proc_CO2_Serum_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_CO2_Serum_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_CO2_Serum_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2_Serum_2021_01_08T14_04_1 .
+ex:measurement_CO2_Serum_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "20.62"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 9 GFR Serum
+ex:proc_GFR_Serum_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_GFR_Serum_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_GFR_Serum_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GFR_Serum_2021_01_08T14_04_1 .
+ex:measurement_GFR_Serum_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "138.23"^^xsd:float ;
+    sulo:hasPart ex:unit_mL_per_min_per_m2 ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 10 Glucose Urine (test strip)
+ex:proc_Glucose_Urine_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Glucose_Urine_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Glucose_Urine_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Urine_2021_01_08T14_04_1 .
+ex:measurement_Glucose_Urine_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "1.8328"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 11 Bilirubin Urine
+ex:proc_Bilirubin_Urine_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Bilirubin_Urine_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Bilirubin_Urine_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Bilirubin_Urine_2021_01_08T14_04_1 .
+ex:measurement_Bilirubin_Urine_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "0.33832"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 12 Ketones Urine
+ex:proc_Ketones_Urine_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Ketones_Urine_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Ketones_Urine_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Ketones_Urine_2021_01_08T14_04_1 .
+ex:measurement_Ketones_Urine_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "7.0594"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 13 Specific gravity Urine
+ex:proc_SpecificGravity_Urine_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_SpecificGravity_Urine_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_SpecificGravity_Urine_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_SpecificGravity_Urine_2021_01_08T14_04_1 .
+ex:measurement_SpecificGravity_Urine_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "1.0193"^^xsd:float ;
+    sulo:hasPart ex:unit_nominal ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 14 pH Urine
+ex:proc_pH_Urine_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_pH_Urine_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_pH_Urine_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_pH_Urine_2021_01_08T14_04_1 .
+ex:measurement_pH_Urine_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "5.2755"^^xsd:float ;
+    sulo:hasPart ex:unit_pH ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 15 Protein Urine
+ex:proc_Protein_Urine_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Protein_Urine_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Protein_Urine_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Protein_Urine_2021_01_08T14_04_1 .
+ex:measurement_Protein_Urine_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "147.6"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 16 HbA1c Blood
+ex:proc_HbA1c_Blood_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_HbA1c_Blood_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_HbA1c_Blood_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HbA1c_Blood_2021_01_08T14_04_1 .
+ex:measurement_HbA1c_Blood_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "6.23"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 17 Body Height
+ex:proc_BodyHeight_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_BodyHeight_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_BodyHeight_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyHeight_2021_01_08T14_04_1 .
+ex:measurement_BodyHeight_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "172"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 18 Pain severity (score)
+ex:proc_PainSeverity_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_PainSeverity_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_PainSeverity_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainSeverity_2021_01_08T14_04_1 .
+ex:measurement_PainSeverity_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 19 Body Weight
+ex:proc_BodyWeight_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_BodyWeight_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_BodyWeight_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyWeight_2021_01_08T14_04_1 .
+ex:measurement_BodyWeight_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 20 Body Mass Index
+ex:proc_BMI_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_BMI_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_BMI_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI_2021_01_08T14_04_1 .
+ex:measurement_BMI_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "27.79"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 21 Heart Rate
+ex:proc_HeartRate_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_HeartRate_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_HeartRate_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HeartRate_2021_01_08T14_04_1 .
+ex:measurement_HeartRate_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "70"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 22 Respiratory Rate
+ex:proc_RespiratoryRate_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_RespiratoryRate_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_RespiratoryRate_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RespiratoryRate_2021_01_08T14_04_1 .
+ex:measurement_RespiratoryRate_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "15"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 23 Glucose Blood
+ex:proc_Glucose_Blood_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Glucose_Blood_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Glucose_Blood_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Blood_2021_01_08T14_04_1 .
+ex:measurement_Glucose_Blood_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "90.02"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 24 Urea nitrogen Blood
+ex:proc_UreaNitrogen_Blood_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_UreaNitrogen_Blood_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_UreaNitrogen_Blood_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen_Blood_2021_01_08T14_04_1 .
+ex:measurement_UreaNitrogen_Blood_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "14.54"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 25 Creatinine Blood
+ex:proc_Creatinine_Blood_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Creatinine_Blood_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Creatinine_Blood_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine_Blood_2021_01_08T14_04_1 .
+ex:measurement_Creatinine_Blood_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "0.91"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 26 Calcium Blood
+ex:proc_Calcium_Blood_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Calcium_Blood_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Calcium_Blood_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium_Blood_2021_01_08T14_04_1 .
+ex:measurement_Calcium_Blood_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "10.09"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 27 Sodium Blood
+ex:proc_Sodium_Blood_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Sodium_Blood_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Sodium_Blood_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium_Blood_2021_01_08T14_04_1 .
+ex:measurement_Sodium_Blood_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "143.66"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 28 Potassium Blood
+ex:proc_Potassium_Blood_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Potassium_Blood_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Potassium_Blood_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium_Blood_2021_01_08T14_04_1 .
+ex:measurement_Potassium_Blood_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "4"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 29 Chloride Blood
+ex:proc_Chloride_Blood_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Chloride_Blood_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_Chloride_Blood_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride_Blood_2021_01_08T14_04_1 .
+ex:measurement_Chloride_Blood_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "102.1"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 30 CO2 Blood
+ex:proc_CO2_Blood_2021_01_08T14_04_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_CO2_Blood_2021_01_08T14_04_1 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_CO2_Blood_2021_01_08T14_04_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2_Blood_2021_01_08T14_04_1 .
+ex:measurement_CO2_Blood_2021_01_08T14_04_1 a chr:Measurement ;
+    sulo:hasValue "20.62"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2021_01_08T14_04 .
+
+# 31 Fall risk (Morse) at 15:07
+ex:proc_FallRisk_2021_01_08T15_07_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_FallRisk_2021_01_08T15_07_1 ;
+    sulo:atTime ex:time_2021_01_08T15_07 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_FallRisk_2021_01_08T15_07_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_FallRisk_2021_01_08T15_07_1 .
+ex:measurement_FallRisk_2021_01_08T15_07_1 a chr:Measurement ;
+    sulo:hasValue "4"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2021_01_08T15_07 .
+
+# 32 PHQ-2 total score at 15:38
+ex:proc_PHQ2_2021_01_08T15_38_1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_PHQ2_2021_01_08T15_38_1 ;
+    sulo:atTime ex:time_2021_01_08T15_38 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Output_PHQ2_2021_01_08T15_38_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ2_2021_01_08T15_38_1 .
+ex:measurement_PHQ2_2021_01_08T15_38_1 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2021_01_08T15_38 .
+
+# ------------------------------
+# Evaluation (diagnostic) processes
+# ------------------------------
+
+# CKD stage 1
+ex:evaluation_CKD_stage1_2021_01_08T14_04 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Diag_CKD_stage1_2021_01_08T14_04 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:severity_moderate .
+ex:role_Output_Diag_CKD_stage1_2021_01_08T14_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_CKD_stage1 .
+ex:diag_CKD_stage1 a chr:DiagnosticStatement ;
+    rdfs:label "Chronic kidney disease stage 1" .
+
+# Kidney disorder due to diabetes
+ex:evaluation_KidneyDiabetes_2021_01_08T14_04 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Diag_KidneyDiabetes_2021_01_08T14_04 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:severity_moderate .
+ex:role_Output_Diag_KidneyDiabetes_2021_01_08T14_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_KidneyDiabetes .
+ex:diag_KidneyDiabetes a chr:DiagnosticStatement ;
+    rdfs:label "Disorder of kidney due to diabetes mellitus" .
+
+# Ischemic heart disease
+ex:evaluation_IschemicHeartDisease_2021_01_08T14_04 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Diag_IschemicHeartDisease_2021_01_08T14_04 ;
+    sulo:atTime ex:time_2021_01_08T14_04 ;
+    sulo:hasFeature ex:severity_moderate .
+ex:role_Output_Diag_IschemicHeartDisease_2021_01_08T14_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_IschemicHeartDisease .
+ex:diag_IschemicHeartDisease a chr:DiagnosticStatement ;
+    rdfs:label "Ischemic heart disease" .
+
+# Full‑time employment (finding) at 14:42
+ex:evaluation_FullTimeEmployment_2021_01_08T14_42 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ,
+                        ex:role_CareProvider_Visit_Physician ,
+                        ex:role_Output_Diag_FullTimeEmployment_2021_01_08T14_42 ;
+    sulo:atTime ex:time_2021_01_08T14_42 ;
+    sulo:hasFeature ex:severity_moderate .
+ex:role_Output_Diag_FullTimeEmployment_2021_01_08T14_42 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_FullTimeEmployment .
+ex:diag_FullTimeEmployment a chr:DiagnosticStatement ;
+    rdfs:label "Full-time employment" .
+
+# ------------------------------
+# Care plan
+# ------------------------------
+ex:careplan_2021_01_08 a chr:CarePlan .

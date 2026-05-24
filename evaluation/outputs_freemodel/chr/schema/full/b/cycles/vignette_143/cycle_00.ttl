@@ -1,0 +1,88 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Arlen68Olson653 a chr:Person .
+
+ex:physician_Christeen33Toy286 a chr:Person .
+
+ex:careunit_JewishFamilyService a chr:CareUnit .
+
+ex:visit_2020_07_08_1647 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Christeen33Toy286 ;
+    chr:hasCareUnit ex:careunit_JewishFamilyService ;
+    chr:hasPatient ex:patient_Arlen68Olson653 .
+
+# Example measurement processes (a subset)
+
+ex:measproc_Glucose_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Glucose_Serum_2020_07_08_1647 .
+
+ex:meas_Glucose_Serum_2020_07_08_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-07-08T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "185.26"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_UreaNitrogen_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_UreaNitrogen_Serum_2020_07_08_1647 .
+
+ex:meas_UreaNitrogen_Serum_2020_07_08_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-07-08T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "7.93"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_BodyHeight_2020_07_08_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_BodyHeight_2020_07_08_1647 .
+
+ex:meas_BodyHeight_2020_07_08_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-07-08T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "177.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+ex:measproc_PainSeverity_2020_07_08_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_PainSeverity_2020_07_08_1647 .
+
+ex:meas_PainSeverity_2020_07_08_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-07-08T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# Clinical conditions (diagnostic statements) and evaluations
+
+ex:severity_Moderate a chr:Severity .
+
+ex:condition_LimitedSocialContact a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-07-08T17:33:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:condition_Stress a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-07-08T17:33:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:evaluation_2020_07_08_1733 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasObservation ex:diagnostic_LimitedSocialContact .
+
+ex:diagnostic_LimitedSocialContact a chr:DiagnosticStatement .
+
+ex:evaluation_2020_07_08_1733_2 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasObservation ex:diagnostic_Stress .
+
+ex:diagnostic_Stress a chr:DiagnosticStatement .
+
+# Care plan
+
+ex:careplan_2020_07_08 a chr:CarePlan .
+
+# Units (simple placeholders)
+
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_cm a sulo:Unit .
+ex:unit_score a sulo:Unit .

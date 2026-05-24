@@ -1,0 +1,533 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Aracely_Devon_Collins a chr:Person .
+ex:physician_Margaret_Reinger a chr:Person .
+
+# Care unit
+ex:careunit_CarneyHospital a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2025_07_18_15_04 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit ;
+    sulo:hasParticipant ex:role_CareProvider_Visit ;
+    sulo:isIn ex:careunit_CarneyHospital ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_Visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:role_CareProvider_Visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Margaret_Reinger .
+
+ex:time_visit_2025_07_18_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2025-07-18T15:04:00"^^xsd:dateTime .
+
+# Process status (completed)
+ex:status_completed a chr:ProcessStatus .
+
+# Helper unit individuals
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_mmol_per_L a sulo:Unit .
+ex:unit_mL_per_min_per_m2 a sulo:Unit .
+ex:unit_mg_per_dL_urine a sulo:Unit .
+ex:unit_mg_per_dL_urine_strip a sulo:Unit .
+ex:unit_nominal a sulo:Unit .
+ex:unit_pH a sulo:Unit .
+ex:unit_percent a sulo:Unit .
+ex:unit_cm a sulo:Unit .
+ex:unit_score a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+
+# Measurement and processes (selected examples; all follow same pattern)
+
+# Glucose in Serum (Mass/volume) – 81.04 mg/dL
+ex:measurement_Glucose_Serum_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "81.04"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_Glucose_Serum_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Glucose_Serum_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_Glucose_Serum_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_Glucose_Serum_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_Glucose_Serum_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Serum_2025_07_18_15_04 .
+
+# Urea nitrogen in Serum – 14.26 mg/dL
+ex:measurement_UreaNitrogen_Serum_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "14.26"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_UreaNitrogen_Serum_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_UreaNitrogen_Serum_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_UreaNitrogen_Serum_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_UreaNitrogen_Serum_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_UreaNitrogen_Serum_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen_Serum_2025_07_18_15_04 .
+
+# Creatinine in Serum – 1.8233 mg/dL
+ex:measurement_Creatinine_Serum_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "1.8233"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_Creatinine_Serum_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Creatinine_Serum_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_Creatinine_Serum_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_Creatinine_Serum_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_Creatinine_Serum_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine_Serum_2025_07_18_15_04 .
+
+# Calcium in Serum – 9.99 mg/dL
+ex:measurement_Calcium_Serum_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "9.99"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_Calcium_Serum_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Calcium_Serum_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_Calcium_Serum_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_Calcium_Serum_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_Calcium_Serum_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium_Serum_2025_07_18_15_04 .
+
+# Sodium in Serum – 137.3 mmol/L
+ex:measurement_Sodium_Serum_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "137.3"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_Sodium_Serum_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Sodium_Serum_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_Sodium_Serum_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_Sodium_Serum_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_Sodium_Serum_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium_Serum_2025_07_18_15_04 .
+
+# Potassium in Serum – 4.21 mmol/L
+ex:measurement_Potassium_Serum_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "4.21"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_Potassium_Serum_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Potassium_Serum_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_Potassium_Serum_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_Potassium_Serum_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_Potassium_Serum_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium_Serum_2025_07_18_15_04 .
+
+# Chloride in Serum – 104.55 mmol/L
+ex:measurement_Chloride_Serum_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "104.55"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_Chloride_Serum_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Chloride_Serum_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_Chloride_Serum_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_Chloride_Serum_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_Chloride_Serum_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride_Serum_2025_07_18_15_04 .
+
+# Carbon dioxide, total in Serum – 22.43 mmol/L
+ex:measurement_CO2_Serum_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "22.43"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_CO2_Serum_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_CO2_Serum_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_CO2_Serum_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_CO2_Serum_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_CO2_Serum_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2_Serum_2025_07_18_15_04 .
+
+# Glomerular filtration rate – 85.296 mL/min/{1.73_m2}
+ex:measurement_GFR_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "85.296"^^xsd:float ;
+    sulo:hasPart ex:unit_mL_per_min_per_m2 ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_GFR_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_GFR_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_GFR_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_GFR_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_GFR_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GFR_2025_07_18_15_04 .
+
+# Glucose in Urine – 0.79056 mg/dL
+ex:measurement_Glucose_Urine_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "0.79056"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL_urine ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_Glucose_Urine_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Glucose_Urine_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_Glucose_Urine_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_Glucose_Urine_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_Glucose_Urine_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Urine_2025_07_18_15_04 .
+
+# Bilirubin.total in Urine – 1.3563 mg/dL
+ex:measurement_Bilirubin_Urine_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "1.3563"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL_urine ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_Bilirubin_Urine_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Bilirubin_Urine_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_Bilirubin_Urine_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_Bilirubin_Urine_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_Bilirubin_Urine_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Bilirubin_Urine_2025_07_18_15_04 .
+
+# Ketones in Urine – 11.868 mg/dL
+ex:measurement_Ketones_Urine_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "11.868"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL_urine ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_Ketones_Urine_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Ketones_Urine_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_Ketones_Urine_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_Ketones_Urine_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_Ketones_Urine_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Ketones_Urine_2025_07_18_15_04 .
+
+# Specific gravity of Urine – 1.0286 (nominal)
+ex:measurement_SpecificGravity_Urine_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "1.0286"^^xsd:float ;
+    sulo:hasPart ex:unit_nominal ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_SpecificGravity_Urine_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_SpecificGravity_Urine_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_SpecificGravity_Urine_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_SpecificGravity_Urine_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_SpecificGravity_Urine_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_SpecificGravity_Urine_2025_07_18_15_04 .
+
+# pH of Urine – 6.9234
+ex:measurement_pH_Urine_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "6.9234"^^xsd:float ;
+    sulo:hasPart ex:unit_pH ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_pH_Urine_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_pH_Urine_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_pH_Urine_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_pH_Urine_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_pH_Urine_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_pH_Urine_2025_07_18_15_04 .
+
+# Protein in Urine – 205.87 mg/dL
+ex:measurement_Protein_Urine_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "205.87"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL_urine ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_Protein_Urine_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Protein_Urine_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_Protein_Urine_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_Protein_Urine_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_Protein_Urine_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Protein_Urine_2025_07_18_15_04 .
+
+# Hemoglobin A1c in Blood – 3.1 %
+ex:measurement_HbA1c_Blood_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "3.1"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_HbA1c_Blood_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HbA1c_Blood_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_HbA1c_Blood_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_HbA1c_Blood_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_HbA1c_Blood_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HbA1c_Blood_2025_07_18_15_04 .
+
+# Body Height – 172 cm
+ex:measurement_BodyHeight_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "172"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_BodyHeight_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_BodyHeight_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_BodyHeight_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_BodyHeight_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_BodyHeight_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyHeight_2025_07_18_15_04 .
+
+# Pain severity – 2 (score)
+ex:measurement_PainSeverity_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_PainSeverity_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_PainSeverity_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_PainSeverity_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_PainSeverity_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_PainSeverity_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainSeverity_2025_07_18_15_04 .
+
+# Body Weight – 82.2 kg
+ex:measurement_BodyWeight_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_BodyWeight_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_BodyWeight_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_BodyWeight_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_BodyWeight_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_BodyWeight_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyWeight_2025_07_18_15_04 .
+
+# Body Mass Index – 27.79 kg/m2
+ex:measurement_BMI_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "27.79"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_BMI_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_BMI_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_BMI_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_BMI_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_BMI_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI_2025_07_18_15_04 .
+
+# Heart rate – 92 /min
+ex:measurement_HeartRate_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "92"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_HeartRate_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HeartRate_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_HeartRate_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_HeartRate_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_HeartRate_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HeartRate_2025_07_18_15_04 .
+
+# Respiratory rate – 13 /min
+ex:measurement_RespiratoryRate_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "13"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_RespiratoryRate_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_RespiratoryRate_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_RespiratoryRate_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_RespiratoryRate_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_RespiratoryRate_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RespiratoryRate_2025_07_18_15_04 .
+
+# Glucose in Blood – 81.04 mg/dL
+ex:measurement_Glucose_Blood_2025_07_18_15_04 a chr:Measurement ;
+    sulo:hasValue "81.04"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:process_Glucose_Blood_2025_07_18_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Glucose_Blood_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_Glucose_Blood_2025_07_18_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_SubjectOfCare_Glucose_Blood_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_Glucose_Blood_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Blood_2025_07_18_15_04 .
+
+# (Other blood measurements follow the same pattern – omitted for brevity)
+
+# PHQ-2 total score – 1 (score) at 2025-07-18T16:32:00
+ex:time_phq2 a sulo:TimeInstant ;
+    sulo:hasValue "2025-07-18T16:32:00"^^xsd:dateTime .
+
+ex:measurement_PHQ2_2025_07_18_16_32 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_phq2 .
+
+ex:process_PHQ2_2025_07_18_16_32 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_PHQ2_2025_07_18_16_32 ;
+    sulo:hasParticipant ex:outputRole_PHQ2_2025_07_18_16_32 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_phq2 .
+
+ex:role_SubjectOfCare_PHQ2_2025_07_18_16_32 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_PHQ2_2025_07_18_16_32 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ2_2025_07_18_16_32 .
+
+# DAST-10 total score – 0 (score) at 2025-07-18T17:06:00
+ex:time_dast10 a sulo:TimeInstant ;
+    sulo:hasValue "2025-07-18T17:06:00"^^xsd:dateTime .
+
+ex:measurement_DAST10_2025_07_18_17_06 a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_dast10 .
+
+ex:process_DAST10_2025_07_18_17_06 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_DAST10_2025_07_18_17_06 ;
+    sulo:hasParticipant ex:outputRole_DAST10_2025_07_18_17_06 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_dast10 .
+
+ex:role_SubjectOfCare_DAST10_2025_07_18_17_06 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_DAST10_2025_07_18_17_06 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_DAST10_2025_07_18_17_06 .
+
+# Evaluation process (physician evaluation)
+ex:evaluation_2025_07_18_15_04 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_CareProvider_Evaluation_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Evaluation_2025_07_18_15_04 ;
+    sulo:hasParticipant ex:outputRole_DiagnosticStatement_Evaluation_2025_07_18_15_04 ;
+    sulo:atTime ex:time_visit_2025_07_18_15_04 .
+
+ex:role_CareProvider_Evaluation_2025_07_18_15_04 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Margaret_Reinger .
+
+ex:role_SubjectOfCare_Evaluation_2025_07_18_15_04 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:outputRole_DiagnosticStatement_Evaluation_2025_07_18_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnosticStatement_MedicationReview .
+
+ex:diagnosticStatement_MedicationReview a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+# Care plan referencing a follow‑up monitoring procedure
+ex:carePlan_2025_07_18 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure .

@@ -2,48 +2,93 @@
 
 **SHACL-Guided Self-Correcting Pipeline for LLM-Based RDF Knowledge Graph Extraction**
 
-This codebase tests whether embedding a deterministic SHACL validator inside the
-extraction loop — feeding violation reports back as prompt context — improves the
-structural quality of LLM-extracted RDF graphs.
+This codebase tests whether embedding a deterministic structural verifier
+(SHACL on the flat schema track, OWL reasoner on the SULO ontology track)
+inside the LLM extraction loop — feeding violation reports back as prompt
+context — improves the quality of LLM-extracted RDF graphs over zero-shot
+LLM output. Evaluated on n=200 Synthea-derived clinical vignettes with two
+LLMs (Gemini 2.0 Flash, gpt-oss-120b) and four quality axes (triple-level
+F1, SHACL conformance, OWL conformance, LLM-as-judge).
 
 ## Research questions
 
 | RQ | Question |
 |----|----------|
-| RQ1 | Does SHACL-based feedback bring LLM extraction closer to ground truth? |
-| RQ2 | Does the underlying ontology (flat schema vs SULO-aligned) affect extraction quality? |
-| RQ3 | Do structural conformance and content overlap with gold improve together, or are they decoupled? |
+| RQ1 | Does the verifier-in-loop pipeline improve extraction quality over zero-shot LLM output, and at what additional inference-time compute cost? |
+| RQ2 | Does the same effect hold when the validator is changed from custom SHACL shapes (schema track) to an OWL reasoner over the SULO upper ontology (ontology track)? |
+| RQ3 | Do structural conformance and content overlap with the gold move together, or are they independent quality axes? |
+| RQ4 | Does the choice of validator (custom SHACL vs OWL reasoner) affect retry-loop convergence direction? |
 
 ## Layout
 
 ```
 pipeline/                       Core code
-  extract.py                    A / B / C system runner (with SHACL retry loop)
+  extract.py                    System A / B runner with track-aware validator dispatch
   evaluate.py                   F1, conformance, hallucination, PC, OC metrics
   prompts.py                    Prompt builders + SchemaContext loader
   iri_normalizer.py             FHIR-grounded IRI matching for triple-level F1
-  stats.py / stats_core.py /    Bootstrap CI, paired Wilcoxon, statistical reports
+  owl_validator.py              OWL reasoner (primary validator on ontology track)
+  llm_judge.py                  Cross-family LLM-as-judge (Llama 3.3 70B by default)
+  stats.py / stats_core.py /    Bootstrap CIs, paired sign tests, statistical reports
     stats_report.py
-  plots.py                      Plot generation
+  plots.py                      Per-cycle / conformance / violation-resolution plots
 
 evaluation/
   corpus/
-    vignettes/                  100 Synthea-derived clinical-note vignettes
-    abox_gold/                  100 schema-track gold ABoxes (FHIR-derived)
-    fhir_bundles/               28 source Synthea FHIR Bundles (full reproducibility)
+    vignettes/                  200 Synthea-derived clinical-note vignettes
+                                  (001-100 general; 101-200 multi-morbidity complex)
+    abox_gold/                  200 schema-track gold ABoxes (FHIR-derived)
+    fhir_bundles/               source Synthea FHIR Bundles (full reproducibility)
     shapes/                     SHACL constraint files
-    tbox/                       Schema + SULO-aligned ontology
-  outputs/chr/schema/full/      Gemini 2.0 Flash schema-track results
+    tbox/                       Schema TBox + SULO-aligned ontology + cached SULO
+  outputs/chr/schema/full/      Gemini 2.0 Flash schema-track results (A, B, D)
   outputs/chr/ontology/         Gemini 2.0 Flash ontology-track results
-  outputs_freemodel/chr/        gpt-oss-120b:free results (multi-model robustness)
-  diagrams/                     Figures embedded in the thesis
+                                  (A, B with OWL retry; b_shacl/ archived for ablation)
+  outputs_freemodel/chr/        gpt-oss-120b results (cross-model robustness)
+  outputs/judge_scores.json     LLM-as-judge results across all System B variants
+  outputs/connectivity_buckets.json
+                                Connectivity-stratified bucket assignments + metrics
+  outputs/per_shape_violations.json
+                                Per-SHACL-shape and per-OWL-violation breakdown
+  outputs/f1_normalizer_ablation.json
+                                F1 with vs without IRI normaliser (raw vs normalised)
+  outputs/ontology_coverage.json
+                                CHR TBox class/property usage stats
 
 scaling_n100/
-  fhir_to_chr.py                Deterministic FHIR → CHR Turtle gold converter
-  fhir_to_text.py               Deterministic FHIR → clinical-note text renderer
-  extract_parallel.py           Parallel extraction wrapper
+  fhir_to_chr.py                Deterministic FHIR -> CHR Turtle gold converter
+  fhir_to_text.py               Deterministic FHIR -> clinical-note text renderer
+  extract_parallel.py           Parallel extraction wrapper (System A + B)
 
-tests/                          pytest test suite
+scripts/
+  run_system_d.py               System D (LLM looped 4x without verifier feedback)
+  evaluate_system_d.py          A vs B vs D comparison on SHACL + F1
+  owl_conformance_survey.py     Parallel OWL conformance across systems and tracks
+  connectivity_analysis.py      Connectivity-tertile stratification of all metrics
+  per_shape_violation_analysis.py
+                                Which SHACL shapes get fixed by B / which resist
+  f1_normalizer_ablation.py     F1 with vs without IRI normaliser
+  ontology_coverage.py          CHR TBox usage stats
+  inspect_vignette.py           Per-vignette diagnostic tool (use during defence Q&A)
+  make_n200_stratified_plot.py  Headline A->B conformance plot (4 system variants)
+  make_n200_percycle_v2.py      Per-cycle convergence, both metrics on [0,1] scale
+  make_n200_decoupling_plot.py  ΔSHACL vs ΔF1 dual-axis chart
+  make_connectivity_plot.py     Connectivity-stratified lift figure
+  regenerate_all_figures.py     One-shot regen of every thesis figure
+
+report/                         Local thesis writing artefacts (gitignored)
+                                  THESIS_WRITING_PACK.md — master copy-paste reference
+                                  n200_results_summary.md — detailed tables
+                                  cost_and_reproducibility.md — API spend + Synthea seeds
+                                  worked_example_vignette_030.md — pipeline trace
+                                  per_shape_findings.md — per-shape breakdown
+                                  judge_x_connectivity.md — cross-dim finding
+                                  f1_normalizer_audit.md — normaliser defence
+                                  code_review_notes.md — module-by-module audit
+                                  FULL_CODE_RECHECK.md — final audit summary
+                                  figures/                — thesis PNGs
+
+tests/                          pytest suite (57 tests, all pass)
 ```
 
 ## How to run
@@ -51,32 +96,62 @@ tests/                          pytest test suite
 Set the OpenRouter API key in `.env`, then:
 
 ```bash
-# Schema-track A/B/C extraction (Gemini 2.0 Flash)
-python pipeline/extract.py --schema chr --track schema --prompt full --systems a,b,c
+# Schema-track A/B extraction (Gemini 2.0 Flash)
+python scaling_n100/extract_parallel.py \
+  --schema chr --track schema --prompt full --systems a,b --workers 5
 
-# Ontology-track extraction (uses chr_shacl_ontology.ttl)
-python pipeline/extract.py --schema chr --track ontology --prompt ontology --systems a,b
+# Ontology-track extraction (uses OWL reasoner — replaces SHACL on this track)
+python scaling_n100/extract_parallel.py \
+  --schema chr --track ontology --prompt ontology --systems a,b --workers 5
 
-# Run with a different model (override defaults):
-OPENROUTER_MODEL_OVERRIDE="openai/gpt-oss-120b:free" \
+# Run with the alternate model (override defaults, paid endpoint for speed):
+OPENROUTER_MODEL_OVERRIDE="openai/gpt-oss-120b" \
+OPENROUTER_PROVIDER_SORT="throughput" \
 OUTPUTS_ROOT_OVERRIDE="$PWD/evaluation/outputs_freemodel" \
-python pipeline/extract.py --schema chr --track schema --prompt full --systems a,b
+python scaling_n100/extract_parallel.py --schema chr --track schema --prompt full --systems a,b
 
-# Evaluate (IRI-normalised F1, conformance, hallucination):
+# System D — compute-fair baseline (4 LLM calls without verifier feedback)
+python scripts/run_system_d.py --schema chr --track schema --workers 5
+
+# F1 + SHACL evaluation on the schema track
 python pipeline/evaluate.py --schema chr --track schema --prompt full
+
+# LLM-as-judge (Llama 3.3 70B — cross-family from Gemini and gpt-oss)
+JUDGE_MODEL="meta-llama/llama-3.3-70b-instruct" \
+python pipeline/llm_judge.py --schema chr --track schema --prompt full --system b
+
+# Statistical CIs and paired sign tests
+python pipeline/stats.py
+
+# All supplementary analyses
+python scripts/connectivity_analysis.py
+python scripts/per_shape_violation_analysis.py
+python scripts/f1_normalizer_ablation.py
+python scripts/ontology_coverage.py
+python scripts/evaluate_system_d.py
+
+# Regenerate every thesis figure from existing outputs
+python scripts/regenerate_all_figures.py
 ```
 
-`Makefile` wraps the common cases. `make evaluate` re-scores every output cell.
+`pyproject.toml` declares package metadata. Tests run with `python -m pytest tests/`.
 
 ## Corpus
 
-100 vignettes, all Synthea-derived. Same Synthea FHIR Bundle produces both the
-text (via `fhir_to_text.py`) and the gold ABox (via `fhir_to_chr.py`), so
-text-and-gold come from a single deterministic source. Gold uses standardised
-clinical terminologies (SNOMED CT, LOINC, RxNorm) inherited from Synthea.
+n=200 vignettes, all Synthea-derived. Same Synthea FHIR Bundle produces both
+the text (via `fhir_to_text.py`) and the gold ABox (via `fhir_to_chr.py`), so
+text-and-gold come from a single deterministic source. Stratified into:
 
-The 28 source FHIR Bundles are committed at `evaluation/corpus/fhir_bundles/`,
-so the entire FHIR → text and FHIR → CHR projection can be re-derived
+- **General (001-100):** standard Synthea modules, mixed encounter types.
+- **Complex (101-200):** multi-morbidity, age 60+, disease-specific modules
+  (metabolic_syndrome, lung_cancer, breast_cancer_survivor, opioid_addiction,
+  sepsis). Mean ~108 entities per gold KG vs ~36 in the general stratum.
+
+Gold uses standardised clinical terminologies (SNOMED CT, LOINC, RxNorm)
+inherited from Synthea.
+
+The source FHIR Bundles are committed at `evaluation/corpus/fhir_bundles/`,
+so the entire FHIR -> text and FHIR -> CHR projection can be re-derived
 byte-identically from the same input.
 
 ## IRI normaliser
@@ -85,53 +160,101 @@ Triple-level F1 is computed in a canonical-IRI space established by
 `pipeline/iri_normalizer.py`. The Synthea gold uses UUID-derived IRIs; the
 LLM mints text-span IRIs. The normaliser builds a bijection using
 FHIR-grounded matching keys (rdfs:label, literal values, IRI token overlap,
-structural anchoring via already-matched neighbours). Without it, F1 against
-the Synthea gold is artificially zero.
+structural anchoring via already-matched neighbours). **Ablation result
+(n=200):** without the normaliser, F1 against the Synthea gold is 0.000-0.004
+across all 8 model × stratum × system combinations. With it, F1 is 0.40-0.50.
+The normaliser is the only path to a measurable triple-level F1 signal.
+
+Full audit in `report/f1_normalizer_audit.md`.
+
+## Validator architecture
+
+`pipeline/extract.py` uses a track-aware `validate_for_track` dispatch:
+
+- **Schema track** -> `validate_with_shacl` (custom `chr_shacl_schema.ttl`)
+- **Ontology track** -> `validate_with_owl` (OWL-RL closure + SULO disjointness
+  + functional-property + range checks)
+
+This replaces the previous hand-written `chr_shacl_ontology.ttl` shapes as
+the primary validator on the ontology track (supervisor's request: validation
+should be grounded in SULO axioms, not in our custom shape interpretation).
+The archived SHACL-driven System B outputs remain at `outputs*/chr/ontology/ontology/b_shacl/`
+for the validator-choice ablation study (RQ4).
 
 ## Reproducibility
 
-**LLM**
+**LLMs**
 - Primary model: `google/gemini-2.0-flash-001` via OpenRouter
-- Replication model: `openai/gpt-oss-120b:free` via OpenRouter
+- Cross-model replication: `openai/gpt-oss-120b` via OpenRouter (paid endpoint
+  with throughput sort for fast extraction; free endpoint hits rate limits)
+- Judge: `meta-llama/llama-3.3-70b-instruct` via OpenRouter (cross-family)
 - Temperature: 0.1
-- Retry budget: k=3
-- Termination: conforms / k reached / two-cycle plateau
+- Retry budget for System B: k=3
+- Termination: conforms / k reached / two-cycle plateau / parse-error recovery
 
-**Corpus generation (Synthea → FHIR → text + gold)**
+**Corpus generation (Synthea -> FHIR -> text + gold)**
 - Synthea version: commit `aa0772fb5e92e48a776c51508c00eddc0d9d27ff` (4.0.1-SNAPSHOT, 2026-03-05)
 - Seed: `1777393568786` (both `seed` and `clinicianSeed`)
-- State: Massachusetts, end-time `20260428`, modules `*`, patient count 6 per run
+- State: Massachusetts, end-time `20260428`, modules `*` (general) or
+  disease-specific (complex), patient count 6 per run
 - 28 generated FHIR Bundles archived at `evaluation/corpus/fhir_bundles/`
 - `fhir_to_chr.py` and `fhir_to_text.py` are pure deterministic projections
-- All 100 gold ABoxes pass SHACL against their schema-track shapes (100/100)
+- All 200 gold ABoxes pass SHACL against their schema-track shapes
 
 Three levels of reproducibility:
 1. **Derived artefacts** (vignettes + gold) — committed under `evaluation/corpus/`
 2. **Source FHIR Bundles** — committed under `evaluation/corpus/fhir_bundles/`
 3. **Upstream Synthea regeneration** — pin Synthea to the SHA above, run with the seed
 
-## Headline results
+Full recipe and cost breakdown in `report/cost_and_reproducibility.md`.
+
+## Headline results (n=200)
+
+### Schema track (F1 + SHACL conformance)
 
 | | Gemini A | Gemini B | gpt-oss A | gpt-oss B |
 |---|---|---|---|---|
-| SHACL conformance (schema)   | 4%  | **96%** | 20% | **87%** |
-| SHACL conformance (ontology) | 79% | **94%** | 29% | **97%** |
-| F1 (IRI-normalised, schema)  | 0.336 | 0.330 | 0.317 | 0.319 |
+| SHACL conformance | 4% / 3% | **96% / 100%** | 19% / 42% | **87% / 97%** |
+| F1 (IRI-normalised) | 0.34 / 0.29 | 0.33 / 0.26 | 0.32 / 0.26 | 0.32 / 0.25 |
 
-SHACL feedback raises conformance by 15–92 percentage points; F1 movement is
-< 1 percentage point in either direction. The two quality axes are decoupled
-in magnitude — SHACL is a *structural safety net*, not a content booster.
+(general / complex stratum)
 
-### Scope of each metric
+### Ontology track (OWL conformance, primary validator)
+
+| | Gemini A | Gemini B (OWL retry) | gpt-oss A | gpt-oss B (OWL retry) |
+|---|---|---|---|---|
+| OWL conformance | 65% / 19% | **71% / 59%** | 83% / 94% | **96% / 99%** |
+
+### Decoupling
+
+ΔSHACL spans +47pp to +97pp on schema track. |ΔF1| ≤ 0.024 across all variants.
+Decoupling ratio (ΔSHACL / |ΔF1|): 4500× to 11000×. Structural conformance and
+content overlap with gold are independent quality axes.
+
+### Compute-fairness baseline (System D)
+
+System D = LLM called 4 times sequentially with no feedback (same token
+budget as B's 1 + 3 retries). On Gemini complex schema: A=3% SHACL, D=0%,
+B=100%. The verifier's feedback signal is responsible for nearly all of B's
+improvement, not raw inference-time scaling.
+
+## Scope of each metric
 
 - **Schema track** has full evaluation: SHACL conformance, triple-level F1
   (IRI-normalised), Property Completeness, hallucination — all in
   `evaluation/outputs/chr/schema/full/eval.json`.
-- **Ontology track** reports **SHACL conformance only**. No gold ABoxes
-  exist on the ontology track for the Synthea corpus (`fhir_to_chr.py`
-  emits schema-track gold only), so triple-level F1 is not computable.
-  Conformance numbers are derived by running pyshacl against the System A
-  and System B output `.ttl` files in
-  `evaluation/outputs/chr/ontology/ontology/{a,b}/` with the
-  `chr_shacl_ontology.ttl` shapes; System B's per-cycle conformance is
-  recorded in `b/cycles/vignette_NNN/summary.json`.
+- **Ontology track** reports **OWL conformance** (primary, n=200 stratified)
+  AND **SHACL conformance** (for comparability with earlier studies; B/ vs
+  b_shacl/ ablation). No gold ABoxes exist on the ontology track for the
+  Synthea corpus (`fhir_to_chr.py` emits schema-track gold only), so
+  triple-level F1 is not computable on this track.
+- **LLM-as-judge** is reported across all 4 System B variants, n=200, with
+  three Likert axes (faithfulness, completeness, hallucination). See
+  `evaluation/outputs/judge_scores.json`.
+
+## Thesis writing reference
+
+`report/THESIS_WRITING_PACK.md` is the single source of truth for every
+number in the thesis manuscript, with section-aligned tables, ready-to-paste
+bullet points for the Discussion section, and pre-written defence Q&A
+answers for the 7 most likely supervisor questions.

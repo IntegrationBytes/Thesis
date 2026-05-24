@@ -1,0 +1,38 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Angelic_Callie_Schaden a chr:Person .
+
+ex:person_Willian_Batz a chr:Person .
+
+ex:careunit_BOSTON_MEDICAL_CENTER a chr:CareUnit .
+
+ex:visit_2016_08_07_0624 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:person_Willian_Batz ;
+    chr:hasCareUnit ex:careunit_BOSTON_MEDICAL_CENTER ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden .
+
+ex:measproc_Temp_2016_08_07_0624 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_Temp_2016_08_07_0624 .
+
+ex:measurement_Temp_2016_08_07_0624 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-08-07T06:24:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "37.816"^^xsd:float ;
+    chr:hasUnit sulo:degreeCelsius .
+
+ex:evaluation_2016_08_07_0624 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_AcuteViralPharyngitis .
+
+ex:diag_AcuteViralPharyngitis a chr:DiagnosticStatement .
+
+ex:condition_AcuteViralPharyngitis a chr:ClinicalCondition ;
+    chr:hasRecordDate "2016-08-07T06:24:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:careplan_followup a chr:CarePlan .

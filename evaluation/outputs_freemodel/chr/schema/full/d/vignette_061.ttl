@@ -1,0 +1,119 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Delma_Huel a chr:Person .
+
+ex:physician_Drew_Simonis a chr:Person .
+
+ex:careunit_HarborHealth a chr:CareUnit .
+
+ex:visit_2021_03_25_07_12 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Delma_Huel ;
+    chr:hasCareProvider ex:physician_Drew_Simonis ;
+    chr:hasCareUnit ex:careunit_HarborHealth .
+
+# Measurement processes and their results
+ex:measproc_Height_2021_03_25_07_12 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Huel ;
+    chr:hasResult ex:measurement_Height_2021_03_25_07_12 .
+
+ex:measurement_Height_2021_03_25_07_12 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-03-25T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "77.3"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+ex:measproc_PainSeverity_2021_03_25_07_12 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Huel ;
+    chr:hasResult ex:measurement_PainSeverity_2021_03_25_07_12 .
+
+ex:measurement_PainSeverity_2021_03_25_07_12 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-03-25T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:measproc_Weight_2021_03_25_07_12 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Huel ;
+    chr:hasResult ex:measurement_Weight_2021_03_25_07_12 .
+
+ex:measurement_Weight_2021_03_25_07_12 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-03-25T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "11.4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+ex:measproc_WeightForLength_2021_03_25_07_12 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Huel ;
+    chr:hasResult ex:measurement_WeightForLength_2021_03_25_07_12 .
+
+ex:measurement_WeightForLength_2021_03_25_07_12 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-03-25T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "93.077"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+ex:measproc_HeadCircumferencePercentile_2021_03_25_07_12 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Huel ;
+    chr:hasResult ex:measurement_HeadCircumferencePercentile_2021_03_25_07_12 .
+
+ex:measurement_HeadCircumferencePercentile_2021_03_25_07_12 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-03-25T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "24.46"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+ex:measproc_HeadCircumference_2021_03_25_07_12 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Huel ;
+    chr:hasResult ex:measurement_HeadCircumference_2021_03_25_07_12 .
+
+ex:measurement_HeadCircumference_2021_03_25_07_12 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-03-25T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "45.5"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+ex:measproc_HeartRate_2021_03_25_07_12 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Huel ;
+    chr:hasResult ex:measurement_HeartRate_2021_03_25_07_12 .
+
+ex:measurement_HeartRate_2021_03_25_07_12 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-03-25T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "85"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+ex:measproc_RespiratoryRate_2021_03_25_07_12 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma_Huel ;
+    chr:hasResult ex:measurement_RespiratoryRate_2021_03_25_07_12 .
+
+ex:measurement_RespiratoryRate_2021_03_25_07_12 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-03-25T07:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# Evaluation and condition
+ex:evaluation_2021_03_25_07_12 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MedicationReview .
+
+ex:diag_MedicationReview a chr:DiagnosticStatement .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:condition_2021_03_25_07_12 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2021-03-25T07:12:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Care plan and medical procedure
+ex:careplan_2021_03_25_07_12 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_WellChildVisit .
+
+ex:procedure_WellChildVisit a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Delma_Huel ;
+    chr:hasPerformedDate "2021-03-25T07:12:00"^^xsd:dateTime ;
+    chr:hasStatus ex:status_completed .
+
+ex:status_completed a chr:ProcessStatus .
+
+# Units (no type required, just IRIs)
+ex:unit_cm .
+ex:unit_kg .
+ex:unit_percent .
+ex:unit_per_min .
+ex:unit_score .

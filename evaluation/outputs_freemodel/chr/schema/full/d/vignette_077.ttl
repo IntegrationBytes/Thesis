@@ -1,0 +1,266 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_EstelaGrant a chr:Person .
+ex:physician_IvonneTurcotte a chr:Person .
+
+# Care unit
+ex:careunit_ZION_HEALTH_WELLNESS a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2002_03_11_20_35 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasCareProvider ex:physician_IvonneTurcotte ;
+    chr:hasCareUnit ex:careunit_ZION_HEALTH_WELLNESS .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Clinical conditions
+ex:condition_MedicationReview_20020311_2035 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:condition_Gingivitis_20020311_2309 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2002-03-11T23:09:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Diagnostic statements
+ex:diagnostic_MedicationReview_20020311_2035 a chr:DiagnosticStatement .
+ex:diagnostic_Gingivitis_20020311_2309 a chr:DiagnosticStatement .
+
+# Evaluation processes
+ex:evaluation_20020311_2035 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_MedicationReview_20020311_2035 .
+
+ex:evaluation_20020311_2309 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_Gingivitis_20020311_2309 .
+
+# Care plan
+ex:careplan_followup a chr:CarePlan .
+
+# Measurement processes and measurements
+
+# 1. Hemoglobin A1c
+ex:measproc_HbA1c_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_HbA1c_20020311_2035 .
+
+ex:measurement_HbA1c_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.26"^^xsd:float ;
+    chr:hasUnit sulo:unit_percent .
+
+# 2. Body Height
+ex:measproc_Height_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_Height_20020311_2035 .
+
+ex:measurement_Height_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "156.6"^^xsd:float ;
+    chr:hasUnit sulo:unit_cm .
+
+# 3. Pain severity
+ex:measproc_PainSeverity_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_PainSeverity_20020311_2035 .
+
+ex:measurement_PainSeverity_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit sulo:unit_score .
+
+# 4. Body Weight
+ex:measproc_Weight_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_Weight_20020311_2035 .
+
+ex:measurement_Weight_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "72.3"^^xsd:float ;
+    chr:hasUnit sulo:unit_kg .
+
+# 5. Body Mass Index
+ex:measproc_BMI_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_BMI_20020311_2035 .
+
+ex:measurement_BMI_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "29.49"^^xsd:float ;
+    chr:hasUnit sulo:unit_kg_per_m2 .
+
+# 6. Heart rate
+ex:measproc_HeartRate_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_HeartRate_20020311_2035 .
+
+ex:measurement_HeartRate_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "77"^^xsd:float ;
+    chr:hasUnit sulo:unit_per_min .
+
+# 7. Respiratory rate
+ex:measproc_RespRate_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_RespRate_20020311_2035 .
+
+ex:measurement_RespRate_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit sulo:unit_per_min .
+
+# 8. Glucose
+ex:measproc_Glucose_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_Glucose_20020311_2035 .
+
+ex:measurement_Glucose_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "97.77"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL .
+
+# 9. Urea nitrogen
+ex:measproc_UreaNitrogen_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_UreaNitrogen_20020311_2035 .
+
+ex:measurement_UreaNitrogen_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.79"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL .
+
+# 10. Creatinine
+ex:measproc_Creatinine_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_Creatinine_20020311_2035 .
+
+ex:measurement_Creatinine_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.92"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL .
+
+# 11. Calcium
+ex:measproc_Calcium_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_Calcium_20020311_2035 .
+
+ex:measurement_Calcium_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "10.15"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL .
+
+# 12. Sodium
+ex:measproc_Sodium_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_Sodium_20020311_2035 .
+
+ex:measurement_Sodium_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "139.09"^^xsd:float ;
+    chr:hasUnit sulo:unit_mmol_per_L .
+
+# 13. Potassium
+ex:measproc_Potassium_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_Potassium_20020311_2035 .
+
+ex:measurement_Potassium_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.73"^^xsd:float ;
+    chr:hasUnit sulo:unit_mmol_per_L .
+
+# 14. Chloride
+ex:measproc_Chloride_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_Chloride_20020311_2035 .
+
+ex:measurement_Chloride_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "103.69"^^xsd:float ;
+    chr:hasUnit sulo:unit_mmol_per_L .
+
+# 15. Carbon dioxide, total
+ex:measproc_CO2Total_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_CO2Total_20020311_2035 .
+
+ex:measurement_CO2Total_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "25.17"^^xsd:float ;
+    chr:hasUnit sulo:unit_mmol_per_L .
+
+# 16. Cholesterol (Serum/Plasma)
+ex:measproc_Cholesterol_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_Cholesterol_20020311_2035 .
+
+ex:measurement_Cholesterol_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "154.79"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL .
+
+# 17. Triglyceride
+ex:measproc_Triglyceride_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_Triglyceride_20020311_2035 .
+
+ex:measurement_Triglyceride_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "140.07"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL .
+
+# 18. Cholesterol LDL
+ex:measproc_CholesterolLDL_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_CholesterolLDL_20020311_2035 .
+
+ex:measurement_CholesterolLDL_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "70.64"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL .
+
+# 19. Cholesterol HDL
+ex:measproc_CholesterolHDL_20020311_2035 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_CholesterolHDL_20020311_2035 .
+
+ex:measurement_CholesterolHDL_20020311_2035 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "56.14"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL .
+
+# 20. GAD-7 total score
+ex:measproc_GAD7_20020311_2153 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_GAD7_20020311_2153 .
+
+ex:measurement_GAD7_20020311_2153 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T21:53:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit sulo:unit_score .
+
+# 21. PHQ-2 total score
+ex:measproc_PHQ2_20020311_2230 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_PHQ2_20020311_2230 .
+
+ex:measurement_PHQ2_20020311_2230 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T22:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:unit_score .
+
+# 22. DAST-10 total score
+ex:measproc_DAST10_20020311_2309 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_DAST10_20020311_2309 .
+
+ex:measurement_DAST10_20020311_2309 a chr:Measurement ;
+    chr:hasMeasuredDate "2002-03-11T23:09:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:unit_score .

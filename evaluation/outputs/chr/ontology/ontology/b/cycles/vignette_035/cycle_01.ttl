@@ -3,13 +3,17 @@
 @prefix sulo: <https://w3id.org/sulo/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-ex:visit_2023_11_02_1759 a chr:ClinicalVisit ;
+ex:visit_2023_11_02_1759 a sulo:Process, chr:ClinicalVisit ;
   sulo:atTime ex:time_visit_2023_11_02_1759 ;
   sulo:isIn ex:care_unit_jfc ;
   sulo:hasParticipant ex:role_patient_visit_2023_11_02_1759 ;
   sulo:hasParticipant ex:role_provider_visit_2023_11_02_1759 ;
-  sulo:refersTo ex:procedure_general_examination .
+  sulo:hasReference ex:ref_procedure_general_examination .
+
+ex:ref_procedure_general_examination a sulo:Reference ;
+  sulo:pointsTo ex:procedure_general_examination .
 
 ex:time_visit_2023_11_02_1759 a sulo:TimeInstant ;
   sulo:hasValue "2023-11-02T17:59:00"^^xsd:dateTime .
@@ -28,7 +32,7 @@ ex:patient_casey401 a chr:Person .
 
 ex:doctor_eldridge510 a chr:Person .
 
-ex:height_measurement_process a chr:MeasurementProcess ;
+ex:height_measurement_process a sulo:Process, chr:MeasurementProcess ;
   sulo:atTime ex:time_height_measurement ;
   sulo:hasParticipant ex:role_patient_height_measurement ;
   sulo:hasParticipant ex:role_status_height_measurement .
@@ -40,20 +44,18 @@ ex:role_patient_height_measurement a chr:SubjectOfCareRole ;
   sulo:isFeatureOf ex:patient_casey401 .
 
 ex:role_status_height_measurement a chr:OutputRole ;
-  sulo:isFeatureOf ex:height_measurement_status .
+  sulo:isFeatureOf ex:status_completed_height_measurement .
 
-ex:height_measurement_status a chr:ProcessStatus ;
-  sulo:isAbout ex:height_measurement ;
-  a chr:Measurement .
+ex:status_completed_height_measurement a chr:ProcessStatus .
 
-ex:height_measurement a chr:Measurement ;
+ex:height_measurement a sulo:Object, chr:Measurement ;
   sulo:hasValue "172.7"^^xsd:float ;
   sulo:hasPart ex:unit_cm ;
   sulo:atTime ex:time_height_measurement .
 
 ex:unit_cm a sulo:Unit .
 
-ex:pain_measurement_process a chr:MeasurementProcess ;
+ex:pain_measurement_process a sulo:Process, chr:MeasurementProcess ;
   sulo:atTime ex:time_pain_measurement ;
   sulo:hasParticipant ex:role_patient_pain_measurement ;
   sulo:hasParticipant ex:role_status_pain_measurement .
@@ -65,20 +67,18 @@ ex:role_patient_pain_measurement a chr:SubjectOfCareRole ;
   sulo:isFeatureOf ex:patient_casey401 .
 
 ex:role_status_pain_measurement a chr:OutputRole ;
-  sulo:isFeatureOf ex:pain_measurement_status .
+  sulo:isFeatureOf ex:status_completed_pain_measurement2 .
 
-ex:pain_measurement_status a chr:ProcessStatus ;
-  sulo:isAbout ex:pain_measurement ;
-  a chr:Measurement .
+ex:status_completed_pain_measurement2 a chr:ProcessStatus .
 
-ex:pain_measurement a chr:Measurement ;
+ex:pain_measurement a sulo:Object, chr:Measurement ;
   sulo:hasValue "3.0"^^xsd:float ;
   sulo:hasPart ex:unit_score ;
   sulo:atTime ex:time_pain_measurement .
 
 ex:unit_score a sulo:Unit .
 
-ex:weight_measurement_process a chr:MeasurementProcess ;
+ex:weight_measurement_process a sulo:Process, chr:MeasurementProcess ;
   sulo:atTime ex:time_weight_measurement ;
   sulo:hasParticipant ex:role_patient_weight_measurement ;
   sulo:hasParticipant ex:role_status_weight_measurement2 .
@@ -90,20 +90,18 @@ ex:role_patient_weight_measurement a chr:SubjectOfCareRole ;
   sulo:isFeatureOf ex:patient_casey401 .
 
 ex:role_status_weight_measurement2 a chr:OutputRole ;
-  sulo:isFeatureOf ex:weight_measurement_status .
+  sulo:isFeatureOf ex:status_completed_weight_measurement .
 
-ex:weight_measurement_status a chr:ProcessStatus ;
-  sulo:isAbout ex:weight_measurement ;
-  a chr:Measurement .
+ex:status_completed_weight_measurement a chr:ProcessStatus .
 
-ex:weight_measurement a chr:Measurement ;
+ex:weight_measurement a sulo:Object, chr:Measurement ;
   sulo:hasValue "82.2"^^xsd:float ;
   sulo:hasPart ex:unit_kg ;
   sulo:atTime ex:time_weight_measurement .
 
 ex:unit_kg a sulo:Unit .
 
-ex:bmi_measurement_process a chr:MeasurementProcess ;
+ex:bmi_measurement_process a sulo:Process, chr:MeasurementProcess ;
   sulo:atTime ex:time_bmi_measurement ;
   sulo:hasParticipant ex:role_patient_bmi_measurement ;
   sulo:hasParticipant ex:role_status_bmi_measurement .
@@ -115,20 +113,18 @@ ex:role_patient_bmi_measurement a chr:SubjectOfCareRole ;
   sulo:isFeatureOf ex:patient_casey401 .
 
 ex:role_status_bmi_measurement a chr:OutputRole ;
-  sulo:isFeatureOf ex:bmi_measurement_status .
+  sulo:isFeatureOf ex:status_completed_bmi_measurement .
 
-ex:bmi_measurement_status a chr:ProcessStatus ;
-  sulo:isAbout ex:bmi_measurement ;
-  a chr:Measurement .
+ex:status_completed_bmi_measurement a chr:ProcessStatus .
 
-ex:bmi_measurement a chr:Measurement ;
+ex:bmi_measurement a sulo:Object, chr:Measurement ;
   sulo:hasValue "27.56"^^xsd:float ;
   sulo:hasPart ex:unit_kg_m2 ;
   sulo:atTime ex:time_bmi_measurement .
 
 ex:unit_kg_m2 a sulo:Unit .
 
-ex:heart_rate_measurement_process a chr:MeasurementProcess ;
+ex:heart_rate_measurement_process a sulo:Process, chr:MeasurementProcess ;
   sulo:atTime ex:time_heart_rate_measurement ;
   sulo:hasParticipant ex:role_patient_heart_rate_measurement ;
   sulo:hasParticipant ex:role_status_heart_rate_measurement .
@@ -140,20 +136,18 @@ ex:role_patient_heart_rate_measurement a chr:SubjectOfCareRole ;
   sulo:isFeatureOf ex:patient_casey401 .
 
 ex:role_status_heart_rate_measurement a chr:OutputRole ;
-  sulo:isFeatureOf ex:heart_rate_measurement_status .
+  sulo:isFeatureOf ex:status_completed_heart_rate_measurement .
 
-ex:heart_rate_measurement_status a chr:ProcessStatus ;
-  sulo:isAbout ex:heart_rate_measurement ;
-  a chr:Measurement .
+ex:status_completed_heart_rate_measurement a chr:ProcessStatus .
 
-ex:heart_rate_measurement a chr:Measurement ;
+ex:heart_rate_measurement a sulo:Object, chr:Measurement ;
   sulo:hasValue "69.0"^^xsd:float ;
   sulo:hasPart ex:unit_per_min ;
   sulo:atTime ex:time_heart_rate_measurement .
 
 ex:unit_per_min a sulo:Unit .
 
-ex:respiratory_rate_measurement_process a chr:MeasurementProcess ;
+ex:respiratory_rate_measurement_process a sulo:Process, chr:MeasurementProcess ;
   sulo:atTime ex:time_respiratory_rate_measurement ;
   sulo:hasParticipant ex:role_patient_respiratory_rate_measurement ;
   sulo:hasParticipant ex:role_status_respiratory_rate_measurement .
@@ -165,20 +159,18 @@ ex:role_patient_respiratory_rate_measurement a chr:SubjectOfCareRole ;
   sulo:isFeatureOf ex:patient_casey401 .
 
 ex:role_status_respiratory_rate_measurement a chr:OutputRole ;
-  sulo:isFeatureOf ex:respiratory_rate_measurement_status .
+  sulo:isFeatureOf ex:status_completed_respiratory_rate_measurement .
 
-ex:respiratory_rate_measurement_status a chr:ProcessStatus ;
-  sulo:isAbout ex:respiratory_rate_measurement ;
-  a chr:Measurement .
+ex:status_completed_respiratory_rate_measurement a chr:ProcessStatus .
 
-ex:respiratory_rate_measurement a chr:Measurement ;
+ex:respiratory_rate_measurement a sulo:Object, chr:Measurement ;
   sulo:hasValue "13.0"^^xsd:float ;
   sulo:hasPart ex:unit_per_min2 ;
   sulo:atTime ex:time_respiratory_rate_measurement .
 
 ex:unit_per_min2 a sulo:Unit .
 
-ex:fall_risk_measurement_process a chr:MeasurementProcess ;
+ex:fall_risk_measurement_process a sulo:Process, chr:MeasurementProcess ;
   sulo:atTime ex:time_fall_risk_measurement ;
   sulo:hasParticipant ex:role_patient_fall_risk_measurement ;
   sulo:hasParticipant ex:role_status_fall_risk_measurement .
@@ -190,20 +182,18 @@ ex:role_patient_fall_risk_measurement a chr:SubjectOfCareRole ;
   sulo:isFeatureOf ex:patient_casey401 .
 
 ex:role_status_fall_risk_measurement a chr:OutputRole ;
-  sulo:isFeatureOf ex:fall_risk_measurement_status .
+  sulo:isFeatureOf ex:status_completed_fall_risk_measurement2 .
 
-ex:fall_risk_measurement_status a chr:ProcessStatus ;
-  sulo:isAbout ex:fall_risk_measurement ;
-  a chr:Measurement .
+ex:status_completed_fall_risk_measurement2 a chr:ProcessStatus .
 
-ex:fall_risk_measurement a chr:Measurement ;
+ex:fall_risk_measurement a sulo:Object, chr:Measurement ;
   sulo:hasValue "1.0"^^xsd:float ;
   sulo:hasPart ex:unit_number ;
   sulo:atTime ex:time_fall_risk_measurement .
 
 ex:unit_number a sulo:Unit .
 
-ex:hark_measurement_process a chr:MeasurementProcess ;
+ex:hark_measurement_process a sulo:Process, chr:MeasurementProcess ;
   sulo:atTime ex:time_hark_measurement ;
   sulo:hasParticipant ex:role_patient_hark_measurement ;
   sulo:hasParticipant ex:role_status_hark_measurement2 .
@@ -215,20 +205,18 @@ ex:role_patient_hark_measurement a chr:SubjectOfCareRole ;
   sulo:isFeatureOf ex:patient_casey401 .
 
 ex:role_status_hark_measurement2 a chr:OutputRole ;
-  sulo:isFeatureOf ex:hark_measurement_status .
+  sulo:isFeatureOf ex:status_completed_hark_measurement .
 
-ex:hark_measurement_status a chr:ProcessStatus ;
-  sulo:isAbout ex:hark_measurement ;
-  a chr:Measurement .
+ex:status_completed_hark_measurement a chr:ProcessStatus .
 
-ex:hark_measurement a chr:Measurement ;
+ex:hark_measurement a sulo:Object, chr:Measurement ;
   sulo:hasValue "0.0"^^xsd:float ;
   sulo:hasPart ex:unit_score2 ;
   sulo:atTime ex:time_hark_measurement .
 
 ex:unit_score2 a sulo:Unit .
 
-ex:dast10_measurement_process a chr:MeasurementProcess ;
+ex:dast10_measurement_process a sulo:Process, chr:MeasurementProcess ;
   sulo:atTime ex:time_dast10_measurement ;
   sulo:hasParticipant ex:role_patient_dast10_measurement ;
   sulo:hasParticipant ex:role_status_dast10_measurement .
@@ -240,20 +228,18 @@ ex:role_patient_dast10_measurement a chr:SubjectOfCareRole ;
   sulo:isFeatureOf ex:patient_casey401 .
 
 ex:role_status_dast10_measurement a chr:OutputRole ;
-  sulo:isFeatureOf ex:dast10_measurement_status .
+  sulo:isFeatureOf ex:status_completed_dast10_measurement2 .
 
-ex:dast10_measurement_status a chr:ProcessStatus ;
-  sulo:isAbout ex:dast10_measurement ;
-  a chr:Measurement .
+ex:status_completed_dast10_measurement2 a chr:ProcessStatus .
 
-ex:dast10_measurement a chr:Measurement ;
+ex:dast10_measurement a sulo:Object, chr:Measurement ;
   sulo:hasValue "0.0"^^xsd:float ;
   sulo:hasPart ex:unit_score3 ;
   sulo:atTime ex:time_dast10_measurement .
 
 ex:unit_score3 a sulo:Unit .
 
-ex:evaluation_2023_11_02_1759 a chr:EvaluationProcess ;
+ex:evaluation_2023_11_02_1759 a sulo:Process, chr:EvaluationProcess ;
   sulo:atTime ex:time_evaluation_2023_11_02_1759 ;
   sulo:hasParticipant ex:role_patient_evaluation_2023_11_02_1759 ;
   sulo:hasParticipant ex:role_provider_evaluation_2023_11_02_1759 ;
@@ -269,15 +255,11 @@ ex:role_provider_evaluation_2023_11_02_1759 a chr:PerformerRole ;
   sulo:isFeatureOf ex:doctor_eldridge510 .
 
 ex:role_output_evaluation_2023_11_02_1759 a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_medication_review_status .
+  sulo:isFeatureOf ex:diagnostic_medication_review .
 
-ex:diagnostic_medication_review_status a chr:ProcessStatus ;
-  sulo:isAbout ex:diagnostic_medication_review ;
-  a chr:DiagnosticStatement .
+ex:diagnostic_medication_review a sulo:Object, chr:DiagnosticStatement .
 
-ex:diagnostic_medication_review a chr:DiagnosticStatement .
-
-ex:condition_medication_review a chr:ClinicalCondition ;
+ex:condition_medication_review a sulo:Object, chr:ClinicalCondition ;
   sulo:atTime ex:time_condition_medication_review ;
   sulo:hasFeature ex:severity_moderate_medication_review .
 
@@ -286,7 +268,7 @@ ex:time_condition_medication_review a sulo:TimeInstant ;
 
 ex:severity_moderate_medication_review a chr:Severity .
 
-ex:evaluation_2023_11_02_1856 a chr:EvaluationProcess ;
+ex:evaluation_2023_11_02_1856 a sulo:Process, chr:EvaluationProcess ;
   sulo:atTime ex:time_evaluation_2023_11_02_1856 ;
   sulo:hasParticipant ex:role_patient_evaluation_2023_11_02_1856 ;
   sulo:hasParticipant ex:role_provider_evaluation_2023_11_02_1856 ;
@@ -302,15 +284,11 @@ ex:role_provider_evaluation_2023_11_02_1856 a chr:PerformerRole ;
   sulo:isFeatureOf ex:doctor_eldridge510 .
 
 ex:role_output_evaluation_2023_11_02_1856 a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_part_time_employment_status .
+  sulo:isFeatureOf ex:diagnostic_part_time_employment .
 
-ex:diagnostic_part_time_employment_status a chr:ProcessStatus ;
-  sulo:isAbout ex:diagnostic_part_time_employment ;
-  a chr:DiagnosticStatement .
+ex:diagnostic_part_time_employment a sulo:Object, chr:DiagnosticStatement .
 
-ex:diagnostic_part_time_employment a chr:DiagnosticStatement .
-
-ex:condition_part_time_employment a chr:ClinicalCondition ;
+ex:condition_part_time_employment a sulo:Object, chr:ClinicalCondition ;
   sulo:atTime ex:time_condition_part_time_employment ;
   sulo:hasFeature ex:severity_moderate_part_time_employment .
 
@@ -320,8 +298,14 @@ ex:time_condition_part_time_employment a sulo:TimeInstant ;
 ex:severity_moderate_part_time_employment a chr:Severity .
 
 ex:care_plan a chr:CarePlan ;
-  sulo:refersTo ex:procedure_follow_up_monitoring ;
-  sulo:refersTo ex:procedure_routine_review .
+  sulo:hasReference ex:ref_procedure_follow_up_monitoring ;
+  sulo:hasReference ex:ref_procedure_routine_review .
+
+ex:ref_procedure_follow_up_monitoring a sulo:Reference ;
+  sulo:pointsTo ex:procedure_follow_up_monitoring .
+
+ex:ref_procedure_routine_review a sulo:Reference ;
+  sulo:pointsTo ex:procedure_routine_review .
 
 ex:procedure_follow_up_monitoring a chr:MedicalProcedure .
 

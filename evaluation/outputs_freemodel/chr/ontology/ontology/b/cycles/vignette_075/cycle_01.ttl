@@ -41,11 +41,8 @@ ex:role_Output_measurement a chr:OutputRole ;
 
 ex:measurement_bodyTemp a chr:Measurement ;
     sulo:hasValue "37.393"^^xsd:float ;
-    sulo:hasUnit ex:unit_Celsius ;
+    sulo:hasPart <https://w3id.org/sulo/unit/Celsius> ;
     sulo:atTime ex:time_measure_2001_10_18_0835 .
-
-ex:unit_Celsius a sulo:Unit ;
-    rdfs:label "Celsius" .
 
 ex:time_measure_2001_10_18_0835 sulo:hasValue "2001-10-18T08:35:00"^^xsd:dateTime .
 
@@ -74,13 +71,21 @@ ex:severity_moderate a chr:Severity .
 
 ex:time_eval_2001_10_18_0835 sulo:hasValue "2001-10-18T08:35:00"^^xsd:dateTime .
 
-# Care Plan
-ex:carePlan_followup a chr:CarePlan ;
-    sulo:refersTo ex:procedure_followup ;
-    sulo:hasParticipant ex:role_SubjectOfCare_careplan ,
-                       ex:role_CareProvider_careplan .
+# Care Plan (Object)
+ex:carePlan_followup a chr:CarePlan .
 
 ex:procedure_followup a chr:MedicalProcedure .
+
+# Role linking CarePlan object
+ex:role_CarePlanObject_careplan a chr:CarePlanRole ;
+    sulo:isFeatureOf ex:carePlan_followup .
+
+# Care Plan Process (mediated via roles)
+ex:carePlanProcess_followup a chr:CarePlanProcess ;
+    sulo:hasParticipant ex:role_CarePlanObject_careplan ,
+                       ex:role_SubjectOfCare_careplan ,
+                       ex:role_CareProvider_careplan ;
+    sulo:refersTo ex:procedure_followup .
 
 ex:role_SubjectOfCare_careplan a chr:SubjectOfCareRole ;
     sulo:isFeatureOf ex:patient_Estela_Grant .

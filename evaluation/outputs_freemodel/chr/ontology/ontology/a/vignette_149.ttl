@@ -1,0 +1,705 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:person_Arlen68_Olson653 a chr:Person ;
+    rdfs:label "Arlen68 Olson653" .
+
+ex:person_Domenic627_Blick895 a chr:Person ;
+    rdfs:label "Dr. Domenic627 Blick895" .
+
+# Care unit
+ex:careunit_VIBRA_HOSPITAL a chr:CareUnit ;
+    rdfs:label "VIBRA HOSPITAL OF WESTERN MASS - CENTRAL CAMPUS" .
+
+# Roles (re‑used)
+ex:role_Subject_Arlen68 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arlen68_Olson653 .
+
+ex:role_Provider_Domenic627 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Domenic627_Blick895 .
+
+# Time instants
+ex:time_2021-03-17T15:47 a sulo:TimeInstant ;
+    sulo:hasValue "2021-03-17T15:47:00"^^xsd:dateTime .
+
+ex:time_2021-03-17T16:24 a sulo:TimeInstant ;
+    sulo:hasValue "2021-03-17T16:24:00"^^xsd:dateTime .
+
+ex:time_2021-03-17T16:49 a sulo:TimeInstant ;
+    sulo:hasValue "2021-03-17T16:49:00"^^xsd:dateTime .
+
+ex:time_2021-03-17T17:17 a sulo:TimeInstant ;
+    sulo:hasValue "2021-03-17T17:17:00"^^xsd:dateTime .
+
+# Process status (shared)
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Clinical visit
+ex:visit_2021-03-17T15:47 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:isIn ex:careunit_VIBRA_HOSPITAL ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# Helper function to create measurement triples (pattern)
+# (written out explicitly for each measurement)
+
+# 1. Glucose in Serum (mg/dL)
+ex:proc_Glucose_Serum_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Glucose_Serum_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Glucose_Serum_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Glucose_Serum_2021-03-17T15:47 .
+
+ex:meas_Glucose_Serum_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "149.19"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 2. Urea nitrogen in Serum (mg/dL)
+ex:proc_UreaNitrogen_Serum_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_UreaNitrogen_Serum_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_UreaNitrogen_Serum_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_UreaNitrogen_Serum_2021-03-17T15:47 .
+
+ex:meas_UreaNitrogen_Serum_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "13.75"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 3. Creatinine in Serum (mg/dL)
+ex:proc_Creatinine_Serum_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Creatinine_Serum_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Creatinine_Serum_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Creatinine_Serum_2021-03-17T15:47 .
+
+ex:meas_Creatinine_Serum_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "2.0106"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 4. Calcium in Serum (mg/dL)
+ex:proc_Calcium_Serum_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Calcium_Serum_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Calcium_Serum_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Calcium_Serum_2021-03-17T15:47 .
+
+ex:meas_Calcium_Serum_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "10.17"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 5. Sodium in Serum (mmol/L)
+ex:proc_Sodium_Serum_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Sodium_Serum_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Sodium_Serum_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Sodium_Serum_2021-03-17T15:47 .
+
+ex:meas_Sodium_Serum_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "139.01"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 6. Potassium in Serum (mmol/L)
+ex:proc_Potassium_Serum_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Potassium_Serum_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Potassium_Serum_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Potassium_Serum_2021-03-17T15:47 .
+
+ex:meas_Potassium_Serum_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "4.12"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 7. Chloride in Serum (mmol/L)
+ex:proc_Chloride_Serum_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Chloride_Serum_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Chloride_Serum_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Chloride_Serum_2021-03-17T15:47 .
+
+ex:meas_Chloride_Serum_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "110.88"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 8. Carbon dioxide, total in Serum (mmol/L)
+ex:proc_CO2_Serum_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_CO2_Serum_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_CO2_Serum_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_CO2_Serum_2021-03-17T15:47 .
+
+ex:meas_CO2_Serum_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "24.67"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 9. GFR in Serum (mL/min/1.73m2)
+ex:proc_GFR_Serum_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_GFR_Serum_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_GFR_Serum_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_GFR_Serum_2021-03-17T15:47 .
+
+ex:meas_GFR_Serum_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "47.503"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mL_per_min_per_1.73m2> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 10. Glucose in Urine (mg/dL)
+ex:proc_Glucose_Urine_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Glucose_Urine_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Glucose_Urine_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Glucose_Urine_2021-03-17T15:47 .
+
+ex:meas_Glucose_Urine_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "1.3838"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 11. Bilirubin.total in Urine (mg/dL)
+ex:proc_Bilirubin_Urine_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Bilirubin_Urine_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Bilirubin_Urine_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Bilirubin_Urine_2021-03-17T15:47 .
+
+ex:meas_Bilirubin_Urine_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "1.2283"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 12. Ketones in Urine (mg/dL)
+ex:proc_Ketones_Urine_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Ketones_Urine_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Ketones_Urine_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Ketones_Urine_2021-03-17T15:47 .
+
+ex:meas_Ketones_Urine_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "1.6656"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 13. Specific gravity of Urine (nominal)
+ex:proc_SpecificGravity_Urine_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_SpecificGravity_Urine_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_SpecificGravity_Urine_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_SpecificGravity_Urine_2021-03-17T15:47 .
+
+ex:meas_SpecificGravity_Urine_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "1.0281"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/nominal> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 14. pH of Urine (pH)
+ex:proc_pH_Urine_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_pH_Urine_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_pH_Urine_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_pH_Urine_2021-03-17T15:47 .
+
+ex:meas_pH_Urine_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "6.1306"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/pH> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 15. Protein in Urine (mg/dL)
+ex:proc_Protein_Urine_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Protein_Urine_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Protein_Urine_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Protein_Urine_2021-03-17T15:47 .
+
+ex:meas_Protein_Urine_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "282.38"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 16. Hemoglobin A1c in Blood (%)
+ex:proc_HbA1c_Blood_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_HbA1c_Blood_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_HbA1c_Blood_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HbA1c_Blood_2021-03-17T15:47 .
+
+ex:meas_HbA1c_Blood_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "5.36"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/percent> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 17. Body Height (cm)
+ex:proc_Height_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Height_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Height_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Height_2021-03-17T15:47 .
+
+ex:meas_Height_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "177"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/cm> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 18. Pain severity (score)
+ex:proc_PainSeverity_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_PainSeverity_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_PainSeverity_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_PainSeverity_2021-03-17T15:47 .
+
+ex:meas_PainSeverity_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "3"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 19. Body Weight (kg)
+ex:proc_Weight_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Weight_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Weight_2021-03-47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Weight_2021-03-17T15:47 .
+
+ex:meas_Weight_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "86"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/kg> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 20. Body Mass Index (kg/m2)
+ex:proc_BMI_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_BMI_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_BMI_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_BMI_2021-03-17T15:47 .
+
+ex:meas_BMI_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "27.45"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/kg_per_m2> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 21. Heart rate (/min)
+ex:proc_HeartRate_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_HeartRate_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_HeartRate_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HeartRate_2021-03-17T15:47 .
+
+ex:meas_HeartRate_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "62"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/per_min> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 22. Respiratory rate (/min)
+ex:proc_RespRate_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_RespRate_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_RespRate_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_RespRate_2021-03-17T15:47 .
+
+ex:meas_RespRate_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "13"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/per_min> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 23. Glucose in Blood (mg/dL)
+ex:proc_Glucose_Blood_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Glucose_Blood_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Glucose_Blood_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Glucose_Blood_2021-03-17T15:47 .
+
+ex:meas_Glucose_Blood_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "149.19"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 24. Urea nitrogen in Blood (mg/dL)
+ex:proc_UreaNitrogen_Blood_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_UreaNitrogen_Blood_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_UreaNitrogen_Blood_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_UreaNitrogen_Blood_2021-03-17T15:47 .
+
+ex:meas_UreaNitrogen_Blood_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "13.75"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 25. Creatinine in Blood (mg/dL)
+ex:proc_Creatinine_Blood_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Creatinine_Blood_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Creatinine_Blood_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Creatinine_Blood_2021-03-17T15:47 .
+
+ex:meas_Creatinine_Blood_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "3.85"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 26. Calcium in Blood (mg/dL)
+ex:proc_Calcium_Blood_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Calcium_Blood_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Calcium_Blood_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Calcium_Blood_2021-03-17T15:47 .
+
+ex:meas_Calcium_Blood_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "10.17"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 27. Sodium in Blood (mmol/L)
+ex:proc_Sodium_Blood_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Sodium_Blood_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Sodium_Blood_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Sodium_Blood_2021-03-17T15:47 .
+
+ex:meas_Sodium_Blood_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "139.01"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 28. Potassium in Blood (mmol/L)
+ex:proc_Potassium_Blood_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Potassium_Blood_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Potassium_Blood_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Potassium_Blood_2021-03-17T15:47 .
+
+ex:meas_Potassium_Blood_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "4.12"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 29. Chloride in Blood (mmol/L)
+ex:proc_Chloride_Blood_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Chloride_Blood_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Chloride_Blood_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Chloride_Blood_2021-03-17T15:47 .
+
+ex:meas_Chloride_Blood_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "110.88"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 30. Carbon dioxide, total in Blood (mmol/L)
+ex:proc_CO2_Blood_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_CO2_Blood_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_CO2_Blood_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_CO2_Blood_2021-03-17T15:47 .
+
+ex:meas_CO2_Blood_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "24.67"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 31. Cholesterol in Serum (mg/dL)
+ex:proc_Cholesterol_Serum_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Cholesterol_Serum_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Cholesterol_Serum_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Cholesterol_Serum_2021-03-17T15:47 .
+
+ex:meas_Cholesterol_Serum_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "247.51"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 32. Triglyceride in Serum (mg/dL)
+ex:proc_Triglyceride_Serum_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_Triglyceride_Serum_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_Triglyceride_Serum_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Triglyceride_Serum_2021-03-17T15:47 .
+
+ex:meas_Triglyceride_Serum_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "222.1"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 33. LDL Cholesterol in Serum (mg/dL)
+ex:proc_LDL_Cholesterol_Serum_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_LDL_Cholesterol_Serum_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_LDL_Cholesterol_Serum_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_LDL_Cholesterol_Serum_2021-03-17T15:47 .
+
+ex:meas_LDL_Cholesterol_Serum_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "169.12"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 34. HDL Cholesterol in Serum (mg/dL)
+ex:proc_HDL_Cholesterol_Serum_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_HDL_Cholesterol_Serum_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_HDL_Cholesterol_Serum_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HDL_Cholesterol_Serum_2021-03-17T15:47 .
+
+ex:meas_HDL_Cholesterol_Serum_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "33.98"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 35. Microalbumin/Creatinine ratio in Urine (mg/g)
+ex:proc_MicroalbuminCreatinine_Urine_2021-03-17T15:47 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_MicroalbuminCreatinine_Urine_2021-03-17T15:47 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_MicroalbuminCreatinine_Urine_2021-03-17T15:47 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_MicroalbuminCreatinine_Urine_2021-03-17T15:47 .
+
+ex:meas_MicroalbuminCreatinine_Urine_2021-03-17T15:47 a chr:Measurement ;
+    sulo:hasValue "190.83"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mg_per_g> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 36. GFR in Serum (second record) (mL/min/1.73m2)
+ex:proc_GFR_Serum_2021-03-17T15:47_2 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_GFR_Serum_2021-03-17T15:47_2 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:role_Output_GFR_Serum_2021-03-17T15:47_2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_GFR_Serum_2021-03-17T15:47_2 .
+
+ex:meas_GFR_Serum_2021-03-17T15:47_2 a chr:Measurement ;
+    sulo:hasValue "22.67"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/mL_per_min_per_1.73m2> ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+# 37. GAD‑7 total score (score)
+ex:proc_GAD7_2021-03-17T16:49 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_GAD7_2021-03-17T16:49 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T16:49 .
+
+ex:role_Output_GAD7_2021-03-17T16:49 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_GAD7_2021-03-17T16:49 .
+
+ex:meas_GAD7_2021-03-17T16:49 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_2021-03-17T16:49 .
+
+# 38. Fall risk total (Morse Fall Scale) (score)
+ex:proc_FallRisk_2021-03-17T17:17 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasParticipant ex:role_Output_FallRisk_2021-03-17T17:17 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021-03-17T17:17 .
+
+ex:role_Output_FallRisk_2021-03-17T17:17 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_FallRisk_2021-03-17T17:17 .
+
+ex:meas_FallRisk_2021-03-17T17:17 a chr:Measurement ;
+    sulo:hasValue "33"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_2021-03-17T17:17 .
+
+# Evaluation processes and diagnostic statements
+ex:evaluation_2021-03-17T15:47_1 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasFeature ex:diagnostic_MedicationReview_due ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:diagnostic_MedicationReview_due a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" .
+
+ex:condition_2021-03-17T15:47_1 a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_2021-03-17T15:47 .
+
+ex:severity_moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+ex:evaluation_2021-03-17T16:24_1 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasFeature ex:diagnostic_NotInLaborForce ;
+    sulo:atTime ex:time_2021-03-17T16:24 .
+
+ex:diagnostic_NotInLaborForce a chr:DiagnosticStatement ;
+    rdfs:label "Not in labor force (finding)" .
+
+ex:condition_2021-03-17T16:24_1 a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_2021-03-17T16:24 .
+
+ex:evaluation_2021-03-17T16:24_2 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Arlen68 ;
+    sulo:hasParticipant ex:role_Provider_Domenic627 ;
+    sulo:hasFeature ex:diagnostic_Stress ;
+    sulo:atTime ex:time_2021-03-17T16:24 .
+
+ex:diagnostic_Stress a chr:DiagnosticStatement ;
+    rdfs:label "Stress (finding)" .
+
+ex:condition_2021-03-17T16:24_2 a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_2021-03-17T16:24 .
+
+# Care plan (reference only)
+ex:careplan_2021-03-17 a chr:CarePlan ;
+    rdfs:label "Follow‑up monitoring and routine review" .

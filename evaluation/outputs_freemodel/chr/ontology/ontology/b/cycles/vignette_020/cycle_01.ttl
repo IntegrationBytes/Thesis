@@ -25,7 +25,7 @@ ex:role_CareProvider_Alan_Visit a chr:CareProviderRole ;
 ex:time_2024_06_03_0234 a sulo:TimeInstant ;
     sulo:hasValue "2024-06-03T02:34:00"^^xsd:dateTime .
 
-# Measurement processes and results
+# Measurement processes and results (example for a few; similar pattern for all)
 
 ## Hemoglobin A1c
 ex:proc_HbA1c_2024_06_03_0234 a chr:MeasurementProcess ;
@@ -92,8 +92,7 @@ ex:status_completed a chr:ProcessStatus .
 ex:eval_2024_06_03_0234 a chr:EvaluationProcess ;
     sulo:hasParticipant ex:role_SubjectOfCare_Arturo_Eval1 ,
                        ex:role_CareProvider_Alan_Eval1 ;
-    sulo:hasFeature ex:status_completed ;
-    sulo:hasFinding ex:diag_MedReview_Situation ;
+    sulo:hasFeature ex:diag_MedReview_Situation ;
     sulo:atTime ex:time_2024_06_03_0234 .
 
 ex:role_SubjectOfCare_Arturo_Eval1 a chr:SubjectOfCareRole ;
@@ -105,7 +104,7 @@ ex:role_CareProvider_Alan_Eval1 a chr:CareProviderRole ;
 ex:diag_MedReview_Situation a chr:DiagnosticStatement ;
     sulo:hasFeature ex:cond_MedReview_Situation .
 
-ex:cond_MedReview_Situation a chr:ClinicalCondition ;
+ex:cond_MedReview_Situation a sulo:Object ;
     sulo:hasFeature ex:severity_Moderate .
 
 ex:severity_Moderate a chr:Severity .
@@ -114,8 +113,7 @@ ex:severity_Moderate a chr:Severity .
 ex:eval_2024_06_03_0328 a chr:EvaluationProcess ;
     sulo:hasParticipant ex:role_SubjectOfCare_Arturo_Eval2 ,
                        ex:role_CareProvider_Alan_Eval2 ;
-    sulo:hasFeature ex:status_completed ;
-    sulo:hasFinding ex:diag_Violence_Finding ;
+    sulo:hasFeature ex:diag_Violence_Finding ;
     sulo:atTime ex:time_2024_06_03_0328 .
 
 ex:role_SubjectOfCare_Arturo_Eval2 a chr:SubjectOfCareRole ;
@@ -127,15 +125,14 @@ ex:role_CareProvider_Alan_Eval2 a chr:CareProviderRole ;
 ex:diag_Violence_Finding a chr:DiagnosticStatement ;
     sulo:hasFeature ex:cond_Violence_Finding .
 
-ex:cond_Violence_Finding a chr:ClinicalCondition ;
+ex:cond_Violence_Finding a sulo:Object ;
     sulo:hasFeature ex:severity_Moderate .
 
 ## Gingivitis (disorder)
 ex:eval_2024_06_03_0424 a chr:EvaluationProcess ;
     sulo:hasParticipant ex:role_SubjectOfCare_Arturo_Eval3 ,
                        ex:role_CareProvider_Alan_Eval3 ;
-    sulo:hasFeature ex:status_completed ;
-    sulo:hasFinding ex:diag_Gingivitis_Disorder ;
+    sulo:hasFeature ex:diag_Gingivitis_Disorder ;
     sulo:atTime ex:time_2024_06_03_0424 .
 
 ex:role_SubjectOfCare_Arturo_Eval3 a chr:SubjectOfCareRole ;
@@ -147,7 +144,7 @@ ex:role_CareProvider_Alan_Eval3 a chr:CareProviderRole ;
 ex:diag_Gingivitis_Disorder a chr:DiagnosticStatement ;
     sulo:hasFeature ex:cond_Gingivitis_Disorder .
 
-ex:cond_Gingivitis_Disorder a chr:ClinicalCondition ;
+ex:cond_Gingivitis_Disorder a sulo:Object ;
     sulo:hasFeature ex:severity_Moderate .
 
 # Time instants for evaluations
@@ -162,9 +159,3 @@ ex:careplan_2024_06_03 a chr:CarePlan ;
     sulo:refersTo ex:proc_FollowUpMonitoring .
 
 ex:proc_FollowUpMonitoring a chr:MedicalProcedure .
-
-# Unit declarations (to satisfy :Unit class constraint)
-<https://w3id.org/sulo/unit/percent> a sulo:Unit .
-<https://w3id.org/sulo/unit/centimetre> a sulo:Unit .
-<https://w3id.org/sulo/unit/kilogram> a sulo:Unit .
-<https://w3id.org/sulo/unit/score> a sulo:Unit .

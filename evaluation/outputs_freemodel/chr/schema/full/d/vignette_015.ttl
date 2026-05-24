@@ -1,0 +1,386 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_ArturoHeidenreich a chr:Person .
+ex:provider_AlanKeeling a chr:Person .
+
+# Care Unit
+ex:careunit_PRIMARY_CARE_NORTH_PC a chr:CareUnit .
+
+# Clinical Visit
+ex:visit_20200511_0234 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasCareProvider ex:provider_AlanKeeling ;
+    chr:hasCareUnit ex:careunit_PRIMARY_CARE_NORTH_PC .
+
+# Process Status
+ex:status_completed a chr:ProcessStatus .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Evaluation Processes and Diagnostic Statements / Clinical Conditions
+ex:evaluation_20200511_0234_1 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MedicationReview_20200511_0234 .
+
+ex:diag_MedicationReview_20200511_0234 a chr:DiagnosticStatement .
+
+ex:cond_MedicationReview_20200511_0234 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-05-11T02:34:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:evaluation_20200511_0316_1 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_PartTimeEmployment_20200511_0316 .
+
+ex:diag_PartTimeEmployment_20200511_0316 a chr:DiagnosticStatement .
+
+ex:cond_PartTimeEmployment_20200511_0316 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-05-11T03:16:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:evaluation_20200511_0316_2 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_LimitedSocialContact_20200511_0316 .
+
+ex:diag_LimitedSocialContact_20200511_0316 a chr:DiagnosticStatement .
+
+ex:cond_LimitedSocialContact_20200511_0316 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-05-11T03:16:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Care Plan (no medical procedure linked, as none are defined)
+ex:careplan_followup a chr:CarePlan .
+
+# Measurement Processes and Measurements
+# Hemoglobin A1c
+ex:mp_HbA1c_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_HbA1c_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_HbA1c_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "6.23"^^xsd:float ;
+    chr:hasUnit sulo:unit_percent ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Body Height
+ex:mp_Height_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Height_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Height_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "181.4"^^xsd:float ;
+    chr:hasUnit sulo:unit_cm ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Pain Severity
+ex:mp_PainSeverity_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_PainSeverity_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_PainSeverity_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:unit_score ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Body Weight
+ex:mp_Weight_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Weight_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Weight_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "90.4"^^xsd:float ;
+    chr:hasUnit sulo:unit_kg ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Body Mass Index
+ex:mp_BMI_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_BMI_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_BMI_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "27.47"^^xsd:float ;
+    chr:hasUnit sulo:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Heart Rate
+ex:mp_HeartRate_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_HeartRate_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_HeartRate_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "67"^^xsd:float ;
+    chr:hasUnit sulo:unit_per_min ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Respiratory Rate
+ex:mp_RespRate_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_RespRate_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_RespRate_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "15"^^xsd:float ;
+    chr:hasUnit sulo:unit_per_min ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Glucose
+ex:mp_Glucose_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Glucose_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Glucose_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "71.37"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Urea Nitrogen
+ex:mp_UreaNitrogen_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_UreaNitrogen_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_UreaNitrogen_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "18.61"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Creatinine
+ex:mp_Creatinine_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Creatinine_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Creatinine_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "0.98"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Calcium
+ex:mp_Calcium_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Calcium_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Calcium_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "10.2"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Sodium
+ex:mp_Sodium_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Sodium_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Sodium_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "138.27"^^xsd:float ;
+    chr:hasUnit sulo:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Potassium
+ex:mp_Potassium_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Potassium_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Potassium_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "4.47"^^xsd:float ;
+    chr:hasUnit sulo:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Chloride
+ex:mp_Chloride_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Chloride_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Chloride_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "109.64"^^xsd:float ;
+    chr:hasUnit sulo:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Carbon Dioxide
+ex:mp_CO2_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_CO2_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_CO2_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "22.81"^^xsd:float ;
+    chr:hasUnit sulo:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Cholesterol (Serum/Plasma)
+ex:mp_Cholesterol_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Cholesterol_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Cholesterol_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "191.62"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Triglyceride
+ex:mp_Triglyceride_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Triglyceride_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Triglyceride_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "125.87"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# LDL Cholesterol
+ex:mp_LDL_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_LDL_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_LDL_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "110.55"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# HDL Cholesterol
+ex:mp_HDL_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_HDL_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_HDL_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "55.9"^^xsd:float ;
+    chr:hasUnit sulo:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Leukocytes
+ex:mp_Leukocytes_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Leukocytes_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Leukocytes_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "4.5337"^^xsd:float ;
+    chr:hasUnit sulo:unit_10_3_per_uL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Erythrocytes
+ex:mp_Erythrocytes_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Erythrocytes_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Erythrocytes_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "4.6291"^^xsd:float ;
+    chr:hasUnit sulo:unit_10_6_per_uL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Hemoglobin (Mass/volume)
+ex:mp_Hemoglobin_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Hemoglobin_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Hemoglobin_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "17.263"^^xsd:float ;
+    chr:hasUnit sulo:unit_g_per_dL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Hematocrit
+ex:mp_Hematocrit_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Hematocrit_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Hematocrit_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "39.153"^^xsd:float ;
+    chr:hasUnit sulo:unit_percent ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# MCV
+ex:mp_MCV_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_MCV_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_MCV_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "82.875"^^xsd:float ;
+    chr:hasUnit sulo:unit_fL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# MCH
+ex:mp_MCH_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_MCH_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_MCH_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "29.225"^^xsd:float ;
+    chr:hasUnit sulo:unit_pg ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# MCHC
+ex:mp_MCHC_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_MCHC_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_MCHC_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "33.513"^^xsd:float ;
+    chr:hasUnit sulo:unit_g_per_dL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Erythrocyte DistWidth
+ex:mp_ErythrocyteDistWidth_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_ErythrocyteDistWidth_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_ErythrocyteDistWidth_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "42.702"^^xsd:float ;
+    chr:hasUnit sulo:unit_fL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Platelets
+ex:mp_Platelets_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_Platelets_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_Platelets_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "222.48"^^xsd:float ;
+    chr:hasUnit sulo:unit_10_3_per_uL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Platelet Distribution Width
+ex:mp_PDW_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_PDW_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_PDW_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "515.39"^^xsd:float ;
+    chr:hasUnit sulo:unit_fL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .
+
+# Platelet Mean Volume
+ex:mp_PlateletMeanVol_20200511_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:meas_PlateletMeanVol_20200511_0234 ;
+    chr:hasStatus ex:status_completed .
+
+ex:meas_PlateletMeanVol_20200511_0234 a chr:Measurement ;
+    chr:hasQuantityValue "10.72"^^xsd:float ;
+    chr:hasUnit sulo:unit_fL ;
+    chr:hasMeasuredDate "2020-05-11T02:34:00"^^xsd:dateTime .

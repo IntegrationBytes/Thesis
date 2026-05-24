@@ -1,0 +1,101 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:person_Angel  a chr:Person ;
+    rdfs:label "Angelic427 Callie226 Schaden604" .
+
+ex:person_Willian  a chr:Person ;
+    rdfs:label "Willian804 Batz141" .
+
+# Care unit
+ex:careUnit_BMCC  a chr:CareUnit ;
+    rdfs:label "BOSTON MEDICAL CENTER CORPORATION-" .
+
+# Clinical visit
+ex:visit_2016_12_13  a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Angel ;
+    sulo:hasParticipant ex:role_CareProvider_Visit_Willian ;
+    sulo:isIn ex:careUnit_BMCC ;
+    sulo:atTime ex:time_Visit .
+
+ex:role_SubjectOfCare_Visit_Angel a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Angel .
+
+ex:role_CareProvider_Visit_Willian a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Willian .
+
+ex:time_Visit a sulo:TimeInstant ;
+    sulo:hasValue "2016-12-13T23:01:00"^^xsd:dateTime .
+
+# Measurement process (Pain severity)
+ex:measurementProcess_2016_12_13_23_46 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Meas_Angel ;
+    sulo:hasParticipant ex:role_Output_Meas_PainScore ;
+    sulo:atTime ex:time_Meas ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Meas_Angel a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Angel .
+
+ex:role_Output_Meas_PainScore a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainScore .
+
+ex:measurement_PainScore a chr:Measurement ;
+    sulo:hasValue "2.8386"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_Meas .
+
+ex:unit_score a sulo:Unit ;
+    rdfs:label "score" .
+
+ex:time_Meas a sulo:TimeInstant ;
+    sulo:hasValue "2016-12-13T23:46:00"^^xsd:dateTime .
+
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Evaluation process
+ex:evaluation_2017_05_09_18_24 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Performer_Eval_Willian ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eval_Angel ;
+    sulo:hasParticipant ex:role_Output_Eval_DiagStmt ;
+    sulo:atTime ex:time_Eval ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Performer_Eval_Willian a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Willian .
+
+ex:role_SubjectOfCare_Eval_Angel a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Angel .
+
+ex:role_Output_Eval_DiagStmt a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnosticStatement_AcuteCystitis .
+
+ex:diagnosticStatement_AcuteCystitis a chr:DiagnosticStatement ;
+    rdfs:label "Acute infective cystitis" .
+
+ex:time_Eval a sulo:TimeInstant ;
+    sulo:hasValue "2017-05-09T18:24:00"^^xsd:dateTime .
+
+# Clinical condition (the diagnosis)
+ex:condition_AcuteCystitis  a chr:ClinicalCondition ;
+    sulo:isFeatureOf ex:diagnosticStatement_AcuteCystitis ;
+    sulo:atTime ex:time_ConditionRecorded ;
+    sulo:hasFeature ex:severity_Moderate .
+
+ex:time_ConditionRecorded a sulo:TimeInstant ;
+    sulo:hasValue "2017-05-09T18:24:00"^^xsd:dateTime .
+
+ex:severity_Moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+# Care plan
+ex:carePlan_FollowUp  a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "follow-up monitoring and routine review" .

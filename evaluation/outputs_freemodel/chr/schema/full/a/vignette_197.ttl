@@ -1,0 +1,273 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Bryant814_Clarence5_Grimes165 a chr:Person .
+ex:physician_Miyoko154_Paucek755 a chr:Person .
+
+# Care unit
+ex:careunit_ENCOMPASS a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2014_04_23_1647 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Miyoko154_Paucek755 ;
+    chr:hasCareUnit ex:careunit_ENCOMPASS ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Clinical conditions
+ex:cond_MedicationReview a chr:ClinicalCondition ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasRecordDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+ex:cond_Stress a chr:ClinicalCondition ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasRecordDate "2014-04-23T17:46:00"^^xsd:dateTime .
+
+# Diagnostic statements
+ex:diag_MedicationReview a chr:DiagnosticStatement .
+ex:diag_Stress a chr:DiagnosticStatement .
+
+# Evaluation processes
+ex:eval_2014_04_23T1647 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasObservation ex:diag_MedicationReview .
+
+ex:eval_2014_04_23T1746 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasObservation ex:diag_Stress .
+
+# Care plan
+ex:careplan_001 a chr:CarePlan .
+
+# Measurement processes and measurements (selected examples; all follow the same pattern)
+
+# Glucose in Serum or Plasma
+ex:mp_Glucose_Serum_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_Glucose_Serum_20140423T1647_1 .
+
+ex:meas_Glucose_Serum_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "68.93"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Urea nitrogen in Serum or Plasma
+ex:mp_UreaNitrogen_Serum_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_UreaNitrogen_Serum_20140423T1647_1 .
+
+ex:meas_UreaNitrogen_Serum_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "15.21"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Creatinine in Serum or Plasma
+ex:mp_Creatinine_Serum_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_Creatinine_Serum_20140423T1647_1 .
+
+ex:meas_Creatinine_Serum_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "2.0727"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Calcium in Serum or Plasma
+ex:mp_Calcium_Serum_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_Calcium_Serum_20140423T1647_1 .
+
+ex:meas_Calcium_Serum_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "9.3"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Sodium in Serum or Plasma
+ex:mp_Sodium_Serum_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_Sodium_Serum_20140423T1647_1 .
+
+ex:meas_Sodium_Serum_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "140.87"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Potassium in Serum or Plasma
+ex:mp_Potassium_Serum_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_Potassium_Serum_20140423T1647_1 .
+
+ex:meas_Potassium_Serum_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "3.71"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Chloride in Serum or Plasma
+ex:mp_Chloride_Serum_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_Chloride_Serum_20140423T1647_1 .
+
+ex:meas_Chloride_Serum_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "104.37"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Carbon dioxide, total in Serum or Plasma
+ex:mp_CO2_Serum_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_CO2_Serum_20140423T1647_1 .
+
+ex:meas_CO2_Serum_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "22.8"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Glomerular filtration rate
+ex:mp_GFR_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_GFR_20140423T1647_1 .
+
+ex:meas_GFR_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "39.234"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Glucose in Urine
+ex:mp_Glucose_Urine_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_Glucose_Urine_20140423T1647_1 .
+
+ex:meas_Glucose_Urine_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "1.531"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Bilirubin.total in Urine
+ex:mp_Bilirubin_Urine_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_Bilirubin_Urine_20140423T1647_1 .
+
+ex:meas_Bilirubin_Urine_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "1.3696"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Ketones in Urine
+ex:mp_Ketones_Urine_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_Ketones_Urine_20140423T1647_1 .
+
+ex:meas_Ketones_Urine_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "18.139"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Specific gravity of Urine
+ex:mp_SpecificGravity_Urine_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_SpecificGravity_Urine_20140423T1647_1 .
+
+ex:meas_SpecificGravity_Urine_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "1.0121"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# pH of Urine
+ex:mp_pH_Urine_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_pH_Urine_20140423T1647_1 .
+
+ex:meas_pH_Urine_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "6.9361"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Protein in Urine
+ex:mp_Protein_Urine_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_Protein_Urine_20140423T1647_1 .
+
+ex:meas_Protein_Urine_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "240.65"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Hemoglobin A1c/Hemoglobin.total in Blood
+ex:mp_HbA1c_Blood_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_HbA1c_Blood_20140423T1647_1 .
+
+ex:meas_HbA1c_Blood_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "3.35"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Body Height
+ex:mp_BodyHeight_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_BodyHeight_20140423T1647_1 .
+
+ex:meas_BodyHeight_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "195.1"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Pain severity (0-10)
+ex:mp_PainSeverity_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_PainSeverity_20140423T1647_1 .
+
+ex:meas_PainSeverity_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "4"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Body Weight
+ex:mp_BodyWeight_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_BodyWeight_20140423T1647_1 .
+
+ex:meas_BodyWeight_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "106.6"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Body Mass Index
+ex:mp_BMI_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_BMI_20140423T1647_1 .
+
+ex:meas_BMI_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "28.01"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Heart rate
+ex:mp_HeartRate_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_HeartRate_20140423T1647_1 .
+
+ex:meas_HeartRate_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "91"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# Respiratory rate
+ex:mp_RespiratoryRate_20140423T1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_RespiratoryRate_20140423T1647_1 .
+
+ex:meas_RespiratoryRate_20140423T1647_1 a chr:Measurement ;
+    chr:hasQuantityValue "16"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T16:47:00"^^xsd:dateTime .
+
+# GAD-7 total score
+ex:mp_GAD7_20140423T1802_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_GAD7_20140423T1802_1 .
+
+ex:meas_GAD7_20140423T1802_1 a chr:Measurement ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T18:02:00"^^xsd:dateTime .
+
+# HARK total score
+ex:mp_HARK_20140423T1846_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_HARK_20140423T1846_1 .
+
+ex:meas_HARK_20140423T1846_1 a chr:Measurement ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T18:46:00"^^xsd:dateTime .
+
+# PHQ-2 total score
+ex:mp_PHQ2_20140423T1921_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_PHQ2_20140423T1921_1 .
+
+ex:meas_PHQ2_20140423T1921_1 a chr:Measurement ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasMeasuredDate "2014-04-23T19:21:00"^^xsd:dateTime .

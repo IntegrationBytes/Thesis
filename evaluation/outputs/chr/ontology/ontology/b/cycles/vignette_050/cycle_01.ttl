@@ -1,0 +1,102 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Daren950_Strosin214 a chr:Person .
+
+ex:visit_2019_03_16 a chr:ClinicalVisit ;
+  sulo:atTime ex:time_visit_2019_03_16 ;
+  sulo:isIn ex:care_unit_Berkshire .
+
+ex:time_visit_2019_03_16 a sulo:TimeInstant ;
+  sulo:hasValue "2019-03-16T17:01:00"^^xsd:dateTime .
+
+ex:care_unit_Berkshire a chr:CareUnit .
+
+ex:role_visit_patient a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Daren950_Strosin214 .
+
+ex:visit_2019_03_16 sulo:hasParticipant ex:role_visit_patient .
+
+ex:physician_Carroll471_Eichmann909 a chr:Person .
+
+ex:role_visit_provider a chr:CareProviderRole ;
+  sulo:isFeatureOf ex:physician_Carroll471_Eichmann909 .
+
+ex:visit_2019_03_16 sulo:hasParticipant ex:role_visit_provider .
+
+ex:body_temp_measurement_2019_03_16 a chr:MeasurementProcess ;
+  sulo:atTime ex:time_body_temp_measurement ;
+  sulo:hasParticipant ex:role_body_temp_patient .
+
+ex:time_body_temp_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2019-03-16T17:01:00"^^xsd:dateTime .
+
+ex:role_body_temp_patient a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Daren950_Strosin214 .
+
+ex:body_temp_result a chr:Measurement ;
+  sulo:hasValue "37.277"^^xsd:float .
+
+ex:role_body_temp_result a chr:OutputRole ;
+  sulo:isFeatureOf ex:body_temp_result .
+
+ex:body_temp_measurement_2019_03_16 sulo:hasParticipant ex:role_body_temp_result .
+
+ex:process_status_completed a chr:ProcessStatus .
+
+ex:body_temp_measurement_2019_03_16 sulo:hasFeature ex:process_status_completed .
+
+ex:evaluation_2019_03_16 a chr:EvaluationProcess ;
+  sulo:atTime ex:time_evaluation ;
+  sulo:hasParticipant ex:role_evaluation_patient ;
+  sulo:hasParticipant ex:role_evaluation_provider .
+
+ex:time_evaluation a sulo:TimeInstant ;
+  sulo:hasValue "2019-03-16T17:01:00"^^xsd:dateTime .
+
+ex:role_evaluation_patient a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Daren950_Strosin214 .
+
+ex:role_evaluation_provider a chr:PerformerRole ;
+  sulo:isFeatureOf ex:physician_Carroll471_Eichmann909 .
+
+ex:diagnostic_statement a chr:DiagnosticStatement ;
+  rdfs:label "Acute viral pharyngitis (disorder)" .
+
+ex:role_evaluation_result a chr:OutputRole ;
+  sulo:isFeatureOf ex:diagnostic_statement .
+
+ex:evaluation_2019_03_16 sulo:hasParticipant ex:role_evaluation_result .
+
+ex:acute_viral_pharyngitis_event a sulo:Event ;
+  sulo:atTime ex:condition_record_time .
+
+ex:condition_record_time a sulo:TimeInstant ;
+  sulo:hasValue "2019-03-16T17:01:00"^^xsd:dateTime .
+
+ex:acute_viral_pharyngitis a chr:ClinicalCondition .
+
+ex:role_condition a chr:FindingRole ;
+  sulo:isFeatureOf ex:acute_viral_pharyngitis .
+
+ex:diagnostic_statement sulo:isFeatureOf ex:role_condition .
+
+ex:acute_viral_pharyngitis_event sulo:hasParticipant ex:role_condition .
+
+ex:severity_moderate a chr:Severity ;
+  rdfs:label "Moderate" .
+
+ex:role_severity a chr:SeverityRole ;
+  sulo:isFeatureOf ex:severity_moderate .
+
+ex:acute_viral_pharyngitis_event sulo:hasParticipant ex:role_severity .
+
+ex:care_plan a chr:CarePlan ;
+  sulo:refersTo ex:follow_up_monitoring , ex:routine_review .
+
+ex:follow_up_monitoring a chr:MedicalProcedure .
+
+ex:routine_review a chr:MedicalProcedure .

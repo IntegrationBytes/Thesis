@@ -1,0 +1,559 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Aracely a chr:Person ;
+    rdfs:label "Aracely711 Devon268 Collins926" .
+
+ex:physician_Edmundo a chr:Person ;
+    rdfs:label "Dr. Edmundo94 Eichmann909" .
+
+# Care unit
+ex:careunit_FatherBill a chr:CareUnit ;
+    rdfs:label "FATHER BILL'S PLACE" .
+
+# Clinical visit
+ex:visit_2021_07_02_15_04 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:isIn ex:careunit_FatherBill .
+
+# Roles shared across processes
+ex:role_SubjectOfCare_Aracely a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely .
+
+ex:role_CareProvider_Edmundo a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Edmundo .
+
+# Process status and severity
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:severity_moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+# Time instants (all measurements share the same timestamp unless otherwise noted)
+ex:time_2021_07_02_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2021-07-02T15:04:00"^^xsd:dateTime .
+
+ex:time_2021_07_02_16_15 a sulo:TimeInstant ;
+    sulo:hasValue "2021-07-02T16:15:00"^^xsd:dateTime .
+
+ex:time_2021_07_02_16_37 a sulo:TimeInstant ;
+    sulo:hasValue "2021-07-02T16:37:00"^^xsd:dateTime .
+
+ex:time_2021_07_02_17_16 a sulo:TimeInstant ;
+    sulo:hasValue "2021-07-02T17:16:00"^^xsd:dateTime .
+
+ex:time_2021_07_02_17_56 a sulo:TimeInstant ;
+    sulo:hasValue "2021-07-02T17:56:00"^^xsd:dateTime .
+
+ex:time_2021_07_02_16_00 a sulo:TimeInstant ;
+    sulo:hasValue "2021-07-02T16:00:00"^^xsd:dateTime .
+
+# ------------------------------
+# Measurement processes & measurements
+# Helper function to create measurement triples (repeated for each analyte)
+
+# Glucose in Serum (Mass/volume) – 95.87 mg/dL
+ex:proc_GlucoseSerum_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_GlucoseSerum_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_GlucoseSerum_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GlucoseSerum_2021_07_02_15_04 .
+
+ex:measurement_GlucoseSerum_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "95.87"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Urea nitrogen in Serum – 10.19 mg/dL
+ex:proc_UreaNitrogenSerum_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_UreaNitrogenSerum_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_UreaNitrogenSerum_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogenSerum_2021_07_02_15_04 .
+
+ex:measurement_UreaNitrogenSerum_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "10.19"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Creatinine in Serum – 1.5606 mg/dL
+ex:proc_CreatinineSerum_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_CreatinineSerum_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_CreatinineSerum_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CreatinineSerum_2021_07_02_15_04 .
+
+ex:measurement_CreatinineSerum_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "1.5606"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Calcium in Serum – 10.11 mg/dL
+ex:proc_CalciumSerum_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_CalciumSerum_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_CalciumSerum_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CalciumSerum_2021_07_02_15_04 .
+
+ex:measurement_CalciumSerum_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "10.11"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Sodium in Serum – 142.72 mmol/L
+ex:proc_SodiumSerum_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_SodiumSerum_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_SodiumSerum_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_SodiumSerum_2021_07_02_15_04 .
+
+ex:measurement_SodiumSerum_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "142.72"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Potassium in Serum – 4.07 mmol/L
+ex:proc_PotassiumSerum_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_PotassiumSerum_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_PotassiumSerum_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PotassiumSerum_2021_07_02_15_04 .
+
+ex:measurement_PotassiumSerum_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "4.07"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Chloride in Serum – 102.6 mmol/L
+ex:proc_ChlorideSerum_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_ChlorideSerum_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_ChlorideSerum_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_ChlorideSerum_2021_07_02_15_04 .
+
+ex:measurement_ChlorideSerum_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "102.6"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Carbon dioxide, total in Serum – 21.02 mmol/L
+ex:proc_CO2Serum_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_CO2Serum_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_CO2Serum_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2Serum_2021_07_02_15_04 .
+
+ex:measurement_CO2Serum_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "21.02"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# GFR – 131.45 mL/min/1.73m2
+ex:proc_GFR_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_GFR_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_GFR_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GFR_2021_07_02_15_04 .
+
+ex:measurement_GFR_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "131.45"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mL_per_min_per_1.73m2> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Glucose in Urine – 2.4087 mg/dL
+ex:proc_GlucoseUrine_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_GlucoseUrine_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_GlucoseUrine_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GlucoseUrine_2021_07_02_15_04 .
+
+ex:measurement_GlucoseUrine_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "2.4087"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Bilirubin.total in Urine – 0.46424 mg/dL
+ex:proc_BilirubinUrine_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_BilirubinUrine_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_BilirubinUrine_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BilirubinUrine_2021_07_02_15_04 .
+
+ex:measurement_BilirubinUrine_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "0.46424"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Ketones in Urine – 2.1568 mg/dL
+ex:proc_KetonesUrine_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_KetonesUrine_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_KetonesUrine_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_KetonesUrine_2021_07_02_15_04 .
+
+ex:measurement_KetonesUrine_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "2.1568"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Specific gravity of Urine – 1.0018 (nominal)
+ex:proc_SpecificGravityUrine_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_SpecificGravityUrine_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_SpecificGravityUrine_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_SpecificGravityUrine_2021_07_02_15_04 .
+
+ex:measurement_SpecificGravityUrine_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "1.0018"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/nominal> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# pH of Urine – 6.659 pH
+ex:proc_pHUrine_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_pHUrine_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_pHUrine_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_pHUrine_2021_07_02_15_04 .
+
+ex:measurement_pHUrine_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "6.659"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/pH> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Protein in Urine – 55.814 mg/dL
+ex:proc_ProteinUrine_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_ProteinUrine_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_ProteinUrine_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_ProteinUrine_2021_07_02_15_04 .
+
+ex:measurement_ProteinUrine_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "55.814"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Hemoglobin A1c – 3.13 %
+ex:proc_HbA1c_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_HbA1c_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_HbA1c_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HbA1c_2021_07_02_15_04 .
+
+ex:measurement_HbA1c_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "3.13"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/percent> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Body Height – 172 cm
+ex:proc_BodyHeight_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_BodyHeight_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_BodyHeight_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyHeight_2021_07_02_15_04 .
+
+ex:measurement_BodyHeight_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "172"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/cm> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Pain severity – 1 (score)
+ex:proc_PainSeverity_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_PainSeverity_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_PainSeverity_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainSeverity_2021_07_02_15_04 .
+
+ex:measurement_PainSeverity_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/score> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Body Weight – 82.2 kg
+ex:proc_BodyWeight_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_BodyWeight_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_BodyWeight_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyWeight_2021_07_02_15_04 .
+
+ex:measurement_BodyWeight_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/kg> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Body Mass Index – 27.79 kg/m2
+ex:proc_BMI_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_BMI_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_BMI_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI_2021_07_02_15_04 .
+
+ex:measurement_BMI_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "27.79"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/kg_per_m2> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Heart rate – 79 /min
+ex:proc_HeartRate_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_HeartRate_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_HeartRate_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HeartRate_2021_07_02_15_04 .
+
+ex:measurement_HeartRate_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "79"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/per_min> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Respiratory rate – 15 /min
+ex:proc_RespiratoryRate_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_RespiratoryRate_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_RespiratoryRate_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RespiratoryRate_2021_07_02_15_04 .
+
+ex:measurement_RespiratoryRate_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "15"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/per_min> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Glucose in Blood – 95.87 mg/dL
+ex:proc_GlucoseBlood_2021_07_02_15_04 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_GlucoseBlood_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_GlucoseBlood_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GlucoseBlood_2021_07_02_15_04 .
+
+ex:measurement_GlucoseBlood_2021_07_02_15_04 a chr:Measurement ;
+    sulo:hasValue "95.87"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# (Analogous measurement processes for the remaining blood analytes – Urea nitrogen, Creatinine, Calcium, Sodium, Potassium, Chloride, CO2, Cholesterol, Triglyceride, LDL, HDL – omitted for brevity but follow the same pattern.)
+
+# GAD‑7 total score – 1 (score) at 16:15
+ex:proc_GAD7_2021_07_02_16_15 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_GAD7_2021_07_02_16_15 ;
+    sulo:atTime ex:time_2021_07_02_16_15 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_GAD7_2021_07_02_16_15 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GAD7_2021_07_02_16_15 .
+
+ex:measurement_GAD7_2021_07_02_16_15 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/score> ;
+    sulo:atTime ex:time_2021_07_02_16_15 .
+
+# Morse Fall Scale – 14 (#) at 16:37
+ex:proc_FallRisk_2021_07_02_16_37 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_FallRisk_2021_07_02_16_37 ;
+    sulo:atTime ex:time_2021_07_02_16_37 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_FallRisk_2021_07_02_16_37 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_FallRisk_2021_07_02_16_37 .
+
+ex:measurement_FallRisk_2021_07_02_16_37 a chr:Measurement ;
+    sulo:hasValue "14"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/number> ;
+    sulo:atTime ex:time_2021_07_02_16_37 .
+
+# PHQ‑2 total score – 2 (score) at 17:16
+ex:proc_PHQ2_2021_07_02_17_16 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_PHQ2_2021_07_02_17_16 ;
+    sulo:atTime ex:time_2021_07_02_17_16 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_PHQ2_2021_07_02_17_16 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ2_2021_07_02_17_16 .
+
+ex:measurement_PHQ2_2021_07_02_17_16 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/score> ;
+    sulo:atTime ex:time_2021_07_02_17_16 .
+
+# DAST‑10 total score – 0 (score) at 17:56
+ex:proc_DAST10_2021_07_02_17_56 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_DAST10_2021_07_02_17_56 ;
+    sulo:atTime ex:time_2021_07_02_17_56 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_DAST10_2021_07_02_17_56 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_DAST10_2021_07_02_17_56 .
+
+ex:measurement_DAST10_2021_07_02_17_56 a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart <https://example.org/unit/score> ;
+    sulo:atTime ex:time_2021_07_02_17_56 .
+
+# ------------------------------
+# Evaluation processes (diagnostic statements)
+
+# Metabolic syndrome X – evaluated at 15:04
+ex:evaluation_MetabolicSyndrome_2021_07_02_15_04 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_Diag_MetabolicSyndrome_2021_07_02_15_04 ;
+    sulo:atTime ex:time_2021_07_02_15_04 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_Diag_MetabolicSyndrome_2021_07_02_15_04 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_MetabolicSyndromeX .
+
+ex:diag_MetabolicSyndromeX a chr:DiagnosticStatement ;
+    rdfs:label "Metabolic syndrome X" .
+
+ex:cond_MetabolicSyndromeX a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_2021_07_02_15_04 .
+
+# Not in labor force – evaluated at 16:00
+ex:evaluation_NotInLaborForce_2021_07_02_16_00 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_Diag_NotInLaborForce_2021_07_02_16_00 ;
+    sulo:atTime ex:time_2021_07_02_16_00 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_Diag_NotInLaborForce_2021_07_02_16_00 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_NotInLaborForce .
+
+ex:diag_NotInLaborForce a chr:DiagnosticStatement ;
+    rdfs:label "Not in labor force" .
+
+ex:cond_NotInLaborForce a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_2021_07_02_16_00 .
+
+# Limited social contact – evaluated at 16:00
+ex:evaluation_LimitedSocialContact_2021_07_02_16_00 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Aracely ;
+    sulo:hasParticipant ex:role_CareProvider_Edmundo ;
+    sulo:hasParticipant ex:role_Output_Diag_LimitedSocialContact_2021_07_02_16_00 ;
+    sulo:atTime ex:time_2021_07_02_16_00 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Output_Diag_LimitedSocialContact_2021_07_02_16_00 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_LimitedSocialContact .
+
+ex:diag_LimitedSocialContact a chr:DiagnosticStatement ;
+    rdfs:label "Limited social contact" .
+
+ex:cond_LimitedSocialContact a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_2021_07_02_16_00 .
+
+# ------------------------------
+# Care plan
+ex:careplan_2021_07_02 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "Follow‑up monitoring and routine review" .

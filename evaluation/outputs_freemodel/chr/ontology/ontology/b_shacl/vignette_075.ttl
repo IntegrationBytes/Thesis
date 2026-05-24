@@ -1,0 +1,89 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Estela_Grant a chr:Person .
+ex:physician_Nickolas_Schumm a chr:Person .
+
+# Clinical Visit
+ex:visit_2001_10_18_0835 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit ,
+                       ex:role_CareProvider_visit ;
+    sulo:atTime ex:time_visit_2001_10_18_0835 .
+
+ex:role_SubjectOfCare_visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Estela_Grant .
+
+ex:role_CareProvider_visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Nickolas_Schumm .
+
+ex:time_visit_2001_10_18_0835 sulo:hasValue "2001-10-18T08:35:00"^^xsd:dateTime .
+
+# Measurement Process (Body temperature)
+ex:measurementProcess_2001_10_18_0835 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_measure ,
+                       ex:role_CareProvider_measure ,
+                       ex:role_Output_measurement ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_measure_2001_10_18_0835 .
+
+ex:role_SubjectOfCare_measure a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Estela_Grant .
+
+ex:role_CareProvider_measure a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Nickolas_Schumm .
+
+ex:role_Output_measurement a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_bodyTemp .
+
+ex:measurement_bodyTemp a chr:Measurement ;
+    sulo:hasValue "37.393"^^xsd:float ;
+    sulo:hasUnit ex:unit_Celsius ;
+    sulo:atTime ex:time_measure_2001_10_18_0835 .
+
+ex:unit_Celsius a sulo:Unit ;
+    rdfs:label "Celsius" .
+
+ex:time_measure_2001_10_18_0835 sulo:hasValue "2001-10-18T08:35:00"^^xsd:dateTime .
+
+ex:status_completed a chr:ProcessStatus .
+
+# Evaluation Process
+ex:evaluation_2001_10_18_0835 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_eval ,
+                       ex:role_Performer_eval ,
+                       ex:role_Output_diagnostic ;
+    sulo:atTime ex:time_eval_2001_10_18_0835 .
+
+ex:role_SubjectOfCare_eval a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Estela_Grant .
+
+ex:role_Performer_eval a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Nickolas_Schumm .
+
+ex:role_Output_diagnostic a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnostic_AcuteViralPharyngitis .
+
+ex:diagnostic_AcuteViralPharyngitis a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity .
+
+ex:time_eval_2001_10_18_0835 sulo:hasValue "2001-10-18T08:35:00"^^xsd:dateTime .
+
+# Care Plan
+ex:carePlan_followup a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup ;
+    sulo:hasParticipant ex:role_SubjectOfCare_careplan ,
+                       ex:role_CareProvider_careplan .
+
+ex:procedure_followup a chr:MedicalProcedure .
+
+ex:role_SubjectOfCare_careplan a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Estela_Grant .
+
+ex:role_CareProvider_careplan a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Nickolas_Schumm .

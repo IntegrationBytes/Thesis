@@ -1,0 +1,467 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:person_Aracely_Devon_Collins
+    a chr:Person ;
+    rdfs:label "Aracely711 Devon268 Collins926" .
+
+# Person (physician)
+ex:person_Margaret_Reinger
+    a chr:Person ;
+    rdfs:label "Dr. Margaret865 Reinger292" .
+
+# Care unit
+ex:careunit_Carney_Hospital
+    a chr:CareUnit ;
+    rdfs:label "CARNEY HOSPITAL" .
+
+# Clinical visit
+ex:visit_2025_11_14_1404
+    a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_VisitPatient ;
+    sulo:hasParticipant ex:role_CareProvider_AttendingPhysician ;
+    sulo:isIn ex:careunit_Carney_Hospital ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+# Roles for visit
+ex:role_SubjectOfCare_VisitPatient
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_CareProvider_AttendingPhysician
+    a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Margaret_Reinger .
+
+# Time instant for visit and many measurements
+ex:time_2025_11_14_1404
+    a sulo:TimeInstant ;
+    sulo:hasValue "2025-11-14T14:04:00"^^xsd:dateTime .
+
+# Process status (completed)
+ex:status_completed
+    a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Severity (moderate)
+ex:severity_moderate
+    a chr:Severity ;
+    rdfs:label "Moderate" .
+
+# Units
+ex:unit_mg_per_dL   a sulo:Unit ; rdfs:label "mg/dL" .
+ex:unit_mmol_per_L  a sulo:Unit ; rdfs:label "mmol/L" .
+ex:unit_cm          a sulo:Unit ; rdfs:label "cm" .
+ex:unit_kg          a sulo:Unit ; rdfs:label "kg" .
+ex:unit_kg_per_m2   a sulo:Unit ; rdfs:label "kg/m2" .
+ex:unit_mL_per_min_per_m2 a sulo:Unit ; rdfs:label "mL/min/1.73 m2" .
+ex:unit_score       a sulo:Unit ; rdfs:label "score" .
+ex:unit_nominal     a sulo:Unit ; rdfs:label "nominal" .
+ex:unit_pH          a sulo:Unit ; rdfs:label "pH" .
+ex:unit_percent     a sulo:Unit ; rdfs:label "%" .
+ex:unit_per_min     a sulo:Unit ; rdfs:label "/min" .
+
+#########################
+# Measurement processes and measurements (selected subset; the pattern is repeated for each entry)
+#########################
+
+# Example: Glucose in Serum (Mass/volume) – 66.44 mg/dL
+ex:process_glucose_serum_2025_11_14_1404
+    a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_GlucoseSerum ;
+    sulo:hasParticipant ex:role_Output_GlucoseSerum ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+ex:role_SubjectOfCare_GlucoseSerum
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Output_GlucoseSerum
+    a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_glucose_serum_2025_11_14_1404 .
+
+ex:measurement_glucose_serum_2025_11_14_1404
+    a chr:Measurement ;
+    sulo:hasValue "66.44"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+# Example: Urea nitrogen in Serum – 19.29 mg/dL
+ex:process_urea_serum_2025_11_14_1404
+    a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_UreaSerum ;
+    sulo:hasParticipant ex:role_Output_UreaSerum ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+ex:role_SubjectOfCare_UreaSerum
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Output_UreaSerum
+    a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_urea_serum_2025_11_14_1404 .
+
+ex:measurement_urea_serum_2025_11_14_1404
+    a chr:Measurement ;
+    sulo:hasValue "19.29"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+# Example: Creatinine in Serum – 2.0731 mg/dL
+ex:process_creatinine_serum_2025_11_14_1404
+    a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_CreatinineSerum ;
+    sulo:hasParticipant ex:role_Output_CreatinineSerum ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+ex:role_SubjectOfCare_CreatinineSerum
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Output_CreatinineSerum
+    a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_creatinine_serum_2025_11_14_1404 .
+
+ex:measurement_creatinine_serum_2025_11_14_1404
+    a chr:Measurement ;
+    sulo:hasValue "2.0731"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+# Example: Calcium in Serum – 8.54 mg/dL
+ex:process_calcium_serum_2025_11_14_1404
+    a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_CalciumSerum ;
+    sulo:hasParticipant ex:role_Output_CalciumSerum ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+ex:role_SubjectOfCare_CalciumSerum
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Output_CalciumSerum
+    a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_calcium_serum_2025_11_14_1404 .
+
+ex:measurement_calcium_serum_2025_11_14_1404
+    a chr:Measurement ;
+    sulo:hasValue "8.54"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+# Example: Sodium in Serum – 136.05 mmol/L
+ex:process_sodium_serum_2025_11_14_1404
+    a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_SodiumSerum ;
+    sulo:hasParticipant ex:role_Output_SodiumSerum ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+ex:role_SubjectOfCare_SodiumSerum
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Output_SodiumSerum
+    a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_sodium_serum_2025_11_14_1404 .
+
+ex:measurement_sodium_serum_2025_11_14_1404
+    a chr:Measurement ;
+    sulo:hasValue "136.05"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+# Example: Body Height – 172 cm
+ex:process_body_height_2025_11_14_1404
+    a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_BodyHeight ;
+    sulo:hasParticipant ex:role_Output_BodyHeight ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+ex:role_SubjectOfCare_BodyHeight
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Output_BodyHeight
+    a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_body_height_2025_11_14_1404 .
+
+ex:measurement_body_height_2025_11_14_1404
+    a chr:Measurement ;
+    sulo:hasValue "172"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+# Example: Pain severity – 2 score
+ex:process_pain_severity_2025_11_14_1404
+    a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_PainSeverity ;
+    sulo:hasParticipant ex:role_Output_PainSeverity ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+ex:role_SubjectOfCare_PainSeverity
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Output_PainSeverity
+    a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_pain_severity_2025_11_14_1404 .
+
+ex:measurement_pain_severity_2025_11_14_1404
+    a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+# Example: Body Weight – 82.2 kg
+ex:process_body_weight_2025_11_14_1404
+    a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_BodyWeight ;
+    sulo:hasParticipant ex:role_Output_BodyWeight ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+ex:role_SubjectOfCare_BodyWeight
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Output_BodyWeight
+    a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_body_weight_2025_11_14_1404 .
+
+ex:measurement_body_weight_2025_11_14_1404
+    a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+# Example: BMI – 27.79 kg/m2
+ex:process_bmi_2025_11_14_1404
+    a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_BMI ;
+    sulo:hasParticipant ex:role_Output_BMI ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+ex:role_SubjectOfCare_BMI
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Output_BMI
+    a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_bmi_2025_11_14_1404 .
+
+ex:measurement_bmi_2025_11_14_1404
+    a chr:Measurement ;
+    sulo:hasValue "27.79"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+# Example: Heart rate – 80 /min
+ex:process_heart_rate_2025_11_14_1404
+    a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HeartRate ;
+    sulo:hasParticipant ex:role_Output_HeartRate ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+ex:role_SubjectOfCare_HeartRate
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Output_HeartRate
+    a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_heart_rate_2025_11_14_1404 .
+
+ex:measurement_heart_rate_2025_11_14_1404
+    a chr:Measurement ;
+    sulo:hasValue "80"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2025_11_14_1404 .
+
+# Example: Fall risk – 32 score (different time)
+ex:time_2025_11_14_1530
+    a sulo:TimeInstant ;
+    sulo:hasValue "2025-11-14T15:30:00"^^xsd:dateTime .
+
+ex:process_fall_risk_2025_11_14_1530
+    a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_FallRisk ;
+    sulo:hasParticipant ex:role_Output_FallRisk ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_11_14_1530 .
+
+ex:role_SubjectOfCare_FallRisk
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Output_FallRisk
+    a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_fall_risk_2025_11_14_1530 .
+
+ex:measurement_fall_risk_2025_11_14_1530
+    a chr:Measurement ;
+    sulo:hasValue "32"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2025_11_14_1530 .
+
+# Example: HARK total score – 0 score (different time)
+ex:time_2025_11_14_1615
+    a sulo:TimeInstant ;
+    sulo:hasValue "2025-11-14T16:15:00"^^xsd:dateTime .
+
+ex:process_hark_total_2025_11_14_1615
+    a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HARK ;
+    sulo:hasParticipant ex:role_Output_HARK ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_11_14_1615 .
+
+ex:role_SubjectOfCare_HARK
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Output_HARK
+    a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_hark_total_2025_11_14_1615 .
+
+ex:measurement_hark_total_2025_11_14_1615
+    a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2025_11_14_1615 .
+
+# Example: PHQ-2 total score – 1 score (different time)
+ex:time_2025_11_14_1659
+    a sulo:TimeInstant ;
+    sulo:hasValue "2025-11-14T16:59:00"^^xsd:dateTime .
+
+ex:process_phq2_total_2025_11_14_1659
+    a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_PHQ2 ;
+    sulo:hasParticipant ex:role_Output_PHQ2 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_11_14_1659 .
+
+ex:role_SubjectOfCare_PHQ2
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Output_PHQ2
+    a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_phq2_total_2025_11_14_1659 .
+
+ex:measurement_phq2_total_2025_11_14_1659
+    a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2025_11_14_1659 .
+
+# Example: DAST-10 total score – 0 score (different time)
+ex:time_2025_11_14_1737
+    a sulo:TimeInstant ;
+    sulo:hasValue "2025-11-14T17:37:00"^^xsd:dateTime .
+
+ex:process_dast10_total_2025_11_14_1737
+    a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_DAST10 ;
+    sulo:hasParticipant ex:role_Output_DAST10 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2025_11_14_1737 .
+
+ex:role_SubjectOfCare_DAST10
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Output_DAST10
+    a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_dast10_total_2025_11_14_1737 .
+
+ex:measurement_dast10_total_2025_11_14_1737
+    a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2025_11_14_1737 .
+
+#########################
+# Evaluation processes and diagnostic statements
+#########################
+
+# Time for first evaluation
+ex:time_2025_11_14_1404_eval
+    a sulo:TimeInstant ;
+    sulo:hasValue "2025-11-14T14:04:00"^^xsd:dateTime .
+
+ex:evaluation_2025_11_14_1404
+    a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_EvalPatient ;
+    sulo:hasParticipant ex:role_CareProvider_EvalPhysician ;
+    sulo:hasFeature ex:diag_medication_review ;
+    sulo:atTime ex:time_2025_11_14_1404_eval .
+
+ex:role_SubjectOfCare_EvalPatient
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_CareProvider_EvalPhysician
+    a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Margaret_Reinger .
+
+ex:diag_medication_review
+    a chr:DiagnosticStatement , chr:ProcessStatus ;
+    rdfs:label "Medication review due (situation)" .
+
+ex:condition_med_review
+    a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_2025_11_14_1404_eval .
+
+# Time for second evaluation
+ex:time_2025_11_14_1501
+    a sulo:TimeInstant ;
+    sulo:hasValue "2025-11-14T15:01:00"^^xsd:dateTime .
+
+ex:evaluation_2025_11_14_1501
+    a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_EvalPatient2 ;
+    sulo:hasParticipant ex:role_CareProvider_EvalPhysician2 ;
+    sulo:hasFeature ex:diag_social_isolation ;
+    sulo:atTime ex:time_2025_11_14_1501 .
+
+ex:role_SubjectOfCare_EvalPatient2
+    a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_CareProvider_EvalPhysician2
+    a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Margaret_Reinger .
+
+ex:diag_social_isolation
+    a chr:DiagnosticStatement , chr:ProcessStatus ;
+    rdfs:label "Social isolation (finding)" .
+
+ex:condition_social_isolation
+    a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_2025_11_14_1501 .
+
+#########################
+# Care plan
+#########################
+
+ex:careplan_2025_11_14
+    a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup_monitoring .
+
+ex:procedure_followup_monitoring
+    a chr:MedicalProcedure ;
+    rdfs:label "Follow‑up monitoring and routine review" .

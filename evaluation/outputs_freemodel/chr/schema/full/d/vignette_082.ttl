@@ -1,0 +1,58 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Estela596Yetta429Grant908 a chr:Person .
+
+ex:physician_Nickolas58_Schumm995 a chr:Person .
+
+ex:careunit_ENCOMPASS_HEALTH_BRAINTREE a chr:CareUnit .
+
+ex:visit_2008_10_18_2135 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
+    chr:hasCareProvider ex:physician_Nickolas58_Schumm995 ;
+    chr:hasCareUnit ex:careunit_ENCOMPASS_HEALTH_BRAINTREE .
+
+ex:measproc_SizeMaximum_2008_10_18_2253 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
+    chr:hasResult ex:measurement_SizeMaximum_2008_10_18_2253 ;
+    chr:hasStatus ex:status_completed .
+
+ex:measurement_SizeMaximum_2008_10_18_2253 a chr:Measurement ;
+    chr:hasMeasuredDate "2008-10-18T22:53:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.5292"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+ex:measproc_LymphNodes_2008_10_18_2253 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
+    chr:hasResult ex:measurement_LymphNodes_2008_10_18_2253 ;
+    chr:hasStatus ex:status_completed .
+
+ex:measurement_LymphNodes_2008_10_18_2253 a chr:Measurement ;
+    chr:hasMeasuredDate "2008-10-18T22:53:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+ex:evaluation_2008_10_18_2135 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
+    chr:hasObservation ex:diag_MalignantNeoplasmBreast_2008_10_18_2135 .
+
+ex:diag_MalignantNeoplasmBreast_2008_10_18_2135 a chr:DiagnosticStatement .
+
+ex:condition_MalignantNeoplasmBreast_2008_10_18_2135 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2008-10-18T21:35:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasLocatedIn ex:anatomy_Breast .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:anatomy_Breast a chr:AnatomicalStructure .
+
+ex:careplan_followup_2008_10_18_2135 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:evaluation_2008_10_18_2135 .
+
+ex:unit_cm a sulo:Unit .
+
+ex:status_completed a chr:ProcessStatus .

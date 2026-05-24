@@ -19,8 +19,7 @@ ex:careUnit_DRHE a chr:CareUnit ;
 ex:visit_2018_10_16_05_20 a chr:ClinicalVisit ;
     sulo:hasParticipant ex:role_SubjectOfCare_Visit_Dolores ;
     sulo:hasParticipant ex:role_CareProvider_Visit_Cari ;
-    sulo:atTime ex:time_Visit_2018_10_16_05_20 ;
-    sulo:isIn ex:careUnit_DRHE .
+    sulo:atTime ex:time_Visit_2018_10_16_05_20 .
 
 ex:role_SubjectOfCare_Visit_Dolores a chr:SubjectOfCareRole ;
     sulo:isFeatureOf ex:person_Dolores_Nevarez .
@@ -184,8 +183,7 @@ ex:time_RR_2018_10_16_05_20 a sulo:TimeInstant ;
 ex:evaluation_2018_10_16_05_20 a chr:EvaluationProcess ;
     sulo:hasParticipant ex:role_SubjectOfCare_Eval_Dolores ;
     sulo:hasParticipant ex:role_Performer_Eval_Cari ;
-    sulo:hasParticipant ex:role_Diagnostic_Eval ;
-    sulo:hasFeature ex:status_completed ;
+    sulo:hasFeature ex:diagnostic_MedReviewDue ;
     sulo:atTime ex:time_Eval_2018_10_16_05_20 .
 
 ex:role_SubjectOfCare_Eval_Dolores a chr:SubjectOfCareRole ;
@@ -194,10 +192,7 @@ ex:role_SubjectOfCare_Eval_Dolores a chr:SubjectOfCareRole ;
 ex:role_Performer_Eval_Cari a chr:PerformerRole ;
     sulo:isFeatureOf ex:person_Cari_Kohler .
 
-ex:role_Diagnostic_Eval a chr:ReferenceRole ;
-    sulo:isFeatureOf ex:diagnostic_MedReviewDue .
-
-ex:diagnostic_MedReviewDue a chr:DiagnosticStatement , chr:MedicalProcedure ;
+ex:diagnostic_MedReviewDue a chr:DiagnosticStatement ;
     rdfs:label "Medication review due (situation)" ;
     sulo:hasFeature ex:severity_Moderate .
 
@@ -211,11 +206,9 @@ ex:time_Eval_2018_10_16_05_20 a sulo:TimeInstant ;
 ex:status_completed a chr:ProcessStatus ;
     rdfs:label "completed" .
 
-# Care plan referencing diagnosis via role
+# Care plan referencing diagnosis
 ex:carePlan_2018_10_16 a chr:CarePlan ;
-    sulo:hasParticipant ex:role_SubjectOfCare_CarePlan_Dolores ;
-    sulo:hasParticipant ex:role_CareProvider_CarePlan_Cari ;
-    sulo:hasParticipant ex:role_Diagnostic_CarePlan ;
+    sulo:refersTo ex:diagnostic_MedReviewDue ;
     sulo:atTime ex:time_CarePlan_2018_10_16 .
 
 ex:role_SubjectOfCare_CarePlan_Dolores a chr:SubjectOfCareRole ;
@@ -224,16 +217,8 @@ ex:role_SubjectOfCare_CarePlan_Dolores a chr:SubjectOfCareRole ;
 ex:role_CareProvider_CarePlan_Cari a chr:CareProviderRole ;
     sulo:isFeatureOf ex:person_Cari_Kohler .
 
-ex:role_Diagnostic_CarePlan a chr:ReferenceRole ;
-    sulo:isFeatureOf ex:diagnostic_MedReviewDue .
-
 ex:time_CarePlan_2018_10_16 a sulo:TimeInstant ;
     sulo:hasValue "2018-10-16T00:00:00"^^xsd:dateTime .
 
-# Unit declarations
-<https://w3id.org/sulo/unit/cm> a sulo:Unit .
-<https://w3id.org/sulo/unit/kg> a sulo:Unit .
-<https://w3id.org/sulo/unit/kg_per_m2> a sulo:Unit .
-<https://w3id.org/sulo/unit/percent> a sulo:Unit .
-<https://w3id.org/sulo/unit/per_min> a sulo:Unit .
-<https://w3id.org/sulo/unit/score> a sulo:Unit .
+# Linking visit to care unit
+ex:visit_2018_10_16_05_20 sulo:isIn ex:careUnit_DRHE .

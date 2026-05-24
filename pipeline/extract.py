@@ -32,6 +32,16 @@ from openai import OpenAI
 import pyshacl
 from rdflib import Graph
 
+try:
+    import owlrl  # OWL-RL deductive closure for the ontology track
+    _HAS_OWLRL = True
+except ImportError:
+    _HAS_OWLRL = False
+
+# OWL reasoner-based validator (replaces SHACL on the ontology track).
+# Import-on-demand to avoid a circular path during module bootstrap.
+from owl_validator import validate_with_owl  # noqa: E402
+
 # ---------------------------------------------------------------------------
 # Schema-agnostic prompts.
 # ---------------------------------------------------------------------------
@@ -100,6 +110,17 @@ def call_llm_for_turtle(prompt: str, *, max_attempts: int = 6) -> str:
             "OPENROUTER_API_KEY not set. Add it to .env or your environment."
         )
     client = OpenAI(base_url=OPENROUTER_BASE, api_key=api_key)
+    # Provider preference for OpenRouter — used to force paid endpoints
+    # on models that default to free-tier routing (e.g. gpt-oss-120b).
+    # Set OPENROUTER_PROVIDER_SORT="throughput" to bias toward fastest
+    # paid providers and avoid rate-limited free providers.
+    extra_body: dict = {}
+    provider_sort = os.environ.get("OPENROUTER_PROVIDER_SORT", "")
+    if provider_sort:
+        extra_body["provider"] = {
+            "sort": provider_sort,
+            "allow_fallbacks": True,
+        }
     last_exc: Exception | None = None
     for attempt in range(1, max_attempts + 1):
         try:
@@ -107,6 +128,7 @@ def call_llm_for_turtle(prompt: str, *, max_attempts: int = 6) -> str:
                 model=OPENROUTER_MODEL,
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1,
+                extra_body=extra_body if extra_body else None,
             )
             # OpenRouter occasionally returns a 200 with no .choices (empty
             # list, None, or missing entirely) when the upstream provider
@@ -159,16 +181,71 @@ def strip_markdown_fences(text: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# SHACL validation — inference='none' on both tracks.
+# SHACL validation.
 # ---------------------------------------------------------------------------
-# Why 'none': chr:hasPatient declares three rdfs:domain values
+# pyshacl's built-in `inference` argument is intentionally kept at 'none'.
+# Why: chr:hasPatient declares three rdfs:domain values on the SCHEMA track
 # (ClinicalVisit, MedicalProcedure, Measurement). With rdfs-inference on,
 # pyshacl cross-types every focus node of hasPatient as all three classes,
 # which makes every class-targeted shape fire on every visit — a flood of
-# spurious violations. Skipping inference is correct for a closed-world
-# SHACL check on extracted ABoxes.
-def validate_with_shacl(ttl_content: str, ctx: SchemaContext) -> tuple[bool, str]:
-    """Run pyshacl and return (conforms, human-readable results_text)."""
+# spurious violations.
+#
+# The ontology (SULO) track does NOT have that multi-domain ambiguity, so
+# we materialize OWL-RL entailments manually before SHACL validation when
+# owl_reason=True. This expands subclass and inverseOf entailments
+# (e.g. ex:p rdf:type chr:Patient → ex:p rdf:type sulo:Person), letting
+# SHACL shapes that target a superclass actually fire on the subclass.
+def materialize_owl_inplace(graph: Graph, ontology: Graph) -> None:
+    """Apply OWL-RL deductive closure to ``graph`` using ``ontology``.
+
+    Mutates ``graph`` in place. Requires the ``owlrl`` package; no-op (with
+    a printed warning) if owlrl is unavailable.
+    """
+    if not _HAS_OWLRL:
+        print("[WARN] owlrl not installed; skipping OWL-RL closure.")
+        return
+    for s, p, o in ontology:
+        graph.add((s, p, o))
+    owlrl.DeductiveClosure(
+        owlrl.OWLRL_Semantics,
+        rdfs_closure=True,
+        axiomatic_triples=False,
+        datatype_axioms=False,
+    ).expand(graph)
+
+
+def validate_for_track(ttl_content: str, ctx: SchemaContext) -> tuple[bool, str]:
+    """Track-aware validation dispatch.
+
+    Schema track  -> SHACL via ``validate_with_shacl`` (custom shapes).
+    Ontology track -> OWL reasoner via ``validate_with_owl``
+                      (disjointness, functional-property, range checks
+                      against the SULO ontology — supersedes the
+                      hand-written chr_shacl_ontology.ttl as the
+                      primary validator on this track, per supervisor's
+                      request: validation should be grounded in SULO
+                      axioms, not in our custom shape interpretation).
+
+    Both branches return the same ``(conforms, report_text)`` shape so
+    the System B retry loop and the prompt-builder are insensitive to
+    which validator fired.
+    """
+    if ctx.track == "ontology":
+        return validate_with_owl(ttl_content, ctx.tbox_path)
+    return validate_with_shacl(ttl_content, ctx, owl_reason=False)
+
+
+def validate_with_shacl(
+    ttl_content: str,
+    ctx: SchemaContext,
+    owl_reason: bool = False,
+) -> tuple[bool, str]:
+    """Run pyshacl and return (conforms, human-readable results_text).
+
+    When ``owl_reason=True`` (recommended on the ontology track), apply
+    OWL-RL closure to the data graph before SHACL validation so that
+    subclass / inverseOf entailments are visible to the shapes.
+    """
     try:
         data_graph = Graph()
         data_graph.parse(data=ttl_content, format="turtle")
@@ -177,6 +254,8 @@ def validate_with_shacl(ttl_content: str, ctx: SchemaContext) -> tuple[bool, str
     try:
         shapes_graph = Graph().parse(ctx.shapes_path.as_posix(), format="turtle")
         ont_graph = Graph().parse(ctx.tbox_path.as_posix(), format="turtle")
+        if owl_reason:
+            materialize_owl_inplace(data_graph, ont_graph)
         conforms, _, results_text = pyshacl.validate(
             data_graph,
             shacl_graph=shapes_graph,
@@ -260,7 +339,11 @@ def run_system_b(ctx: SchemaContext, system_a_ttl: str, cycles_dir: Path | None 
             "results_summary": results_text[:500],
         })
 
-    conforms, results_text = validate_with_shacl(ttl_content, ctx)
+    # Track-aware validator dispatch:
+    #   schema   -> SHACL (custom shapes)
+    #   ontology -> OWL reasoner (SULO disjointness + functional + range)
+    # See validate_for_track() docstring for the rationale.
+    conforms, results_text = validate_for_track(ttl_content, ctx)
     _record(0, ttl_content, conforms, results_text)
     if conforms:
         if cycles_dir is not None:
@@ -297,7 +380,7 @@ def run_system_b(ctx: SchemaContext, system_a_ttl: str, cycles_dir: Path | None 
         raw = call_llm_for_turtle(prompt)
         llm_calls += 1
         ttl_content = strip_markdown_fences(raw)
-        conforms, results_text = validate_with_shacl(ttl_content, ctx)
+        conforms, results_text = validate_for_track(ttl_content, ctx)
         _record(attempt, ttl_content, conforms, results_text)
         if conforms:
             if cycles_dir is not None:

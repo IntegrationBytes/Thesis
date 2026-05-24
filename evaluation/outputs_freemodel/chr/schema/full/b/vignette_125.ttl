@@ -1,0 +1,181 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_ArlenOlson a chr:Person .
+ex:physician_DomenicBlick a chr:Person .
+
+# Care unit
+ex:careunit_VIBRA_Central a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2018_02_28_1547 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasCareProvider ex:physician_DomenicBlick ;
+    chr:hasCareUnit ex:careunit_VIBRA_Central .
+
+# Units
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_mmol_per_L a sulo:Unit .
+ex:unit_cm a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_score a sulo:Unit .
+ex:unit_percent a sulo:Unit .
+ex:unit_mL_per_min_per_1_73_m2 a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_pH a sulo:Unit .
+ex:unit_nominal a sulo:Unit .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Diagnostic statements
+ex:diag_MedicationReview a chr:DiagnosticStatement .
+ex:diag_PartTimeEmployment a chr:DiagnosticStatement .
+ex:diag_Gingivitis a chr:DiagnosticStatement .
+
+# Clinical conditions
+ex:condition_MedicationReview a chr:ClinicalCondition ;
+    chr:hasRecordDate "2018-02-28T15:47:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:condition_PartTimeEmployment a chr:ClinicalCondition ;
+    chr:hasRecordDate "2018-02-28T16:20:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:condition_Gingivitis a chr:ClinicalCondition ;
+    chr:hasRecordDate "2018-02-28T17:35:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Evaluation processes
+ex:evaluation_1547 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MedicationReview .
+
+ex:evaluation_1620 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_PartTimeEmployment .
+
+ex:evaluation_1735 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_Gingivitis .
+
+# Care plan
+ex:careplan_FollowUp a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:proc_FollowUpVisit .
+
+# Medical procedure (required for CarePlan)
+ex:proc_FollowUpVisit a chr:MedicalProcedure .
+
+# Measurement processes and measurements (selected examples)
+
+## Glucose in Serum (mg/dL)
+ex:proc_GlucoseSerum_2018_02_28_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_GlucoseSerum_2018_02_28_1547 .
+
+ex:meas_GlucoseSerum_2018_02_28_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-02-28T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "192.35"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+## Hemoglobin A1c (percent)
+ex:proc_HbA1c_2018_02_28_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_HbA1c_2018_02_28_1547 .
+
+ex:meas_HbA1c_2018_02_28_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-02-28T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.36"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+## Body Height (cm)
+ex:proc_BodyHeight_2018_02_28_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_BodyHeight_2018_02_28_1547 .
+
+ex:meas_BodyHeight_2018_02_28_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-02-28T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "177.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+## Pain severity (score)
+ex:proc_PainSeverity_2018_02_28_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_PainSeverity_2018_02_28_1547 .
+
+ex:meas_PainSeverity_2018_02_28_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-02-28T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+## Body Weight (kg)
+ex:proc_BodyWeight_2018_02_28_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_BodyWeight_2018_02_28_1547 .
+
+ex:meas_BodyWeight_2018_02_28_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-02-28T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "86.0"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+## Body Mass Index (kg/m2)
+ex:proc_BMI_2018_02_28_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_BMI_2018_02_28_1547 .
+
+ex:meas_BMI_2018_02_28_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-02-28T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.45"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
+
+## Heart Rate (/min)
+ex:proc_HeartRate_2018_02_28_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_HeartRate_2018_02_28_1547 .
+
+ex:meas_HeartRate_2018_02_28_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-02-28T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "69.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+## Respiratory Rate (/min)
+ex:proc_RespRate_2018_02_28_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_RespRate_2018_02_28_1547 .
+
+ex:meas_RespRate_2018_02_28_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-02-28T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+## Cholesterol in Serum (mg/dL)
+ex:proc_CholesterolSerum_2018_02_28_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_CholesterolSerum_2018_02_28_1547 .
+
+ex:meas_CholesterolSerum_2018_02_28_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-02-28T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "251.88"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+## Urine pH
+ex:proc_UrinePH_2018_02_28_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_UrinePH_2018_02_28_1547 .
+
+ex:meas_UrinePH_2018_02_28_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-02-28T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.2104"^^xsd:float ;
+    chr:hasUnit ex:unit_pH .
+
+## Specific gravity (nominal)
+ex:proc_SpecificGravity_2018_02_28_1547 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_SpecificGravity_2018_02_28_1547 .
+
+ex:meas_SpecificGravity_2018_02_28_1547 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-02-28T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0072"^^xsd:float ;
+    chr:hasUnit ex:unit_nominal .

@@ -1,0 +1,38 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Angelic427_Callie226_Schaden604 a chr:Person .
+
+ex:physician_Willian804_Batz141 a chr:Person .
+
+ex:careunit_BostonMedicalCenter a chr:CareUnit .
+
+ex:visit_2016_12_13_2301 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Angelic427_Callie226_Schaden604 ;
+    chr:hasCareProvider ex:physician_Willian804_Batz141 ;
+    chr:hasCareUnit ex:careunit_BostonMedicalCenter .
+
+ex:measurementProcess_2016_12_13_2346 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic427_Callie226_Schaden604 ;
+    chr:hasResult ex:measurement_2016_12_13_2346 .
+
+ex:measurement_2016_12_13_2346 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-12-13T23:46:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.8386"^^xsd:float ;
+    chr:hasUnit sulo:Score .
+
+ex:evaluation_2017_05_09_1824 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_AcuteInfectiveCystitis .
+
+ex:diagnostic_AcuteInfectiveCystitis a chr:DiagnosticStatement .
+
+ex:condition_AcuteInfectiveCystitis_2017_05_09_1824 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2017-05-09T18:24:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:carePlan_FollowUpMonitoring a chr:CarePlan .

@@ -1,0 +1,357 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Bryant_Grimes a chr:Person .
+ex:provider_Dana_Wilkinson a chr:Person .
+
+# Care unit
+ex:careunit_UrgentCarePhysiciansPC a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2014_03_19_15_47 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:provider_Dana_Wilkinson ;
+    chr:hasCareUnit ex:careunit_UrgentCarePhysiciansPC ;
+    chr:hasPatient ex:patient_Bryant_Grimes .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Clinical conditions (diagnoses)
+ex:condition_MedicationReview a chr:ClinicalCondition ;
+    chr:hasRecordDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:condition_Gingivitis a chr:ClinicalCondition ;
+    chr:hasRecordDate "2014-03-19T17:57:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Diagnostic statements
+ex:diag_MedicationReview a chr:DiagnosticStatement .
+ex:diag_Gingivitis a chr:DiagnosticStatement .
+
+# Evaluation processes
+ex:evaluation_2014_03_19_15_47 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MedicationReview .
+
+ex:evaluation_2014_03_19_17_57 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_Gingivitis .
+
+# Care plan (placeholder) with at least one MedicalProcedure
+ex:careplan_1 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_1 .
+
+ex:procedure_1 a chr:MedicalProcedure .
+
+# Units
+sulo:Unit_mg_per_dL a sulo:Unit .
+sulo:Unit_mmol_per_L a sulo:Unit .
+sulo:Unit_mL_per_min_per_m2 a sulo:Unit .
+sulo:Unit_cm a sulo:Unit .
+sulo:Unit_kg a sulo:Unit .
+sulo:Unit_score a sulo:Unit .
+sulo:Unit_pH a sulo:Unit .
+sulo:Unit_nominal a sulo:Unit .
+sulo:Unit_kg_per_m2 a sulo:Unit .
+sulo:Unit_per_min a sulo:Unit .
+
+# Helper function to create measurement & process triples (repeated pattern)
+# 1. Glucose Serum
+ex:meas_Glucose_Serum_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "90.74"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mg_per_dL .
+ex:proc_Glucose_Serum_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Glucose_Serum_2014_03_19_15_47_1 .
+
+# 2. Urea nitrogen Serum
+ex:meas_UreaNitrogen_Serum_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12.68"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mg_per_dL .
+ex:proc_UreaNitrogen_Serum_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_UreaNitrogen_Serum_2014_03_19_15_47_1 .
+
+# 3. Creatinine Serum
+ex:meas_Creatinine_Serum_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0813"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mg_per_dL .
+ex:proc_Creatinine_Serum_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Creatinine_Serum_2014_03_19_15_47_1 .
+
+# 4. Calcium Serum
+ex:meas_Calcium_Serum_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.8"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mg_per_dL .
+ex:proc_Calcium_Serum_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Calcium_Serum_2014_03_19_15_47_1 .
+
+# 5. Sodium Serum
+ex:meas_Sodium_Serum_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "143.29"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mmol_per_L .
+ex:proc_Sodium_Serum_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Sodium_Serum_2014_03_19_15_47_1 .
+
+# 6. Potassium Serum
+ex:meas_Potassium_Serum_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.26"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mmol_per_L .
+ex:proc_Potassium_Serum_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Potassium_Serum_2014_03_19_15_47_1 .
+
+# 7. Chloride Serum
+ex:meas_Chloride_Serum_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "103.65"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mmol_per_L .
+ex:proc_Chloride_Serum_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Chloride_Serum_2014_03_19_15_47_1 .
+
+# 8. Carbon dioxide total Serum
+ex:meas_CO2_Serum_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "23.56"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mmol_per_L .
+ex:proc_CO2_Serum_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_CO2_Serum_2014_03_19_15_47_1 .
+
+# 9. GFR Serum
+ex:meas_GFR_Serum_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "45.656"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mL_per_min_per_m2 .
+ex:proc_GFR_Serum_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_GFR_Serum_2014_03_19_15_47_1 .
+
+# 10. Glucose Urine
+ex:meas_Glucose_Urine_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.1548"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mg_per_dL .
+ex:proc_Glucose_Urine_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Glucose_Urine_2014_03_19_15_47_1 .
+
+# 11. Bilirubin.total Urine
+ex:meas_Bilirubin_Urine_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.414"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mg_per_dL .
+ex:proc_Bilirubin_Urine_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Bilirubin_Urine_2014_03_19_15_47_1 .
+
+# 12. Ketones Urine
+ex:meas_Ketones_Urine_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.495"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mg_per_dL .
+ex:proc_Ketones_Urine_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Ketones_Urine_2014_03_19_15_47_1 .
+
+# 13. Specific gravity Urine
+ex:meas_SpecificGravity_Urine_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0094"^^xsd:float ;
+    chr:hasUnit sulo:Unit_nominal .
+ex:proc_SpecificGravity_Urine_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_SpecificGravity_Urine_2014_03_19_15_47_1 .
+
+# 14. pH Urine
+ex:meas_pH_Urine_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.7644"^^xsd:float ;
+    chr:hasUnit sulo:Unit_pH .
+ex:proc_pH_Urine_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_pH_Urine_2014_03_19_15_47_1 .
+
+# 15. Protein Urine
+ex:meas_Protein_Urine_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "274.24"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mg_per_dL .
+ex:proc_Protein_Urine_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Protein_Urine_2014_03_19_15_47_1 .
+
+# 16. Hemoglobin A1c/Hemoglobin.total Blood
+ex:meas_HbA1c_Blood_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.87"^^xsd:float ;
+    chr:hasUnit sulo:Unit_percent .
+ex:proc_HbA1c_Blood_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_HbA1c_Blood_2014_03_19_15_47_1 .
+
+# 17. Body Height
+ex:meas_BodyHeight_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "195.1"^^xsd:float ;
+    chr:hasUnit sulo:Unit_cm .
+ex:proc_BodyHeight_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_BodyHeight_2014_03_19_15_47_1 .
+
+# 18. Pain severity
+ex:meas_PainSeverity_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit sulo:Unit_score .
+ex:proc_PainSeverity_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_PainSeverity_2014_03_19_15_47_1 .
+
+# 19. Body Weight
+ex:meas_BodyWeight_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "106.6"^^xsd:float ;
+    chr:hasUnit sulo:Unit_kg .
+ex:proc_BodyWeight_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_BodyWeight_2014_03_19_15_47_1 .
+
+# 20. Body mass index (BMI)
+ex:meas_BMI_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "28.01"^^xsd:float ;
+    chr:hasUnit sulo:Unit_kg_per_m2 .
+ex:proc_BMI_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_BMI_2014_03_19_15_47_1 .
+
+# 21. Heart rate
+ex:meas_HeartRate_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "86"^^xsd:float ;
+    chr:hasUnit sulo:Unit_per_min .
+ex:proc_HeartRate_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_HeartRate_2014_03_19_15_47_1 .
+
+# 22. Respiratory rate
+ex:meas_RespiratoryRate_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit sulo:Unit_per_min .
+ex:proc_RespiratoryRate_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_RespiratoryRate_2014_03_19_15_47_1 .
+
+# 23. Glucose Blood
+ex:meas_Glucose_Blood_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "90.74"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mg_per_dL .
+ex:proc_Glucose_Blood_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Glucose_Blood_2014_03_19_15_47_1 .
+
+# 24. Urea nitrogen Blood
+ex:meas_UreaNitrogen_Blood_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12.68"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mg_per_dL .
+ex:proc_UreaNitrogen_Blood_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_UreaNitrogen_Blood_2014_03_19_15_47_1 .
+
+# 25. Creatinine Blood
+ex:meas_Creatinine_Blood_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.37"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mg_per_dL .
+ex:proc_Creatinine_Blood_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Creatinine_Blood_2014_03_19_15_47_1 .
+
+# 26. Calcium Blood
+ex:meas_Calcium_Blood_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.8"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mg_per_dL .
+ex:proc_Calcium_Blood_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Calcium_Blood_2014_03_19_15_47_1 .
+
+# 27. Sodium Blood
+ex:meas_Sodium_Blood_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "143.29"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mmol_per_L .
+ex:proc_Sodium_Blood_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Sodium_Blood_2014_03_19_15_47_1 .
+
+# 28. Potassium Blood
+ex:meas_Potassium_Blood_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.26"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mmol_per_L .
+ex:proc_Potassium_Blood_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Potassium_Blood_2014_03_19_15_47_1 .
+
+# 29. Chloride Blood
+ex:meas_Chloride_Blood_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "103.65"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mmol_per_L .
+ex:proc_Chloride_Blood_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_Chloride_Blood_2014_03_19_15_47_1 .
+
+# 30. Carbon dioxide total Blood
+ex:meas_CO2_Blood_2014_03_19_15_47_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T15:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "23.56"^^xsd:float ;
+    chr:hasUnit sulo:Unit_mmol_per_L .
+ex:proc_CO2_Blood_2014_03_19_15_47_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_CO2_Blood_2014_03_19_15_47_1 .
+
+# 31. GAD-7 total score (16:48)
+ex:meas_GAD7_2014_03_19_16_48_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T16:48:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:Unit_score .
+ex:proc_GAD7_2014_03_19_16_48_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_GAD7_2014_03_19_16_48_1 .
+
+# 32. PHQ-2 total score (17:21)
+ex:meas_PHQ2_2014_03_19_17_21_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T17:21:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:Unit_score .
+ex:proc_PHQ2_2014_03_19_17_21_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_PHQ2_2014_03_19_17_21_1 .
+
+# 33. DAST-10 total score (17:57)
+ex:meas_DAST10_2014_03_19_17_57_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-03-19T17:57:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit sulo:Unit_score .
+ex:proc_DAST10_2014_03_19_17_57_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Grimes ;
+    chr:hasResult ex:meas_DAST10_2014_03_19_17_57_1 .

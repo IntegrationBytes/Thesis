@@ -1,0 +1,353 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:patient_AracelyDevonCollins a chr:Person .
+
+# Person (care provider)
+ex:physician_EdmundoEichmann a chr:Person .
+
+# Care unit
+ex:careunit_FATHER_BILLS_PLACE a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2022_07_08_1504 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_EdmundoEichmann ;
+    chr:hasCareUnit ex:careunit_FATHER_BILLS_PLACE ;
+    chr:hasPatient ex:patient_AracelyDevonCollins .
+
+# Evaluation process and diagnostic statement
+ex:evaluation_2022_07_08_1504 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasObservation ex:diagnostic_MedicationReview .
+
+ex:diagnostic_MedicationReview a chr:DiagnosticStatement .
+
+# Clinical condition with severity
+ex:condition_2022_07_08_1504 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+# Care plan
+ex:careplan_2022_07_08_1504 a chr:CarePlan .
+
+#########################
+# Measurement processes and measurements
+#########################
+
+# Helper function to create measurement triples (written manually for each)
+
+# Glucose in Serum (Mass/volume) – 81.22 mg/dL
+ex:measproc_Glucose_Serum_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Glucose_Serum_20220708_1504_1 .
+
+ex:measurement_Glucose_Serum_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "81.22"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Urea nitrogen in Serum – 16.53 mg/dL
+ex:measproc_UreaNitrogen_Serum_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_UreaNitrogen_Serum_20220708_1504_1 .
+
+ex:measurement_UreaNitrogen_Serum_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "16.53"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Creatinine in Serum – 1.454 mg/dL
+ex:measproc_Creatinine_Serum_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Creatinine_Serum_20220708_1504_1 .
+
+ex:measurement_Creatinine_Serum_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.454"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Calcium in Serum – 9.09 mg/dL
+ex:measproc_Calcium_Serum_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Calcium_Serum_20220708_1504_1 .
+
+ex:measurement_Calcium_Serum_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.09"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Sodium in Serum – 141.27 mmol/L
+ex:measproc_Sodium_Serum_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Sodium_Serum_20220708_1504_1 .
+
+ex:measurement_Sodium_Serum_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "141.27"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# Potassium in Serum – 4.05 mmol/L
+ex:measproc_Potassium_Serum_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Potassium_Serum_20220708_1504_1 .
+
+ex:measurement_Potassium_Serum_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.05"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# Chloride in Serum – 107.13 mmol/L
+ex:measproc_Chloride_Serum_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Chloride_Serum_20220708_1504_1 .
+
+ex:measurement_Chloride_Serum_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "107.13"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# Carbon dioxide, total in Serum – 26.23 mmol/L
+ex:measproc_CO2_Serum_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_CO2_Serum_20220708_1504_1 .
+
+ex:measurement_CO2_Serum_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "26.23"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# Glomerular filtration rate – 117.88 mL/min/1.73 m2
+ex:measproc_GFR_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_GFR_20220708_1504_1 .
+
+ex:measurement_GFR_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "117.88"^^xsd:float ;
+    chr:hasUnit sulo:mL_per_min_per_1_73_m2 .
+
+# Glucose in Urine – 0.71451 mg/dL
+ex:measproc_Glucose_Urine_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Glucose_Urine_20220708_1504_1 .
+
+ex:measurement_Glucose_Urine_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.71451"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Bilirubin.total in Urine – 0.59626 mg/dL
+ex:measproc_Bilirubin_Urine_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Bilirubin_Urine_20220708_1504_1 .
+
+ex:measurement_Bilirubin_Urine_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.59626"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Ketones in Urine – 3.7355 mg/dL
+ex:measproc_Ketones_Urine_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Ketones_Urine_20220708_1504_1 .
+
+ex:measurement_Ketones_Urine_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.7355"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Specific gravity of Urine – 1.0137 (unitless)
+ex:measproc_SpecificGravity_Urine_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_SpecificGravity_Urine_20220708_1504_1 .
+
+ex:measurement_SpecificGravity_Urine_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0137"^^xsd:float ;
+    chr:hasUnit sulo:unitless .
+
+# pH of Urine – 5.1954 (unitless)
+ex:measproc_pH_Urine_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_pH_Urine_20220708_1504_1 .
+
+ex:measurement_pH_Urine_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.1954"^^xsd:float ;
+    chr:hasUnit sulo:unitless .
+
+# Protein in Urine – 79.373 mg/dL
+ex:measproc_Protein_Urine_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Protein_Urine_20220708_1504_1 .
+
+ex:measurement_Protein_Urine_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "79.373"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Hemoglobin A1c in Blood – 3.35 %
+ex:measproc_HbA1c_Blood_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_HbA1c_Blood_20220708_1504_1 .
+
+ex:measurement_HbA1c_Blood_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.35"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+# Body Height – 172 cm
+ex:measproc_Height_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Height_20220708_1504_1 .
+
+ex:measurement_Height_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "172.0"^^xsd:float ;
+    chr:hasUnit sulo:cm .
+
+# Pain severity – 4 score
+ex:measproc_PainSeverity_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_PainSeverity_20220708_1504_1 .
+
+ex:measurement_PainSeverity_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Body Weight – 82.2 kg
+ex:measproc_Weight_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Weight_20220708_1504_1 .
+
+ex:measurement_Weight_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82.2"^^xsd:float ;
+    chr:hasUnit sulo:kg .
+
+# Body Mass Index – 27.79 kg/m2
+ex:measproc_BMI_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_BMI_20220708_1504_1 .
+
+ex:measurement_BMI_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.79"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+
+# Heart rate – 97 /min
+ex:measproc_HeartRate_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_HeartRate_20220708_1504_1 .
+
+ex:measurement_HeartRate_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "97.0"^^xsd:float ;
+    chr:hasUnit sulo:per_min .
+
+# Respiratory rate – 14 /min
+ex:measproc_RespiratoryRate_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_RespiratoryRate_20220708_1504_1 .
+
+ex:measurement_RespiratoryRate_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14.0"^^xsd:float ;
+    chr:hasUnit sulo:per_min .
+
+# Glucose in Blood – 81.22 mg/dL
+ex:measproc_Glucose_Blood_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Glucose_Blood_20220708_1504_1 .
+
+ex:measurement_Glucose_Blood_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "81.22"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Urea nitrogen in Blood – 16.53 mg/dL
+ex:measproc_UreaNitrogen_Blood_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_UreaNitrogen_Blood_20220708_1504_1 .
+
+ex:measurement_UreaNitrogen_Blood_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "16.53"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Creatinine in Blood – 0.75 mg/dL
+ex:measproc_Creatinine_Blood_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Creatinine_Blood_20220708_1504_1 .
+
+ex:measurement_Creatinine_Blood_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.75"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Calcium in Blood – 9.09 mg/dL
+ex:measproc_Calcium_Blood_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Calcium_Blood_20220708_1504_1 .
+
+ex:measurement_Calcium_Blood_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.09"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Sodium in Blood – 141.27 mmol/L
+ex:measproc_Sodium_Blood_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Sodium_Blood_20220708_1504_1 .
+
+ex:measurement_Sodium_Blood_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "141.27"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# Potassium in Blood – 4.05 mmol/L
+ex:measproc_Potassium_Blood_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Potassium_Blood_20220708_1504_1 .
+
+ex:measurement_Potassium_Blood_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.05"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# Chloride in Blood – 107.13 mmol/L
+ex:measproc_Chloride_Blood_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Chloride_Blood_20220708_1504_1 .
+
+ex:measurement_Chloride_Blood_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "107.13"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# Carbon dioxide, total in Blood – 26.23 mmol/L
+ex:measproc_CO2_Blood_20220708_1504_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_CO2_Blood_20220708_1504_1 .
+
+ex:measurement_CO2_Blood_20220708_1504_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "26.23"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# Total DAST‑10 score – 1 score
+ex:measproc_DAST10_20220708_1618_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_DAST10_20220708_1618_1 .
+
+ex:measurement_DAST10_20220708_1618_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-07-08T16:18:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit sulo:score .

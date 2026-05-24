@@ -1,0 +1,620 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Delma583_Adriane398_Huel628 a chr:Person .
+
+ex:clinical_visit_event a sulo:Event ;
+  sulo:isAbout ex:visit_2025_10_02 .
+
+ex:visit_2025_10_02 a chr:ClinicalVisit ;
+  sulo:isOccasionedBy ex:clinical_visit_event .
+
+ex:clinical_visit_event sulo:atTime ex:time_visit_2025_10_02 .
+
+ex:time_visit_2025_10_02 a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:care_unit_HarborHealth a chr:CareUnit .
+
+ex:clinical_visit_event sulo:isIn ex:care_unit_HarborHealth .
+
+ex:role_VisitSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:clinical_visit_event sulo:hasParticipant ex:role_VisitSubject_Delma583 .
+
+ex:physician_Drew592_Simonis280 a chr:Person .
+
+ex:role_VisitProvider_Drew592 a chr:CareProviderRole ;
+  sulo:isFeatureOf ex:physician_Drew592_Simonis280 .
+
+ex:clinical_visit_event sulo:hasParticipant ex:role_VisitProvider_Drew592 .
+
+ex:well_child_visit a chr:MedicalProcedure .
+
+ex:clinical_visit_event sulo:refersTo ex:well_child_visit .
+
+ex:body_height_measurement_event a sulo:Event ;
+  sulo:isAbout ex:body_height_measurement_process .
+
+ex:body_height_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:body_height_measurement_event .
+
+ex:body_height_measurement_event sulo:atTime ex:time_body_height_measurement .
+
+ex:time_body_height_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_BodyHeightSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:body_height_measurement_event sulo:hasParticipant ex:role_BodyHeightSubject_Delma583 .
+
+ex:body_height_measurement a chr:Measurement ;
+  sulo:hasValue "110.5"^^xsd:float ;
+  sulo:hasPart ex:unit_cm .
+
+ex:unit_cm a sulo:Unit ;
+  rdfs:label "cm" .
+
+ex:role_BodyHeightOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:body_height_measurement .
+
+ex:body_height_measurement_event sulo:hasParticipant ex:role_BodyHeightOutput .
+
+ex:process_status_completed a chr:ProcessStatus ;
+  rdfs:label "completed" .
+
+ex:body_height_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:pain_severity_measurement_event a sulo:Event ;
+  sulo:isAbout ex:pain_severity_measurement_process .
+
+ex:pain_severity_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:pain_severity_measurement_event .
+
+ex:pain_severity_measurement_event sulo:atTime ex:time_pain_severity_measurement .
+
+ex:time_pain_severity_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_PainSeveritySubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:pain_severity_measurement_event sulo:hasParticipant ex:role_PainSeveritySubject_Delma583 .
+
+ex:pain_severity_measurement a chr:Measurement ;
+  sulo:hasValue "1.0"^^xsd:float ;
+  sulo:hasPart ex:unit_score .
+
+ex:unit_score a sulo:Unit ;
+  rdfs:label "score" .
+
+ex:role_PainSeverityOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:pain_severity_measurement .
+
+ex:pain_severity_measurement_event sulo:hasParticipant ex:role_PainSeverityOutput .
+
+ex:pain_severity_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:body_weight_measurement_event a sulo:Event ;
+  sulo:isAbout ex:body_weight_measurement_process .
+
+ex:body_weight_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:body_weight_measurement_event .
+
+ex:body_weight_measurement_event sulo:atTime ex:time_body_weight_measurement .
+
+ex:time_body_weight_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_BodyWeightSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:body_weight_measurement_event sulo:hasParticipant ex:role_BodyWeightSubject_Delma583 .
+
+ex:body_weight_measurement a chr:Measurement ;
+  sulo:hasValue "22.1"^^xsd:float ;
+  sulo:hasPart ex:unit_kg .
+
+ex:unit_kg a sulo:Unit ;
+  rdfs:label "kg" .
+
+ex:role_BodyWeightOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:body_weight_measurement .
+
+ex:body_weight_measurement_event sulo:hasParticipant ex:role_BodyWeightOutput .
+
+ex:body_weight_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:bmi_measurement_event a sulo:Event ;
+  sulo:isAbout ex:bmi_measurement_process .
+
+ex:bmi_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:bmi_measurement_event .
+
+ex:bmi_measurement_event sulo:atTime ex:time_bmi_measurement .
+
+ex:time_bmi_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_BMISubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:bmi_measurement_event sulo:hasParticipant ex:role_BMISubject_Delma583 .
+
+ex:bmi_measurement a chr:Measurement ;
+  sulo:hasValue "18.09"^^xsd:float ;
+  sulo:hasPart ex:unit_kg_m2 .
+
+ex:unit_kg_m2 a sulo:Unit ;
+  rdfs:label "kg/m2" .
+
+ex:role_BMIOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:bmi_measurement .
+
+ex:bmi_measurement_event sulo:hasParticipant ex:role_BMIOutput .
+
+ex:bmi_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:bmi_percentile_measurement_event a sulo:Event ;
+  sulo:isAbout ex:bmi_percentile_measurement_process .
+
+ex:bmi_percentile_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:bmi_percentile_measurement_event .
+
+ex:bmi_percentile_measurement_event sulo:atTime ex:time_bmi_percentile_measurement .
+
+ex:time_bmi_percentile_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_BMIPercentileSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:bmi_percentile_measurement_event sulo:hasParticipant ex:role_BMIPercentileSubject_Delma583 .
+
+ex:bmi_percentile_measurement a chr:Measurement ;
+  sulo:hasValue "92.353"^^xsd:float ;
+  sulo:hasPart ex:unit_percent .
+
+ex:unit_percent a sulo:Unit ;
+  rdfs:label "%" .
+
+ex:role_BMIPercentileOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:bmi_percentile_measurement .
+
+ex:bmi_percentile_measurement_event sulo:hasParticipant ex:role_BMIPercentileOutput .
+
+ex:bmi_percentile_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:heart_rate_measurement_event a sulo:Event ;
+  sulo:isAbout ex:heart_rate_measurement_process .
+
+ex:heart_rate_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:heart_rate_measurement_event .
+
+ex:heart_rate_measurement_event sulo:atTime ex:time_heart_rate_measurement .
+
+ex:time_heart_rate_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_HeartRateSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:heart_rate_measurement_event sulo:hasParticipant ex:role_HeartRateSubject_Delma583 .
+
+ex:heart_rate_measurement a chr:Measurement ;
+  sulo:hasValue "89.0"^^xsd:float ;
+  sulo:hasPart ex:unit_per_min .
+
+ex:unit_per_min a sulo:Unit ;
+  rdfs:label "/min" .
+
+ex:role_HeartRateOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:heart_rate_measurement .
+
+ex:heart_rate_measurement_event sulo:hasParticipant ex:role_HeartRateOutput .
+
+ex:heart_rate_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:respiratory_rate_measurement_event a sulo:Event ;
+  sulo:isAbout ex:respiratory_rate_measurement_process .
+
+ex:respiratory_rate_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:respiratory_rate_measurement_event .
+
+ex:respiratory_rate_measurement_event sulo:atTime ex:time_respiratory_rate_measurement .
+
+ex:time_respiratory_rate_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_RespiratoryRateSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:respiratory_rate_measurement_event sulo:hasParticipant ex:role_RespiratoryRateSubject_Delma583 .
+
+ex:respiratory_rate_measurement a chr:Measurement ;
+  sulo:hasValue "15.0"^^xsd:float ;
+  sulo:hasPart ex:unit_per_min .
+
+ex:role_RespiratoryRateOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:respiratory_rate_measurement .
+
+ex:respiratory_rate_measurement_event sulo:hasParticipant ex:role_RespiratoryRateOutput .
+
+ex:respiratory_rate_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:leukocytes_measurement_event a sulo:Event ;
+  sulo:isAbout ex:leukocytes_measurement_process .
+
+ex:leukocytes_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:leukocytes_measurement_event .
+
+ex:leukocytes_measurement_event sulo:atTime ex:time_leukocytes_measurement .
+
+ex:time_leukocytes_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_LeukocytesSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:leukocytes_measurement_event sulo:hasParticipant ex:role_LeukocytesSubject_Delma583 .
+
+ex:leukocytes_measurement a chr:Measurement ;
+  sulo:hasValue "3.9622"^^xsd:float ;
+  sulo:hasPart ex:unit_10_3_uL .
+
+ex:unit_10_3_uL a sulo:Unit ;
+  rdfs:label "10*3/uL" .
+
+ex:role_LeukocytesOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:leukocytes_measurement .
+
+ex:leukocytes_measurement_event sulo:hasParticipant ex:role_LeukocytesOutput .
+
+ex:leukocytes_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:erythrocytes_measurement_event a sulo:Event ;
+  sulo:isAbout ex:erythrocytes_measurement_process .
+
+ex:erythrocytes_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:erythrocytes_measurement_event .
+
+ex:erythrocytes_measurement_event sulo:atTime ex:time_erythrocytes_measurement .
+
+ex:time_erythrocytes_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_ErythrocytesSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:erythrocytes_measurement_event sulo:hasParticipant ex:role_ErythrocytesSubject_Delma583 .
+
+ex:erythrocytes_measurement a chr:Measurement ;
+  sulo:hasValue "5.3097"^^xsd:float ;
+  sulo:hasPart ex:unit_10_6_uL .
+
+ex:unit_10_6_uL a sulo:Unit ;
+  rdfs:label "10*6/uL" .
+
+ex:role_ErythrocytesOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:erythrocytes_measurement .
+
+ex:erythrocytes_measurement_event sulo:hasParticipant ex:role_ErythrocytesOutput .
+
+ex:erythrocytes_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:hemoglobin_measurement_event a sulo:Event ;
+  sulo:isAbout ex:hemoglobin_measurement_process .
+
+ex:hemoglobin_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:hemoglobin_measurement_event .
+
+ex:hemoglobin_measurement_event sulo:atTime ex:time_hemoglobin_measurement .
+
+ex:time_hemoglobin_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_HemoglobinSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:hemoglobin_measurement_event sulo:hasParticipant ex:role_HemoglobinSubject_Delma583 .
+
+ex:hemoglobin_measurement a chr:Measurement ;
+  sulo:hasValue "12.221"^^xsd:float ;
+  sulo:hasPart ex:unit_g_dL .
+
+ex:unit_g_dL a sulo:Unit ;
+  rdfs:label "g/dL" .
+
+ex:role_HemoglobinOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:hemoglobin_measurement .
+
+ex:hemoglobin_measurement_event sulo:hasParticipant ex:role_HemoglobinOutput .
+
+ex:hemoglobin_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:hematocrit_measurement_event a sulo:Event ;
+  sulo:isAbout ex:hematocrit_measurement_process .
+
+ex:hematocrit_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:hematocrit_measurement_event .
+
+ex:hematocrit_measurement_event sulo:atTime ex:time_hematocrit_measurement .
+
+ex:time_hematocrit_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_HematocritSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:hematocrit_measurement_event sulo:hasParticipant ex:role_HematocritSubject_Delma583 .
+
+ex:hematocrit_measurement a chr:Measurement ;
+  sulo:hasValue "41.191"^^xsd:float ;
+  sulo:hasPart ex:unit_percent .
+
+ex:role_HematocritOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:hematocrit_measurement .
+
+ex:hematocrit_measurement_event sulo:hasParticipant ex:role_HematocritOutput .
+
+ex:hematocrit_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:mcv_measurement_event a sulo:Event ;
+  sulo:isAbout ex:mcv_measurement_process .
+
+ex:mcv_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:mcv_measurement_event .
+
+ex:mcv_measurement_event sulo:atTime ex:time_mcv_measurement .
+
+ex:time_mcv_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_MCVSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:mcv_measurement_event sulo:hasParticipant ex:role_MCVSubject_Delma583 .
+
+ex:mcv_measurement a chr:Measurement ;
+  sulo:hasValue "88.837"^^xsd:float ;
+  sulo:hasPart ex:unit_fL .
+
+ex:unit_fL a sulo:Unit ;
+  rdfs:label "fL" .
+
+ex:role_MCVOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:mcv_measurement .
+
+ex:mcv_measurement_event sulo:hasParticipant ex:role_MCVOutput .
+
+ex:mcv_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:mch_measurement_event a sulo:Event ;
+  sulo:isAbout ex:mch_measurement_process .
+
+ex:mch_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:mch_measurement_event .
+
+ex:mch_measurement_event sulo:atTime ex:time_mch_measurement .
+
+ex:time_mch_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_MCHSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:mch_measurement_event sulo:hasParticipant ex:role_MCHSubject_Delma583 .
+
+ex:mch_measurement a chr:Measurement ;
+  sulo:hasValue "32.434"^^xsd:float ;
+  sulo:hasPart ex:unit_pg .
+
+ex:unit_pg a sulo:Unit ;
+  rdfs:label "pg" .
+
+ex:role_MCHOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:mch_measurement .
+
+ex:mch_measurement_event sulo:hasParticipant ex:role_MCHOutput .
+
+ex:mch_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:mchc_measurement_event a sulo:Event ;
+  sulo:isAbout ex:mchc_measurement_process .
+
+ex:mchc_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:mchc_measurement_event .
+
+ex:mchc_measurement_event sulo:atTime ex:time_mchc_measurement .
+
+ex:time_mchc_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_MCHCSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:mchc_measurement_event sulo:hasParticipant ex:role_MCHCSubject_Delma583 .
+
+ex:mchc_measurement a chr:Measurement ;
+  sulo:hasValue "33.295"^^xsd:float ;
+  sulo:hasPart ex:unit_g_dL .
+
+ex:role_MCHCOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:mchc_measurement .
+
+ex:mchc_measurement_event sulo:hasParticipant ex:role_MCHCOutput .
+
+ex:mchc_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:erythrocyte_distwidth_measurement_event a sulo:Event ;
+  sulo:isAbout ex:erythrocyte_distwidth_measurement_process .
+
+ex:erythrocyte_distwidth_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:erythrocyte_distwidth_measurement_event .
+
+ex:erythrocyte_distwidth_measurement_event sulo:atTime ex:time_erythrocyte_distwidth_measurement .
+
+ex:time_erythrocyte_distwidth_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_ErythrocyteDistWidthSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:erythrocyte_distwidth_measurement_event sulo:hasParticipant ex:role_ErythrocyteDistWidthSubject_Delma583 .
+
+ex:erythrocyte_distwidth_measurement a chr:Measurement ;
+  sulo:hasValue "42.628"^^xsd:float ;
+  sulo:hasPart ex:unit_fL .
+
+ex:role_ErythrocyteDistWidthOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:erythrocyte_distwidth_measurement .
+
+ex:erythrocyte_distwidth_measurement_event sulo:hasParticipant ex:role_ErythrocyteDistWidthOutput .
+
+ex:erythrocyte_distwidth_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:platelets_measurement_event a sulo:Event ;
+  sulo:isAbout ex:platelets_measurement_process .
+
+ex:platelets_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:platelets_measurement_event .
+
+ex:platelets_measurement_event sulo:atTime ex:time_platelets_measurement .
+
+ex:time_platelets_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_PlateletsSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:platelets_measurement_event sulo:hasParticipant ex:role_PlateletsSubject_Delma583 .
+
+ex:platelets_measurement a chr:Measurement ;
+  sulo:hasValue "222.88"^^xsd:float ;
+  sulo:hasPart ex:unit_10_3_uL .
+
+ex:role_PlateletsOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:platelets_measurement .
+
+ex:platelets_measurement_event sulo:hasParticipant ex:role_PlateletsOutput .
+
+ex:platelets_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:platelet_distwidth_measurement_event a sulo:Event ;
+  sulo:isAbout ex:platelet_distwidth_measurement_process .
+
+ex:platelet_distwidth_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:platelet_distwidth_measurement_event .
+
+ex:platelet_distwidth_measurement_event sulo:atTime ex:time_platelet_distwidth_measurement .
+
+ex:time_platelet_distwidth_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_PlateletDistWidthSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:platelet_distwidth_measurement_event sulo:hasParticipant ex:role_PlateletDistWidthSubject_Delma583 .
+
+ex:platelet_distwidth_measurement a chr:Measurement ;
+  sulo:hasValue "180.11"^^xsd:float ;
+  sulo:hasPart ex:unit_fL .
+
+ex:role_PlateletDistWidthOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:platelet_distwidth_measurement .
+
+ex:platelet_distwidth_measurement_event sulo:hasParticipant ex:role_PlateletDistWidthOutput .
+
+ex:platelet_distwidth_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:platelet_meanvolume_measurement_event a sulo:Event ;
+  sulo:isAbout ex:platelet_meanvolume_measurement_process .
+
+ex:platelet_meanvolume_measurement_process a chr:MeasurementProcess ;
+  sulo:isOccasionedBy ex:platelet_meanvolume_measurement_event .
+
+ex:platelet_meanvolume_measurement_event sulo:atTime ex:time_platelet_meanvolume_measurement .
+
+ex:time_platelet_meanvolume_measurement a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_PlateletMeanVolumeSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:platelet_meanvolume_measurement_event sulo:hasParticipant ex:role_PlateletMeanVolumeSubject_Delma583 .
+
+ex:platelet_meanvolume_measurement a chr:Measurement ;
+  sulo:hasValue "12.091"^^xsd:float ;
+  sulo:hasPart ex:unit_fL .
+
+ex:role_PlateletMeanVolumeOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:platelet_meanvolume_measurement .
+
+ex:platelet_meanvolume_measurement_event sulo:hasParticipant ex:role_PlateletMeanVolumeOutput .
+
+ex:platelet_meanvolume_measurement_process sulo:hasFeature ex:process_status_completed .
+
+ex:evaluation_event a sulo:Event ;
+  sulo:isAbout ex:evaluation_process .
+
+ex:evaluation_process a chr:EvaluationProcess ;
+  sulo:isOccasionedBy ex:evaluation_event .
+
+ex:evaluation_event sulo:atTime ex:time_evaluation .
+
+ex:time_evaluation a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:role_EvaluationSubject_Delma583 a chr:SubjectOfCareRole ;
+  sulo:isFeatureOf ex:patient_Delma583_Adriane398_Huel628 .
+
+ex:evaluation_event sulo:hasParticipant ex:role_EvaluationSubject_Delma583 .
+
+ex:role_EvaluationPerformer_Drew592 a chr:PerformerRole ;
+  sulo:isFeatureOf ex:physician_Drew592_Simonis280 .
+
+ex:evaluation_event sulo:hasParticipant ex:role_EvaluationPerformer_Drew592 .
+
+ex:diagnostic_statement a chr:DiagnosticStatement ;
+  rdfs:label "Medication review due (situation)" .
+
+ex:role_EvaluationOutput a chr:OutputRole ;
+  sulo:isFeatureOf ex:diagnostic_statement .
+
+ex:evaluation_event sulo:hasParticipant ex:role_EvaluationOutput .
+
+ex:condition_medication_review a chr:ClinicalCondition ;
+  rdfs:label "Medication review due (situation)" .
+
+ex:condition_event a sulo:Event ;
+  sulo:isAbout ex:condition_medication_review .
+
+ex:condition_medication_review sulo:isOccasionedBy ex:condition_event .
+
+ex:condition_event sulo:atTime ex:time_condition_recorded .
+
+ex:time_condition_recorded a sulo:TimeInstant ;
+  sulo:hasValue "2025-10-02T08:12:00"^^xsd:dateTime .
+
+ex:severity_moderate a chr:Severity ;
+  rdfs:label "Moderate" .
+
+ex:condition_medication_review sulo:hasFeature ex:severity_moderate .
+
+ex:care_plan a chr:CarePlan ;
+  rdfs:label "Care plan for follow-up monitoring and routine review" .
+
+ex:care_plan sulo:refersTo ex:follow_up_monitoring .
+
+ex:follow_up_monitoring a chr:MedicalProcedure ;
+  rdfs:label "follow-up monitoring" .
+
+ex:care_plan sulo:refersTo ex:routine_review .
+
+ex:routine_review a chr:MedicalProcedure ;
+  rdfs:label "routine review" .

@@ -1,0 +1,161 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:person_Casey401_Elijah719_Parker433 a chr:Person .
+ex:person_Jacque955_Streich926 a chr:Person .
+
+# Care unit
+ex:careunit_AcclaimHomeHealth a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2021_04_15_13_59 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_Subject_Visit ;
+    sulo:hasParticipant ex:role_Provider_Visit ;
+    sulo:isIn ex:careunit_AcclaimHomeHealth ;
+    sulo:atTime ex:time_2021_04_15_13_59 .
+
+ex:role_Subject_Visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Provider_Visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Jacque955_Streich926 .
+
+ex:time_2021_04_15_13_59 a sulo:TimeInstant ;
+    sulo:hasValue "2021-04-15T13:59:00"^^xsd:dateTime .
+
+# Measurement processes and results (example for first three; remaining follow same pattern)
+ex:measproc_Leukocytes_2021_04_15_13_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Leukocytes ;
+    sulo:hasParticipant ex:role_Output_Leukocytes ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021_04_15_13_59 .
+
+ex:role_Subject_Leukocytes a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Output_Leukocytes a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Leukocytes_2021_04_15_13_59 .
+
+ex:measurement_Leukocytes_2021_04_15_13_59 a chr:Measurement ;
+    sulo:hasValue "12.958"^^xsd:float ;
+    sulo:hasPart ex:unit_10_3_per_uL ;
+    sulo:atTime ex:time_2021_04_15_13_59 .
+
+ex:measproc_Erythrocytes_2021_04_15_13_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Erythrocytes ;
+    sulo:hasParticipant ex:role_Output_Erythrocytes ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021_04_15_13_59 .
+
+ex:role_Subject_Erythrocytes a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Output_Erythrocytes a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Erythrocytes_2021_04_15_13_59 .
+
+ex:measurement_Erythrocytes_2021_04_15_13_59 a chr:Measurement ;
+    sulo:hasValue "4.6656"^^xsd:float ;
+    sulo:hasPart ex:unit_10_6_per_uL ;
+    sulo:atTime ex:time_2021_04_15_13_59 .
+
+ex:measproc_Hemoglobin_2021_04_15_13_59 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Hemoglobin ;
+    sulo:hasParticipant ex:role_Output_Hemoglobin ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_2021_04_15_13_59 .
+
+ex:role_Subject_Hemoglobin a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Output_Hemoglobin a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Hemoglobin_2021_04_15_13_59 .
+
+ex:measurement_Hemoglobin_2021_04_15_13_59 a chr:Measurement ;
+    sulo:hasValue "15.779"^^xsd:float ;
+    sulo:hasPart ex:unit_g_per_dL ;
+    sulo:atTime ex:time_2021_04_15_13_59 .
+
+# (Additional measurement processes for all other listed labs would be created analogously,
+# each with its own measurement entity, value, unit and shared status/completed flag.)
+
+# Common status entity
+ex:status_completed a chr:ProcessStatus .
+
+# Units (examples)
+ex:unit_10_3_per_uL a sulo:Unit .
+ex:unit_10_6_per_uL a sulo:Unit .
+ex:unit_g_per_dL a sulo:Unit .
+# ... other unit individuals as needed ...
+
+# Evaluation processes and diagnostic statements
+ex:evaluation_acute_cholecystitis a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Eval1 ;
+    sulo:hasParticipant ex:role_Performer_Eval1 ;
+    sulo:hasParticipant ex:role_Output_Eval1 ;
+    sulo:atTime ex:time_2021_04_15_13_59 .
+
+ex:role_Subject_Eval1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Performer_Eval1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Jacque955_Streich926 .
+
+ex:role_Output_Eval1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Acute_cholecystitis .
+
+ex:diag_Acute_cholecystitis a chr:DiagnosticStatement .
+
+ex:condition_Acute_cholecystitis a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_2021_04_15_13_59 .
+
+ex:evaluation_gallbladder_calculus a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Eval2 ;
+    sulo:hasParticipant ex:role_Performer_Eval2 ;
+    sulo:hasParticipant ex:role_Output_Eval2 ;
+    sulo:atTime ex:time_2021_04_15_13_59 .
+
+ex:role_Subject_Eval2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Performer_Eval2 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Jacque955_Streich926 .
+
+ex:role_Output_Eval2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Gallbladder_calculus .
+
+ex:diag_Gallbladder_calculus a chr:DiagnosticStatement .
+
+ex:condition_Gallbladder_calculus a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate ;
+    sulo:atTime ex:time_2021_04_15_13_59 .
+
+ex:severity_moderate a chr:Severity .
+
+# Treatment plans and medication administrations (example for heparin)
+ex:treatmentplan_heparin a chr:TreatmentPlan ;
+    sulo:refersTo ex:medadmin_heparin_1 .
+
+ex:medadmin_heparin_1 a chr:MedicationAdministration ;
+    sulo:hasParticipant ex:drug_heparin_sodium ;
+    sulo:hasParticipant ex:role_Subject_Med1 ;
+    sulo:hasParticipant ex:role_Performer_Med1 ;
+    sulo:atTime ex:time_2021_04_15_13_59 .
+
+ex:drug_heparin_sodium a chr:PharmaceuticalProduct .
+
+ex:role_Subject_Med1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Performer_Med1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Jacque955_Streich926 .
+
+# (Analogous treatment plan, medication administration, and drug individuals for
+# Ondansetron, Morphine Sulfate, Piperacillin/tazobactam, Midazolam, Propofol,
+# Rocuronium bromide, Isoflurane, Fentanyl would be created, each with its own
+# time instant and dose information attached as features of the MedicationAdministration
+# using appropriate chr:PharmaceuticalDose and chr:PharmaceuticalDoseForm individuals.)

@@ -1,0 +1,48 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_ArlenOlson a chr:Person .
+
+ex:physician_DomenicBlick a chr:Person .
+
+ex:careunit_VIBRA_CENTRAL a chr:CareUnit .
+
+ex:visit_2022_08_10_16_47 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_DomenicBlick ;
+    chr:hasCareUnit ex:careunit_VIBRA_CENTRAL .
+
+ex:unit_mg_per_dL a sulo:Unit .
+
+ex:measurement_glucose_serum_20220810_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2022-08-10T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "197.32"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:measproc_glucose_serum_20220810_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_glucose_serum_20220810_1647 .
+
+ex:severity_moderate a chr:Severity .
+
+ex:condition_med_review a chr:ClinicalCondition ;
+    chr:hasRecordDate "2022-08-10T16:47:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+ex:diagnostic_med_review a chr:DiagnosticStatement .
+
+ex:evaluation_med_review a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_med_review .
+
+ex:condition_fulltime_employment a chr:ClinicalCondition ;
+    chr:hasRecordDate "2022-08-10T17:45:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+ex:diagnostic_fulltime a chr:DiagnosticStatement .
+
+ex:evaluation_fulltime a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_fulltime .
+
+ex:careplan_followup a chr:CarePlan .

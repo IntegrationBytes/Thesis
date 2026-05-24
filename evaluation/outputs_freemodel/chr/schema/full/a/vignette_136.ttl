@@ -1,0 +1,215 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:patient_ArlenOlson a chr:Person .
+
+# Person (physician)
+ex:physician_ChristeenToy a chr:Person .
+
+# Care unit
+ex:careunit_JewishFamilyService a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2019_07_03_1647 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_ChristeenToy ;
+    chr:hasCareUnit ex:careunit_JewishFamilyService ;
+    chr:hasPatient ex:patient_ArlenOlson .
+
+# General examination (medical procedure)
+ex:procedure_general_exam_2019_07_03_1647 a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasPerformedDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasPerformer ex:physician_ChristeenToy ;
+    chr:hasStatus ex:status_completed .
+
+ex:status_completed a chr:ProcessStatus .
+
+# Evaluation process with diagnostic statement
+ex:evaluation_2019_07_03_1647 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagstmt_MedicationReview .
+
+ex:diagstmt_MedicationReview a chr:DiagnosticStatement .
+
+# Clinical condition with severity
+ex:condition_2019_07_03_1647 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+# Care plan (no further links required)
+ex:careplan_2019_07_03_1647 a chr:CarePlan .
+
+# Units
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_mmol_per_L a sulo:Unit .
+ex:unit_mL_per_min_per_1_73_m2 a sulo:Unit .
+ex:unit_nominal a sulo:Unit .
+ex:unit_pH a sulo:Unit .
+ex:unit_percent a sulo:Unit .
+
+# ---- Measurements ----
+
+# 1. Glucose in Serum
+ex:process_Glucose_Serum_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Glucose_Serum_2019_07_03_1647 .
+
+ex:measurement_Glucose_Serum_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "173.76"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 2. Urea nitrogen in Serum
+ex:process_UreaNitrogen_Serum_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_UreaNitrogen_Serum_2019_07_03_1647 .
+
+ex:measurement_UreaNitrogen_Serum_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "16.27"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 3. Creatinine in Serum
+ex:process_Creatinine_Serum_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Creatinine_Serum_2019_07_03_1647 .
+
+ex:measurement_Creatinine_Serum_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0259"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 4. Calcium in Serum
+ex:process_Calcium_Serum_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Calcium_Serum_2019_07_03_1647 .
+
+ex:measurement_Calcium_Serum_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.41"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 5. Sodium in Serum
+ex:process_Sodium_Serum_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Sodium_Serum_2019_07_03_1647 .
+
+ex:measurement_Sodium_Serum_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "137.38"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 6. Potassium in Serum
+ex:process_Potassium_Serum_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Potassium_Serum_2019_07_03_1647 .
+
+ex:measurement_Potassium_Serum_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.09"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 7. Chloride in Serum
+ex:process_Chloride_Serum_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Chloride_Serum_2019_07_03_1647 .
+
+ex:measurement_Chloride_Serum_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "106.46"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 8. Carbon dioxide, total in Serum
+ex:process_CO2total_Serum_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_CO2total_Serum_2019_07_03_1647 .
+
+ex:measurement_CO2total_Serum_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "25.26"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 9. Glomerular filtration rate in Serum
+ex:process_GFR_Serum_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_GFR_Serum_2019_07_03_1647 .
+
+ex:measurement_GFR_Serum_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "32.461"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 .
+
+# 10. Glucose in Urine
+ex:process_Glucose_Urine_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Glucose_Urine_2019_07_03_1647 .
+
+ex:measurement_Glucose_Urine_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0056"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 11. Bilirubin.total in Urine
+ex:process_Bilirubin_Urine_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Bilirubin_Urine_2019_07_03_1647 .
+
+ex:measurement_Bilirubin_Urine_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.66639"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 12. Ketones in Urine
+ex:process_Ketones_Urine_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Ketones_Urine_2019_07_03_1647 .
+
+ex:measurement_Ketones_Urine_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "7.9118"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 13. Specific gravity of Urine
+ex:process_SpecificGravity_Urine_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_SpecificGravity_Urine_2019_07_03_1647 .
+
+ex:measurement_SpecificGravity_Urine_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0196"^^xsd:float ;
+    chr:hasUnit ex:unit_nominal .
+
+# 14. pH of Urine
+ex:process_pH_Urine_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_pH_Urine_2019_07_03_1647 .
+
+ex:measurement_pH_Urine_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.4709"^^xsd:float ;
+    chr:hasUnit ex:unit_pH .
+
+# 15. Protein in Urine
+ex:process_Protein_Urine_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Protein_Urine_2019_07_03_1647 .
+
+ex:measurement_Protein_Urine_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "256.18"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 16. Hemoglobin A1c/Hemoglobin.total in Blood
+ex:process_HbA1c_Blood_2019_07_03_1647 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_HbA1c_Blood_2019_07_03_1647 .
+
+ex:measurement_HbA1c_Blood_2019_07_03_1647 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-07-03T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.36"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .

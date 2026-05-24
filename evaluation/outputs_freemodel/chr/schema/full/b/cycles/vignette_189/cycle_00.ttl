@@ -1,0 +1,388 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Pd6127e93 a chr:Person .
+ex:provider_Miyoko_Paucek a chr:Person .
+
+# Care unit
+ex:careunit_ENCOMPASS a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2013_09_18_16_47 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:provider_Miyoko_Paucek ;
+    chr:hasCareUnit ex:careunit_ENCOMPASS .
+
+# Evaluation and diagnostic statement
+ex:evaluation_2013_09_18_17_40 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_Stress .
+
+ex:diag_Stress a chr:DiagnosticStatement .
+
+# Clinical condition
+ex:condition_Stress a chr:ClinicalCondition ;
+    chr:hasRecordDate "2013-09-18T17:40:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+# Process status (used for completeness, though not linked by a property)
+ex:status_completed a chr:ProcessStatus .
+
+# Units (individuals of sulo:Unit)
+sulo:mg_per_dL a sulo:Unit .
+sulo:mmol_per_L a sulo:Unit .
+sulo:cm a sulo:Unit .
+sulo:kg a sulo:Unit .
+sulo:kg_per_m2 a sulo:Unit .
+sulo:ml_per_min_per_m2 a sulo:Unit .
+sulo:percent a sulo:Unit .
+sulo:score a sulo:Unit .
+sulo:pH a sulo:Unit .
+sulo:nominal a sulo:Unit .
+sulo:per_min a sulo:Unit .
+
+# Helper function to create measurement and process triples (written out manually)
+
+# 1 Glucose Serum
+ex:meas_Glucose_Serum_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "84.44"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:proc_Glucose_Serum_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Glucose_Serum_2013_09_18_16_47 .
+
+# 2 Urea nitrogen Serum
+ex:meas_UreaNitrogen_Serum_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.33"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:proc_UreaNitrogen_Serum_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_UreaNitrogen_Serum_2013_09_18_16_47 .
+
+# 3 Creatinine Serum
+ex:meas_Creatinine_Serum_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0326"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:proc_Creatinine_Serum_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Creatinine_Serum_2013_09_18_16_47 .
+
+# 4 Calcium Serum
+ex:meas_Calcium_Serum_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.95"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:proc_Calcium_Serum_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Calcium_Serum_2013_09_18_16_47 .
+
+# 5 Sodium Serum
+ex:meas_Sodium_Serum_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "142.13"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+ex:proc_Sodium_Serum_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Sodium_Serum_2013_09_18_16_47 .
+
+# 6 Potassium Serum
+ex:meas_Potassium_Serum_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.75"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+ex:proc_Potassium_Serum_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Potassium_Serum_2013_09_18_16_47 .
+
+# 7 Chloride Serum
+ex:meas_Chloride_Serum_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "109.83"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+ex:proc_Chloride_Serum_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Chloride_Serum_2013_09_18_16_47 .
+
+# 8 Carbon dioxide total Serum
+ex:meas_CO2_Serum_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "22.72"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+ex:proc_CO2_Serum_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_CO2_Serum_2013_09_18_16_47 .
+
+# 9 GFR Serum
+ex:meas_GFR_Serum_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "40.457"^^xsd:float ;
+    chr:hasUnit sulo:ml_per_min_per_m2 .
+
+ex:proc_GFR_Serum_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_GFR_Serum_2013_09_18_16_47 .
+
+# 10 Glucose Urine
+ex:meas_Glucose_Urine_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.5779"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:proc_Glucose_Urine_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Glucose_Urine_2013_09_18_16_47 .
+
+# 11 Bilirubin.total Urine
+ex:meas_Bilirubin_Urine_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.43175"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:proc_Bilirubin_Urine_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Bilirubin_Urine_2013_09_18_16_47 .
+
+# 12 Ketones Urine
+ex:meas_Ketones_Urine_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15.86"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:proc_Ketones_Urine_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Ketones_Urine_2013_09_18_16_47 .
+
+# 13 Specific gravity Urine
+ex:meas_SpecificGravity_Urine_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0197"^^xsd:float ;
+    chr:hasUnit sulo:nominal .
+
+ex:proc_SpecificGravity_Urine_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_SpecificGravity_Urine_2013_09_18_16_47 .
+
+# 14 pH Urine
+ex:meas_pH_Urine_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.475"^^xsd:float ;
+    chr:hasUnit sulo:pH .
+
+ex:proc_pH_Urine_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_pH_Urine_2013_09_18_16_47 .
+
+# 15 Protein Urine
+ex:meas_Protein_Urine_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "352.06"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:proc_Protein_Urine_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Protein_Urine_2013_09_18_16_47 .
+
+# 16 Hemoglobin A1c Blood
+ex:meas_HbA1c_Blood_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.85"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+ex:proc_HbA1c_Blood_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_HbA1c_Blood_2013_09_18_16_47 .
+
+# 17 Body Height
+ex:meas_Height_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "195.1"^^xsd:float ;
+    chr:hasUnit sulo:cm .
+
+ex:proc_Height_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Height_2013_09_18_16_47 .
+
+# 18 Pain severity (score)
+ex:meas_PainScore_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:proc_PainScore_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_PainScore_2013_09_18_16_47 .
+
+# 19 Body Weight
+ex:meas_Weight_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "106.6"^^xsd:float ;
+    chr:hasUnit sulo:kg .
+
+ex:proc_Weight_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Weight_2013_09_18_16_47 .
+
+# 20 Body Mass Index
+ex:meas_BMI_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "28.01"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+
+ex:proc_BMI_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_BMI_2013_09_18_16_47 .
+
+# 21 Heart rate
+ex:meas_HeartRate_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "86"^^xsd:float ;
+    chr:hasUnit sulo:per_min .
+
+ex:proc_HeartRate_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_HeartRate_2013_09_18_16_47 .
+
+# 22 Respiratory rate
+ex:meas_RespRate_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit sulo:per_min .
+
+ex:proc_RespRate_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_RespRate_2013_09_18_16_47 .
+
+# 23 Glucose Blood
+ex:meas_Glucose_Blood_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "84.44"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:proc_Glucose_Blood_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Glucose_Blood_2013_09_18_16_47 .
+
+# 24 Urea nitrogen Blood
+ex:meas_UreaNitrogen_Blood_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.33"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:proc_UreaNitrogen_Blood_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_UreaNitrogen_Blood_2013_09_18_16_47 .
+
+# 25 Creatinine Blood
+ex:meas_Creatinine_Blood_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.73"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:proc_Creatinine_Blood_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Creatinine_Blood_2013_09_18_16_47 .
+
+# 26 Calcium Blood
+ex:meas_Calcium_Blood_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.95"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:proc_Calcium_Blood_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Calcium_Blood_2013_09_18_16_47 .
+
+# 27 Sodium Blood
+ex:meas_Sodium_Blood_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "142.13"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+ex:proc_Sodium_Blood_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Sodium_Blood_2013_09_18_16_47 .
+
+# 28 Potassium Blood
+ex:meas_Potassium_Blood_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.75"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+ex:proc_Potassium_Blood_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Potassium_Blood_2013_09_18_16_47 .
+
+# 29 Chloride Blood
+ex:meas_Chloride_Blood_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "109.83"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+ex:proc_Chloride_Blood_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_Chloride_Blood_2013_09_18_16_47 .
+
+# 30 Carbon dioxide total Blood
+ex:meas_CO2_Blood_2013_09_18_16_47 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "22.72"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+ex:proc_CO2_Blood_2013_09_18_16_47 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_CO2_Blood_2013_09_18_16_47 .
+
+# 31 GAD-7 total score
+ex:meas_GAD7_2013_09_18_18_04 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T18:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:proc_GAD7_2013_09_18_18_04 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_GAD7_2013_09_18_18_04 .
+
+# 32 HARK total score
+ex:meas_HARK_2013_09_18_18_43 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T18:43:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:proc_HARK_2013_09_18_18_43 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_HARK_2013_09_18_18_43 .
+
+# 33 PHQ-2 total score
+ex:meas_PHQ2_2013_09_18_19_17 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T19:17:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:proc_PHQ2_2013_09_18_19_17 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_PHQ2_2013_09_18_19_17 .
+
+# 34 AUDIT-C total score
+ex:meas_AUDITC_2013_09_18_19_52 a chr:Measurement ;
+    chr:hasMeasuredDate "2013-09-18T19:52:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:proc_AUDITC_2013_09_18_19_52 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Pd6127e93 ;
+    chr:hasResult ex:meas_AUDITC_2013_09_18_19_52 .

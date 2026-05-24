@@ -1,0 +1,134 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Dolores_Nevarez
+    a chr:Person .
+
+ex:physician_Cari_Kohler
+    a chr:Person .
+
+# Care Unit
+ex:careunit_DR_HEsPrimaryCare
+    a chr:CareUnit .
+
+# Clinical Visit
+ex:visit_2021_11_02_0420
+    a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Cari_Kohler ;
+    chr:hasCareUnit ex:careunit_DR_HEsPrimaryCare ;
+    chr:hasPatient ex:patient_Dolores_Nevarez .
+
+# Measurement Processes and Results
+
+ex:measproc_Height_20211102_0420
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_Height_20211102_0420 .
+
+ex:meas_Height_20211102_0420
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-02T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "138.3"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+ex:measproc_Weight_20211102_0420
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_Weight_20211102_0420 .
+
+ex:meas_Weight_20211102_0420
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-02T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "37.4"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+ex:measproc_BMI_Ratio_20211102_0420
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_BMI_Ratio_20211102_0420 .
+
+ex:meas_BMI_Ratio_20211102_0420
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-02T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "19.55"^^xsd:float ;
+    chr:hasUnit sulo:kilogram_per_square_meter .
+
+ex:measproc_BMI_Percentile_20211102_0420
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_BMI_Percentile_20211102_0420 .
+
+ex:meas_BMI_Percentile_20211102_0420
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-02T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "87.545"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+ex:measproc_HeartRate_20211102_0420
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_HeartRate_20211102_0420 .
+
+ex:meas_HeartRate_20211102_0420
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-02T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "65"^^xsd:float ;
+    chr:hasUnit sulo:beats_per_minute .
+
+ex:measproc_RespiratoryRate_20211102_0420
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_RespiratoryRate_20211102_0420 .
+
+ex:meas_RespiratoryRate_20211102_0420
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-02T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "16"^^xsd:float ;
+    chr:hasUnit sulo:breaths_per_minute .
+
+ex:measproc_PainSeverity_20211102_0420
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:meas_PainSeverity_20211102_0420 .
+
+ex:meas_PainSeverity_20211102_0420
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-02T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit sulo:unitless .
+
+# Evaluation Process and Diagnostic Statement
+ex:evaluation_20211102_0420
+    a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagstmt_MedicationReview .
+
+ex:diagstmt_MedicationReview
+    a chr:DiagnosticStatement .
+
+# Clinical Condition with Severity
+ex:condition_20211102_0420
+    a chr:ClinicalCondition ;
+    chr:hasRecordDate "2021-11-02T04:20:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate
+    a chr:Severity .
+
+# Care Plan and associated Medical Procedure
+ex:careplan_2021_11_02_0420
+    a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:medicalproc_FollowupMonitoring .
+
+ex:medicalproc_FollowupMonitoring
+    a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasPerformedDate "2021-11-02T04:20:00"^^xsd:dateTime ;
+    chr:hasPerformer ex:physician_Cari_Kohler ;
+    chr:hasStatus ex:status_completed .
+
+ex:status_completed
+    a chr:ProcessStatus .

@@ -1,0 +1,327 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Arlen68Olson653 a chr:Person .
+ex:physician_Domenic627Blick895 a chr:Person .
+
+# Care unit
+ex:careunit_VIBRA_HOSPITAL_CENTRAL a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2021_03_17_15_47 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Domenic627Blick895 ;
+    chr:hasCareUnit ex:careunit_VIBRA_HOSPITAL_CENTRAL .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Clinical conditions
+ex:condition_MedicationReview a chr:ClinicalCondition ;
+    chr:hasRecordDate "2021-03-17T15:47:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:condition_NotInLaborForce a chr:ClinicalCondition ;
+    chr:hasRecordDate "2021-03-17T16:24:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:condition_Stress a chr:ClinicalCondition ;
+    chr:hasRecordDate "2021-03-17T16:24:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Diagnostic statements
+ex:diagnostic_MedicationReview a chr:DiagnosticStatement .
+ex:diagnostic_NotInLaborForce a chr:DiagnosticStatement .
+ex:diagnostic_Stress a chr:DiagnosticStatement .
+
+# Evaluation processes
+ex:evaluation_1 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_MedicationReview .
+
+ex:evaluation_2 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_NotInLaborForce .
+
+ex:evaluation_3 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_Stress .
+
+# Care plan
+ex:careplan_2021_03_17 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_MedicationReview .
+
+# Medical procedure (added to satisfy minCount)
+ex:procedure_MedicationReview a chr:MedicalProcedure .
+
+# Helper function to create measurement and process (repeated manually)
+
+# Serum/Plasma measurements
+ex:meas_Glucose_Serum a chr:Measurement ;
+    chr:hasQuantityValue "149.19"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_Glucose_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Glucose_Serum .
+
+ex:meas_UreaNitrogen_Serum a chr:Measurement ;
+    chr:hasQuantityValue "13.75"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_UreaNitrogen_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_UreaNitrogen_Serum .
+
+ex:meas_Creatinine_Serum a chr:Measurement ;
+    chr:hasQuantityValue "2.0106"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_Creatinine_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Creatinine_Serum .
+
+ex:meas_Calcium_Serum a chr:Measurement ;
+    chr:hasQuantityValue "10.17"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_Calcium_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Calcium_Serum .
+
+ex:meas_Sodium_Serum a chr:Measurement ;
+    chr:hasQuantityValue "139.01"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+ex:proc_Sodium_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Sodium_Serum .
+
+ex:meas_Potassium_Serum a chr:Measurement ;
+    chr:hasQuantityValue "4.12"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+ex:proc_Potassium_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Potassium_Serum .
+
+ex:meas_Chloride_Serum a chr:Measurement ;
+    chr:hasQuantityValue "110.88"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+ex:proc_Chloride_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Chloride_Serum .
+
+ex:meas_CO2_Serum a chr:Measurement ;
+    chr:hasQuantityValue "24.67"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+ex:proc_CO2_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_CO2_Serum .
+
+ex:meas_GFR_Serum a chr:Measurement ;
+    chr:hasQuantityValue "47.503"^^xsd:float ;
+    chr:hasUnit sulo:ml_per_min_per_1_73_m2 .
+ex:proc_GFR_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_GFR_Serum .
+
+# Urine (Test strip) measurements
+ex:meas_Glucose_Urine a chr:Measurement ;
+    chr:hasQuantityValue "1.3838"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_Glucose_Urine a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Glucose_Urine .
+
+ex:meas_Bilirubin_Urine a chr:Measurement ;
+    chr:hasQuantityValue "1.2283"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_Bilirubin_Urine a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Bilirubin_Urine .
+
+ex:meas_Ketones_Urine a chr:Measurement ;
+    chr:hasQuantityValue "1.6656"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_Ketones_Urine a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Ketones_Urine .
+
+ex:meas_SpecificGravity_Urine a chr:Measurement ;
+    chr:hasQuantityValue "1.0281"^^xsd:float ;
+    chr:hasUnit sulo:nominal .
+ex:proc_SpecificGravity_Urine a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_SpecificGravity_Urine .
+
+ex:meas_pH_Urine a chr:Measurement ;
+    chr:hasQuantityValue "6.1306"^^xsd:float ;
+    chr:hasUnit sulo:pH .
+ex:proc_pH_Urine a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_pH_Urine .
+
+ex:meas_Protein_Urine a chr:Measurement ;
+    chr:hasQuantityValue "282.38"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_Protein_Urine a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Protein_Urine .
+
+# Blood measurements
+ex:meas_HbA1c_Blood a chr:Measurement ;
+    chr:hasQuantityValue "5.36"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+ex:proc_HbA1c_Blood a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_HbA1c_Blood .
+
+ex:meas_Height a chr:Measurement ;
+    chr:hasQuantityValue "177"^^xsd:float ;
+    chr:hasUnit sulo:cm .
+ex:proc_Height a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Height .
+
+ex:meas_PainSeverity a chr:Measurement ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit sulo:score .
+ex:proc_PainSeverity a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_PainSeverity .
+
+ex:meas_Weight a chr:Measurement ;
+    chr:hasQuantityValue "86"^^xsd:float ;
+    chr:hasUnit sulo:kg .
+ex:proc_Weight a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Weight .
+
+ex:meas_BMI a chr:Measurement ;
+    chr:hasQuantityValue "27.45"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+ex:proc_BMI a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_BMI .
+
+ex:meas_HeartRate a chr:Measurement ;
+    chr:hasQuantityValue "62"^^xsd:float ;
+    chr:hasUnit sulo:per_min .
+ex:proc_HeartRate a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_HeartRate .
+
+ex:meas_RespiratoryRate a chr:Measurement ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasUnit sulo:per_min .
+ex:proc_RespiratoryRate a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_RespiratoryRate .
+
+ex:meas_Glucose_Blood a chr:Measurement ;
+    chr:hasQuantityValue "149.19"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_Glucose_Blood a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Glucose_Blood .
+
+ex:meas_UreaNitrogen_Blood a chr:Measurement ;
+    chr:hasQuantityValue "13.75"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_UreaNitrogen_Blood a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_UreaNitrogen_Blood .
+
+ex:meas_Creatinine_Blood a chr:Measurement ;
+    chr:hasQuantityValue "3.85"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_Creatinine_Blood a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Creatinine_Blood .
+
+ex:meas_Calcium_Blood a chr:Measurement ;
+    chr:hasQuantityValue "10.17"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_Calcium_Blood a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Calcium_Blood .
+
+ex:meas_Sodium_Blood a chr:Measurement ;
+    chr:hasQuantityValue "139.01"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+ex:proc_Sodium_Blood a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Sodium_Blood .
+
+ex:meas_Potassium_Blood a chr:Measurement ;
+    chr:hasQuantityValue "4.12"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+ex:proc_Potassium_Blood a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Potassium_Blood .
+
+ex:meas_Chloride_Blood a chr:Measurement ;
+    chr:hasQuantityValue "110.88"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+ex:proc_Chloride_Blood a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Chloride_Blood .
+
+ex:meas_CO2_Blood a chr:Measurement ;
+    chr:hasQuantityValue "24.67"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+ex:proc_CO2_Blood a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_CO2_Blood .
+
+ex:meas_Cholesterol_Serum a chr:Measurement ;
+    chr:hasQuantityValue "247.51"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_Cholesterol_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Cholesterol_Serum .
+
+ex:meas_Triglyceride_Serum a chr:Measurement ;
+    chr:hasQuantityValue "222.1"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_Triglyceride_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_Triglyceride_Serum .
+
+ex:meas_CholesterolLDL_Serum a chr:Measurement ;
+    chr:hasQuantityValue "169.12"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_CholesterolLDL_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_CholesterolLDL_Serum .
+
+ex:meas_CholesterolHDL_Serum a chr:Measurement ;
+    chr:hasQuantityValue "33.98"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+ex:proc_CholesterolHDL_Serum a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_CholesterolHDL_Serum .
+
+ex:meas_MicroalbuminCreatinine_Urine a chr:Measurement ;
+    chr:hasQuantityValue "190.83"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_g .
+ex:proc_MicroalbuminCreatinine_Urine a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_MicroalbuminCreatinine_Urine .
+
+ex:meas_GFR_Blood a chr:Measurement ;
+    chr:hasQuantityValue "22.67"^^xsd:float ;
+    chr:hasUnit sulo:ml_per_min_per_1_73_m2 .
+ex:proc_GFR_Blood a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_GFR_Blood .
+
+# Additional psychometric measurements
+ex:meas_GAD7 a chr:Measurement ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit sulo:score .
+ex:proc_GAD7 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_GAD7 .
+
+ex:meas_FallRisk a chr:Measurement ;
+    chr:hasQuantityValue "33"^^xsd:float ;
+    chr:hasUnit sulo:score .
+ex:proc_FallRisk a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:meas_FallRisk .

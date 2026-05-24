@@ -1,0 +1,321 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_AracelyDevonCollins a chr:Person .
+ex:physician_EdmundoEichmann a chr:Person .
+
+# Care unit
+ex:careunit_FatherBillsPlace a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2018_06_15_1504 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_EdmundoEichmann ;
+    chr:hasCareUnit ex:careunit_FatherBillsPlace ;
+    chr:hasPatient ex:patient_AracelyDevonCollins .
+
+# Generic device (used for all measurements)
+ex:device_Generic a chr:Device .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Diagnostic statements and conditions
+ex:diagnostic_PartTimeEmployment a chr:DiagnosticStatement .
+ex:condition_PartTimeEmployment a chr:ClinicalCondition ;
+    chr:hasRecordDate "2018-06-15T15:42:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:diagnostic_Stress a chr:DiagnosticStatement .
+ex:condition_Stress a chr:ClinicalCondition ;
+    chr:hasRecordDate "2018-06-15T15:42:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Evaluation processes
+ex:evaluation_2018_06_15_1542_1 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_PartTimeEmployment .
+
+ex:evaluation_2018_06_15_1542_2 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_Stress .
+
+# Care plan (no further details required)
+ex:careplan_2018_06_15 a chr:CarePlan .
+
+# Helper function to create measurement triples (repeated pattern)
+# Hemoglobin A1c
+ex:measurement_HbA1c_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.13"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+ex:process_HbA1c_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_HbA1c_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Body Height
+ex:measurement_Height_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "172.0"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+ex:process_Height_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Height_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Pain severity
+ex:measurement_PainSeverity_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:process_PainSeverity_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_PainSeverity_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Body Weight
+ex:measurement_Weight_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82.2"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+ex:process_Weight_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Weight_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Body Mass Index
+ex:measurement_BMI_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.79"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+
+ex:process_BMI_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_BMI_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Heart rate
+ex:measurement_HeartRate_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "95.0"^^xsd:float ;
+    chr:hasUnit sulo:per_minute .
+
+ex:process_HeartRate_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_HeartRate_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Respiratory rate
+ex:measurement_RespiratoryRate_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15.0"^^xsd:float ;
+    chr:hasUnit sulo:per_minute .
+
+ex:process_RespiratoryRate_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_RespiratoryRate_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Glucose
+ex:measurement_Glucose_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "67.87"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:process_Glucose_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Glucose_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Urea nitrogen
+ex:measurement_UreaNitrogen_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14.48"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:process_UreaNitrogen_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_UreaNitrogen_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Creatinine
+ex:measurement_Creatinine_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.82"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:process_Creatinine_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Creatinine_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Calcium
+ex:measurement_Calcium_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.86"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:process_Calcium_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Calcium_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Sodium
+ex:measurement_Sodium_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "136.06"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+ex:process_Sodium_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Sodium_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Potassium
+ex:measurement_Potassium_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.95"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+ex:process_Potassium_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Potassium_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Chloride
+ex:measurement_Chloride_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "109.69"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+ex:process_Chloride_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Chloride_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Carbon dioxide, total
+ex:measurement_CO2_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "25.61"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+ex:process_CO2_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_CO2_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Cholesterol (Serum/Plasma)
+ex:measurement_CholesterolSerum_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "289.56"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:process_CholesterolSerum_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_CholesterolSerum_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Triglyceride
+ex:measurement_Triglyceride_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "110.69"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:process_Triglyceride_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Triglyceride_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Cholesterol LDL
+ex:measurement_CholesterolLDL_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "206.95"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:process_CholesterolLDL_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_CholesterolLDL_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# Cholesterol HDL
+ex:measurement_CholesterolHDL_20180615_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "60.47"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+ex:process_CholesterolHDL_20180615_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_CholesterolHDL_20180615_1504 ;
+    chr:hasDevice ex:device_Generic .
+
+# GAD-7 total score
+ex:measurement_GAD7_20180615_1600 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T16:00:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:process_GAD7_20180615_1600 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_GAD7_20180615_1600 ;
+    chr:hasDevice ex:device_Generic .
+
+# Fall risk (Morse Fall Scale)
+ex:measurement_FallRisk_20180615_1615 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T16:15:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "65.0"^^xsd:float ;
+    chr:hasUnit sulo:unitless .
+
+ex:process_FallRisk_20180615_1615 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_FallRisk_20180615_1615 ;
+    chr:hasDevice ex:device_Generic .
+
+# HARK total score
+ex:measurement_HARK_20180615_1648 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T16:48:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:process_HARK_20180615_1648 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_HARK_20180615_1648 ;
+    chr:hasDevice ex:device_Generic .
+
+# PHQ-2 total score
+ex:measurement_PHQ2_20180615_1723 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T17:23:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:process_PHQ2_20180615_1723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_PHQ2_20180615_1723 ;
+    chr:hasDevice ex:device_Generic .
+
+# PHQ-9 total score
+ex:measurement_PHQ9_20180615_1751 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T17:51:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:process_PHQ9_20180615_1751 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_PHQ9_20180615_1751 ;
+    chr:hasDevice ex:device_Generic .
+
+# AUDIT-C total score
+ex:measurement_AUDITC_20180615_1834 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-06-15T18:34:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:process_AUDITC_20180615_1834 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_AUDITC_20180615_1834 ;
+    chr:hasDevice ex:device_Generic .

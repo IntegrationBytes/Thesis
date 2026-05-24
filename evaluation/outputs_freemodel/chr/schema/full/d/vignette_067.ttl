@@ -1,0 +1,111 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Dolores_Nevarez a chr:Person .
+
+ex:physician_Cari_Kohler a chr:Person .
+
+ex:careunit_DR_HES a chr:CareUnit .
+
+ex:visit_2018_10_16_05_20 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasCareProvider ex:physician_Cari_Kohler ;
+    chr:hasCareUnit ex:careunit_DR_HES .
+
+ex:evaluation_2018_10_16_05_20 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasObservation ex:diagnosticStatement_medReview .
+
+ex:diagnosticStatement_medReview a chr:DiagnosticStatement .
+
+ex:condition_medReview a chr:ClinicalCondition ;
+    chr:hasRecordDate "2018-10-16T05:20:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:carePlan_2018_10_16 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:medicalProcedure_followup .
+
+ex:medicalProcedure_followup a chr:MedicalProcedure .
+
+# Units
+ex:unit_cm a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_percent a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+ex:unit_score a sulo:Unit .
+
+# Height measurement
+ex:measurement_Height_2018_10_16_05_20 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-10-16T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "118.7"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+ex:measproc_Height_2018_10_16_05_20 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_Height_2018_10_16_05_20 .
+
+# Pain severity measurement
+ex:measurement_PainSeverity_2018_10_16_05_20 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-10-16T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:measproc_PainSeverity_2018_10_16_05_20 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_PainSeverity_2018_10_16_05_20 .
+
+# Weight measurement
+ex:measurement_Weight_2018_10_16_05_20 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-10-16T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "26.1"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+ex:measproc_Weight_2018_10_16_05_20 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_Weight_2018_10_16_05_20 .
+
+# BMI ratio measurement
+ex:measurement_BMI_Ratio_2018_10_16_05_20 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-10-16T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "18.51"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
+
+ex:measproc_BMI_Ratio_2018_10_16_05_20 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_BMI_Ratio_2018_10_16_05_20 .
+
+# BMI percentile measurement
+ex:measurement_BMI_Percentile_2018_10_16_05_20 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-10-16T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "94.132"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+ex:measproc_BMI_Percentile_2018_10_16_05_20 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_BMI_Percentile_2018_10_16_05_20 .
+
+# Heart rate measurement
+ex:measurement_HeartRate_2018_10_16_05_20 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-10-16T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "80"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+ex:measproc_HeartRate_2018_10_16_05_20 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_HeartRate_2018_10_16_05_20 .
+
+# Respiratory rate measurement
+ex:measurement_RespiratoryRate_2018_10_16_05_20 a chr:Measurement ;
+    chr:hasMeasuredDate "2018-10-16T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+ex:measproc_RespiratoryRate_2018_10_16_05_20 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_RespiratoryRate_2018_10_16_05_20 .

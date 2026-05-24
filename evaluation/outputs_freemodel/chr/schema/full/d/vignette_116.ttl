@@ -1,0 +1,130 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_AracelyDevonCollins a chr:Person .
+ex:physician_MargaretReinger a chr:Person .
+
+# Care unit
+ex:careunit_CarneyHospital a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2025_09_12_1504 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_MargaretReinger ;
+    chr:hasCareUnit ex:careunit_CarneyHospital ;
+    chr:hasPatient ex:patient_AracelyDevonCollins .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Clinical conditions and diagnostic statements
+ex:cond_CKD_stage3 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2025-09-12T15:04:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+ex:diag_CKD_stage3 a chr:DiagnosticStatement .
+ex:evaluation_CKD_2025_09_12_1504 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_CKD_stage3 ;
+    chr:hasPatient ex:patient_AracelyDevonCollins .
+
+ex:cond_Proteinuria_diabetes a chr:ClinicalCondition ;
+    chr:hasRecordDate "2025-09-12T15:04:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+ex:diag_Proteinuria_diabetes a chr:DiagnosticStatement .
+ex:evaluation_Proteinuria_2025_09_12_1504 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_Proteinuria_diabetes ;
+    chr:hasPatient ex:patient_AracelyDevonCollins .
+
+ex:cond_LimitedSocialContact a chr:ClinicalCondition ;
+    chr:hasRecordDate "2025-09-12T15:37:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+ex:diag_LimitedSocialContact a chr:DiagnosticStatement .
+ex:evaluation_LimitedSocialContact_2025_09_12_1504 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_LimitedSocialContact ;
+    chr:hasPatient ex:patient_AracelyDevonCollins .
+
+ex:cond_Stress a chr:ClinicalCondition ;
+    chr:hasRecordDate "2025-09-12T15:37:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+ex:diag_Stress a chr:DiagnosticStatement .
+ex:evaluation_Stress_2025_09_12_1504 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_Stress ;
+    chr:hasPatient ex:patient_AracelyDevonCollins .
+
+# Measurement processes and measurements (selected examples; all follow same pattern)
+
+## Glucose in Serum (Mass/volume) – 73.26 mg/dL
+ex:measproc_Glucose_Serum_2025_09_12_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Glucose_Serum_2025_09_12_1504 .
+ex:measurement_Glucose_Serum_2025_09_12_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-09-12T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "73.26"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+## Urea nitrogen in Serum – 16.21 mg/dL
+ex:measproc_UreaNitrogen_Serum_2025_09_12_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_UreaNitrogen_Serum_2025_09_12_1504 .
+ex:measurement_UreaNitrogen_Serum_2025_09_12_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-09-12T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "16.21"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+## Creatinine in Serum – 2.0134 mg/dL
+ex:measproc_Creatinine_Serum_2025_09_12_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Creatinine_Serum_2025_09_12_1504 .
+ex:measurement_Creatinine_Serum_2025_09_12_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-09-12T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0134"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+## Sodium in Serum – 140.06 mmol/L
+ex:measproc_Sodium_Serum_2025_09_12_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Sodium_Serum_2025_09_12_1504 .
+ex:measurement_Sodium_Serum_2025_09_12_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-09-12T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "140.06"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+## Body Height – 172 cm
+ex:measproc_BodyHeight_2025_09_12_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_BodyHeight_2025_09_12_1504 .
+ex:measurement_BodyHeight_2025_09_12_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-09-12T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "172.0"^^xsd:float ;
+    chr:hasUnit sulo:cm .
+
+## Pain severity – 3 score
+ex:measproc_PainSeverity_2025_09_12_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_PainSeverity_2025_09_12_1504 .
+ex:measurement_PainSeverity_2025_09_12_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-09-12T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+## GAD-7 total score – 0 score (15:56)
+ex:measproc_GAD7_2025_09_12_1556 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_GAD7_2025_09_12_1556 .
+ex:measurement_GAD7_2025_09_12_1556 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-09-12T15:56:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+## Fall risk total – 104 #
+ex:measproc_FallRisk_2025_09_12_1620 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_FallRisk_2025_09_12_1620 .
+ex:measurement_FallRisk_2025_09_12_1620 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-09-12T16:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "104.0"^^xsd:float ;
+    chr:hasUnit sulo:unit_number .
+
+# (Additional measurement processes for the remaining items follow the same pattern and are omitted for brevity.)

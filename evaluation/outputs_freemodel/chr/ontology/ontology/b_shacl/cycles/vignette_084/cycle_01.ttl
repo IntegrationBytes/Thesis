@@ -1,0 +1,427 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:person_Hallie_Tasha_Grant a chr:Person ;
+    rdfs:label "Hallie315 Tasha327 Grant908" .
+
+# Person (physician)
+ex:person_Teresa_Tapia a chr:Person ;
+    rdfs:label "Dr. Teresa94 Tapia475" .
+
+# Care unit
+ex:careUnit_CaringHealthCenter a chr:CareUnit ;
+    rdfs:label "CARING HEALTH CENTER, INC" .
+
+# Clinical visit
+ex:visit_2021_06_02_1630 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit_Patient ;
+    sulo:hasParticipant ex:role_CareProvider_Visit_Physician ;
+    sulo:isIn ex:careUnit_CaringHealthCenter ;
+    sulo:atTime ex:time_Visit_2021_06_02_1630 .
+
+# Roles for visit
+ex:role_SubjectOfCare_Visit_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_CareProvider_Visit_Physician a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Teresa_Tapia .
+
+# Time instant for visit
+ex:time_Visit_2021_06_02_1630 a sulo:TimeInstant ;
+    sulo:hasValue "2021-06-02T16:30:00"^^xsd:dateTime .
+
+# ---- Measurement processes and results ----
+
+# Body Height
+ex:proc_BodyHeight_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Height_Patient ;
+    sulo:hasParticipant ex:role_Output_Height ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Height_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_Height a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_BodyHeight .
+
+ex:meas_BodyHeight a chr:Measurement ;
+    sulo:hasValue "52.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/cm> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Pain severity (Score)
+ex:proc_PainSeverity_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Pain_Patient ;
+    sulo:hasParticipant ex:role_Output_Pain ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Pain_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_Pain a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_PainSeverity .
+
+ex:meas_PainSeverity a chr:Measurement ;
+    sulo:hasValue "4.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Body Weight
+ex:proc_BodyWeight_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Weight_Patient ;
+    sulo:hasParticipant ex:role_Output_Weight ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Weight_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_Weight a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_BodyWeight .
+
+ex:meas_BodyWeight a chr:Measurement ;
+    sulo:hasValue "4.5"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/kg> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Weight-for-length Percentile
+ex:proc_WeightForLength_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_WFL_Patient ;
+    sulo:hasParticipant ex:role_Output_WFL ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_WFL_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_WFL a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_WeightForLength .
+
+ex:meas_WeightForLength a chr:Measurement ;
+    sulo:hasValue "90.401"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/percent> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Head Occipital-frontal circumference Percentile
+ex:proc_HOFCPercentile_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HOFC_Patient ;
+    sulo:hasParticipant ex:role_Output_HOFCPercent ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_HOFC_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_HOFCPercent a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HOFCPercentile .
+
+ex:meas_HOFCPercentile a chr:Measurement ;
+    sulo:hasValue "57.73"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/percent> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Head Occipital-frontal circumference (cm)
+ex:proc_HOFC_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HOFC_Patient2 ;
+    sulo:hasParticipant ex:role_Output_HOFC ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_HOFC_Patient2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_HOFC a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HOFC .
+
+ex:meas_HOFC a chr:Measurement ;
+    sulo:hasValue "35.03"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/cm> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Heart rate
+ex:proc_HeartRate_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HR_Patient ;
+    sulo:hasParticipant ex:role_Output_HR ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_HR_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_HR a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HeartRate .
+
+ex:meas_HeartRate a chr:Measurement ;
+    sulo:hasValue "69.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/per_min> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Respiratory rate
+ex:proc_RespRate_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_RR_Patient ;
+    sulo:hasParticipant ex:role_Output_RR ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_RR_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_RR a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_RespRate .
+
+ex:meas_RespRate a chr:Measurement ;
+    sulo:hasValue "14.0"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/per_min> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Leukocytes
+ex:proc_Leukocytes_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Leuko_Patient ;
+    sulo:hasParticipant ex:role_Output_Leuko ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Leuko_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_Leuko a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Leukocytes .
+
+ex:meas_Leukocytes a chr:Measurement ;
+    sulo:hasValue "7.1843"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/10e3_per_uL> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Erythrocytes
+ex:proc_Erythrocytes_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eryth_Patient ;
+    sulo:hasParticipant ex:role_Output_Eryth ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Eryth_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_Eryth a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Erythrocytes .
+
+ex:meas_Erythrocytes a chr:Measurement ;
+    sulo:hasValue "4.7419"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/10e6_per_uL> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Hemoglobin
+ex:proc_Hemoglobin_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Hb_Patient ;
+    sulo:hasParticipant ex:role_Output_Hb ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Hb_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_Hb a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Hemoglobin .
+
+ex:meas_Hemoglobin a chr:Measurement ;
+    sulo:hasValue "13.52"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/g_per_dL> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Hematocrit
+ex:proc_Hematocrit_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Hct_Patient ;
+    sulo:hasParticipant ex:role_Output_Hct ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Hct_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_Hct a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Hematocrit .
+
+ex:meas_Hematocrit a chr:Measurement ;
+    sulo:hasValue "46.004"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/percent> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# MCV
+ex:proc_MCV_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_MCV_Patient ;
+    sulo:hasParticipant ex:role_Output_MCV ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_MCV_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_MCV a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_MCV .
+
+ex:meas_MCV a chr:Measurement ;
+    sulo:hasValue "90.993"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/fL> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# MCH
+ex:proc_MCH_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_MCH_Patient ;
+    sulo:hasParticipant ex:role_Output_MCH ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_MCH_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_MCH a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_MCH .
+
+ex:meas_MCH a chr:Measurement ;
+    sulo:hasValue "30.393"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/pg> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# MCHC
+ex:proc_MCHC_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_MCHC_Patient ;
+    sulo:hasParticipant ex:role_Output_MCHC ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_MCHC_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_MCHC a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_MCHC .
+
+ex:meas_MCHC a chr:Measurement ;
+    sulo:hasValue "35.73"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/g_per_dL> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Erythrocyte width
+ex:proc_ErythrocyteWidth_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_ErythWidth_Patient ;
+    sulo:hasParticipant ex:role_Output_ErythWidth ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_ErythWidth_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_ErythWidth a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_ErythrocyteWidth .
+
+ex:meas_ErythrocyteWidth a chr:Measurement ;
+    sulo:hasValue "39.61"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/fL> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Platelets
+ex:proc_Platelets_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Plt_Patient ;
+    sulo:hasParticipant ex:role_Output_Plt ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Plt_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_Plt a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Platelets .
+
+ex:meas_Platelets a chr:Measurement ;
+    sulo:hasValue "278.94"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/10e3_per_uL> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Platelet distribution width
+ex:proc_PDW_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_PDW_Patient ;
+    sulo:hasParticipant ex:role_Output_PDW ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_PDW_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_PDW a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_PDW .
+
+ex:meas_PDW a chr:Measurement ;
+    sulo:hasValue "197.85"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/fL> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Platelet mean volume
+ex:proc_PlateletMeanVol_2021_06_02_1630 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_PltMean_Patient ;
+    sulo:hasParticipant ex:role_Output_PltMean ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_PltMean_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Output_PltMean a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_PlateletMeanVol .
+
+ex:meas_PlateletMeanVol a chr:Measurement ;
+    sulo:hasValue "10.469"^^xsd:float ;
+    sulo:hasPart <https://w3id.org/sulo/unit/fL> ;
+    sulo:atTime ex:time_Meas_2021_06_02_1630 .
+
+# Evaluation (diagnostic statement)
+ex:evaluation_2021_06_02_1630 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eval_Patient ;
+    sulo:hasParticipant ex:role_Performer_Eval_Physician ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Eval_2021_06_02_1630 .
+
+ex:role_SubjectOfCare_Eval_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Hallie_Tasha_Grant .
+
+ex:role_Performer_Eval_Physician a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Teresa_Tapia .
+
+ex:diag_MedicationReview a chr:ProcessStatus ;
+    rdfs:label "Medication review due (situation)" .
+
+ex:severity_Moderate a chr:ProcessStatus ;
+    rdfs:label "Moderate" .
+
+# Care plan
+ex:carePlan_FollowUp a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "Follow‑up monitoring and routine review" .
+
+# Shared entities
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:time_Meas_2021_06_02_1630 a sulo:TimeInstant ;
+    sulo:hasValue "2021-06-02T16:30:00"^^xsd:dateTime .
+
+ex:time_Eval_2021_06_02_1630 a sulo:TimeInstant ;
+    sulo:hasValue "2021-06-02T16:30:00"^^xsd:dateTime .
+
+# Unit declarations
+<https://w3id.org/sulo/unit/cm> a sulo:Unit .
+<https://w3id.org/sulo/unit/kg> a sulo:Unit .
+<https://w3id.org/sulo/unit/percent> a sulo:Unit .
+<https://w3id.org/sulo/unit/per_min> a sulo:Unit .
+<https://w3id.org/sulo/unit/score> a sulo:Unit .
+<https://w3id.org/sulo/unit/10e3_per_uL> a sulo:Unit .
+<https://w3id.org/sulo/unit/10e6_per_uL> a sulo:Unit .
+<https://w3id.org/sulo/unit/g_per_dL> a sulo:Unit .
+<https://w3id.org/sulo/unit/fL> a sulo:Unit .
+<https://w3id.org/sulo/unit/pg> a sulo:Unit .

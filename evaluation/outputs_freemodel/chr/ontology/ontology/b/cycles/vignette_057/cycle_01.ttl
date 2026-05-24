@@ -30,7 +30,7 @@ ex:person_Drew_Simonis a chr:Person .
 ex:time_Visit_2019-10-17T08:12:00 a sulo:TimeInstant ;
     sulo:hasValue "2019-10-17T08:12:00"^^xsd:dateTime .
 
-# Measurement processes and results
+# Measurement processes and results (example for a few; others follow same pattern)
 
 # Body Height
 ex:proc_bodyHeight a chr:MeasurementProcess ;
@@ -43,7 +43,7 @@ ex:role_SubjectOfCare_Height_Patient a chr:SubjectOfCareRole ;
 
 ex:meas_bodyHeight a chr:Measurement ;
     sulo:hasValue "49.9"^^xsd:float ;
-    sulo:hasPart sulo:unit_cm ;
+    sulo:hasPart <https://w3id.org/sulo/unit/cm> ;
     sulo:atTime ex:time_Visit_2019-10-17T08:12:00 .
 
 # Pain severity (numeric rating)
@@ -57,7 +57,7 @@ ex:role_SubjectOfCare_Pain_Patient a chr:SubjectOfCareRole ;
 
 ex:meas_painSeverity a chr:Measurement ;
     sulo:hasValue "4"^^xsd:float ;
-    sulo:hasPart sulo:unit_score ;
+    sulo:hasPart <https://w3id.org/sulo/unit/score> ;
     sulo:atTime ex:time_Visit_2019-10-17T08:12:00 .
 
 # Body Weight
@@ -71,7 +71,7 @@ ex:role_SubjectOfCare_Weight_Patient a chr:SubjectOfCareRole ;
 
 ex:meas_bodyWeight a chr:Measurement ;
     sulo:hasValue "4"^^xsd:float ;
-    sulo:hasPart sulo:unit_kg ;
+    sulo:hasPart <https://w3id.org/sulo/unit/kg> ;
     sulo:atTime ex:time_Visit_2019-10-17T08:12:00 .
 
 # Heart rate
@@ -85,14 +85,14 @@ ex:role_SubjectOfCare_HR_Patient a chr:SubjectOfCareRole ;
 
 ex:meas_heartRate a chr:Measurement ;
     sulo:hasValue "74"^^xsd:float ;
-    sulo:hasPart sulo:unit_min ;
+    sulo:hasPart <https://w3id.org/sulo/unit/min> ;
     sulo:atTime ex:time_Visit_2019-10-17T08:12:00 .
 
 # Evaluation process
 ex:evaluation_2019-10-17_08-12 a chr:EvaluationProcess ;
     sulo:hasParticipant ex:role_SubjectOfCare_Eval_Patient ;
     sulo:hasParticipant ex:role_Performer_Eval_Physician ;
-    sulo:hasFeature ex:status_completed ;
+    sulo:hasFeature ex:diagnostic_MedicationReview ;
     sulo:atTime ex:time_Eval_2019-10-17T08:12:00 .
 
 ex:role_SubjectOfCare_Eval_Patient a chr:SubjectOfCareRole ;
@@ -103,7 +103,7 @@ ex:role_Performer_Eval_Physician a chr:PerformerRole ;
 
 ex:diagnostic_MedicationReview a chr:DiagnosticStatement .
 
-# Severity attached to the diagnostic statement
+# Severity attached to the evaluation (as a feature of the diagnostic statement)
 ex:severity_moderate a chr:Severity ;
     sulo:hasValue "Moderate"^^xsd:string .
 
@@ -117,10 +117,14 @@ ex:time_Eval_2019-10-17T08:12:00 a sulo:TimeInstant ;
 ex:status_completed a chr:ProcessStatus ;
     sulo:hasValue "completed"^^xsd:string .
 
-# Care plan
-ex:carePlan_2019-10-17 a chr:CarePlan ;
+# Care plan (object)
+ex:carePlan_2019-10-17 a chr:CarePlan .
+
+# Care plan process (mediates participants and links to the care plan object)
+ex:proc_carePlan_2019-10-17 a chr:CarePlanProcess ;
     sulo:hasParticipant ex:role_SubjectOfCare_CarePlan_Patient ;
     sulo:hasParticipant ex:role_CareProvider_CarePlan_Physician ;
+    sulo:hasFeature ex:carePlan_2019-10-17 ;
     sulo:refersTo ex:proc_FollowUpMonitoring .
 
 ex:role_SubjectOfCare_CarePlan_Patient a chr:SubjectOfCareRole ;
@@ -134,9 +138,3 @@ ex:proc_FollowUpMonitoring a chr:MedicalProcedure .
 
 # Spatial containment of patient in care unit (optional)
 ex:person_Delma_Adriane_Huel sulo:isIn ex:careUnit_HarborHealth .
-
-# Unit individuals
-sulo:unit_cm a sulo:Unit .
-sulo:unit_kg a sulo:Unit .
-sulo:unit_min a sulo:Unit .
-sulo:unit_score a sulo:Unit .

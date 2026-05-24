@@ -1,0 +1,573 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# -----------------------------------------------------------------
+# Persons
+# -----------------------------------------------------------------
+ex:patient_Aracely_Devon_Collins a chr:Person .
+ex:physician_Edmundo_Eichmann a chr:Person .
+
+# -----------------------------------------------------------------
+# Care unit
+# -----------------------------------------------------------------
+ex:careunit_FATHER_BILLS_PLACE a chr:CareUnit .
+
+# -----------------------------------------------------------------
+# Clinical visit
+# -----------------------------------------------------------------
+ex:visit_2018_06_15_1504 a chr:ClinicalVisit ;
+    sulo:isIn ex:careunit_FATHER_BILLS_PLACE ;
+    sulo:atTime ex:time_visit_2018_06_15_1504 .
+
+ex:time_visit_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+# -----------------------------------------------------------------
+# Shared role individuals for the visit (re‑used for each measurement)
+# -----------------------------------------------------------------
+ex:role_Subject_Visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Devon_Collins .
+
+ex:role_Performer_Visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+
+# -----------------------------------------------------------------
+# Process status and severity (shared)
+# -----------------------------------------------------------------
+ex:status_completed a chr:ProcessStatus .
+ex:severity_moderate a chr:Severity .
+
+# -----------------------------------------------------------------
+# Units
+# -----------------------------------------------------------------
+ex:unit_percent          a sulo:Unit .
+ex:unit_cm               a sulo:Unit .
+ex:unit_score            a sulo:Unit .
+ex:unit_kg               a sulo:Unit .
+ex:unit_kg_per_m2        a sulo:Unit .
+ex:unit_per_min          a sulo:Unit .
+ex:unit_mg_per_dL        a sulo:Unit .
+ex:unit_mmol_per_L       a sulo:Unit .
+
+# -----------------------------------------------------------------
+# Helper function to create measurement triples (expanded inline)
+# -----------------------------------------------------------------
+
+# Hemoglobin A1c
+ex:proc_HbA1c_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_HbA1c ;
+    sulo:atTime ex:time_HbA1c_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_HbA1c_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_HbA1c_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "6.13"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_HbA1c_2018_06_15_1504 .
+
+ex:role_Output_HbA1c a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HbA1c_2018_06_15_1504 .
+
+# Body Height
+ex:proc_BodyHeight_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_BodyHeight ;
+    sulo:atTime ex:time_BodyHeight_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_BodyHeight_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_BodyHeight_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "172"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_BodyHeight_2018_06_15_1504 .
+
+ex:role_Output_BodyHeight a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyHeight_2018_06_15_1504 .
+
+# Pain severity
+ex:proc_PainSeverity_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_PainSeverity ;
+    sulo:atTime ex:time_PainSeverity_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_PainSeverity_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_PainSeverity_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "4"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_PainSeverity_2018_06_15_1504 .
+
+ex:role_Output_PainSeverity a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainSeverity_2018_06_15_1504 .
+
+# Body Weight
+ex:proc_BodyWeight_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_BodyWeight ;
+    sulo:atTime ex:time_BodyWeight_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_BodyWeight_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_BodyWeight_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_BodyWeight_2018_06_15_1504 .
+
+ex:role_Output_BodyWeight a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyWeight_2018_06_15_1504 .
+
+# Body Mass Index
+ex:proc_BMI_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_BMI ;
+    sulo:atTime ex:time_BMI_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_BMI_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_BMI_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "27.79"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_BMI_2018_06_15_1504 .
+
+ex:role_Output_BMI a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI_2018_06_15_1504 .
+
+# Heart rate
+ex:proc_HeartRate_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_HeartRate ;
+    sulo:atTime ex:time_HeartRate_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_HeartRate_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_HeartRate_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "95"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_HeartRate_2018_06_15_1504 .
+
+ex:role_Output_HeartRate a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HeartRate_2018_06_15_1504 .
+
+# Respiratory rate
+ex:proc_RespRate_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_RespRate ;
+    sulo:atTime ex:time_RespRate_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_RespRate_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_RespRate_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "15"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_RespRate_2018_06_15_1504 .
+
+ex:role_Output_RespRate a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RespRate_2018_06_15_1504 .
+
+# Glucose
+ex:proc_Glucose_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_Glucose ;
+    sulo:atTime ex:time_Glucose_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_Glucose_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_Glucose_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "67.87"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Glucose_2018_06_15_1504 .
+
+ex:role_Output_Glucose a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_2018_06_15_1504 .
+
+# Urea nitrogen
+ex:proc_UreaNitrogen_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_UreaNitrogen ;
+    sulo:atTime ex:time_UreaNitrogen_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_UreaNitrogen_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_UreaNitrogen_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "14.48"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_UreaNitrogen_2018_06_15_1504 .
+
+ex:role_Output_UreaNitrogen a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen_2018_06_15_1504 .
+
+# Creatinine
+ex:proc_Creatinine_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_Creatinine ;
+    sulo:atTime ex:time_Creatinine_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_Creatinine_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_Creatinine_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "0.82"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Creatinine_2018_06_15_1504 .
+
+ex:role_Output_Creatinine a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine_2018_06_15_1504 .
+
+# Calcium
+ex:proc_Calcium_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_Calcium ;
+    sulo:atTime ex:time_Calcium_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_Calcium_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_Calcium_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "9.86"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Calcium_2018_06_15_1504 .
+
+ex:role_Output_Calcium a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium_2018_06_15_1504 .
+
+# Sodium
+ex:proc_Sodium_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_Sodium ;
+    sulo:atTime ex:time_Sodium_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_Sodium_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_Sodium_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "136.06"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_Sodium_2018_06_15_1504 .
+
+ex:role_Output_Sodium a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium_2018_06_15_1504 .
+
+# Potassium
+ex:proc_Potassium_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_Potassium ;
+    sulo:atTime ex:time_Potassium_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_Potassium_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_Potassium_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "3.95"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_Potassium_2018_06_15_1504 .
+
+ex:role_Output_Potassium a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium_2018_06_15_1504 .
+
+# Chloride
+ex:proc_Chloride_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_Chloride ;
+    sulo:atTime ex:time_Chloride_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_Chloride_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_Chloride_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "109.69"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_Chloride_2018_06_15_1504 .
+
+ex:role_Output_Chloride a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride_2018_06_15_1504 .
+
+# Carbon dioxide
+ex:proc_CO2_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_CO2 ;
+    sulo:atTime ex:time_CO2_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_CO2_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_CO2_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "25.61"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_CO2_2018_06_15_1504 .
+
+ex:role_Output_CO2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2_2018_06_15_1504 .
+
+# Cholesterol (Serum/Plasma)
+ex:proc_CholesterolSerum_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_CholesterolSerum ;
+    sulo:atTime ex:time_CholesterolSerum_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_CholesterolSerum_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_CholesterolSerum_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "289.56"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_CholesterolSerum_2018_06_15_1504 .
+
+ex:role_Output_CholesterolSerum a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CholesterolSerum_2018_06_15_1504 .
+
+# Triglyceride
+ex:proc_Triglyceride_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_Triglyceride ;
+    sulo:atTime ex:time_Triglyceride_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_Triglyceride_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_Triglyceride_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "110.69"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Triglyceride_2018_06_15_1504 .
+
+ex:role_Output_Triglyceride a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Triglyceride_2018_06_15_1504 .
+
+# LDL Cholesterol
+ex:proc_LDL_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_LDL ;
+    sulo:atTime ex:time_LDL_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_LDL_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_LDL_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "206.95"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_LDL_2018_06_15_1504 .
+
+ex:role_Output_LDL a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_LDL_2018_06_15_1504 .
+
+# HDL Cholesterol
+ex:proc_HDL_2018_06_15_1504 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_HDL ;
+    sulo:atTime ex:time_HDL_2018_06_15_1504 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_HDL_2018_06_15_1504 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:04:00"^^xsd:dateTime .
+
+ex:measurement_HDL_2018_06_15_1504 a chr:Measurement ;
+    sulo:hasValue "60.47"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_HDL_2018_06_15_1504 .
+
+ex:role_Output_HDL a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HDL_2018_06_15_1504 .
+
+# GAD‑7
+ex:proc_GAD7_2018_06_15_1600 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_GAD7 ;
+    sulo:atTime ex:time_GAD7_2018_06_15_1600 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_GAD7_2018_06_15_1600 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T16:00:00"^^xsd:dateTime .
+
+ex:measurement_GAD7_2018_06_15_1600 a chr:Measurement ;
+    sulo:hasValue "3"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_GAD7_2018_06_15_1600 .
+
+ex:role_Output_GAD7 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GAD7_2018_06_15_1600 .
+
+# Morse Fall Scale
+ex:proc_MorseFall_2018_06_15_1615 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_MorseFall ;
+    sulo:atTime ex:time_MorseFall_2018_06_15_1615 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_MorseFall_2018_06_15_1615 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T16:15:00"^^xsd:dateTime .
+
+ex:measurement_MorseFall_2018_06_15_1615 a chr:Measurement ;
+    sulo:hasValue "65"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_MorseFall_2018_06_15_1615 .
+
+ex:role_Output_MorseFall a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_MorseFall_2018_06_15_1615 .
+
+# HARK
+ex:proc_HARK_2018_06_15_1648 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_HARK ;
+    sulo:atTime ex:time_HARK_2018_06_15_1648 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_HARK_2018_06_15_1648 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T16:48:00"^^xsd:dateTime .
+
+ex:measurement_HARK_2018_06_15_1648 a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_HARK_2018_06_15_1648 .
+
+ex:role_Output_HARK a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HARK_2018_06_15_1648 .
+
+# PHQ‑2
+ex:proc_PHQ2_2018_06_15_1723 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_PHQ2 ;
+    sulo:atTime ex:time_PHQ2_2018_06_15_1723 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_PHQ2_2018_06_15_1723 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T17:23:00"^^xsd:dateTime .
+
+ex:measurement_PHQ2_2018_06_15_1723 a chr:Measurement ;
+    sulo:hasValue "4"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_PHQ2_2018_06_15_1723 .
+
+ex:role_Output_PHQ2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ2_2018_06_15_1723 .
+
+# PHQ‑9
+ex:proc_PHQ9_2018_06_15_1751 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_PHQ9 ;
+    sulo:atTime ex:time_PHQ9_2018_06_15_1751 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_PHQ9_2018_06_15_1751 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T17:51:00"^^xsd:dateTime .
+
+ex:measurement_PHQ9_2018_06_15_1751 a chr:Measurement ;
+    sulo:hasValue "4"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_PHQ9_2018_06_15_1751 .
+
+ex:role_Output_PHQ9 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ9_2018_06_15_1751 .
+
+# AUDIT‑C
+ex:proc_AUDITC_2018_06_15_1834 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_AUDITC ;
+    sulo:atTime ex:time_AUDITC_2018_06_15_1834 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_AUDITC_2018_06_15_1834 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T18:34:00"^^xsd:dateTime .
+
+ex:measurement_AUDITC_2018_06_15_1834 a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_AUDITC_2018_06_15_1834 .
+
+ex:role_Output_AUDITC a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_AUDITC_2018_06_15_1834 .
+
+# -----------------------------------------------------------------
+# Evaluation processes (diagnostic statements)
+# -----------------------------------------------------------------
+ex:eval_PartTimeEmployment_2018_06_15_1542 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_PartTimeEmployment ;
+    sulo:atTime ex:time_eval_2018_06_15_1542 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_eval_2018_06_15_1542 a sulo:TimeInstant ;
+    sulo:hasValue "2018-06-15T15:42:00"^^xsd:dateTime .
+
+ex:diag_PartTimeEmployment a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:role_Output_PartTimeEmployment a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_PartTimeEmployment .
+
+# Stress
+ex:eval_Stress_2018_06_15_1542 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                        ex:role_Performer_Visit ,
+                        ex:role_Output_Stress ;
+    sulo:atTime ex:time_eval_2018_06_15_1542 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:diag_Stress a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:role_Output_Stress a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Stress .
+
+# -----------------------------------------------------------------
+# Care plan
+# -----------------------------------------------------------------
+ex:careplan_FollowUp a chr:CarePlan ;
+    sulo:refersTo ex:proc_FollowUpMonitoring .
+
+ex:proc_FollowUpMonitoring a chr:MedicalProcedure .

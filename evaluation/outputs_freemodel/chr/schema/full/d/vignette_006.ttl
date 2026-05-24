@@ -1,0 +1,111 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Arleen_Bergstrom a chr:Person .
+
+ex:physician_Lynwood_Tromp a chr:Person .
+
+ex:careunit_Nashoba_Valley_Medical_Center a chr:CareUnit .
+
+ex:visit_2019_03_15_1413 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasCareProvider ex:physician_Lynwood_Tromp ;
+    chr:hasCareUnit ex:careunit_Nashoba_Valley_Medical_Center .
+
+# Units
+ex:unit_cm a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_per_minute a sulo:Unit .
+ex:unit_score a sulo:Unit .
+
+# Height
+ex:measproc_Height_20190315_1413 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:measurement_Height_20190315_1413 .
+ex:measurement_Height_20190315_1413 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "159.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+# Pain severity
+ex:measproc_PainSeverity_20190315_1413 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:measurement_PainSeverity_20190315_1413 .
+ex:measurement_PainSeverity_20190315_1413 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# Weight
+ex:measproc_Weight_20190315_1413 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:measurement_Weight_20190315_1413 .
+ex:measurement_Weight_20190315_1413 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "58.4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+# BMI
+ex:measproc_BMI_20190315_1413 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:measurement_BMI_20190315_1413 .
+ex:measurement_BMI_20190315_1413 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "23.11"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
+
+# Heart rate
+ex:measproc_HeartRate_20190315_1413 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:measurement_HeartRate_20190315_1413 .
+ex:measurement_HeartRate_20190315_1413 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "63.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_minute .
+
+# Respiratory rate
+ex:measproc_RespiratoryRate_20190315_1413 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:measurement_RespiratoryRate_20190315_1413 .
+ex:measurement_RespiratoryRate_20190315_1413 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_minute .
+
+# HARK total score
+ex:measproc_HARK_20190315_1529 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:measurement_HARK_20190315_1529 .
+ex:measurement_HARK_20190315_1529 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T15:29:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# DAST-10 total score
+ex:measproc_DAST10_20190315_1608 a chr:MeasurementProcess , chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:measurement_DAST10_20190315_1608 .
+ex:measurement_DAST10_20190315_1608 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-03-15T16:08:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# Evaluation and diagnostic statement
+ex:evaluation_2019_03_15_1456 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_Stress .
+
+ex:diagnostic_Stress a chr:DiagnosticStatement .
+
+# Clinical condition
+ex:severity_Moderate a chr:Severity .
+
+ex:condition_Stress a chr:ClinicalCondition ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasRecordDate "2019-03-15T14:56:00"^^xsd:dateTime .
+
+# Care plan
+ex:careplan_2019_03_15 a chr:CarePlan .

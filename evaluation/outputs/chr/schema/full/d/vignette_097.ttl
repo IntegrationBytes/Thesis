@@ -1,0 +1,47 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Harvey63Napoleon578Homenick806 a chr:Person .
+
+ex:visit_2019_04_25 a chr:ClinicalVisit ;
+  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
+  chr:hasCareProvider ex:doctor_Victor493Chavez927 ;
+  chr:hasCareUnit ex:care_unit_4499Acushnet .
+
+ex:care_unit_4499Acushnet a chr:CareUnit .
+
+ex:doctor_Victor493Chavez927 a chr:Person .
+
+ex:measproc_polyp_size_20190425 a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
+  chr:hasResult ex:meas_polyp_size_20190425 .
+
+ex:meas_polyp_size_20190425 a chr:Measurement ;
+  chr:hasQuantityValue "5.8247"^^xsd:float ;
+  chr:hasUnit sulo:millimeter ;
+  chr:hasMeasuredDate "2019-04-25T21:49:00"^^xsd:dateTime .
+
+ex:measproc_stool_hemoglobin_20190425 a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
+  chr:hasResult ex:meas_stool_hemoglobin_20190425 .
+
+ex:meas_stool_hemoglobin_20190425 a chr:Measurement ;
+  chr:hasQuantityValue "20.354"^^xsd:float ;
+  chr:hasUnit sulo:ng_per_mL ;
+  chr:hasMeasuredDate "2019-04-25T21:49:00"^^xsd:dateTime .
+
+ex:eval_20190425 a chr:EvaluationProcess ;
+  chr:hasObservation ex:diag_polyp_colon .
+
+ex:diag_polyp_colon a chr:DiagnosticStatement .
+
+ex:condition_polyp_colon a chr:ClinicalCondition ;
+  chr:hasSeverity ex:severity_moderate ;
+  chr:hasRecordDate "2019-04-25T21:49:00"^^xsd:dateTime .
+
+ex:severity_moderate a chr:Severity .
+
+ex:careplan_followup a chr:CarePlan .

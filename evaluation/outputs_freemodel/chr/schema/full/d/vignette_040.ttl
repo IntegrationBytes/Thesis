@@ -1,0 +1,55 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_CoryFrank a chr:Person .
+
+ex:careunit_LOWELL_GENERAL_HOSPITAL a chr:CareUnit .
+
+ex:physician_Margene_Schamberger a chr:Person .
+
+ex:visit_2017_04_11_14_32 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Margene_Schamberger ;
+    chr:hasCareUnit ex:careunit_LOWELL_GENERAL_HOSPITAL ;
+    chr:hasPatient ex:patient_CoryFrank .
+
+ex:measurement_process_polyp_2017_04_11_15_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:measurement_polyp_2017_04_11_15_00 .
+
+ex:measurement_polyp_2017_04_11_15_00 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-04-11T15:00:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "11.962"^^xsd:float ;
+    chr:hasUnit ex:unit_mm .
+
+ex:unit_mm a sulo:Unit .
+
+ex:measurement_process_hemoglobin_2017_04_11_15_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasResult ex:measurement_hemoglobin_2017_04_11_15_00 .
+
+ex:measurement_hemoglobin_2017_04_11_15_00 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-04-11T15:00:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "242.07"^^xsd:float ;
+    chr:hasUnit ex:unit_ng_per_mL .
+
+ex:unit_ng_per_mL a sulo:Unit .
+
+ex:evaluation_2017_04_11_15_00 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_CoryFrank ;
+    chr:hasObservation ex:diagnostic_statement_polyp_of_colon .
+
+ex:diagnostic_statement_polyp_of_colon a chr:DiagnosticStatement .
+
+ex:clinical_condition_polyp_of_colon a chr:ClinicalCondition ;
+    chr:hasRecordDate "2017-04-11T15:00:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate ;
+    chr:hasLocatedIn ex:anatomical_structure_colon .
+
+ex:severity_moderate a chr:Severity .
+
+ex:anatomical_structure_colon a chr:AnatomicalStructure .
+
+ex:careplan_followup a chr:CarePlan .

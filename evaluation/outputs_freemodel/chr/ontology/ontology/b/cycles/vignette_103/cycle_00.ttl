@@ -1,0 +1,565 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Aracely_Collins a chr:Person .
+ex:physician_Edmundo_Eichmann a chr:Person .
+
+# Care unit
+ex:careunit_father_bill a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2019_06_21_1504 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasParticipant ex:role_VisitProvider ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:isIn ex:careunit_father_bill .
+
+ex:role_VisitPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_VisitProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+
+# Time instants
+ex:time_2019_06_21T1504 a sulo:TimeInstant ;
+    sulo:hasValue "2019-06-21T15:04:00"^^xsd:dateTime .
+ex:time_2019_06_21T1615 a sulo:TimeInstant ;
+    sulo:hasValue "2019-06-21T16:15:00"^^xsd:dateTime .
+ex:time_2019_06_21T1633 a sulo:TimeInstant ;
+    sulo:hasValue "2019-06-21T16:33:00"^^xsd:dateTime .
+ex:time_2019_06_21T1712 a sulo:TimeInstant ;
+    sulo:hasValue "2019-06-21T17:12:00"^^xsd:dateTime .
+
+# Process status
+ex:status_completed a chr:ProcessStatus .
+
+# Severity
+ex:severity_moderate a chr:Severity .
+
+# Units
+ex:unit_percent a sulo:Unit .
+ex:unit_cm a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_mmol_per_L a sulo:Unit .
+ex:unit_10_3_per_uL a sulo:Unit .
+ex:unit_10_6_per_uL a sulo:Unit .
+ex:unit_g_per_dL a sulo:Unit .
+ex:unit_fL a sulo:Unit .
+ex:unit_pg a sulo:Unit .
+ex:unit_score a sulo:Unit .
+ex:unit_number a sulo:Unit .
+
+# Measurement processes and measurements (all at 15:04)
+# Helper function to create measurement triples (written manually for each)
+
+# Hemoglobin A1c
+ex:proc_meas_HbA1c a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HbA1c_Patient ;
+    sulo:hasParticipant ex:role_HbA1c_Provider ;
+    sulo:hasParticipant ex:role_HbA1c_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_HbA1c_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_HbA1c_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_HbA1c_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_HbA1c .
+ex:meas_HbA1c a chr:Measurement ;
+    sulo:hasValue "6.13"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Body Height
+ex:proc_meas_Height a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Height_Patient ;
+    sulo:hasParticipant ex:role_Height_Provider ;
+    sulo:hasParticipant ex:role_Height_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Height_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_Height_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_Height_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_Height .
+ex:meas_Height a chr:Measurement ;
+    sulo:hasValue "172"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Body Weight
+ex:proc_meas_Weight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Weight_Patient ;
+    sulo:hasParticipant ex:role_Weight_Provider ;
+    sulo:hasParticipant ex:role_Weight_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Weight_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_Weight_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_Weight_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_Weight .
+ex:meas_Weight a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Body Mass Index
+ex:proc_meas_BMI a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_BMI_Patient ;
+    sulo:hasParticipant ex:role_BMI_Provider ;
+    sulo:hasParticipant ex:role_BMI_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_BMI_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_BMI_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_BMI_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_BMI .
+ex:meas_BMI a chr:Measurement ;
+    sulo:hasValue "27.79"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Heart Rate
+ex:proc_meas_HR a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HR_Patient ;
+    sulo:hasParticipant ex:role_HR_Provider ;
+    sulo:hasParticipant ex:role_HR_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_HR_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_HR_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_HR_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_HR .
+ex:meas_HR a chr:Measurement ;
+    sulo:hasValue "74"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Respiratory Rate
+ex:proc_meas_RR a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_RR_Patient ;
+    sulo:hasParticipant ex:role_RR_Provider ;
+    sulo:hasParticipant ex:role_RR_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_RR_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_RR_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_RR_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_RR .
+ex:meas_RR a chr:Measurement ;
+    sulo:hasValue "15"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Glucose
+ex:proc_meas_Glucose a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Glucose_Patient ;
+    sulo:hasParticipant ex:role_Glucose_Provider ;
+    sulo:hasParticipant ex:role_Glucose_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Glucose_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_Glucose_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_Glucose_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_Glucose .
+ex:meas_Glucose a chr:Measurement ;
+    sulo:hasValue "79.39"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Urea nitrogen
+ex:proc_meas_UreaNitrogen a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_UreaNitrogen_Patient ;
+    sulo:hasParticipant ex:role_UreaNitrogen_Provider ;
+    sulo:hasParticipant ex:role_UreaNitrogen_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_UreaNitrogen_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_UreaNitrogen_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_UreaNitrogen_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_UreaNitrogen .
+ex:meas_UreaNitrogen a chr:Measurement ;
+    sulo:hasValue "17.56"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Creatinine
+ex:proc_meas_Creatinine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Creatinine_Patient ;
+    sulo:hasParticipant ex:role_Creatinine_Provider ;
+    sulo:hasParticipant ex:role_Creatinine_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Creatinine_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_Creatinine_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_Creatinine_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_Creatinine .
+ex:meas_Creatinine a chr:Measurement ;
+    sulo:hasValue "0.66"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Calcium
+ex:proc_meas_Calcium a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Calcium_Patient ;
+    sulo:hasParticipant ex:role_Calcium_Provider ;
+    sulo:hasParticipant ex:role_Calcium_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Calcium_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_Calcium_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_Calcium_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_Calcium .
+ex:meas_Calcium a chr:Measurement ;
+    sulo:hasValue "10.01"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Sodium
+ex:proc_meas_Sodium a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Sodium_Patient ;
+    sulo:hasParticipant ex:role_Sodium_Provider ;
+    sulo:hasParticipant ex:role_Sodium_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Sodium_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_Sodium_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_Sodium_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_Sodium .
+ex:meas_Sodium a chr:Measurement ;
+    sulo:hasValue "138.48"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Potassium
+ex:proc_meas_Potassium a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Potassium_Patient ;
+    sulo:hasParticipant ex:role_Potassium_Provider ;
+    sulo:hasParticipant ex:role_Potassium_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Potassium_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_Potassium_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_Potassium_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_Potassium .
+ex:meas_Potassium a chr:Measurement ;
+    sulo:hasValue "4.08"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Chloride
+ex:proc_meas_Chloride a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Chloride_Patient ;
+    sulo:hasParticipant ex:role_Chloride_Provider ;
+    sulo:hasParticipant ex:role_Chloride_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Chloride_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_Chloride_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_Chloride_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_Chloride .
+ex:meas_Chloride a chr:Measurement ;
+    sulo:hasValue "101.97"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Carbon dioxide
+ex:proc_meas_CO2 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_CO2_Patient ;
+    sulo:hasParticipant ex:role_CO2_Provider ;
+    sulo:hasParticipant ex:role_CO2_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_CO2_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_CO2_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_CO2_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_CO2 .
+ex:meas_CO2 a chr:Measurement ;
+    sulo:hasValue "27.1"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Leukocytes
+ex:proc_meas_Leukocytes a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Leukocytes_Patient ;
+    sulo:hasParticipant ex:role_Leukocytes_Provider ;
+    sulo:hasParticipant ex:role_Leukocytes_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Leukocytes_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_Leukocytes_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_Leukocytes_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_Leukocytes .
+ex:meas_Leukocytes a chr:Measurement ;
+    sulo:hasValue "9.4337"^^xsd:float ;
+    sulo:hasPart ex:unit_10_3_per_uL ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Erythrocytes
+ex:proc_meas_Erythrocytes a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Erythrocytes_Patient ;
+    sulo:hasParticipant ex:role_Erythrocytes_Provider ;
+    sulo:hasParticipant ex:role_Erythrocytes_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Erythrocytes_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_Erythrocytes_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_Erythrocytes_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_Erythrocytes .
+ex:meas_Erythrocytes a chr:Measurement ;
+    sulo:hasValue "5.3919"^^xsd:float ;
+    sulo:hasPart ex:unit_10_6_per_uL ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Hemoglobin (mass/volume)
+ex:proc_meas_HbMass a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HbMass_Patient ;
+    sulo:hasParticipant ex:role_HbMass_Provider ;
+    sulo:hasParticipant ex:role_HbMass_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_HbMass_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_HbMass_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_HbMass_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_HbMass .
+ex:meas_HbMass a chr:Measurement ;
+    sulo:hasValue "13.863"^^xsd:float ;
+    sulo:hasPart ex:unit_g_per_dL ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Hematocrit
+ex:proc_meas_Hematocrit a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Hematocrit_Patient ;
+    sulo:hasParticipant ex:role_Hematocrit_Provider ;
+    sulo:hasParticipant ex:role_Hematocrit_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Hematocrit_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_Hematocrit_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_Hematocrit_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_Hematocrit .
+ex:meas_Hematocrit a chr:Measurement ;
+    sulo:hasValue "45.681"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# MCV
+ex:proc_meas_MCV a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_MCV_Patient ;
+    sulo:hasParticipant ex:role_MCV_Provider ;
+    sulo:hasParticipant ex:role_MCV_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_MCV_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_MCV_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_MCV_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_MCV .
+ex:meas_MCV a chr:Measurement ;
+    sulo:hasValue "85.827"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# MCH
+ex:proc_meas_MCH a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_MCH_Patient ;
+    sulo:hasParticipant ex:role_MCH_Provider ;
+    sulo:hasParticipant ex:role_MCH_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_MCH_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_MCH_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_MCH_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_MCH .
+ex:meas_MCH a chr:Measurement ;
+    sulo:hasValue "29.544"^^xsd:float ;
+    sulo:hasPart ex:unit_pg ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# MCHC
+ex:proc_meas_MCHC a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_MCHC_Patient ;
+    sulo:hasParticipant ex:role_MCHC_Provider ;
+    sulo:hasParticipant ex:role_MCHC_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_MCHC_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_MCHC_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_MCHC_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_MCHC .
+ex:meas_MCHC a chr:Measurement ;
+    sulo:hasValue "33.48"^^xsd:float ;
+    sulo:hasPart ex:unit_g_per_dL ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Erythrocyte DistWidth
+ex:proc_meas_ErythrocyteDistWidth a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_EryDistWidth_Patient ;
+    sulo:hasParticipant ex:role_EryDistWidth_Provider ;
+    sulo:hasParticipant ex:role_EryDistWidth_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_EryDistWidth_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_EryDistWidth_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_EryDistWidth_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_EryDistWidth .
+ex:meas_EryDistWidth a chr:Measurement ;
+    sulo:hasValue "42.638"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Platelets
+ex:proc_meas_Platelets a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Platelets_Patient ;
+    sulo:hasParticipant ex:role_Platelets_Provider ;
+    sulo:hasParticipant ex:role_Platelets_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_Platelets_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_Platelets_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_Platelets_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_Platelets .
+ex:meas_Platelets a chr:Measurement ;
+    sulo:hasValue "374.02"^^xsd:float ;
+    sulo:hasPart ex:unit_10_3_per_uL ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Platelet distribution width
+ex:proc_meas_PDW a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PDW_Patient ;
+    sulo:hasParticipant ex:role_PDW_Provider ;
+    sulo:hasParticipant ex:role_PDW_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_PDW_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_PDW_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_PDW_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_PDW .
+ex:meas_PDW a chr:Measurement ;
+    sulo:hasValue "377.68"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# Platelet mean volume
+ex:proc_meas_PlateletMeanVol a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PlateletMeanVol_Patient ;
+    sulo:hasParticipant ex:role_PlateletMeanVol_Provider ;
+    sulo:hasParticipant ex:role_PlateletMeanVol_Output ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_PlateletMeanVol_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_PlateletMeanVol_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_PlateletMeanVol_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_PlateletMeanVol .
+ex:meas_PlateletMeanVol a chr:Measurement ;
+    sulo:hasValue "11.608"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_2019_06_21T1504 .
+
+# GAD-7 total score (reported)
+ex:proc_meas_GAD7 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_GAD7_Patient ;
+    sulo:hasParticipant ex:role_GAD7_Provider ;
+    sulo:hasParticipant ex:role_GAD7_Output ;
+    sulo:atTime ex:time_2019_06_21T1615 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_GAD7_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_GAD7_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_GAD7_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_GAD7 .
+ex:meas_GAD7 a chr:Measurement ;
+    sulo:hasValue "17"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2019_06_21T1615 .
+
+# Morse Fall Scale total
+ex:proc_meas_MFS a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_MFS_Patient ;
+    sulo:hasParticipant ex:role_MFS_Provider ;
+    sulo:hasParticipant ex:role_MFS_Output ;
+    sulo:atTime ex:time_2019_06_21T1633 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_MFS_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_MFS_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_MFS_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_MFS .
+ex:meas_MFS a chr:Measurement ;
+    sulo:hasValue "27"^^xsd:float ;
+    sulo:hasPart ex:unit_number ;
+    sulo:atTime ex:time_2019_06_21T1633 .
+
+# PHQ-2 total score
+ex:proc_meas_PHQ2 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PHQ2_Patient ;
+    sulo:hasParticipant ex:role_PHQ2_Provider ;
+    sulo:hasParticipant ex:role_PHQ2_Output ;
+    sulo:atTime ex:time_2019_06_21T1712 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_PHQ2_Patient a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_PHQ2_Provider a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_PHQ2_Output a chr:OutputRole ; sulo:isFeatureOf ex:meas_PHQ2 .
+ex:meas_PHQ2 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2019_06_21T1712 .
+
+# Evaluation processes (diagnostic statements)
+
+# Essential hypertension
+ex:eval_EssHypertension a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_EssHypertension ;
+    sulo:hasParticipant ex:role_EvalProvider_EssHypertension ;
+    sulo:hasParticipant ex:role_EvalOutput_EssHypertension ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_EvalPatient_EssHypertension a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_EvalProvider_EssHypertension a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_EvalOutput_EssHypertension a chr:OutputRole ; sulo:isFeatureOf ex:diag_EssHypertension .
+ex:diag_EssHypertension a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+# Medication review due
+ex:eval_MedReview a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_MedReview ;
+    sulo:hasParticipant ex:role_EvalProvider_MedReview ;
+    sulo:hasParticipant ex:role_EvalOutput_MedReview ;
+    sulo:atTime ex:time_2019_06_21T1504 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_EvalPatient_MedReview a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_EvalProvider_MedReview a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_EvalOutput_MedReview a chr:OutputRole ; sulo:isFeatureOf ex:diag_MedReview .
+ex:diag_MedReview a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+# Full-time employment
+ex:eval_FullTimeEmployment a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_FullTime ;
+    sulo:hasParticipant ex:role_EvalProvider_FullTime ;
+    sulo:hasParticipant ex:role_EvalOutput_FullTime ;
+    sulo:atTime ex:time_2019_06_21T1546 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_EvalPatient_FullTime a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_EvalProvider_FullTime a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_EvalOutput_FullTime a chr:OutputRole ; sulo:isFeatureOf ex:diag_FullTime .
+ex:diag_FullTime a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+# Social isolation
+ex:eval_SocialIsolation a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_SocialIsolation ;
+    sulo:hasParticipant ex:role_EvalProvider_SocialIsolation ;
+    sulo:hasParticipant ex:role_EvalOutput_SocialIsolation ;
+    sulo:atTime ex:time_2019_06_21T1546 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_EvalPatient_SocialIsolation a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_EvalProvider_SocialIsolation a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_EvalOutput_SocialIsolation a chr:OutputRole ; sulo:isFeatureOf ex:diag_SocialIsolation .
+ex:diag_SocialIsolation a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+# Victim of intimate partner abuse
+ex:eval_VictimAbuse a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_VictimAbuse ;
+    sulo:hasParticipant ex:role_EvalProvider_VictimAbuse ;
+    sulo:hasParticipant ex:role_EvalOutput_VictimAbuse ;
+    sulo:atTime ex:time_2019_06_21T1546 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_EvalPatient_VictimAbuse a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_EvalProvider_VictimAbuse a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_EvalOutput_VictimAbuse a chr:OutputRole ; sulo:isFeatureOf ex:diag_VictimAbuse .
+ex:diag_VictimAbuse a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+# Severe anxiety (panic)
+ex:eval_SevereAnxiety a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_SevereAnxiety ;
+    sulo:hasParticipant ex:role_EvalProvider_SevereAnxiety ;
+    sulo:hasParticipant ex:role_EvalOutput_SevereAnxiety ;
+    sulo:atTime ex:time_2019_06_21T1615 ;
+    sulo:hasFeature ex:status_completed .
+ex:role_EvalPatient_SevereAnxiety a chr:SubjectOfCareRole ; sulo:isFeatureOf ex:patient_Aracely_Collins .
+ex:role_EvalProvider_SevereAnxiety a chr:CareProviderRole ; sulo:isFeatureOf ex:physician_Edmundo_Eichmann .
+ex:role_EvalOutput_SevereAnxiety a chr:OutputRole ; sulo:isFeatureOf ex:diag_SevereAnxiety .
+ex:diag_SevereAnxiety a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+# Care plan
+ex:careplan_1 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup .
+
+ex:procedure_followup a chr:MedicalProcedure .

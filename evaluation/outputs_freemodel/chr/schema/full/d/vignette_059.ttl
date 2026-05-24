@@ -1,0 +1,116 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Delma583_Adriane398_Huel628 a chr:Person .
+
+ex:person_Dr_Drew592_Simonis280 a chr:Person .
+
+ex:careunit_HarborHealthServicesInc a chr:CareUnit .
+
+ex:visit_2020_09_24_08_12 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasCareProvider ex:person_Dr_Drew592_Simonis280 ;
+    chr:hasCareUnit ex:careunit_HarborHealthServicesInc .
+
+# Measurement processes and results
+
+ex:measproc_Height_20200924_0812 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_Height_20200924_0812 .
+
+ex:measurement_Height_20200924_0812 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "70.9"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+ex:measproc_PainSeverity_20200924_0812 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_PainSeverity_20200924_0812 .
+
+ex:measurement_PainSeverity_20200924_0812 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:measproc_Weight_20200924_0812 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_Weight_20200924_0812 .
+
+ex:measurement_Weight_20200924_0812 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.8"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+ex:measproc_WeightForLength_20200924_0812 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_WeightForLength_20200924_0812 .
+
+ex:measurement_WeightForLength_20200924_0812 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "91.197"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+ex:measproc_HeadCircPercentile_20200924_0812 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_HeadCircPercentile_20200924_0812 .
+
+ex:measurement_HeadCircPercentile_20200924_0812 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "24.46"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+ex:measproc_HeadCirc_20200924_0812 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_HeadCirc_20200924_0812 .
+
+ex:measurement_HeadCirc_20200924_0812 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "44.01"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+ex:measproc_HeartRate_20200924_0812 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_HeartRate_20200924_0812 .
+
+ex:measurement_HeartRate_20200924_0812 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "88"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+ex:measproc_RespRate_20200924_0812 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_RespRate_20200924_0812 .
+
+ex:measurement_RespRate_20200924_0812 a chr:Measurement ;
+    chr:hasMeasuredDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+# Evaluation and condition
+
+ex:diagstmt_MedicationReviewDue a chr:DiagnosticStatement .
+
+ex:evaluation_2020_09_24_08_12 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagstmt_MedicationReviewDue .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:condition_MedicationReviewDue a chr:ClinicalCondition ;
+    chr:hasRecordDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+# Care plan and follow‑up procedure
+
+ex:status_completed a chr:ProcessStatus .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    chr:hasPerformedDate "2020-09-24T08:12:00"^^xsd:dateTime ;
+    chr:hasPerformer ex:person_Dr_Drew592_Simonis280 ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasStatus ex:status_completed .
+
+ex:careplan_FollowUp a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_FollowUpMonitoring .

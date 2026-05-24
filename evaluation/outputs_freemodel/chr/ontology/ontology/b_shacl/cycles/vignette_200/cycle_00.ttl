@@ -1,0 +1,371 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:person_Patient a chr:Person .
+ex:person_Physician a chr:Person .
+
+# Care unit
+ex:careUnit_Encompass a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2014_07_23_16_47 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit ;
+    sulo:hasParticipant ex:role_CareProvider_Visit ;
+    sulo:atTime ex:time_Visit .
+
+ex:role_SubjectOfCare_Visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_CareProvider_Visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Physician .
+
+ex:time_Visit a sulo:TimeInstant ;
+    sulo:hasValue "2014-07-23T16:47:00"^^xsd:dateTime .
+
+# Common status
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Common measurement time instant
+ex:time_Measure_2014_07_23_16_47 a sulo:TimeInstant ;
+    sulo:hasValue "2014-07-23T16:47:00"^^xsd:dateTime .
+
+# Units
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_mmol_per_L a sulo:Unit .
+ex:unit_mL_per_min_per_1_73_m2 a sulo:Unit .
+ex:unit_percent a sulo:Unit .
+ex:unit_nominal a sulo:Unit .
+ex:unit_pH a sulo:Unit .
+
+# 1. Glucose in Serum
+ex:measurement_Glucose_Serum a chr:Measurement ;
+    sulo:hasValue "90.2"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_Glucose_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Glucose_Serum ;
+    sulo:hasParticipant ex:role_Output_Glucose_Serum ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_Glucose_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_Glucose_Serum a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Serum .
+
+# 2. Urea nitrogen in Serum
+ex:measurement_UreaNitrogen_Serum a chr:Measurement ;
+    sulo:hasValue "18.33"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_UreaNitrogen_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_UreaNitrogen_Serum ;
+    sulo:hasParticipant ex:role_Output_UreaNitrogen_Serum ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_UreaNitrogen_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_UreaNitrogen_Serum a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen_Serum .
+
+# 3. Creatinine in Serum
+ex:measurement_Creatinine_Serum a chr:Measurement ;
+    sulo:hasValue "1.94"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_Creatinine_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Creatinine_Serum ;
+    sulo:hasParticipant ex:role_Output_Creatinine_Serum ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_Creatinine_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_Creatinine_Serum a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine_Serum .
+
+# 4. Calcium in Serum
+ex:measurement_Calcium_Serum a chr:Measurement ;
+    sulo:hasValue "9.83"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_Calcium_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Calcium_Serum ;
+    sulo:hasParticipant ex:role_Output_Calcium_Serum ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_Calcium_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_Calcium_Serum a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium_Serum .
+
+# 5. Sodium in Serum
+ex:measurement_Sodium_Serum a chr:Measurement ;
+    sulo:hasValue "138.97"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_Sodium_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Sodium_Serum ;
+    sulo:hasParticipant ex:role_Output_Sodium_Serum ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_Sodium_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_Sodium_Serum a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium_Serum .
+
+# 6. Potassium in Serum
+ex:measurement_Potassium_Serum a chr:Measurement ;
+    sulo:hasValue "4.06"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_Potassium_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Potassium_Serum ;
+    sulo:hasParticipant ex:role_Output_Potassium_Serum ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_Potassium_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_Potassium_Serum a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium_Serum .
+
+# 7. Chloride in Serum
+ex:measurement_Chloride_Serum a chr:Measurement ;
+    sulo:hasValue "101.39"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_Chloride_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Chloride_Serum ;
+    sulo:hasParticipant ex:role_Output_Chloride_Serum ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_Chloride_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_Chloride_Serum a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride_Serum .
+
+# 8. Carbon dioxide, total in Serum
+ex:measurement_CO2_Serum a chr:Measurement ;
+    sulo:hasValue "23.77"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_CO2_Serum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_CO2_Serum ;
+    sulo:hasParticipant ex:role_Output_CO2_Serum ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_CO2_Serum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_CO2_Serum a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2_Serum .
+
+# 9. Glomerular filtration rate
+ex:measurement_GFR a chr:Measurement ;
+    sulo:hasValue "54.863"^^xsd:float ;
+    sulo:hasPart ex:unit_mL_per_min_per_1_73_m2 ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_GFR a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_GFR ;
+    sulo:hasParticipant ex:role_Output_GFR ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_GFR a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_GFR a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GFR .
+
+# 10. Glucose in Urine
+ex:measurement_Glucose_Urine a chr:Measurement ;
+    sulo:hasValue "1.0879"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_Glucose_Urine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Glucose_Urine ;
+    sulo:hasParticipant ex:role_Output_Glucose_Urine ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_Glucose_Urine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_Glucose_Urine a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Urine .
+
+# 11. Bilirubin.total in Urine
+ex:measurement_Bilirubin_Urine a chr:Measurement ;
+    sulo:hasValue "0.37917"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_Bilirubin_Urine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Bilirubin_Urine ;
+    sulo:hasParticipant ex:role_Output_Bilirubin_Urine ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_Bilirubin_Urine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_Bilirubin_Urine a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Bilirubin_Urine .
+
+# 12. Ketones in Urine
+ex:measurement_Ketones_Urine a chr:Measurement ;
+    sulo:hasValue "15.084"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_Ketones_Urine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Ketones_Urine ;
+    sulo:hasParticipant ex:role_Output_Ketones_Urine ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_Ketones_Urine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_Ketones_Urine a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Ketones_Urine .
+
+# 13. Specific gravity of Urine
+ex:measurement_SpecificGravity_Urine a chr:Measurement ;
+    sulo:hasValue "1.0287"^^xsd:float ;
+    sulo:hasPart ex:unit_nominal ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_SpecificGravity_Urine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_SpecificGravity_Urine ;
+    sulo:hasParticipant ex:role_Output_SpecificGravity_Urine ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_SpecificGravity_Urine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_SpecificGravity_Urine a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_SpecificGravity_Urine .
+
+# 14. pH of Urine
+ex:measurement_pH_Urine a chr:Measurement ;
+    sulo:hasValue "6.5377"^^xsd:float ;
+    sulo:hasPart ex:unit_pH ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_pH_Urine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_pH_Urine ;
+    sulo:hasParticipant ex:role_Output_pH_Urine ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_pH_Urine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_pH_Urine a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_pH_Urine .
+
+# 15. Protein in Urine
+ex:measurement_Protein_Urine a chr:Measurement ;
+    sulo:hasValue "287.43"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_Protein_Urine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Protein_Urine ;
+    sulo:hasParticipant ex:role_Output_Protein_Urine ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_Protein_Urine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_Protein_Urine a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Protein_Urine .
+
+# 16. Hemoglobin A1c/Hemoglobin.total in Blood
+ex:measurement_HbA1c_Blood a chr:Measurement ;
+    sulo:hasValue "2.98"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:process_HbA1c_Blood a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HbA1c_Blood ;
+    sulo:hasParticipant ex:role_Output_HbA1c_Blood ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Measure_2014_07_23_16_47 .
+
+ex:role_SubjectOfCare_HbA1c_Blood a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_Output_HbA1c_Blood a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HbA1c_Blood .
+
+# Evaluation process and diagnostic statement
+ex:evaluation_2014_07_23_16_47 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eval ;
+    sulo:hasParticipant ex:role_CareProvider_Eval ;
+    sulo:hasParticipant ex:role_Output_Eval ;
+    sulo:atTime ex:time_Eval .
+
+ex:role_SubjectOfCare_Eval a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Patient .
+
+ex:role_CareProvider_Eval a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Physician .
+
+ex:role_Output_Eval a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnostic_MedicationReview .
+
+ex:diagnostic_MedicationReview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" .
+
+ex:time_Eval a sulo:TimeInstant ;
+    sulo:hasValue "2014-07-23T16:47:00"^^xsd:dateTime .
+
+# Clinical condition with severity
+ex:condition_2014_07_23_16_47 a chr:ClinicalCondition ;
+    sulo:atTime ex:time_Condition ;
+    sulo:hasFeature ex:severity_Moderate .
+
+ex:time_Condition a sulo:TimeInstant ;
+    sulo:hasValue "2014-07-23T16:47:00"^^xsd:dateTime .
+
+ex:severity_Moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+# Care plan referencing a medical procedure
+ex:carePlan_2014_07_23 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "follow-up monitoring and routine review" .

@@ -1,0 +1,61 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_CaseyElijahParker a chr:Person .
+
+ex:physician_JacqueStreich a chr:Person .
+
+ex:careunit_ACCLAIM_HOME_HEALTH_CARE a chr:CareUnit .
+
+ex:visit_2019_05_19 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasCareProvider ex:physician_JacqueStreich ;
+    chr:hasCareUnit ex:careunit_ACCLAIM_HOME_HEALTH_CARE .
+
+ex:device_DXA_Scanner a chr:Device .
+
+ex:measproc_DXA_Radius_Ulna_2019_05_19 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_DXA_Tscore_2019_05_19 ;
+    chr:hasDevice ex:device_DXA_Scanner ;
+    chr:hasPerformedDate "2019-05-19T19:21:00"^^xsd:dateTime ;
+    chr:hasStatus ex:status_completed .
+
+ex:status_completed a chr:ProcessStatus .
+
+ex:measurement_DXA_Tscore_2019_05_19 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-05-19T19:21:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.33092"^^xsd:float ;
+    chr:hasUnit ex:unit_Tscore .
+
+ex:unit_Tscore a sulo:Unit .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:AnatomicalStructure_Bone a chr:AnatomicalStructure .
+ex:AnatomicalStructure_Ankle a chr:AnatomicalStructure .
+
+ex:condition_FractureBone a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-05-19T18:59:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasLocatedIn ex:AnatomicalStructure_Bone .
+
+ex:condition_FractureAnkle a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-05-19T18:59:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasLocatedIn ex:AnatomicalStructure_Ankle .
+
+ex:diag_FractureBone a chr:DiagnosticStatement .
+ex:diag_FractureAnkle a chr:DiagnosticStatement .
+
+ex:evaluation_1_2019_05_19 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_FractureBone .
+
+ex:evaluation_2_2019_05_19 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_FractureAnkle .
+
+ex:careplan_2019_05_19 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:measproc_DXA_Radius_Ulna_2019_05_19 .

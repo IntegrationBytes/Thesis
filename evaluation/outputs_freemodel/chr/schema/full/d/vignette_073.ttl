@@ -1,0 +1,110 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_DoloresNevarez a chr:Person .
+
+ex:physician_CariKohler a chr:Person .
+
+ex:careunit_DRHEsPrimaryCare a chr:CareUnit .
+
+ex:visit_2025_11_25_0420 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_CariKohler ;
+    chr:hasCareUnit ex:careunit_DRHEsPrimaryCare ;
+    chr:hasPatient ex:patient_DoloresNevarez .
+
+ex:measproc_Height_20251125_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DoloresNevarez ;
+    chr:hasResult ex:measurement_Height_20251125_0420 .
+
+ex:measurement_Height_20251125_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "162.9"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+ex:measproc_Weight_20251125_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DoloresNevarez ;
+    chr:hasResult ex:measurement_Weight_20251125_0420 .
+
+ex:measurement_Weight_20251125_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "65.1"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+ex:measproc_BMI_Ratio_20251125_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DoloresNevarez ;
+    chr:hasResult ex:measurement_BMI_Ratio_20251125_0420 .
+
+ex:measurement_BMI_Ratio_20251125_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "24.55"^^xsd:float ;
+    chr:hasUnit sulo:kilogramPerSquareMeter .
+
+ex:measproc_BMI_Percentile_20251125_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DoloresNevarez ;
+    chr:hasResult ex:measurement_BMI_Percentile_20251125_0420 .
+
+ex:measurement_BMI_Percentile_20251125_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "91.807"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+ex:measproc_HeartRate_20251125_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DoloresNevarez ;
+    chr:hasResult ex:measurement_HeartRate_20251125_0420 .
+
+ex:measurement_HeartRate_20251125_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "72"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+ex:measproc_RespRate_20251125_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DoloresNevarez ;
+    chr:hasResult ex:measurement_RespRate_20251125_0420 .
+
+ex:measurement_RespRate_20251125_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+ex:measproc_PainSeverity_20251125_0420 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DoloresNevarez ;
+    chr:hasResult ex:measurement_PainSeverity_20251125_0420 .
+
+ex:measurement_PainSeverity_20251125_0420 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:measproc_PHQ9_20251125_0457 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_DoloresNevarez ;
+    chr:hasResult ex:measurement_PHQ9_20251125_0457 .
+
+ex:measurement_PHQ9_20251125_0457 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-11-25T04:57:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:evaluation_20251125_0420 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_MedicationReview .
+
+ex:diagnostic_MedicationReview a chr:DiagnosticStatement .
+
+ex:condition_MedicationReview a chr:ClinicalCondition ;
+    chr:hasRecordDate "2025-11-25T04:20:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:evaluation_20251125_0457 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagnostic_Gingivitis .
+
+ex:diagnostic_Gingivitis a chr:DiagnosticStatement .
+
+ex:condition_Gingivitis a chr:ClinicalCondition ;
+    chr:hasRecordDate "2025-11-25T04:57:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:careplan_FollowUp a chr:CarePlan .

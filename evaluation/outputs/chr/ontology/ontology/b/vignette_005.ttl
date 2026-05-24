@@ -27,10 +27,11 @@ ex:role_visit_provider a chr:CareProviderRole ;
 
 ex:visit_2023_12_01_1724 sulo:hasParticipant ex:role_visit_provider .
 
-ex:general_examination a chr:MedicalProcedure, chr:Person .
+ex:general_examination_event a chr:ClinicalActivity ;
+  sulo:isAbout ex:general_examination .
 
 ex:role_visit_procedure a chr:PerformerRole ;
-  sulo:isFeatureOf ex:general_examination .
+  sulo:isFeatureOf ex:general_examination_event .
 
 ex:visit_2023_12_01_1724 sulo:hasParticipant ex:role_visit_procedure .
 
@@ -314,8 +315,6 @@ ex:measurement_potassium a chr:Measurement ;
 ex:time_measurement_potassium a sulo:TimeInstant ;
   sulo:hasValue "2023-12-01T17:24:00"^^xsd:dateTime .
 
-ex:unit_mmol_L a sulo:Unit .
-
 ex:measurement_process_potassium a chr:MeasurementProcess ;
   sulo:atTime ex:time_measurement_potassium .
 
@@ -563,3 +562,5 @@ ex:condition_part_time_employment sulo:hasFeature ex:severity_moderate .
 ex:care_plan a chr:CarePlan .
 
 ex:care_plan sulo:refersTo ex:general_examination .
+
+ex:general_examination a chr:MedicalProcedure .

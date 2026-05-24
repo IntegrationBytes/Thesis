@@ -1,0 +1,40 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Harvey63Napoleon578Homenick806 a chr:Person .
+
+ex:visit_2020_05_29 a chr:ClinicalVisit ;
+  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
+  chr:hasCareProvider ex:doctor_Victor493Chavez927 ;
+  chr:hasCareUnit ex:care_unit_4499Acushnet .
+
+ex:care_unit_4499Acushnet a chr:CareUnit .
+
+ex:doctor_Victor493Chavez927 a chr:Person .
+
+ex:pain_measurement_process a chr:MeasurementProcess ;
+  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
+  chr:hasResult ex:pain_measurement .
+
+ex:pain_measurement a chr:Measurement ;
+  chr:hasQuantityValue "6.0"^^xsd:float ;
+  chr:hasUnit ex:unit_score ;
+  chr:hasMeasuredDate "2020-05-29T22:22:00"^^xsd:dateTime .
+
+ex:unit_score a sulo:Unit .
+
+ex:evaluation_2020_05_29 a chr:EvaluationProcess ;
+  chr:hasObservation ex:diagnostic_recurrent_rectal_polyp .
+
+ex:diagnostic_recurrent_rectal_polyp a chr:DiagnosticStatement .
+
+ex:clinical_condition_rectal_polyp a chr:ClinicalCondition ;
+  chr:hasRecordDate "2020-05-29T22:22:00"^^xsd:dateTime ;
+  chr:hasSeverity ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity .
+
+ex:care_plan a chr:CarePlan .

@@ -1,0 +1,44 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_EstelaGrant a chr:Person .
+
+ex:physician_NickolasSchumm a chr:Person .
+
+ex:careunit_ENCOMPASS_BRAINTREE a chr:CareUnit .
+
+ex:visit_2007_05_07_0335 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasCareProvider ex:physician_NickolasSchumm ;
+    chr:hasCareUnit ex:careunit_ENCOMPASS_BRAINTREE .
+
+ex:measproc_temp_2007_05_07_0335 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_temp_2007_05_07_0335 .
+
+ex:measurement_temp_2007_05_07_0335 a chr:Measurement ;
+    chr:hasMeasuredDate "2007-05-07T03:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "38.234"^^xsd:float ;
+    chr:hasUnit ex:unit_celsius .
+
+ex:unit_celsius a sulo:Unit .
+
+ex:condition_strep_throat_2007_05_07 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2007-05-07T03:35:00"^^xsd:dateTime ;
+    chr:hasConditionEndDate "2007-05-07T03:35:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity .
+
+ex:diag_strep_throat a chr:DiagnosticStatement .
+
+ex:evaluation_2007_05_07_0335 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_strep_throat .
+
+ex:careplan_followup_2007_05_07 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_followup_monitoring .
+
+ex:procedure_followup_monitoring a chr:MedicalProcedure .

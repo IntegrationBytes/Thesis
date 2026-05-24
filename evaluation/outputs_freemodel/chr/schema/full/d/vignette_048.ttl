@@ -1,0 +1,111 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_Daren950_Ed239_Strosin214 a chr:Person .
+
+ex:physician_Ping698_Weissnat378 a chr:Person .
+
+ex:careunit_community_health_programs_inc a chr:CareUnit .
+
+ex:visit_2017_09_09_1001 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Ping698_Weissnat378 ;
+    chr:hasCareUnit ex:careunit_community_health_programs_inc ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 .
+
+ex:measproc_height_20170909_1001 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_height_20170909_1001 .
+
+ex:measurement_height_20170909_1001 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "157.0"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+ex:measproc_pain_severity_20170909_1001 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_pain_severity_20170909_1001 .
+
+ex:measurement_pain_severity_20170909_1001 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:measproc_weight_20170909_1001 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_weight_20170909_1001 .
+
+ex:measurement_weight_20170909_1001 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "38.8"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+ex:measproc_bmi_ratio_20170909_1001 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_bmi_ratio_20170909_1001 .
+
+ex:measurement_bmi_ratio_20170909_1001 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15.74"^^xsd:float ;
+    chr:hasUnit sulo:kilogram_per_square_meter .
+
+ex:measproc_bmi_percentile_20170909_1001 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_bmi_percentile_20170909_1001 .
+
+ex:measurement_bmi_percentile_20170909_1001 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "7.4534"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+ex:measproc_heart_rate_20170909_1001 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_heart_rate_20170909_1001 .
+
+ex:measurement_heart_rate_20170909_1001 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "76.0"^^xsd:float ;
+    chr:hasUnit sulo:per_minute .
+
+ex:measproc_respiratory_rate_20170909_1001 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_respiratory_rate_20170909_1001 .
+
+ex:measurement_respiratory_rate_20170909_1001 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14.0"^^xsd:float ;
+    chr:hasUnit sulo:per_minute .
+
+ex:measproc_phq9_20170909_1037 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_phq9_20170909_1037 .
+
+ex:measurement_phq9_20170909_1037 a chr:Measurement ;
+    chr:hasMeasuredDate "2017-09-09T10:37:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+ex:diag_med_review a chr:DiagnosticStatement .
+
+ex:evaluation_20170909_1001 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasObservation ex:diag_med_review .
+
+ex:severity_moderate a chr:Severity .
+
+ex:condition_med_review a chr:ClinicalCondition ;
+    chr:hasRecordDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+ex:status_completed a chr:ProcessStatus .
+
+ex:procedure_well_child_visit_20170909_1001 a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasPerformedDate "2017-09-09T10:01:00"^^xsd:dateTime ;
+    chr:hasPerformer ex:physician_Ping698_Weissnat378 ;
+    chr:hasStatus ex:status_completed .
+
+ex:careplan_20170909_1001 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_well_child_visit_20170909_1001 .

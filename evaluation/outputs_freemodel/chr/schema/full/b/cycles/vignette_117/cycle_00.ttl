@@ -1,0 +1,361 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_AracelyCollins a chr:Person .
+ex:physician_MargaretReinger a chr:Person .
+
+# Care unit
+ex:careunit_CarneyHospital a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2025_10_17_1504 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_MargaretReinger ;
+    chr:hasCareUnit ex:careunit_CarneyHospital ;
+    chr:hasPatient ex:patient_AracelyCollins .
+
+# Severity
+ex:severity_moderate a chr:Severity .
+
+# Clinical conditions
+ex:condition_medication_review a chr:ClinicalCondition ;
+    chr:hasRecordDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+ex:condition_unemployed a chr:ClinicalCondition ;
+    chr:hasRecordDate "2025-10-17T15:45:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+# Diagnostic statements
+ex:diag_medication_review a chr:DiagnosticStatement .
+ex:diag_unemployed a chr:DiagnosticStatement .
+
+# Evaluation processes
+ex:evaluation_2025_10_17_1504 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_medication_review .
+
+ex:evaluation_2025_10_17_1545 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_unemployed .
+
+# Care plan and associated medical procedure
+ex:procedure_followup a chr:MedicalProcedure .
+ex:careplan_followup a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_followup .
+
+# Units (sulo:Unit individuals – no rdf:type required)
+ex:unit_mg_per_dL a sulo:Unit .
+ex:unit_mmol_per_L a sulo:Unit .
+ex:unit_mL_per_min_per_1_73_m2 a sulo:Unit .
+ex:unit_nominal a sulo:Unit .
+ex:unit_pH a sulo:Unit .
+ex:unit_percent a sulo:Unit .
+ex:unit_cm a sulo:Unit .
+ex:unit_score a sulo:Unit .
+ex:unit_kg a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_per_min a sulo:Unit .
+ex:unit_number a sulo:Unit .
+
+# Measurement processes and measurements (Serum/Plasma at 15:04)
+ex:proc_glucose_serum_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_glucose_serum_2025_10_17_1504 .
+
+ex:meas_glucose_serum_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "89.71"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:proc_urea_nitrogen_serum_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_urea_nitrogen_serum_2025_10_17_1504 .
+
+ex:meas_urea_nitrogen_serum_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.78"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:proc_creatinine_serum_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_creatinine_serum_2025_10_17_1504 .
+
+ex:meas_creatinine_serum_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0328"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:proc_calcium_serum_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_calcium_serum_2025_10_17_1504 .
+
+ex:meas_calcium_serum_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.63"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:proc_sodium_serum_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_sodium_serum_2025_10_17_1504 .
+
+ex:meas_sodium_serum_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "142.63"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:proc_potassium_serum_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_potassium_serum_2025_10_17_1504 .
+
+ex:meas_potassium_serum_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.89"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:proc_chloride_serum_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_chloride_serum_2025_10_17_1504 .
+
+ex:meas_chloride_serum_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "104.2"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:proc_co2_serum_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_co2_serum_2025_10_17_1504 .
+
+ex:meas_co2_serum_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "20.94"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:proc_gfr_serum_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_gfr_serum_2025_10_17_1504 .
+
+ex:meas_gfr_serum_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "37.969"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 .
+
+# Urine measurements (same timestamp)
+ex:proc_glucose_urine_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_glucose_urine_2025_10_17_1504 .
+
+ex:meas_glucose_urine_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0814"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:proc_bilirubin_urine_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_bilirubin_urine_2025_10_17_1504 .
+
+ex:meas_bilirubin_urine_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.7348"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:proc_ketones_urine_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_ketones_urine_2025_10_17_1504 .
+
+ex:meas_ketones_urine_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "16.65"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:proc_specific_gravity_urine_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_specific_gravity_urine_2025_10_17_1504 .
+
+ex:meas_specific_gravity_urine_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0294"^^xsd:float ;
+    chr:hasUnit ex:unit_nominal .
+
+ex:proc_ph_urine_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_ph_urine_2025_10_17_1504 .
+
+ex:meas_ph_urine_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.8214"^^xsd:float ;
+    chr:hasUnit ex:unit_pH .
+
+ex:proc_protein_urine_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_protein_urine_2025_10_17_1504 .
+
+ex:meas_protein_urine_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "375.71"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# Blood measurements (same timestamp)
+ex:proc_hba1c_blood_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_hba1c_blood_2025_10_17_1504 .
+
+ex:meas_hba1c_blood_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.97"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+ex:proc_body_height_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_body_height_2025_10_17_1504 .
+
+ex:meas_body_height_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "172.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+ex:proc_pain_severity_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_pain_severity_2025_10_17_1504 .
+
+ex:meas_pain_severity_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:proc_body_weight_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_body_weight_2025_10_17_1504 .
+
+ex:meas_body_weight_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82.2"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+ex:proc_bmi_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_bmi_2025_10_17_1504 .
+
+ex:meas_bmi_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.79"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
+
+ex:proc_heart_rate_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_heart_rate_2025_10_17_1504 .
+
+ex:meas_heart_rate_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "95.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+ex:proc_respiratory_rate_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_respiratory_rate_2025_10_17_1504 .
+
+ex:meas_respiratory_rate_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+ex:proc_glucose_blood_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_glucose_blood_2025_10_17_1504 .
+
+ex:meas_glucose_blood_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "89.71"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:proc_urea_nitrogen_blood_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_urea_nitrogen_blood_2025_10_17_1504 .
+
+ex:meas_urea_nitrogen_blood_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.78"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:proc_creatinine_blood_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_creatinine_blood_2025_10_17_1504 .
+
+ex:meas_creatinine_blood_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.14"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:proc_calcium_blood_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_calcium_blood_2025_10_17_1504 .
+
+ex:meas_calcium_blood_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.63"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:proc_sodium_blood_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_sodium_blood_2025_10_17_1504 .
+
+ex:meas_sodium_blood_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "142.63"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:proc_potassium_blood_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_potassium_blood_2025_10_17_1504 .
+
+ex:meas_potassium_blood_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.89"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:proc_chloride_blood_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_chloride_blood_2025_10_17_1504 .
+
+ex:meas_chloride_blood_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "104.2"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:proc_co2_blood_2025_10_17_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_co2_blood_2025_10_17_1504 .
+
+ex:meas_co2_blood_2025_10_17_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "20.94"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# Later assessments
+ex:proc_gad7_2025_10_17_1606 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_gad7_2025_10_17_1606 .
+
+ex:meas_gad7_2025_10_17_1606 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T16:06:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:proc_fall_risk_2025_10_17_1632 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_fall_risk_2025_10_17_1632 .
+
+ex:meas_fall_risk_2025_10_17_1632 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T16:32:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "33.0"^^xsd:float ;
+    chr:hasUnit ex:unit_number .
+
+ex:proc_auditc_2025_10_17_1714 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyCollins ;
+    chr:hasResult ex:meas_auditc_2025_10_17_1714 .
+
+ex:meas_auditc_2025_10_17_1714 a chr:Measurement ;
+    chr:hasMeasuredDate "2025-10-17T17:14:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .

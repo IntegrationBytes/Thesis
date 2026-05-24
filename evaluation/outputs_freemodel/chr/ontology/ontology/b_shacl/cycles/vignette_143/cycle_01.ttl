@@ -1,0 +1,845 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:person_Arlen68_Olson653 a chr:Person ;
+    rdfs:label "Arlen68 Olson653" .
+
+ex:person_Christeen33_Toy286 a chr:Person ;
+    rdfs:label "Dr. Christeen33 Toy286" .
+
+# Care unit
+ex:careunit_JFSMI a chr:CareUnit ;
+    rdfs:label "JEWISH FAMILY SERVICE OF WESTERN MASSACHUSETTS INC." .
+
+# Clinical visit
+ex:visit_2020_07_08_1647 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit ;
+    sulo:hasParticipant ex:role_CareProvider_Visit ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:isIn ex:careunit_JFSMI .
+
+ex:role_SubjectOfCare_Visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arlen68_Olson653 .
+
+ex:role_CareProvider_Visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Christeen33_Toy286 .
+
+# Time instants
+ex:time_2020_07_08_1647 a sulo:TimeInstant ;
+    sulo:hasValue "2020-07-08T16:47:00"^^xsd:dateTime .
+
+ex:time_2020_07_08_1748 a sulo:TimeInstant ;
+    sulo:hasValue "2020-07-08T17:48:00"^^xsd:dateTime .
+
+ex:time_2020_07_08_1804 a sulo:TimeInstant ;
+    sulo:hasValue "2020-07-08T18:04:00"^^xsd:dateTime .
+
+ex:time_2020_07_08_1839 a sulo:TimeInstant ;
+    sulo:hasValue "2020-07-08T18:39:00"^^xsd:dateTime .
+
+ex:time_2020_07_08_1912 a sulo:TimeInstant ;
+    sulo:hasValue "2020-07-08T19:12:00"^^xsd:dateTime .
+
+ex:time_2020_07_08_1733 a sulo:TimeInstant ;
+    sulo:hasValue "2020-07-08T17:33:00"^^xsd:dateTime .
+
+# Process status
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Severity
+ex:severity_moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+# Units (examples)
+ex:unit_mg_per_dL a sulo:Unit ; rdfs:label "mg/dL" .
+ex:unit_mmol_per_L a sulo:Unit ; rdfs:label "mmol/L" .
+ex:unit_mL_per_min_per_1_73_m2 a sulo:Unit ; rdfs:label "mL/min/1.73 m²" .
+ex:unit_cm a sulo:Unit ; rdfs:label "cm" .
+ex:unit_kg a sulo:Unit ; rdfs:label "kg" .
+ex:unit_kg_per_m2 a sulo:Unit ; rdfs:label "kg/m²" .
+ex:unit_per_min a sulo:Unit ; rdfs:label "/min" .
+ex:unit_percent a sulo:Unit ; rdfs:label "%" .
+ex:unit_fL a sulo:Unit ; rdfs:label "fL" .
+ex:unit_pg a sulo:Unit ; rdfs:label "pg" .
+ex:unit_g_per_dL a sulo:Unit ; rdfs:label "g/dL" .
+ex:unit_nominal a sulo:Unit ; rdfs:label "nominal" .
+ex:unit_pH a sulo:Unit ; rdfs:label "pH" .
+ex:unit_mg_per_g a sulo:Unit ; rdfs:label "mg/g" .
+ex:unit_score a sulo:Unit ; rdfs:label "score" .
+ex:unit_hash a sulo:Unit ; rdfs:label "#" .
+
+# Re‑usable Subject‑of‑Care role for all measurement processes
+ex:role_SubjectOfCare_Arlen68 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arlen68_Olson653 .
+
+# -----------------------------------------------------------------
+# Measurement processes (all at 16:47)
+# -----------------------------------------------------------------
+# Helper macro: each measurement gets a Process, an OutputRole, and a Measurement
+
+# 1. Glucose in Serum
+ex:process_Glucose_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Glucose_Serum_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_Glucose_Serum_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Serum_2020_07_08_1647 .
+
+ex:measurement_Glucose_Serum_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "185.26"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 2. Urea nitrogen in Serum
+ex:process_UreaNitrogen_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_UreaNitrogen_Serum_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_UreaNitrogen_Serum_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen_Serum_2020_07_08_1647 .
+
+ex:measurement_UreaNitrogen_Serum_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "7.93"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 3. Creatinine in Serum
+ex:process_Creatinine_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Creatinine_Serum_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_Creatinine_Serum_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine_Serum_2020_07_08_1647 .
+
+ex:measurement_Creatinine_Serum_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "2.0999"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 4. Calcium in Serum
+ex:process_Calcium_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Calcium_Serum_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_Calcium_Serum_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium_Serum_2020_07_08_1647 .
+
+ex:measurement_Calcium_Serum_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "8.53"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 5. Sodium in Serum
+ex:process_Sodium_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Sodium_Serum_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_Sodium_Serum_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium_Serum_2020_07_08_1647 .
+
+ex:measurement_Sodium_Serum_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "139.84"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 6. Potassium in Serum
+ex:process_Potassium_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Potassium_Serum_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_Potassium_Serum_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium_Serum_2020_07_08_1647 .
+
+ex:measurement_Potassium_Serum_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "3.71"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 7. Chloride in Serum
+ex:process_Chloride_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Chloride_Serum_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_Chloride_Serum_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride_Serum_2020_07_08_1647 .
+
+ex:measurement_Chloride_Serum_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "102.44"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 8. Carbon dioxide, total in Serum
+ex:process_CO2_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_CO2_Serum_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_CO2_Serum_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2_Serum_2020_07_08_1647 .
+
+ex:measurement_CO2_Serum_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "23.04"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 9. GFR (Serum) – 41.386 mL/min/1.73 m²
+ex:process_GFR_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_GFR_Serum_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_GFR_Serum_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GFR_Serum_2020_07_08_1647 .
+
+ex:measurement_GFR_Serum_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "41.386"^^xsd:float ;
+    sulo:hasPart ex:unit_mL_per_min_per_1_73_m2 ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 10. Glucose in Urine
+ex:process_Glucose_Urine_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Glucose_Urine_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_Glucose_Urine_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Urine_2020_07_08_1647 .
+
+ex:measurement_Glucose_Urine_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "2.0114"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 11. Bilirubin.total in Urine
+ex:process_Bilirubin_Urine_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Bilirubin_Urine_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_Bilirubin_Urine_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Bilirubin_Urine_2020_07_08_1647 .
+
+ex:measurement_Bilirubin_Urine_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "1.4374"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 12. Ketones in Urine
+ex:process_Ketones_Urine_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Ketones_Urine_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_Ketones_Urine_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Ketones_Urine_2020_07_08_1647 .
+
+ex:measurement_Ketones_Urine_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "19.093"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 13. Specific gravity of Urine (nominal)
+ex:process_SpecificGravity_Urine_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_SpecificGravity_Urine_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_SpecificGravity_Urine_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_SpecificGravity_Urine_2020_07_08_1647 .
+
+ex:measurement_SpecificGravity_Urine_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "1.0235"^^xsd:float ;
+    sulo:hasPart ex:unit_nominal ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 14. pH of Urine
+ex:process_pH_Urine_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_pH_Urine_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_pH_Urine_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_pH_Urine_2020_07_08_1647 .
+
+ex:measurement_pH_Urine_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "5.4009"^^xsd:float ;
+    sulo:hasPart ex:unit_pH ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 15. Protein in Urine
+ex:process_Protein_Urine_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Protein_Urine_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_Protein_Urine_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Protein_Urine_2020_07_08_1647 .
+
+ex:measurement_Protein_Urine_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "341.74"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 16. Hemoglobin A1c/Hemoglobin.total in Blood (%)
+ex:process_HbA1c_Blood_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_HbA1c_Blood_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_HbA1c_Blood_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HbA1c_Blood_2020_07_08_1647 .
+
+ex:measurement_HbA1c_Blood_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "5.36"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 17. Body Height
+ex:process_BodyHeight_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_BodyHeight_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_BodyHeight_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyHeight_2020_07_08_1647 .
+
+ex:measurement_BodyHeight_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "177"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 18. Pain severity (score 0‑10)
+ex:process_PainSeverity_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_PainSeverity_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_PainSeverity_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainSeverity_2020_07_08_1647 .
+
+ex:measurement_PainSeverity_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 19. Body Weight
+ex:process_BodyWeight_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_BodyWeight_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_BodyWeight_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyWeight_2020_07_08_1647 .
+
+ex:measurement_BodyWeight_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "86"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 20. Body Mass Index
+ex:process_BMI_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_BMI_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_BMI_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI_2020_07_08_1647 .
+
+ex:measurement_BMI_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "27.45"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 21. Heart rate
+ex:process_HeartRate_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_HeartRate_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_HeartRate_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HeartRate_2020_07_08_1647 .
+
+ex:measurement_HeartRate_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "71"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 22. Respiratory rate
+ex:process_RespiratoryRate_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_RespiratoryRate_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:output_RespiratoryRate_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RespiratoryRate_2020_07_08_1647 .
+
+ex:measurement_RespiratoryRate_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "15"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 23‑46. Blood measurements (same timestamp)
+# Helper: reuse same time instant ex:time_2020_07_08_1647
+
+# 23. Glucose in Blood
+ex:process_Glucose_Blood_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Glucose_Blood_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_Glucose_Blood_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose_Blood_2020_07_08_1647 .
+ex:measurement_Glucose_Blood_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "185.26"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 24. Urea nitrogen in Blood
+ex:process_UreaNitrogen_Blood_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_UreaNitrogen_Blood_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_UreaNitrogen_Blood_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen_Blood_2020_07_08_1647 .
+ex:measurement_UreaNitrogen_Blood_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "7.93"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 25. Creatinine in Blood
+ex:process_Creatinine_Blood_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Creatinine_Blood_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_Creatinine_Blood_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine_Blood_2020_07_08_1647 .
+ex:measurement_Creatinine_Blood_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "4.01"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 26. Calcium in Blood
+ex:process_Calcium_Blood_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Calcium_Blood_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_Calcium_Blood_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium_Blood_2020_07_08_1647 .
+ex:measurement_Calcium_Blood_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "8.53"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 27. Sodium in Blood
+ex:process_Sodium_Blood_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Sodium_Blood_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_Sodium_Blood_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium_Blood_2020_07_08_1647 .
+ex:measurement_Sodium_Blood_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "139.84"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 28. Potassium in Blood
+ex:process_Potassium_Blood_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Potassium_Blood_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_Potassium_Blood_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium_Blood_2020_07_08_1647 .
+ex:measurement_Potassium_Blood_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "3.71"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 29. Chloride in Blood
+ex:process_Chloride_Blood_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Chloride_Blood_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_Chloride_Blood_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride_Blood_2020_07_08_1647 .
+ex:measurement_Chloride_Blood_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "102.44"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 30. Carbon dioxide total in Blood
+ex:process_CO2_Blood_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_CO2_Blood_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_CO2_Blood_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2_Blood_2020_07_08_1647 .
+ex:measurement_CO2_Blood_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "23.04"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 31. Cholesterol in Serum
+ex:process_Cholesterol_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Cholesterol_Serum_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_Cholesterol_Serum_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Cholesterol_Serum_2020_07_08_1647 .
+ex:measurement_Cholesterol_Serum_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "253.6"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 32. Triglyceride in Serum
+ex:process_Triglyceride_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Triglyceride_Serum_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_Triglyceride_Serum_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Triglyceride_Serum_2020_07_08_1647 .
+ex:measurement_Triglyceride_Serum_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "479.16"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 33. Cholesterol in LDL (Serum)
+ex:process_CholesterolLDL_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_CholesterolLDL_Serum_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_CholesterolLDL_Serum_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CholesterolLDL_Serum_2020_07_08_1647 .
+ex:measurement_CholesterolLDL_Serum_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "136.67"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 34. Cholesterol in HDL (Serum)
+ex:process_CholesterolHDL_Serum_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_CholesterolHDL_Serum_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_CholesterolHDL_Serum_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CholesterolHDL_Serum_2020_07_08_1647 .
+ex:measurement_CholesterolHDL_Serum_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "21.1"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 35. Microalbumin/Creatinine ratio in Urine
+ex:process_MicroalbuminCreatinine_Urine_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_MicroalbuminCreatinine_Urine_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_MicroalbuminCreatinine_Urine_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_MicroalbuminCreatinine_Urine_2020_07_08_1647 .
+ex:measurement_MicroalbuminCreatinine_Urine_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "204.2"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_g ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 36. Leukocytes in Blood
+ex:process_Leukocytes_Blood_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Leukocytes_Blood_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_Leukocytes_Blood_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Leukocytes_Blood_2020_07_08_1647 .
+ex:measurement_Leukocytes_Blood_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "5.8816"^^xsd:float ;
+    sulo:hasPart ex:unit_10_3_per_uL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+ex:unit_10_3_per_uL a sulo:Unit ; rdfs:label "10³ / µL" .
+
+# 37. Erythrocytes in Blood
+ex:process_Erythrocytes_Blood_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Erythrocytes_Blood_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_Erythrocytes_Blood_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Erythrocytes_Blood_2020_07_08_1647 .
+ex:measurement_Erythrocytes_Blood_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "4.544"^^xsd:float ;
+    sulo:hasPart ex:unit_10_6_per_uL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+ex:unit_10_6_per_uL a sulo:Unit ; rdfs:label "10⁶ / µL" .
+
+# 38. Hemoglobin in Blood
+ex:process_Hemoglobin_Blood_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Hemoglobin_Blood_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_Hemoglobin_Blood_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Hemoglobin_Blood_2020_07_08_1647 .
+ex:measurement_Hemoglobin_Blood_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "14.412"^^xsd:float ;
+    sulo:hasPart ex:unit_g_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 39. Hematocrit
+ex:process_Hematocrit_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Hematocrit_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_Hematocrit_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Hematocrit_2020_07_08_1647 .
+ex:measurement_Hematocrit_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "35.889"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 40. MCV
+ex:process_MCV_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_MCV_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_MCV_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_MCV_2020_07_08_1647 .
+ex:measurement_MCV_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "88.28"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 41. MCH
+ex:process_MCH_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_MCH_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_MCH_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_MCH_2020_07_08_1647 .
+ex:measurement_MCH_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "28.269"^^xsd:float ;
+    sulo:hasPart ex:unit_pg ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 42. MCHC
+ex:process_MCHC_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_MCHC_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_MCHC_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_MCHC_2020_07_08_1647 .
+ex:measurement_MCHC_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "33.234"^^xsd:float ;
+    sulo:hasPart ex:unit_g_per_dL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 43. Erythrocyte DistWidth
+ex:process_ErythrocyteDistWidth_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_ErythrocyteDistWidth_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_ErythrocyteDistWidth_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_ErythrocyteDistWidth_2020_07_08_1647 .
+ex:measurement_ErythrocyteDistWidth_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "43.453"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 44. Platelets
+ex:process_Platelets_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_Platelets_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_Platelets_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Platelets_2020_07_08_1647 .
+ex:measurement_Platelets_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "299.9"^^xsd:float ;
+    sulo:hasPart ex:unit_10_3_per_uL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 45. Platelet distribution width
+ex:process_PDW_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_PDW_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_PDW_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PDW_2020_07_08_1647 .
+ex:measurement_PDW_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "270.79"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 46. Platelet mean volume
+ex:process_PlateletMeanVolume_2020_07_08_1647 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_PlateletMeanVolume_2020_07_08_1647 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_PlateletMeanVolume_2020_07_08_1647 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PlateletMeanVolume_2020_07_08_1647 .
+ex:measurement_PlateletMeanVolume_2020_07_08_1647 a chr:Measurement ;
+    sulo:hasValue "11.674"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# 47. Glomerular filtration rate (second) – 21.73 mL/min/1.73 m²
+ex:process_GFR_Serum_2020_07_08_1647_2 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_GFR_Serum_2020_07_08_1647_2 ;
+    sulo:atTime ex:time_2020_07_08_1647 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_GFR_Serum_2020_07_08_1647_2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GFR_Serum_2020_07_08_1647_2 .
+ex:measurement_GFR_Serum_2020_07_08_1647_2 a chr:Measurement ;
+    sulo:hasValue "21.73"^^xsd:float ;
+    sulo:hasPart ex:unit_mL_per_min_per_1_73_m2 ;
+    sulo:atTime ex:time_2020_07_08_1647 .
+
+# -----------------------------------------------------------------
+# Later‑time questionnaires (each a MeasurementProcess)
+# -----------------------------------------------------------------
+# 48. GAD‑7 total score
+ex:process_GAD7_2020_07_08_1748 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_GAD7_2020_07_08_1748 ;
+    sulo:atTime ex:time_2020_07_08_1748 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_GAD7_2020_07_08_1748 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GAD7_2020_07_08_1748 .
+ex:measurement_GAD7_2020_07_08_1748 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2020_07_08_1748 .
+
+# 49. Fall risk total (Morse Fall Scale)
+ex:process_FallRisk_2020_07_08_1804 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_FallRisk_2020_07_08_1804 ;
+    sulo:atTime ex:time_2020_07_08_1804 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_FallRisk_2020_07_08_1804 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_FallRisk_2020_07_08_1804 .
+ex:measurement_FallRisk_2020_07_08_1804 a chr:Measurement ;
+    sulo:hasValue "36"^^xsd:float ;
+    sulo:hasPart ex:unit_hash ;
+    sulo:atTime ex:time_2020_07_08_1804 .
+
+# 50. PHQ‑2 total score
+ex:process_PHQ2_2020_07_08_1839 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_PHQ2_2020_07_08_1839 ;
+    sulo:atTime ex:time_2020_07_08_1839 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_PHQ2_2020_07_08_1839 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ2_2020_07_08_1839 .
+ex:measurement_PHQ2_2020_07_08_1839 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2020_07_08_1839 .
+
+# 51. AUDIT‑C total score
+ex:process_AUDITC_2020_07_08_1912 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Arlen68 ;
+    sulo:hasParticipant ex:output_AUDITC_2020_07_08_1912 ;
+    sulo:atTime ex:time_2020_07_08_1912 ;
+    sulo:hasFeature ex:status_completed .
+ex:output_AUDITC_2020_07_08_1912 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_AUDITC_2020_07_08_1912 .
+ex:measurement_AUDITC_2020_07_08_1912 a chr:Measurement ;
+    sulo:hasValue "3"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2020_07_08_1912 .
+
+# -----------------------------------------------------------------
+# Evaluation processes producing diagnostic statements
+# -----------------------------------------------------------------
+ex:evaluation_2020_07_08_1733_1 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eval_1733 ;
+    sulo:hasParticipant ex:role_CareProvider_Eval_1733 ;
+    sulo:atTime ex:time_2020_07_08_1733 ;
+    sulo:hasResult ex:diag_LimitedSocialContact ;
+    sulo:hasResult ex:cond_LimitedSocialContact .
+
+ex:role_SubjectOfCare_Eval_1733 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arlen68_Olson653 .
+
+ex:role_CareProvider_Eval_1733 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Christeen33_Toy286 .
+
+ex:diag_LimitedSocialContact a chr:DiagnosticStatement ;
+    rdfs:label "Limited social contact (finding)" .
+
+ex:cond_LimitedSocialContact a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate .
+
+# second diagnostic statement (Stress)
+ex:evaluation_2020_07_08_1733_2 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eval_1733 ;
+    sulo:hasParticipant ex:role_CareProvider_Eval_1733 ;
+    sulo:atTime ex:time_2020_07_08_1733 ;
+    sulo:hasResult ex:diag_Stress ;
+    sulo:hasResult ex:cond_Stress .
+
+ex:diag_Stress a chr:DiagnosticStatement ;
+    rdfs:label "Stress (finding)" .
+
+ex:cond_Stress a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate .
+
+# -----------------------------------------------------------------
+# Care plan referencing a follow‑up procedure
+# -----------------------------------------------------------------
+ex:careplan_2020_07_08 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "follow‑up monitoring and routine review" .

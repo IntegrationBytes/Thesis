@@ -1,0 +1,216 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Arturo_Heidenreich a chr:Person .
+ex:physician_Alan_Keeling a chr:Person .
+
+# Care unit
+ex:careUnit_PRIMARY_CARE_NORTH_PC a chr:CareUnit .
+
+# Clinical visit
+ex:visit_20210517_0234 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasCareProvider ex:physician_Alan_Keeling ;
+    chr:hasCareUnit ex:careUnit_PRIMARY_CARE_NORTH_PC .
+
+# Units
+ex:unit_percent        a sulo:Unit .
+ex:unit_cm             a sulo:Unit .
+ex:unit_score          a sulo:Unit .
+ex:unit_kg             a sulo:Unit .
+ex:unit_kg_per_m2      a sulo:Unit .
+ex:unit_per_min        a sulo:Unit .
+ex:unit_mg_per_dL      a sulo:Unit .
+ex:unit_mmol_per_L     a sulo:Unit .
+
+# Severity
+ex:severity_moderate a chr:Severity .
+
+# Clinical conditions (diagnoses)
+ex:cond_fulltime_employment a chr:ClinicalCondition ;
+    chr:hasSeverity ex:severity_moderate ;
+    chr:hasRecordDate "2021-05-17T03:13:00"^^xsd:dateTime .
+
+ex:cond_social_isolation a chr:ClinicalCondition ;
+    chr:hasSeverity ex:severity_moderate ;
+    chr:hasRecordDate "2021-05-17T03:13:00"^^xsd:dateTime .
+
+# Diagnostic statements
+ex:diag_fulltime_employment a chr:DiagnosticStatement .
+ex:diag_social_isolation   a chr:DiagnosticStatement .
+
+# Evaluation processes
+ex:evaluation_20210517_0313_1 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_fulltime_employment .
+
+ex:evaluation_20210517_0313_2 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_social_isolation .
+
+# Care plan
+ex:careplan_20210517 a chr:CarePlan .
+
+# Measurement results and processes
+
+# 1. Hemoglobin A1c
+ex:meas_HbA1c_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "5.93"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_HbA1c_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_HbA1c_20210517_0234 .
+
+# 2. Body Height
+ex:meas_Height_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "181.4"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_Height_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_Height_20210517_0234 .
+
+# 3. Pain severity (score)
+ex:meas_Pain_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "4"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_Pain_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_Pain_20210517_0234 .
+
+# 4. Body Weight
+ex:meas_Weight_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "90.4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_Weight_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_Weight_20210517_0234 .
+
+# 5. Body Mass Index
+ex:meas_BMI_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "27.47"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_BMI_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_BMI_20210517_0234 .
+
+# 6. Heart rate
+ex:meas_HeartRate_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "76"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_HeartRate_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_HeartRate_20210517_0234 .
+
+# 7. Respiratory rate
+ex:meas_RespRate_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "16"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_RespRate_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_RespRate_20210517_0234 .
+
+# 8. Glucose
+ex:meas_Glucose_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "97.54"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_Glucose_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_Glucose_20210517_0234 .
+
+# 9. Urea nitrogen
+ex:meas_UreaNitrogen_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "12.44"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_UreaNitrogen_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_UreaNitrogen_20210517_0234 .
+
+# 10. Creatinine
+ex:meas_Creatinine_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "0.97"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_Creatinine_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_Creatinine_20210517_0234 .
+
+# 11. Calcium
+ex:meas_Calcium_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "10.03"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_Calcium_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_Calcium_20210517_0234 .
+
+# 12. Sodium
+ex:meas_Sodium_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "138.45"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_Sodium_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_Sodium_20210517_0234 .
+
+# 13. Potassium
+ex:meas_Potassium_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "4.84"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_Potassium_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_Potassium_20210517_0234 .
+
+# 14. Chloride
+ex:meas_Chloride_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "108.62"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_Chloride_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_Chloride_20210517_0234 .
+
+# 15. Carbon dioxide, total
+ex:meas_CO2total_20210517_0234 a chr:Measurement ;
+    chr:hasQuantityValue "26.03"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-05-17T02:34:00"^^xsd:dateTime .
+
+ex:proc_CO2total_20210517_0234 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_CO2total_20210517_0234 .
+
+# 16. Total score (HARK)
+ex:meas_HARK_20210517_0357 a chr:Measurement ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2021-05-17T03:57:00"^^xsd:dateTime .
+
+ex:proc_HARK_20210517_0357 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Arturo_Heidenreich ;
+    chr:hasResult ex:meas_HARK_20210517_0357 .

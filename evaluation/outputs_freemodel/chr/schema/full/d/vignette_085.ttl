@@ -1,0 +1,124 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:patient_Hallie315_Tasha327_Grant908 a chr:Person .
+
+# Person (physician)
+ex:physician_Teresa94_Tapia475 a chr:Person .
+
+# Care unit
+ex:careunit_CARING_HEALTH_CENTER_INC a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2021_11_10_1530 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasCareProvider ex:physician_Teresa94_Tapia475 ;
+    chr:hasCareUnit ex:careunit_CARING_HEALTH_CENTER_INC .
+
+# Measurement processes and measurements
+
+## Height
+ex:proc_height_20211110_1530 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_height_20211110_1530 .
+
+ex:meas_height_20211110_1530 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "64.7"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+## Pain severity (numeric rating)
+ex:proc_pain_severity_20211110_1530 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_pain_severity_20211110_1530 .
+
+ex:meas_pain_severity_20211110_1530 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+## Weight
+ex:proc_weight_20211110_1530 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_weight_20211110_1530 .
+
+ex:meas_weight_20211110_1530 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.1"^^xsd:float ;
+    chr:hasUnit sulo:kilogram .
+
+## Weight‑for‑length percentile
+ex:proc_weight_for_length_percentile_20211110_1530 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_weight_for_length_percentile_20211110_1530 .
+
+ex:meas_weight_for_length_percentile_20211110_1530 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "88.875"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+## Head occipital‑frontal circumference percentile
+ex:proc_head_ocf_percentile_20211110_1530 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_head_ocf_percentile_20211110_1530 .
+
+ex:meas_head_ocf_percentile_20211110_1530 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "57.73"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+## Head occipital‑frontal circumference length
+ex:proc_head_ocf_length_20211110_1530 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_head_ocf_length_20211110_1530 .
+
+ex:meas_head_ocf_length_20211110_1530 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "42.34"^^xsd:float ;
+    chr:hasUnit sulo:centimeter .
+
+## Heart rate
+ex:proc_heart_rate_20211110_1530 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_heart_rate_20211110_1530 .
+
+ex:meas_heart_rate_20211110_1530 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "61.0"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+## Respiratory rate
+ex:proc_respiratory_rate_20211110_1530 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_respiratory_rate_20211110_1530 .
+
+ex:meas_respiratory_rate_20211110_1530 a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12.0"^^xsd:float ;
+    chr:hasUnit sulo:perMinute .
+
+# Evaluation process and diagnostic statement
+ex:evaluation_20211110_1530 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasObservation ex:diag_MedicationReview_due .
+
+ex:diag_MedicationReview_due a chr:DiagnosticStatement .
+
+# Clinical condition linked to the evaluation
+ex:condition_MedicationReview_due a chr:ClinicalCondition ;
+    chr:hasRecordDate "2021-11-10T15:30:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+# Care plan and associated medical procedure
+ex:careplan_followup_20211110 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:procedure_followup_monitoring .
+
+ex:procedure_followup_monitoring a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasPerformedDate "2021-11-10T15:30:00"^^xsd:dateTime .

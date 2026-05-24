@@ -1,0 +1,46 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_AracelyDevonCollins a chr:Person .
+
+ex:person_MargaretReinger a chr:Person .
+
+ex:careunit_CarneyHospital a chr:CareUnit .
+
+ex:visit_2019_06_28_1504 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:person_MargaretReinger ;
+    chr:hasCareUnit ex:careunit_CarneyHospital ;
+    chr:hasPatient ex:patient_AracelyDevonCollins .
+
+ex:measproc_Temp_2019_06_28_1504 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_Temp_2019_06_28_1504 .
+
+ex:measurement_Temp_2019_06_28_1504 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-28T15:04:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "37.279"^^xsd:float ;
+    chr:hasUnit ex:unit_Celsius .
+
+ex:unit_Celsius a sulo:Unit .
+
+ex:condition_AcuteViralPharyngitis a chr:ClinicalCondition ;
+    chr:hasRecordDate "2019-06-28T15:04:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_Moderate .
+
+ex:severity_Moderate a chr:Severity .
+
+ex:diag_AcuteViralPharyngitis a chr:DiagnosticStatement .
+
+ex:evaluation_2019_06_28_1504 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_AcuteViralPharyngitis .
+
+ex:careplan_2019_06_28 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:proc_2019_06_28 .
+
+ex:proc_2019_06_28 a chr:MedicalProcedure ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasPerformedBy ex:person_MargaretReinger ;
+    chr:hasDate "2019-06-28T15:04:00"^^xsd:dateTime .

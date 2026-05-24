@@ -1,0 +1,455 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# -----------------------------------------------------------------
+# Persons
+ex:person_Aracely_Devon_Collins a chr:Person .
+ex:person_Edmundo_Eichmann a chr:Person .
+
+# -----------------------------------------------------------------
+# Care unit
+ex:careunit_father_bill_place a chr:CareUnit .
+
+# -----------------------------------------------------------------
+# Clinical visit
+ex:visit_2016_06_03_15_04 a chr:ClinicalVisit ;
+    sulo:atTime ex:time_visit_2016_06_03_15_04 ;
+    sulo:isIn ex:careunit_father_bill_place ;
+    sulo:hasParticipant ex:role_Subject_Visit_Aracely ,
+                       ex:role_Provider_Visit_Edmundo .
+
+ex:time_visit_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_Visit_Aracely a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Provider_Visit_Edmundo a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Edmundo_Eichmann .
+
+# -----------------------------------------------------------------
+# Shared status quality
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# -----------------------------------------------------------------
+# Measurements and their processes
+# Hemoglobin A1c
+ex:proc_HbA1c_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_HbA1c_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_HbA1c ,
+                       ex:role_Output_HbA1c .
+
+ex:time_HbA1c_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_HbA1c a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_HbA1c a chr:Measurement ;
+    sulo:hasValue "5.84"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/percent> ;
+    sulo:atTime ex:time_HbA1c_2016_06_03_15_04 .
+
+ex:role_Output_HbA1c a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HbA1c .
+
+# Body Height
+ex:proc_Height_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_Height_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_Height ,
+                       ex:role_Output_Height .
+
+ex:time_Height_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_Height a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Height a chr:Measurement ;
+    sulo:hasValue "172.0"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/centimeter> ;
+    sulo:atTime ex:time_Height_2016_06_03_15_04 .
+
+ex:role_Output_Height a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Height .
+
+# Body Weight
+ex:proc_Weight_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_Weight_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_Weight ,
+                       ex:role_Output_Weight .
+
+ex:time_Weight_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_Weight a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Weight a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/kilogram> ;
+    sulo:atTime ex:time_Weight_2016_06_03_15_04 .
+
+ex:role_Output_Weight a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Weight .
+
+# Body Mass Index
+ex:proc_BMI_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_BMI_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_BMI ,
+                       ex:role_Output_BMI .
+
+ex:time_BMI_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_BMI a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_BMI a chr:Measurement ;
+    sulo:hasValue "27.79"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/kg_per_m2> ;
+    sulo:atTime ex:time_BMI_2016_06_03_15_04 .
+
+ex:role_Output_BMI a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI .
+
+# Heart Rate
+ex:proc_HeartRate_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_HeartRate_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_HeartRate ,
+                       ex:role_Output_HeartRate .
+
+ex:time_HeartRate_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_HeartRate a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_HeartRate a chr:Measurement ;
+    sulo:hasValue "61.0"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/per_minute> ;
+    sulo:atTime ex:time_HeartRate_2016_06_03_15_04 .
+
+ex:role_Output_HeartRate a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HeartRate .
+
+# Respiratory Rate
+ex:proc_RespRate_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_RespRate_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_RespRate ,
+                       ex:role_Output_RespRate .
+
+ex:time_RespRate_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_RespRate a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_RespRate a chr:Measurement ;
+    sulo:hasValue "13.0"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/per_minute> ;
+    sulo:atTime ex:time_RespRate_2016_06_03_15_04 .
+
+ex:role_Output_RespRate a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RespRate .
+
+# Glucose
+ex:proc_Glucose_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_Glucose_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_Glucose ,
+                       ex:role_Output_Glucose .
+
+ex:time_Glucose_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_Glucose a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Glucose a chr:Measurement ;
+    sulo:hasValue "95.33"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_Glucose_2016_06_03_15_04 .
+
+ex:role_Output_Glucose a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose .
+
+# Urea nitrogen
+ex:proc_UreaNitrogen_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_UreaNitrogen_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_UreaNitrogen ,
+                       ex:role_Output_UreaNitrogen .
+
+ex:time_UreaNitrogen_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_UreaNitrogen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_UreaNitrogen a chr:Measurement ;
+    sulo:hasValue "16.02"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_UreaNitrogen_2016_06_03_15_04 .
+
+ex:role_Output_UreaNitrogen a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen .
+
+# Creatinine
+ex:proc_Creatinine_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_Creatinine_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_Creatinine ,
+                       ex:role_Output_Creatinine .
+
+ex:time_Creatinine_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_Creatinine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Creatinine a chr:Measurement ;
+    sulo:hasValue "0.69"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_Creatinine_2016_06_03_15_04 .
+
+ex:role_Output_Creatinine a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine .
+
+# Calcium
+ex:proc_Calcium_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_Calcium_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_Calcium ,
+                       ex:role_Output_Calcium .
+
+ex:time_Calcium_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_Calcium a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Calcium a chr:Measurement ;
+    sulo:hasValue "10.17"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/mg_per_dL> ;
+    sulo:atTime ex:time_Calcium_2016_06_03_15_04 .
+
+ex:role_Output_Calcium a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium .
+
+# Sodium
+ex:proc_Sodium_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_Sodium_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_Sodium ,
+                       ex:role_Output_Sodium .
+
+ex:time_Sodium_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_Sodium a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Sodium a chr:Measurement ;
+    sulo:hasValue "141.84"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_Sodium_2016_06_03_15_04 .
+
+ex:role_Output_Sodium a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium .
+
+# Potassium
+ex:proc_Potassium_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_Potassium_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_Potassium ,
+                       ex:role_Output_Potassium .
+
+ex:time_Potassium_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_Potassium a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Potassium a chr:Measurement ;
+    sulo:hasValue "4.16"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_Potassium_2016_06_03_15_04 .
+
+ex:role_Output_Potassium a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium .
+
+# Chloride
+ex:proc_Chloride_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_Chloride_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_Chloride ,
+                       ex:role_Output_Chloride .
+
+ex:time_Chloride_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_Chloride a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_Chloride a chr:Measurement ;
+    sulo:hasValue "108.74"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_Chloride_2016_06_03_15_04 .
+
+ex:role_Output_Chloride a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride .
+
+# Carbon Dioxide
+ex:proc_CO2_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_CO2_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_CO2 ,
+                       ex:role_Output_CO2 .
+
+ex:time_CO2_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_CO2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_CO2 a chr:Measurement ;
+    sulo:hasValue "23.58"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/mmol_per_L> ;
+    sulo:atTime ex:time_CO2_2016_06_03_15_04 .
+
+ex:role_Output_CO2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2 .
+
+# Fall risk
+ex:proc_FallRisk_2016_06_03_16_17 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_FallRisk_2016_06_03_16_17 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_FallRisk ,
+                       ex:role_Output_FallRisk .
+
+ex:time_FallRisk_2016_06_03_16_17 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T16:17:00"^^xsd:dateTime .
+
+ex:role_Subject_FallRisk a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_FallRisk a chr:Measurement ;
+    sulo:hasValue "42.0"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/score> ;
+    sulo:atTime ex:time_FallRisk_2016_06_03_16_17 .
+
+ex:role_Output_FallRisk a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_FallRisk .
+
+# Total DAST-10 score
+ex:proc_DAST10_2016_06_03_16_59 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_DAST10_2016_06_03_16_59 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_DAST10 ,
+                       ex:role_Output_DAST10 .
+
+ex:time_DAST10_2016_06_03_16_59 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T16:59:00"^^xsd:dateTime .
+
+ex:role_Subject_DAST10 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_DAST10 a chr:Measurement ;
+    sulo:hasValue "0.0"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/score> ;
+    sulo:atTime ex:time_DAST10_2016_06_03_16_59 .
+
+ex:role_Output_DAST10 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_DAST10 .
+
+# Pain severity
+ex:proc_PainSeverity_2016_06_03_15_04 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_PainSeverity_2016_06_03_15_04 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_PainSeverity ,
+                       ex:role_Output_PainSeverity .
+
+ex:time_PainSeverity_2016_06_03_15_04 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:04:00"^^xsd:dateTime .
+
+ex:role_Subject_PainSeverity a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:measurement_PainSeverity a chr:Measurement ;
+    sulo:hasValue "0.0"^^xsd:float ;
+    sulo:hasPart <https://sulo.org/unit/score> ;
+    sulo:atTime ex:time_PainSeverity_2016_06_03_15_04 .
+
+ex:role_Output_PainSeverity a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainSeverity .
+
+# -----------------------------------------------------------------
+# Evaluation (diagnostic) process
+ex:evaluation_2016_06_03_15_52 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_Evaluation_2016_06_03_15_52 ;
+    sulo:hasParticipant ex:role_Subject_Eval ,
+                       ex:role_Provider_Eval ,
+                       ex:role_Output_Eval .
+
+ex:time_Evaluation_2016_06_03_15_52 a sulo:TimeInstant ;
+    sulo:hasValue "2016-06-03T15:52:00"^^xsd:dateTime .
+
+ex:role_Subject_Eval a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Aracely_Devon_Collins .
+
+ex:role_Provider_Eval a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Edmundo_Eichmann .
+
+ex:diag_Stress a chr:DiagnosticStatement ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity ;
+    rdfs:label "Moderate" .
+
+ex:role_Output_Eval a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Stress .
+
+# -----------------------------------------------------------------
+# Care plan and referenced procedure
+ex:careplan_2016_06_03 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_general_examination .
+
+ex:procedure_general_examination a chr:MedicalProcedure ;
+    rdfs:label "General examination of patient" .
+
+# -----------------------------------------------------------------
+# Unit definitions (typed as sulo:Unit)
+<https://sulo.org/unit/kg_per_m2> a sulo:Unit ;
+    rdfs:label "kg/m²" .
+
+<https://sulo.org/unit/kilogram> a sulo:Unit ;
+    rdfs:label "kilogram" .
+
+<https://sulo.org/unit/centimeter> a sulo:Unit ;
+    rdfs:label "centimeter" .
+
+<https://sulo.org/unit/per_minute> a sulo:Unit ;
+    rdfs:label "per minute" .
+
+<https://sulo.org/unit/mg_per_dL> a sulo:Unit ;
+    rdfs:label "mg/dL" .
+
+<https://sulo.org/unit/percent> a sulo:Unit ;
+    rdfs:label "percent" .
+
+<https://sulo.org/unit/mmol_per_L> a sulo:Unit ;
+    rdfs:label "mmol/L" .
+
+<https://sulo.org/unit/score> a sulo:Unit ;
+    rdfs:label "score" .

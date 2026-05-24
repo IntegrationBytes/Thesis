@@ -1,0 +1,118 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://wid.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:person_Harvey a chr:Person .
+ex:person_Victor a chr:Person .
+
+# Care unit (as a place)
+ex:careunit_4499 a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2019_04_25_2111 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_VisitPatient_Harvey ;
+    sulo:hasParticipant ex:role_VisitProvider_Victor ;
+    sulo:atTime ex:time_visit_2019_04_25_2111 .
+
+ex:role_VisitPatient_Harvey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
+
+ex:role_VisitProvider_Victor a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Victor .
+
+ex:time_visit_2019_04_25_2111 a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-25T21:11:00"^^xsd:dateTime .
+
+# Measurement process – Polyp size
+ex:proc_polyp_measure a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_MeasProvider_Victor ;
+    sulo:hasParticipant ex:role_MeasPatient_Harvey ;
+    sulo:hasParticipant ex:role_MeasOutput_Polyp ;
+    sulo:atTime ex:time_meas_polyp_2019_04_25_2149 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_MeasProvider_Victor a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Victor .
+
+ex:role_MeasPatient_Harvey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
+
+ex:role_MeasOutput_Polyp a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_polyp .
+
+ex:time_meas_polyp_2019_04_25_2149 a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-25T21:49:00"^^xsd:dateTime .
+
+ex:measurement_polyp a chr:Measurement ;
+    sulo:hasValue "5.8247"^^xsd:float ;
+    sulo:hasPart ex:unit_mm ;
+    sulo:atTime ex:time_meas_polyp_2019_04_25_2149 .
+
+ex:unit_mm a sulo:Unit .
+
+# Measurement process – Hemoglobin in stool
+ex:proc_hb_measure a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HbMeasProvider_Victor ;
+    sulo:hasParticipant ex:role_HbMeasPatient_Harvey ;
+    sulo:hasParticipant ex:role_HbMeasOutput ;
+    sulo:atTime ex:time_meas_hb_2019_04_25_2149 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_HbMeasProvider_Victor a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Victor .
+
+ex:role_HbMeasPatient_Harvey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
+
+ex:role_HbMeasOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_hb .
+
+ex:time_meas_hb_2019_04_25_2149 a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-25T21:49:00"^^xsd:dateTime .
+
+ex:measurement_hb a chr:Measurement ;
+    sulo:hasValue "20.354"^^xsd:float ;
+    sulo:hasPart ex:unit_ng_per_mL ;
+    sulo:atTime ex:time_meas_hb_2019_04_25_2149 .
+
+ex:unit_ng_per_mL a sulo:Unit .
+
+# Evaluation process producing diagnostic statement
+ex:evaluation_2019_04_25_2149 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalProvider_Victor ;
+    sulo:hasParticipant ex:role_EvalPatient_Harvey ;
+    sulo:hasParticipant ex:role_EvalOutput_Polyp ;
+    sulo:atTime ex:time_eval_2019_04_25_2149 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_EvalProvider_Victor a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Victor .
+
+ex:role_EvalPatient_Harvey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
+
+ex:role_EvalOutput_Polyp a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_polyp .
+
+ex:time_eval_2019_04_25_2149 a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-25T21:49:00"^^xsd:dateTime .
+
+ex:diag_polyp a chr:DiagnosticStatement .
+
+# Clinical condition with severity
+ex:condition_polyp a chr:ClinicalCondition ;
+    sulo:hasFeature ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity .
+
+# Care plan referring to follow‑up procedure
+ex:careplan_1 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup .
+
+ex:procedure_followup a chr:MedicalProcedure .
+
+# Process status instance
+ex:status_completed a chr:ProcessStatus .

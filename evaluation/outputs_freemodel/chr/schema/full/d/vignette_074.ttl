@@ -1,0 +1,47 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_EstelaGrant a chr:Person .
+
+ex:physician_NickolasSchumm a chr:Person .
+
+ex:careunit_ENCOMPASS_BRAINTREE a chr:CareUnit .
+
+ex:visit_2000_02_13_1135 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_NickolasSchumm ;
+    chr:hasCareUnit ex:careunit_ENCOMPASS_BRAINTREE ;
+    chr:hasPatient ex:patient_EstelaGrant .
+
+ex:status_completed a chr:ProcessStatus .
+
+ex:measurementProcess_2000_02_13_1135 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:measurement_bodyTemp_2000_02_13_1135 ;
+    chr:hasStatus ex:status_completed .
+
+ex:measurement_bodyTemp_2000_02_13_1135 a chr:Measurement ;
+    chr:hasMeasuredDate "2000-02-13T11:35:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "37.436"^^xsd:float ;
+    chr:hasUnit ex:unit_Celsius .
+
+ex:unit_Celsius a sulo:Unit .
+
+ex:evaluation_2000_02_13_1135 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasPerformer ex:physician_NickolasSchumm ;
+    chr:hasPerformedDate "2000-02-13T11:35:00"^^xsd:dateTime ;
+    chr:hasObservation ex:diagnostic_AcuteViralPharyngitis .
+
+ex:diagnostic_AcuteViralPharyngitis a chr:DiagnosticStatement .
+
+ex:condition_AcuteViralPharyngitis a chr:ClinicalCondition ;
+    chr:hasRecordDate "2000-02-13T11:35:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+ex:severity_moderate a chr:Severity .
+
+ex:carePlan_2000_02_13 a chr:CarePlan ;
+    chr:hasMedicalProcedure ex:evaluation_2000_02_13_1135 .

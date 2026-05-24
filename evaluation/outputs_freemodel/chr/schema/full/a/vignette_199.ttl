@@ -1,0 +1,297 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Bryant_Clarence_Grimes a chr:Person .
+ex:physician_Kathrine_Reinger a chr:Person .
+
+# Care unit and visit
+ex:careunit_GroveHillMedicalCenterPC a chr:CareUnit .
+ex:visit_2014_07_16_1647 a chr:ClinicalVisit ;
+    chr:hasCareProvider ex:physician_Kathrine_Reinger ;
+    chr:hasCareUnit ex:careunit_GroveHillMedicalCenterPC ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes .
+
+# Severity
+ex:severity_Moderate a chr:Severity .
+
+# Diagnostic statements
+ex:diag_MedicationReview a chr:DiagnosticStatement .
+ex:diag_VictimAbuse a chr:DiagnosticStatement .
+ex:diag_Gingivitis a chr:DiagnosticStatement .
+
+# Clinical conditions
+ex:cond_MedicationReview a chr:ClinicalCondition ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasRecordDate "2014-07-16T16:47:00"^^xsd:dateTime .
+ex:cond_VictimAbuse a chr:ClinicalCondition ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasRecordDate "2014-07-16T17:43:00"^^xsd:dateTime .
+ex:cond_Gingivitis a chr:ClinicalCondition ;
+    chr:hasSeverity ex:severity_Moderate ;
+    chr:hasRecordDate "2014-07-16T19:00:00"^^xsd:dateTime .
+
+# Evaluation processes
+ex:eval_2014_07_16_1647_1 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_MedicationReview .
+ex:eval_2014_07_16_1743 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_VictimAbuse .
+ex:eval_2014_07_16_1900 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diag_Gingivitis .
+
+# Measurement processes and results (selected examples – all follow the same pattern)
+
+# Glucose in Serum (Mass/volume) – 77.68 mg/dL
+ex:proc_Glucose_Serum_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_Glucose_Serum_2014_07_16_1647_1 .
+ex:meas_Glucose_Serum_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "77.68"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Urea nitrogen in Serum – 16.51 mg/dL
+ex:proc_UreaNitrogen_Serum_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_UreaNitrogen_Serum_2014_07_16_1647_1 .
+ex:meas_UreaNitrogen_Serum_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "16.51"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Creatinine in Serum – 1.9608 mg/dL
+ex:proc_Creatinine_Serum_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_Creatinine_Serum_2014_07_16_1647_1 .
+ex:meas_Creatinine_Serum_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.9608"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Calcium in Serum – 9.28 mg/dL
+ex:proc_Calcium_Serum_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_Calcium_Serum_2014_07_16_1647_1 .
+ex:meas_Calcium_Serum_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.28"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Sodium in Serum – 142.98 mmol/L
+ex:proc_Sodium_Serum_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_Sodium_Serum_2014_07_16_1647_1 .
+ex:meas_Sodium_Serum_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "142.98"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# Potassium in Serum – 4.33 mmol/L
+ex:proc_Potassium_Serum_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_Potassium_Serum_2014_07_16_1647_1 .
+ex:meas_Potassium_Serum_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.33"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# Chloride in Serum – 101.71 mmol/L
+ex:proc_Chloride_Serum_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_Chloride_Serum_2014_07_16_1647_1 .
+ex:meas_Chloride_Serum_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "101.71"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# Carbon dioxide, total in Serum – 22.86 mmol/L
+ex:proc_CO2_Serum_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_CO2_Serum_2014_07_16_1647_1 .
+ex:meas_CO2_Serum_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "22.86"^^xsd:float ;
+    chr:hasUnit sulo:mmol_per_L .
+
+# Glomerular filtration rate – 42.318 mL/min/{1.73_m2}
+ex:proc_GFR_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_GFR_2014_07_16_1647_1 .
+ex:meas_GFR_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "42.318"^^xsd:float ;
+    chr:hasUnit sulo:mL_per_min_per_m2 .
+
+# Glucose in Urine – 2.1128 mg/dL
+ex:proc_Glucose_Urine_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_Glucose_Urine_2014_07_16_1647_1 .
+ex:meas_Glucose_Urine_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.1128"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Bilirubin.total in Urine – 1.2139 mg/dL
+ex:proc_Bilirubin_Urine_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_Bilirubin_Urine_2014_07_16_1647_1 .
+ex:meas_Bilirubin_Urine_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.2139"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Ketones in Urine – 0.99191 mg/dL
+ex:proc_Ketones_Urine_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_Ketones_Urine_2014_07_16_1647_1 .
+ex:meas_Ketones_Urine_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.99191"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Specific gravity of Urine – 1.0104 (nominal)
+ex:proc_SpecificGravity_Urine_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_SpecificGravity_Urine_2014_07_16_1647_1 .
+ex:meas_SpecificGravity_Urine_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0104"^^xsd:float ;
+    chr:hasUnit sulo:nominal .
+
+# pH of Urine – 6.8269 pH
+ex:proc_pH_Urine_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_pH_Urine_2014_07_16_1647_1 .
+ex:meas_pH_Urine_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.8269"^^xsd:float ;
+    chr:hasUnit sulo:pH .
+
+# Protein in Urine – 349.61 mg/dL
+ex:proc_Protein_Urine_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_Protein_Urine_2014_07_16_1647_1 .
+ex:meas_Protein_Urine_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "349.61"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Hemoglobin A1c in Blood – 3.06 %
+ex:proc_HbA1c_Blood_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_HbA1c_Blood_2014_07_16_1647_1 .
+ex:meas_HbA1c_Blood_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.06"^^xsd:float ;
+    chr:hasUnit sulo:percent .
+
+# Body Height – 195.1 cm
+ex:proc_BodyHeight_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_BodyHeight_2014_07_16_1647_1 .
+ex:meas_BodyHeight_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "195.1"^^xsd:float ;
+    chr:hasUnit sulo:cm .
+
+# Body Weight – 106.6 kg
+ex:proc_BodyWeight_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_BodyWeight_2014_07_16_1647_1 .
+ex:meas_BodyWeight_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "106.6"^^xsd:float ;
+    chr:hasUnit sulo:kg .
+
+# Body Mass Index – 28.01 kg/m2
+ex:proc_BMI_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_BMI_2014_07_16_1647_1 .
+ex:meas_BMI_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "28.01"^^xsd:float ;
+    chr:hasUnit sulo:kg_per_m2 .
+
+# Heart rate – 93 /min
+ex:proc_HeartRate_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_HeartRate_2014_07_16_1647_1 .
+ex:meas_HeartRate_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "93"^^xsd:float ;
+    chr:hasUnit sulo:per_min .
+
+# Respiratory rate – 16 /min
+ex:proc_RespiratoryRate_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_RespiratoryRate_2014_07_16_1647_1 .
+ex:meas_RespiratoryRate_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "16"^^xsd:float ;
+    chr:hasUnit sulo:per_min .
+
+# Pain severity – 3 {score}
+ex:proc_PainSeverity_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_PainSeverity_2014_07_16_1647_1 .
+ex:meas_PainSeverity_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Total score (HARK) – 0 {score}
+ex:proc_HARKScore_2014_07_16_1816_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_HARKScore_2014_07_16_1816_1 .
+ex:meas_HARKScore_2014_07_16_1816_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T18:16:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# PHQ-2 total score – 1 {score}
+ex:proc_PHQ2Score_2014_07_16_1900_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_PHQ2Score_2014_07_16_1900_1 .
+ex:meas_PHQ2Score_2014_07_16_1900_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T19:00:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit sulo:score .
+
+# Cholesterol in Serum – 159.71 mg/dL
+ex:proc_Cholesterol_Serum_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_Cholesterol_Serum_2014_07_16_1647_1 .
+ex:meas_Cholesterol_Serum_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "159.71"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# Triglyceride in Serum – 137.51 mg/dL
+ex:proc_Triglyceride_Serum_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_Triglyceride_Serum_2014_07_16_1647_1 .
+ex:meas_Triglyceride_Serum_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "137.51"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# LDL Cholesterol in Serum – 78.2 mg/dL
+ex:proc_LDL_Cholesterol_Serum_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_LDL_Cholesterol_Serum_2014_07_16_1647_1 .
+ex:meas_LDL_Cholesterol_Serum_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "78.2"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .
+
+# HDL Cholesterol in Serum – 54.01 mg/dL
+ex:proc_HDL_Cholesterol_Serum_2014_07_16_1647_1 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Bryant_Clarence_Grimes ;
+    chr:hasResult ex:meas_HDL_Cholesterol_Serum_2014_07_16_1647_1 .
+ex:meas_HDL_Cholesterol_Serum_2014_07_16_1647_1 a chr:Measurement ;
+    chr:hasMeasuredDate "2014-07-16T16:47:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "54.01"^^xsd:float ;
+    chr:hasUnit sulo:mg_per_dL .

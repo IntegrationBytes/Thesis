@@ -1,0 +1,148 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:patient_P_70538f53 a chr:Person .
+
+# Person (attending physician)
+ex:person_Dr_Cari_Kohler a chr:Person .
+
+# Care unit
+ex:careunit_DR_HES_PRIMARY_CARE_FOR_ADULTS_INC a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2016_10_04_0520 a chr:ClinicalVisit ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasCareProvider ex:person_Dr_Cari_Kohler ;
+    chr:hasCareUnit ex:careunit_DR_HES_PRIMARY_CARE_FOR_ADULTS_INC .
+
+# Units
+ex:unit_cm        a sulo:Unit .
+ex:unit_kg        a sulo:Unit .
+ex:unit_percent   a sulo:Unit .
+ex:unit_kg_per_m2 a sulo:Unit .
+ex:unit_per_min   a sulo:Unit .
+ex:unit_score     a sulo:Unit .
+
+# Severity
+ex:severity_moderate a chr:Severity .
+
+# Clinical condition (Medication review)
+ex:condition_med_review_20161004 a chr:ClinicalCondition ;
+    chr:hasRecordDate "2016-10-04T05:20:00"^^xsd:dateTime ;
+    chr:hasSeverity ex:severity_moderate .
+
+# Diagnostic statement
+ex:diagstmt_med_review a chr:DiagnosticStatement .
+
+# Evaluation process
+ex:evaluation_20161004 a chr:EvaluationProcess ;
+    chr:hasObservation ex:diagstmt_med_review .
+
+# Care plan
+ex:careplan_followup a chr:CarePlan .
+
+# Measurements and measurement processes
+
+## Body Height
+ex:measurement_height_20161004 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "104.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+ex:measproc_height_20161004 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_height_20161004 .
+
+## Pain severity (0-10 verbal numeric rating)
+ex:measurement_pain_20161004 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:measproc_pain_20161004 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_pain_20161004 .
+
+## Body Weight
+ex:measurement_weight_20161004 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "19.0"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+ex:measproc_weight_20161004 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_weight_20161004 .
+
+## Weight-for-length Percentile
+ex:measurement_wfl_percentile_20161004 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "88.653"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+ex:measproc_wfl_percentile_20161004 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_wfl_percentile_20161004 .
+
+## Head Occipital-frontal circumference Percentile
+ex:measurement_head_percentile_20161004 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "81.33"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+ex:measproc_head_percentile_20161004 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_head_percentile_20161004 .
+
+## Head Occipital-frontal circumference (cm)
+ex:measurement_head_cm_20161004 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "49.99"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+ex:measproc_head_cm_20161004 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_head_cm_20161004 .
+
+## Body Mass Index (BMI) Ratio
+ex:measurement_bmi_ratio_20161004 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "17.59"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
+
+ex:measproc_bmi_ratio_20161004 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_bmi_ratio_20161004 .
+
+## Body Mass Index (BMI) Percentile
+ex:measurement_bmi_percentile_20161004 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "92.581"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+ex:measproc_bmi_percentile_20161004 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_bmi_percentile_20161004 .
+
+## Heart rate
+ex:measurement_heart_rate_20161004 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "75.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+ex:measproc_heart_rate_20161004 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_heart_rate_20161004 .
+
+## Respiratory rate
+ex:measurement_resp_rate_20161004 a chr:Measurement ;
+    chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+ex:measproc_resp_rate_20161004 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_P_70538f53 ;
+    chr:hasResult ex:measurement_resp_rate_20161004 .
