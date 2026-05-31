@@ -61,8 +61,9 @@ scaling_n100/
   extract_parallel.py           Parallel extraction wrapper (System A + B)
 
 scripts/
-  run_system_d.py               System D (LLM looped 4x without verifier feedback)
-  evaluate_system_d.py          A vs B vs D comparison on SHACL + F1
+  run_system_d.py               System C (LLM looped 4x without verifier feedback;
+                                filename retains historical "d" suffix)
+  evaluate_system_d.py          A vs B vs C comparison on SHACL + F1
   owl_conformance_survey.py     Parallel OWL conformance across systems and tracks
   connectivity_analysis.py      Connectivity-tertile stratification of all metrics
   per_shape_violation_analysis.py
@@ -110,7 +111,8 @@ OPENROUTER_PROVIDER_SORT="throughput" \
 OUTPUTS_ROOT_OVERRIDE="$PWD/evaluation/outputs_freemodel" \
 python scaling_n100/extract_parallel.py --schema chr --track schema --prompt full --systems a,b
 
-# System D — compute-fair baseline (4 LLM calls without verifier feedback)
+# System C — compute-fair baseline (4 LLM calls without verifier feedback).
+# Scripts retain the historical "system_d" filename; the paper uses "System C".
 python scripts/run_system_d.py --schema chr --track schema --workers 5
 
 # F1 + SHACL evaluation on the schema track
@@ -227,16 +229,17 @@ Full recipe and cost breakdown in `report/cost_and_reproducibility.md`.
 
 ### Decoupling
 
-ΔSHACL spans +47pp to +97pp on schema track. |ΔF1| ≤ 0.024 across all variants.
+ΔSHACL spans +55pp to +97pp on schema track. |ΔF1| ≤ 0.024 across all variants.
 Decoupling ratio (ΔSHACL / |ΔF1|): 4500× to 11000×. Structural conformance and
-content overlap with gold are independent quality axes.
+content overlap with ground truth are independent quality axes.
 
-### Compute-fairness baseline (System D)
+### Compute-fairness baseline (System C, formerly System D in code)
 
-System D = LLM called 4 times sequentially with no feedback (same token
-budget as B's 1 + 3 retries). On Gemini complex schema: A=3% SHACL, D=0%,
+System C = LLM called 4 times sequentially with no feedback (same token
+budget as B's 1 + 3 retries). On Gemini complex schema: A=3% SHACL, C=0%,
 B=100%. The verifier's feedback signal is responsible for nearly all of B's
-improvement, not raw inference-time scaling.
+improvement, not raw inference-time scaling. Scripts under `scripts/` still
+use the `system_d` filename for historical reasons.
 
 ## Scope of each metric
 
