@@ -42,15 +42,14 @@ and `evaluation/outputs_freemodel/`. To regenerate the paper's tables and
 figures from those outputs only:
 
 ```bash
-make all                              # evaluate → stats → plots (~3 min)
-python scripts/make_n200_decoupling_plot.py
-python scripts/make_n200_percycle_v2.py
-python scripts/make_pipeline_e2e_figure.py
-python scripts/make_violation_resolution_figure.py
+make all                                            # evaluate → stats → plots (~3 min)
+python scripts/make_n200_percycle_v2.py             # Figure 1
+python scripts/make_n200_decoupling_plot.py         # Figure 2
+python scripts/make_violation_resolution_figure.py  # Figure 3
+python scripts/make_pipeline_e2e_figure.py          # Figure 4
 ```
 
-The four figure scripts above produce the four PNGs the paper actually
-imports (see §5 for the mapping).
+PNGs land in `report/figures/`.
 
 ## 4. Reproduce results from scratch (full re-run)
 
@@ -143,31 +142,9 @@ python scripts/owl_conformance_survey.py
 python scripts/f1_normalizer_ablation.py
 ```
 
-### 4.8 Regenerate the four paper figures
+Then re-run the four figure scripts from §3 to refresh the PNGs from the new outputs.
 
-```bash
-python scripts/make_n200_decoupling_plot.py        # Figure 2
-python scripts/make_n200_percycle_v2.py            # Figure 1
-python scripts/make_pipeline_e2e_figure.py         # Figure 4
-python scripts/make_violation_resolution_figure.py # Figure 3
-```
-
-## 5. Where each paper element lives
-
-| Paper element | Source |
-|---|---|
-| Figure 1 (per-cycle dynamics) | `scripts/make_n200_percycle_v2.py` → `report/figures/fig_percycle_v2.png` |
-| Figure 2 (decoupling) | `scripts/make_n200_decoupling_plot.py` → `report/figures/fig_decoupling_n200.png` |
-| Figure 3 (violation resolution) | `scripts/make_violation_resolution_figure.py` → `report/figures/fig_violation_resolution.png` |
-| Figure 4 (end-to-end worked example) | `scripts/make_pipeline_e2e_figure.py` → `report/figures/fig_pipeline_e2e_vignette_001.png` |
-| Table I (main results) | `make evaluate` → `evaluation/outputs/**/eval.json` and `evaluation/outputs_freemodel/**/eval.json` |
-| Table II (LLM-as-judge) | `pipeline/llm_judge.py` → `evaluation/outputs/judge_scores.json` |
-| Statistical claims (p-values, CIs) | `make stats` → `evaluation/outputs/stats.json` |
-| Per-shape breakdown (§V-K) | `scripts/per_shape_violation_analysis.py` → `evaluation/outputs/per_shape_violations.json` |
-| OWL conformance survey | `scripts/owl_conformance_survey.py` → printed to stdout (A vs B per stratum, both models) |
-| IRI normaliser ablation (§IV-D) | `scripts/f1_normalizer_ablation.py` → `evaluation/outputs/f1_normalizer_ablation.json` |
-
-## 6. Configuration knobs
+## 5. Configuration knobs
 
 All set in `.env` or as environment variables:
 
@@ -182,7 +159,7 @@ All set in `.env` or as environment variables:
 Hard-coded in `pipeline/extract.py`: temperature `0.1`, retry budget `k=3`,
 plateau heuristic (two identical violation reports terminates early).
 
-## 7. Smoke tests
+## 6. Smoke tests
 
 ```bash
 python -m pytest tests/                       # unit tests
@@ -194,7 +171,7 @@ every quantitative claim in the paper still holds against the committed
 data. If you re-run extraction and any number drifts, this is the first
 thing to run.
 
-## 8. Cost budget (if running from scratch)
+## 7. Cost budget (if running from scratch)
 
 | Step | Calls | Model | ~USD |
 |---|---|---|---|
