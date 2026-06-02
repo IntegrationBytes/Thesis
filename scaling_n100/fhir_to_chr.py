@@ -37,6 +37,64 @@ def _slug(s: str) -> str:
     return re.sub(r"[^A-Za-z0-9]+", "_", s).strip("_")
 
 
+# FHIR sometimes emits non-standard or case-incorrect UCUM codes; normalise before lookup.
+_UCUM_FHIR_NORMALIZE = {
+    "[iU]/L":  "[IU]/L",   # FHIR lowercase variant; canonical UCUM is [IU]/L
+    "[iU]/mL": "[IU]/mL",
+    "K/uL":    "10*3/uL",  # non-standard thousands/uL; canonical is 10*3/uL
+}
+
+# UCUM character encoding fallback per
+# https://git.dcc.sib.swiss/dcc/biomedit-rdf/-/blob/fix-chars-in-icd-10-gm/ontology_pipelines/UCUM/main.py
+_UCUM_CHAR_MAP = {
+    ".": "dot", "%": "percent", "{": "cbl", "}": "cbr",
+    "/": "per", "#": "nb", "[": "sbl", "]": "sbr",
+    "'": "apo", "(": "rbl", ")": "rbr", "*": "exp",
+}
+
+# Terminology system → IRI base for hasCode
+_CODE_SYSTEM_BASE = {
+    "http://snomed.info/sct":                  "http://snomed.info/id/",
+    "http://loinc.org":                        "https://loinc.org/",
+    "https://loinc.org":                       "https://loinc.org/",
+    "http://www.nlm.nih.gov/research/umls/rxnorm": "http://www.nlm.nih.gov/research/umls/rxnorm/",
+}
+
+_PREFERRED_SYSTEMS = list(_CODE_SYSTEM_BASE)  # priority order
+
+
+def _code_iri(codeable_concept: dict) -> URIRef | None:
+    """Return the best terminology code IRI from a FHIR CodeableConcept.
+
+    Prefers SNOMED > LOINC > RxNorm in that order; returns None if no
+    recognised system is present.
+    """
+    codings = codeable_concept.get("coding", [])
+    for system in _PREFERRED_SYSTEMS:
+        for c in codings:
+            if c.get("system", "") == system and c.get("code"):
+                return URIRef(_CODE_SYSTEM_BASE[system] + c["code"])
+    return None
+
+
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parent))
+from ucum_units import UCUM_LABEL_TO_IRI  # noqa: E402
+
+
+def _ucum_uri(unit: str) -> URIRef:
+    """Resolve a UCUM unit string to its canonical SPHN IRI.
+
+    Looks up the unit in the SPHN UCUM ontology (874 entries). Falls back to
+    BioMedIT character-map encoding for any unit not in the ontology.
+    """
+    unit = _UCUM_FHIR_NORMALIZE.get(unit, unit)
+    if unit in UCUM_LABEL_TO_IRI:
+        return URIRef(UCUM_LABEL_TO_IRI[unit])
+    encoded = "".join(_UCUM_CHAR_MAP.get(c, c) for c in unit).replace(" ", "")
+    return URIRef(f"https://w3id.org/sulo/Unit/{encoded}")
+
+
 def _ex_iri(prefix: str, ident: str) -> URIRef:
     return EX[f"{prefix}_{_slug(ident)}"]
 
@@ -158,6 +216,11 @@ def convert_encounter(
             disp = encounter.get("serviceProvider", {}).get("display", "Care Unit")
             g.add((care_unit_iri, RDFS.label, Literal(disp)))
 
+    # NOTE: chr:hasRecordDate is restricted to ClinicalCondition subjects
+    # (HasRecordDateShape). Don't attach to Visit. Per-process timestamps
+    # use chr:hasPerformedDate / chr:hasMeasuredDate instead.
+    period_start = encounter.get("period", {}).get("start")
+
     # ---- Visit ----
     visit_iri = _ex_iri("visit", eid)
     g.add((visit_iri, RDF.type, CHR.ClinicalVisit))
@@ -166,11 +229,8 @@ def convert_encounter(
         g.add((visit_iri, CHR.hasCareProvider, provider_iri))
     if care_unit_iri:
         g.add((visit_iri, CHR.hasCareUnit, care_unit_iri))
-
-    # NOTE: chr:hasRecordDate is restricted to ClinicalCondition subjects
-    # (HasRecordDateShape). Don't attach to Visit. Per-process timestamps
-    # use chr:hasPerformedDate / chr:hasMeasuredDate instead.
-    period_start = encounter.get("period", {}).get("start")
+    if period_start:
+        g.add((visit_iri, CHR.hasDate, Literal(period_start, datatype=XSD.dateTime)))
 
     # ---- Status (shared across measurement/eval procs) ----
     status_iri = _ex_iri("status", "completed")
@@ -184,15 +244,23 @@ def convert_encounter(
         vq = obs.get("valueQuantity")
         if not vq or "value" not in vq:
             continue
+        code = obs.get("code", {})
+        obs_label = code.get("text") or (code.get("coding", [{}])[0].get("display", ""))
+        obs_code_iri = _code_iri(code)
         meas_iri = _ex_iri("meas", oid)
         g.add((meas_iri, RDF.type, CHR.Measurement))
+        if obs_label:
+            g.add((meas_iri, RDFS.label, Literal(obs_label)))
+        if obs_code_iri:
+            g.add((meas_iri, CHR.hasCode, obs_code_iri))
         g.add((meas_iri, CHR.hasQuantityValue, Literal(float(vq["value"]), datatype=XSD.float)))
         unit = vq.get("unit") or vq.get("code", "unit")
-        # chr:hasUnit must be an IRI (HasUnitRangeShape, sh:nodeKind sh:IRI).
-        # Mint a sulo:Unit IRI for the unit symbol — matches the gold-vignette
-        # convention `chr:hasUnit <https://w3id.org/sulo/Unit/mmHg>`.
-        unit_iri = URIRef(f"https://w3id.org/sulo/Unit/{_slug(unit)}")
-        g.add((meas_iri, CHR.hasUnit, unit_iri))
+        ucum_code_iri = _ucum_uri(unit)
+        unit_inst_iri = _ex_iri("unit", _slug(unit))
+        g.add((unit_inst_iri, RDF.type, CHR.Unit))
+        g.add((unit_inst_iri, RDFS.label, Literal(unit)))
+        g.add((unit_inst_iri, CHR.hasCode, ucum_code_iri))
+        g.add((meas_iri, CHR.hasUnit, unit_inst_iri))
         if "effectiveDateTime" in obs:
             g.add((meas_iri, CHR.hasMeasuredDate, Literal(obs["effectiveDateTime"], datatype=XSD.dateTime)))
 
@@ -205,6 +273,7 @@ def convert_encounter(
         g.add((proc_iri, CHR.hasStatus, status_iri))
         if "effectiveDateTime" in obs:
             g.add((proc_iri, CHR.hasPerformedDate, Literal(obs["effectiveDateTime"], datatype=XSD.dateTime)))
+        g.add((visit_iri, CHR.hasProcedure, proc_iri))
 
     # ---- Conditions → ClinicalCondition + DiagnosticStatement + EvaluationProcess ----
     for i, cond in enumerate(attached.get("Condition", [])):
@@ -212,15 +281,27 @@ def convert_encounter(
         code = cond.get("code", {})
         label = code.get("text") or (code.get("coding", [{}])[0].get("display", "Condition"))
 
+        cond_code_iri = _code_iri(code)
         cond_iri = _ex_iri("cond", cid)
         g.add((cond_iri, RDF.type, CHR.ClinicalCondition))
         g.add((cond_iri, RDFS.label, Literal(label)))
+        if cond_code_iri:
+            g.add((cond_iri, CHR.hasCode, cond_code_iri))
         if "recordedDate" in cond:
             g.add((cond_iri, CHR.hasRecordDate, Literal(cond["recordedDate"], datatype=XSD.dateTime)))
+        sev = cond.get("severity", {})
+        sev_label = (sev.get("text") or (sev.get("coding", [{}])[0].get("display", ""))) if sev else ""
+        if sev_label:
+            sev_iri = _ex_iri("severity", sev_label)
+            g.add((sev_iri, RDF.type, CHR.Severity))
+            g.add((sev_iri, RDFS.label, Literal(sev_label)))
+            g.add((cond_iri, CHR.hasSeverity, sev_iri))
 
         diag_iri = _ex_iri("diag", cid)
         g.add((diag_iri, RDF.type, CHR.DiagnosticStatement))
         g.add((diag_iri, RDFS.label, Literal(label)))
+        if cond_code_iri:
+            g.add((diag_iri, CHR.hasCode, cond_code_iri))
 
         eval_iri = _ex_iri("evalProc", cid)
         g.add((eval_iri, RDF.type, CHR.EvaluationProcess))
@@ -228,8 +309,10 @@ def convert_encounter(
         if provider_iri:
             g.add((eval_iri, CHR.hasPerformer, provider_iri))
         g.add((eval_iri, CHR.hasObservation, diag_iri))
+        g.add((eval_iri, CHR.hasCondition, cond_iri))
         if period_start:
             g.add((eval_iri, CHR.hasPerformedDate, Literal(period_start, datatype=XSD.dateTime)))
+        g.add((visit_iri, CHR.hasProcedure, eval_iri))
 
     # ---- MedicationAdministrations → MedAdmin + PharmaceuticalProduct ----
     for i, ma in enumerate(attached.get("MedicationAdministration", [])):
@@ -240,6 +323,9 @@ def convert_encounter(
         prod_iri = _ex_iri("drug", mid)
         g.add((prod_iri, RDF.type, CHR.PharmaceuticalProduct))
         g.add((prod_iri, RDFS.label, Literal(med_text)))
+        med_code_iri = _code_iri(med)
+        if med_code_iri:
+            g.add((prod_iri, CHR.hasCode, med_code_iri))
 
         admin_iri = _ex_iri("medAdmin", mid)
         g.add((admin_iri, RDF.type, CHR.MedicationAdministration))
@@ -249,6 +335,7 @@ def convert_encounter(
         g.add((admin_iri, CHR.hasPharmaceuticalProduct, prod_iri))
         if "effectiveDateTime" in ma:
             g.add((admin_iri, CHR.hasPerformedDate, Literal(ma["effectiveDateTime"], datatype=XSD.dateTime)))
+        g.add((visit_iri, CHR.hasProcedure, admin_iri))
 
     return g
 

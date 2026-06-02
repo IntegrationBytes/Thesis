@@ -55,10 +55,33 @@ from rdflib import Graph, Namespace, RDF, RDFS, URIRef, Literal, BNode
 CHR = Namespace("https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/")
 EX_PREFIX = "http://example.org/clinical/"
 
+_UCUM_BASE      = "https://biomedit.ch/rdf/sphn-resource/ucum/"
+_SULO_UNIT_BASE = "https://w3id.org/sulo/Unit/"
+
+_UCUM_STRIP_TOKENS = sorted(
+    ["per", "dot", "exp", "cbl", "cbr", "sbl", "sbr", "nb", "rbl", "rbr", "apo"],
+    key=len, reverse=True,
+)
+
+
+_UCUM_RAW_SPECIAL = list("./%{}[]#'()*")
+
+def _unit_bare_key(local: str) -> str:
+    from urllib.parse import unquote as _unquote
+    s = _unquote(local).lower()
+    if s.startswith("unit_"):
+        s = s[len("unit_"):]
+    s = s.replace("%", "percent")
+    for token in _UCUM_STRIP_TOKENS:
+        s = s.replace(token, "")
+    for ch in _UCUM_RAW_SPECIAL:
+        s = s.replace(ch, "")
+    return s.replace("_", "").replace("-", "")
+
 # Per-type value-bearing properties used as additional matching keys.
 # All keys are FHIR-derived (the converter only emits them from a FHIR source).
 _VALUE_KEYS: dict[str, tuple[str, ...]] = {
-    str(CHR.Measurement):              ("hasQuantityValue", "hasMeasuredDate"),
+    str(CHR.Measurement):              ("hasMeasuredDate",),  # type identity via hasCode (LOINC) +2.0
     str(CHR.MeasurementProcess):       ("hasPerformedDate",),
     str(CHR.EvaluationProcess):        ("hasPerformedDate",),
     str(CHR.MedicalProcedure):         ("hasPerformedDate",),
@@ -137,8 +160,14 @@ def _entity_keys(g: Graph, e: URIRef, type_uri: str) -> dict[str, object]:
       label_tokens: set[str]
       values: dict[predicate_localname, str]  (literal values, date prefixes)
     """
-    label_lit = next(g.objects(e, RDFS.label), None)
-    label = str(label_lit).lower().strip() if label_lit else None
+    # Only extract rdfs:label for named entities (Person, CareUnit, Unit, etc.).
+    # Clinical types (Measurement, Condition, EvaluationProcess, …) match by
+    # code + date + structural signals — their labels are not used for matching.
+    if type_uri in _NAMED_ENTITY_TYPES:
+        label_lit = next(g.objects(e, RDFS.label), None)
+        label = str(label_lit).lower().strip() if label_lit else None
+    else:
+        label = None
     local = _iri_local(str(e))
 
     label_tokens = _tokens(label) if label else set()
@@ -151,10 +180,21 @@ def _entity_keys(g: Graph, e: URIRef, type_uri: str) -> dict[str, object]:
         if v is None:
             continue
         v_str = str(v).strip()
-        # Normalise dates to the date-only prefix so 09:24:27 vs 09:24:00 doesn't break the match.
+        # Normalise dates to date-only prefix (seconds/timezone don't matter for matching).
         if pred_local.endswith("Date") and "T" in v_str:
             v_str = v_str.split("T")[0]
+        # Normalise unit IRIs to bare alphanumeric key so SPHN-encoded and
+        # LLM-slugged variants (mmolperL vs mmol_l) compare equal.
+        if pred_local == "hasUnit":
+            for base in (_UCUM_BASE, _SULO_UNIT_BASE, EX_PREFIX):
+                if v_str.startswith(base):
+                    v_str = _unit_bare_key(v_str[len(base):])
+                    break
         values[pred_local] = v_str
+
+    # Terminology code IRI (SNOMED / LOINC) — strongest identity signal when present.
+    code_iri = next(g.objects(e, CHR.hasCode), None)
+    code = str(code_iri) if code_iri else None
 
     return {
         "label": label,
@@ -162,22 +202,58 @@ def _entity_keys(g: Graph, e: URIRef, type_uri: str) -> dict[str, object]:
         "label_tokens": label_tokens,
         "local_tokens": local_tokens,
         "values": values,
+        "code": code,
     }
 
 
 # ---------------------------------------------------------------------------
 # Matching
 # ---------------------------------------------------------------------------
-def _score(llm_keys: dict, gold_keys: dict) -> float:
+# Types that carry explicit human-readable names — label extraction is meaningful.
+# All other types (clinical processes and entities) match by code + date +
+# structural signals only; their rdfs:label is not extracted.
+_NAMED_ENTITY_TYPES: frozenset[str] = frozenset({
+    str(CHR.Person),
+    str(CHR.CareUnit),
+    str(CHR.ProcessStatus),
+    str(CHR.Severity),
+    str(CHR.Device),
+    str(CHR.AnatomicalStructure),
+    str(CHR.PharmaceuticalProduct),  # drug name is its primary identifier
+    # chr:Unit is intentionally excluded — identity is its UCUM hasCode, not its label
+})
+
+
+def _score(llm_keys: dict, gold_keys: dict, type_uri: str = "") -> float:
     """Higher = better match. Returns a score in [0, 1+] (capped).
 
     Order of evidence:
+      +2.0 — shared terminology code (SNOMED / LOINC) — definitive
       +1.0 — local_name exact match (for shared conventions like status_completed)
       +1.0 — any value key matches (e.g., hasQuantityValue)
-      +0.9 — label exact match (LLM rarely produces this — bonus when it does)
-      +score in [0, 0.8] — Jaccard token overlap (LLM local-name tokens vs. gold label tokens)
+      +0.9 — label exact match
+      +[0, 0.8] — Jaccard token overlap
+
+    For code-only types (ClinicalCondition, DiagnosticStatement) label and token
+    signals are suppressed — code + date are the sole identity criteria.
     """
     score = 0.0
+
+    # Terminology code match (SNOMED / LOINC) — strongest signal; overrides all others.
+    # Normalise both sides through the same IRI variants before comparing so
+    # http://loinc.org/id/X and https://loinc.org/X both match.
+    llm_code = llm_keys.get("code")
+    gold_code = gold_keys.get("code")
+    if llm_code and gold_code:
+        def _norm_code(c: str) -> str:
+            import re as _re
+            m = _re.match(r"^https?://loinc\.org/(?:id/)?(.+)$", c)
+            if m: return f"loinc:{m.group(1)}"
+            m = _re.match(r"^https?://snomed\.info/(?:id/|sct/)?(.+)$", c)
+            if m: return f"snomed:{m.group(1)}"
+            return c
+        if _norm_code(llm_code) == _norm_code(gold_code):
+            score += 2.0  # definitive match — rank above all other signals
 
     # Local-name exact match — shared convention bonus
     if llm_keys["local_name"] == gold_keys["local_name"]:
@@ -192,7 +268,7 @@ def _score(llm_keys: dict, gold_keys: dict) -> float:
             score += 1.0
             break  # one value match is enough
 
-    # Label vs label exact match
+    # Label vs label exact match (only populated for named entity types)
     if llm_keys["label"] and gold_keys["label"]:
         if llm_keys["label"] == gold_keys["label"]:
             score += 0.9
@@ -201,6 +277,11 @@ def _score(llm_keys: dict, gold_keys: dict) -> float:
     j = _jaccard(llm_keys["local_tokens"], gold_keys["label_tokens"])
     if j > 0:
         score += min(j, 0.8)
+
+    # Jaccard between LLM label tokens and gold label tokens
+    j_label = _jaccard(llm_keys["label_tokens"], gold_keys["label_tokens"])
+    if j_label > 0:
+        score += min(j_label, 0.8)
 
     return score
 
@@ -273,7 +354,7 @@ def build_iri_map(llm_graph: Graph, gold_graph: Graph) -> dict[URIRef, URIRef]:
             lkeys = _entity_keys(llm_graph, le, type_uri)
             for ge in gold_ents:
                 gkeys = _entity_keys(gold_graph, ge, type_uri)
-                scores[(le, ge)] = _score(lkeys, gkeys)
+                scores[(le, ge)] = _score(lkeys, gkeys, type_uri)
 
         per_type_map = _greedy_bijection(scores, llm_ents, gold_ents)
         full_map.update(per_type_map)
@@ -296,7 +377,7 @@ def build_iri_map(llm_graph: Graph, gold_graph: Graph) -> dict[URIRef, URIRef]:
                 lkeys = _entity_keys(llm_graph, le, type_uri)
                 for ge in unmatched_gold:
                     gkeys = _entity_keys(gold_graph, ge, type_uri)
-                    base = _score(lkeys, gkeys)
+                    base = _score(lkeys, gkeys, type_uri)
                     struct = _structural_score(llm_graph, gold_graph, le, ge, full_map)
                     scores[(le, ge)] = base + struct
 
