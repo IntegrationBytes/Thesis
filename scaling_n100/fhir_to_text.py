@@ -29,12 +29,27 @@ from fhir_to_chr import (  # type: ignore
     _attached_to_encounter, _build_resource_index, _label, _ref_id, is_rich,
 )
 
+_CODE_SYSTEM_LABEL = {
+    "http://snomed.info/sct": "SNOMED",
+    "http://loinc.org":       "LOINC",
+    "https://loinc.org":      "LOINC",
+}
+
+
+def _inline_code(codeable_concept: dict) -> str:
+    """Return ' (SYSTEM: code)' string for the most specific coding, or empty string."""
+    for system, label in _CODE_SYSTEM_LABEL.items():
+        for c in codeable_concept.get("coding", []):
+            if c.get("system") == system and c.get("code"):
+                return f" ({label}: {c['code']})"
+    return ""
+
 
 def _format_dt(dt: str) -> str:
-    """ISO datetime → 'YYYY-MM-DD HH:MM'."""
+    """ISO datetime → full ISO-8601 string (preserves seconds and timezone offset)."""
     if not dt:
         return "unspecified"
-    return dt.replace("T", " ")[:16]
+    return dt
 
 
 def _patient_label(res: dict) -> str:
@@ -110,13 +125,15 @@ def render(bundle: dict, encounter: dict, res_idx: dict[str, dict]) -> str:
         vq = obs.get("valueQuantity")
         if not vq or "value" not in vq:
             continue
-        code_text = obs.get("code", {}).get("text") or (
-            obs.get("code", {}).get("coding", [{}])[0].get("display", "an observation")
+        obs_code = obs.get("code", {})
+        code_text = obs_code.get("text") or (
+            obs_code.get("coding", [{}])[0].get("display", "an observation")
         )
+        code_inline = _inline_code(obs_code)
         unit = vq.get("unit", "")
         when = _format_dt(obs.get("effectiveDateTime", ""))
         measurements_text.append(
-            f"On {when}, a {code_text} measurement was performed on "
+            f"On {when}, a {code_text}{code_inline} measurement was performed on "
             f"{pat_label}. The measurement result was {vq['value']} {unit}. "
             f"The measurement process was recorded with status \"completed\"."
         )
@@ -130,11 +147,15 @@ def render(bundle: dict, encounter: dict, res_idx: dict[str, dict]) -> str:
         cond_label = code.get("text") or (
             code.get("coding", [{}])[0].get("display", "a clinical condition")
         )
+        code_inline = _inline_code(code)
         when = _format_dt(cond.get("recordedDate", period.get("start", "")))
+        sev = cond.get("severity", {})
+        sev_label = (sev.get("text") or (sev.get("coding", [{}])[0].get("display", ""))) if sev else ""
+        sev_sentence = f" Severity was assessed as \"{sev_label}\"." if sev_label else ""
         conds_text.append(
             f"{prov_label} evaluated the patient on {when}. The evaluation "
-            f"produced a diagnostic statement of {cond_label}. The condition "
-            f"was recorded on {when}. Severity was assessed as \"Moderate\"."
+            f"produced a diagnostic statement of {cond_label}{code_inline}. The condition "
+            f"was recorded on {when}.{sev_sentence}"
         )
     if conds_text:
         paragraphs.append("\n\n".join(conds_text))

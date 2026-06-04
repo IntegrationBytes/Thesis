@@ -139,6 +139,11 @@
     rdfs:label "Treatment / Treatment Plan" ;
     rdfs:comment "A drug administration event or planned course of treatment." .
 
+:Unit
+    a rdfs:Class ;
+    rdfs:label "Unit" ;
+    rdfs:comment "A unit of measure, identified by its UCUM code via chr:hasCode." .
+
 # ── Properties ───────────────────────────────────────────────────────────
 
 :hasCareProvider
@@ -154,6 +159,11 @@
     rdfs:comment "Links a clinical visit to the care unit where it takes place." ;
     rdfs:domain :ClinicalVisit ;
     rdfs:range :CareUnit .
+
+:hasCode
+    a rdfs:Property ;
+    rdfs:label "Has Code" ;
+    rdfs:comment "Links a clinical entity to its formal terminology code IRI (SNOMED CT: http://snomed.info/id/{code}, LOINC: https://loinc.org/{code}, UCUM: https://biomedit.ch/rdf/sphn-resource/ucum/{encoded})." .
 
 :hasConditionEndDate
     a rdfs:Property ;
@@ -203,6 +213,27 @@
     rdfs:comment "Links a plan to the medical procedure it refers to." ;
     rdfs:domain :CarePlan ;
     rdfs:range :MedicalProcedure .
+
+:hasDate
+    a rdfs:Property ;
+    rdfs:label "Has Date" ;
+    rdfs:comment "Links a clinical visit to the date and time it took place." ;
+    rdfs:domain :ClinicalVisit ;
+    rdfs:range xsd:dateTime .
+
+:hasProcedure
+    a rdfs:Property ;
+    rdfs:label "Has Procedure" ;
+    rdfs:comment "Links a clinical visit to a medical procedure performed during that visit." ;
+    rdfs:domain :ClinicalVisit ;
+    rdfs:range :MedicalProcedure .
+
+:hasCondition
+    a rdfs:Property ;
+    rdfs:label "Has Condition" ;
+    rdfs:comment "Links an evaluation process to the clinical condition it assessed." ;
+    rdfs:domain :EvaluationProcess ;
+    rdfs:range :ClinicalCondition .
 
 :hasObservation
     a rdfs:Property ;
@@ -286,4 +317,4 @@
     rdfs:label "Has Unit" ;
     rdfs:comment "Links a measurement to its unit of measure." ;
     rdfs:domain :Measurement ;
-    rdfs:range sulo:Unit .
+    rdfs:range :Unit .

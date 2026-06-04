@@ -81,15 +81,17 @@ _CHR_CLASSES: list[str] = [
     "MeasurementProcess", "MedicalProcedure", "MedicationAdministration",
     "Occupation", "OutputRole", "PerformerRole", "Person",
     "PharmaceuticalDose", "PharmaceuticalDoseForm", "PharmaceuticalProduct",
-    "ProcessStatus", "Severity", "SubjectOfCareRole", "TreatmentPlan",
+    "ProcessStatus", "Severity", "SubjectOfCareRole", "TreatmentPlan", "Unit",
 ]
 
 # (property, domain, range). MedicalProcedure is the parent of
 # MeasurementProcess, EvaluationProcess, and MedicationAdministration, so
 # hasPerformer / hasPerformedDate / hasStatus apply to any of those.
 _CHR_PROPERTIES: list[tuple[str, str, str]] = [
+    ("hasCode",                  "ClinicalCondition | DiagnosticStatement | Measurement | MeasurementProcess | PharmaceuticalProduct", "IRI (SNOMED CT / LOINC / UCUM)"),
     ("hasCareProvider",          "ClinicalVisit",                      "Person"),
     ("hasCareUnit",              "ClinicalVisit",                      "CareUnit"),
+    ("hasDate",                  "ClinicalVisit",                      "xsd:dateTime"),
     ("hasConditionEndDate",      "ClinicalCondition",                  "xsd:dateTime"),
     ("hasDevice",                "MeasurementProcess",                 "Device"),
     ("hasDoseForm",              "PharmaceuticalProduct",              "PharmaceuticalDoseForm"),
@@ -97,6 +99,8 @@ _CHR_PROPERTIES: list[tuple[str, str, str]] = [
     ("hasLocatedIn",             "ClinicalCondition",                  "AnatomicalStructure"),
     ("hasMeasuredDate",          "Measurement",                        "xsd:dateTime"),
     ("hasMedicalProcedure",      "CarePlan",                           "MedicalProcedure"),
+    ("hasProcedure",             "ClinicalVisit",                      "MedicalProcedure"),
+    ("hasCondition",             "EvaluationProcess",                  "ClinicalCondition"),
     ("hasObservation",           "EvaluationProcess",                  "DiagnosticStatement"),
     ("hasPatient",               "ClinicalVisit | MedicalProcedure",   "Person"),
     ("hasPerformedDate",         "MedicalProcedure",                   "xsd:dateTime"),
@@ -107,7 +111,7 @@ _CHR_PROPERTIES: list[tuple[str, str, str]] = [
     ("hasResult",                "MeasurementProcess",                 "Measurement"),
     ("hasSeverity",              "ClinicalCondition",                  "Severity"),
     ("hasStatus",                "MedicalProcedure",                   "ProcessStatus"),
-    ("hasUnit",                  "Measurement",                        "sulo:Unit"),
+    ("hasUnit",                  "Measurement",                        "Unit"),
 ]
 
 
@@ -370,10 +374,24 @@ def _full_hard_rules(ctx: SchemaContext) -> str:
   3. Every {p}:MeasurementProcess MUST have exactly one {p}:hasPatient and one
      {p}:hasResult.
   4. {p}:hasQuantityValue MUST be typed xsd:float (e.g. "152.0"^^xsd:float).
-  5. Any *Date property MUST be typed xsd:dateTime in ISO-8601
-     (e.g. "2025-11-03T09:45:00"^^xsd:dateTime).
+  5. Any *Date property MUST be typed xsd:dateTime and copied EXACTLY as it
+     appears in the clinical text (e.g. "2025-11-03T09:45:00+02:00"^^xsd:dateTime).
+     Do NOT truncate seconds or drop the timezone offset.
   6. Name individuals with descriptive ex: IRIs
-     (e.g. ex:patient_JohnAndersson, ex:visit_2025_11_03, ex:meas_BP_20251103)."""
+     (e.g. ex:patient_JohnAndersson, ex:visit_2025_11_03, ex:meas_BP_20251103).
+  7. Every named individual MUST carry an rdfs:label with its human-readable name
+     or value from the text (e.g. patient full name, condition name, drug name,
+     unit symbol, status value, care unit name, provider name).
+  8. {p}:hasCode MUST use these exact IRI patterns — copy the code digit-for-digit
+     from the clinical text:
+     - SNOMED CT: <http://snomed.info/id/{{code}}>   e.g. <http://snomed.info/id/195662009>
+     - LOINC:     <https://loinc.org/{{code}}>       e.g. <https://loinc.org/8310-5>
+     - UCUM:      <https://biomedit.ch/rdf/sphn-resource/ucum/{{encoded}}>
+       e.g. <https://biomedit.ch/rdf/sphn-resource/ucum/Cel> for Cel,
+            <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> for mg/dL
+  9. Every {p}:Unit individual MUST have {p}:hasCode pointing to its UCUM IRI.
+     Use the unit symbol from the clinical text to look up the encoding.
+     The {p}:Measurement links to the unit via {p}:hasUnit → {p}:Unit → {p}:hasCode."""
     # ontology track falls back to build_ontology_prompt's inline rules
     # — build_full_schema_prompt on the ontology track is rare but supported.
     return f"""  1. Every {p.upper()}-domain individual MUST have an rdf:type drawn from the

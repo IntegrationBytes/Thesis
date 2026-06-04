@@ -83,6 +83,43 @@ chr:HasCareUnitRangeShape
     sh:severity sh:Violation .
 
 
+chr:HasDateDomainShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf chr:hasDate ;
+    sh:class chr:ClinicalVisit ;
+    sh:message "Subject of chr:hasDate must be a chr:ClinicalVisit." ;
+    sh:severity sh:Violation .
+
+chr:HasDateDatatypeShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf chr:hasDate ;
+    sh:property [
+        sh:path chr:hasDate ;
+        sh:datatype xsd:dateTime ;
+        sh:message "chr:hasDate must be an xsd:dateTime." ;
+    ] ;
+    sh:severity sh:Violation .
+
+chr:HasProcedureDomainShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf chr:hasProcedure ;
+    sh:class chr:ClinicalVisit ;
+    sh:message "Subject of chr:hasProcedure must be a chr:ClinicalVisit." ;
+    sh:severity sh:Violation .
+
+chr:HasProcedureRangeShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf chr:hasProcedure ;
+    sh:or (
+        [ sh:class chr:MedicalProcedure ]
+        [ sh:class chr:MeasurementProcess ]
+        [ sh:class chr:EvaluationProcess ]
+        [ sh:class chr:MedicationAdministration ]
+    ) ;
+    sh:message "Object of chr:hasProcedure must be a chr:MedicalProcedure or subclass thereof." ;
+    sh:severity sh:Violation .
+
+
 # -----------------------------------------------------------------------------
 # MEASUREMENT PROCESS / MEASUREMENT / DEVICE / UNIT
 # -----------------------------------------------------------------------------
@@ -142,8 +179,20 @@ chr:HasUnitDomainShape
 chr:HasUnitRangeShape
     a sh:NodeShape ;
     sh:targetObjectsOf chr:hasUnit ;
-    sh:nodeKind sh:IRI ;
-    sh:message "Object of chr:hasUnit must be an IRI (a Unit resource)." ;
+    sh:class chr:Unit ;
+    sh:message "Object of chr:hasUnit must be a chr:Unit individual." ;
+    sh:severity sh:Violation .
+
+chr:UnitCodeShape
+    a sh:NodeShape ;
+    sh:targetClass chr:Unit ;
+    sh:property [
+        sh:path chr:hasCode ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:pattern "^https://biomedit\\.ch/rdf/sphn-resource/ucum/" ;
+        sh:message "A chr:Unit must have chr:hasCode pointing to a UCUM IRI (https://biomedit.ch/rdf/sphn-resource/ucum/...)." ;
+    ] ;
     sh:severity sh:Violation .
 
 chr:HasQuantityValueShape
@@ -260,6 +309,30 @@ chr:CarePlanCardinalityShape
 # -----------------------------------------------------------------------------
 # EVALUATION PROCESS
 # -----------------------------------------------------------------------------
+
+chr:HasCodeRangeShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf chr:hasCode ;
+    sh:property [
+        sh:path chr:hasCode ;
+        sh:nodeKind sh:IRI ;
+        sh:message "chr:hasCode must be an IRI (SNOMED CT, LOINC, or UCUM concept URI)." ;
+    ] ;
+    sh:severity sh:Violation .
+
+chr:HasConditionDomainShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf chr:hasCondition ;
+    sh:class chr:EvaluationProcess ;
+    sh:message "Subject of chr:hasCondition must be a chr:EvaluationProcess." ;
+    sh:severity sh:Violation .
+
+chr:HasConditionRangeShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf chr:hasCondition ;
+    sh:class chr:ClinicalCondition ;
+    sh:message "Object of chr:hasCondition must be a chr:ClinicalCondition." ;
+    sh:severity sh:Violation .
 
 chr:HasObservationDomainShape
     a sh:NodeShape ;
