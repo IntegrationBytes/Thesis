@@ -30,31 +30,34 @@ from iri_normalizer import normalize_llm_to_gold  # noqa: E402
 GOLD_DIR = ROOT / "evaluation/corpus/abox_gold"
 
 
-def _f1(gold: set, gen: set) -> float:
+def _prf(gold: set, gen: set) -> tuple[float, float, float]:
+    """Return (precision, recall, F1)."""
     if not gen:
-        return 0.0
+        return (0.0, 0.0, 0.0)
     tp = len(gold & gen)
     p = tp / len(gen)
     r = tp / len(gold) if gold else 0.0
-    return 2 * p * r / (p + r) if (p + r) else 0.0
+    f1 = 2 * p * r / (p + r) if (p + r) else 0.0
+    return (p, r, f1)
 
 
-def _process_schema(args) -> tuple[int, bool, float]:
-    """schema track: compute conforms + F1 per cycle."""
+def _process_schema(args) -> tuple[int, bool, float, float, float]:
+    """schema track: compute conforms + (P, R, F1) per cycle."""
     cycle_idx, ttl_path, gold_path, conforms_flag = args
     ttl_p = Path(ttl_path)
     gold_p = Path(gold_path)
     if not ttl_p.exists() or not gold_p.exists():
-        return (cycle_idx, False, 0.0)
+        return (cycle_idx, False, 0.0, 0.0, 0.0)
     try:
         gen_g = rdflib.Graph().parse(ttl_p.as_posix(), format="turtle")
         gold_g = rdflib.Graph().parse(gold_p.as_posix(), format="turtle")
     except Exception:
-        return (cycle_idx, conforms_flag, 0.0)
+        return (cycle_idx, conforms_flag, 0.0, 0.0, 0.0)
     gen_rewritten, _ = normalize_llm_to_gold(gen_g, gold_g)
     gold_set = {(str(s), str(p), str(o)) for s, p, o in gold_g}
     gen_set = {(str(s), str(p), str(o)) for s, p, o in gen_rewritten}
-    return (cycle_idx, conforms_flag, _f1(gold_set, gen_set))
+    p, r, f1 = _prf(gold_set, gen_set)
+    return (cycle_idx, conforms_flag, p, r, f1)
 
 
 def collect_schema_jobs(cycles_root: Path) -> tuple[list, dict, int]:
@@ -89,11 +92,11 @@ def collect_schema_jobs(cycles_root: Path) -> tuple[list, dict, int]:
     return jobs, per_v, n
 
 
-def _process_schema_v(args) -> tuple[str, int, bool, float]:
+def _process_schema_v(args) -> tuple[str, int, bool, float, float, float]:
     """schema track with vignette id."""
     vid, cycle_idx, ttl_path, gold_path, conforms_flag = args
-    cycle, conf, f1 = _process_schema((cycle_idx, ttl_path, gold_path, conforms_flag))
-    return (vid, cycle, conf, f1)
+    cycle, conf, p, r, f1 = _process_schema((cycle_idx, ttl_path, gold_path, conforms_flag))
+    return (vid, cycle, conf, p, r, f1)
 
 
 def collect_ontology_traces(cycles_root: Path) -> tuple[dict, int]:
@@ -113,50 +116,54 @@ def collect_ontology_traces(cycles_root: Path) -> tuple[dict, int]:
     return per_v, len(per_v)
 
 
-def compute_schema_cumulative(cycles_root: Path) -> tuple[list[int], list[float], list[float]]:
-    """Cumulative pass-rate and effective F1 per cycle.
-    pass_rate(k) = share of all vignettes that have passed by cycle ≤ k.
-    F1(k) = mean of each vignette's F1 at its current state at cycle k
-            (frozen at the cycle where it first passed; otherwise its
-            cycle-k F1).
-    """
+def compute_schema_cumulative(cycles_root: Path):
+    """Returns (cycles, pass_rate, p_mean, r_mean, f1_mean)."""
     jobs, per_v_conf, n = collect_schema_jobs(cycles_root)
     print(f"  {len(jobs)} schema (vignette, cycle) entries · n={n} vignettes")
 
-    # Compute F1 for each (vid, cycle)
+    # Compute (P, R, F1) for each (vid, cycle)
+    p_table: dict[tuple[str, int], float] = {}
+    r_table: dict[tuple[str, int], float] = {}
     f1_table: dict[tuple[str, int], float] = {}
     with ProcessPoolExecutor(max_workers=6) as pool:
         futs = [pool.submit(_process_schema_v, j) for j in jobs]
         for fut in as_completed(futs):
-            vid, c, conf, f1 = fut.result()
-            f1_table[(vid, c)] = f1
+            vid, c, conf, p_v, r_v, f1_v = fut.result()
+            p_table[(vid, c)] = p_v
+            r_table[(vid, c)] = r_v
+            f1_table[(vid, c)] = f1_v
 
     max_cycle = max((c for _, c in f1_table.keys()), default=0)
     cycles = list(range(max_cycle + 1))
 
-    # For each vignette, find first-passing cycle (or None)
     first_pass: dict[str, int | None] = {}
     for vid, confs in per_v_conf.items():
         idx = next((i for i, c in enumerate(confs) if c), None)
         first_pass[vid] = idx
 
-    pass_rate = []
-    f1_mean_list = []
+    # Pre-compute max cycle traced per vignette
+    traced_max: dict[str, int] = {}
+    for (v, c) in f1_table.keys():
+        if c > traced_max.get(v, -1):
+            traced_max[v] = c
+
+    pass_rate, p_mean, r_mean, f1_mean = [], [], [], []
     for k in cycles:
         passed = sum(1 for vid, fp in first_pass.items()
                      if fp is not None and fp <= k)
         pass_rate.append(passed / n)
-
-        # F1 per vignette at "state k"
-        f1s = []
+        ps, rs, fs = [], [], []
         for vid in per_v_conf.keys():
             fp = first_pass[vid]
-            # state cycle = min(k, fp) if passed; else min(k, last-traced-cycle)
-            traced = max(c for (v, c) in f1_table.keys() if v == vid) if any(v == vid for v, _ in f1_table) else 0
+            traced = traced_max.get(vid, 0)
             state_c = min(k, fp if fp is not None else traced)
-            f1s.append(f1_table.get((vid, state_c), 0.0))
-        f1_mean_list.append(mean(f1s) if f1s else 0.0)
-    return cycles, pass_rate, f1_mean_list
+            ps.append(p_table.get((vid, state_c), 0.0))
+            rs.append(r_table.get((vid, state_c), 0.0))
+            fs.append(f1_table.get((vid, state_c), 0.0))
+        p_mean.append(mean(ps) if ps else 0.0)
+        r_mean.append(mean(rs) if rs else 0.0)
+        f1_mean.append(mean(fs) if fs else 0.0)
+    return cycles, pass_rate, p_mean, r_mean, f1_mean
 
 
 def compute_ontology_cumulative(cycles_root: Path) -> tuple[list[int], list[float]]:
@@ -202,47 +209,49 @@ def main() -> None:
     schema_results: list[tuple] = []
     for label, color, marker, root in sources_schema:
         print(f"\n[schema] {label}…", flush=True)
-        cycles, pass_rate, f1_mean = compute_schema_cumulative(root)
-        schema_results.append((label, color, marker, cycles, pass_rate, f1_mean))
+        cycles, pass_rate, p_mean, r_mean, f1_mean = compute_schema_cumulative(root)
+        schema_results.append((label, color, marker, cycles, pass_rate, p_mean, r_mean, f1_mean))
 
-    for label, color, marker, cycles, pass_rate, f1_mean in schema_results:
+    for label, color, marker, cycles, pass_rate, p_mean, r_mean, f1_mean in schema_results:
         # SHACL pass-rate — solid, full saturation, heavy weight (the headline)
         ax_s.plot(cycles, pass_rate, marker=marker, color=color, ls="-",
                   lw=2.6, ms=8,
                   label=f"{label}  ·  SHACL pass-rate")
-        # F1 — same model colour, dashed, hollow markers, slightly thinner
+        # Precision — same colour, dotted, no marker fill
+        ax_s.plot(cycles, p_mean, marker=marker, color=color, ls=":",
+                  lw=1.4, ms=5, alpha=0.85,
+                  markerfacecolor="white", markeredgewidth=1.2,
+                  label=f"{label}  ·  Precision")
+        # Recall — same colour, dash-dot
+        ax_s.plot(cycles, r_mean, marker=marker, color=color, ls="-.",
+                  lw=1.4, ms=5, alpha=0.85,
+                  markerfacecolor="white", markeredgewidth=1.2,
+                  label=f"{label}  ·  Recall")
+        # F1 — same colour, dashed (slightly heavier than P/R)
         ax_s.plot(cycles, f1_mean, marker=marker, color=color, ls="--",
-                  lw=1.8, ms=6, alpha=0.85,
+                  lw=1.8, ms=6, alpha=0.95,
                   markerfacecolor="white", markeredgewidth=1.5,
-                  label=f"{label}  ·  Triple-level F$_1$")
+                  label=f"{label}  ·  $F_1$")
 
         # SHACL endpoint labels (k=0 → k=last)
-        k0_pr = pass_rate[0]
         k_last = cycles[-1]
-        kf_pr = pass_rate[-1]
-        ax_s.annotate(f"{k0_pr*100:.0f}%", xy=(0, k0_pr),
-                       xytext=(-0.15, k0_pr - 0.05),
-                       fontsize=9.5, color=color, fontweight="bold",
-                       ha="right")
-        ax_s.annotate(f"{kf_pr*100:.0f}%", xy=(k_last, kf_pr),
-                       xytext=(k_last + 0.12, kf_pr),
+        ax_s.annotate(f"{pass_rate[0]*100:.0f}%", xy=(0, pass_rate[0]),
+                       xytext=(-0.15, pass_rate[0] - 0.05),
+                       fontsize=9.5, color=color, fontweight="bold", ha="right")
+        ax_s.annotate(f"{pass_rate[-1]*100:.0f}%", xy=(k_last, pass_rate[-1]),
+                       xytext=(k_last + 0.12, pass_rate[-1]),
                        fontsize=9.5, color=color, fontweight="bold",
                        ha="left", va="center")
 
-        # F1 endpoint labels (k=0 → k=last) — same colour, smaller
-        k0_f1 = f1_mean[0]
-        kf_f1 = f1_mean[-1]
-        ax_s.annotate(f"F$_1$ {k0_f1:.2f}", xy=(0, k0_f1),
-                       xytext=(-0.15, k0_f1 + 0.03 if label == "Gemini" else k0_f1 - 0.05),
-                       fontsize=8.5, color=color, fontweight="bold",
-                       ha="right", style="italic")
-        ax_s.annotate(f"F$_1$ {kf_f1:.2f}", xy=(k_last, kf_f1),
-                       xytext=(k_last + 0.12,
-                               kf_f1 + 0.025 if label == "Gemini" else kf_f1 - 0.03),
-                       fontsize=8.5, color=color, fontweight="bold",
-                       ha="left", style="italic")
+        # P / R / F1 endpoint labels at k=last (small, italic, same colour)
+        for series_label, series in [("P", p_mean), ("R", r_mean), ("F$_1$", f1_mean)]:
+            v = series[-1]
+            ax_s.annotate(f"{series_label} {v:.2f}", xy=(k_last, v),
+                           xytext=(k_last + 0.12, v),
+                           fontsize=7.5, color=color, fontweight="bold",
+                           ha="left", va="center", style="italic")
 
-    ax_s.set_title("(a)  Schema track  ·  SHACL pass-rate climbs; $F_1$ stays flat",
+    ax_s.set_title("(a)  Schema track  ·  SHACL climbs; P, R, $F_1$ stay flat",
                    fontsize=11.5, loc="left", pad=10, fontweight="bold")
     ax_s.set_xlabel("Retry cycle  k", fontsize=10)
     ax_s.set_ylabel("Rate / score  ([0, 1] scale)", fontsize=10)
