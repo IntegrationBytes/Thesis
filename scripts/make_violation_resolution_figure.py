@@ -83,6 +83,57 @@ def draw_panel(ax, items, color: str, title: str, xlabel: str) -> None:
     ax.legend(loc="lower right", fontsize=8.2, framealpha=0.92)
 
 
+def draw_ontology_summary(ax, color: str) -> None:
+    """Compact summary card for the ontology track instead of a one-bar chart."""
+    d = json.load(open(DATA))
+    onto = d.get("ontology", {})
+    a_all = onto.get("gptoss_a_all", {})
+    b_all = onto.get("gptoss_b_all", {})
+
+    ax.set_xlim(0, 10); ax.set_ylim(0, 10)
+    ax.axis("off")
+    ax.set_title("(b)  Ontology track  ·  OWL axiom-level checks",
+                 fontsize=10.5, loc="left", pad=8, color=color, fontweight="bold")
+
+    rows = [
+        ("DisjointnessClash",        a_all.get("DisjointnessClash", 0),
+                                     b_all.get("DisjointnessClash", 0),
+         "subjects asserted under two\nSULO-disjoint classes"),
+        ("FunctionalPropertyConflict", a_all.get("FunctionalPropertyConflict", 0),
+                                       b_all.get("FunctionalPropertyConflict", 0),
+         "only sulo:hasValue is declared\nas owl:FunctionalProperty (n=1)"),
+        ("RangeViolation",           a_all.get("RangeViolation", 0),
+                                     b_all.get("RangeViolation", 0),
+         "OWL-RL closure infers the\nrequired range type for objects"),
+    ]
+    y = 8.5
+    for name, a, b, note in rows:
+        fix = (1 - b / a) * 100 if a else 0
+        if a == 0:
+            # Inactive check — small muted row
+            ax.text(0.3, y, name, fontsize=10.5, fontweight="bold",
+                    color="#9ca3af", family="monospace", va="center")
+            ax.text(5.6, y, "0 → 0", fontsize=11, color="#9ca3af",
+                    family="monospace", va="center")
+            ax.text(0.3, y - 0.55, note, fontsize=8.0, color="#9ca3af",
+                    style="italic", va="center")
+        else:
+            ax.text(0.3, y, name, fontsize=10.5, fontweight="bold",
+                    color=color, family="monospace", va="center")
+            ax.text(5.6, y, f"{a} → {b}", fontsize=15, color=color,
+                    family="monospace", fontweight="bold", va="center")
+            ax.text(8.0, y, f"{fix:.0f}%", fontsize=12,
+                    color=color, fontweight="bold", va="center")
+            ax.text(0.3, y - 0.55, note, fontsize=8.0, color="#374151",
+                    style="italic", va="center")
+        y -= 2.2
+
+    # Footer note
+    ax.text(0.3, 0.4,
+            "cycle 0 → cycle 3 across n=200 vignettes",
+            fontsize=8.2, color="#6b7280", style="italic", va="center")
+
+
 def main() -> None:
     d = json.load(open(DATA))
 
@@ -94,30 +145,14 @@ def main() -> None:
         key=lambda r: r[1], reverse=True,
     )
 
-    # Panel (b): ontology track. 3 axiom-level violation types.
-    onto_md = model_data(d.get("ontology", {}), "gptoss_a_all", "gptoss_b_all")
-    # Preserve the canonical (Disjointness, Functional, Range) order
-    order = ["DisjointnessClash", "FunctionalPropertyConflict", "RangeViolation"]
-    onto_items = []
-    for n in order:
-        a, b = onto_md.get(n, (0, 0))
-        # Shorten long names so they fit
-        short = n.replace("DisjointnessClash", "Disjointness")\
-                  .replace("FunctionalPropertyConflict", "FunctionalProperty")\
-                  .replace("RangeViolation", "Range")
-        if a >= 1 or b >= 1:
-            onto_items.append((short, a, b))
-
-    fig, (ax_l, ax_r) = plt.subplots(1, 2, figsize=(12.8, 3.6),
-                                       gridspec_kw={"width_ratios": [1.0, 0.85]})
+    fig, (ax_l, ax_r) = plt.subplots(1, 2, figsize=(13, 3.6),
+                                       gridspec_kw={"width_ratios": [1.0, 0.78]})
 
     draw_panel(ax_l, schema_items, GPTOSS_ORANGE,
                "(a)  Schema track  ·  SHACL shape-level violations",
                "SHACL violations across n=200 vignettes")
 
-    draw_panel(ax_r, onto_items, ONTO_BLUE,
-               "(b)  Ontology track  ·  OWL axiom-level violations",
-               "OWL violations across n=200 vignettes")
+    draw_ontology_summary(ax_r, ONTO_BLUE)
 
     fig.tight_layout(pad=1.2)
     OUT.parent.mkdir(parents=True, exist_ok=True)
