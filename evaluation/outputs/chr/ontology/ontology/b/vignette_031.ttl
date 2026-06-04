@@ -4,334 +4,295 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:visit_2021_10_21_1859 a chr:ClinicalVisit ;
-  sulo:atTime ex:time_visit_2021_10_21_1859 ;
-  sulo:isIn ex:care_unit_jfc .
+# Persons
+ex:person_Casey401_Elijah719_Parker433 a chr:Person ;
+    rdfs:label "Casey401 Elijah719 Parker433" .
 
-ex:time_visit_2021_10_21_1859 a sulo:TimeInstant ;
-  sulo:hasValue "2021-10-21T18:59:00"^^xsd:dateTime .
+ex:person_Eldridge510_Marquardt819 a chr:Person ;
+    rdfs:label "Dr. Eldridge510 Marquardt819" .
 
-ex:care_unit_jfc a chr:CareUnit ;
-  rdfs:label "JEWISH FAMILY & CHILDREN'S SERVICE" .
+# Care unit
+ex:careunit_JewishFamilyChildrenService a chr:CareUnit ;
+    rdfs:label "JEWISH FAMILY & CHILDREN'S SERVICE" .
 
-ex:patient_casey401 a chr:Person .
+# Clinical visit
+ex:visit_2021_10_21_T185956 a chr:ClinicalVisit ;
+    sulo:isIn ex:careunit_JewishFamilyChildrenService ;
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                       ex:role_CareProvider_Visit .
 
-ex:role_visit_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_casey401 .
+ex:role_Subject_Visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
 
-ex:visit_2021_10_21_1859 sulo:hasParticipant ex:role_visit_patient .
+ex:role_CareProvider_Visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Eldridge510_Marquardt819 .
 
-ex:physician_eldridge510 a chr:Person .
+# Process status (shared)
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "centimeter" .
+
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kilogram" .
+
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" .
 
-ex:role_visit_provider a chr:CareProviderRole ;
-  sulo:isFeatureOf ex:physician_eldridge510 .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "per minute" .
 
-ex:visit_2021_10_21_1859 sulo:hasParticipant ex:role_visit_provider .
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" .
+
+# Time instants (shared timestamps)
+ex:time_2021_10_21_T185956 a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T18:59:56+02:00"^^xsd:dateTime .
+
+ex:time_2021_10_21_T202126 a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T20:19:26+02:00"^^xsd:dateTime .
+
+ex:time_2021_10_21_T203721 a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T20:37:21+02:00"^^xsd:dateTime .
 
-ex:exam_procedure a chr:MedicalProcedure ;
-  rdfs:label "General examination of patient" .
-
-ex:height_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_height_measurement .
-
-ex:time_height_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2021-10-21T18:59:00"^^xsd:dateTime .
-
-ex:role_height_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_casey401 .
-
-ex:height_measurement_process sulo:hasParticipant ex:role_height_patient .
-
-ex:height_measurement a chr:Measurement ;
-  sulo:hasValue "172.7"^^xsd:float ;
-  sulo:hasPart ex:unit_cm .
-
-ex:unit_cm a sulo:Unit ;
-  rdfs:label "cm" .
-
-ex:role_height_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:height_measurement .
-
-ex:height_measurement_process sulo:hasParticipant ex:role_height_output .
-
-ex:process_status_completed a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:height_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:pain_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_pain_measurement .
-
-ex:time_pain_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2021-10-21T18:59:00"^^xsd:dateTime .
-
-ex:role_pain_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_casey401 .
-
-ex:pain_measurement_process sulo:hasParticipant ex:role_pain_patient .
-
-ex:pain_measurement a chr:Measurement ;
-  sulo:hasValue "3.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
-
-ex:unit_score a sulo:Unit ;
-  rdfs:label "score" .
-
-ex:role_pain_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:pain_measurement .
-
-ex:pain_measurement_process sulo:hasParticipant ex:role_pain_output .
-
-ex:pain_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:weight_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_weight_measurement .
-
-ex:time_weight_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2021-10-21T18:59:00"^^xsd:dateTime .
-
-ex:role_weight_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_casey401 .
-
-ex:weight_measurement_process sulo:hasParticipant ex:role_weight_patient .
-
-ex:weight_measurement a chr:Measurement ;
-  sulo:hasValue "82.2"^^xsd:float ;
-  sulo:hasPart ex:unit_kg .
-
-ex:unit_kg a sulo:Unit ;
-  rdfs:label "kg" .
-
-ex:role_weight_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:weight_measurement .
-
-ex:weight_measurement_process sulo:hasParticipant ex:role_weight_output .
-
-ex:weight_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:bmi_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_bmi_measurement .
-
-ex:time_bmi_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2021-10-21T18:59:00"^^xsd:dateTime .
-
-ex:role_bmi_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_casey401 .
-
-ex:bmi_measurement_process sulo:hasParticipant ex:role_bmi_patient .
-
-ex:bmi_measurement a chr:Measurement ;
-  sulo:hasValue "27.56"^^xsd:float ;
-  sulo:hasPart ex:unit_kg_m2 .
-
-ex:unit_kg_m2 a sulo:Unit ;
-  rdfs:label "kg/m2" .
-
-ex:role_bmi_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:bmi_measurement .
-
-ex:bmi_measurement_process sulo:hasParticipant ex:role_bmi_output .
-
-ex:bmi_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:heart_rate_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_heart_rate_measurement .
-
-ex:time_heart_rate_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2021-10-21T18:59:00"^^xsd:dateTime .
-
-ex:role_heart_rate_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_casey401 .
-
-ex:heart_rate_measurement_process sulo:hasParticipant ex:role_heart_rate_patient .
-
-ex:heart_rate_measurement a chr:Measurement ;
-  sulo:hasValue "70.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min .
-
-ex:unit_per_min a sulo:Unit ;
-  rdfs:label "/min" .
-
-ex:role_heart_rate_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:heart_rate_measurement .
-
-ex:heart_rate_measurement_process sulo:hasParticipant ex:role_heart_rate_output .
-
-ex:heart_rate_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:respiratory_rate_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_respiratory_rate_measurement .
-
-ex:time_respiratory_rate_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2021-10-21T18:59:00"^^xsd:dateTime .
-
-ex:role_respiratory_rate_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_casey401 .
-
-ex:respiratory_rate_measurement_process sulo:hasParticipant ex:role_respiratory_rate_patient .
-
-ex:respiratory_rate_measurement a chr:Measurement ;
-  sulo:hasValue "14.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min .
-
-ex:role_respiratory_rate_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:respiratory_rate_measurement .
-
-ex:respiratory_rate_measurement_process sulo:hasParticipant ex:role_respiratory_rate_output .
-
-ex:respiratory_rate_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:gad7_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_gad7_measurement .
-
-ex:time_gad7_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2021-10-21T20:19:00"^^xsd:dateTime .
-
-ex:role_gad7_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_casey401 .
-
-ex:gad7_measurement_process sulo:hasParticipant ex:role_gad7_patient .
-
-ex:gad7_measurement a chr:Measurement ;
-  sulo:hasValue "2.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
-
-ex:role_gad7_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:gad7_measurement .
-
-ex:gad7_measurement_process sulo:hasParticipant ex:role_gad7_output .
-
-ex:gad7_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:fall_risk_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_fall_risk_measurement .
-
-ex:time_fall_risk_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2021-10-21T20:37:00"^^xsd:dateTime .
-
-ex:role_fall_risk_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_casey401 .
-
-ex:fall_risk_measurement_process sulo:hasParticipant ex:role_fall_risk_patient .
-
-ex:fall_risk_measurement a chr:Measurement ;
-  sulo:hasValue "41.0"^^xsd:float .
-
-ex:role_fall_risk_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:fall_risk_measurement .
-
-ex:fall_risk_measurement_process sulo:hasParticipant ex:role_fall_risk_output .
-
-ex:fall_risk_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:hark_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_hark_measurement .
-
-ex:time_hark_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2021-10-21T21:04:00"^^xsd:dateTime .
-
-ex:role_hark_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_casey401 .
-
-ex:hark_measurement_process sulo:hasParticipant ex:role_hark_patient .
-
-ex:hark_measurement a chr:Measurement ;
-  sulo:hasValue "0.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
-
-ex:role_hark_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:hark_measurement .
-
-ex:hark_measurement_process sulo:hasParticipant ex:role_hark_output .
-
-ex:hark_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:phq2_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_phq2_measurement .
-
-ex:time_phq2_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2021-10-21T21:43:00"^^xsd:dateTime .
-
-ex:role_phq2_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_casey401 .
-
-ex:phq2_measurement_process sulo:hasParticipant ex:role_phq2_patient .
-
-ex:phq2_measurement a chr:Measurement ;
-  sulo:hasValue "1.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
-
-ex:role_phq2_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:phq2_measurement .
-
-ex:phq2_measurement_process sulo:hasParticipant ex:role_phq2_output .
-
-ex:phq2_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:dast10_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_dast10_measurement .
-
-ex:time_dast10_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2021-10-21T22:16:00"^^xsd:dateTime .
-
-ex:role_dast10_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_casey401 .
-
-ex:dast10_measurement_process sulo:hasParticipant ex:role_dast10_patient .
-
-ex:dast10_measurement a chr:Measurement ;
-  sulo:hasValue "2.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
-
-ex:role_dast10_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:dast10_measurement .
-
-ex:dast10_measurement_process sulo:hasParticipant ex:role_dast10_output .
-
-ex:dast10_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:evaluation_process a chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation .
-
-ex:time_evaluation a sulo:TimeInstant ;
-  sulo:hasValue "2021-10-21T19:53:00"^^xsd:dateTime .
-
-ex:role_evaluation_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_casey401 .
-
-ex:evaluation_process sulo:hasParticipant ex:role_evaluation_patient .
-
-ex:role_evaluation_provider a chr:PerformerRole ;
-  sulo:isFeatureOf ex:physician_eldridge510 .
-
-ex:evaluation_process sulo:hasParticipant ex:role_evaluation_provider .
-
-ex:diagnostic_statement a chr:DiagnosticStatement ;
-  rdfs:label "Social isolation (finding)" .
-
-ex:role_evaluation_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_statement .
-
-ex:evaluation_process sulo:hasParticipant ex:role_evaluation_output .
-
-ex:social_isolation a chr:ClinicalCondition ;
-  rdfs:label "Social isolation" .
-
-ex:social_isolation sulo:atTime ex:time_social_isolation .
-
-ex:time_social_isolation a sulo:TimeInstant ;
-  sulo:hasValue "2021-10-21T19:53:00"^^xsd:dateTime .
-
-ex:severity_moderate a chr:Severity ;
-  rdfs:label "Moderate" .
-
-ex:social_isolation sulo:hasFeature ex:severity_moderate .
-
-ex:care_plan a chr:CarePlan ;
-  sulo:refersTo ex:follow_up_monitoring , ex:routine_review .
-
-ex:follow_up_monitoring a chr:MedicalProcedure ;
-  rdfs:label "follow-up monitoring" .
-
-ex:routine_review a chr:MedicalProcedure ;
-  rdfs:label "routine review" .
+ex:time_2021_10_21_T210438 a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T21:04:38+02:00"^^xsd:dateTime .
+
+ex:time_2021_10_21_T214357 a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T21:43:57+02:00"^^xsd:dateTime .
+
+ex:time_2021_10_21_T221641 a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T22:16:41+02:00"^^xsd:dateTime .
+
+ex:time_Eval_2021_10_21_T195334 a sulo:TimeInstant ;
+    sulo:hasValue "2021-10-21T19:53:34+02:00"^^xsd:dateTime .
+
+# ------------------------------
+# Measurements (processes, roles, values)
+# Height
+ex:proc_height_2021_10_21_T185956 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Height ,
+                       ex:role_Output_Height ;
+    sulo:atTime ex:time_2021_10_21_T185956 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Height a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Output_Height a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_height .
+
+ex:measurement_height a chr:Measurement ;
+    sulo:hasValue "172.7"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_2021_10_21_T185956 .
+
+# Pain severity
+ex:proc_pain_2021_10_21_T185956 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Pain ,
+                       ex:role_Output_Pain ;
+    sulo:atTime ex:time_2021_10_21_T185956 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Pain a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Output_Pain a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_pain .
+
+ex:measurement_pain a chr:Measurement ;
+    sulo:hasValue "3"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2021_10_21_T185956 .
+
+# Weight
+ex:proc_weight_2021_10_21_T185956 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Weight ,
+                       ex:role_Output_Weight ;
+    sulo:atTime ex:time_2021_10_21_T185956 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Weight a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Output_Weight a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_weight .
+
+ex:measurement_weight a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_2021_10_21_T185956 .
+
+# BMI
+ex:proc_bmi_2021_10_21_T185956 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_BMI ,
+                       ex:role_Output_BMI ;
+    sulo:atTime ex:time_2021_10_21_T185956 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_BMI a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Output_BMI a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_bmi .
+
+ex:measurement_bmi a chr:Measurement ;
+    sulo:hasValue "27.56"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_2021_10_21_T185956 .
+
+# Heart rate
+ex:proc_hr_2021_10_21_T185956 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HR ,
+                       ex:role_Output_HR ;
+    sulo:atTime ex:time_2021_10_21_T185956 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_HR a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Output_HR a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_hr .
+
+ex:measurement_hr a chr:Measurement ;
+    sulo:hasValue "70"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2021_10_21_T185956 .
+
+# Respiratory rate
+ex:proc_rr_2021_10_21_T185956 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_RR ,
+                       ex:role_Output_RR ;
+    sulo:atTime ex:time_2021_10_21_T185956 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_RR a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Output_RR a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_rr .
+
+ex:measurement_rr a chr:Measurement ;
+    sulo:hasValue "14"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2021_10_21_T185956 .
+
+# GAD-7
+ex:proc_gad7_2021_10_21_T202126 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_GAD7 ,
+                       ex:role_Output_GAD7 ;
+    sulo:atTime ex:time_2021_10_21_T202126 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_GAD7 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Output_GAD7 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_gad7 .
+
+ex:measurement_gad7 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2021_10_21_T202126 .
+
+# Fall risk (Morse)
+ex:proc_fallrisk_2021_10_21_T203721 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_FallRisk ,
+                       ex:role_Output_FallRisk ;
+    sulo:atTime ex:time_2021_10_21_T203721 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_FallRisk a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Output_FallRisk a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_fallrisk .
+
+ex:measurement_fallrisk a chr:Measurement ;
+    sulo:hasValue "41"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2021_10_21_T203721 .
+
+# HARK total score
+ex:proc_hark_2021_10_21_T210438 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HARK ,
+                       ex:role_Output_HARK ;
+    sulo:atTime ex:time_2021_10_21_T210438 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_HARK a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Output_HARK a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_hark .
+
+ex:measurement_hark a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2021_10_21_T210438 .
+
+# PHQ-2 total score
+ex:proc_phq2_2021_10_21_T214357 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_PHQ2 ,
+                       ex:role_Output_PHQ2 ;
+    sulo:atTime ex:time_2021_10_21_T214357 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_PHQ2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Output_PHQ2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_phq2 .
+
+ex:measurement_phq2 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2021_10_21_T214357 .
+
+# DAST-10 total score
+ex:proc_dast10_2021_10_21_T221641 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_DAST10 ,
+                       ex:role_Output_DAST10 ;
+    sulo:atTime ex:time_2021_10_21_T221641 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_DAST10 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Output_DAST10 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_dast10 .
+
+ex:measurement_dast10 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2021_10_21_T221641 .
+
+# ------------------------------
+# Evaluation process and diagnostic statement
+ex:evaluation_2021_10_21_T195334 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Eval ,
+                       ex:role_Performer_Eval ,
+                       ex:role_Output_Eval ;
+    sulo:atTime ex:time_Eval_2021_10_21_T195334 .
+
+ex:role_Subject_Eval a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
+
+ex:role_Performer_Eval a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Eldridge510_Marquardt819 .
+
+ex:role_Output_Eval a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_SocialIsolation .
+
+ex:diag_SocialIsolation a chr:DiagnosticStatement ;
+    rdfs:label "Social isolation (finding)" .
+
+# ------------------------------
+# Care plan and referenced procedure
+ex:careplan_2021_10_21 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "Follow‑up monitoring and routine review" .

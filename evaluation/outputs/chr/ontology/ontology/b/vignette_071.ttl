@@ -4,509 +4,464 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Nevarez403 a chr:Person .
-
-ex:care_unit_HePrimaryCare a chr:CareUnit .
-
-ex:visit_2023_11_14 a sulo:Process, chr:ClinicalVisit ;
-  sulo:atTime ex:time_visit_2023_11_14 ;
-  sulo:isIn ex:care_unit_HePrimaryCare .
-
-ex:time_visit_2023_11_14 a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_VisitPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:visit_2023_11_14 sulo:hasParticipant ex:role_VisitPatient_Nevarez403 .
-
-ex:physician_Kohler843 a chr:Person .
-
-ex:role_VisitProvider_Kohler843 a chr:CareProviderRole ;
-  sulo:isFeatureOf ex:physician_Kohler843 .
-
-ex:visit_2023_11_14 sulo:hasParticipant ex:role_VisitProvider_Kohler843 .
-
-ex:well_child_visit a chr:MedicalProcedure ;
-  rdfs:label "Well child visit" .
-
-ex:role_VisitRefersTo_WellChildVisit a chr:RefersToRole ;
-  sulo:isFeatureOf ex:well_child_visit .
-
-ex:visit_2023_11_14 sulo:hasParticipant ex:role_VisitRefersTo_WellChildVisit .
-
-ex:height_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_height_measurement .
-
-ex:time_height_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_HeightMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:height_measurement_process sulo:hasParticipant ex:role_HeightMeasurementPatient_Nevarez403 .
-
-ex:height_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "150.2"^^xsd:float ;
-  sulo:hasPart ex:unit_cm .
-
-ex:unit_cm a sulo:Unit ;
-  rdfs:label "cm" .
-
-ex:height_measurement_process sulo:hasParticipant ex:role_HeightMeasurementOutput .
-
-ex:role_HeightMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:height_measurement .
-
-ex:process_status_completed a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:height_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:pain_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_pain_measurement .
-
-ex:time_pain_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_PainMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:pain_measurement_process sulo:hasParticipant ex:role_PainMeasurementPatient_Nevarez403 .
-
-ex:pain_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "1.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
-
-ex:unit_score a sulo:Unit ;
-  rdfs:label "score" .
-
-ex:pain_measurement_process sulo:hasParticipant ex:role_PainMeasurementOutput .
-
-ex:role_PainMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:pain_measurement .
-
-ex:pain_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:weight_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_weight_measurement .
-
-ex:time_weight_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_WeightMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:weight_measurement_process sulo:hasParticipant ex:role_WeightMeasurementPatient_Nevarez403 .
-
-ex:weight_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "48.6"^^xsd:float ;
-  sulo:hasPart ex:unit_kg .
-
-ex:unit_kg a sulo:Unit ;
-  rdfs:label "kg" .
-
-ex:weight_measurement_process sulo:hasParticipant ex:role_WeightMeasurementOutput .
-
-ex:role_WeightMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:weight_measurement .
-
-ex:weight_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:bmi_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_bmi_measurement .
-
-ex:time_bmi_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_BMIMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:bmi_measurement_process sulo:hasParticipant ex:role_BMIMeasurementPatient_Nevarez403 .
-
-ex:bmi_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "21.56"^^xsd:float ;
-  sulo:hasPart ex:unit_kg_m2 .
-
-ex:unit_kg_m2 a sulo:Unit ;
-  rdfs:label "kg/m2" .
-
-ex:bmi_measurement_process sulo:hasParticipant ex:role_BMIMeasurementOutput .
-
-ex:role_BMIMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:bmi_measurement .
-
-ex:bmi_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:bmi_percentile_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_bmi_percentile_measurement .
-
-ex:time_bmi_percentile_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_BMIPercentileMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:bmi_percentile_measurement_process sulo:hasParticipant ex:role_BMIPercentileMeasurementPatient_Nevarez403 .
-
-ex:bmi_percentile_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "88.288"^^xsd:float ;
-  sulo:hasPart ex:unit_percent .
-
-ex:unit_percent a sulo:Unit ;
-  rdfs:label "%" .
-
-ex:bmi_percentile_measurement_process sulo:hasParticipant ex:role_BMIPercentileMeasurementOutput .
-
-ex:role_BMIPercentileMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:bmi_percentile_measurement .
-
-ex:bmi_percentile_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:heart_rate_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_heart_rate_measurement .
-
-ex:time_heart_rate_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_HeartRateMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:heart_rate_measurement_process sulo:hasParticipant ex:role_HeartRateMeasurementPatient_Nevarez403 .
-
-ex:heart_rate_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "62.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min .
-
-ex:unit_per_min a sulo:Unit ;
-  rdfs:label "/min" .
-
-ex:heart_rate_measurement_process sulo:hasParticipant ex:role_HeartRateMeasurementOutput .
-
-ex:role_HeartRateMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:heart_rate_measurement .
-
-ex:heart_rate_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:respiratory_rate_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_respiratory_rate_measurement .
-
-ex:time_respiratory_rate_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_RespiratoryRateMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:respiratory_rate_measurement_process sulo:hasParticipant ex:role_RespiratoryRateMeasurementPatient_Nevarez403 .
-
-ex:respiratory_rate_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "15.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min .
-
-ex:respiratory_rate_measurement_process sulo:hasParticipant ex:role_RespiratoryRateMeasurementOutput .
-
-ex:role_RespiratoryRateMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:respiratory_rate_measurement .
-
-ex:respiratory_rate_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:leukocytes_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_leukocytes_measurement .
-
-ex:time_leukocytes_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_LeukocytesMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:leukocytes_measurement_process sulo:hasParticipant ex:role_LeukocytesMeasurementPatient_Nevarez403 .
-
-ex:leukocytes_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "5.8138"^^xsd:float ;
-  sulo:hasPart ex:unit_103_uL .
-
-ex:unit_103_uL a sulo:Unit ;
-  rdfs:label "10*3/uL" .
-
-ex:leukocytes_measurement_process sulo:hasParticipant ex:role_LeukocytesMeasurementOutput .
-
-ex:role_LeukocytesMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:leukocytes_measurement .
-
-ex:leukocytes_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:erythrocytes_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_erythrocytes_measurement .
-
-ex:time_erythrocytes_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_ErythrocytesMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:erythrocytes_measurement_process sulo:hasParticipant ex:role_ErythrocytesMeasurementPatient_Nevarez403 .
-
-ex:erythrocytes_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "4.9062"^^xsd:float ;
-  sulo:hasPart ex:unit_106_uL .
-
-ex:unit_106_uL a sulo:Unit ;
-  rdfs:label "10*6/uL" .
-
-ex:erythrocytes_measurement_process sulo:hasParticipant ex:role_ErythrocytesMeasurementOutput .
-
-ex:role_ErythrocytesMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:erythrocytes_measurement .
-
-ex:erythrocytes_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:hemoglobin_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_hemoglobin_measurement .
-
-ex:time_hemoglobin_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_HemoglobinMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:hemoglobin_measurement_process sulo:hasParticipant ex:role_HemoglobinMeasurementPatient_Nevarez403 .
-
-ex:hemoglobin_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "14.398"^^xsd:float ;
-  sulo:hasPart ex:unit_g_dL .
-
-ex:unit_g_dL a sulo:Unit ;
-  rdfs:label "g/dL" .
-
-ex:hemoglobin_measurement_process sulo:hasParticipant ex:role_HemoglobinMeasurementOutput .
-
-ex:role_HemoglobinMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:hemoglobin_measurement .
-
-ex:hemoglobin_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:hematocrit_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_hematocrit_measurement .
-
-ex:time_hematocrit_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_HematocritMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:hematocrit_measurement_process sulo:hasParticipant ex:role_HematocritMeasurementPatient_Nevarez403 .
-
-ex:hematocrit_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "48.537"^^xsd:float ;
-  sulo:hasPart ex:unit_percent .
-
-ex:hematocrit_measurement_process sulo:hasParticipant ex:role_HematocritMeasurementOutput .
-
-ex:role_HematocritMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:hematocrit_measurement .
-
-ex:hematocrit_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:mcv_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_mcv_measurement .
-
-ex:time_mcv_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_MCVMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:mcv_measurement_process sulo:hasParticipant ex:role_MCVMeasurementPatient_Nevarez403 .
-
-ex:mcv_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "85.317"^^xsd:float ;
-  sulo:hasPart ex:unit_fL .
-
-ex:unit_fL a sulo:Unit ;
-  rdfs:label "fL" .
-
-ex:mcv_measurement_process sulo:hasParticipant ex:role_MCVMeasurementOutput .
-
-ex:role_MCVMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:mcv_measurement .
-
-ex:mcv_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:mch_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_mch_measurement .
-
-ex:time_mch_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_MCHMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:mch_measurement_process sulo:hasParticipant ex:role_MCHMeasurementPatient_Nevarez403 .
-
-ex:mch_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "28.524"^^xsd:float ;
-  sulo:hasPart ex:unit_pg .
-
-ex:unit_pg a sulo:Unit ;
-  rdfs:label "pg" .
-
-ex:mch_measurement_process sulo:hasParticipant ex:role_MCHMeasurementOutput .
-
-ex:role_MCHMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:mch_measurement .
-
-ex:mch_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:mchc_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_mchc_measurement .
-
-ex:time_mchc_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_MCHCMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:mchc_measurement_process sulo:hasParticipant ex:role_MCHCMeasurementPatient_Nevarez403 .
-
-ex:mchc_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "33.157"^^xsd:float ;
-  sulo:hasPart ex:unit_g_dL .
-
-ex:mchc_measurement_process sulo:hasParticipant ex:role_MCHCMeasurementOutput .
-
-ex:role_MCHCMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:mchc_measurement .
-
-ex:mchc_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:erythrocyte_distwidth_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_erythrocyte_distwidth_measurement .
-
-ex:time_erythrocyte_distwidth_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_ErythrocyteDistWidthMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:erythrocyte_distwidth_measurement_process sulo:hasParticipant ex:role_ErythrocyteDistWidthMeasurementPatient_Nevarez403 .
-
-ex:erythrocyte_distwidth_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "40.799"^^xsd:float ;
-  sulo:hasPart ex:unit_fL .
-
-ex:erythrocyte_distwidth_measurement_process sulo:hasParticipant ex:role_ErythrocyteDistWidthMeasurementOutput .
-
-ex:role_ErythrocyteDistWidthMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:erythrocyte_distwidth_measurement .
-
-ex:erythrocyte_distwidth_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:platelets_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_platelets_measurement .
-
-ex:time_platelets_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_PlateletsMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:platelets_measurement_process sulo:hasParticipant ex:role_PlateletsMeasurementPatient_Nevarez403 .
-
-ex:platelets_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "381.39"^^xsd:float ;
-  sulo:hasPart ex:unit_103_uL .
-
-ex:platelets_measurement_process sulo:hasParticipant ex:role_PlateletsMeasurementOutput .
-
-ex:role_PlateletsMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:platelets_measurement .
-
-ex:platelets_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:platelet_distwidth_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_platelet_distwidth_measurement .
-
-ex:time_platelet_distwidth_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_PlateletDistWidthMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:platelet_distwidth_measurement_process sulo:hasParticipant ex:role_PlateletDistWidthMeasurementPatient_Nevarez403 .
-
-ex:platelet_distwidth_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "480.6"^^xsd:float ;
-  sulo:hasPart ex:unit_fL .
-
-ex:platelet_distwidth_measurement_process sulo:hasParticipant ex:role_PlateletDistWidthMeasurementOutput .
-
-ex:role_PlateletDistWidthMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:platelet_distwidth_measurement .
-
-ex:platelet_distwidth_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:platelet_meanvolume_measurement_process a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_platelet_meanvolume_measurement .
-
-ex:time_platelet_meanvolume_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_PlateletMeanVolumeMeasurementPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:platelet_meanvolume_measurement_process sulo:hasParticipant ex:role_PlateletMeanVolumeMeasurementPatient_Nevarez403 .
-
-ex:platelet_meanvolume_measurement a sulo:Object, chr:Measurement ;
-  sulo:hasValue "10.635"^^xsd:float ;
-  sulo:hasPart ex:unit_fL .
-
-ex:platelet_meanvolume_measurement_process sulo:hasParticipant ex:role_PlateletMeanVolumeMeasurementOutput .
-
-ex:role_PlateletMeanVolumeMeasurementOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:platelet_meanvolume_measurement .
-
-ex:platelet_meanvolume_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:evaluation_2023_11_14 a sulo:Process, chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation_2023_11_14 .
-
-ex:time_evaluation_2023_11_14 a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:role_EvaluationPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:evaluation_2023_11_14 sulo:hasParticipant ex:role_EvaluationPatient_Nevarez403 .
-
-ex:role_EvaluationProvider_Kohler843 a chr:PerformerRole ;
-  sulo:isFeatureOf ex:physician_Kohler843 .
-
-ex:evaluation_2023_11_14 sulo:hasParticipant ex:role_EvaluationProvider_Kohler843 .
-
-ex:diagnostic_statement_medication_review a sulo:Object ;
-  rdfs:label "Medication review due (situation)" .
-
-ex:evaluation_2023_11_14 sulo:hasParticipant ex:role_EvaluationOutput .
-
-ex:role_EvaluationOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_statement_medication_review .
-
-ex:condition_medication_review a chr:ClinicalCondition ;
-  sulo:atTime ex:time_condition_medication_review .
-
-ex:time_condition_medication_review a sulo:TimeInstant ;
-  sulo:hasValue "2023-11-14T04:20:00"^^xsd:dateTime .
-
-ex:condition_medication_review sulo:hasFeature ex:severity_moderate .
-
-ex:severity_moderate a chr:Severity ;
-  rdfs:label "Moderate" .
-
-ex:care_plan a chr:CarePlan ;
-  sulo:refersTo ex:follow_up_monitoring , ex:routine_review .
-
-ex:follow_up_monitoring a chr:MedicalProcedure ;
-  rdfs:label "follow-up monitoring" .
-
-ex:routine_review a chr:MedicalProcedure ;
-  rdfs:label "routine review" .
+# Persons
+ex:patient_Nevares a chr:Person .
+ex:physician_Kohler a chr:Person .
+
+# Care unit
+ex:careunit_DRHEsPrimaryCare a chr:CareUnit .
+
+# Time instant (shared)
+ex:time_20231114T042029 a sulo:TimeInstant ;
+    sulo:hasValue "2023-11-14T04:20:29+01:00"^^xsd:dateTime .
+
+# Process status
+ex:status_completed a chr:ProcessStatus .
+
+# Units
+ex:unit_cm           a chr:Unit .
+ex:unit_kg           a chr:Unit .
+ex:unit_kg_per_m2    a chr:Unit .
+ex:unit_percent      a chr:Unit .
+ex:unit_per_min      a chr:Unit .
+ex:unit_score        a chr:Unit .
+ex:unit_10_3_per_uL  a chr:Unit .
+ex:unit_10_6_per_uL  a chr:Unit .
+ex:unit_g_per_dL     a chr:Unit .
+ex:unit_fL           a chr:Unit .
+ex:unit_pg           a chr:Unit .
+
+# Clinical visit
+ex:visit_20231114T042029 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasParticipant ex:role_VisitProvider ;
+    sulo:atTime ex:time_20231114T042029 ;
+    sulo:isIn ex:careunit_DRHEsPrimaryCare .
+
+ex:role_VisitPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_VisitProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+# Evaluation process
+ex:evaluation_20231114T042029 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient ;
+    sulo:hasParticipant ex:role_EvalProvider ;
+    sulo:hasParticipant ex:role_EvalOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_EvalPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_EvalProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_EvalOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_med_review .
+
+ex:diag_med_review a chr:DiagnosticStatement .
+
+# Care plan
+ex:careplan_20231114T042029 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup_monitoring .
+
+ex:procedure_followup_monitoring a chr:MedicalProcedure .
+
+# ------------------------------
+# Measurement: Body Height
+ex:proc_height a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HeightPatient ;
+    sulo:hasParticipant ex:role_HeightProvider ;
+    sulo:hasParticipant ex:role_HeightOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_HeightPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_HeightProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_HeightOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_height .
+
+ex:meas_height a chr:Measurement ;
+    sulo:hasValue "150.2"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: Pain severity (score)
+ex:proc_pain a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PainPatient ;
+    sulo:hasParticipant ex:role_PainProvider ;
+    sulo:hasParticipant ex:role_PainOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_PainPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_PainProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_PainOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_pain .
+
+ex:meas_pain a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: Body Weight
+ex:proc_weight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_WeightPatient ;
+    sulo:hasParticipant ex:role_WeightProvider ;
+    sulo:hasParticipant ex:role_WeightOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_WeightPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_WeightProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_WeightOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_weight .
+
+ex:meas_weight a chr:Measurement ;
+    sulo:hasValue "48.6"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: BMI (ratio)
+ex:proc_bmi_ratio a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_BMIRatioPatient ;
+    sulo:hasParticipant ex:role_BMIRatioProvider ;
+    sulo:hasParticipant ex:role_BMIRatioOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_BMIRatioPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_BMIRatioProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_BMIRatioOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_bmi_ratio .
+
+ex:meas_bmi_ratio a chr:Measurement ;
+    sulo:hasValue "21.56"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: BMI (percentile)
+ex:proc_bmi_percentile a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_BMIPercentPatient ;
+    sulo:hasParticipant ex:role_BMIPercentProvider ;
+    sulo:hasParticipant ex:role_BMIPercentOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_BMIPercentPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_BMIPercentProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_BMIPercentOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_bmi_percentile .
+
+ex:meas_bmi_percentile a chr:Measurement ;
+    sulo:hasValue "88.288"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: Heart rate
+ex:proc_heart_rate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HRPatient ;
+    sulo:hasParticipant ex:role_HRProvider ;
+    sulo:hasParticipant ex:role_HROutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_HRPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_HRProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_HROutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_heart_rate .
+
+ex:meas_heart_rate a chr:Measurement ;
+    sulo:hasValue "62"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: Respiratory rate
+ex:proc_resp_rate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_RRPatient ;
+    sulo:hasParticipant ex:role_RRProvider ;
+    sulo:hasParticipant ex:role_RROutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_RRPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_RRProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_RROutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_resp_rate .
+
+ex:meas_resp_rate a chr:Measurement ;
+    sulo:hasValue "15"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: Leukocytes
+ex:proc_leukocytes a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_LeukoPatient ;
+    sulo:hasParticipant ex:role_LeukoProvider ;
+    sulo:hasParticipant ex:role_LeukoOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_LeukoPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_LeukoProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_LeukoOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_leukocytes .
+
+ex:meas_leukocytes a chr:Measurement ;
+    sulo:hasValue "5.8138"^^xsd:float ;
+    sulo:hasPart ex:unit_10_3_per_uL ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: Erythrocytes
+ex:proc_erythrocytes a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_ErythroPatient ;
+    sulo:hasParticipant ex:role_ErythroProvider ;
+    sulo:hasParticipant ex:role_ErythroOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_ErythroPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_ErythroProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_ErythroOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_erythrocytes .
+
+ex:meas_erythrocytes a chr:Measurement ;
+    sulo:hasValue "4.9062"^^xsd:float ;
+    sulo:hasPart ex:unit_10_6_per_uL ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: Hemoglobin
+ex:proc_hemoglobin a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HbPatient ;
+    sulo:hasParticipant ex:role_HbProvider ;
+    sulo:hasParticipant ex:role_HbOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_HbPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_HbProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_HbOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_hemoglobin .
+
+ex:meas_hemoglobin a chr:Measurement ;
+    sulo:hasValue "14.398"^^xsd:float ;
+    sulo:hasPart ex:unit_g_per_dL ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: Hematocrit
+ex:proc_hematocrit a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HctPatient ;
+    sulo:hasParticipant ex:role_HctProvider ;
+    sulo:hasParticipant ex:role_HctOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_HctPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_HctProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_HctOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_hematocrit .
+
+ex:meas_hematocrit a chr:Measurement ;
+    sulo:hasValue "48.537"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: MCV
+ex:proc_mcv a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_MCVPatient ;
+    sulo:hasParticipant ex:role_MCVProvider ;
+    sulo:hasParticipant ex:role_MCVOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_MCVPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_MCVProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_MCVOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_mcv .
+
+ex:meas_mcv a chr:Measurement ;
+    sulo:hasValue "85.317"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: MCH
+ex:proc_mch a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_MCHPatient ;
+    sulo:hasParticipant ex:role_MCHProvider ;
+    sulo:hasParticipant ex:role_MCHOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_MCHPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_MCHProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_MCHOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_mch .
+
+ex:meas_mch a chr:Measurement ;
+    sulo:hasValue "28.524"^^xsd:float ;
+    sulo:hasPart ex:unit_pg ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: MCHC
+ex:proc_mchc a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_MCHCPatient ;
+    sulo:hasParticipant ex:role_MCHCProvider ;
+    sulo:hasParticipant ex:role_MCHCOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_MCHCPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_MCHCProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_MCHCOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_mchc .
+
+ex:meas_mchc a chr:Measurement ;
+    sulo:hasValue "33.157"^^xsd:float ;
+    sulo:hasPart ex:unit_g_per_dL ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: Erythrocyte DistWidth
+ex:proc_erythro_distwidth a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_EryDistPatient ;
+    sulo:hasParticipant ex:role_EryDistProvider ;
+    sulo:hasParticipant ex:role_EryDistOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_EryDistPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_EryDistProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_EryDistOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_erythro_distwidth .
+
+ex:meas_erythro_distwidth a chr:Measurement ;
+    sulo:hasValue "40.799"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: Platelets
+ex:proc_platelets a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PltPatient ;
+    sulo:hasParticipant ex:role_PltProvider ;
+    sulo:hasParticipant ex:role_PltOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_PltPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_PltProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_PltOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_platelets .
+
+ex:meas_platelets a chr:Measurement ;
+    sulo:hasValue "381.39"^^xsd:float ;
+    sulo:hasPart ex:unit_10_3_per_uL ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: Platelet distribution width
+ex:proc_platelet_dw a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PltDWPatient ;
+    sulo:hasParticipant ex:role_PltDWProvider ;
+    sulo:hasParticipant ex:role_PltDWOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_PltDWPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_PltDWProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_PltDWOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_platelet_dw .
+
+ex:meas_platelet_dw a chr:Measurement ;
+    sulo:hasValue "480.6"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_20231114T042029 .
+
+# Measurement: Platelet mean volume
+ex:proc_platelet_mv a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PltMVPatient ;
+    sulo:hasParticipant ex:role_PltMVProvider ;
+    sulo:hasParticipant ex:role_PltMVOutput ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_20231114T042029 .
+
+ex:role_PltMVPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevares .
+
+ex:role_PltMVProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
+
+ex:role_PltMVOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_platelet_mv .
+
+ex:meas_platelet_mv a chr:Measurement ;
+    sulo:hasValue "10.635"^^xsd:float ;
+    sulo:hasPart ex:unit_fL ;
+    sulo:atTime ex:time_20231114T042029 .

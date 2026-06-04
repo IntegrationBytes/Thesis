@@ -1,8 +1,8 @@
-"""Decoupling figure: ΔSHACL vs ΔF1 (B - A) across model × stratum.
+"""Decoupling figure: ΔSHACL vs ΔF1 (B - A) across stratum.
 
-The key thesis finding: structural conformance and content fidelity are
-INDEPENDENT axes. SHACL pass-rate moves up to +97pp while F1 moves
-−0.024 to +0.002. The decoupling ratio (ΔSHACL / |ΔF1|) is in the
+The thesis finding: structural conformance and content fidelity are
+INDEPENDENT axes. ΔSHACL moves +66 to +69pp while ΔF1 moves −0.008 to
+−0.001. The decoupling ratio (ΔSHACL / |ΔF1|) is in the tens of
 thousands.
 
 Output: report/figures/fig_decoupling_n200.png
@@ -12,14 +12,12 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Hardcoded from n=200 stratified eval (2026-05-21).
+# Recomputed from n=200 stratified eval (2026-06-04, gpt-oss-120b, clean).
 # Schema track only (F1 is valid here; ontology track has no F1).
 ROWS = [
     # (model, stratum, dF1, dSHACL_pp)
-    ("Gemini",  "general", -0.013, 92.0),
-    ("Gemini",  "complex", -0.024, 97.0),
-    ("gpt-oss", "general", +0.002, 68.0),
-    ("gpt-oss", "complex", -0.005, 55.0),
+    ("gpt-oss-120b", "general", -0.008, 69.0),
+    ("gpt-oss-120b", "complex", -0.001, 66.0),
 ]
 
 
@@ -60,8 +58,8 @@ def main() -> None:
     ax2.set_ylabel("Δ Triple-level F1", color="#c44e2e", fontsize=9)
     ax.tick_params(axis="y", labelcolor="#1f6fb4")
     ax2.tick_params(axis="y", labelcolor="#c44e2e")
-    ax.set_ylim(0, 115)
-    ax2.set_ylim(-0.05, 0.05)
+    ax.set_ylim(0, 85)
+    ax2.set_ylim(-0.020, 0.005)
     ax2.axhline(0, color="dimgray", lw=0.5)
     ax.set_title("Structural vs content quality: independent axes (n=200, schema track)",
                  fontsize=10)

@@ -4,38 +4,70 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Arturo47_Lauren941_Heidenreich818 a chr:Person .
+ex:patient_Arturo_Lauren_Heidenreich
+    a chr:Person ;
+    rdfs:label "Arturo47 Lauren941 Heidenreich818" .
 
-ex:visit_2016_12_26 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasCareProvider ex:doctor_Louis204_Hauck852 ;
-  chr:hasCareUnit ex:care_unit_WhittierRehab .
+ex:person_Louis_Hauck
+    a chr:Person ;
+    rdfs:label "Dr. Louis204 Hauck852" .
 
-ex:care_unit_WhittierRehab a chr:CareUnit .
+ex:careunit_WHITTIER_REHABILTATION_HOSPITAL
+    a chr:CareUnit ;
+    rdfs:label "WHITTIER REHABILTATION HOSPITAL" .
 
-ex:doctor_Louis204_Hauck852 a chr:Person .
+ex:visit_2016_12_26T01_34_22
+    a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2016-12-26T01:34:22+01:00" ;
+    chr:hasDate "2016-12-26T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:person_Louis_Hauck ;
+    chr:hasCareUnit ex:careunit_WHITTIER_REHABILTATION_HOSPITAL ;
+    chr:hasPatient ex:patient_Arturo_Lauren_Heidenreich .
 
-ex:measurement_process_HbA1c_20161226 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:measurement_HbA1c_20161226 .
+ex:unit_percent
+    a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
 
-ex:measurement_HbA1c_20161226 a chr:Measurement ;
-  chr:hasQuantityValue "6.31"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2016-12-26T01:34:00"^^xsd:dateTime .
+ex:measurement_HbA1c_2016_12_26
+    a chr:Measurement ;
+    rdfs:label "Hemoglobin A1c measurement 6.31 %" ;
+    chr:hasMeasuredDate "2016-12-26T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.31"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasCode <https://loinc.org/4548-4> .
 
-ex:evaluation_20161226 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_MedicationReviewDue .
+ex:measproc_HbA1c_2016_12_26
+    a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Hemoglobin A1c on 2016-12-26" ;
+    chr:hasPatient ex:patient_Arturo_Lauren_Heidenreich ;
+    chr:hasResult ex:measurement_HbA1c_2016_12_26 .
 
-ex:diagnostic_MedicationReviewDue a chr:DiagnosticStatement .
+ex:diagstmt_medreview_2016_12_26
+    a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
 
-ex:clinical_condition_MedicationReviewDue a chr:ClinicalCondition ;
-  chr:hasRecordDate "2016-12-26T01:34:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_Moderate .
+ex:condition_medreview_2016_12_26
+    a chr:ClinicalCondition ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2016-12-26T01:34:22+01:00"^^xsd:dateTime .
 
-ex:severity_Moderate a chr:Severity .
+ex:evaluation_2016_12_26
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Louis204 Hauck852 on 2016-12-26" ;
+    chr:hasPatient ex:patient_Arturo_Lauren_Heidenreich ;
+    chr:hasObservation ex:diagstmt_medreview_2016_12_26 .
 
-ex:careplan_followup a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:procedure_followup .
+ex:careplan_followup_2016_12_26
+    a chr:CarePlan ;
+    rdfs:label "Care plan for follow-up monitoring and routine review" ;
+    chr:hasMedicalProcedure ex:procedure_followup_2016_12_26 .
 
-ex:procedure_followup a chr:MedicalProcedure .
+ex:procedure_followup_2016_12_26
+    a chr:MedicalProcedure ;
+    rdfs:label "Follow-up monitoring procedure" ;
+    chr:hasCode <http://snomed.info/id/386661006> ;
+    chr:hasPatient ex:patient_Arturo_Lauren_Heidenreich ;
+    chr:hasDate "2016-12-26T01:34:22+01:00"^^xsd:dateTime .

@@ -4,142 +4,224 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Casey401Elijah719Parker433 a chr:Person .
+# Persons
+ex:patient_CaseyElijahParker a chr:Person ;
+    rdfs:label "Casey401 Elijah719 Parker433" .
 
-ex:care_unit_JFCS a chr:CareUnit .
+ex:physician_EldridgeMarquardt a chr:Person ;
+    rdfs:label "Dr. Eldridge510 Marquardt819" .
 
-ex:care_provider_Eldridge510Marquardt819 a chr:Person .
+# Care unit
+ex:careUnit_JewishFamilyChildren a chr:CareUnit ;
+    rdfs:label "JEWISH FAMILY & CHILDREN'S SERVICE" .
 
-ex:visit_2016_09_22 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasCareProvider ex:care_provider_Eldridge510Marquardt819 ;
-  chr:hasCareUnit ex:care_unit_JFCS .
+# Clinical visit
+ex:visit_2016_09_22_185956 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2016-09-22T18:59:56+02:00" ;
+    chr:hasDate "2016-09-22T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_EldridgeMarquardt ;
+    chr:hasCareUnit ex:careUnit_JewishFamilyChildren ;
+    chr:hasPatient ex:patient_CaseyElijahParker .
 
-ex:height_meas_proc_20160922 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:height_meas_20160922 .
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:height_meas_20160922 a chr:Measurement ;
-  chr:hasMeasuredDate "2016-09-22T18:59:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "172.7"^^xsd:float ;
-  chr:hasUnit sulo:cm .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:pain_meas_proc_20160922 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:pain_meas_20160922 .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg.m-2> .
 
-ex:pain_meas_20160922 a chr:Measurement ;
-  chr:hasMeasuredDate "2016-09-22T18:59:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "0.0"^^xsd:float .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min-1> .
 
-ex:weight_meas_proc_20160922 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:weight_meas_20160922 .
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mg.dL-1> .
 
-ex:weight_meas_20160922 a chr:Measurement ;
-  chr:hasMeasuredDate "2016-09-22T18:59:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "82.2"^^xsd:float ;
-  chr:hasUnit sulo:kg .
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
 
-ex:bmi_meas_proc_20160922 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:bmi_meas_20160922 .
+# Measurements and measurement processes
+ex:measurementProcess_Height_1 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_Height_1 ;
+    chr:hasCode <https://loinc.org/8302-2> .
 
-ex:bmi_meas_20160922 a chr:Measurement ;
-  chr:hasMeasuredDate "2016-09-22T18:59:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "27.56"^^xsd:float ;
-  chr:hasUnit sulo:kg_per_m2 .
+ex:measurement_Height_1 a chr:Measurement ;
+    rdfs:label "172.7 cm" ;
+    chr:hasQuantityValue "172.7"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2016-09-22T18:59:56+02:00"^^xsd:dateTime .
 
-ex:heart_rate_meas_proc_20160922 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:heart_rate_meas_20160922 .
+ex:measurementProcess_PainSeverity_1 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_PainSeverity_1 ;
+    chr:hasCode <https://loinc.org/72514-3> .
 
-ex:heart_rate_meas_20160922 a chr:Measurement ;
-  chr:hasMeasuredDate "2016-09-22T18:59:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "95.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min .
+ex:measurement_PainSeverity_1 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2016-09-22T18:59:56+02:00"^^xsd:dateTime .
 
-ex:resp_rate_meas_proc_20160922 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:resp_rate_meas_20160922 .
+ex:measurementProcess_Weight_1 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_Weight_1 ;
+    chr:hasCode <https://loinc.org/29463-7> .
 
-ex:resp_rate_meas_20160922 a chr:Measurement ;
-  chr:hasMeasuredDate "2016-09-22T18:59:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "12.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min .
+ex:measurement_Weight_1 a chr:Measurement ;
+    rdfs:label "82.2 kg" ;
+    chr:hasQuantityValue "82.2"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2016-09-22T18:59:56+02:00"^^xsd:dateTime .
 
-ex:cholesterol_meas_proc_20160922 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:cholesterol_meas_20160922 .
+ex:measurementProcess_BMI_1 a chr:MeasurementProcess ;
+    rdfs:label "Body mass index measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_BMI_1 ;
+    chr:hasCode <https://loinc.org/39156-5> .
 
-ex:cholesterol_meas_20160922 a chr:Measurement ;
-  chr:hasMeasuredDate "2016-09-22T18:59:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "159.14"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL .
+ex:measurement_BMI_1 a chr:Measurement ;
+    rdfs:label "27.56 kg/m2" ;
+    chr:hasQuantityValue "27.56"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2016-09-22T18:59:56+02:00"^^xsd:dateTime .
 
-ex:triglyceride_meas_proc_20160922 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:triglyceride_meas_20160922 .
+ex:measurementProcess_HeartRate_1 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_HeartRate_1 ;
+    chr:hasCode <https://loinc.org/8867-4> .
 
-ex:triglyceride_meas_20160922 a chr:Measurement ;
-  chr:hasMeasuredDate "2016-09-22T18:59:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "122.84"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL .
+ex:measurement_HeartRate_1 a chr:Measurement ;
+    rdfs:label "95 /min" ;
+    chr:hasQuantityValue "95"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2016-09-22T18:59:56+02:00"^^xsd:dateTime .
 
-ex:ldl_meas_proc_20160922 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:ldl_meas_20160922 .
+ex:measurementProcess_RespRate_1 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_RespRate_1 ;
+    chr:hasCode <https://loinc.org/9279-1> .
 
-ex:ldl_meas_20160922 a chr:Measurement ;
-  chr:hasMeasuredDate "2016-09-22T18:59:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "81.72"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL .
+ex:measurement_RespRate_1 a chr:Measurement ;
+    rdfs:label "12 /min" ;
+    chr:hasQuantityValue "12"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2016-09-22T18:59:56+02:00"^^xsd:dateTime .
 
-ex:hdl_meas_proc_20160922 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:hdl_meas_20160922 .
+ex:measurementProcess_Cholesterol_1 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_Cholesterol_1 ;
+    chr:hasCode <https://loinc.org/2093-3> .
 
-ex:hdl_meas_20160922 a chr:Measurement ;
-  chr:hasMeasuredDate "2016-09-22T18:59:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "52.85"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL .
+ex:measurement_Cholesterol_1 a chr:Measurement ;
+    rdfs:label "159.14 mg/dL" ;
+    chr:hasQuantityValue "159.14"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2016-09-22T18:59:56+02:00"^^xsd:dateTime .
 
-ex:fall_risk_meas_proc_20160922 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:fall_risk_meas_20160922 .
+ex:measurementProcess_Triglyceride_1 a chr:MeasurementProcess ;
+    rdfs:label "Triglyceride measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_Triglyceride_1 ;
+    chr:hasCode <https://loinc.org/2571-8> .
 
-ex:fall_risk_meas_20160922 a chr:Measurement ;
-  chr:hasMeasuredDate "2016-09-22T20:08:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "103.0"^^xsd:float .
+ex:measurement_Triglyceride_1 a chr:Measurement ;
+    rdfs:label "122.84 mg/dL" ;
+    chr:hasQuantityValue "122.84"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2016-09-22T18:59:56+02:00"^^xsd:dateTime .
 
-ex:hark_meas_proc_20160922 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:hark_meas_20160922 .
+ex:measurementProcess_CholesterolLDL_1 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol LDL measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_CholesterolLDL_1 ;
+    chr:hasCode <https://loinc.org/18262-6> .
 
-ex:hark_meas_20160922 a chr:Measurement ;
-  chr:hasMeasuredDate "2016-09-22T20:42:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "0.0"^^xsd:float .
+ex:measurement_CholesterolLDL_1 a chr:Measurement ;
+    rdfs:label "81.72 mg/dL" ;
+    chr:hasQuantityValue "81.72"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2016-09-22T18:59:56+02:00"^^xsd:dateTime .
 
-ex:eval_20160922_1942 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:care_provider_Eldridge510Marquardt819 ;
-  chr:hasObservation ex:diag_unemployed .
+ex:measurementProcess_CholesterolHDL_1 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol HDL measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_CholesterolHDL_1 ;
+    chr:hasCode <https://loinc.org/2085-9> .
 
-ex:diag_unemployed a chr:DiagnosticStatement .
+ex:measurement_CholesterolHDL_1 a chr:Measurement ;
+    rdfs:label "52.85 mg/dL" ;
+    chr:hasQuantityValue "52.85"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2016-09-22T18:59:56+02:00"^^xsd:dateTime .
 
-ex:unemployed_condition a chr:ClinicalCondition ;
-  chr:hasRecordDate "2016-09-22T19:42:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:measurementProcess_FallRisk_1 a chr:MeasurementProcess ;
+    rdfs:label "Fall risk total measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_FallRisk_1 ;
+    chr:hasCode <https://loinc.org/59460-6> .
 
-ex:eval_20160922_2042 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:care_provider_Eldridge510Marquardt819 ;
-  chr:hasObservation ex:diag_gingivitis .
+ex:measurement_FallRisk_1 a chr:Measurement ;
+    rdfs:label "103 score" ;
+    chr:hasQuantityValue "103"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2016-09-22T20:08:29+02:00"^^xsd:dateTime .
 
-ex:diag_gingivitis a chr:DiagnosticStatement .
+ex:measurementProcess_HARK_1 a chr:MeasurementProcess ;
+    rdfs:label "Total score HARK measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_HARK_1 ;
+    chr:hasCode <https://loinc.org/76504-0> .
 
-ex:gingivitis_condition a chr:ClinicalCondition ;
-  chr:hasRecordDate "2016-09-22T20:42:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:measurement_HARK_1 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2016-09-22T20:42:29+02:00"^^xsd:dateTime .
 
-ex:severity_moderate a chr:Severity .
+# Diagnostic statements and conditions
+ex:diagnostic_Unemployed a chr:DiagnosticStatement ;
+    rdfs:label "Unemployed (finding)" ;
+    chr:hasCode <http://snomed.info/id/73438004> .
 
-ex:care_plan a chr:CarePlan .
+ex:condition_Unemployed a chr:ClinicalCondition ;
+    rdfs:label "Unemployed" ;
+    chr:hasCode <http://snomed.info/id/73438004> ;
+    chr:hasRecordDate "2016-09-22T19:42:34+02:00"^^xsd:dateTime .
+
+ex:evaluationProcess_1 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Eldridge Marquardt on 2016-09-22T19:42:34+02:00" ;
+    chr:hasCondition ex:condition_Unemployed ;
+    chr:hasObservation ex:diagnostic_Unemployed .
+
+ex:diagnostic_Gingivitis a chr:DiagnosticStatement ;
+    rdfs:label "Gingivitis (disorder)" ;
+    chr:hasCode <http://snomed.info/id/66383009> .
+
+ex:condition_Gingivitis a chr:ClinicalCondition ;
+    rdfs:label "Gingivitis" ;
+    chr:hasCode <http://snomed.info/id/66383009> ;
+    chr:hasRecordDate "2016-09-22T20:42:29+02:00"^^xsd:dateTime .
+
+ex:evaluationProcess_2 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Eldridge Marquardt on 2016-09-22T20:42:29+02:00" ;
+    chr:hasCondition ex:condition_Gingivitis ;
+    chr:hasObservation ex:diagnostic_Gingivitis .
+
+# Care plan
+ex:carePlan_1 a chr:CarePlan ;
+    rdfs:label "Care plan for follow-up monitoring and routine review" .

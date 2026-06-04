@@ -4,48 +4,80 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Harvey63Napoleon578Homenick806 a chr:Person .
+ex:patient_P_4edfbba8
+    a chr:Person ;
+    rdfs:label "Harvey63 Napoleon578 Homenick806" .
 
-ex:visit_2019_04_25 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasCareProvider ex:doctor_Victor493Chavez927 ;
-  chr:hasCareUnit ex:care_unit_4499Acushnet .
+ex:careunit_4499_ACUSHNET
+    a chr:CareUnit ;
+    rdfs:label "4499 ACUSHNET AVENUE OPERATING COMPANY, LLC" .
 
-ex:care_unit_4499Acushnet a chr:CareUnit .
+ex:person_Victor_Chavez
+    a chr:Person ;
+    rdfs:label "Dr. Víctor493 Chávez927" .
 
-ex:doctor_Victor493Chavez927 a chr:Person .
+ex:visit_2019_04_25T211155
+    a chr:ClinicalVisit ;
+    rdfs:label "Visit 2019-04-25T21:11:55+02:00" ;
+    chr:hasDate "2019-04-25T21:11:55+02:00"^^xsd:dateTime ;
+    chr:hasPatient ex:patient_P_4edfbba8 ;
+    chr:hasCareProvider ex:person_Victor_Chavez ;
+    chr:hasCareUnit ex:careunit_4499_ACUSHNET .
 
-ex:measproc_polyp_size_20190425 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_polyp_size_20190425 .
+ex:unit_mm
+    a chr:Unit ;
+    rdfs:label "mm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mm> .
 
-ex:meas_polyp_size_20190425 a chr:Measurement ;
-  chr:hasQuantityValue "5.8247"^^xsd:float ;
-  chr:hasUnit sulo:millimeter ;
-  chr:hasMeasuredDate "2019-04-25T21:49:00"^^xsd:dateTime .
+ex:measurement_polypsize_2019_04_25T214947
+    a chr:Measurement ;
+    rdfs:label "Polyp size measurement 5.8247 mm" ;
+    chr:hasMeasuredDate "2019-04-25T21:49:47+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.8247"^^xsd:float ;
+    chr:hasUnit ex:unit_mm ;
+    chr:hasCode <https://loinc.org/33756-8> .
 
-ex:measproc_hemoglobin_stool_20190425 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_hemoglobin_stool_20190425 .
+ex:measproc_polypsize_2019_04_25T214947
+    a chr:MeasurementProcess ;
+    rdfs:label "Polyp size measurement process 2019-04-25T21:49:47+02:00" ;
+    chr:hasPatient ex:patient_P_4edfbba8 ;
+    chr:hasResult ex:measurement_polypsize_2019_04_25T214947 .
 
-ex:meas_hemoglobin_stool_20190425 a chr:Measurement ;
-  chr:hasQuantityValue "20.354"^^xsd:float ;
-  chr:hasUnit sulo:nanogramPerMilliliter ;
-  chr:hasMeasuredDate "2019-04-25T21:49:00"^^xsd:dateTime .
+ex:unit_ng_per_mL
+    a chr:Unit ;
+    rdfs:label "ng/mL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/ngpermL> .
 
-ex:eval_20190425 a chr:EvaluationProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasObservation ex:diag_polyp_colon .
+ex:measurement_hemoglobin_2019_04_25T214947
+    a chr:Measurement ;
+    rdfs:label "Hemoglobin measurement 20.354 ng/mL" ;
+    chr:hasMeasuredDate "2019-04-25T21:49:47+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "20.354"^^xsd:float ;
+    chr:hasUnit ex:unit_ng_per_mL ;
+    chr:hasCode <https://loinc.org/57905-2> .
 
-ex:diag_polyp_colon a chr:DiagnosticStatement .
+ex:measproc_hemoglobin_2019_04_25T214947
+    a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin measurement process 2019-04-25T21:49:47+02:00" ;
+    chr:hasPatient ex:patient_P_4edfbba8 ;
+    chr:hasResult ex:measurement_hemoglobin_2019_04_25T214947 .
 
-ex:condition_polyp_colon a chr:ClinicalCondition ;
-  chr:hasRecordDate "2019-04-25T21:49:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:diagnostic_polyp_of_colon
+    a chr:DiagnosticStatement ;
+    rdfs:label "Polyp of colon" ;
+    chr:hasCode <http://snomed.info/id/68496003> .
 
-ex:severity_moderate a chr:Severity .
+ex:evaluation_2019_04_25T214947
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation 2019-04-25T21:49:47+02:00" ;
+    chr:hasObservation ex:diagnostic_polyp_of_colon .
 
-ex:careplan_followup a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:medical_procedure .
+ex:procedure_colonoscopy
+    a chr:MedicalProcedure ;
+    rdfs:label "Colonoscopy" ;
+    chr:hasCode <http://snomed.info/id/449868002> .
 
-ex:medical_procedure a chr:MedicalProcedure .
+ex:careplan_followup
+    a chr:CarePlan ;
+    rdfs:label "Follow-up care plan" ;
+    chr:hasMedicalProcedure ex:procedure_colonoscopy .

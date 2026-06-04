@@ -4,104 +4,218 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Cory323Frank378Heller342 a chr:Person .
+# Person (patient)
+ex:patient_Cory_Frank_Heller
+    a chr:Person ;
+    rdfs:label "Cory323 Frank378 Heller342" .
 
-ex:careUnit_LowellFamilyMedicalCarePC a chr:CareUnit .
+# Care unit
+ex:careunit_LOWELL_FAMILY_MEDICAL_CARE_PC
+    a chr:CareUnit ;
+    rdfs:label "LOWELL FAMILY MEDICAL CARE PC" .
 
-ex:careProvider_DrHank686Schneider199 a chr:Person .
+# Attending physician
+ex:physician_Hank_Schneider
+    a chr:Person ;
+    rdfs:label "Dr. Hank686 Schneider199" .
 
-ex:visit_2017_04_09 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:careProvider_DrHank686Schneider199 ;
-  chr:hasCareUnit ex:careUnit_LowellFamilyMedicalCarePC ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 .
+# General examination procedure
+ex:procedure_general_examination
+    a chr:MedicalProcedure ;
+    rdfs:label "General examination of patient" ;
+    chr:hasPerformedDate "2017-04-09T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller .
 
-ex:proc_FEV1FVC_20170409 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_FEV1FVC_20170409 .
+# Clinical visit
+ex:visit_2017_04_09_11_44_05
+    a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit 2017-04-09T11:44:05+02:00" ;
+    chr:hasDate "2017-04-09T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_Hank_Schneider ;
+    chr:hasCareUnit ex:careunit_LOWELL_FAMILY_MEDICAL_CARE_PC ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasProcedure ex:procedure_general_examination .
 
-ex:meas_FEV1FVC_20170409 a chr:Measurement ;
-  chr:hasQuantityValue "69.86"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2017-04-09T11:44:00"^^xsd:dateTime .
+# Units
+ex:unit_percent
+    a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
 
-ex:proc_Height_20170409 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_Height_20170409 .
+ex:unit_cm
+    a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:meas_Height_20170409 a chr:Measurement ;
-  chr:hasQuantityValue "164.0"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2017-04-09T11:44:00"^^xsd:dateTime .
+ex:unit_kg
+    a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:proc_Pain_20170409 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_Pain_20170409 .
+ex:unit_kg_per_m2
+    a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg%2Fm2> .
 
-ex:meas_Pain_20170409 a chr:Measurement ;
-  chr:hasQuantityValue "3.0"^^xsd:float ;
-  chr:hasMeasuredDate "2017-04-09T11:44:00"^^xsd:dateTime .
+ex:unit_per_min
+    a chr:Unit ;
+    rdfs:label "1/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/1%2Fmin> .
 
-ex:proc_Weight_20170409 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_Weight_20170409 .
+# Measurements and processes
 
-ex:meas_Weight_20170409 a chr:Measurement ;
-  chr:hasQuantityValue "81.4"^^xsd:float ;
-  chr:hasUnit sulo:kg ;
-  chr:hasMeasuredDate "2017-04-09T11:44:00"^^xsd:dateTime .
+## FEV1/FVC
+ex:measproc_FEV1_FVC_20170409T114405
+    a chr:MeasurementProcess ;
+    rdfs:label "FEV1/FVC measurement process" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:measurement_FEV1_FVC_20170409T114405 .
 
-ex:proc_BMI_20170409 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_BMI_20170409 .
+ex:measurement_FEV1_FVC_20170409T114405
+    a chr:Measurement ;
+    rdfs:label "69.86 %" ;
+    chr:hasMeasuredDate "2017-04-09T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "69.86"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasCode <https://loinc.org/19926-5> .
 
-ex:meas_BMI_20170409 a chr:Measurement ;
-  chr:hasQuantityValue "30.26"^^xsd:float ;
-  chr:hasUnit sulo:kg_per_m2 ;
-  chr:hasMeasuredDate "2017-04-09T11:44:00"^^xsd:dateTime .
+## Body Height
+ex:measproc_body_height_20170409T114405
+    a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement process" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:measurement_body_height_20170409T114405 .
 
-ex:proc_HeartRate_20170409 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_HeartRate_20170409 .
+ex:measurement_body_height_20170409T114405
+    a chr:Measurement ;
+    rdfs:label "164 cm" ;
+    chr:hasMeasuredDate "2017-04-09T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "164.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasCode <https://loinc.org/8302-2> .
 
-ex:meas_HeartRate_20170409 a chr:Measurement ;
-  chr:hasQuantityValue "83.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min ;
-  chr:hasMeasuredDate "2017-04-09T11:44:00"^^xsd:dateTime .
+## Pain severity
+ex:measproc_pain_severity_20170409T114405
+    a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:measurement_pain_severity_20170409T114405 .
 
-ex:proc_RespRate_20170409 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_RespRate_20170409 .
+ex:measurement_pain_severity_20170409T114405
+    a chr:Measurement ;
+    rdfs:label "3 score" ;
+    chr:hasMeasuredDate "2017-04-09T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.0"^^xsd:float ;
+    chr:hasCode <https://loinc.org/72514-3> .
 
-ex:meas_RespRate_20170409 a chr:Measurement ;
-  chr:hasQuantityValue "15.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min ;
-  chr:hasMeasuredDate "2017-04-09T11:44:00"^^xsd:dateTime .
+## Body Weight
+ex:measproc_body_weight_20170409T114405
+    a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement process" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:measurement_body_weight_20170409T114405 .
 
-ex:proc_FallRisk_20170409 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_FallRisk_20170409 .
+ex:measurement_body_weight_20170409T114405
+    a chr:Measurement ;
+    rdfs:label "81.4 kg" ;
+    chr:hasMeasuredDate "2017-04-09T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "81.4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasCode <https://loinc.org/29463-7> .
 
-ex:meas_FallRisk_20170409 a chr:Measurement ;
-  chr:hasQuantityValue "97.0"^^xsd:float ;
-  chr:hasMeasuredDate "2017-04-09T12:51:00"^^xsd:dateTime .
+## Body mass index (BMI)
+ex:measproc_BMI_20170409T114405
+    a chr:MeasurementProcess ;
+    rdfs:label "BMI measurement process" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:measurement_BMI_20170409T114405 .
 
-ex:proc_PHQ2_20170409 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_PHQ2_20170409 .
+ex:measurement_BMI_20170409T114405
+    a chr:Measurement ;
+    rdfs:label "30.26 kg/m2" ;
+    chr:hasMeasuredDate "2017-04-09T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "30.26"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasCode <https://loinc.org/39156-5> .
 
-ex:meas_PHQ2_20170409 a chr:Measurement ;
-  chr:hasQuantityValue "2.0"^^xsd:float ;
-  chr:hasMeasuredDate "2017-04-09T13:30:00"^^xsd:dateTime .
+## Heart rate
+ex:measproc_heart_rate_20170409T114405
+    a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:measurement_heart_rate_20170409T114405 .
 
-ex:eval_20170409 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_Stress_20170409 .
+ex:measurement_heart_rate_20170409T114405
+    a chr:Measurement ;
+    rdfs:label "83 1/min" ;
+    chr:hasMeasuredDate "2017-04-09T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "83.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <https://loinc.org/8867-4> .
 
-ex:diag_Stress_20170409 a chr:DiagnosticStatement .
+## Respiratory rate
+ex:measproc_respiratory_rate_20170409T114405
+    a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:measurement_respiratory_rate_20170409T114405 .
 
-ex:condition_Stress_20170409 a chr:ClinicalCondition ;
-  chr:hasSeverity ex:severity_Moderate ;
-  chr:hasRecordDate "2017-04-09T12:36:00"^^xsd:dateTime .
+ex:measurement_respiratory_rate_20170409T114405
+    a chr:Measurement ;
+    rdfs:label "15 1/min" ;
+    chr:hasMeasuredDate "2017-04-09T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <https://loinc.org/9279-1> .
 
-ex:severity_Moderate a chr:Severity .
+## Fall risk total
+ex:measproc_fall_risk_20170409T125144
+    a chr:MeasurementProcess ;
+    rdfs:label "Fall risk total measurement process" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:measurement_fall_risk_20170409T125144 .
 
-ex:carePlan_FollowUp a chr:CarePlan .
+ex:measurement_fall_risk_20170409T125144
+    a chr:Measurement ;
+    rdfs:label "97 #" ;
+    chr:hasMeasuredDate "2017-04-09T12:51:44+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "97.0"^^xsd:float ;
+    chr:hasCode <https://loinc.org/59460-6> .
+
+## PHQ-2 total score
+ex:measproc_PHQ2_20170409T133059
+    a chr:MeasurementProcess ;
+    rdfs:label "PHQ-2 total score measurement process" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:measurement_PHQ2_20170409T133059 .
+
+ex:measurement_PHQ2_20170409T133059
+    a chr:Measurement ;
+    rdfs:label "2 score" ;
+    chr:hasMeasuredDate "2017-04-09T13:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasCode <https://loinc.org/55758-7> .
+
+# Diagnostic statement and condition (Stress)
+ex:diagnostic_Stress
+    a chr:DiagnosticStatement ;
+    rdfs:label "Stress" ;
+    chr:hasCode <http://snomed.info/id/73595000> .
+
+ex:condition_Stress
+    a chr:ClinicalCondition ;
+    rdfs:label "Stress" ;
+    chr:hasCode <http://snomed.info/id/73595000> ;
+    chr:hasRecordDate "2017-04-09T12:36:19+02:00"^^xsd:dateTime .
+
+# Evaluation process
+ex:evaluation_20170409T123619
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation of Stress on 2017-04-09T12:36:19+02:00" ;
+    chr:hasCondition ex:condition_Stress ;
+    chr:hasObservation ex:diagnostic_Stress .
+
+# Care plan
+ex:careplan_followup
+    a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review" .

@@ -1,1 +1,242 @@
-# LLM call failed: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/workspaces/default/keys/904bef16ba07bd440ba9135faeee6cdc6097bd01c0e2a9aec4949d13006f4f81', 'code': 403}}
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_ArlenOlson a chr:Person ;
+    rdfs:label "Arlen68 Olson653" .
+
+ex:physician_DanaWilkinson a chr:Person ;
+    rdfs:label "Dr. Dana512 Wilkinson796" .
+
+# Care unit
+ex:careunit_UrgentCarePhysiciansPC a chr:CareUnit ;
+    rdfs:label "URGENT CARE PHYSICIANS PC" .
+
+# Clinical visit
+ex:visit_2024_07_17T16_47_23 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2024-07-17T16:47:23+02:00" ;
+    chr:hasDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_DanaWilkinson ;
+    chr:hasCareUnit ex:careunit_UrgentCarePhysiciansPC ;
+    chr:hasPatient ex:patient_ArlenOlson .
+
+# Units
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
+
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> .
+
+ex:unit_mL_per_min_per_1_73_m2 a chr:Unit ;
+    rdfs:label "mL/min/{1.73_m2}" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mLperminper{1.73_m2}> .
+
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
+
+# Measurements and processes
+
+# 1 Glucose Serum
+ex:proc_Glucose_Serum_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement (Serum) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Glucose_Serum_2024_07_17T16_47_23 .
+
+ex:measurement_Glucose_Serum_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "198.74 mg/dL" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "198.74"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 2 Urea nitrogen Serum
+ex:proc_UreaNitrogen_Serum_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement (Serum) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_UreaNitrogen_Serum_2024_07_17T16_47_23 .
+
+ex:measurement_UreaNitrogen_Serum_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "18.3 mg/dL" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "18.3"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 3 Creatinine Serum
+ex:proc_Creatinine_Serum_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement (Serum) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Creatinine_Serum_2024_07_17T16_47_23 .
+
+ex:measurement_Creatinine_Serum_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "2.0924 mg/dL" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0924"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 4 Calcium Serum
+ex:proc_Calcium_Serum_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement (Serum) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Calcium_Serum_2024_07_17T16_47_23 .
+
+ex:measurement_Calcium_Serum_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "8.51 mg/dL" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.51"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 5 Sodium Serum
+ex:proc_Sodium_Serum_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement (Serum) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Sodium_Serum_2024_07_17T16_47_23 .
+
+ex:measurement_Sodium_Serum_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "141.53 mmol/L" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "141.53"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 6 Potassium Serum
+ex:proc_Potassium_Serum_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement (Serum) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Potassium_Serum_2024_07_17T16_47_23 .
+
+ex:measurement_Potassium_Serum_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "4.87 mmol/L" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.87"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 7 Chloride Serum
+ex:proc_Chloride_Serum_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement (Serum) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Chloride_Serum_2024_07_17T16_47_23 .
+
+ex:measurement_Chloride_Serum_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "108.95 mmol/L" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "108.95"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 8 Carbon dioxide total Serum
+ex:proc_CO2_Serum_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide total measurement (Serum) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_CO2_Serum_2024_07_17T16_47_23 .
+
+ex:measurement_CO2_Serum_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "24.49 mmol/L" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "24.49"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 9 Glomerular filtration rate
+ex:proc_GFR_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Glomerular filtration rate measurement process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_GFR_2024_07_17T16_47_23 .
+
+ex:measurement_GFR_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "33.419 mL/min/{1.73_m2}" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "33.419"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 .
+
+# 10 Glucose Urine
+ex:proc_Glucose_Urine_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement (Urine) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Glucose_Urine_2024_07_17T16_47_23 .
+
+ex:measurement_Glucose_Urine_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "2.1532 mg/dL" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.1532"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 11 Bilirubin.total Urine
+ex:proc_Bilirubin_Urine_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Bilirubin.total measurement (Urine) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Bilirubin_Urine_2024_07_17T16_47_23 .
+
+ex:measurement_Bilirubin_Urine_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "0.6524 mg/dL" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.6524"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 12 Ketones Urine
+ex:proc_Ketones_Urine_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Ketones measurement (Urine) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Ketones_Urine_2024_07_17T16_47_23 .
+
+ex:measurement_Ketones_Urine_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "3.6072 mg/dL" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.6072"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 13 Specific gravity Urine (nominal) – no unit
+ex:proc_SpecificGravity_Urine_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Specific gravity measurement (Urine) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_SpecificGravity_Urine_2024_07_17T16_47_23 .
+
+ex:measurement_SpecificGravity_Urine_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "1.0153 {nominal}" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0153"^^xsd:float .
+
+# 14 pH Urine – no unit
+ex:proc_pH_Urine_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "pH measurement (Urine) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_pH_Urine_2024_07_17T16_47_23 .
+
+ex:measurement_pH_Urine_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "6.8373 pH" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.8373"^^xsd:float .
+
+# 15 Protein Urine
+ex:proc_Protein_Urine_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Protein measurement (Urine) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Protein_Urine_2024_07_17T16_47_23 .
+
+ex:measurement_Protein_Urine_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "249.69 mg/dL" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "249.69"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 16 Hemoglobin A1c Blood
+ex:proc_HbA1c_Blood_2024_07_17T16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement (Blood) process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_HbA1c_Blood_2024_07_17T16_47_23 .
+
+ex:measurement_HbA1c_Blood_2024_07_17T16_47_23 a chr:Measurement ;
+    rdfs:label "5.36 %" ;
+    chr:hasMeasuredDate "2024-07-17T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.36"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+# Diagnostic statement and evaluation
+ex:diag_MedicationReview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+ex:evaluation_2024_07_17T16_47_23 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2024-07-17T16:47:23+02:00" ;
+    chr:hasObservation ex:diag_MedicationReview .

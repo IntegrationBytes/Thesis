@@ -4,181 +4,306 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Aracely711Devon268Collins926 a chr:Person .
+# Patient
+ex:patient_P_4f0dee62 a chr:Person ;
+    rdfs:label "Aracely711 Devon268 Collins926" .
 
-ex:visit_2016_06_03 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasCareProvider ex:doctor_Edmundo94Eichmann909 ;
-  chr:hasCareUnit ex:care_unit_FatherBillsPlace .
+# Care unit
+ex:careunit_FATHER_BILL_PLACE a chr:CareUnit ;
+    rdfs:label "FATHER BILL'S PLACE" .
 
-ex:care_unit_FatherBillsPlace a chr:CareUnit .
+# Attending physician
+ex:physician_Edmundo_Eichmann a chr:Person ;
+    rdfs:label "Dr. Edmundo94 Eichmann909" .
 
-ex:doctor_Edmundo94Eichmann909 a chr:Person .
+# Clinical visit
+ex:visit_20160603T150438_0200 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2016-06-03T15:04:38+02:00" ;
+    chr:hasCareProvider ex:physician_Edmundo_Eichmann ;
+    chr:hasCareUnit ex:careunit_FATHER_BILL_PLACE ;
+    chr:hasDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasPatient ex:patient_P_4f0dee62 .
 
-ex:measProc_HbA1c_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_HbA1c_20160603 .
+#########################
+# Units
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
 
-ex:meas_HbA1c_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "5.84"^^xsd:float ;
-  chr:hasUnit "%"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:measProc_Height_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_Height_20160603 .
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
 
-ex:meas_Height_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "172.0"^^xsd:float ;
-  chr:hasUnit "cm"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:measProc_Pain_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_Pain_20160603 .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg%2Fm2> .
 
-ex:meas_Pain_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasUnit "{score}"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%2Fmin> .
 
-ex:measProc_Weight_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_Weight_20160603 .
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mg%2FdL> .
 
-ex:meas_Weight_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "82.2"^^xsd:float ;
-  chr:hasUnit "kg"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmol%2FL> .
 
-ex:measProc_BMI_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_BMI_20160603 .
+ex:unit_hash a chr:Unit ;
+    rdfs:label "#" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%23> .
 
-ex:meas_BMI_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "27.79"^^xsd:float ;
-  chr:hasUnit "kg/m2"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+#########################
+# Measurements and processes (common timestamp 2016-06-03T15:04:38+02:00)
 
-ex:measProc_HeartRate_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_HeartRate_20160603 .
+# Hemoglobin A1c
+ex:meas_HbA1c_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "5.84 %" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.84"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
 
-ex:meas_HeartRate_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "61.0"^^xsd:float ;
-  chr:hasUnit "/min"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+ex:mp_HbA1c_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_HbA1c_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/4548-4> .
 
-ex:measProc_RespRate_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_RespRate_20160603 .
+# Body Height
+ex:meas_Height_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "172 cm" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "172.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
 
-ex:meas_RespRate_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "13.0"^^xsd:float ;
-  chr:hasUnit "/min"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+ex:mp_Height_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_Height_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/8302-2> .
 
-ex:measProc_Glucose_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_Glucose_20160603 .
+# Pain severity
+ex:meas_Pain_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
 
-ex:meas_Glucose_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "95.33"^^xsd:float ;
-  chr:hasUnit "mg/dL"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+ex:mp_Pain_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_Pain_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/72514-3> .
 
-ex:measProc_UreaNitrogen_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_UreaNitrogen_20160603 .
+# Body Weight
+ex:meas_Weight_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "82.2 kg" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82.2"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
 
-ex:meas_UreaNitrogen_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "16.02"^^xsd:float ;
-  chr:hasUnit "mg/dL"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+ex:mp_Weight_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_Weight_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/29463-7> .
 
-ex:measProc_Creatinine_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_Creatinine_20160603 .
+# BMI
+ex:meas_BMI_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "27.79 kg/m2" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.79"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
 
-ex:meas_Creatinine_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "0.69"^^xsd:float ;
-  chr:hasUnit "mg/dL"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+ex:mp_BMI_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "BMI measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_BMI_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/39156-5> .
 
-ex:measProc_Calcium_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_Calcium_20160603 .
+# Heart rate
+ex:meas_HR_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "61 /min" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "61.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
 
-ex:meas_Calcium_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "10.17"^^xsd:float ;
-  chr:hasUnit "mg/dL"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+ex:mp_HR_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_HR_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/8867-4> .
 
-ex:measProc_Sodium_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_Sodium_20160603 .
+# Respiratory rate
+ex:meas_RR_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "13 /min" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
 
-ex:meas_Sodium_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "141.84"^^xsd:float ;
-  chr:hasUnit "mmol/L"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+ex:mp_RR_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_RR_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/9279-1> .
 
-ex:measProc_Potassium_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_Potassium_20160603 .
+# Glucose
+ex:meas_Glucose_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "95.33 mg/dL" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "95.33"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
 
-ex:meas_Potassium_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "4.16"^^xsd:float ;
-  chr:hasUnit "mmol/L"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+ex:mp_Glucose_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_Glucose_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/2339-0> .
 
-ex:measProc_Chloride_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_Chloride_20160603 .
+# Urea nitrogen
+ex:meas_UreaN_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "16.02 mg/dL" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "16.02"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
 
-ex:meas_Chloride_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "108.74"^^xsd:float ;
-  chr:hasUnit "mmol/L"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+ex:mp_UreaN_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_UreaN_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/6299-2> .
 
-ex:measProc_CarbonDioxide_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_CarbonDioxide_20160603 .
+# Creatinine
+ex:meas_Creatinine_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "0.69 mg/dL" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.69"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
 
-ex:meas_CarbonDioxide_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "23.58"^^xsd:float ;
-  chr:hasUnit "mmol/L"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T15:04:00"^^xsd:dateTime .
+ex:mp_Creatinine_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_Creatinine_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/38483-4> .
 
-ex:measProc_FallRisk_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_FallRisk_20160603 .
+# Calcium
+ex:meas_Calcium_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "10.17 mg/dL" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "10.17"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
 
-ex:meas_FallRisk_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "42.0"^^xsd:float ;
-  chr:hasUnit "{#}"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T16:17:00"^^xsd:dateTime .
+ex:mp_Calcium_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_Calcium_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/49765-1> .
 
-ex:measProc_DAST10_20160603 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_DAST10_20160603 .
+# Sodium
+ex:meas_Sodium_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "141.84 mmol/L" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "141.84"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
 
-ex:meas_DAST10_20160603 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasUnit "{score}"^^xsd:string ;
-  chr:hasMeasuredDate "2016-06-03T16:59:00"^^xsd:dateTime .
+ex:mp_Sodium_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_Sodium_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/2947-0> .
 
-ex:evaluation_20160603 a chr:EvaluationProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasPerformer ex:doctor_Edmundo94Eichmann909 ;
-  chr:hasObservation ex:diagnosticStatement_Stress .
+# Potassium
+ex:meas_Potassium_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "4.16 mmol/L" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.16"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
 
-ex:diagnosticStatement_Stress a chr:DiagnosticStatement .
+ex:mp_Potassium_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_Potassium_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/6298-4> .
 
-ex:clinicalCondition_Stress a chr:ClinicalCondition ;
-  chr:hasRecordDate "2016-06-03T15:52:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_Moderate .
+# Chloride
+ex:meas_Chloride_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "108.74 mmol/L" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "108.74"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
 
-ex:severity_Moderate a chr:Severity .
+ex:mp_Chloride_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_Chloride_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/2069-3> .
 
-ex:carePlan_FollowUp a chr:CarePlan .
+# Carbon dioxide, total
+ex:meas_CO2_20160603T150438_0200 a chr:Measurement ;
+    rdfs:label "23.58 mmol/L" ;
+    chr:hasMeasuredDate "2016-06-03T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "23.58"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:mp_CO2_20160603T150438_0200 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide, total measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_CO2_20160603T150438_0200 ;
+    chr:hasCode <http://snomed.info/id/20565-8> .
+
+# Fall risk total (later time)
+ex:meas_FallRisk_20160603T161741_0200 a chr:Measurement ;
+    rdfs:label "42 #" ;
+    chr:hasMeasuredDate "2016-06-03T16:17:41+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "42.0"^^xsd:float ;
+    chr:hasUnit ex:unit_hash .
+
+ex:mp_FallRisk_20160603T161741_0200 a chr:MeasurementProcess ;
+    rdfs:label "Fall risk total measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_FallRisk_20160603T161741_0200 ;
+    chr:hasCode <http://snomed.info/id/59460-6> .
+
+# DAST-10 total score (later time)
+ex:meas_DAST10_20160603T165904_0200 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasMeasuredDate "2016-06-03T16:59:04+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:mp_DAST10_20160603T165904_0200 a chr:MeasurementProcess ;
+    rdfs:label "Total score DAST-10 measurement process" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasResult ex:meas_DAST10_20160603T165904_0200 ;
+    chr:hasCode <http://snomed.info/id/82667-7> .
+
+#########################
+# Diagnostic statement and condition
+ex:diag_Stress a chr:DiagnosticStatement ;
+    rdfs:label "Stress" ;
+    chr:hasCode <http://snomed.info/id/73595000> .
+
+ex:cond_Stress a chr:ClinicalCondition ;
+    rdfs:label "Stress" ;
+    chr:hasCode <http://snomed.info/id/73595000> ;
+    chr:hasRecordDate "2016-06-03T15:52:02+02:00"^^xsd:dateTime .
+
+ex:evaluation_20160603T155202_0200 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation of patient" ;
+    chr:hasPatient ex:patient_P_4f0dee62 ;
+    chr:hasObservation ex:diag_Stress ;
+    chr:hasCondition ex:cond_Stress .
+
+#########################
+# Care plan
+ex:careplan_1 a chr:CarePlan ;
+    rdfs:label "Care plan for follow‑up monitoring" .

@@ -4,502 +4,329 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Daren950_Ed239_Strosin214 a chr:Person .
+# Persons
+ex:patient_Daren950 a chr:Person .
+ex:physician_Ping698 a chr:Person .
 
-ex:visit_2022_10_08_10_01 a sulo:Process, chr:ClinicalVisit ;
-  sulo:atTime ex:time_visit_2022_10_08_10_01 ;
-  sulo:hasParticipant ex:role_VisitLocation_CHP ;
-  sulo:hasParticipant ex:role_VisitProvider_Ping698_Weissnat378 ;
-  sulo:hasParticipant ex:role_VisitSubject_Daren950_Ed239_Strosin214 ;
-  sulo:hasParticipant ex:role_VisitFocus_general_examination .
+# Care unit
+ex:careunit_COMMUNITY a chr:CareUnit .
 
-ex:time_visit_2022_10_08_10_01 a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T10:01:00"^^xsd:dateTime .
+# Clinical visit
+ex:visit_2022_10_08 a chr:ClinicalVisit ;
+    sulo:atTime ex:time_visit_2022_10_08 ;
+    sulo:isIn ex:careunit_COMMUNITY ;
+    sulo:hasParticipant ex:role_VisitPatient , ex:role_VisitProvider .
 
-ex:care_unit_CHP a chr:CareUnit ;
-  rdfs:label "COMMUNITY HEALTH PROGRAMS INC" .
+ex:time_visit_2022_10_08 a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T10:01:15+02:00"^^xsd:dateTime .
 
-ex:role_VisitLocation_CHP a sulo:Role ;
-  sulo:isFeatureOf ex:care_unit_CHP ;
-  sulo:roleType sulo:LocationRole .
+ex:role_VisitPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
 
-ex:provider_Ping698_Weissnat378 a chr:Person .
+ex:role_VisitProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Ping698 .
 
-ex:role_VisitProvider_Ping698_Weissnat378 a sulo:Role ;
-  sulo:isFeatureOf ex:provider_Ping698_Weissnat378 ;
-  sulo:roleType chr:CareProviderRole .
+# Units
+ex:unit_cm          a chr:Unit .
+ex:unit_kg          a chr:Unit .
+ex:unit_kg_per_m2   a chr:Unit .
+ex:unit_percent     a chr:Unit .
+ex:unit_per_min     a chr:Unit .
+ex:unit_score       a chr:Unit .
 
-ex:role_VisitSubject_Daren950_Ed239_Strosin214 a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
+# Process status
+ex:status_completed a chr:ProcessStatus .
 
-ex:medical_procedure_general_examination a chr:MedicalProcedure .
+# ---- Measurements ----
 
-ex:role_VisitFocus_general_examination a sulo:Role ;
-  sulo:isFeatureOf ex:medical_procedure_general_examination ;
-  sulo:roleType sulo:FocusRole .
+## Body Height
+ex:measurement_bodyHeight a chr:Measurement ;
+    sulo:hasValue "176.8"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_bodyHeight .
 
-ex:measurement_process_height a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_height ;
-  sulo:hasParticipant ex:role_Subject_height ;
-  sulo:hasParticipant ex:role_Output_height ;
-  sulo:hasParticipant ex:role_ProcessStatus_completed .
+ex:time_bodyHeight a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T10:01:15+02:00"^^xsd:dateTime .
 
-ex:time_measurement_height a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T10:01:00"^^xsd:dateTime .
+ex:proc_bodyHeight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_bodyHeightPatient , ex:role_bodyHeightOutput ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_Subject_height a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
+ex:role_bodyHeightPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
 
-ex:measurement_height a chr:Measurement ;
-  sulo:hasValue "176.8"^^xsd:float ;
-  sulo:hasPart ex:unit_cm .
+ex:role_bodyHeightOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_bodyHeight .
 
-ex:unit_cm a sulo:Unit ;
-  rdfs:label "cm" .
+## Pain severity (score)
+ex:measurement_painSeverity a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_painSeverity .
 
-ex:role_Output_height a sulo:Role ;
-  sulo:isFeatureOf ex:measurement_height ;
-  sulo:roleType chr:OutputRole .
+ex:time_painSeverity a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T10:01:15+02:00"^^xsd:dateTime .
 
-ex:process_status_completed a chr:ProcessStatus ;
-  rdfs:label "completed" .
+ex:proc_painSeverity a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_painSeverityPatient , ex:role_painSeverityOutput ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_ProcessStatus_completed a sulo:Role ;
-  sulo:isFeatureOf ex:process_status_completed ;
-  sulo:roleType sulo:StatusRole .
+ex:role_painSeverityPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
 
-ex:measurement_process_pain a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_pain ;
-  sulo:hasParticipant ex:role_Subject_pain ;
-  sulo:hasParticipant ex:role_Output_pain ;
-  sulo:hasParticipant ex:role_ProcessStatus_completed .
+ex:role_painSeverityOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_painSeverity .
 
-ex:time_measurement_pain a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T10:01:00"^^xsd:dateTime .
+## Body Weight
+ex:measurement_bodyWeight a chr:Measurement ;
+    sulo:hasValue "62.5"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_bodyWeight .
 
-ex:role_Subject_pain a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
+ex:time_bodyWeight a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T10:01:15+02:00"^^xsd:dateTime .
 
-ex:measurement_pain a chr:Measurement ;
-  sulo:hasValue "1.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
+ex:proc_bodyWeight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_bodyWeightPatient , ex:role_bodyWeightOutput ;
+    sulo:hasFeature ex:status_completed .
 
-ex:unit_score a sulo:Unit ;
-  rdfs:label "score" .
+ex:role_bodyWeightPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
 
-ex:role_Output_pain a sulo:Role ;
-  sulo:isFeatureOf ex:measurement_pain ;
-  sulo:roleType chr:OutputRole .
+ex:role_bodyWeightOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_bodyWeight .
 
-ex:measurement_process_weight a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_weight ;
-  sulo:hasParticipant ex:role_Subject_weight ;
-  sulo:hasParticipant ex:role_Output_weight ;
-  sulo:hasParticipant ex:role_ProcessStatus_completed .
+## BMI (kg/m2)
+ex:measurement_BMI a chr:Measurement ;
+    sulo:hasValue "19.99"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_BMI .
 
-ex:time_measurement_weight a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T10:01:00"^^xsd:dateTime .
+ex:time_BMI a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T10:01:15+02:00"^^xsd:dateTime .
 
-ex:role_Subject_weight a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
-
-ex:measurement_weight a chr:Measurement ;
-  sulo:hasValue "62.5"^^xsd:float ;
-  sulo:hasPart ex:unit_kg .
-
-ex:unit_kg a sulo:Unit ;
-  rdfs:label "kg" .
-
-ex:role_Output_weight a sulo:Role ;
-  sulo:isFeatureOf ex:measurement_weight ;
-  sulo:roleType chr:OutputRole .
-
-ex:measurement_process_bmi a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_bmi ;
-  sulo:hasParticipant ex:role_Subject_bmi ;
-  sulo:hasParticipant ex:role_Output_bmi ;
-  sulo:hasParticipant ex:role_ProcessStatus_completed .
-
-ex:time_measurement_bmi a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T10:01:00"^^xsd:dateTime .
-
-ex:role_Subject_bmi a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
-
-ex:measurement_bmi a chr:Measurement ;
-  sulo:hasValue "19.99"^^xsd:float ;
-  sulo:hasPart ex:unit_kg_m2 .
-
-ex:unit_kg_m2 a sulo:Unit ;
-  rdfs:label "kg/m2" .
-
-ex:role_Output_bmi a sulo:Role ;
-  sulo:isFeatureOf ex:measurement_bmi ;
-  sulo:roleType chr:OutputRole .
-
-ex:measurement_process_bmi_percentile a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_bmi_percentile ;
-  sulo:hasParticipant ex:role_Subject_bmi_percentile ;
-  sulo:hasParticipant ex:role_Output_bmi_percentile ;
-  sulo:hasParticipant ex:role_ProcessStatus_completed .
-
-ex:time_measurement_bmi_percentile a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T10:01:00"^^xsd:dateTime .
-
-ex:role_Subject_bmi_percentile a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
-
-ex:measurement_bmi_percentile a chr:Measurement ;
-  sulo:hasValue "22.011"^^xsd:float ;
-  sulo:hasPart ex:unit_percent .
-
-ex:unit_percent a sulo:Unit ;
-  rdfs:label "%" .
-
-ex:role_Output_bmi_percentile a sulo:Role ;
-  sulo:isFeatureOf ex:measurement_bmi_percentile ;
-  sulo:roleType chr:OutputRole .
-
-ex:measurement_process_heart_rate a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_heart_rate ;
-  sulo:hasParticipant ex:role_Subject_heart_rate ;
-  sulo:hasParticipant ex:role_Output_heart_rate ;
-  sulo:hasParticipant ex:role_ProcessStatus_completed .
-
-ex:time_measurement_heart_rate a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T10:01:00"^^xsd:dateTime .
-
-ex:role_Subject_heart_rate a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
-
-ex:measurement_heart_rate a chr:Measurement ;
-  sulo:hasValue "88.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min .
-
-ex:unit_per_min a sulo:Unit ;
-  rdfs:label "/min" .
-
-ex:role_Output_heart_rate a sulo:Role ;
-  sulo:isFeatureOf ex:measurement_heart_rate ;
-  sulo:roleType chr:OutputRole .
-
-ex:measurement_process_respiratory_rate a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_respiratory_rate ;
-  sulo:hasParticipant ex:role_Subject_respiratory_rate ;
-  sulo:hasParticipant ex:role_Output_respiratory_rate ;
-  sulo:hasParticipant ex:role_ProcessStatus_completed .
-
-ex:time_measurement_respiratory_rate a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T10:01:00"^^xsd:dateTime .
-
-ex:role_Subject_respiratory_rate a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
-
-ex:measurement_respiratory_rate a chr:Measurement ;
-  sulo:hasValue "14.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min .
-
-ex:role_Output_respiratory_rate a sulo:Role ;
-  sulo:isFeatureOf ex:measurement_respiratory_rate ;
-  sulo:roleType chr:OutputRole .
-
-ex:measurement_process_gad7 a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_gad7 ;
-  sulo:hasParticipant ex:role_Subject_gad7 ;
-  sulo:hasParticipant ex:role_Output_gad7 ;
-  sulo:hasParticipant ex:role_ProcessStatus_completed .
-
-ex:time_measurement_gad7 a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T11:21:00"^^xsd:dateTime .
-
-ex:role_Subject_gad7 a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
-
-ex:measurement_gad7 a chr:Measurement ;
-  sulo:hasValue "4.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
-
-ex:role_Output_gad7 a sulo:Role ;
-  sulo:isFeatureOf ex:measurement_gad7 ;
-  sulo:roleType chr:OutputRole .
-
-ex:measurement_process_hark a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_hark ;
-  sulo:hasParticipant ex:role_Subject_hark ;
-  sulo:hasParticipant ex:role_Output_hark ;
-  sulo:hasParticipant ex:role_ProcessStatus_completed .
-
-ex:time_measurement_hark a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T12:00:00"^^xsd:dateTime .
-
-ex:role_Subject_hark a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
-
-ex:measurement_hark a chr:Measurement ;
-  sulo:hasValue "0.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
-
-ex:role_Output_hark a sulo:Role ;
-  sulo:isFeatureOf ex:measurement_hark ;
-  sulo:roleType chr:OutputRole .
-
-ex:measurement_process_phq2 a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_phq2 ;
-  sulo:hasParticipant ex:role_Subject_phq2 ;
-  sulo:hasParticipant ex:role_Output_phq2 ;
-  sulo:hasParticipant ex:role_ProcessStatus_completed .
-
-ex:time_measurement_phq2 a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T12:40:00"^^xsd:dateTime .
-
-ex:role_Subject_phq2 a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
-
-ex:measurement_phq2 a chr:Measurement ;
-  sulo:hasValue "1.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
-
-ex:role_Output_phq2 a sulo:Role ;
-  sulo:isFeatureOf ex:measurement_phq2 ;
-  sulo:roleType chr:OutputRole .
-
-ex:measurement_process_dast10 a sulo:Process, chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_dast10 ;
-  sulo:hasParticipant ex:role_Subject_dast10 ;
-  sulo:hasParticipant ex:role_Output_dast10 ;
-  sulo:hasParticipant ex:role_ProcessStatus_completed .
-
-ex:time_measurement_dast10 a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T13:22:00"^^xsd:dateTime .
-
-ex:role_Subject_dast10 a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
-
-ex:measurement_dast10 a chr:Measurement ;
-  sulo:hasValue "5.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
-
-ex:role_Output_dast10 a sulo:Role ;
-  sulo:isFeatureOf ex:measurement_dast10 ;
-  sulo:roleType chr:OutputRole .
-
-ex:evaluation_2022_10_08_10_59_higher_education a sulo:Process, chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation_2022_10_08_10_59_higher_education ;
-  sulo:hasParticipant ex:role_Evaluator_Ping698_Weissnat378_higher_education ;
-  sulo:hasParticipant ex:role_Subject_Daren950_Ed239_Strosin214_higher_education ;
-  sulo:hasParticipant ex:role_Output_higher_education .
-
-ex:time_evaluation_2022_10_08_10_59_higher_education a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T10:59:00"^^xsd:dateTime .
-
-ex:role_Evaluator_Ping698_Weissnat378_higher_education a sulo:Role ;
-  sulo:isFeatureOf ex:provider_Ping698_Weissnat378 ;
-  sulo:roleType chr:PerformerRole .
-
-ex:role_Subject_Daren950_Ed239_Strosin214_higher_education a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
-
-ex:diagnostic_statement_higher_education a chr:DiagnosticStatement ;
-  rdfs:label "Received higher education (finding)" .
-
-ex:role_Output_higher_education a sulo:Role ;
-  sulo:isFeatureOf ex:diagnostic_statement_higher_education ;
-  sulo:roleType chr:OutputRole .
-
-ex:clinical_condition_higher_education a chr:ClinicalCondition ;
-  sulo:atTime ex:time_condition_higher_education ;
-  sulo:hasParticipant ex:role_ConditionStatus_higher_education ;
-  sulo:hasParticipant ex:role_Severity_moderate .
-
-ex:time_condition_higher_education a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T10:59:00"^^xsd:dateTime .
-
-ex:role_ConditionStatus_higher_education a sulo:Role ;
-  sulo:isFeatureOf ex:clinical_condition_higher_education ;
-  sulo:roleType sulo:StatusRole .
-
-ex:severity_moderate a chr:Severity ;
-  rdfs:label "Moderate" .
-
-ex:role_Severity_moderate a sulo:Role ;
-  sulo:isFeatureOf ex:severity_moderate ;
-  sulo:roleType sulo:SeverityRole .
-
-ex:evaluation_2022_10_08_10_59_part_time_employment a sulo:Process, chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation_2022_10_08_10_59_part_time_employment ;
-  sulo:hasParticipant ex:role_Evaluator_Ping698_Weissnat378_part_time_employment ;
-  sulo:hasParticipant ex:role_Subject_Daren950_Ed239_Strosin214_part_time_employment ;
-  sulo:hasParticipant ex:role_Output_part_time_employment .
-
-ex:time_evaluation_2022_10_08_10_59_part_time_employment a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T10:59:00"^^xsd:dateTime .
-
-ex:role_Evaluator_Ping698_Weissnat378_part_time_employment a sulo:Role ;
-  sulo:isFeatureOf ex:provider_Ping698_Weissnat378 ;
-  sulo:roleType chr:PerformerRole .
-
-ex:role_Subject_Daren950_Ed239_Strosin214_part_time_employment a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
-
-ex:diagnostic_statement_part_time_employment a chr:DiagnosticStatement ;
-  rdfs:label "Part-time employment (finding)" .
-
-ex:role_Output_part_time_employment a sulo:Role ;
-  sulo:isFeatureOf ex:diagnostic_statement_part_time_employment ;
-  sulo:roleType chr:OutputRole .
-
-ex:clinical_condition_part_time_employment a chr:ClinicalCondition ;
-  sulo:atTime ex:time_condition_part_time_employment ;
-  sulo:hasParticipant ex:role_ConditionStatus_part_time_employment ;
-  sulo:hasParticipant ex:role_Severity_moderate_part_time_employment .
-
-ex:time_condition_part_time_employment a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T10:59:00"^^xsd:dateTime .
-
-ex:role_ConditionStatus_part_time_employment a sulo:Role ;
-  sulo:isFeatureOf ex:clinical_condition_part_time_employment ;
-  sulo:roleType sulo:StatusRole .
-
-ex:role_Severity_moderate_part_time_employment a sulo:Role ;
-  sulo:isFeatureOf ex:severity_moderate ;
-  sulo:roleType sulo:SeverityRole .
-
-ex:evaluation_2022_10_08_10_59_stress a sulo:Process, chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation_2022_10_08_10_59_stress ;
-  sulo:hasParticipant ex:role_Evaluator_Ping698_Weissnat378_stress ;
-  sulo:hasParticipant ex:role_Subject_Daren950_Ed239_Strosin214_stress ;
-  sulo:hasParticipant ex:role_Output_stress .
-
-ex:time_evaluation_2022_10_08_10_59_stress a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T10:59:00"^^xsd:dateTime .
-
-ex:role_Evaluator_Ping698_Weissnat378_stress a sulo:Role ;
-  sulo:isFeatureOf ex:provider_Ping698_Weissnat378 ;
-  sulo:roleType chr:PerformerRole .
-
-ex:role_Subject_Daren950_Ed239_Strosin214_stress a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
-
-ex:diagnostic_statement_stress a chr:DiagnosticStatement ;
-  rdfs:label "Stress (finding)" .
-
-ex:role_Output_stress a sulo:Role ;
-  sulo:isFeatureOf ex:diagnostic_statement_stress ;
-  sulo:roleType chr:OutputRole .
-
-ex:clinical_condition_stress a chr:ClinicalCondition ;
-  sulo:atTime ex:time_condition_stress ;
-  sulo:hasParticipant ex:role_ConditionStatus_stress ;
-  sulo:hasParticipant ex:role_Severity_moderate_stress .
-
-ex:time_condition_stress a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T10:59:00"^^xsd:dateTime .
-
-ex:role_ConditionStatus_stress a sulo:Role ;
-  sulo:isFeatureOf ex:clinical_condition_stress ;
-  sulo:roleType sulo:StatusRole .
-
-ex:role_Severity_moderate_stress a sulo:Role ;
-  sulo:isFeatureOf ex:severity_moderate ;
-  sulo:roleType sulo:SeverityRole .
-
-ex:evaluation_2022_10_08_13_22_misuses_drugs a sulo:Process, chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation_2022_10_08_13_22_misuses_drugs ;
-  sulo:hasParticipant ex:role_Evaluator_Ping698_Weissnat378_misuses_drugs ;
-  sulo:hasParticipant ex:role_Subject_Daren950_Ed239_Strosin214_misuses_drugs ;
-  sulo:hasParticipant ex:role_Output_misuses_drugs .
-
-ex:time_evaluation_2022_10_08_13_22_misuses_drugs a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T13:22:00"^^xsd:dateTime .
-
-ex:role_Evaluator_Ping698_Weissnat378_misuses_drugs a sulo:Role ;
-  sulo:isFeatureOf ex:provider_Ping698_Weissnat378 ;
-  sulo:roleType chr:PerformerRole .
-
-ex:role_Subject_Daren950_Ed239_Strosin214_misuses_drugs a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
-
-ex:diagnostic_statement_misuses_drugs a chr:DiagnosticStatement ;
-  rdfs:label "Misuses drugs (finding)" .
-
-ex:role_Output_misuses_drugs a sulo:Role ;
-  sulo:isFeatureOf ex:diagnostic_statement_misuses_drugs ;
-  sulo:roleType chr:OutputRole .
-
-ex:clinical_condition_misuses_drugs a chr:ClinicalCondition ;
-  sulo:atTime ex:time_condition_misuses_drugs ;
-  sulo:hasParticipant ex:role_ConditionStatus_misuses_drugs ;
-  sulo:hasParticipant ex:role_Severity_moderate_misuses_drugs .
-
-ex:time_condition_misuses_drugs a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T13:22:00"^^xsd:dateTime .
-
-ex:role_ConditionStatus_misuses_drugs a sulo:Role ;
-  sulo:isFeatureOf ex:clinical_condition_misuses_drugs ;
-  sulo:roleType sulo:StatusRole .
-
-ex:role_Severity_moderate_misuses_drugs a sulo:Role ;
-  sulo:isFeatureOf ex:severity_moderate ;
-  sulo:roleType sulo:SeverityRole .
-
-ex:evaluation_2022_10_08_13_22_gingivitis a sulo:Process, chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation_2022_10_08_13_22_gingivitis ;
-  sulo:hasParticipant ex:role_Evaluator_Ping698_Weissnat378_gingivitis ;
-  sulo:hasParticipant ex:role_Subject_Daren950_Ed239_Strosin214_gingivitis ;
-  sulo:hasParticipant ex:role_Output_gingivitis .
-
-ex:time_evaluation_2022_10_08_13_22_gingivitis a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T13:22:00"^^xsd:dateTime .
-
-ex:role_Evaluator_Ping698_Weissnat378_gingivitis a sulo:Role ;
-  sulo:isFeatureOf ex:provider_Ping698_Weissnat378 ;
-  sulo:roleType chr:PerformerRole .
-
-ex:role_Subject_Daren950_Ed239_Strosin214_gingivitis a sulo:Role ;
-  sulo:isFeatureOf ex:patient_Daren950_Ed239_Strosin214 ;
-  sulo:roleType chr:SubjectOfCareRole .
-
-ex:diagnostic_statement_gingivitis a chr:DiagnosticStatement ;
-  rdfs:label "Gingivitis (disorder)" .
-
-ex:role_Output_gingivitis a sulo:Role ;
-  sulo:isFeatureOf ex:diagnostic_statement_gingivitis ;
-  sulo:roleType chr:OutputRole .
-
-ex:clinical_condition_gingivitis a chr:ClinicalCondition ;
-  sulo:atTime ex:time_condition_gingivitis ;
-  sulo:hasParticipant ex:role_ConditionStatus_gingivitis ;
-  sulo:hasParticipant ex:role_Severity_moderate_gingivitis .
-
-ex:time_condition_gingivitis a sulo:TimeInstant ;
-  sulo:hasValue "2022-10-08T13:22:00"^^xsd:dateTime .
-
-ex:role_ConditionStatus_gingivitis a sulo:Role ;
-  sulo:isFeatureOf ex:clinical_condition_gingivitis ;
-  sulo:roleType sulo:StatusRole .
-
-ex:role_Severity_moderate_gingivitis a sulo:Role ;
-  sulo:isFeatureOf ex:severity_moderate ;
-  sulo:roleType sulo:SeverityRole .
-
-ex:care_plan_follow_up a chr:CarePlan ;
-  sulo:refersTo ex:medical_procedure_follow_up .
-
-ex:medical_procedure_follow_up a chr:MedicalProcedure ;
-  rdfs:label "follow-up monitoring and routine review consistent with the diagnosis" .
+ex:proc_BMI a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_BMIPatient , ex:role_BMIOutput ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_BMIPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_BMIOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI .
+
+## BMI Percentile (%)
+ex:measurement_BMI_percentile a chr:Measurement ;
+    sulo:hasValue "22.011"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_BMI_percentile .
+
+ex:time_BMI_percentile a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T10:01:15+02:00"^^xsd:dateTime .
+
+ex:proc_BMI_percentile a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_BMIPercentilePatient , ex:role_BMIPercentileOutput ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_BMIPercentilePatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_BMIPercentileOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI_percentile .
+
+## Heart rate
+ex:measurement_heartRate a chr:Measurement ;
+    sulo:hasValue "88"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_heartRate .
+
+ex:time_heartRate a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T10:01:15+02:00"^^xsd:dateTime .
+
+ex:proc_heartRate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_heartRatePatient , ex:role_heartRateOutput ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_heartRatePatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_heartRateOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_heartRate .
+
+## Respiratory rate
+ex:measurement_respiratoryRate a chr:Measurement ;
+    sulo:hasValue "14"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_respiratoryRate .
+
+ex:time_respiratoryRate a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T10:01:15+02:00"^^xsd:dateTime .
+
+ex:proc_respiratoryRate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_respiratoryRatePatient , ex:role_respiratoryRateOutput ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_respiratoryRatePatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_respiratoryRateOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_respiratoryRate .
+
+## GAD-7 total score
+ex:measurement_GAD7 a chr:Measurement ;
+    sulo:hasValue "4"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_GAD7 .
+
+ex:time_GAD7 a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T11:21:47+02:00"^^xsd:dateTime .
+
+ex:proc_GAD7 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_GAD7Patient , ex:role_GAD7Output ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_GAD7Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_GAD7Output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GAD7 .
+
+## Total score HARK
+ex:measurement_HARK a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_HARK .
+
+ex:time_HARK a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T12:00:58+02:00"^^xsd:dateTime .
+
+ex:proc_HARK a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HARKPatient , ex:role_HARKOutput ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_HARKPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_HARKOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HARK .
+
+## PHQ-2 total score
+ex:measurement_PHQ2 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_PHQ2 .
+
+ex:time_PHQ2 a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T12:40:15+02:00"^^xsd:dateTime .
+
+ex:proc_PHQ2 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PHQ2Patient , ex:role_PHQ2Output ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_PHQ2Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_PHQ2Output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ2 .
+
+## DAST-10 total score
+ex:measurement_DAST10 a chr:Measurement ;
+    sulo:hasValue "5"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_DAST10 .
+
+ex:time_DAST10 a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T13:22:14+02:00"^^xsd:dateTime .
+
+ex:proc_DAST10 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_DAST10Patient , ex:role_DAST10Output ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_DAST10Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_DAST10Output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_DAST10 .
+
+# ---- Diagnostic statements (evaluations) ----
+
+## Received higher education
+ex:diag_higherEducation a chr:DiagnosticStatement .
+ex:time_diag_higherEducation a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T10:59:54+02:00"^^xsd:dateTime .
+ex:evaluation_higherEducation a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_1 , ex:role_EvalProvider_1 , ex:role_EvalOutput_1 ;
+    sulo:atTime ex:time_diag_higherEducation .
+
+ex:role_EvalPatient_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+ex:role_EvalProvider_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Ping698 .
+ex:role_EvalOutput_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_higherEducation .
+
+## Part-time employment
+ex:diag_partTimeEmployment a chr:DiagnosticStatement .
+ex:time_diag_partTimeEmployment a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T10:59:54+02:00"^^xsd:dateTime .
+ex:evaluation_partTimeEmployment a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_2 , ex:role_EvalProvider_2 , ex:role_EvalOutput_2 ;
+    sulo:atTime ex:time_diag_partTimeEmployment .
+
+ex:role_EvalPatient_2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+ex:role_EvalProvider_2 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Ping698 .
+ex:role_EvalOutput_2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_partTimeEmployment .
+
+## Stress
+ex:diag_stress a chr:DiagnosticStatement .
+ex:time_diag_stress a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T10:59:54+02:00"^^xsd:dateTime .
+ex:evaluation_stress a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_3 , ex:role_EvalProvider_3 , ex:role_EvalOutput_3 ;
+    sulo:atTime ex:time_diag_stress .
+
+ex:role_EvalPatient_3 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+ex:role_EvalProvider_3 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Ping698 .
+ex:role_EvalOutput_3 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_stress .
+
+## Misuses drugs
+ex:diag_misusesDrugs a chr:DiagnosticStatement .
+ex:time_diag_misusesDrugs a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T13:22:14+02:00"^^xsd:dateTime .
+ex:evaluation_misusesDrugs a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_4 , ex:role_EvalProvider_4 , ex:role_EvalOutput_4 ;
+    sulo:atTime ex:time_diag_misusesDrugs .
+
+ex:role_EvalPatient_4 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+ex:role_EvalProvider_4 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Ping698 .
+ex:role_EvalOutput_4 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_misusesDrugs .
+
+## Gingivitis
+ex:diag_gingivitis a chr:DiagnosticStatement .
+ex:time_diag_gingivitis a sulo:TimeInstant ;
+    sulo:hasValue "2022-10-08T13:22:14+02:00"^^xsd:dateTime .
+ex:evaluation_gingivitis a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient_5 , ex:role_EvalProvider_5 , ex:role_EvalOutput_5 ;
+    sulo:atTime ex:time_diag_gingivitis .
+
+ex:role_EvalPatient_5 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+ex:role_EvalProvider_5 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Ping698 .
+ex:role_EvalOutput_5 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_gingivitis .
+
+# ---- Care plan ----
+ex:careplan_2022_10_08 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followupMonitoring .
+
+ex:procedure_followupMonitoring a chr:MedicalProcedure .

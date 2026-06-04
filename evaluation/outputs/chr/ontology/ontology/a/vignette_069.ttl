@@ -4,208 +4,175 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Nevarez403 a chr:Person .
+ex:patient_Nevarez a chr:Person ;
+    rdfs:label "Dolores502 Marisol435 Nevárez403" .
 
-ex:care_unit_HePrimaryCare a chr:CareUnit .
+ex:provider_Kohler a chr:Person ;
+    rdfs:label "Dr. Cari853 Kohler843" .
 
-ex:visit_2020_10_27 a chr:ClinicalVisit ;
-  sulo:isIn ex:care_unit_HePrimaryCare .
+ex:careunit_DRHEsPrimaryCare a chr:CareUnit ;
+    rdfs:label "DR. HE'S PRIMARY CARE FOR ADULTS INC" .
 
 ex:time_visit a sulo:TimeInstant ;
-  sulo:hasValue "2020-10-27T04:20:00"^^xsd:dateTime .
-
-ex:visit_2020_10_27 sulo:atTime ex:time_visit .
-
-ex:role_VisitPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:visit_2020_10_27 sulo:hasParticipant ex:role_VisitPatient_Nevarez403 .
-
-ex:physician_Kohler843 a chr:Person .
-
-ex:role_VisitProvider_Kohler843 a chr:CareProviderRole ;
-  sulo:isFeatureOf ex:physician_Kohler843 .
-
-ex:visit_2020_10_27 sulo:hasParticipant ex:role_VisitProvider_Kohler843 .
-
-ex:procedure_well_child a chr:MedicalProcedure ;
-  rdfs:label "Well child visit" .
-
-ex:height_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_visit .
-
-ex:role_HeightPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:height_measurement_process sulo:hasParticipant ex:role_HeightPatient_Nevarez403 .
-
-ex:height_measurement a chr:Measurement ;
-  sulo:hasValue "132.2"^^xsd:float ;
-  sulo:hasPart <http://qudt.org/vocab/unit/CM> ;
-  sulo:atTime ex:time_visit .
-
-ex:role_HeightOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:height_measurement .
-
-ex:height_measurement_process sulo:hasParticipant ex:role_HeightOutput .
-
-ex:process_status_completed a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:height_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:pain_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_visit .
-
-ex:role_PainPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:pain_measurement_process sulo:hasParticipant ex:role_PainPatient_Nevarez403 .
-
-ex:pain_measurement a chr:Measurement ;
-  sulo:hasValue "4.0"^^xsd:float ;
-  sulo:atTime ex:time_visit .
-
-ex:role_PainOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:pain_measurement .
-
-ex:pain_measurement_process sulo:hasParticipant ex:role_PainOutput .
-
-ex:pain_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:weight_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_visit .
-
-ex:role_WeightPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:weight_measurement_process sulo:hasParticipant ex:role_WeightPatient_Nevarez403 .
-
-ex:weight_measurement a chr:Measurement ;
-  sulo:hasValue "36.6"^^xsd:float ;
-  sulo:hasPart <http://qudt.org/vocab/unit/KiloGM> ;
-  sulo:atTime ex:time_visit .
-
-ex:role_WeightOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:weight_measurement .
-
-ex:weight_measurement_process sulo:hasParticipant ex:role_WeightOutput .
-
-ex:weight_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:bmi_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_visit .
-
-ex:role_BMIPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:bmi_measurement_process sulo:hasParticipant ex:role_BMIPatient_Nevarez403 .
-
-ex:bmi_measurement a chr:Measurement ;
-  sulo:hasValue "20.95"^^xsd:float ;
-  sulo:hasPart <http://qudt.org/vocab/unit/KiloGM-PER-M2> ;
-  sulo:atTime ex:time_visit .
-
-ex:role_BMIOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:bmi_measurement .
-
-ex:bmi_measurement_process sulo:hasParticipant ex:role_BMIOutput .
-
-ex:bmi_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:bmi_percentile_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_visit .
-
-ex:role_BMIPercentilePatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:bmi_percentile_measurement_process sulo:hasParticipant ex:role_BMIPercentilePatient_Nevarez403 .
-
-ex:bmi_percentile_measurement a chr:Measurement ;
-  sulo:hasValue "95.67"^^xsd:float ;
-  sulo:hasPart <http://qudt.org/vocab/unit/Percent> ;
-  sulo:atTime ex:time_visit .
-
-ex:role_BMIPercentileOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:bmi_percentile_measurement .
-
-ex:bmi_percentile_measurement_process sulo:hasParticipant ex:role_BMIPercentileOutput .
-
-ex:bmi_percentile_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:heart_rate_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_visit .
-
-ex:role_HeartRatePatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:heart_rate_measurement_process sulo:hasParticipant ex:role_HeartRatePatient_Nevarez403 .
-
-ex:heart_rate_measurement a chr:Measurement ;
-  sulo:hasValue "62.0"^^xsd:float ;
-  sulo:hasPart <http://qudt.org/vocab/unit/PER-MIN> ;
-  sulo:atTime ex:time_visit .
-
-ex:role_HeartRateOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:heart_rate_measurement .
-
-ex:heart_rate_measurement_process sulo:hasParticipant ex:role_HeartRateOutput .
-
-ex:heart_rate_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:respiratory_rate_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_visit .
-
-ex:role_RespiratoryRatePatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:respiratory_rate_measurement_process sulo:hasParticipant ex:role_RespiratoryRatePatient_Nevarez403 .
-
-ex:respiratory_rate_measurement a chr:Measurement ;
-  sulo:hasValue "13.0"^^xsd:float ;
-  sulo:hasPart <http://qudt.org/vocab/unit/PER-MIN> ;
-  sulo:atTime ex:time_visit .
-
-ex:role_RespiratoryRateOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:respiratory_rate_measurement .
-
-ex:respiratory_rate_measurement_process sulo:hasParticipant ex:role_RespiratoryRateOutput .
-
-ex:respiratory_rate_measurement_process sulo:hasFeature ex:process_status_completed .
-
-ex:evaluation_2020_10_27 a chr:EvaluationProcess ;
-  sulo:atTime ex:time_visit .
-
-ex:role_EvalPatient_Nevarez403 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Nevarez403 .
-
-ex:evaluation_2020_10_27 sulo:hasParticipant ex:role_EvalPatient_Nevarez403 .
-
-ex:role_EvalProvider_Kohler843 a chr:PerformerRole ;
-  sulo:isFeatureOf ex:physician_Kohler843 .
-
-ex:evaluation_2020_10_27 sulo:hasParticipant ex:role_EvalProvider_Kohler843 .
-
-ex:diagnostic_statement a chr:DiagnosticStatement ;
-  rdfs:label "Medication review due (situation)" .
-
-ex:role_EvalOutput a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_statement .
-
-ex:evaluation_2020_10_27 sulo:hasParticipant ex:role_EvalOutput .
-
-ex:condition_medication_review a chr:ClinicalCondition .
-
-ex:time_condition_recorded a sulo:TimeInstant ;
-  sulo:hasValue "2020-10-27T04:20:00"^^xsd:dateTime .
-
-ex:condition_medication_review sulo:atTime ex:time_condition_recorded .
-
-ex:severity_moderate a chr:Severity ;
-  rdfs:label "Moderate" .
-
-ex:condition_medication_review sulo:hasFeature ex:severity_moderate .
-
-ex:care_plan a chr:CarePlan ;
-  rdfs:label "Care plan for follow-up monitoring and routine review" ;
-  sulo:refersTo ex:procedure_well_child .
+    sulo:hasValue "2020-10-27T04:20:29+01:00"^^xsd:dateTime .
+
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:visit_2020_10_27T04_20_29 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_subject_VisitPatient ;
+    sulo:hasParticipant ex:role_provider_VisitPhysician ;
+    sulo:isIn ex:careunit_DRHEsPrimaryCare ;
+    sulo:atTime ex:time_visit .
+
+ex:role_subject_VisitPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
+
+ex:role_provider_VisitPhysician a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:provider_Kohler .
+
+# Height
+ex:process_height a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_HeightPatient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit .
+
+ex:role_subject_HeightPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
+
+ex:measurement_height a chr:Measurement ;
+    sulo:hasValue "132.2"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_visit .
+
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" .
+
+# Weight
+ex:process_weight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_WeightPatient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit .
+
+ex:role_subject_WeightPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
+
+ex:measurement_weight a chr:Measurement ;
+    sulo:hasValue "36.6"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_visit .
+
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" .
+
+# BMI Ratio
+ex:process_bmi_ratio a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_BMIRatioPatient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit .
+
+ex:role_subject_BMIRatioPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
+
+ex:measurement_bmi_ratio a chr:Measurement ;
+    sulo:hasValue "20.95"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_visit .
+
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" .
+
+# BMI Percentile
+ex:process_bmi_percentile a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_BMIPercentPatient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit .
+
+ex:role_subject_BMIPercentPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
+
+ex:measurement_bmi_percentile a chr:Measurement ;
+    sulo:hasValue "95.67"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_visit .
+
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" .
+
+# Heart Rate
+ex:process_heart_rate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_HRPatient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit .
+
+ex:role_subject_HRPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
+
+ex:measurement_heart_rate a chr:Measurement ;
+    sulo:hasValue "62"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_visit .
+
+# Respiratory Rate
+ex:process_resp_rate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_RRPatient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit .
+
+ex:role_subject_RRPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
+
+ex:measurement_resp_rate a chr:Measurement ;
+    sulo:hasValue "13"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_visit .
+
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" .
+
+# Pain Severity
+ex:process_pain_severity a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_PainPatient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_visit .
+
+ex:role_subject_PainPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
+
+ex:measurement_pain_severity a chr:Measurement ;
+    sulo:hasValue "4"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:hasFeature ex:severity_4 ;
+    sulo:atTime ex:time_visit .
+
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" .
+
+ex:severity_4 a chr:Severity ;
+    rdfs:label "4" .
+
+# Evaluation
+ex:evaluation_2020_10_27T04_20_29 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_subject_EvalPatient ;
+    sulo:hasParticipant ex:role_performer_EvalProvider ;
+    sulo:hasParticipant ex:role_output_EvalDiagnostic ;
+    sulo:atTime ex:time_visit .
+
+ex:role_subject_EvalPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
+
+ex:role_performer_EvalProvider a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Kohler .
+
+ex:role_output_EvalDiagnostic a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_medication_review_due .
+
+ex:diag_medication_review_due a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" .
+
+# Care Plan
+ex:careplan_2020_10_27 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup_monitoring .
+
+ex:procedure_followup_monitoring a chr:MedicalProcedure ;
+    rdfs:label "follow-up monitoring and routine review" .

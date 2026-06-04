@@ -4,37 +4,54 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Harvey63Napoleon578Homenick806 a chr:Person .
+ex:patient_Harvey_Napoleon_Homenick
+    a chr:Person ;
+    rdfs:label "Harvey63 Napoleon578 Homenick806" .
 
-ex:visit_2020_05_29 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasCareProvider ex:doctor_Victor493Chavez927 ;
-  chr:hasCareUnit ex:care_unit_4499Acushnet .
+ex:person_Victor_Chavez
+    a chr:Person ;
+    rdfs:label "Dr. Víctor493 Chávez927" .
 
-ex:care_unit_4499Acushnet a chr:CareUnit .
+ex:careunit_4499_ACUSHNET
+    a chr:CareUnit ;
+    rdfs:label "4499 ACUSHNET AVENUE OPERATING COMPANY, LLC" .
 
-ex:doctor_Victor493Chavez927 a chr:Person .
+ex:visit_2020_05_29T21_49_47
+    a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2020-05-29T21:49:47+02:00" ;
+    chr:hasDate "2020-05-29T21:49:47+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:person_Victor_Chavez ;
+    chr:hasCareUnit ex:careunit_4499_ACUSHNET ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick .
 
-ex:pain_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:pain_measurement .
+ex:measurement_pain_20200529T222208
+    a chr:Measurement ;
+    rdfs:label "Pain severity score 6" ;
+    chr:hasMeasuredDate "2020-05-29T22:22:08+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.0"^^xsd:float .
 
-ex:pain_measurement a chr:Measurement ;
-  chr:hasQuantityValue "6.0"^^xsd:float ;
-  chr:hasUnit ex:unit_score ;
-  chr:hasMeasuredDate "2020-05-29T22:22:00"^^xsd:dateTime .
+ex:measproc_pain_20200529T222208
+    a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_pain_20200529T222208 .
 
-ex:unit_score a sulo:Unit .
+ex:diagstmt_rectal_polyp
+    a chr:DiagnosticStatement ;
+    rdfs:label "Recurrent rectal polyp" ;
+    chr:hasCode <http://snomed.info/id/713197008> .
 
-ex:evaluation_2020_05_29 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_recurrent_rectal_polyp .
+ex:evaluation_20200529T222208
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Víctor Chávez on 2020-05-29T22:22:08+02:00" ;
+    chr:hasObservation ex:diagstmt_rectal_polyp .
 
-ex:diagnostic_recurrent_rectal_polyp a chr:DiagnosticStatement .
+ex:condition_rectal_polyp
+    a chr:ClinicalCondition ;
+    rdfs:label "Recurrent rectal polyp condition" ;
+    chr:hasCode <http://snomed.info/id/713197008> ;
+    chr:hasRecordDate "2020-05-29T22:22:08+02:00"^^xsd:dateTime .
 
-ex:clinical_condition_rectal_polyp a chr:ClinicalCondition ;
-  chr:hasRecordDate "2020-05-29T22:22:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
-
-ex:severity_moderate a chr:Severity .
-
-ex:care_plan a chr:CarePlan .
+ex:careplan_followup
+    a chr:CarePlan ;
+    rdfs:label "Follow‑up monitoring and routine review care plan" .

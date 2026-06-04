@@ -4,197 +4,303 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Delma583_Adriane398_Huel628 a chr:Person .
+# Patient
+ex:patient_Delma583_Adriane398_Huel628 a chr:Person ;
+    rdfs:label "Delma583 Adriane398 Huel628" .
 
-ex:care_unit_HarborHealth a chr:CareUnit .
+# Care provider (physician)
+ex:physician_Drew592_Simonis280 a chr:Person ;
+    rdfs:label "Dr. Drew592 Simonis280" .
 
-ex:care_provider_Drew592_Simonis280 a chr:Person .
+# Care unit
+ex:careUnit_HarborHealthServicesInc a chr:CareUnit ;
+    rdfs:label "HARBOR HEALTH SERVICES INC" .
 
-ex:visit_2019_10_17 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:care_provider_Drew592_Simonis280 ;
-  chr:hasCareUnit ex:care_unit_HarborHealth .
+# Clinical visit
+ex:visit_2019_10_17T081257 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2019-10-17T08:12:57+02:00" ;
+    chr:hasDate "2019-10-17T08:12:57+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_Drew592_Simonis280 ;
+    chr:hasCareUnit ex:careUnit_HarborHealthServicesInc ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 .
 
-ex:proc_body_height_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_body_height_20191017 .
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:meas_body_height_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "49.9"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
 
-ex:proc_pain_severity_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_pain_severity_20191017 .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:meas_pain_severity_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "4.0"^^xsd:float ;
-  chr:hasUnit ex:score ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%2Fmin> .
 
-ex:proc_body_weight_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_body_weight_20191017 .
+ex:unit_10_3_per_uL a chr:Unit ;
+    rdfs:label "10*3/uL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/10%2A3%2FuL> .
 
-ex:meas_body_weight_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "4.0"^^xsd:float ;
-  chr:hasUnit sulo:kg ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:unit_10_6_per_uL a chr:Unit ;
+    rdfs:label "10*6/uL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/10%2A6%2FuL> .
 
-ex:proc_weight_for_length_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_weight_for_length_20191017 .
+ex:unit_g_per_dL a chr:Unit ;
+    rdfs:label "g/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/g%2FdL> .
 
-ex:meas_weight_for_length_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "91.219"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:unit_fL a chr:Unit ;
+    rdfs:label "fL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/fL> .
 
-ex:proc_head_circumference_percentile_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_head_circumference_percentile_20191017 .
+ex:unit_pg a chr:Unit ;
+    rdfs:label "pg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pg> .
 
-ex:meas_head_circumference_percentile_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "24.46"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+# Measurements and measurement processes
 
-ex:proc_head_circumference_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_head_circumference_20191017 .
+# 1. Body Height
+ex:meas_bodyHeight_20191017T081257 a chr:Measurement ;
+    rdfs:label "49.9 cm" ;
+    chr:hasQuantityValue "49.9"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
 
-ex:meas_head_circumference_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "33.63"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:proc_bodyHeight_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_bodyHeight_20191017T081257 ;
+    chr:hasCode <https://loinc.org/8302-2> .
 
-ex:proc_heart_rate_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_heart_rate_20191017 .
+# 2. Pain severity (score)
+ex:meas_painSeverity_20191017T081257 a chr:Measurement ;
+    rdfs:label "4 score" ;
+    chr:hasQuantityValue "4"^^xsd:float .
 
-ex:meas_heart_rate_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "74.0"^^xsd:float ;
-  chr:hasUnit ex:per_min ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:proc_painSeverity_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_painSeverity_20191017T081257 ;
+    chr:hasCode <https://loinc.org/72514-3> .
 
-ex:proc_respiratory_rate_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_respiratory_rate_20191017 .
+# 3. Body Weight
+ex:meas_bodyWeight_20191017T081257 a chr:Measurement ;
+    rdfs:label "4 kg" ;
+    chr:hasQuantityValue "4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
 
-ex:meas_respiratory_rate_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "13.0"^^xsd:float ;
-  chr:hasUnit ex:per_min ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:proc_bodyWeight_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_bodyWeight_20191017T081257 ;
+    chr:hasCode <https://loinc.org/29463-7> .
 
-ex:proc_leukocytes_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_leukocytes_20191017 .
+# 4. Weight-for-length Per age and sex
+ex:meas_weightForLength_20191017T081257 a chr:Measurement ;
+    rdfs:label "91.219 %" ;
+    chr:hasQuantityValue "91.219"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
 
-ex:meas_leukocytes_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "6.0321"^^xsd:float ;
-  chr:hasUnit ex:10_3_per_uL ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:proc_weightForLength_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Weight-for-length measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_weightForLength_20191017T081257 ;
+    chr:hasCode <https://loinc.org/77606-2> .
 
-ex:proc_erythrocytes_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_erythrocytes_20191017 .
+# 5. Head Occipital-frontal circumference Percentile
+ex:meas_headCircPercentile_20191017T081257 a chr:Measurement ;
+    rdfs:label "24.46 %" ;
+    chr:hasQuantityValue "24.46"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
 
-ex:meas_erythrocytes_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "5.0908"^^xsd:float ;
-  chr:hasUnit ex:10_6_per_uL ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:proc_headCircPercentile_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Head circumference percentile measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_headCircPercentile_20191017T081257 ;
+    chr:hasCode <https://loinc.org/8289-1> .
 
-ex:proc_hemoglobin_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_hemoglobin_20191017 .
+# 6. Head Occipital-frontal circumference
+ex:meas_headCirc_20191017T081257 a chr:Measurement ;
+    rdfs:label "33.63 cm" ;
+    chr:hasQuantityValue "33.63"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
 
-ex:meas_hemoglobin_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "13.036"^^xsd:float ;
-  chr:hasUnit ex:g_per_dL ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:proc_headCirc_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Head circumference measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_headCirc_20191017T081257 ;
+    chr:hasCode <https://loinc.org/9843-4> .
 
-ex:proc_hematocrit_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_hematocrit_20191017 .
+# 7. Heart rate
+ex:meas_heartRate_20191017T081257 a chr:Measurement ;
+    rdfs:label "74 /min" ;
+    chr:hasQuantityValue "74"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
 
-ex:meas_hematocrit_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "49.432"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:proc_heartRate_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_heartRate_20191017T081257 ;
+    chr:hasCode <https://loinc.org/8867-4> .
 
-ex:proc_mcv_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_mcv_20191017 .
+# 8. Respiratory rate
+ex:meas_respiratoryRate_20191017T081257 a chr:Measurement ;
+    rdfs:label "13 /min" ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
 
-ex:meas_mcv_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "90.15"^^xsd:float ;
-  chr:hasUnit ex:fL ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:proc_respiratoryRate_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_respiratoryRate_20191017T081257 ;
+    chr:hasCode <https://loinc.org/9279-1> .
 
-ex:proc_mch_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_mch_20191017 .
+# 9. Leukocytes
+ex:meas_leukocytes_20191017T081257 a chr:Measurement ;
+    rdfs:label "6.0321 10*3/uL" ;
+    chr:hasQuantityValue "6.0321"^^xsd:float ;
+    chr:hasUnit ex:unit_10_3_per_uL .
 
-ex:meas_mch_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "29.534"^^xsd:float ;
-  chr:hasUnit ex:pg ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:proc_leukocytes_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Leukocytes measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_leukocytes_20191017T081257 ;
+    chr:hasCode <https://loinc.org/6690-2> .
 
-ex:proc_mchc_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_mchc_20191017 .
+# 10. Erythrocytes
+ex:meas_erythrocytes_20191017T081257 a chr:Measurement ;
+    rdfs:label "5.0908 10*6/uL" ;
+    chr:hasQuantityValue "5.0908"^^xsd:float ;
+    chr:hasUnit ex:unit_10_6_per_uL .
 
-ex:meas_mchc_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "35.568"^^xsd:float ;
-  chr:hasUnit ex:g_per_dL ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:proc_erythrocytes_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Erythrocytes measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_erythrocytes_20191017T081257 ;
+    chr:hasCode <https://loinc.org/789-8> .
 
-ex:proc_erythrocyte_distwidth_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_erythrocyte_distwidth_20191017 .
+# 11. Hemoglobin
+ex:meas_hemoglobin_20191017T081257 a chr:Measurement ;
+    rdfs:label "13.036 g/dL" ;
+    chr:hasQuantityValue "13.036"^^xsd:float ;
+    chr:hasUnit ex:unit_g_per_dL .
 
-ex:meas_erythrocyte_distwidth_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "42.594"^^xsd:float ;
-  chr:hasUnit ex:fL ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:proc_hemoglobin_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_hemoglobin_20191017T081257 ;
+    chr:hasCode <https://loinc.org/718-7> .
 
-ex:proc_platelets_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_platelets_20191017 .
+# 12. Hematocrit
+ex:meas_hematocrit_20191017T081257 a chr:Measurement ;
+    rdfs:label "49.432 %" ;
+    chr:hasQuantityValue "49.432"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
 
-ex:meas_platelets_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "375.77"^^xsd:float ;
-  chr:hasUnit ex:10_3_per_uL ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:proc_hematocrit_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Hematocrit measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_hematocrit_20191017T081257 ;
+    chr:hasCode <https://loinc.org/4544-3> .
 
-ex:proc_platelet_distwidth_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_platelet_distwidth_20191017 .
+# 13. MCV
+ex:meas_mcv_20191017T081257 a chr:Measurement ;
+    rdfs:label "90.15 fL" ;
+    chr:hasQuantityValue "90.15"^^xsd:float ;
+    chr:hasUnit ex:unit_fL .
 
-ex:meas_platelet_distwidth_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "484.77"^^xsd:float ;
-  chr:hasUnit ex:fL ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:proc_mcv_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "MCV measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_mcv_20191017T081257 ;
+    chr:hasCode <https://loinc.org/787-2> .
 
-ex:proc_platelet_meanvolume_20191017 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_platelet_meanvolume_20191017 .
+# 14. MCH
+ex:meas_mch_20191017T081257 a chr:Measurement ;
+    rdfs:label "29.534 pg" ;
+    chr:hasQuantityValue "29.534"^^xsd:float ;
+    chr:hasUnit ex:unit_pg .
 
-ex:meas_platelet_meanvolume_20191017 a chr:Measurement ;
-  chr:hasQuantityValue "11.559"^^xsd:float ;
-  chr:hasUnit ex:fL ;
-  chr:hasMeasuredDate "2019-10-17T08:12:00"^^xsd:dateTime .
+ex:proc_mch_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "MCH measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_mch_20191017T081257 ;
+    chr:hasCode <https://loinc.org/785-6> .
 
-ex:eval_20191017 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_medication_review .
+# 15. MCHC
+ex:meas_mchc_20191017T081257 a chr:Measurement ;
+    rdfs:label "35.568 g/dL" ;
+    chr:hasQuantityValue "35.568"^^xsd:float ;
+    chr:hasUnit ex:unit_g_per_dL .
 
-ex:diag_medication_review a chr:DiagnosticStatement .
+ex:proc_mchc_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "MCHC measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_mchc_20191017T081257 ;
+    chr:hasCode <https://loinc.org/786-4> .
 
-ex:condition_medication_review a chr:ClinicalCondition ;
-  chr:hasRecordDate "2019-10-17T08:12:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+# 16. Erythrocyte DistWidth
+ex:meas_erythrocyteDistWidth_20191017T081257 a chr:Measurement ;
+    rdfs:label "42.594 fL" ;
+    chr:hasQuantityValue "42.594"^^xsd:float ;
+    chr:hasUnit ex:unit_fL .
 
-ex:severity_moderate a chr:Severity .
+ex:proc_erythrocyteDistWidth_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Erythrocyte DistWidth measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_erythrocyteDistWidth_20191017T081257 ;
+    chr:hasCode <https://loinc.org/788-0> .
 
-ex:careplan_followup a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:proc_body_height_20191017 .
+# 17. Platelets
+ex:meas_platelets_20191017T081257 a chr:Measurement ;
+    rdfs:label "375.77 10*3/uL" ;
+    chr:hasQuantityValue "375.77"^^xsd:float ;
+    chr:hasUnit ex:unit_10_3_per_uL .
+
+ex:proc_platelets_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Platelets measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_platelets_20191017T081257 ;
+    chr:hasCode <https://loinc.org/777-3> .
+
+# 18. Platelet distribution width
+ex:meas_plateletDW_20191017T081257 a chr:Measurement ;
+    rdfs:label "484.77 fL" ;
+    chr:hasQuantityValue "484.77"^^xsd:float ;
+    chr:hasUnit ex:unit_fL .
+
+ex:proc_plateletDW_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Platelet distribution width measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_plateletDW_20191017T081257 ;
+    chr:hasCode <https://loinc.org/32207-3> .
+
+# 19. Platelet mean volume
+ex:meas_plateletMeanVol_20191017T081257 a chr:Measurement ;
+    rdfs:label "11.559 fL" ;
+    chr:hasQuantityValue "11.559"^^xsd:float ;
+    chr:hasUnit ex:unit_fL .
+
+ex:proc_plateletMeanVol_20191017T081257 a chr:MeasurementProcess ;
+    rdfs:label "Platelet mean volume measurement process" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:meas_plateletMeanVol_20191017T081257 ;
+    chr:hasCode <https://loinc.org/32623-1> .
+
+# Diagnostic statement
+ex:diag_medReview_20191017T081257 a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+# Care plan (optional)
+ex:carePlan_20191017T081257 a chr:CarePlan ;
+    rdfs:label "Care plan for follow‑up monitoring" ;
+    chr:hasMedicalProcedure ex:proc_followup_20191017T081257 .
+
+# Added medical procedure to satisfy minCount
+ex:proc_followup_20191017T081257 a chr:MedicalProcedure ;
+    rdfs:label "Follow‑up monitoring procedure" ;
+    chr:hasCode <http://snomed.info/id/386661006> .

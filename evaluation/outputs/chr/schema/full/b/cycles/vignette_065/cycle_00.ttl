@@ -1,121 +1,214 @@
-@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefixchr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
 @prefix ex:   <http://example.org/clinical/> .
 @prefix sulo: <https://w3id.org/sulo/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Dolores502Marisol435Nevárez403 a chr:Person .
+# Patient
+ex:patient_Dolores_Nevarez
+    a chr:Person ;
+    rdfs:label "Dolores502 Marisol435 Nevárez403" .
 
-ex:visit_2016_10_04 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 .
+# Care unit
+ex:careunit_DRHEsPrimaryCare
+    a chr:CareUnit ;
+    rdfs:label "DR. HE'S PRIMARY CARE FOR ADULTS INC" .
 
-ex:care_unit_DrHe a chr:CareUnit .
+# Attending physician (person)
+ex:person_Cari_Kohler
+    a chr:Person ;
+    rdfs:label "Dr. Cari853 Kohler843" .
 
-ex:visit_2016_10_04 chr:hasCareUnit ex:care_unit_DrHe .
+# Clinical visit
+ex:visit_2016_10_04T052029
+    a chr:ClinicalVisit ;
+    chr:hasDate "2016-10-04T05:20:29+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:person_Cari_Kohler ;
+    chr:hasCareUnit ex:careunit_DRHEsPrimaryCare ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    rdfs:label "Clinical visit on 2016-10-04T05:20:29+02:00" .
 
-ex:doctor_Cari853Kohler843 a chr:Person .
+# Units
+ex:unit_cm
+    a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:visit_2016_10_04 chr:hasCareProvider ex:doctor_Cari853Kohler843 .
+ex:unit_kg
+    a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:proc_height_20161004 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_height_20161004 .
+ex:unit_percent
+    a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%> .
 
-ex:meas_height_20161004 a chr:Measurement ;
-  chr:hasQuantityValue "104.0"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime .
+ex:unit_kg_m2
+    a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg.m-2> .
 
-ex:proc_pain_20161004 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_pain_20161004 .
+ex:unit_min1
+    a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min-1> .
 
-ex:meas_pain_20161004 a chr:Measurement ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasUnit ex:score ;
-  chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime .
+# Measurement processes and measurements
 
-ex:proc_weight_20161004 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_weight_20161004 .
+## Body Height
+ex:measproc_Height_20161004T052029
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_Height_20161004T052029 ;
+    rdfs:label "Body Height measurement process" .
 
-ex:meas_weight_20161004 a chr:Measurement ;
-  chr:hasQuantityValue "19.0"^^xsd:float ;
-  chr:hasUnit sulo:kg ;
-  chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime .
+ex:measurement_Height_20161004T052029
+    a chr:Measurement ;
+    chr:hasQuantityValue "104.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2016-10-04T05:20:29+02:00"^^xsd:dateTime ;
+    rdfs:label "104 cm" .
 
-ex:proc_weight_length_20161004 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_weight_length_20161004 .
+## Pain severity (score)
+ex:measproc_PainSeverity_20161004T052029
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_PainSeverity_20161004T052029 ;
+    rdfs:label "Pain severity measurement process" .
 
-ex:meas_weight_length_20161004 a chr:Measurement ;
-  chr:hasQuantityValue "88.653"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime .
+ex:measurement_PainSeverity_20161004T052029
+    a chr:Measurement ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasMeasuredDate "2016-10-04T05:20:29+02:00"^^xsd:dateTime ;
+    rdfs:label "1 (score)" .
 
-ex:proc_head_circumference_percentile_20161004 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_head_circumference_percentile_20161004 .
+## Body Weight
+ex:measproc_Weight_20161004T052029
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_Weight_20161004T052029 ;
+    rdfs:label "Body Weight measurement process" .
 
-ex:meas_head_circumference_percentile_20161004 a chr:Measurement ;
-  chr:hasQuantityValue "81.33"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime .
+ex:measurement_Weight_20161004T052029
+    a chr:Measurement ;
+    chr:hasQuantityValue "19.0"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2016-10-04T05:20:29+02:00"^^xsd:dateTime ;
+    rdfs:label "19 kg" .
 
-ex:proc_head_circumference_20161004 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_head_circumference_20161004 .
+## Weight-for-length percentile
+ex:measproc_WeightForLengthPercentile_20161004T052029
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_WeightForLengthPercentile_20161004T052029 ;
+    rdfs:label "Weight-for-length percentile measurement process" .
 
-ex:meas_head_circumference_20161004 a chr:Measurement ;
-  chr:hasQuantityValue "49.99"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime .
+ex:measurement_WeightForLengthPercentile_20161004T052029
+    a chr:Measurement ;
+    chr:hasQuantityValue "88.653"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2016-10-04T05:20:29+02:00"^^xsd:dateTime ;
+    rdfs:label "88.653 %" .
 
-ex:proc_bmi_ratio_20161004 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_bmi_ratio_20161004 .
+## Head Occipital-frontal circumference percentile
+ex:measproc_HeadCircumferencePercentile_20161004T052029
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_HeadCircumferencePercentile_20161004T052029 ;
+    rdfs:label "Head circumference percentile measurement process" .
 
-ex:meas_bmi_ratio_20161004 a chr:Measurement ;
-  chr:hasQuantityValue "17.59"^^xsd:float ;
-  chr:hasUnit ex:kg_m2 ;
-  chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime .
+ex:measurement_HeadCircumferencePercentile_20161004T052029
+    a chr:Measurement ;
+    chr:hasQuantityValue "81.33"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2016-10-04T05:20:29+02:00"^^xsd:dateTime ;
+    rdfs:label "81.33 %" .
 
-ex:proc_bmi_percentile_20161004 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_bmi_percentile_20161004 .
+## Head Occipital-frontal circumference length
+ex:measproc_HeadCircumferenceLength_20161004T052029
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_HeadCircumferenceLength_20161004T052029 ;
+    rdfs:label "Head circumference length measurement process" .
 
-ex:meas_bmi_percentile_20161004 a chr:Measurement ;
-  chr:hasQuantityValue "92.581"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime .
+ex:measurement_HeadCircumferenceLength_20161004T052029
+    a chr:Measurement ;
+    chr:hasQuantityValue "49.99"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2016-10-04T05:20:29+02:00"^^xsd:dateTime ;
+    rdfs:label "49.99 cm" .
 
-ex:proc_heart_rate_20161004 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_heart_rate_20161004 .
+## BMI (kg/m2)
+ex:measproc_BMI_Ratio_20161004T052029
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_BMI_Ratio_20161004T052029 ;
+    rdfs:label "BMI ratio measurement process" .
 
-ex:meas_heart_rate_20161004 a chr:Measurement ;
-  chr:hasQuantityValue "75.0"^^xsd:float ;
-  chr:hasUnit ex:per_min ;
-  chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime .
+ex:measurement_BMI_Ratio_20161004T052029
+    a chr:Measurement ;
+    chr:hasQuantityValue "17.59"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_m2 ;
+    chr:hasMeasuredDate "2016-10-04T05:20:29+02:00"^^xsd:dateTime ;
+    rdfs:label "17.59 kg/m2" .
 
-ex:proc_respiratory_rate_20161004 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_respiratory_rate_20161004 .
+## BMI percentile
+ex:measproc_BMI_Percentile_20161004T052029
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_BMI_Percentile_20161004T052029 ;
+    rdfs:label "BMI percentile measurement process" .
 
-ex:meas_respiratory_rate_20161004 a chr:Measurement ;
-  chr:hasQuantityValue "13.0"^^xsd:float ;
-  chr:hasUnit ex:per_min ;
-  chr:hasMeasuredDate "2016-10-04T05:20:00"^^xsd:dateTime .
+ex:measurement_BMI_Percentile_20161004T052029
+    a chr:Measurement ;
+    chr:hasQuantityValue "92.581"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2016-10-04T05:20:29+02:00"^^xsd:dateTime ;
+    rdfs:label "92.581 %" .
 
-ex:evaluation_20161004 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_medication_review .
+## Heart rate
+ex:measproc_HeartRate_20161004T052029
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_HeartRate_20161004T052029 ;
+    rdfs:label "Heart rate measurement process" .
 
-ex:diagnostic_medication_review a chr:DiagnosticStatement .
+ex:measurement_HeartRate_20161004T052029
+    a chr:Measurement ;
+    chr:hasQuantityValue "75.0"^^xsd:float ;
+    chr:hasUnit ex:unit_min1 ;
+    chr:hasMeasuredDate "2016-10-04T05:20:29+02:00"^^xsd:dateTime ;
+    rdfs:label "75 /min" .
 
-ex:condition_medication_review a chr:ClinicalCondition ;
-  chr:hasRecordDate "2016-10-04T05:20:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+## Respiratory rate
+ex:measproc_RespiratoryRate_20161004T052029
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasResult ex:measurement_RespiratoryRate_20161004T052029 ;
+    rdfs:label "Respiratory rate measurement process" .
 
-ex:severity_moderate a chr:Severity .
+ex:measurement_RespiratoryRate_20161004T052029
+    a chr:Measurement ;
+    chr:hasQuantityValue "13.0"^^xsd:float ;
+    chr:hasUnit ex:unit_min1 ;
+    chr:hasMeasuredDate "2016-10-04T05:20:29+02:00"^^xsd:dateTime ;
+    rdfs:label "13 /min" .
 
-ex:careplan_followup a chr:CarePlan .
+# Diagnostic statement
+ex:diag_MedicationReview
+    a chr:DiagnosticStatement ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    rdfs:label "Medication review due (situation)" .
+
+# Evaluation process
+ex:evaluation_20161004T052029
+    a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_Dolores_Nevarez ;
+    chr:hasObservation ex:diag_MedicationReview ;
+    rdfs:label "Evaluation on 2016-10-04T05:20:29+02:00" .
+
+# Care plan
+ex:careplan_20161004T052029
+    a chr:CarePlan ;
+    rdfs:label "Care plan for follow-up monitoring and routine review" .

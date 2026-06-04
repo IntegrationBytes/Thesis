@@ -1,15 +1,259 @@
-@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-> .
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-<ex:patient>
-  rdf:type chr:Patient ;
-  chr:age "67"^^xsd:integer ;
-  chr:gender "female" ;
-  chr:hasCondition <ex:condition> .
+# Patient
+ex:patient_Arlen68Olson653 a chr:Person ;
+    rdfs:label "Arlen68 Olson653" .
 
-<ex:condition>
-  rdf:type chr:Condition ;
-  chr:bodySite "chest" ;
-  chr:signSymptom "cough" .
+# Care Provider (Physician)
+ex:physician_Dana512Wilkinson796 a chr:Person ;
+    rdfs:label "Dr. Dana512 Wilkinson796" .
+
+# Care Unit
+ex:careunit_UrgentCarePhysiciansPC a chr:CareUnit ;
+    rdfs:label "URGENT CARE PHYSICIANS PC" .
+
+# Clinical Visit
+ex:visit_2018_12_05T15_47_23p01_00 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2018-12-05T15:47:23+01:00" ;
+    chr:hasDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_Dana512Wilkinson796 ;
+    chr:hasCareUnit ex:careunit_UrgentCarePhysiciansPC ;
+    chr:hasPatient ex:patient_Arlen68Olson653 .
+
+# Units
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
+
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> .
+
+ex:unit_mL_per_min_per_1_73_m2 a chr:Unit ;
+    rdfs:label "mL/min/1.73m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mL/min/1.73m2> .
+
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
+
+ex:unit_one a chr:Unit ;
+    rdfs:label "1" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/1> .
+
+ex:unit_pH a chr:Unit ;
+    rdfs:label "pH" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pH> .
+
+# Measurements and Measurement Processes (Serum/Plasma)
+ex:measproc_Glucose_Serum_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement (Serum) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Glucose_Serum_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_Glucose_Serum_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "173.8 mg/dL" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "173.8"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/2345-7> .
+
+ex:measproc_UreaNitrogen_Serum_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement (Serum) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_UreaNitrogen_Serum_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_UreaNitrogen_Serum_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "8.61 mg/dL" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.61"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/3094-0> .
+
+ex:measproc_Creatinine_Serum_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement (Serum) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Creatinine_Serum_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_Creatinine_Serum_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "1.9022 mg/dL" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.9022"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/2160-0> .
+
+ex:measproc_Calcium_Serum_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement (Serum) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Calcium_Serum_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_Calcium_Serum_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "10.04 mg/dL" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "10.04"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/17861-6> .
+
+ex:measproc_Sodium_Serum_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement (Serum) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Sodium_Serum_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_Sodium_Serum_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "143.43 mmol/L" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "143.43"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/2951-2> .
+
+ex:measproc_Potassium_Serum_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement (Serum) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Potassium_Serum_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_Potassium_Serum_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "5.03 mmol/L" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.03"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/2823-3> .
+
+ex:measproc_Chloride_Serum_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement (Serum) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Chloride_Serum_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_Chloride_Serum_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "108.99 mmol/L" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "108.99"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/2075-0> .
+
+ex:measproc_CarbonDioxide_Serum_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide measurement (Serum) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_CarbonDioxide_Serum_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_CarbonDioxide_Serum_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "27.22 mmol/L" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.22"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/2028-9> .
+
+ex:measproc_GFR_Serum_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Glomerular filtration rate measurement (Serum) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_GFR_Serum_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_GFR_Serum_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "49.481 mL/min/1.73m2" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "49.481"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 ;
+    chr:hasCode <https://loinc.org/33914-3> .
+
+# Measurements and Measurement Processes (Urine)
+ex:measproc_Glucose_Urine_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement (Urine) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Glucose_Urine_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_Glucose_Urine_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "1.7575 mg/dL" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.7575"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/5792-7> .
+
+ex:measproc_Bilirubin_Urine_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Bilirubin.total measurement (Urine) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Bilirubin_Urine_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_Bilirubin_Urine_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "0.25855 mg/dL" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.25855"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/20505-4> .
+
+ex:measproc_Ketones_Urine_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Ketones measurement (Urine) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Ketones_Urine_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_Ketones_Urine_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "8.9042 mg/dL" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.9042"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/5797-6> .
+
+ex:measproc_SpecificGravity_Urine_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Specific gravity measurement (Urine) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_SpecificGravity_Urine_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_SpecificGravity_Urine_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "1.0039" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0039"^^xsd:float ;
+    chr:hasUnit ex:unit_one ;
+    chr:hasCode <https://loinc.org/5811-5> .
+
+ex:measproc_pH_Urine_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "pH measurement (Urine) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_pH_Urine_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_pH_Urine_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "5.7975 pH" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.7975"^^xsd:float ;
+    chr:hasUnit ex:unit_pH ;
+    chr:hasCode <https://loinc.org/5803-2> .
+
+ex:measproc_Protein_Urine_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Protein measurement (Urine) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Protein_Urine_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_Protein_Urine_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "354.18 mg/dL" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "354.18"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/5804-0> .
+
+ex:measproc_HbA1c_Blood_2018_12_05T15_47_23p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement (Blood) on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_HbA1c_Blood_2018_12_05T15_47_23p01_00 .
+
+ex:measurement_HbA1c_Blood_2018_12_05T15_47_23p01_00 a chr:Measurement ;
+    rdfs:label "5.36 %" ;
+    chr:hasMeasuredDate "2018-12-05T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.36"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasCode <https://loinc.org/4548-4> .
+
+# Diagnostic Statement
+ex:diagstmt_MedicationReviewDue a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+# Evaluation Process
+ex:evaluation_2018_12_05T15_47_23p01_00 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2018-12-05T15:47:23+01:00" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasObservation ex:diagstmt_MedicationReviewDue .
+
+# Care Plan
+ex:careplan_FollowUpMonitoring a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review" .

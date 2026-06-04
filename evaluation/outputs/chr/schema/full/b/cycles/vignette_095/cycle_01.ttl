@@ -1,198 +1,355 @@
 @prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
 @prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Harvey63Napoleon578Homenick806 a chr:Person .
+# Person (patient)
+ex:patient_Harvey_Napoleon_Homenick
+    a chr:Person ;
+    rdfs:label "Harvey63 Napoleon578 Homenick806" .
 
-ex:care_unit_ChildFamilyServices a chr:CareUnit .
+# Care unit
+ex:careunit_CHILD_FAMILY_SERVICES
+    a chr:CareUnit ;
+    rdfs:label "CHILD & FAMILY SERVICES, INC." .
 
-ex:care_provider_DrAssunta351Haley279 a chr:Person .
+# Physician
+ex:physician_Assunta_Haley
+    a chr:Person ;
+    rdfs:label "Dr. Assunta351 Haley279" .
 
-ex:visit_2017_07_07 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:care_provider_DrAssunta351Haley279 ;
-  chr:hasCareUnit ex:care_unit_ChildFamilyServices .
+# Clinical visit
+ex:visit_20170707T203059+02_00
+    a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2017-07-07T20:30:59+02:00" ;
+    chr:hasDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_Assunta_Haley ;
+    chr:hasCareUnit ex:careunit_CHILD_FAMILY_SERVICES ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick .
 
-ex:measproc_HbA1c_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_HbA1c_20170707 .
+# Units
+ex:unit_percent
+    a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%> .
 
-ex:meas_HbA1c_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "6.02"^^xsd:float ;
-  chr:hasUnit ex:unit_percent ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+ex:unit_cm
+    a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:measproc_BodyHeight_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_BodyHeight_20170707 .
+ex:unit_kg
+    a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:meas_BodyHeight_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "172.9"^^xsd:float ;
-  chr:hasUnit ex:unit_cm ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+ex:unit_kg_per_m2
+    a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg/m2> .
 
-ex:measproc_PainSeverity_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_PainSeverity_20170707 .
+ex:unit_per_min
+    a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min> .
 
-ex:meas_PainSeverity_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasUnit ex:unit_score ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+ex:unit_mg_per_dL
+    a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
 
-ex:measproc_BodyWeight_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_BodyWeight_20170707 .
+ex:unit_mmol_per_L
+    a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> .
 
-ex:meas_BodyWeight_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "82.3"^^xsd:float ;
-  chr:hasUnit ex:unit_kg ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+ex:unit_score
+    a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
 
-ex:measproc_BMI_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_BMI_20170707 .
+# Measurement processes and measurements
 
-ex:meas_BMI_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "27.53"^^xsd:float ;
-  chr:hasUnit ex:unit_kg_m2 ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+# 1. Hemoglobin A1c
+ex:measproc_HbA1c_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_HbA1c_20170707T203059+02_00 .
 
-ex:measproc_HeartRate_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_HeartRate_20170707 .
+ex:measurement_HbA1c_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "6.02 %" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.02"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasCode <https://loinc.org/4548-4> .
 
-ex:meas_HeartRate_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "65.0"^^xsd:float ;
-  chr:hasUnit ex:unit_per_min ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+# 2. Body Height
+ex:measproc_Height_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_Height_20170707T203059+02_00 .
 
-ex:measproc_RespiratoryRate_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_RespiratoryRate_20170707 .
+ex:measurement_Height_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "172.9 cm" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "172.9"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasCode <https://loinc.org/8302-2> .
 
-ex:meas_RespiratoryRate_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "12.0"^^xsd:float ;
-  chr:hasUnit ex:unit_per_min ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+# 3. Pain severity
+ex:measproc_Pain_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_Pain_20170707T203059+02_00 .
 
-ex:measproc_Glucose_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_Glucose_20170707 .
+ex:measurement_Pain_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasCode <https://loinc.org/72514-3> .
 
-ex:meas_Glucose_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "73.8"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+# 4. Body Weight
+ex:measproc_Weight_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_Weight_20170707T203059+02_00 .
 
-ex:measproc_UreaNitrogen_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_UreaNitrogen_20170707 .
+ex:measurement_Weight_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "82.3 kg" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82.3"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasCode <https://loinc.org/29463-7> .
 
-ex:meas_UreaNitrogen_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "19.01"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+# 5. Body Mass Index
+ex:measproc_BMI_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Body mass index measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_BMI_20170707T203059+02_00 .
 
-ex:measproc_Creatinine_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_Creatinine_20170707 .
+ex:measurement_BMI_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "27.53 kg/m2" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.53"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasCode <https://loinc.org/39156-5> .
 
-ex:meas_Creatinine_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "0.99"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+# 6. Heart rate
+ex:measproc_HR_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_HR_20170707T203059+02_00 .
 
-ex:measproc_Calcium_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_Calcium_20170707 .
+ex:measurement_HR_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "65 /min" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "65"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <https://loinc.org/8867-4> .
 
-ex:meas_Calcium_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "9.11"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+# 7. Respiratory rate
+ex:measproc_RR_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_RR_20170707T203059+02_00 .
 
-ex:measproc_Sodium_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_Sodium_20170707 .
+ex:measurement_RR_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "12 /min" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <https://loinc.org/9279-1> .
 
-ex:meas_Sodium_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "143.75"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+# 8. Glucose
+ex:measproc_Glucose_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_Glucose_20170707T203059+02_00 .
 
-ex:measproc_Potassium_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_Potassium_20170707 .
+ex:measurement_Glucose_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "73.8 mg/dL" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "73.8"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/2339-0> .
 
-ex:meas_Potassium_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "4.34"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+# 9. Urea nitrogen
+ex:measproc_UreaNitrogen_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_UreaNitrogen_20170707T203059+02_00 .
 
-ex:measproc_Chloride_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_Chloride_20170707 .
+ex:measurement_UreaNitrogen_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "19.01 mg/dL" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "19.01"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/6299-2> .
 
-ex:meas_Chloride_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "107.35"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+# 10. Creatinine
+ex:measproc_Creatinine_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_Creatinine_20170707T203059+02_00 .
 
-ex:measproc_CarbonDioxide_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_CarbonDioxide_20170707 .
+ex:measurement_Creatinine_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "0.99 mg/dL" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.99"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/38483-4> .
 
-ex:meas_CarbonDioxide_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "28.58"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L ;
-  chr:hasMeasuredDate "2017-07-07T20:30:00"^^xsd:dateTime .
+# 11. Calcium
+ex:measproc_Calcium_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_Calcium_20170707T203059+02_00 .
 
-ex:measproc_TotalScoreDAST10_20170707 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_TotalScoreDAST10_20170707 .
+ex:measurement_Calcium_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "9.11 mg/dL" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.11"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/49765-1> .
 
-ex:meas_TotalScoreDAST10_20170707 a chr:Measurement ;
-  chr:hasQuantityValue "2.0"^^xsd:float ;
-  chr:hasUnit ex:unit_score ;
-  chr:hasMeasuredDate "2017-07-07T21:48:00"^^xsd:dateTime .
+# 12. Sodium
+ex:measproc_Sodium_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_Sodium_20170707T203059+02_00 .
 
-ex:eval_20170707_2030 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_MedicationReviewDue .
+ex:measurement_Sodium_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "143.75 mmol/L" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "143.75"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/2947-0> .
 
-ex:diag_MedicationReviewDue a chr:DiagnosticStatement .
+# 13. Potassium
+ex:measproc_Potassium_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_Potassium_20170707T203059+02_00 .
 
-ex:condition_MedicationReviewDue a chr:ClinicalCondition ;
-  chr:hasRecordDate "2017-07-07T20:30:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_Moderate .
+ex:measurement_Potassium_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "4.34 mmol/L" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.34"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/6298-4> .
 
-ex:eval_20170707_2114 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_Stress .
+# 14. Chloride
+ex:measproc_Chloride_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_Chloride_20170707T203059+02_00 .
 
-ex:diag_Stress a chr:DiagnosticStatement .
+ex:measurement_Chloride_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "107.35 mmol/L" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "107.35"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/2069-3> .
 
-ex:condition_Stress a chr:ClinicalCondition ;
-  chr:hasRecordDate "2017-07-07T21:14:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_Moderate .
+# 15. Carbon dioxide, total
+ex:measproc_CO2_20170707T203059+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide, total measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_CO2_20170707T203059+02_00 .
 
-ex:severity_Moderate a chr:Severity .
+ex:measurement_CO2_20170707T203059+02_00
+    a chr:Measurement ;
+    rdfs:label "28.58 mmol/L" ;
+    chr:hasMeasuredDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "28.58"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/20565-8> .
 
-ex:careplan_FollowUpMonitoring a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:medicalprocedure_monitoring .
+# 16. Total DAST-10 score
+ex:measproc_DAST10_20170707T214827+02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Total DAST-10 score measurement process" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_DAST10_20170707T214827+02_00 .
 
-ex:medicalprocedure_monitoring a chr:MedicalProcedure .
+ex:measurement_DAST10_20170707T214827+02_00
+    a chr:Measurement ;
+    rdfs:label "2 score" ;
+    chr:hasMeasuredDate "2017-07-07T21:48:27+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasCode <https://loinc.org/82667-7> .
 
-ex:unit_percent a chr:Unit .
+# Evaluation processes and diagnostic statements / clinical conditions
 
-ex:unit_cm a chr:Unit .
+# Evaluation 1
+ex:evaluation_1_20170707T203059+02_00
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2017-07-07T20:30:59+02:00" ;
+    chr:hasObservation ex:diagstmt_MedReview_20170707T203059+02_00 ;
+    chr:hasCondition ex:condition_MedReview_20170707T203059+02_00 .
 
-ex:unit_score a chr:Unit .
+ex:diagstmt_MedReview_20170707T203059+02_00
+    a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
 
-ex:unit_kg a chr:Unit .
+ex:condition_MedReview_20170707T203059+02_00
+    a chr:ClinicalCondition ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2017-07-07T20:30:59+02:00"^^xsd:dateTime .
 
-ex:unit_kg_m2 a chr:Unit .
+# Evaluation 2
+ex:evaluation_2_20170707T211441+02_00
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2017-07-07T21:14:41+02:00" ;
+    chr:hasObservation ex:diagstmt_Stress_20170707T211441+02_00 ;
+    chr:hasCondition ex:condition_Stress_20170707T211441+02_00 .
 
-ex:unit_per_min a chr:Unit .
+ex:diagstmt_Stress_20170707T211441+02_00
+    a chr:DiagnosticStatement ;
+    rdfs:label "Stress (finding)" ;
+    chr:hasCode <http://snomed.info/id/73595000> .
 
-ex:unit_mg_dL a chr:Unit .
+ex:condition_Stress_20170707T211441+02_00
+    a chr:ClinicalCondition ;
+    rdfs:label "Stress (finding)" ;
+    chr:hasCode <http://snomed.info/id/73595000> ;
+    chr:hasRecordDate "2017-07-07T21:14:41+02:00"^^xsd:dateTime .
 
-ex:unit_mmol_L a chr:Unit .
+# Care plan
+ex:careplan_FollowUp
+    a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review" .

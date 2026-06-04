@@ -4,16 +4,309 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Aracely711Devon268Collins926 a chr:Person .
+# Persons
+ex:patient_AracelyDevonCollins
+    a chr:Person ;
+    rdfs:label "Aracely711 Devon268 Collins926" .
 
-ex:care_unit_FathersBillsPlace a chr:CareUnit .
+ex:provider_EdmundoEichmann
+    a chr:Person ;
+    rdfs:label "Dr. Edmundo94 Eichmann909" .
 
-ex:care_provider_Edmundo94Eichmann909 a chr:Person .
+# Care unit
+ex:careunit_FATHER_BILLS_PLACE
+    a chr:CareUnit ;
+    rdfs:label "FATHER BILL'S PLACE" .
 
-ex:visit_2025_07_25 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasCareUnit ex:care_unit_FathersBillsPlace ;
-  chr:hasCareProvider ex:care_provider_Edmundo94Eichmann909 .
+# Clinical visit
+ex:visit_2025_07_25T150438
+    a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2025-07-25T15:04:38+02:00" ;
+    chr:hasDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCareUnit ex:careunit_FATHER_BILLS_PLACE ;
+    chr:hasCareProvider ex:provider_EdmundoEichmann ;
+    chr:hasPatient ex:patient_AracelyDevonCollins .
 
-ex:proc_glucose_serum_20250725 a chr:MeasurementProcess ;
-  chr:
+# Units
+ex:unit_mg_per_dL
+    a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
+
+ex:unit_mmol_per_L
+    a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> .
+
+ex:unit_mL_per_min_per_1_73_m2
+    a chr:Unit ;
+    rdfs:label "mL/min/{1.73_m2}" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mLperminper1.73_m2> .
+
+ex:unit_nominal
+    a chr:Unit ;
+    rdfs:label "nominal" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/1> .
+
+ex:unit_pH
+    a chr:Unit ;
+    rdfs:label "pH" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pH> .
+
+ex:unit_pct
+    a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pct> .
+
+# Measurements and processes
+
+# 1 Glucose in Serum
+ex:meas_Glucose_Serum_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Glucose in Serum result" ;
+    chr:hasQuantityValue "89.83"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2345-7> .
+
+ex:measproc_Glucose_Serum_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement process (Serum)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Glucose_Serum_20250725T150438 .
+
+# 2 Urea nitrogen in Serum
+ex:meas_UreaNitrogen_Serum_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Urea nitrogen in Serum result" ;
+    chr:hasQuantityValue "17.73"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/3094-0> .
+
+ex:measproc_UreaNitrogen_Serum_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement process (Serum)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_UreaNitrogen_Serum_20250725T150438 .
+
+# 3 Creatinine in Serum
+ex:meas_Creatinine_Serum_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Creatinine in Serum result" ;
+    chr:hasQuantityValue "2.013"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2160-0> .
+
+ex:measproc_Creatinine_Serum_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement process (Serum)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Creatinine_Serum_20250725T150438 .
+
+# 4 Calcium in Serum
+ex:meas_Calcium_Serum_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Calcium in Serum result" ;
+    chr:hasQuantityValue "9.64"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/17861-6> .
+
+ex:measproc_Calcium_Serum_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement process (Serum)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Calcium_Serum_20250725T150438 .
+
+# 5 Sodium in Serum
+ex:meas_Sodium_Serum_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Sodium in Serum result" ;
+    chr:hasQuantityValue "140.55"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2951-2> .
+
+ex:measproc_Sodium_Serum_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement process (Serum)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Sodium_Serum_20250725T150438 .
+
+# 6 Potassium in Serum
+ex:meas_Potassium_Serum_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Potassium in Serum result" ;
+    chr:hasQuantityValue "3.86"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2823-3> .
+
+ex:measproc_Potassium_Serum_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement process (Serum)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Potassium_Serum_20250725T150438 .
+
+# 7 Chloride in Serum
+ex:meas_Chloride_Serum_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Chloride in Serum result" ;
+    chr:hasQuantityValue "104.92"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2075-0> .
+
+ex:measproc_Chloride_Serum_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement process (Serum)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Chloride_Serum_20250725T150438 .
+
+# 8 Carbon dioxide, total in Serum
+ex:meas_CO2_Serum_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Carbon dioxide, total in Serum result" ;
+    chr:hasQuantityValue "24.89"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2028-9> .
+
+ex:measproc_CO2_Serum_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide measurement process (Serum)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_CO2_Serum_20250725T150438 .
+
+# 9 Glomerular filtration rate
+ex:meas_GFR_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Glomerular filtration rate result" ;
+    chr:hasQuantityValue "65.536"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/33914-3> .
+
+ex:measproc_GFR_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Glomerular filtration rate measurement process" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_GFR_20250725T150438 .
+
+# 10 Glucose in Urine
+ex:meas_Glucose_Urine_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Glucose in Urine result" ;
+    chr:hasQuantityValue "0.56497"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5792-7> .
+
+ex:measproc_Glucose_Urine_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement process (Urine)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Glucose_Urine_20250725T150438 .
+
+# 11 Bilirubin.total in Urine
+ex:meas_Bilirubin_Urine_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Bilirubin.total in Urine result" ;
+    chr:hasQuantityValue "0.80533"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/20505-4> .
+
+ex:measproc_Bilirubin_Urine_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Bilirubin measurement process (Urine)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Bilirubin_Urine_20250725T150438 .
+
+# 12 Ketones in Urine
+ex:meas_Ketones_Urine_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Ketones in Urine result" ;
+    chr:hasQuantityValue "10.932"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5797-6> .
+
+ex:measproc_Ketones_Urine_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Ketones measurement process (Urine)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Ketones_Urine_20250725T150438 .
+
+# 13 Specific gravity of Urine
+ex:meas_SpecificGravity_Urine_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Specific gravity of Urine result" ;
+    chr:hasQuantityValue "1.0309"^^xsd:float ;
+    chr:hasUnit ex:unit_nominal ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5811-5> .
+
+ex:measproc_SpecificGravity_Urine_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Specific gravity measurement process (Urine)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_SpecificGravity_Urine_20250725T150438 .
+
+# 14 pH of Urine
+ex:meas_pH_Urine_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "pH of Urine result" ;
+    chr:hasQuantityValue "6.0071"^^xsd:float ;
+    chr:hasUnit ex:unit_pH ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5803-2> .
+
+ex:measproc_pH_Urine_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "pH measurement process (Urine)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_pH_Urine_20250725T150438 .
+
+# 15 Protein in Urine
+ex:meas_Protein_Urine_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Protein in Urine result" ;
+    chr:hasQuantityValue "319.8"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5804-0> .
+
+ex:measproc_Protein_Urine_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Protein measurement process (Urine)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Protein_Urine_20250725T150438 .
+
+# 16 Hemoglobin A1c/Hemoglobin.total in Blood
+ex:meas_HbA1c_Blood_20250725T150438
+    a chr:Measurement ;
+    rdfs:label "Hemoglobin A1c/Hemoglobin.total in Blood result" ;
+    chr:hasQuantityValue "3.18"^^xsd:float ;
+    chr:hasUnit ex:unit_pct ;
+    chr:hasMeasuredDate "2025-07-25T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/4548-4> .
+
+ex:measproc_HbA1c_Blood_20250725T150438
+    a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement process (Blood)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_HbA1c_Blood_20250725T150438 .
+
+# Diagnostic statement and evaluation
+ex:diagstmt_MedicationReviewDue
+    a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+ex:evaluation_2025_07_25T150438
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Edmundo94 Eichmann909" ;
+    chr:hasObservation ex:diagstmt_MedicationReviewDue .

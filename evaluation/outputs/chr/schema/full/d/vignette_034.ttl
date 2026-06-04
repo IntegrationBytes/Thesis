@@ -4,239 +4,385 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Casey401Elijah719Parker433 a chr:Person .
+# Patient
+ex:patient_Casey401_Elijah719_Parker433 a chr:Person ;
+    rdfs:label "Casey401 Elijah719 Parker433" .
 
-ex:care_unit_JFCS a chr:CareUnit .
+# Care unit
+ex:careunit_JewishFamilyChildren a chr:CareUnit ;
+    rdfs:label "JEWISH FAMILY & CHILDREN'S SERVICE" .
 
-ex:provider_Eldridge510Marquardt819 a chr:Person .
+# Attending physician
+ex:provider_Eldridge_Marquardt a chr:Person ;
+    rdfs:label "Dr. Eldridge510 Marquardt819" .
 
-ex:visit_2022_10_27_1859 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasCareProvider ex:provider_Eldridge510Marquardt819 ;
-  chr:hasCareUnit ex:care_unit_JFCS .
+# Clinical visit
+ex:visit_2022_10_27_T18_59_56_plus02_00 a chr:ClinicalVisit ;
+    rdfs:label "Visit on 2022-10-27T18:59:56+02:00" ;
+    chr:hasDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCareUnit ex:careunit_JewishFamilyChildren ;
+    chr:hasCareProvider ex:provider_Eldridge_Marquardt ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasProcedure ex:procedure_general_examination .
 
-ex:measproc_height_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_height_202210271859 .
+# General examination procedure
+ex:procedure_general_examination a chr:MedicalProcedure ;
+    rdfs:label "General examination of patient" ;
+    chr:hasPerformedDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasPerformer ex:provider_Eldridge_Marquardt ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 .
 
-ex:meas_height_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "172.7"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:measproc_pain_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_pain_202210271859 .
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
 
-ex:meas_pain_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "3.0"^^xsd:float ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:measproc_weight_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_weight_202210271859 .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg/m2> .
 
-ex:meas_weight_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "82.2"^^xsd:float ;
-  chr:hasUnit sulo:kg ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+ex:unit_min a chr:Unit ;
+    rdfs:label "min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min> .
 
-ex:measproc_bmi_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_bmi_202210271859 .
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%> .
 
-ex:meas_bmi_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "27.56"^^xsd:float ;
-  chr:hasUnit sulo:kg_per_m2 ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+ex:unit_fL a chr:Unit ;
+    rdfs:label "fL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/fL> .
 
-ex:measproc_heartrate_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_heartrate_202210271859 .
+ex:unit_pg a chr:Unit ;
+    rdfs:label "pg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pg> .
 
-ex:meas_heartrate_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "89.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+ex:unit_g_per_dL a chr:Unit ;
+    rdfs:label "g/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/g/dL> .
 
-ex:measproc_resprate_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_resprate_202210271859 .
+ex:unit_10_3_per_uL a chr:Unit ;
+    rdfs:label "10*3/uL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/10*3/uL> .
 
-ex:meas_resprate_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "13.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+ex:unit_10_6_per_uL a chr:Unit ;
+    rdfs:label "10*6/uL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/10*6/uL> .
 
-ex:measproc_cholesterol_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_cholesterol_202210271859 .
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mg/dL> .
 
-ex:meas_cholesterol_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "201.41"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+ex:unit_hash a chr:Unit ;
+    rdfs:label "#" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/#> .
 
-ex:measproc_triglyceride_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_triglyceride_202210271859 .
+# Measurements and processes (same timestamp 2022-10-27T18:59:56+02:00)
 
-ex:meas_triglyceride_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "133.95"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+## Body Height
+ex:meas_bodyHeight_20221027T185956 a chr:Measurement ;
+    rdfs:label "172.7 cm" ;
+    chr:hasQuantityValue "172.7"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/8302-2> .
+ex:proc_bodyHeight_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_bodyHeight_20221027T185956 .
 
-ex:measproc_ldl_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_ldl_202210271859 .
+## Pain severity (Score)
+ex:meas_painSeverity_20221027T185956 a chr:Measurement ;
+    rdfs:label "3 score" ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/72514-3> .
+ex:proc_painSeverity_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_painSeverity_20221027T185956 .
 
-ex:meas_ldl_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "117.13"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+## Body Weight
+ex:meas_bodyWeight_20221027T185956 a chr:Measurement ;
+    rdfs:label "82.2 kg" ;
+    chr:hasQuantityValue "82.2"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/29463-7> .
+ex:proc_bodyWeight_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_bodyWeight_20221027T185956 .
 
-ex:measproc_hdl_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_hdl_202210271859 .
+## BMI
+ex:meas_BMI_20221027T185956 a chr:Measurement ;
+    rdfs:label "27.56 kg/m2" ;
+    chr:hasQuantityValue "27.56"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/39156-5> .
+ex:proc_BMI_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "BMI measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_BMI_20221027T185956 .
 
-ex:meas_hdl_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "57.49"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+## Heart rate
+ex:meas_heartRate_20221027T185956 a chr:Measurement ;
+    rdfs:label "89 min" ;
+    chr:hasQuantityValue "89"^^xsd:float ;
+    chr:hasUnit ex:unit_min ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/8867-4> .
+ex:proc_heartRate_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_heartRate_20221027T185956 .
 
-ex:measproc_leukocytes_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_leukocytes_202210271859 .
+## Respiratory rate
+ex:meas_respiratoryRate_20221027T185956 a chr:Measurement ;
+    rdfs:label "13 min" ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasUnit ex:unit_min ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/9279-1> .
+ex:proc_respiratoryRate_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_respiratoryRate_20221027T185956 .
 
-ex:meas_leukocytes_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "3.662"^^xsd:float ;
-  chr:hasUnit sulo:10_3_per_uL ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+## Cholesterol (Serum)
+ex:meas_cholesterolSerum_20221027T185956 a chr:Measurement ;
+    rdfs:label "201.41 mg/dL" ;
+    chr:hasQuantityValue "201.41"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/2093-3> .
+ex:proc_cholesterolSerum_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol (Serum) measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_cholesterolSerum_20221027T185956 .
 
-ex:measproc_erythrocytes_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_erythrocytes_202210271859 .
+## Triglyceride
+ex:meas_triglyceride_20221027T185956 a chr:Measurement ;
+    rdfs:label "133.95 mg/dL" ;
+    chr:hasQuantityValue "133.95"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/2571-8> .
+ex:proc_triglyceride_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Triglyceride measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_triglyceride_20221027T185956 .
 
-ex:meas_erythrocytes_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "4.0125"^^xsd:float ;
-  chr:hasUnit sulo:10_6_per_uL ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+## Cholesterol LDL
+ex:meas_cholesterolLDL_20221027T185956 a chr:Measurement ;
+    rdfs:label "117.13 mg/dL" ;
+    chr:hasQuantityValue "117.13"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/18262-6> .
+ex:proc_cholesterolLDL_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol LDL measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_cholesterolLDL_20221027T185956 .
 
-ex:measproc_hemoglobin_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_hemoglobin_202210271859 .
+## Cholesterol HDL
+ex:meas_cholesterolHDL_20221027T185956 a chr:Measurement ;
+    rdfs:label "57.49 mg/dL" ;
+    chr:hasQuantityValue "57.49"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/2085-9> .
+ex:proc_cholesterolHDL_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol HDL measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_cholesterolHDL_20221027T185956 .
 
-ex:meas_hemoglobin_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "16.346"^^xsd:float ;
-  chr:hasUnit sulo:g_per_dL ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+## Leukocytes
+ex:meas_leukocytes_20221027T185956 a chr:Measurement ;
+    rdfs:label "3.662 10*3/uL" ;
+    chr:hasQuantityValue "3.662"^^xsd:float ;
+    chr:hasUnit ex:unit_10_3_per_uL ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/6690-2> .
+ex:proc_leukocytes_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Leukocytes measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_leukocytes_20221027T185956 .
 
-ex:measproc_hematocrit_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_hematocrit_202210271859 .
+## Erythrocytes
+ex:meas_erythrocytes_20221027T185956 a chr:Measurement ;
+    rdfs:label "4.0125 10*6/uL" ;
+    chr:hasQuantityValue "4.0125"^^xsd:float ;
+    chr:hasUnit ex:unit_10_6_per_uL ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/789-8> .
+ex:proc_erythrocytes_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Erythrocytes measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_erythrocytes_20221027T185956 .
 
-ex:meas_hematocrit_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "44.41"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+## Hemoglobin
+ex:meas_hemoglobin_20221027T185956 a chr:Measurement ;
+    rdfs:label "16.346 g/dL" ;
+    chr:hasQuantityValue "16.346"^^xsd:float ;
+    chr:hasUnit ex:unit_g_per_dL ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/718-7> .
+ex:proc_hemoglobin_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_hemoglobin_20221027T185956 .
 
-ex:measproc_mcv_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_mcv_202210271859 .
+## Hematocrit
+ex:meas_hematocrit_20221027T185956 a chr:Measurement ;
+    rdfs:label "44.41 %" ;
+    chr:hasQuantityValue "44.41"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/4544-3> .
+ex:proc_hematocrit_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Hematocrit measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_hematocrit_20221027T185956 .
 
-ex:meas_mcv_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "89.925"^^xsd:float ;
-  chr:hasUnit sulo:fL ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+## MCV
+ex:meas_MCV_20221027T185956 a chr:Measurement ;
+    rdfs:label "89.925 fL" ;
+    chr:hasQuantityValue "89.925"^^xsd:float ;
+    chr:hasUnit ex:unit_fL ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/787-2> .
+ex:proc_MCV_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "MCV measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_MCV_20221027T185956 .
 
-ex:measproc_mch_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_mch_202210271859 .
+## MCH
+ex:meas_MCH_20221027T185956 a chr:Measurement ;
+    rdfs:label "29.232 pg" ;
+    chr:hasQuantityValue "29.232"^^xsd:float ;
+    chr:hasUnit ex:unit_pg ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/785-6> .
+ex:proc_MCH_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "MCH measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_MCH_20221027T185956 .
 
-ex:meas_mch_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "29.232"^^xsd:float ;
-  chr:hasUnit sulo:pg ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+## MCHC
+ex:meas_MCHC_20221027T185956 a chr:Measurement ;
+    rdfs:label "34.624 g/dL" ;
+    chr:hasQuantityValue "34.624"^^xsd:float ;
+    chr:hasUnit ex:unit_g_per_dL ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/786-4> .
+ex:proc_MCHC_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "MCHC measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_MCHC_20221027T185956 .
 
-ex:measproc_mchc_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_mchc_202210271859 .
+## Erythrocyte (DistWidth)
+ex:meas_erythrocyteDistWidth_20221027T185956 a chr:Measurement ;
+    rdfs:label "45.989 fL" ;
+    chr:hasQuantityValue "45.989"^^xsd:float ;
+    chr:hasUnit ex:unit_fL ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/788-0> .
+ex:proc_erythrocyteDistWidth_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Erythrocyte DistWidth measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_erythrocyteDistWidth_20221027T185956 .
 
-ex:meas_mchc_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "34.624"^^xsd:float ;
-  chr:hasUnit sulo:g_per_dL ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+## Platelets
+ex:meas_platelets_20221027T185956 a chr:Measurement ;
+    rdfs:label "162.1 10*3/uL" ;
+    chr:hasQuantityValue "162.1"^^xsd:float ;
+    chr:hasUnit ex:unit_10_3_per_uL ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/777-3> .
+ex:proc_platelets_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Platelets measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_platelets_20221027T185956 .
 
-ex:measproc_erythrocyte_distwidth_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_erythrocyte_distwidth_202210271859 .
+## Platelet distribution width
+ex:meas_plateletDW_20221027T185956 a chr:Measurement ;
+    rdfs:label "216.92 fL" ;
+    chr:hasQuantityValue "216.92"^^xsd:float ;
+    chr:hasUnit ex:unit_fL ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/32207-3> .
+ex:proc_plateletDW_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Platelet distribution width measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_plateletDW_20221027T185956 .
 
-ex:meas_erythrocyte_distwidth_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "45.989"^^xsd:float ;
-  chr:hasUnit sulo:fL ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+## Platelet (mean volume)
+ex:meas_plateletMeanVol_20221027T185956 a chr:Measurement ;
+    rdfs:label "10.588 fL" ;
+    chr:hasQuantityValue "10.588"^^xsd:float ;
+    chr:hasUnit ex:unit_fL ;
+    chr:hasMeasuredDate "2022-10-27T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/32623-1> .
+ex:proc_plateletMeanVol_20221027T185956 a chr:MeasurementProcess ;
+    rdfs:label "Platelet mean volume measurement process 2022-10-27T18:59:56+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_plateletMeanVol_20221027T185956 .
 
-ex:measproc_platelets_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_platelets_202210271859 .
+# Measurements with later timestamps
 
-ex:meas_platelets_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "162.1"^^xsd:float ;
-  chr:hasUnit sulo:10_3_per_uL ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+## Fall risk total (Morse Fall Scale)
+ex:meas_fallRisk_20221027T201640_plus02_00 a chr:Measurement ;
+    rdfs:label "62 #" ;
+    chr:hasQuantityValue "62"^^xsd:float ;
+    chr:hasUnit ex:unit_hash ;
+    chr:hasMeasuredDate "2022-10-27T20:16:40+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/59460-6> .
+ex:proc_fallRisk_20221027T201640_plus02_00 a chr:MeasurementProcess ;
+    rdfs:label "Fall risk total measurement process 2022-10-27T20:16:40+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_fallRisk_20221027T201640_plus02_00 .
 
-ex:measproc_platelet_distwidth_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_platelet_distwidth_202210271859 .
+## PHQ-2 total score
+ex:meas_PHQ2_20221027T205101_plus02_00 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2022-10-27T20:51:01+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/55758-7> .
+ex:proc_PHQ2_20221027T205101_plus02_00 a chr:MeasurementProcess ;
+    rdfs:label "PHQ-2 total score measurement process 2022-10-27T20:51:01+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_PHQ2_20221027T205101_plus02_00 .
 
-ex:meas_platelet_distwidth_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "216.92"^^xsd:float ;
-  chr:hasUnit sulo:fL ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
+## AUDIT-C total score
+ex:meas_AUDITC_20221027T212508_plus02_00 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2022-10-27T21:25:08+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/75626-2> .
+ex:proc_AUDITC_20221027T212508_plus02_00 a chr:MeasurementProcess ;
+    rdfs:label "AUDIT-C total score measurement process 2022-10-27T21:25:08+02:00" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_AUDITC_20221027T212508_plus02_00 .
 
-ex:measproc_platelet_meanvolume_202210271859 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_platelet_meanvolume_202210271859 .
+# Diagnostic statement and evaluation
+ex:diag_medicationReview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
 
-ex:meas_platelet_meanvolume_202210271859 a chr:Measurement ;
-  chr:hasQuantityValue "10.588"^^xsd:float ;
-  chr:hasUnit sulo:fL ;
-  chr:hasMeasuredDate "2022-10-27T18:59:00"^^xsd:dateTime .
-
-ex:measproc_fallrisk_202210272016 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_fallrisk_202210272016 .
-
-ex:meas_fallrisk_202210272016 a chr:Measurement ;
-  chr:hasQuantityValue "62.0"^^xsd:float ;
-  chr:hasMeasuredDate "2022-10-27T20:16:00"^^xsd:dateTime .
-
-ex:measproc_phq2_202210272051 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_phq2_202210272051 .
-
-ex:meas_phq2_202210272051 a chr:Measurement ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasMeasuredDate "2022-10-27T20:51:00"^^xsd:dateTime .
-
-ex:measproc_auditc_202210272125 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_auditc_202210272125 .
-
-ex:meas_auditc_202210272125 a chr:Measurement ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasMeasuredDate "2022-10-27T21:25:00"^^xsd:dateTime .
-
-ex:eval_2022_10_27_1859 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:provider_Eldridge510Marquardt819 ;
-  chr:hasObservation ex:diag_medication_review_due .
-
-ex:diag_medication_review_due a chr:DiagnosticStatement .
-
-ex:condition_medication_review_due a chr:ClinicalCondition ;
-  chr:hasRecordDate "2022-10-27T18:59:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
-
-ex:severity_moderate a chr:Severity .
-
-ex:careplan_followup a chr:CarePlan .
+ex:evaluation_20221027T185956 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2022-10-27T18:59:56+02:00" ;
+    chr:hasObservation ex:diag_medicationReview ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 .

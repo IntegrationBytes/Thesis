@@ -1,103 +1,169 @@
 @prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
 @prefix ex:   <http://example.org/clinical/> .
-@prefix sulo: <https://w3id.org/sulo/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Arleen939Marlyn309Bergstrom287 a chr:Person .
+# Person – patient
+ex:patient_ArleenBergstrom a chr:Person ;
+    rdfs:label "Arleen939 Marlyn309 Bergstrom287" .
 
-ex:care_unit_NashobaValleyMedicalCenter a chr:CareUnit .
+# Person – attending physician
+ex:provider_DrLynwoodTromp a chr:Person ;
+    rdfs:label "Dr. Lynwood354 Tromp100" .
 
-ex:care_provider_DrLynwood354Tromp100 a chr:Person .
+# Care unit
+ex:careunit_NashobaValleyMedicalCenter a chr:CareUnit ;
+    rdfs:label "NASHOBA VALLEY MEDICAL CENTER" .
 
-ex:visit_2019_03_15 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasCareProvider ex:care_provider_DrLynwood354Tromp100 ;
-  chr:hasCareUnit ex:care_unit_NashobaValleyMedicalCenter .
+# Clinical visit
+<http://example.org/clinical/visit_2019_03_15T141314+01:00> a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit 2019-03-15T14:13:14+01:00" ;
+    chr:hasDate "2019-03-15T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:provider_DrLynwoodTromp ;
+    chr:hasCareUnit ex:careunit_NashobaValleyMedicalCenter ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasProcedure <http://example.org/clinical/procedure_general_exam_2019_03_15T141314+01:00> .
 
-ex:proc_height_20190315 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_height_20190315 .
+# General examination procedure
+<http://example.org/clinical/procedure_general_exam_2019_03_15T141314+01:00> a chr:MedicalProcedure ;
+    rdfs:label "General examination of patient" ;
+    chr:hasPerformedDate "2019-03-15T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasPerformer ex:provider_DrLynwoodTromp ;
+    chr:hasPatient ex:patient_ArleenBergstrom .
 
-ex:meas_height_20190315 a chr:Measurement ;
-  chr:hasQuantityValue "159.0"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime .
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:proc_pain_20190315 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_pain_20190315 .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:meas_pain_20190315 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasUnit sulo:score ;
-  chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg.m2> .
 
-ex:proc_weight_20190315 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_weight_20190315 .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/1.min> .
 
-ex:meas_weight_20190315 a chr:Measurement ;
-  chr:hasQuantityValue "58.4"^^xsd:float ;
-  chr:hasUnit sulo:kg ;
-  chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime .
+# Height measurement
+<http://example.org/clinical/measproc_height_2019_03_15T141314+01:00> a chr:MeasurementProcess ;
+    rdfs:label "Height measurement process" ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult <http://example.org/clinical/measurement_height_2019_03_15T141314+01:00> .
 
-ex:proc_bmi_20190315 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_bmi_20190315 .
+<http://example.org/clinical/measurement_height_2019_03_15T141314+01:00> a chr:Measurement ;
+    rdfs:label "Height 159 cm" ;
+    chr:hasMeasuredDate "2019-03-15T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "159.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasCode <https://loinc.org/8302-2> .
 
-ex:meas_bmi_20190315 a chr:Measurement ;
-  chr:hasQuantityValue "23.11"^^xsd:float ;
-  chr:hasUnit sulo:kg_per_m2 ;
-  chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime .
+# Pain severity measurement
+<http://example.org/clinical/measproc_pain_2019_03_15T141314+01:00> a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult <http://example.org/clinical/measurement_pain_2019_03_15T141314+01:00> .
 
-ex:proc_heartrate_20190315 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_heartrate_20190315 .
+<http://example.org/clinical/measurement_pain_2019_03_15T141314+01:00> a chr:Measurement ;
+    rdfs:label "Pain severity 0 score" ;
+    chr:hasMeasuredDate "2019-03-15T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasCode <https://loinc.org/72514-3> .
 
-ex:meas_heartrate_20190315 a chr:Measurement ;
-  chr:hasQuantityValue "63.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min ;
-  chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime .
+# Weight measurement
+<http://example.org/clinical/measproc_weight_2019_03_15T141314+01:00> a chr:MeasurementProcess ;
+    rdfs:label "Weight measurement process" ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult <http://example.org/clinical/measurement_weight_2019_03_15T141314+01:00> .
 
-ex:proc_resprate_20190315 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_resprate_20190315 .
+<http://example.org/clinical/measurement_weight_2019_03_15T141314+01:00> a chr:Measurement ;
+    rdfs:label "Weight 58.4 kg" ;
+    chr:hasMeasuredDate "2019-03-15T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "58.4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasCode <https://loinc.org/29463-7> .
 
-ex:meas_resprate_20190315 a chr:Measurement ;
-  chr:hasQuantityValue "13.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min ;
-  chr:hasMeasuredDate "2019-03-15T14:13:00"^^xsd:dateTime .
+# BMI measurement
+<http://example.org/clinical/measproc_bmi_2019_03_15T141314+01:00> a chr:MeasurementProcess ;
+    rdfs:label "BMI measurement process" ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult <http://example.org/clinical/measurement_bmi_2019_03_15T141314+01:00> .
 
-ex:proc_hark_20190315 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_hark_20190315 .
+<http://example.org/clinical/measurement_bmi_2019_03_15T141314+01:00> a chr:Measurement ;
+    rdfs:label "BMI 23.11 kg/m2" ;
+    chr:hasMeasuredDate "2019-03-15T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "23.11"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasCode <https://loinc.org/39156-5> .
 
-ex:meas_hark_20190315 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasUnit sulo:score ;
-  chr:hasMeasuredDate "2019-03-15T15:29:00"^^xsd:dateTime .
+# Heart rate measurement
+<http://example.org/clinical/measproc_hr_2019_03_15T141314+01:00> a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult <http://example.org/clinical/measurement_hr_2019_03_15T141314+01:00> .
 
-ex:proc_dast10_20190315 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_dast10_20190315 .
+<http://example.org/clinical/measurement_hr_2019_03_15T141314+01:00> a chr:Measurement ;
+    rdfs:label "Heart rate 63 /min" ;
+    chr:hasMeasuredDate "2019-03-15T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "63.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <https://loinc.org/8867-4> .
 
-ex:meas_dast10_20190315 a chr:Measurement ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasUnit sulo:score ;
-  chr:hasMeasuredDate "2019-03-15T16:08:00"^^xsd:dateTime .
+# Respiratory rate measurement
+<http://example.org/clinical/measproc_rr_2019_03_15T141314+01:00> a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult <http://example.org/clinical/measurement_rr_2019_03_15T141314+01:00> .
 
-ex:eval_20190315 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:care_provider_DrLynwood354Tromp100 ;
-  chr:hasObservation ex:diag_stress_20190315 .
+<http://example.org/clinical/measurement_rr_2019_03_15T141314+01:00> a chr:Measurement ;
+    rdfs:label "Respiratory rate 13 /min" ;
+    chr:hasMeasuredDate "2019-03-15T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <https://loinc.org/9279-1> .
 
-ex:diag_stress_20190315 a chr:DiagnosticStatement .
+# Total score HARK measurement
+<http://example.org/clinical/measproc_hark_2019_03_15T152916+01:00> a chr:MeasurementProcess ;
+    rdfs:label "HARK total score measurement process" ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult <http://example.org/clinical/measurement_hark_2019_03_15T152916+01:00> .
 
-ex:condition_stress_20190315 a chr:ClinicalCondition ;
-  chr:hasRecordDate "2019-03-15T14:56:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+<http://example.org/clinical/measurement_hark_2019_03_15T152916+01:00> a chr:Measurement ;
+    rdfs:label "HARK total score 0" ;
+    chr:hasMeasuredDate "2019-03-15T15:29:16+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasCode <https://loinc.org/76504-0> .
 
-ex:severity_moderate a chr:Severity .
+# Total score DAST‑10 measurement
+<http://example.org/clinical/measproc_dast_2019_03_15T160818+01:00> a chr:MeasurementProcess ;
+    rdfs:label "DAST‑10 total score measurement process" ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult <http://example.org/clinical/measurement_dast_2019_03_15T160818+01:00> .
 
+<http://example.org/clinical/measurement_dast_2019_03_15T160818+01:00> a chr:Measurement ;
+    rdfs:label "DAST‑10 total score 1" ;
+    chr:hasMeasuredDate "2019-03-15T16:08:18+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasCode <https://loinc.org/82667-7> .
+
+# Evaluation (diagnostic) process
+<http://example.org/clinical/evaluation_2019_03_15T145637+01:00> a chr:EvaluationProcess ;
+    rdfs:label "Evaluation of patient" ;
+    chr:hasCondition <http://example.org/clinical/condition_Stress_2019_03_15T145637+01:00> ;
+    chr:hasObservation <http://example.org/clinical/diag_Stress_2019_03_15T145637+01:00> .
+
+<http://example.org/clinical/condition_Stress_2019_03_15T145637+01:00> a chr:ClinicalCondition ;
+    rdfs:label "Stress" ;
+    chr:hasCode <http://snomed.info/id/73595000> ;
+    chr:hasRecordDate "2019-03-15T14:56:37+01:00"^^xsd:dateTime .
+
+<http://example.org/clinical/diag_Stress_2019_03_15T145637+01:00> a chr:DiagnosticStatement ;
+    rdfs:label "Stress" ;
+    chr:hasCode <http://snomed.info/id/73595000> .
+
+# Care plan
 ex:careplan_followup a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:proc_height_20190315 .
+    rdfs:label "Follow‑up monitoring and routine review" .

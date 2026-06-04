@@ -4,250 +4,363 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Estela596Yetta429Grant908 a chr:Person .
+# Patient
+ex:patient_EstelaGrant a chr:Person ;
+    rdfs:label "Estela596 Yetta429 Grant908" .
 
-ex:care_unit_ZionHealthWellness a chr:CareUnit .
+# Care provider
+ex:provider_IvonneTurcotte a chr:Person ;
+    rdfs:label "Dr. Ivonne773 Turcotte120" .
 
-ex:care_provider_Ivonne773Turcotte120 a chr:Person .
+# Care unit
+ex:careunit_ZION a chr:CareUnit ;
+    rdfs:label "ZION HEALTH & WELLNESS LLC" .
 
-ex:visit_2002_03_11_2035 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:care_provider_Ivonne773Turcotte120 ;
-  chr:hasCareUnit ex:care_unit_ZionHealthWellness ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 .
+# Clinical visit
+ex:visit_20020311T203554 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit 2002-03-11T20:35:54+01:00" ;
+    chr:hasDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasCareProvider ex:provider_IvonneTurcotte ;
+    chr:hasCareUnit ex:careunit_ZION .
 
-ex:measProc_HbA1c_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_HbA1c_20020311_2035 .
+# Units
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%> .
 
-ex:meas_HbA1c_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "6.26"^^xsd:float ;
-  chr:hasUnit ex:unit_percent .
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:measProc_height_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_height_20020311_2035 .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:meas_height_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "156.6"^^xsd:float ;
-  chr:hasUnit sulo:cm .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg%2Fm2> .
 
-ex:measProc_pain_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_pain_20020311_2035 .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%2Fmin> .
 
-ex:meas_pain_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "3.0"^^xsd:float ;
-  chr:hasUnit ex:unit_score .
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mg%2FdL> .
 
-ex:measProc_weight_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_weight_20020311_2035 .
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmol%2FL> .
 
-ex:meas_weight_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "72.3"^^xsd:float ;
-  chr:hasUnit sulo:kg .
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
 
-ex:measProc_bmi_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_bmi_20020311_2035 .
+# Measurements and processes
 
-ex:meas_bmi_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "29.49"^^xsd:float ;
-  chr:hasUnit ex:unit_kg_m2 .
+# 1 Hemoglobin A1c
+ex:meas_HbA1c_20020311T203554 a chr:Measurement ;
+    rdfs:label "Hemoglobin A1c result 6.26 %" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.26"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasCode <https://loinc.org/4548-4> .
 
-ex:measProc_heartRate_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_heartRate_20020311_2035 .
+ex:proc_HbA1c_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_HbA1c_20020311T203554 .
 
-ex:meas_heartRate_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "77.0"^^xsd:float ;
-  chr:hasUnit ex:unit_per_min .
+# 2 Body Height
+ex:meas_Height_20020311T203554 a chr:Measurement ;
+    rdfs:label "Body Height result 156.6 cm" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "156.6"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasCode <https://loinc.org/8302-2> .
 
-ex:measProc_respRate_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_respRate_20020311_2035 .
+ex:proc_Height_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Height_20020311T203554 .
 
-ex:meas_respRate_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "14.0"^^xsd:float ;
-  chr:hasUnit ex:unit_per_min .
+# 3 Pain severity
+ex:meas_Pain_20020311T203554 a chr:Measurement ;
+    rdfs:label "Pain severity result 3 score" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasCode <https://loinc.org/72514-3> .
 
-ex:measProc_glucose_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_glucose_20020311_2035 .
+ex:proc_Pain_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Pain_20020311T203554 .
 
-ex:meas_glucose_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "97.77"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL .
+# 4 Body Weight
+ex:meas_Weight_20020311T203554 a chr:Measurement ;
+    rdfs:label "Body Weight result 72.3 kg" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "72.3"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasCode <https://loinc.org/29463-7> .
 
-ex:measProc_ureaNitrogen_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_ureaNitrogen_20020311_2035 .
+ex:proc_Weight_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Weight_20020311T203554 .
 
-ex:meas_ureaNitrogen_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "13.79"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL .
+# 5 BMI
+ex:meas_BMI_20020311T203554 a chr:Measurement ;
+    rdfs:label "Body mass index result 29.49 kg/m2" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "29.49"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasCode <https://loinc.org/39156-5> .
 
-ex:measProc_creatinine_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_creatinine_20020311_2035 .
+ex:proc_BMI_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "BMI measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_BMI_20020311T203554 .
 
-ex:meas_creatinine_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "0.92"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL .
+# 6 Heart rate
+ex:meas_HR_20020311T203554 a chr:Measurement ;
+    rdfs:label "Heart rate result 77 /min" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "77"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <https://loinc.org/8867-4> .
 
-ex:measProc_calcium_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_calcium_20020311_2035 .
+ex:proc_HR_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_HR_20020311T203554 .
 
-ex:meas_calcium_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "10.15"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL .
+# 7 Respiratory rate
+ex:meas_RR_20020311T203554 a chr:Measurement ;
+    rdfs:label "Respiratory rate result 14 /min" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <https://loinc.org/9279-1> .
 
-ex:measProc_sodium_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_sodium_20020311_2035 .
+ex:proc_RR_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_RR_20020311T203554 .
 
-ex:meas_sodium_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "139.09"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L .
+# 8 Glucose
+ex:meas_Glucose_20020311T203554 a chr:Measurement ;
+    rdfs:label "Glucose result 97.77 mg/dL" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "97.77"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/2339-0> .
 
-ex:measProc_potassium_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_potassium_20020311_2035 .
+ex:proc_Glucose_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Glucose_20020311T203554 .
 
-ex:meas_potassium_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "3.73"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L .
+# 9 Urea nitrogen
+ex:meas_UreaN_20020311T203554 a chr:Measurement ;
+    rdfs:label "Urea nitrogen result 13.79 mg/dL" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13.79"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/6299-2> .
 
-ex:measProc_chloride_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_chloride_20020311_2035 .
+ex:proc_UreaN_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_UreaN_20020311T203554 .
 
-ex:meas_chloride_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "103.69"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L .
+# 10 Creatinine
+ex:meas_Creatinine_20020311T203554 a chr:Measurement ;
+    rdfs:label "Creatinine result 0.92 mg/dL" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.92"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/38483-4> .
 
-ex:measProc_carbonDioxide_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_carbonDioxide_20020311_2035 .
+ex:proc_Creatinine_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Creatinine_20020311T203554 .
 
-ex:meas_carbonDioxide_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "25.17"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L .
+# 11 Calcium
+ex:meas_Calcium_20020311T203554 a chr:Measurement ;
+    rdfs:label "Calcium result 10.15 mg/dL" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "10.15"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/49765-1> .
 
-ex:measProc_cholesterol_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_cholesterol_20020311_2035 .
+ex:proc_Calcium_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Calcium_20020311T203554 .
 
-ex:meas_cholesterol_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "154.79"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL .
+# 12 Sodium
+ex:meas_Sodium_20020311T203554 a chr:Measurement ;
+    rdfs:label "Sodium result 139.09 mmol/L" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "139.09"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/2947-0> .
 
-ex:measProc_triglyceride_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_triglyceride_20020311_2035 .
+ex:proc_Sodium_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Sodium_20020311T203554 .
 
-ex:meas_triglyceride_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "140.07"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL .
+# 13 Potassium
+ex:meas_Potassium_20020311T203554 a chr:Measurement ;
+    rdfs:label "Potassium result 3.73 mmol/L" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.73"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/6298-4> .
 
-ex:measProc_cholesterolLDL_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_cholesterolLDL_20020311_2035 .
+ex:proc_Potassium_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Potassium_20020311T203554 .
 
-ex:meas_cholesterolLDL_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "70.64"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL .
+# 14 Chloride
+ex:meas_Chloride_20020311T203554 a chr:Measurement ;
+    rdfs:label "Chloride result 103.69 mmol/L" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "103.69"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/2069-3> .
 
-ex:measProc_cholesterolHDL_20020311_2035 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_cholesterolHDL_20020311_2035 .
+ex:proc_Chloride_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Chloride_20020311T203554 .
 
-ex:meas_cholesterolHDL_20020311_2035 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "56.14"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL .
+# 15 Carbon dioxide, total
+ex:meas_CO2_20020311T203554 a chr:Measurement ;
+    rdfs:label "Carbon dioxide, total result 25.17 mmol/L" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "25.17"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/20565-8> .
 
-ex:measProc_GAD7_20020311_2153 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_GAD7_20020311_2153 .
+ex:proc_CO2_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_CO2_20020311T203554 .
 
-ex:meas_GAD7_20020311_2153 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T21:53:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "3.0"^^xsd:float ;
-  chr:hasUnit ex:unit_score .
+# 16 Cholesterol
+ex:meas_Cholesterol_20020311T203554 a chr:Measurement ;
+    rdfs:label "Cholesterol result 154.79 mg/dL" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "154.79"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/2093-3> .
 
-ex:measProc_PHQ2_20020311_2230 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_PHQ2_20020311_2230 .
+ex:proc_Cholesterol_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Cholesterol_20020311T203554 .
 
-ex:meas_PHQ2_20020311_2230 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T22:30:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasUnit ex:unit_score .
+# 17 Triglyceride
+ex:meas_Triglyceride_20020311T203554 a chr:Measurement ;
+    rdfs:label "Triglyceride result 140.07 mg/dL" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "140.07"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/2571-8> .
 
-ex:measProc_DAST10_20020311_2309 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_DAST10_20020311_2309 .
+ex:proc_Triglyceride_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "Triglyceride measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Triglyceride_20020311T203554 .
 
-ex:meas_DAST10_20020311_2309 a chr:Measurement ;
-  chr:hasMeasuredDate "2002-03-11T23:09:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasUnit ex:unit_score .
+# 18 LDL Cholesterol
+ex:meas_LDL_20020311T203554 a chr:Measurement ;
+    rdfs:label "LDL Cholesterol result 70.64 mg/dL" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "70.64"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/18262-6> .
 
-ex:eval_20020311_2035 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:care_provider_Ivonne773Turcotte120 ;
-  chr:hasObservation ex:diag_medicationReview_20020311_2035 .
+ex:proc_LDL_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "LDL Cholesterol measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_LDL_20020311T203554 .
 
-ex:diag_medicationReview_20020311_2035 a chr:DiagnosticStatement .
+# 19 HDL Cholesterol
+ex:meas_HDL_20020311T203554 a chr:Measurement ;
+    rdfs:label "HDL Cholesterol result 56.14 mg/dL" ;
+    chr:hasMeasuredDate "2002-03-11T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "56.14"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/2085-9> .
 
-ex:condition_medicationReview_20020311_2035 a chr:ClinicalCondition ;
-  chr:hasRecordDate "2002-03-11T20:35:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:proc_HDL_20020311T203554 a chr:MeasurementProcess ;
+    rdfs:label "HDL Cholesterol measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_HDL_20020311T203554 .
 
-ex:eval_20020311_2309 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:care_provider_Ivonne773Turcotte120 ;
-  chr:hasObservation ex:diag_gingivitis_20020311_2309 .
+# 20 GAD-7
+ex:meas_GAD7_20020311T215350 a chr:Measurement ;
+    rdfs:label "GAD-7 total score result 3 score" ;
+    chr:hasMeasuredDate "2002-03-11T21:53:50+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasCode <https://loinc.org/70274-6> .
 
-ex:diag_gingivitis_20020311_2309 a chr:DiagnosticStatement .
+ex:proc_GAD7_20020311T215350 a chr:MeasurementProcess ;
+    rdfs:label "GAD-7 measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_GAD7_20020311T215350 .
 
-ex:condition_gingivitis_20020311_2309 a chr:ClinicalCondition ;
-  chr:hasRecordDate "2002-03-11T23:09:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+# 21 PHQ-2
+ex:meas_PHQ2_20020311T223040 a chr:Measurement ;
+    rdfs:label "PHQ-2 total score result 1 score" ;
+    chr:hasMeasuredDate "2002-03-11T22:30:40+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasCode <https://loinc.org/55758-7> .
 
-ex:severity_moderate a chr:Severity .
+ex:proc_PHQ2_20020311T223040 a chr:MeasurementProcess ;
+    rdfs:label "PHQ-2 measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_PHQ2_20020311T223040 .
 
-ex:carePlan_followUp a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:proc_followUp .
+# 22 DAST-10
+ex:meas_DAST10_20020311T230910 a chr:Measurement ;
+    rdfs:label "DAST-10 total score result 1 score" ;
+    chr:hasMeasuredDate "2002-03-11T23:09:10+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasCode <https://loinc.org/82667-7> .
 
-ex:proc_followUp a chr:MedicalProcedure .
+ex:proc_DAST10_20020311T230910 a chr:MeasurementProcess ;
+    rdfs:label "DAST-10 measurement process" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_DAST10_20020311T230910 .
 
-ex:unit_percent a chr:Unit .
+# Diagnostic statements
+ex:diag_MedicationReview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
 
-ex:unit_kg_m2 a chr:Unit .
+ex:diag_Gingivitis a chr:DiagnosticStatement ;
+    rdfs:label "Gingivitis (disorder)" ;
+    chr:hasCode <http://snomed.info/id/66383009> .
 
-ex:unit_per_min a chr:Unit .
+# Care plan
+ex:careplan_FollowUp a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review care plan" ;
+    chr:hasMedicalProcedure ex:proc_FollowUpVisit .
 
-ex:unit_mg_dL a chr:Unit .
-
-ex:unit_mmol_L a chr:Unit .
-
-ex:unit_score a chr:Unit .
+# Added medical procedure to satisfy CarePlan requirement
+ex:proc_FollowUpVisit a chr:MedicalProcedure ;
+    rdfs:label "Follow-up clinical visit" ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasDate "2002-03-12T10:00:00+01:00"^^xsd:dateTime .

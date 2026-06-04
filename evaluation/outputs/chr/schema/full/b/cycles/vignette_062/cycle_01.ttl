@@ -4,118 +4,200 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Delma583_Adriane398_Huel628 a chr:Person .
+# Person (patient)
+ex:patient_Delma583_Adriane398_Huel628 a chr:Person ;
+    rdfs:label "Delma583 Adriane398 Huel628" .
 
-ex:care_unit_HarborHealth a chr:CareUnit .
+# Person (physician)
+ex:physician_Drew592_Simonis280 a chr:Person ;
+    rdfs:label "Dr. Drew592 Simonis280" .
 
-ex:care_provider_Drew592_Simonis280 a chr:Person .
+# Care unit
+ex:careunit_HarborHealth a chr:CareUnit ;
+    rdfs:label "HARBOR HEALTH SERVICES INC" .
 
-ex:visit_2022_09_22 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:care_provider_Drew592_Simonis280 ;
-  chr:hasCareUnit ex:care_unit_HarborHealth ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 .
+# Clinical visit
+ex:visit_2022_09_22T081257 a chr:ClinicalVisit ;
+    rdfs:label "Visit on 2022-09-22T08:12:57+02:00" ;
+    chr:hasDate "2022-09-22T08:12:57+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_Drew592_Simonis280 ;
+    chr:hasCareUnit ex:careunit_HarborHealth ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasProcedure ex:procedure_well_child_visit .
 
-ex:proc_height_2022_09_22 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_height_2022_09_22 .
+# Encounter procedure (well child visit)
+ex:procedure_well_child_visit a chr:MedicalProcedure ;
+    rdfs:label "Well child visit" .
 
-ex:meas_height_2022_09_22 a chr:Measurement ;
-  chr:hasQuantityValue "90.6"^^xsd:float ;
-  chr:hasUnit sulo:centimeter ;
-  chr:hasMeasuredDate "2022-09-22T08:12:00"^^xsd:dateTime .
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:proc_pain_2022_09_22 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_pain_2022_09_22 .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:meas_pain_2022_09_22 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasUnit sulo:score ;
-  chr:hasMeasuredDate "2022-09-22T08:12:00"^^xsd:dateTime .
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
 
-ex:proc_weight_2022_09_22 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_weight_2022_09_22 .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kgperm2> .
 
-ex:meas_weight_2022_09_22 a chr:Measurement ;
-  chr:hasQuantityValue "14.0"^^xsd:float ;
-  chr:hasUnit sulo:kilogram ;
-  chr:hasMeasuredDate "2022-09-22T08:12:00"^^xsd:dateTime .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/permin> .
 
-ex:proc_weight_length_2022_09_22 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_weight_length_2022_09_22 .
+# Height measurement
+ex:measurement_height_20220922T081257 a chr:Measurement ;
+    rdfs:label "Body Height 90.6 cm" ;
+    chr:hasMeasuredDate "2022-09-22T08:12:57+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "90.6"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasCode <https://loinc.org/8302-2> .
 
-ex:meas_weight_length_2022_09_22 a chr:Measurement ;
-  chr:hasQuantityValue "77.9"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2022-09-22T08:12:00"^^xsd:dateTime .
+ex:measproc_height_20220922T081257 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Body Height" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_height_20220922T081257 .
 
-ex:proc_head_circumference_percentile_2022_09_22 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_head_circumference_percentile_2022_09_22 .
+# Pain severity measurement
+ex:measurement_pain_20220922T081257 a chr:Measurement ;
+    rdfs:label "Pain severity 0 score" ;
+    chr:hasMeasuredDate "2022-09-22T08:12:57+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasCode <https://loinc.org/72514-3> .
 
-ex:meas_head_circumference_percentile_2022_09_22 a chr:Measurement ;
-  chr:hasQuantityValue "24.46"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2022-09-22T08:12:00"^^xsd:dateTime .
+ex:measproc_pain_20220922T081257 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Pain severity" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_pain_20220922T081257 .
 
-ex:proc_head_circumference_2022_09_22 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_head_circumference_2022_09_22 .
+# Body weight measurement
+ex:measurement_weight_20220922T081257 a chr:Measurement ;
+    rdfs:label "Body Weight 14 kg" ;
+    chr:hasMeasuredDate "2022-09-22T08:12:57+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasCode <https://loinc.org/29463-7> .
 
-ex:meas_head_circumference_2022_09_22 a chr:Measurement ;
-  chr:hasQuantityValue "47.51"^^xsd:float ;
-  chr:hasUnit sulo:centimeter ;
-  chr:hasMeasuredDate "2022-09-22T08:12:00"^^xsd:dateTime .
+ex:measproc_weight_20220922T081257 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Body Weight" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_weight_20220922T081257 .
 
-ex:proc_bmi_ratio_2022_09_22 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_bmi_ratio_2022_09_22 .
+# Weight-for-length percentile measurement
+ex:measurement_wfl_percentile_20220922T081257 a chr:Measurement ;
+    rdfs:label "Weight-for-length Percentile 77.9 %" ;
+    chr:hasMeasuredDate "2022-09-22T08:12:57+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "77.9"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasCode <https://loinc.org/77606-2> .
 
-ex:meas_bmi_ratio_2022_09_22 a chr:Measurement ;
-  chr:hasQuantityValue "17.03"^^xsd:float ;
-  chr:hasUnit sulo:kilogramPerSquareMeter ;
-  chr:hasMeasuredDate "2022-09-22T08:12:00"^^xsd:dateTime .
+ex:measproc_wfl_percentile_20220922T081257 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Weight-for-length Percentile" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_wfl_percentile_20220922T081257 .
 
-ex:proc_bmi_percentile_2022_09_22 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_bmi_percentile_2022_09_22 .
+# Head circumference percentile measurement
+ex:measurement_head_percentile_20220922T081257 a chr:Measurement ;
+    rdfs:label "Head Occipital-frontal circumference Percentile 24.46 %" ;
+    chr:hasMeasuredDate "2022-09-22T08:12:57+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "24.46"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasCode <https://loinc.org/8289-1> .
 
-ex:meas_bmi_percentile_2022_09_22 a chr:Measurement ;
-  chr:hasQuantityValue "82.118"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2022-09-22T08:12:00"^^xsd:dateTime .
+ex:measproc_head_percentile_20220922T081257 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Head circumference Percentile" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_head_percentile_20220922T081257 .
 
-ex:proc_heart_rate_2022_09_22 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_heart_rate_2022_09_22 .
+# Head circumference measurement
+ex:measurement_head_20220922T081257 a chr:Measurement ;
+    rdfs:label "Head Occipital-frontal circumference 47.51 cm" ;
+    chr:hasMeasuredDate "2022-09-22T08:12:57+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "47.51"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasCode <https://loinc.org/9843-4> .
 
-ex:meas_heart_rate_2022_09_22 a chr:Measurement ;
-  chr:hasQuantityValue "79.0"^^xsd:float ;
-  chr:hasUnit sulo:perMinute ;
-  chr:hasMeasuredDate "2022-09-22T08:12:00"^^xsd:dateTime .
+ex:measproc_head_20220922T081257 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Head circumference" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_head_20220922T081257 .
 
-ex:proc_respiratory_rate_2022_09_22 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
-  chr:hasResult ex:meas_respiratory_rate_2022_09_22 .
+# BMI ratio measurement
+ex:measurement_bmi_ratio_20220922T081257 a chr:Measurement ;
+    rdfs:label "Body mass index (BMI) 17.03 kg/m2" ;
+    chr:hasMeasuredDate "2022-09-22T08:12:57+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "17.03"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasCode <https://loinc.org/39156-5> .
 
-ex:meas_respiratory_rate_2022_09_22 a chr:Measurement ;
-  chr:hasQuantityValue "15.0"^^xsd:float ;
-  chr:hasUnit sulo:perMinute ;
-  chr:hasMeasuredDate "2022-09-22T08:12:00"^^xsd:dateTime .
+ex:measproc_bmi_ratio_20220922T081257 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for BMI ratio" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_bmi_ratio_20220922T081257 .
 
-ex:evaluation_2022_09_22 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_medication_review ;
-  chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 .
+# BMI percentile measurement
+ex:measurement_bmi_percentile_20220922T081257 a chr:Measurement ;
+    rdfs:label "Body mass index (BMI) Percentile 82.118 %" ;
+    chr:hasMeasuredDate "2022-09-22T08:12:57+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82.118"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasCode <https://loinc.org/59576-9> .
 
-ex:diagnostic_medication_review a chr:DiagnosticStatement .
+ex:measproc_bmi_percentile_20220922T081257 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for BMI Percentile" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_bmi_percentile_20220922T081257 .
 
-ex:condition_medication_review a chr:ClinicalCondition ;
-  chr:hasRecordDate "2022-09-22T08:12:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+# Heart rate measurement
+ex:measurement_heart_rate_20220922T081257 a chr:Measurement ;
+    rdfs:label "Heart rate 79 /min" ;
+    chr:hasMeasuredDate "2022-09-22T08:12:57+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "79"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <https://loinc.org/8867-4> .
 
-ex:severity_moderate a chr:Severity .
+ex:measproc_heart_rate_20220922T081257 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Heart rate" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_heart_rate_20220922T081257 .
 
+# Respiratory rate measurement
+ex:measurement_resp_rate_20220922T081257 a chr:Measurement ;
+    rdfs:label "Respiratory rate 15 /min" ;
+    chr:hasMeasuredDate "2022-09-22T08:12:57+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <https://loinc.org/9279-1> .
+
+ex:measproc_resp_rate_20220922T081257 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Respiratory rate" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasResult ex:measurement_resp_rate_20220922T081257 .
+
+# Clinical condition (Medication review due)
+ex:condition_medreview a chr:ClinicalCondition ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2022-09-22T08:12:57+02:00"^^xsd:dateTime .
+
+# Diagnostic statement
+ex:diagstmt_medreview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+# Evaluation process
+ex:evaluation_20220922T081257 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Drew592 Simonis280" ;
+    chr:hasPatient ex:patient_Delma583_Adriane398_Huel628 ;
+    chr:hasCondition ex:condition_medreview ;
+    chr:hasObservation ex:diagstmt_medreview .
+
+# Care plan
 ex:careplan_followup a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:proc_height_2022_09_22 .
+    rdfs:label "Follow-up monitoring and routine review" ;
+    chr:hasMedicalProcedure ex:procedure_well_child_visit .

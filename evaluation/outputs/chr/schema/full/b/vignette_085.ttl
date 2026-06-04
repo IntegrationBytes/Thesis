@@ -4,100 +4,175 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Hallie315_Tasha327_Grant908 a chr:Person .
+ex:patient_Hallie_Tasha_Grant
+    a chr:Person ;
+    rdfs:label "Hallie315 Tasha327 Grant908" .
 
-ex:care_unit_CaringHealthCenter a chr:CareUnit .
+ex:physician_Teresa_Tapia
+    a chr:Person ;
+    rdfs:label "Dr. Teresa94 Tapia475" .
 
-ex:doctor_Teresa94_Tapia475 a chr:Person .
+ex:careunit_CARING_HEALTH_CENTER_INC
+    a chr:CareUnit ;
+    rdfs:label "CARING HEALTH CENTER, INC" .
 
-ex:visit_2021_11_10 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:doctor_Teresa94_Tapia475 ;
-  chr:hasCareUnit ex:care_unit_CaringHealthCenter .
+ex:visit_2021_11_10_T15_30_02
+    a chr:ClinicalVisit ;
+    rdfs:label "Visit on 2021-11-10T15:30:02+01:00" ;
+    chr:hasDate "2021-11-10T15:30:02+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_Teresa_Tapia ;
+    chr:hasCareUnit ex:careunit_CARING_HEALTH_CENTER_INC ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant .
 
-ex:height_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:height_measurement .
+# Units
+ex:unit_cm
+    a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:height_measurement a chr:Measurement ;
-  chr:hasQuantityValue "64.7"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime .
+ex:unit_kg
+    a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:pain_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:pain_measurement .
+ex:unit_percent
+    a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%> .
 
-ex:pain_measurement a chr:Measurement ;
-  chr:hasQuantityValue "4.0"^^xsd:float ;
-  chr:hasUnit ex:score ;
-  chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime .
+ex:unit_per_min
+    a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%2Fmin> .
 
-ex:weight_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:weight_measurement .
+# Height
+ex:meas_height_2021_11_10_T15_30_02
+    a chr:Measurement ;
+    rdfs:label "64.7 cm" ;
+    chr:hasMeasuredDate "2021-11-10T15:30:02+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "64.7"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
 
-ex:weight_measurement a chr:Measurement ;
-  chr:hasQuantityValue "8.1"^^xsd:float ;
-  chr:hasUnit sulo:kg ;
-  chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime .
+ex:mp_height_2021_11_10_T15_30_02
+    a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement" ;
+    chr:hasCode <https://loinc.org/8302-2> ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:meas_height_2021_11_10_T15_30_02 .
 
-ex:weight_for_length_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:weight_for_length_measurement .
+# Pain severity
+ex:meas_pain_2021_11_10_T15_30_02
+    a chr:Measurement ;
+    rdfs:label "4.0 score" ;
+    chr:hasMeasuredDate "2021-11-10T15:30:02+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.0"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
 
-ex:weight_for_length_measurement a chr:Measurement ;
-  chr:hasQuantityValue "88.875"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime .
+ex:mp_pain_2021_11_10_T15_30_02
+    a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement" ;
+    chr:hasCode <https://loinc.org/72514-3> ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:meas_pain_2021_11_10_T15_30_02 .
 
-ex:head_circumference_percentile_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:head_circumference_percentile_measurement .
+# Weight
+ex:meas_weight_2021_11_10_T15_30_02
+    a chr:Measurement ;
+    rdfs:label "8.1 kg" ;
+    chr:hasMeasuredDate "2021-11-10T15:30:02+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.1"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
 
-ex:head_circumference_percentile_measurement a chr:Measurement ;
-  chr:hasQuantityValue "57.73"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime .
+ex:mp_weight_2021_11_10_T15_30_02
+    a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement" ;
+    chr:hasCode <https://loinc.org/29463-7> ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:meas_weight_2021_11_10_T15_30_02 .
 
-ex:head_circumference_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:head_circumference_measurement .
+# Weight-for-length
+ex:meas_weight_for_length_2021_11_10_T15_30_02
+    a chr:Measurement ;
+    rdfs:label "88.875 %" ;
+    chr:hasMeasuredDate "2021-11-10T15:30:02+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "88.875"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
 
-ex:head_circumference_measurement a chr:Measurement ;
-  chr:hasQuantityValue "42.34"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime .
+ex:mp_weight_for_length_2021_11_10_T15_30_02
+    a chr:MeasurementProcess ;
+    rdfs:label "Weight-for-length Per age and sex measurement" ;
+    chr:hasCode <https://loinc.org/77606-2> ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:meas_weight_for_length_2021_11_10_T15_30_02 .
 
-ex:heart_rate_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:heart_rate_measurement .
+# Head OCF percentile
+ex:meas_head_occf_percentile_2021_11_10_T15_30_02
+    a chr:Measurement ;
+    rdfs:label "57.73 %" ;
+    chr:hasMeasuredDate "2021-11-10T15:30:02+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "57.73"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
 
-ex:heart_rate_measurement a chr:Measurement ;
-  chr:hasQuantityValue "61.0"^^xsd:float ;
-  chr:hasUnit sulo:per_minute ;
-  chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime .
+ex:mp_head_occf_percentile_2021_11_10_T15_30_02
+    a chr:MeasurementProcess ;
+    rdfs:label "Head Occipital-frontal circumference Percentile measurement" ;
+    chr:hasCode <https://loinc.org/8289-1> ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:meas_head_occf_percentile_2021_11_10_T15_30_02 .
 
-ex:respiratory_rate_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:respiratory_rate_measurement .
+# Head OCF
+ex:meas_head_occf_2021_11_10_T15_30_02
+    a chr:Measurement ;
+    rdfs:label "42.34 cm" ;
+    chr:hasMeasuredDate "2021-11-10T15:30:02+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "42.34"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
 
-ex:respiratory_rate_measurement a chr:Measurement ;
-  chr:hasQuantityValue "12.0"^^xsd:float ;
-  chr:hasUnit sulo:per_minute ;
-  chr:hasMeasuredDate "2021-11-10T15:30:00"^^xsd:dateTime .
+ex:mp_head_occf_2021_11_10_T15_30_02
+    a chr:MeasurementProcess ;
+    rdfs:label "Head Occipital-frontal circumference measurement" ;
+    chr:hasCode <https://loinc.org/9843-4> ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:meas_head_occf_2021_11_10_T15_30_02 .
 
-ex:evaluation_process a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_statement .
+# Heart rate
+ex:meas_heart_rate_2021_11_10_T15_30_02
+    a chr:Measurement ;
+    rdfs:label "61 /min" ;
+    chr:hasMeasuredDate "2021-11-10T15:30:02+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "61.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
 
-ex:diagnostic_statement a chr:DiagnosticStatement .
+ex:mp_heart_rate_2021_11_10_T15_30_02
+    a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement" ;
+    chr:hasCode <https://loinc.org/8867-4> ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:meas_heart_rate_2021_11_10_T15_30_02 .
 
-ex:condition a chr:ClinicalCondition ;
-  chr:hasSeverity ex:severity ;
-  chr:hasRecordDate "2021-11-10T15:30:00"^^xsd:dateTime .
+# Respiratory rate
+ex:meas_respiratory_rate_2021_11_10_T15_30_02
+    a chr:Measurement ;
+    rdfs:label "12 /min" ;
+    chr:hasMeasuredDate "2021-11-10T15:30:02+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
 
-ex:severity a chr:Severity .
+ex:mp_respiratory_rate_2021_11_10_T15_30_02
+    a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement" ;
+    chr:hasCode <https://loinc.org/9279-1> ;
+    chr:hasPatient ex:patient_Hallie_Tasha_Grant ;
+    chr:hasResult ex:meas_respiratory_rate_2021_11_10_T15_30_02 .
 
-ex:care_plan a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:procedure .
+# Diagnostic statement
+ex:diagstmt_MedicationReview
+    a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
 
-ex:procedure a chr:MedicalProcedure .
+# Evaluation process
+ex:evaluation_2021_11_10_T15_30_02
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Teresa94 Tapia475" ;
+    chr:hasObservation ex:diagstmt_MedicationReview .

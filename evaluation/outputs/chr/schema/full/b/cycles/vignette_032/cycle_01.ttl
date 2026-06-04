@@ -4,52 +4,80 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Casey401Elijah719Parker433 a chr:Person .
+ex:patient_Casey_Elijah_Parker
+    a chr:Person ;
+    rdfs:label "Casey401 Elijah719 Parker433" .
 
-ex:visit_2021_11_12 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasCareProvider ex:doctor_Rhett759Padberg411 ;
-  chr:hasCareUnit ex:care_unit_VibraHospital .
+ex:careunit_VIBRA_HOSPITAL
+    a chr:CareUnit ;
+    rdfs:label "VIBRA HOSPITAL OF WESTERN MASSACHUSETTS LLC" .
 
-ex:care_unit_VibraHospital a chr:CareUnit .
+ex:provider_Rhett_Padberg
+    a chr:Person ;
+    rdfs:label "Dr. Rhett759 Padberg411" .
 
-ex:doctor_Rhett759Padberg411 a chr:Person .
+<http://example.org/clinical/visit_20211112T220318+01_00>
+    a chr:ClinicalVisit ;
+    chr:hasDate "2021-11-12T22:03:18+01:00"^^xsd:dateTime ;
+    chr:hasCareUnit ex:careunit_VIBRA_HOSPITAL ;
+    chr:hasCareProvider ex:provider_Rhett_Padberg ;
+    chr:hasPatient ex:patient_Casey_Elijah_Parker ;
+    rdfs:label "Clinical visit on 2021-11-12T22:03:18+01:00" .
 
-ex:measurement_process_polyp_size a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:measurement_polyp_size ;
-  chr:hasStatus ex:process_status_completed .
+ex:unit_mm
+    a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mm> ;
+    rdfs:label "mm" .
 
-ex:measurement_polyp_size a chr:Measurement ;
-  chr:hasQuantityValue "2.4093"^^xsd:float ;
-  chr:hasUnit sulo:millimeter ;
-  chr:hasMeasuredDate "2021-11-12T22:48:00"^^xsd:dateTime .
+ex:unit_ng_per_mL
+    a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/ngpermL> ;
+    rdfs:label "ng/mL" .
 
-ex:measurement_process_hemoglobin a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:measurement_hemoglobin ;
-  chr:hasStatus ex:process_status_completed .
+<http://example.org/clinical/measurement_PolypSize_20211112T224807+01_00>
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-12T22:48:07+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.4093"^^xsd:float ;
+    chr:hasUnit ex:unit_mm ;
+    rdfs:label "2.4093 mm" .
 
-ex:measurement_hemoglobin a chr:Measurement ;
-  chr:hasQuantityValue "24.389"^^xsd:float ;
-  chr:hasUnit sulo:ng_per_mL ;
-  chr:hasMeasuredDate "2021-11-12T22:48:00"^^xsd:dateTime .
+<http://example.org/clinical/measproc_PolypSize_20211112T224807+01_00>
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Casey_Elijah_Parker ;
+    chr:hasResult <http://example.org/clinical/measurement_PolypSize_20211112T224807+01_00> ;
+    rdfs:label "Polyp size measurement process" .
 
-ex:process_status_completed a chr:ProcessStatus .
+<http://example.org/clinical/measurement_Hemoglobin_20211112T224807+01_00>
+    a chr:Measurement ;
+    chr:hasMeasuredDate "2021-11-12T22:48:07+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "24.389"^^xsd:float ;
+    chr:hasUnit ex:unit_ng_per_mL ;
+    rdfs:label "24.389 ng/mL" .
 
-ex:evaluation_2021_11_12 a chr:EvaluationProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasObservation ex:diagnostic_statement_polyp_colon .
+<http://example.org/clinical/measproc_Hemoglobin_20211112T224807+01_00>
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Casey_Elijah_Parker ;
+    chr:hasResult <http://example.org/clinical/measurement_Hemoglobin_20211112T224807+01_00> ;
+    rdfs:label "Hemoglobin measurement process" .
 
-ex:diagnostic_statement_polyp_colon a chr:DiagnosticStatement .
+ex:condition_PolypColon
+    a chr:ClinicalCondition ;
+    chr:hasCode <http://snomed.info/id/68496003> ;
+    chr:hasRecordDate "2021-11-12T22:48:07+01:00"^^xsd:dateTime ;
+    rdfs:label "Polyp of colon" .
 
-ex:clinical_condition_polyp_colon a chr:ClinicalCondition ;
-  chr:hasSeverity ex:severity_moderate ;
-  chr:hasRecordDate "2021-11-12T22:48:00"^^xsd:dateTime .
+ex:diagnostic_PolypColon
+    a chr:DiagnosticStatement ;
+    chr:hasCode <http://snomed.info/id/68496003> ;
+    rdfs:label "Polyp of colon" .
 
-ex:severity_moderate a chr:Severity .
+<http://example.org/clinical/evaluation_20211112T224807+01_00>
+    a chr:EvaluationProcess ;
+    chr:hasCondition ex:condition_PolypColon ;
+    chr:hasObservation ex:diagnostic_PolypColon ;
+    rdfs:label "Evaluation process for Polyp of colon" .
 
-ex:care_plan_follow_up a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:medical_procedure_colonoscopy .
-
-ex:medical_procedure_colonoscopy a chr:MedicalProcedure .
+<http://example.org/clinical/careplan_20211112T220318+01_00>
+    a chr:CarePlan ;
+    chr:hasMedicalProcedure <http://example.org/clinical/evaluation_20211112T224807+01_00> ;
+    rdfs:label "Care plan for follow‑up monitoring and routine review" .

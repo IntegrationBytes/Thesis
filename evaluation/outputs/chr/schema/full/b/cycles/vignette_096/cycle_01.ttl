@@ -1,12 +1,363 @@
 @prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
 @prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Harvey63Napoleon578Homenick806 a chr:Person .
+# Persons
+ex:patient_Harvey_Napoleon_Homenick a chr:Person ;
+    rdfs:label "Harvey63 Napoleon578 Homenick806" .
 
-ex:care_unit_ChildFamilyServices a chr:CareUnit .
+ex:physician_Assunta_Haley a chr:Person ;
+    rdfs:label "Dr. Assunta351 Haley279" .
 
-ex:care_provider_DrAssunta351Haley279 a chr:Person .
+# Care unit
+ex:careunit_CHILD_FAMILY_SERVICES a chr:CareUnit ;
+    rdfs:label "CHILD & FAMILY SERVICES, INC." .
 
-ex:visit_2018_07_13 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Harvey63Napoleon
+# Clinical visit
+ex:visit_2018_07_13_20_30_59 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2018-07-13T20:30:59+02:00" ;
+    chr:hasDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_Assunta_Haley ;
+    chr:hasCareUnit ex:careunit_CHILD_FAMILY_SERVICES ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasProcedure ex:procedure_general_exam .
+
+# General examination procedure
+ex:procedure_general_exam a chr:MedicalProcedure ;
+    rdfs:label "General examination of patient" ;
+    chr:hasPerformedDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime ;
+    chr:hasPerformer ex:physician_Assunta_Haley ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasStatus ex:status_completed .
+
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Units
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
+
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
+
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
+
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
+
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg.m2> .
+
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min> .
+
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mg.dL> .
+
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmol.L> .
+
+# Measurement processes and results
+
+# 1 Hemoglobin A1c
+ex:mp_hba1c_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_hba1c_2018_07_13_20_30_59 .
+
+ex:meas_hba1c_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "5.81 %" ;
+    chr:hasQuantityValue "5.81"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 2 Body Height
+ex:mp_height_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_height_2018_07_13_20_30_59 .
+
+ex:meas_height_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "172.9 cm" ;
+    chr:hasQuantityValue "172.9"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 3 Pain severity
+ex:mp_pain_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_pain_2018_07_13_20_30_59 .
+
+ex:meas_pain_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "2 score" ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 4 Body Weight
+ex:mp_weight_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_weight_2018_07_13_20_30_59 .
+
+ex:meas_weight_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "82.3 kg" ;
+    chr:hasQuantityValue "82.3"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 5 BMI
+ex:mp_bmi_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Body mass index measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_bmi_2018_07_13_20_30_59 .
+
+ex:meas_bmi_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "27.53 kg/m2" ;
+    chr:hasQuantityValue "27.53"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 6 Heart rate
+ex:mp_hr_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_hr_2018_07_13_20_30_59 .
+
+ex:meas_hr_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "85 /min" ;
+    chr:hasQuantityValue "85"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 7 Respiratory rate
+ex:mp_rr_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_rr_2018_07_13_20_30_59 .
+
+ex:meas_rr_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "14 /min" ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 8 Glucose
+ex:mp_glucose_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_glucose_2018_07_13_20_30_59 .
+
+ex:meas_glucose_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "74.55 mg/dL" ;
+    chr:hasQuantityValue "74.55"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 9 Urea nitrogen
+ex:mp_urea_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_urea_2018_07_13_20_30_59 .
+
+ex:meas_urea_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "17.41 mg/dL" ;
+    chr:hasQuantityValue "17.41"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 10 Creatinine
+ex:mp_creatinine_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_creatinine_2018_07_13_20_30_59 .
+
+ex:meas_creatinine_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "0.98 mg/dL" ;
+    chr:hasQuantityValue "0.98"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 11 Calcium
+ex:mp_calcium_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_calcium_2018_07_13_20_30_59 .
+
+ex:meas_calcium_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "9.56 mg/dL" ;
+    chr:hasQuantityValue "9.56"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 12 Sodium
+ex:mp_sodium_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_sodium_2018_07_13_20_30_59 .
+
+ex:meas_sodium_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "136.78 mmol/L" ;
+    chr:hasQuantityValue "136.78"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 13 Potassium
+ex:mp_potassium_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_potassium_2018_07_13_20_30_59 .
+
+ex:meas_potassium_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "4.44 mmol/L" ;
+    chr:hasQuantityValue "4.44"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 14 Chloride
+ex:mp_chloride_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_chloride_2018_07_13_20_30_59 .
+
+ex:meas_chloride_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "107.4 mmol/L" ;
+    chr:hasQuantityValue "107.4"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 15 Carbon dioxide, total
+ex:mp_co2_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide, total measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_co2_2018_07_13_20_30_59 .
+
+ex:meas_co2_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "24.14 mmol/L" ;
+    chr:hasQuantityValue "24.14"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 16 Cholesterol
+ex:mp_cholesterol_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_cholesterol_2018_07_13_20_30_59 .
+
+ex:meas_cholesterol_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "200.28 mg/dL" ;
+    chr:hasQuantityValue "200.28"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 17 Triglyceride
+ex:mp_triglyceride_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "Triglyceride measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_triglyceride_2018_07_13_20_30_59 .
+
+ex:meas_triglyceride_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "110.4 mg/dL" ;
+    chr:hasQuantityValue "110.4"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 18 LDL Cholesterol
+ex:mp_ldl_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "LDL Cholesterol measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_ldl_2018_07_13_20_30_59 .
+
+ex:meas_ldl_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "123.74 mg/dL" ;
+    chr:hasQuantityValue "123.74"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 19 HDL Cholesterol
+ex:mp_hdl_2018_07_13_20_30_59 a chr:MeasurementProcess ;
+    rdfs:label "HDL Cholesterol measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_hdl_2018_07_13_20_30_59 .
+
+ex:meas_hdl_2018_07_13_20_30_59 a chr:Measurement ;
+    rdfs:label "54.47 mg/dL" ;
+    chr:hasQuantityValue "54.47"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 20 GAD-7
+ex:mp_gad7_2018_07_13_21_34_04 a chr:MeasurementProcess ;
+    rdfs:label "GAD-7 total score measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_gad7_2018_07_13_21_34_04 .
+
+ex:meas_gad7_2018_07_13_21_34_04 a chr:Measurement ;
+    rdfs:label "4 score" ;
+    chr:hasQuantityValue "4"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2018-07-13T21:34:04+02:00"^^xsd:dateTime .
+
+# 21 HARK total score
+ex:mp_hark_2018_07_13_22_16_41 a chr:MeasurementProcess ;
+    rdfs:label "HARK total score measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_hark_2018_07_13_22_16_41 .
+
+ex:meas_hark_2018_07_13_22_16_41 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2018-07-13T22:16:41+02:00"^^xsd:dateTime .
+
+# 22 PHQ-2
+ex:mp_phq2_2018_07_13_22_51_20 a chr:MeasurementProcess ;
+    rdfs:label "PHQ-2 total score measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_phq2_2018_07_13_22_51_20 .
+
+ex:meas_phq2_2018_07_13_22_51_20 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2018-07-13T22:51:20+02:00"^^xsd:dateTime .
+
+# 23 AUDIT-C
+ex:mp_auditc_2018_07_13_23_29_12 a chr:MeasurementProcess ;
+    rdfs:label "AUDIT-C total score measurement" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:meas_auditc_2018_07_13_23_29_12 .
+
+ex:meas_auditc_2018_07_13_23_29_12 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2018-07-13T23:29:12+02:00"^^xsd:dateTime .
+
+# Diagnostic statement
+ex:diag_social_isolation a chr:DiagnosticStatement ;
+    rdfs:label "Social isolation" ;
+    chr:hasCode <http://snomed.info/id/422650009> .
+
+# Evaluation process
+ex:evaluation_2018_07_13_21_10_28 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation of patient" ;
+    chr:hasPatient ex:patient_Harvey_Napoleon_Homenick ;
+    chr:hasObservation ex:diag_social_isolation .
+
+# Care plan (optional)
+ex:careplan_followup a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review" ;
+    chr:hasMedicalProcedure ex:procedure_general_exam .

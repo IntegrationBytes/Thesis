@@ -4,112 +4,168 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Casey401Elijah719Parker433 a chr:Person .
+ex:patient_CaseyElijahParker a chr:Person ;
+    rdfs:label "Casey401 Elijah719 Parker433" .
 
-ex:care_unit_JFS a chr:CareUnit .
+ex:physician_EldridgeMarquardt a chr:Person ;
+    rdfs:label "Dr. Eldridge510 Marquardt819" .
 
-ex:doctor_Eldridge510Marquardt819 a chr:Person .
+ex:careunit_JewishFamilyChildrenService a chr:CareUnit ;
+    rdfs:label "JEWISH FAMILY & CHILDREN'S SERVICE" .
 
-ex:visit_2023_11_02_1759 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:doctor_Eldridge510Marquardt819 ;
-  chr:hasCareUnit ex:care_unit_JFS ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 .
+ex:visit_20231102T175956 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2023-11-02T17:59:56+01:00" ;
+    chr:hasDate "2023-11-02T17:59:56+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_EldridgeMarquardt ;
+    chr:hasCareUnit ex:careunit_JewishFamilyChildrenService ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasProcedure ex:proc_generalExamination .
 
-ex:proc_body_height_20231102_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_body_height_20231102_1759 .
+ex:proc_generalExamination a chr:MedicalProcedure ;
+    rdfs:label "General examination of patient" ;
+    chr:hasPerformedDate "2023-11-02T17:59:56+01:00"^^xsd:dateTime ;
+    chr:hasPerformer ex:physician_EldridgeMarquardt ;
+    chr:hasPatient ex:patient_CaseyElijahParker .
 
-ex:meas_body_height_20231102_1759 a chr:Measurement ;
-  chr:hasQuantityValue "172.7"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2023-11-02T17:59:00"^^xsd:dateTime .
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:proc_pain_score_20231102_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_pain_score_20231102_1759 .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:meas_pain_score_20231102_1759 a chr:Measurement ;
-  chr:hasQuantityValue "3.0"^^xsd:float ;
-  chr:hasMeasuredDate "2023-11-02T17:59:00"^^xsd:dateTime .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg/m2> .
 
-ex:proc_body_weight_20231102_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_body_weight_20231102_1759 .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%2Fmin> .
 
-ex:meas_body_weight_20231102_1759 a chr:Measurement ;
-  chr:hasQuantityValue "82.2"^^xsd:float ;
-  chr:hasUnit sulo:kg ;
-  chr:hasMeasuredDate "2023-11-02T17:59:00"^^xsd:dateTime .
+# Measurements and processes
+ex:measurement_height_20231102T175956 a chr:Measurement ;
+    rdfs:label "172.7 cm" ;
+    chr:hasQuantityValue "172.7"^^xsd:float ;
+    chr:hasMeasuredDate "2023-11-02T17:59:56+01:00"^^xsd:dateTime ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasCode <http://loinc.org/8302-2> .
 
-ex:proc_bmi_20231102_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_bmi_20231102_1759 .
+ex:measproc_height_20231102T175956 a chr:MeasurementProcess ;
+    rdfs:label "Height measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_height_20231102T175956 .
 
-ex:meas_bmi_20231102_1759 a chr:Measurement ;
-  chr:hasQuantityValue "27.56"^^xsd:float ;
-  chr:hasUnit sulo:kg_per_m2 ;
-  chr:hasMeasuredDate "2023-11-02T17:59:00"^^xsd:dateTime .
+ex:measurement_pain_20231102T175956 a chr:Measurement ;
+    rdfs:label "3" ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasMeasuredDate "2023-11-02T17:59:56+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/72514-3> .
 
-ex:proc_heart_rate_20231102_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_heart_rate_20231102_1759 .
+ex:measproc_pain_20231102T175956 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_pain_20231102T175956 .
 
-ex:meas_heart_rate_20231102_1759 a chr:Measurement ;
-  chr:hasQuantityValue "69.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min ;
-  chr:hasMeasuredDate "2023-11-02T17:59:00"^^xsd:dateTime .
+ex:measurement_weight_20231102T175956 a chr:Measurement ;
+    rdfs:label "82.2 kg" ;
+    chr:hasQuantityValue "82.2"^^xsd:float ;
+    chr:hasMeasuredDate "2023-11-02T17:59:56+01:00"^^xsd:dateTime ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasCode <http://loinc.org/29463-7> .
 
-ex:proc_resp_rate_20231102_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_resp_rate_20231102_1759 .
+ex:measproc_weight_20231102T175956 a chr:MeasurementProcess ;
+    rdfs:label "Weight measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_weight_20231102T175956 .
 
-ex:meas_resp_rate_20231102_1759 a chr:Measurement ;
-  chr:hasQuantityValue "13.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min ;
-  chr:hasMeasuredDate "2023-11-02T17:59:00"^^xsd:dateTime .
+ex:measurement_bmi_20231102T175956 a chr:Measurement ;
+    rdfs:label "27.56 kg/m2" ;
+    chr:hasQuantityValue "27.56"^^xsd:float ;
+    chr:hasMeasuredDate "2023-11-02T17:59:56+01:00"^^xsd:dateTime ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasCode <http://loinc.org/39156-5> .
 
-ex:proc_fall_risk_20231102_1924 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_fall_risk_20231102_1924 .
+ex:measproc_bmi_20231102T175956 a chr:MeasurementProcess ;
+    rdfs:label "BMI measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_bmi_20231102T175956 .
 
-ex:meas_fall_risk_20231102_1924 a chr:Measurement ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasMeasuredDate "2023-11-02T19:24:00"^^xsd:dateTime .
+ex:measurement_hr_20231102T175956 a chr:Measurement ;
+    rdfs:label "69 /min" ;
+    chr:hasQuantityValue "69"^^xsd:float ;
+    chr:hasMeasuredDate "2023-11-02T17:59:56+01:00"^^xsd:dateTime ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <http://loinc.org/8867-4> .
 
-ex:proc_hark_score_20231102_2005 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_hark_score_20231102_2005 .
+ex:measproc_hr_20231102T175956 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_hr_20231102T175956 .
 
-ex:meas_hark_score_20231102_2005 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasMeasuredDate "2023-11-02T20:05:00"^^xsd:dateTime .
+ex:measurement_rr_20231102T175956 a chr:Measurement ;
+    rdfs:label "13 /min" ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasMeasuredDate "2023-11-02T17:59:56+01:00"^^xsd:dateTime ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <http://loinc.org/9279-1> .
 
-ex:proc_dast10_score_20231102_2039 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_dast10_score_20231102_2039 .
+ex:measproc_rr_20231102T175956 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_rr_20231102T175956 .
 
-ex:meas_dast10_score_20231102_2039 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasMeasuredDate "2023-11-02T20:39:00"^^xsd:dateTime .
+ex:measurement_fallrisk_20231102T192409 a chr:Measurement ;
+    rdfs:label "1" ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasMeasuredDate "2023-11-02T19:24:09+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/59460-6> .
 
-ex:eval_20231102_1759 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_med_review_due .
+ex:measproc_fallrisk_20231102T192409 a chr:MeasurementProcess ;
+    rdfs:label "Fall risk total measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_fallrisk_20231102T192409 .
 
-ex:diag_med_review_due a chr:DiagnosticStatement .
+ex:measurement_hark_20231102T200546 a chr:Measurement ;
+    rdfs:label "0" ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasMeasuredDate "2023-11-02T20:05:46+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/76504-0> .
 
-ex:cond_med_review_due a chr:ClinicalCondition ;
-  chr:hasRecordDate "2023-11-02T17:59:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:measproc_hark_20231102T200546 a chr:MeasurementProcess ;
+    rdfs:label "HARK total score measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_hark_20231102T200546 .
 
-ex:severity_moderate a chr:Severity .
+ex:measurement_dast_20231102T203957 a chr:Measurement ;
+    rdfs:label "0" ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasMeasuredDate "2023-11-02T20:39:57+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/82667-7> .
 
-ex:eval_20231102_1856 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_part_time_employment .
+ex:measproc_dast_20231102T203957 a chr:MeasurementProcess ;
+    rdfs:label "DAST-10 total score measurement process" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_dast_20231102T203957 .
 
-ex:diag_part_time_employment a chr:DiagnosticStatement .
+# Diagnostic statements and evaluations
+ex:diag_medreview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
 
-ex:cond_part_time_employment a chr:ClinicalCondition ;
-  chr:hasRecordDate "2023-11-02T18:56:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:evaluation_20231102T175956 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Eldridge Marquardt on 2023-11-02T17:59:56+01:00" ;
+    chr:hasObservation ex:diag_medreview .
 
-ex:care_plan a chr:CarePlan .
+ex:diag_parttime a chr:DiagnosticStatement ;
+    rdfs:label "Part-time employment (finding)" ;
+    chr:hasCode <http://snomed.info/id/160904001> .
+
+ex:evaluation_20231102T185654 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Eldridge Marquardt on 2023-11-02T18:56:54+01:00" ;
+    chr:hasObservation ex:diag_parttime .
+
+# Care plan
+ex:careplan_followup a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review" .

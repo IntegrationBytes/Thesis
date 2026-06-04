@@ -4,227 +4,317 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Estela596Yetta429Grant908 a chr:Person .
+# Patient
+ex:patient_EstelaGrant a chr:Person ;
+    rdfs:label "Estela596 Yetta429 Grant908" .
 
-ex:visit_2009_01_05 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasCareProvider ex:doctor_Ivonne773Turcotte120 ;
-  chr:hasCareUnit ex:care_unit_ZionHealthWellness .
+# Care provider
+ex:provider_IvonneTurcotte a chr:Person ;
+    rdfs:label "Dr. Ivonne773 Turcotte120" .
 
-ex:care_unit_ZionHealthWellness a chr:CareUnit .
+# Care unit
+ex:careunit_ZION a chr:CareUnit ;
+    rdfs:label "ZION HEALTH & WELLNESS LLC" .
 
-ex:doctor_Ivonne773Turcotte120 a chr:Person .
+# Clinical visit
+ex:visit_20090105T203554p01_00 a chr:ClinicalVisit ;
+    chr:hasDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:provider_IvonneTurcotte ;
+    chr:hasCareUnit ex:careunit_ZION ;
+    chr:hasPatient ex:patient_EstelaGrant .
 
-ex:proc_HemoglobinA1c_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_HemoglobinA1c_20090105 .
+# Units
+ex:unit_percent a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> ;
+    rdfs:label "%" .
 
-ex:meas_HemoglobinA1c_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "6.32"^^xsd:float ;
-  chr:hasUnit ex:unit_percent ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+ex:unit_cm a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> ;
+    rdfs:label "cm" .
 
-ex:proc_BodyHeight_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_BodyHeight_20090105 .
+ex:unit_score a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> ;
+    rdfs:label "score" .
 
-ex:meas_BodyHeight_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "156.6"^^xsd:float ;
-  chr:hasUnit ex:unit_cm ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+ex:unit_kg a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> ;
+    rdfs:label "kg" .
 
-ex:proc_PainSeverity_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_PainSeverity_20090105 .
+ex:unit_kg_per_m2 a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg/m2> ;
+    rdfs:label "kg/m2" .
 
-ex:meas_PainSeverity_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "3.0"^^xsd:float ;
-  chr:hasUnit ex:unit_score ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+ex:unit_per_min a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min^-1> ;
+    rdfs:label "/min" .
 
-ex:proc_BodyWeight_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_BodyWeight_20090105 .
+ex:unit_mg_per_dL a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mg/dL> ;
+    rdfs:label "mg/dL" .
 
-ex:meas_BodyWeight_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "73.7"^^xsd:float ;
-  chr:hasUnit ex:unit_kg ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+ex:unit_mmol_per_L a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmol/L> ;
+    rdfs:label "mmol/L" .
 
-ex:proc_BMI_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_BMI_20090105 .
+# Measurements and measurement processes
+# 1. Hemoglobin A1c
+ex:meas_HbA1c_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "6.32"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/4548-4> ;
+    rdfs:label "Hemoglobin A1c/Hemoglobin.total in Blood" .
+ex:proc_HbA1c_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_HbA1c_20090105T203554p01_00 ;
+    rdfs:label "Hemoglobin A1c measurement process" .
 
-ex:meas_BMI_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "30.05"^^xsd:float ;
-  chr:hasUnit ex:unit_kg_m2 ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+# 2. Body Height
+ex:meas_Height_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "156.6"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/8302-2> ;
+    rdfs:label "Body Height" .
+ex:proc_Height_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Height_20090105T203554p01_00 ;
+    rdfs:label "Body Height measurement process" .
 
-ex:proc_HeartRate_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_HeartRate_20090105 .
+# 3. Pain severity
+ex:meas_Pain_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/72514-3> ;
+    rdfs:label "Pain severity - 0-10 verbal numeric rating" .
+ex:proc_Pain_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Pain_20090105T203554p01_00 ;
+    rdfs:label "Pain severity measurement process" .
 
-ex:meas_HeartRate_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "67.0"^^xsd:float ;
-  chr:hasUnit ex:unit_per_min ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+# 4. Body Weight
+ex:meas_Weight_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "73.7"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/29463-7> ;
+    rdfs:label "Body Weight" .
+ex:proc_Weight_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Weight_20090105T203554p01_00 ;
+    rdfs:label "Body Weight measurement process" .
 
-ex:proc_RespiratoryRate_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_RespiratoryRate_20090105 .
+# 5. BMI
+ex:meas_BMI_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "30.05"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/39156-5> ;
+    rdfs:label "Body mass index (BMI)" .
+ex:proc_BMI_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_BMI_20090105T203554p01_00 ;
+    rdfs:label "BMI measurement process" .
 
-ex:meas_RespiratoryRate_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "13.0"^^xsd:float ;
-  chr:hasUnit ex:unit_per_min ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+# 6. Heart rate
+ex:meas_HR_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "67"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/8867-4> ;
+    rdfs:label "Heart rate" .
+ex:proc_HR_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_HR_20090105T203554p01_00 ;
+    rdfs:label "Heart rate measurement process" .
 
-ex:proc_Glucose_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_Glucose_20090105 .
+# 7. Respiratory rate
+ex:meas_RR_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/9279-1> ;
+    rdfs:label "Respiratory rate" .
+ex:proc_RR_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_RR_20090105T203554p01_00 ;
+    rdfs:label "Respiratory rate measurement process" .
 
-ex:meas_Glucose_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "92.14"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+# 8. Glucose
+ex:meas_Glucose_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "92.14"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/2339-0> ;
+    rdfs:label "Glucose [Mass/volume] in Blood" .
+ex:proc_Glucose_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Glucose_20090105T203554p01_00 ;
+    rdfs:label "Glucose measurement process" .
 
-ex:proc_UreaNitrogen_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_UreaNitrogen_20090105 .
+# 9. Urea nitrogen
+ex:meas_UreaN_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "13.24"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/6299-2> ;
+    rdfs:label "Urea nitrogen [Mass/volume] in Blood" .
+ex:proc_UreaN_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_UreaN_20090105T203554p01_00 ;
+    rdfs:label "Urea nitrogen measurement process" .
 
-ex:meas_UreaNitrogen_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "13.24"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+# 10. Creatinine
+ex:meas_Creatinine_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "0.84"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/38483-4> ;
+    rdfs:label "Creatinine [Mass/volume] in Blood" .
+ex:proc_Creatinine_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Creatinine_20090105T203554p01_00 ;
+    rdfs:label "Creatinine measurement process" .
 
-ex:proc_Creatinine_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_Creatinine_20090105 .
+# 11. Calcium
+ex:meas_Calcium_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "8.68"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/49765-1> ;
+    rdfs:label "Calcium [Mass/volume] in Blood" .
+ex:proc_Calcium_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Calcium_20090105T203554p01_00 ;
+    rdfs:label "Calcium measurement process" .
 
-ex:meas_Creatinine_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "0.84"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+# 12. Sodium
+ex:meas_Sodium_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "142.27"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/2947-0> ;
+    rdfs:label "Sodium [Moles/volume] in Blood" .
+ex:proc_Sodium_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Sodium_20090105T203554p01_00 ;
+    rdfs:label "Sodium measurement process" .
 
-ex:proc_Calcium_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_Calcium_20090105 .
+# 13. Potassium
+ex:meas_Potassium_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "4.36"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/6298-4> ;
+    rdfs:label "Potassium [Moles/volume] in Blood" .
+ex:proc_Potassium_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Potassium_20090105T203554p01_00 ;
+    rdfs:label "Potassium measurement process" .
 
-ex:meas_Calcium_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "8.68"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+# 14. Chloride
+ex:meas_Chloride_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "101.97"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/2069-3> ;
+    rdfs:label "Chloride [Moles/volume] in Blood" .
+ex:proc_Chloride_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_Chloride_20090105T203554p01_00 ;
+    rdfs:label "Chloride measurement process" .
 
-ex:proc_Sodium_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_Sodium_20090105 .
+# 15. Carbon dioxide, total
+ex:meas_CO2_20090105T203554p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "23.29"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/20565-8> ;
+    rdfs:label "Carbon dioxide, total [Moles/volume] in Blood" .
+ex:proc_CO2_20090105T203554p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_CO2_20090105T203554p01_00 ;
+    rdfs:label "Carbon dioxide measurement process" .
 
-ex:meas_Sodium_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "142.27"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+# 16. PHQ-2 total score
+ex:meas_PHQ2_20090105T214617p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2009-01-05T21:46:17+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/55758-7> ;
+    rdfs:label "Patient Health Questionnaire 2 item (PHQ-2) total score" .
+ex:proc_PHQ2_20090105T214617p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_PHQ2_20090105T214617p01_00 ;
+    rdfs:label "PHQ-2 measurement process" .
 
-ex:proc_Potassium_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_Potassium_20090105 .
+# 17. DAST-10 total score
+ex:meas_DAST10_20090105T222453p01_00 a chr:Measurement ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2009-01-05T22:24:53+01:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/82667-7> ;
+    rdfs:label "Total score [DAST-10]" .
+ex:proc_DAST10_20090105T222453p01_00 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaGrant ;
+    chr:hasResult ex:meas_DAST10_20090105T222453p01_00 ;
+    rdfs:label "DAST-10 measurement process" .
 
-ex:meas_Potassium_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "4.36"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+# Diagnostic statements and clinical conditions
+ex:diag_medreview a chr:DiagnosticStatement ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    rdfs:label "Medication review due (situation)" .
+ex:cond_medreview a chr:ClinicalCondition ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2009-01-05T20:35:54+01:00"^^xsd:dateTime ;
+    rdfs:label "Medication review due (situation)" .
 
-ex:proc_Chloride_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_Chloride_20090105 .
+ex:diag_parttime a chr:DiagnosticStatement ;
+    chr:hasCode <http://snomed.info/id/160904001> ;
+    rdfs:label "Part-time employment (finding)" .
+ex:cond_parttime a chr:ClinicalCondition ;
+    chr:hasCode <http://snomed.info/id/160904001> ;
+    chr:hasRecordDate "2009-01-05T21:08:51+01:00"^^xsd:dateTime ;
+    rdfs:label "Part-time employment (finding)" .
 
-ex:meas_Chloride_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "101.97"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+ex:diag_stress a chr:DiagnosticStatement ;
+    chr:hasCode <http://snomed.info/id/73595000> ;
+    rdfs:label "Stress (finding)" .
+ex:cond_stress a chr:ClinicalCondition ;
+    chr:hasCode <http://snomed.info/id/73595000> ;
+    chr:hasRecordDate "2009-01-05T21:08:51+01:00"^^xsd:dateTime ;
+    rdfs:label "Stress (finding)" .
 
-ex:proc_CarbonDioxide_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_CarbonDioxide_20090105 .
+ex:diag_gingivitis a chr:DiagnosticStatement ;
+    chr:hasCode <http://snomed.info/id/66383009> ;
+    rdfs:label "Gingivitis (disorder)" .
+ex:cond_gingivitis a chr:ClinicalCondition ;
+    chr:hasCode <http://snomed.info/id/66383009> ;
+    chr:hasRecordDate "2009-01-05T22:24:53+01:00"^^xsd:dateTime ;
+    rdfs:label "Gingivitis (disorder)" .
 
-ex:meas_CarbonDioxide_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "23.29"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L ;
-  chr:hasMeasuredDate "2009-01-05T20:35:00"^^xsd:dateTime .
+# Evaluation processes linking conditions and observations
+ex:evaluation_20090105T203554p01_00 a chr:EvaluationProcess ;
+    chr:hasCondition ex:cond_medreview ;
+    chr:hasObservation ex:diag_medreview ;
+    rdfs:label "Evaluation on 2009-01-05T20:35:54+01:00" .
 
-ex:proc_PHQ2_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_PHQ2_20090105 .
+ex:evaluation_20090105T210851p01_00 a chr:EvaluationProcess ;
+    chr:hasCondition ex:cond_parttime ;
+    chr:hasObservation ex:diag_parttime ;
+    rdfs:label "Evaluation on 2009-01-05T21:08:51+01:00" .
 
-ex:meas_PHQ2_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasUnit ex:unit_score ;
-  chr:hasMeasuredDate "2009-01-05T21:46:00"^^xsd:dateTime .
+ex:evaluation_20090105T210851_stress a chr:EvaluationProcess ;
+    chr:hasCondition ex:cond_stress ;
+    chr:hasObservation ex:diag_stress ;
+    rdfs:label "Evaluation on 2009-01-05T21:08:51+01:00 (stress)" .
 
-ex:proc_DAST10_20090105 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:meas_DAST10_20090105 .
+ex:evaluation_20090105T222453p01_00 a chr:EvaluationProcess ;
+    chr:hasCondition ex:cond_gingivitis ;
+    chr:hasObservation ex:diag_gingivitis ;
+    rdfs:label "Evaluation on 2009-01-05T22:24:53+01:00" .
 
-ex:meas_DAST10_20090105 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasUnit ex:unit_score ;
-  chr:hasMeasuredDate "2009-01-05T22:24:00"^^xsd:dateTime .
-
-ex:eval_MedicationReview_20090105 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:doctor_Ivonne773Turcotte120 ;
-  chr:hasObservation ex:diag_MedicationReview_20090105 .
-
-ex:diag_MedicationReview_20090105 a chr:DiagnosticStatement .
-
-ex:cond_MedicationReview_20090105 a chr:ClinicalCondition ;
-  chr:hasRecordDate "2009-01-05T20:35:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_Moderate .
-
-ex:eval_PartTimeEmployment_20090105 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:doctor_Ivonne773Turcotte120 ;
-  chr:hasObservation ex:diag_PartTimeEmployment_20090105 .
-
-ex:diag_PartTimeEmployment_20090105 a chr:DiagnosticStatement .
-
-ex:cond_PartTimeEmployment_20090105 a chr:ClinicalCondition ;
-  chr:hasRecordDate "2009-01-05T21:08:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_Moderate .
-
-ex:eval_Stress_20090105 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:doctor_Ivonne773Turcotte120 ;
-  chr:hasObservation ex:diag_Stress_20090105 .
-
-ex:diag_Stress_20090105 a chr:DiagnosticStatement .
-
-ex:cond_Stress_20090105 a chr:ClinicalCondition ;
-  chr:hasRecordDate "2009-01-05T21:08:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_Moderate .
-
-ex:eval_Gingivitis_20090105 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:doctor_Ivonne773Turcotte120 ;
-  chr:hasObservation ex:diag_Gingivitis_20090105 .
-
-ex:diag_Gingivitis_20090105 a chr:DiagnosticStatement .
-
-ex:cond_Gingivitis_20090105 a chr:ClinicalCondition ;
-  chr:hasRecordDate "2009-01-05T22:24:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_Moderate .
-
-ex:severity_Moderate a chr:Severity .
-
-ex:careplan_FollowUp a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:proc_HemoglobinA1c_20090105 .
-
-ex:unit_percent a chr:Unit .
-
-ex:unit_per_min a chr:Unit .
-
-ex:unit_cm a chr:Unit .
-
-ex:unit_score a chr:Unit .
-
-ex:unit_kg a chr:Unit .
-
-ex:unit_kg_m2 a chr:Unit .
-
-ex:unit_mg_dL a chr:Unit .
-
-ex:unit_mmol_L a chr:Unit .
+# Care plan (generic, no detailed links required)
+ex:careplan_followup a chr:CarePlan ;
+    rdfs:label "Follow‑up monitoring and routine review care plan" .

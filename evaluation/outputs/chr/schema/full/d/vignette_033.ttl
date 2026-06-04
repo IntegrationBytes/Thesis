@@ -1,47 +1,82 @@
 @prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
- @prefix ex:   <http://example.org/clinical/> .
- @prefix sulo: <https://w3id.org/sulo/> .
- @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
- @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
- ex:patient_Casey401Elijah719Parker433 a chr:Person .
+ex:patient_Casey401_Elijah719_Parker433
+    a chr:Person ;
+    rdfs:label "Casey401 Elijah719 Parker433" .
 
- ex:visit_2022_07_21 a chr:ClinicalVisit ;
-   chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-   chr:hasCareProvider ex:doctor_Jacque955Streich926 ;
-   chr:hasCareUnit ex:care_unit_Acclaim .
+ex:careunit_ACCLAIM_HOME_HEALTH_CARE_INC
+    a chr:CareUnit ;
+    rdfs:label "ACCLAIM HOME HEALTH CARE, INC" .
 
- ex:care_unit_Acclaim a chr:CareUnit .
+ex:person_Jacque955_Streich926
+    a chr:Person ;
+    rdfs:label "Dr. Jacque955 Streich926" .
 
- ex:doctor_Jacque955Streich926 a chr:Person .
+ex:procedure_ERAdmission
+    a chr:MedicalProcedure ;
+    rdfs:label "Emergency room admission" ;
+    chr:hasPerformedDate "2022-07-21T19:21:20+02:00"^^xsd:dateTime ;
+    chr:hasPerformer ex:person_Jacque955_Streich926 .
 
- ex:measurement_process_bone_density_2022_07_21 a chr:MeasurementProcess ;
-   chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-   chr:hasResult ex:measurement_bone_density_2022_07_21 .
+ex:visit_2022_07_21T19_21_20p02_00
+    a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2022-07-21T19:21:20+02:00" ;
+    chr:hasDate "2022-07-21T19:21:20+02:00"^^xsd:dateTime ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasCareProvider ex:person_Jacque955_Streich926 ;
+    chr:hasCareUnit ex:careunit_ACCLAIM_HOME_HEALTH_CARE_INC ;
+    chr:hasProcedure ex:procedure_ERAdmission .
 
- ex:measurement_bone_density_2022_07_21 a chr:Measurement ;
-   chr:hasQuantityValue "0.086642"^^xsd:float ;
-   chr:hasUnit "T-score" ;
-   chr:hasMeasuredDate "2022-07-21T20:00:00"^^xsd:dateTime .
+ex:measurement_Tscore_2022_07_21T20_00_00p02_00
+    a chr:Measurement ;
+    rdfs:label "T-score 0.086642" ;
+    chr:hasMeasuredDate "2022-07-21T20:00:00+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.086642"^^xsd:float .
 
- ex:evaluation_2022_07_21_fracture_bone a chr:EvaluationProcess ;
-   chr:hasObservation ex:diagnostic_statement_fracture_bone .
+ex:measproc_DXA_Radius_Ulna_2022_07_21T20_00_00p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "DXA Radius and Ulna T-score measurement" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:measurement_Tscore_2022_07_21T20_00_00p02_00 .
 
- ex:diagnostic_statement_fracture_bone a chr:DiagnosticStatement .
+ex:cond_FractureOfBone
+    a chr:ClinicalCondition ;
+    rdfs:label "Fracture of bone" ;
+    chr:hasCode <http://snomed.info/id/125605004> ;
+    chr:hasRecordDate "2022-07-21T19:21:20+02:00"^^xsd:dateTime .
 
- ex:clinical_condition_fracture_bone a chr:ClinicalCondition ;
-   chr:hasSeverity ex:severity_moderate ;
-   chr:hasRecordDate "2022-07-21T19:21:00"^^xsd:dateTime .
+ex:diagStmt_FractureOfBone
+    a chr:DiagnosticStatement ;
+    rdfs:label "Fracture of bone" ;
+    chr:hasCode <http://snomed.info/id/125605004> .
 
- ex:evaluation_2022_07_21_fracture_subluxation a chr:EvaluationProcess ;
-   chr:hasObservation ex:diagnostic_statement_fracture_subluxation .
+ex:evaluation_2022_07_21T19_21_20p02_00_1
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2022-07-21T19:21:20+02:00 (Fracture of bone)" ;
+    chr:hasCondition ex:cond_FractureOfBone ;
+    chr:hasObservation ex:diagStmt_FractureOfBone .
 
- ex:diagnostic_statement_fracture_subluxation a chr:DiagnosticStatement .
+ex:cond_FractureSubluxationWrist
+    a chr:ClinicalCondition ;
+    rdfs:label "Fracture subluxation of wrist" ;
+    chr:hasCode <http://snomed.info/id/263102004> ;
+    chr:hasRecordDate "2022-07-21T19:21:20+02:00"^^xsd:dateTime .
 
- ex:clinical_condition_fracture_subluxation a chr:ClinicalCondition ;
-   chr:hasSeverity ex:severity_moderate ;
-   chr:hasRecordDate "2022-07-21T19:21:00"^^xsd:dateTime .
+ex:diagStmt_FractureSubluxationWrist
+    a chr:DiagnosticStatement ;
+    rdfs:label "Fracture subluxation of wrist" ;
+    chr:hasCode <http://snomed.info/id/263102004> .
 
- ex:severity_moderate a chr:Severity .
+ex:evaluation_2022_07_21T19_21_20p02_00_2
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2022-07-21T19:21:20+02:00 (Fracture subluxation of wrist)" ;
+    chr:hasCondition ex:cond_FractureSubluxationWrist ;
+    chr:hasObservation ex:diagStmt_FractureSubluxationWrist .
 
- ex:care_plan_follow_up a chr:CarePlan .
+ex:careplan_FollowUpMonitoring
+    a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review" .

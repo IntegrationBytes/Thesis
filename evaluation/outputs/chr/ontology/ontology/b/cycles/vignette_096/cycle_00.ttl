@@ -4,487 +4,559 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Harvey63_Napoleon578_Homenick806 a chr:Person .
+# Persons
+ex:person_Harvey a chr:Person .
+ex:person_AssuntaHaley a chr:Person .
 
-ex:visit_2018_07_13_2030 a chr:ClinicalVisit ;
-  sulo:atTime ex:time_visit_2018_07_13_2030 ;
-  sulo:isIn ex:care_unit_CFS .
+# Care unit
+ex:careunit_CFSI a chr:CareUnit .
 
-ex:time_visit_2018_07_13_2030 a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
+# Clinical visit
+ex:visit_2018_07_13T20_30_59 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit ;
+    sulo:hasParticipant ex:role_CareProvider_Visit ;
+    sulo:isIn ex:careunit_CFSI ;
+    sulo:atTime ex:time_visit_2018_07_13T20_30_59 .
 
-ex:care_unit_CFS a chr:CareUnit .
+ex:role_SubjectOfCare_Visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:role_VisitProvider_Haley279 a chr:CareProviderRole ;
-  sulo:isFeatureOf ex:physician_Haley279 .
+ex:role_CareProvider_Visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_AssuntaHaley .
 
-ex:physician_Haley279 a chr:Person .
+ex:time_visit_2018_07_13T20_30_59 a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
 
-ex:exam_procedure_2018_07_13_2030 a chr:MedicalProcedure ;
-  sulo:atTime ex:time_exam_2018_07_13_2030 .
+# Process status (re‑used)
+ex:status_completed a chr:ProcessStatus .
 
-ex:time_exam_2018_07_13_2030 a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
+# ---- Measurements ---------------------------------------------------------
 
-ex:hba1c_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_hba1c ;
-  sulo:hasParticipant ex:role_Output_hba1c ;
-  sulo:atTime ex:time_hba1c_measurement .
+# 1. Hemoglobin A1c
+ex:measurement_HbA1c a chr:Measurement ;
+    sulo:hasValue "5.81"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_HbA1c .
 
-ex:role_SubjectOfCare_hba1c a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
+ex:unit_percent a chr:Unit .
 
-ex:role_Output_hba1c a chr:OutputRole ;
-  sulo:isFeatureOf ex:hba1c_measurement .
+ex:proc_HbA1c a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HbA1c ;
+    sulo:hasParticipant ex:role_Output_HbA1c ;
+    sulo:atTime ex:time_HbA1c ;
+    sulo:hasFeature ex:status_completed .
 
-ex:hba1c_measurement a chr:Measurement ;
-  sulo:hasValue "5.81"^^xsd:float ;
-  sulo:hasPart ex:unit_percent .
+ex:role_SubjectOfCare_HbA1c a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:unit_percent a sulo:Unit .
+ex:role_Output_HbA1c a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HbA1c .
 
-ex:time_hba1c_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
+ex:time_HbA1c a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
 
-ex:body_height_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_height ;
-  sulo:hasParticipant ex:role_Output_height ;
-  sulo:atTime ex:time_body_height_measurement .
+# 2. Body Height
+ex:measurement_Height a chr:Measurement ;
+    sulo:hasValue "172.9"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_Height .
 
-ex:role_SubjectOfCare_height a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
+ex:unit_cm a chr:Unit .
 
-ex:role_Output_height a chr:OutputRole ;
-  sulo:isFeatureOf ex:body_height_measurement .
+ex:proc_Height a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Height ;
+    sulo:hasParticipant ex:role_Output_Height ;
+    sulo:atTime ex:time_Height ;
+    sulo:hasFeature ex:status_completed .
 
-ex:body_height_measurement a chr:Measurement ;
-  sulo:hasValue "172.9"^^xsd:float ;
-  sulo:hasPart ex:unit_cm .
+ex:role_SubjectOfCare_Height a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:unit_cm a sulo:Unit .
+ex:role_Output_Height a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Height .
 
-ex:time_body_height_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
+ex:time_Height a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
 
-ex:pain_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_pain ;
-  sulo:hasParticipant ex:role_Output_pain ;
-  sulo:atTime ex:time_pain_measurement .
+# 3. Pain severity
+ex:measurement_PainSeverity a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_PainSeverity .
 
-ex:role_SubjectOfCare_pain a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
+ex:unit_score a chr:Unit .
 
-ex:role_Output_pain a chr:OutputRole ;
-  sulo:isFeatureOf ex:pain_measurement .
+ex:proc_PainSeverity a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_PainSeverity ;
+    sulo:hasParticipant ex:role_Output_PainSeverity ;
+    sulo:atTime ex:time_PainSeverity ;
+    sulo:hasFeature ex:status_completed .
 
-ex:pain_measurement a chr:Measurement ;
-  sulo:hasValue "2.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
+ex:role_SubjectOfCare_PainSeverity a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:unit_score a sulo:Unit .
+ex:role_Output_PainSeverity a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainSeverity .
 
-ex:time_pain_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
+ex:time_PainSeverity a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
 
-ex:body_weight_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_weight ;
-  sulo:hasParticipant ex:role_Output_weight ;
-  sulo:atTime ex:time_body_weight_measurement .
+# 4. Body Weight
+ex:measurement_Weight a chr:Measurement ;
+    sulo:hasValue "82.3"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_Weight .
 
-ex:role_SubjectOfCare_weight a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
+ex:unit_kg a chr:Unit .
 
-ex:role_Output_weight a chr:OutputRole ;
-  sulo:isFeatureOf ex:body_weight_measurement .
+ex:proc_Weight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Weight ;
+    sulo:hasParticipant ex:role_Output_Weight ;
+    sulo:atTime ex:time_Weight ;
+    sulo:hasFeature ex:status_completed .
 
-ex:body_weight_measurement a chr:Measurement ;
-  sulo:hasValue "82.3"^^xsd:float ;
-  sulo:hasPart ex:unit_kg .
+ex:role_SubjectOfCare_Weight a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:unit_kg a sulo:Unit .
+ex:role_Output_Weight a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Weight .
 
-ex:time_body_weight_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
+ex:time_Weight a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
 
-ex:bmi_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_bmi ;
-  sulo:hasParticipant ex:role_Output_bmi ;
-  sulo:atTime ex:time_bmi_measurement .
+# 5. Body Mass Index
+ex:measurement_BMI a chr:Measurement ;
+    sulo:hasValue "27.53"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_BMI .
 
-ex:role_SubjectOfCare_bmi a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
+ex:unit_kg_per_m2 a chr:Unit .
 
-ex:role_Output_bmi a chr:OutputRole ;
-  sulo:isFeatureOf ex:bmi_measurement .
+ex:proc_BMI a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_BMI ;
+    sulo:hasParticipant ex:role_Output_BMI ;
+    sulo:atTime ex:time_BMI ;
+    sulo:hasFeature ex:status_completed .
 
-ex:bmi_measurement a chr:Measurement ;
-  sulo:hasValue "27.53"^^xsd:float ;
-  sulo:hasPart ex:unit_kg_m2 .
+ex:role_SubjectOfCare_BMI a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:unit_kg_m2 a sulo:Unit .
+ex:role_Output_BMI a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI .
 
-ex:time_bmi_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
+ex:time_BMI a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 6. Heart rate
+ex:measurement_HeartRate a chr:Measurement ;
+    sulo:hasValue "85"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_HeartRate .
 
-ex:heart_rate_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_heartrate ;
-  sulo:hasParticipant ex:role_Output_heartrate ;
-  sulo:atTime ex:time_heart_rate_measurement .
+ex:unit_per_min a chr:Unit .
 
-ex:role_SubjectOfCare_heartrate a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
+ex:proc_HeartRate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HeartRate ;
+    sulo:hasParticipant ex:role_Output_HeartRate ;
+    sulo:atTime ex:time_HeartRate ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_Output_heartrate a chr:OutputRole ;
-  sulo:isFeatureOf ex:heart_rate_measurement .
+ex:role_SubjectOfCare_HeartRate a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:heart_rate_measurement a chr:Measurement ;
-  sulo:hasValue "85.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min .
+ex:role_Output_HeartRate a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HeartRate .
+
+ex:time_HeartRate a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 7. Respiratory rate
+ex:measurement_RespRate a chr:Measurement ;
+    sulo:hasValue "14"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_RespRate .
 
-ex:unit_per_min a sulo:Unit .
+ex:proc_RespRate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_RespRate ;
+    sulo:hasParticipant ex:role_Output_RespRate ;
+    sulo:atTime ex:time_RespRate ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_RespRate a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:time_heart_rate_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
+ex:role_Output_RespRate a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RespRate .
 
-ex:respiratory_rate_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_respiratoryrate ;
-  sulo:hasParticipant ex:role_Output_respiratoryrate ;
-  sulo:atTime ex:time_respiratory_rate_measurement .
+ex:time_RespRate a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 8. Glucose
+ex:measurement_Glucose a chr:Measurement ;
+    sulo:hasValue "74.55"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Glucose .
 
-ex:role_SubjectOfCare_respiratoryrate a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
+ex:unit_mg_per_dL a chr:Unit .
 
-ex:role_Output_respiratoryrate a chr:OutputRole ;
-  sulo:isFeatureOf ex:respiratory_rate_measurement .
+ex:proc_Glucose a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Glucose ;
+    sulo:hasParticipant ex:role_Output_Glucose ;
+    sulo:atTime ex:time_Glucose ;
+    sulo:hasFeature ex:status_completed .
 
-ex:respiratory_rate_measurement a chr:Measurement ;
-  sulo:hasValue "14.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min .
+ex:role_SubjectOfCare_Glucose a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:time_respiratory_rate_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
+ex:role_Output_Glucose a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose .
+
+ex:time_Glucose a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 9. Urea nitrogen
+ex:measurement_UreaNitrogen a chr:Measurement ;
+    sulo:hasValue "17.41"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_UreaNitrogen .
 
-ex:glucose_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_glucose ;
-  sulo:hasParticipant ex:role_Output_glucose ;
-  sulo:atTime ex:time_glucose_measurement .
+ex:proc_UreaNitrogen a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_UreaNitrogen ;
+    sulo:hasParticipant ex:role_Output_UreaNitrogen ;
+    sulo:atTime ex:time_UreaNitrogen ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_UreaNitrogen a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:role_SubjectOfCare_glucose a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
+ex:role_Output_UreaNitrogen a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen .
+
+ex:time_UreaNitrogen a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 10. Creatinine
+ex:measurement_Creatinine a chr:Measurement ;
+    sulo:hasValue "0.98"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Creatinine .
 
-ex:role_Output_glucose a chr:OutputRole ;
-  sulo:isFeatureOf ex:glucose_measurement .
+ex:proc_Creatinine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Creatinine ;
+    sulo:hasParticipant ex:role_Output_Creatinine ;
+    sulo:atTime ex:time_Creatinine ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Creatinine a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
+
+ex:role_Output_Creatinine a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine .
+
+ex:time_Creatinine a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 11. Calcium
+ex:measurement_Calcium a chr:Measurement ;
+    sulo:hasValue "9.56"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Calcium .
+
+ex:proc_Calcium a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Calcium ;
+    sulo:hasParticipant ex:role_Output_Calcium ;
+    sulo:atTime ex:time_Calcium ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Calcium a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
+
+ex:role_Output_Calcium a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium .
+
+ex:time_Calcium a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 12. Sodium
+ex:measurement_Sodium a chr:Measurement ;
+    sulo:hasValue "136.78"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_Sodium .
+
+ex:unit_mmol_per_L a chr:Unit .
 
-ex:glucose_measurement a chr:Measurement ;
-  sulo:hasValue "74.55"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL .
+ex:proc_Sodium a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Sodium ;
+    sulo:hasParticipant ex:role_Output_Sodium ;
+    sulo:atTime ex:time_Sodium ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Sodium a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
+
+ex:role_Output_Sodium a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium .
+
+ex:time_Sodium a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 13. Potassium
+ex:measurement_Potassium a chr:Measurement ;
+    sulo:hasValue "4.44"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_Potassium .
+
+ex:proc_Potassium a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Potassium ;
+    sulo:hasParticipant ex:role_Output_Potassium ;
+    sulo:atTime ex:time_Potassium ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Potassium a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
+
+ex:role_Output_Potassium a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium .
+
+ex:time_Potassium a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 14. Chloride
+ex:measurement_Chloride a chr:Measurement ;
+    sulo:hasValue "107.4"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_Chloride .
+
+ex:proc_Chloride a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Chloride ;
+    sulo:hasParticipant ex:role_Output_Chloride ;
+    sulo:atTime ex:time_Chloride ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Chloride a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
+
+ex:role_Output_Chloride a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride .
+
+ex:time_Chloride a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 15. Carbon dioxide
+ex:measurement_CO2 a chr:Measurement ;
+    sulo:hasValue "24.14"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_CO2 .
+
+ex:proc_CO2 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_CO2 ;
+    sulo:hasParticipant ex:role_Output_CO2 ;
+    sulo:atTime ex:time_CO2 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_CO2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
+
+ex:role_Output_CO2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2 .
+
+ex:time_CO2 a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 16. Cholesterol (Serum)
+ex:measurement_CholesterolSerum a chr:Measurement ;
+    sulo:hasValue "200.28"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_CholesterolSerum .
+
+ex:proc_CholesterolSerum a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_CholesterolSerum ;
+    sulo:hasParticipant ex:role_Output_CholesterolSerum ;
+    sulo:atTime ex:time_CholesterolSerum ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_CholesterolSerum a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
+
+ex:role_Output_CholesterolSerum a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CholesterolSerum .
+
+ex:time_CholesterolSerum a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 17. Triglyceride
+ex:measurement_Triglyceride a chr:Measurement ;
+    sulo:hasValue "110.4"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Triglyceride .
+
+ex:proc_Triglyceride a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Triglyceride ;
+    sulo:hasParticipant ex:role_Output_Triglyceride ;
+    sulo:atTime ex:time_Triglyceride ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_Triglyceride a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
+
+ex:role_Output_Triglyceride a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Triglyceride .
+
+ex:time_Triglyceride a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 18. LDL Cholesterol
+ex:measurement_LDL a chr:Measurement ;
+    sulo:hasValue "123.74"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_LDL .
+
+ex:proc_LDL a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_LDL ;
+    sulo:hasParticipant ex:role_Output_LDL ;
+    sulo:atTime ex:time_LDL ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_LDL a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
+
+ex:role_Output_LDL a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_LDL .
+
+ex:time_LDL a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 19. HDL Cholesterol
+ex:measurement_HDL a chr:Measurement ;
+    sulo:hasValue "54.47"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_HDL .
+
+ex:proc_HDL a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HDL ;
+    sulo:hasParticipant ex:role_Output_HDL ;
+    sulo:atTime ex:time_HDL ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_HDL a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
+
+ex:role_Output_HDL a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HDL .
+
+ex:time_HDL a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T20:30:59+02:00"^^xsd:dateTime .
+
+# 20. GAD‑7 total score
+ex:measurement_GAD7 a chr:Measurement ;
+    sulo:hasValue "4"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_GAD7 .
+
+ex:proc_GAD7 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_GAD7 ;
+    sulo:hasParticipant ex:role_Output_GAD7 ;
+    sulo:atTime ex:time_GAD7 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_SubjectOfCare_GAD7 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:unit_mg_dL a sulo:Unit .
+ex:role_Output_GAD7 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GAD7 .
 
-ex:time_glucose_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
+ex:time_GAD7 a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T21:34:04+02:00"^^xsd:dateTime .
 
-ex:urea_nitrogen_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_ureanitrogen ;
-  sulo:hasParticipant ex:role_Output_ureanitrogen ;
-  sulo:atTime ex:time_urea_nitrogen_measurement .
+# 21. HARK total score
+ex:measurement_HARK a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_HARK .
 
-ex:role_SubjectOfCare_ureanitrogen a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
+ex:proc_HARK a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HARK ;
+    sulo:hasParticipant ex:role_Output_HARK ;
+    sulo:atTime ex:time_HARK ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_Output_ureanitrogen a chr:OutputRole ;
-  sulo:isFeatureOf ex:urea_nitrogen_measurement .
+ex:role_SubjectOfCare_HARK a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:urea_nitrogen_measurement a chr:Measurement ;
-  sulo:hasValue "17.41"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL .
+ex:role_Output_HARK a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HARK .
 
-ex:time_urea_nitrogen_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
+ex:time_HARK a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T22:16:41+02:00"^^xsd:dateTime .
 
-ex:creatinine_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_creatinine ;
-  sulo:hasParticipant ex:role_Output_creatinine ;
-  sulo:atTime ex:time_creatinine_measurement .
+# 22. PHQ‑2 total score
+ex:measurement_PHQ2 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_PHQ2 .
 
-ex:role_SubjectOfCare_creatinine a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
+ex:proc_PHQ2 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_PHQ2 ;
+    sulo:hasParticipant ex:role_Output_PHQ2 ;
+    sulo:atTime ex:time_PHQ2 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_Output_creatinine a chr:OutputRole ;
-  sulo:isFeatureOf ex:creatinine_measurement .
+ex:role_SubjectOfCare_PHQ2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:creatinine_measurement a chr:Measurement ;
-  sulo:hasValue "0.98"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL .
+ex:role_Output_PHQ2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ2 .
 
-ex:time_creatinine_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
+ex:time_PHQ2 a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T22:51:20+02:00"^^xsd:dateTime .
 
-ex:calcium_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_calcium ;
-  sulo:hasParticipant ex:role_Output_calcium ;
-  sulo:atTime ex:time_calcium_measurement .
+# 23. AUDIT‑C total score
+ex:measurement_AUDITC a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_AUDITC .
 
-ex:role_SubjectOfCare_calcium a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
+ex:proc_AUDITC a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_AUDITC ;
+    sulo:hasParticipant ex:role_Output_AUDITC ;
+    sulo:atTime ex:time_AUDITC ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_Output_calcium a chr:OutputRole ;
-  sulo:isFeatureOf ex:calcium_measurement .
+ex:role_SubjectOfCare_AUDITC a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:calcium_measurement a chr:Measurement ;
-  sulo:hasValue "9.56"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL .
+ex:role_Output_AUDITC a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_AUDITC .
 
-ex:time_calcium_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
+ex:time_AUDITC a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T23:29:12+02:00"^^xsd:dateTime .
 
-ex:sodium_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_sodium ;
-  sulo:hasParticipant ex:role_Output_sodium ;
-  sulo:atTime ex:time_sodium_measurement .
+# ---- Evaluation -----------------------------------------------------------
 
-ex:role_SubjectOfCare_sodium a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
+ex:evaluation_2018_07_13T21_10_28 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eval ;
+    sulo:hasParticipant ex:role_Performer_Eval ;
+    sulo:hasParticipant ex:role_Output_Eval ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Eval_2018_07_13T21_10_28 .
 
-ex:role_Output_sodium a chr:OutputRole ;
-  sulo:isFeatureOf ex:sodium_measurement .
+ex:role_SubjectOfCare_Eval a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Harvey .
 
-ex:sodium_measurement a chr:Measurement ;
-  sulo:hasValue "136.78"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_L .
+ex:role_Performer_Eval a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_AssuntaHaley .
 
-ex:time_sodium_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
+ex:diagnostic_SocialIsolation a chr:DiagnosticStatement .
 
-ex:unit_mmol_L a sulo:Unit .
+ex:role_Output_Eval a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnostic_SocialIsolation .
 
-ex:potassium_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_potassium ;
-  sulo:hasParticipant ex:role_Output_potassium ;
-  sulo:atTime ex:time_potassium_measurement .
+ex:time_Eval_2018_07_13T21_10_28 a sulo:TimeInstant ;
+    sulo:hasValue "2018-07-13T21:10:28+02:00"^^xsd:dateTime .
 
-ex:role_SubjectOfCare_potassium a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
+# ---- Care plan ------------------------------------------------------------
 
-ex:role_Output_potassium a chr:OutputRole ;
-  sulo:isFeatureOf ex:potassium_measurement .
+ex:careplan_1 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUp .
 
-ex:potassium_measurement a chr:Measurement ;
-  sulo:hasValue "4.44"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_L .
-
-ex:time_potassium_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
-
-ex:chloride_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_chloride ;
-  sulo:hasParticipant ex:role_Output_chloride ;
-  sulo:atTime ex:time_chloride_measurement .
-
-ex:role_SubjectOfCare_chloride a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
-
-ex:role_Output_chloride a chr:OutputRole ;
-  sulo:isFeatureOf ex:chloride_measurement .
-
-ex:chloride_measurement a chr:Measurement ;
-  sulo:hasValue "107.4"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_L .
-
-ex:time_chloride_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
-
-ex:carbon_dioxide_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_carbondioxide ;
-  sulo:hasParticipant ex:role_Output_carbondioxide ;
-  sulo:atTime ex:time_carbon_dioxide_measurement .
-
-ex:role_SubjectOfCare_carbondioxide a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
-
-ex:role_Output_carbondioxide a chr:OutputRole ;
-  sulo:isFeatureOf ex:carbon_dioxide_measurement .
-
-ex:carbon_dioxide_measurement a chr:Measurement ;
-  sulo:hasValue "24.14"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_L .
-
-ex:time_carbon_dioxide_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
-
-ex:cholesterol_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_cholesterol ;
-  sulo:hasParticipant ex:role_Output_cholesterol ;
-  sulo:atTime ex:time_cholesterol_measurement .
-
-ex:role_SubjectOfCare_cholesterol a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
-
-ex:role_Output_cholesterol a chr:OutputRole ;
-  sulo:isFeatureOf ex:cholesterol_measurement .
-
-ex:cholesterol_measurement a chr:Measurement ;
-  sulo:hasValue "200.28"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL .
-
-ex:time_cholesterol_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
-
-ex:triglyceride_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_triglyceride ;
-  sulo:hasParticipant ex:role_Output_triglyceride ;
-  sulo:atTime ex:time_triglyceride_measurement .
-
-ex:role_SubjectOfCare_triglyceride a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
-
-ex:role_Output_triglyceride a chr:OutputRole ;
-  sulo:isFeatureOf ex:triglyceride_measurement .
-
-ex:triglyceride_measurement a chr:Measurement ;
-  sulo:hasValue "110.4"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL .
-
-ex:time_triglyceride_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
-
-ex:ldl_cholesterol_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_ldlcholesterol ;
-  sulo:hasParticipant ex:role_Output_ldlcholesterol ;
-  sulo:atTime ex:time_ldl_cholesterol_measurement .
-
-ex:role_SubjectOfCare_ldlcholesterol a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
-
-ex:role_Output_ldlcholesterol a chr:OutputRole ;
-  sulo:isFeatureOf ex:ldl_cholesterol_measurement .
-
-ex:ldl_cholesterol_measurement a chr:Measurement ;
-  sulo:hasValue "123.74"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL .
-
-ex:time_ldl_cholesterol_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
-
-ex:hdl_cholesterol_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_hdlcholesterol ;
-  sulo:hasParticipant ex:role_Output_hdlcholesterol ;
-  sulo:atTime ex:time_hdl_cholesterol_measurement .
-
-ex:role_SubjectOfCare_hdlcholesterol a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
-
-ex:role_Output_hdlcholesterol a chr:OutputRole ;
-  sulo:isFeatureOf ex:hdl_cholesterol_measurement .
-
-ex:hdl_cholesterol_measurement a chr:Measurement ;
-  sulo:hasValue "54.47"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL .
-
-ex:time_hdl_cholesterol_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T20:30:00"^^xsd:dateTime .
-
-ex:gad7_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_gad7 ;
-  sulo:hasParticipant ex:role_Output_gad7 ;
-  sulo:atTime ex:time_gad7_measurement .
-
-ex:role_SubjectOfCare_gad7 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
-
-ex:role_Output_gad7 a chr:OutputRole ;
-  sulo:isFeatureOf ex:gad7_measurement .
-
-ex:gad7_measurement a chr:Measurement ;
-  sulo:hasValue "4.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
-
-ex:time_gad7_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T21:34:00"^^xsd:dateTime .
-
-ex:hark_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_hark ;
-  sulo:hasParticipant ex:role_Output_hark ;
-  sulo:atTime ex:time_hark_measurement .
-
-ex:role_SubjectOfCare_hark a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
-
-ex:role_Output_hark a chr:OutputRole ;
-  sulo:isFeatureOf ex:hark_measurement .
-
-ex:hark_measurement a chr:Measurement ;
-  sulo:hasValue "0.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
-
-ex:time_hark_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T22:16:00"^^xsd:dateTime .
-
-ex:phq2_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_phq2 ;
-  sulo:hasParticipant ex:role_Output_phq2 ;
-  sulo:atTime ex:time_phq2_measurement .
-
-ex:role_SubjectOfCare_phq2 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
-
-ex:role_Output_phq2 a chr:OutputRole ;
-  sulo:isFeatureOf ex:phq2_measurement .
-
-ex:phq2_measurement a chr:Measurement ;
-  sulo:hasValue "1.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
-
-ex:time_phq2_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T22:51:00"^^xsd:dateTime .
-
-ex:auditc_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_SubjectOfCare_auditc ;
-  sulo:hasParticipant ex:role_Output_auditc ;
-  sulo:atTime ex:time_auditc_measurement .
-
-ex:role_SubjectOfCare_auditc a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
-
-ex:role_Output_auditc a chr:OutputRole ;
-  sulo:isFeatureOf ex:auditc_measurement .
-
-ex:auditc_measurement a chr:Measurement ;
-  sulo:hasValue "1.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
-
-ex:time_auditc_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T23:29:00"^^xsd:dateTime .
-
-ex:evaluation_2018_07_13_2110 a chr:EvaluationProcess ;
-  sulo:hasParticipant ex:role_Performer_Haley279 ;
-  sulo:hasParticipant ex:role_SubjectOfCare_evaluation ;
-  sulo:atTime ex:time_evaluation_2018_07_13_2110 .
-
-ex:role_Performer_Haley279 a chr:PerformerRole ;
-  sulo:isFeatureOf ex:physician_Haley279 .
-
-ex:role_SubjectOfCare_evaluation a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Harvey63_Napoleon578_Homenick806 .
-
-ex:time_evaluation_2018_07_13_2110 a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T21:10:00"^^xsd:dateTime .
-
-ex:diagnostic_statement_social_isolation a chr:DiagnosticStatement ;
-  sulo:hasFeature ex:severity_moderate .
-
-ex:severity_moderate a chr:Severity .
-
-ex:social_isolation_condition a chr:ClinicalCondition ;
-  sulo:atTime ex:time_social_isolation_condition .
-
-ex:time_social_isolation_condition a sulo:TimeInstant ;
-  sulo:hasValue "2018-07-13T21:10:00"^^xsd:dateTime .
-
-ex:care_plan_follow_up a chr:CarePlan ;
-  sulo:refersTo ex:follow_up_monitoring ;
-  sulo:refersTo ex:routine_review .
-
-ex:follow_up_monitoring a chr:MedicalProcedure .
-
-ex:routine_review a chr:MedicalProcedure .
+ex:procedure_FollowUp a chr:MedicalProcedure .

@@ -4,38 +4,51 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Angelic427_Callie226_Schaden604 a chr:Person .
+ex:patient_Angelic_Callie_Schaden
+    a chr:Person ;
+    rdfs:label "Angelic427 Callie226 Schaden604" .
 
-ex:visit_2016_12_13 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Angelic427_Callie226_Schaden604 ;
-  chr:hasCareProvider ex:doctor_Willian804_Batz141 ;
-  chr:hasCareUnit ex:care_unit_BOSTON_MEDICAL_CENTER .
+ex:physician_Willian_Batz
+    a chr:Person ;
+    rdfs:label "Dr. Willian804 Batz141" .
 
-ex:care_unit_BOSTON_MEDICAL_CENTER a chr:CareUnit .
+ex:careunit_Boston_Medical_Center
+    a chr:CareUnit ;
+    rdfs:label "BOSTON MEDICAL CENTER CORPORATION-" .
 
-ex:doctor_Willian804_Batz141 a chr:Person .
+ex:visit_2016_12_13_23_01_53
+    a chr:ClinicalVisit ;
+    chr:hasDate "2016-12-13T23:01:53+01:00"^^xsd:dateTime ;
+    chr:hasCareUnit ex:careunit_Boston_Medical_Center ;
+    chr:hasCareProvider ex:physician_Willian_Batz ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    rdfs:label "Clinical visit on 2016-12-13T23:01:53+01:00" .
 
-ex:measurement_process_pain_2016_12_13 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427_Callie226_Schaden604 ;
-  chr:hasResult ex:measurement_pain_2016_12_13 .
+ex:measurementProcess_pain_2016_12_13_23_46_57
+    a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_pain_2016_12_13_23_46_57 ;
+    rdfs:label "Pain severity measurement process" .
 
-ex:measurement_pain_2016_12_13 a chr:Measurement ;
-  chr:hasQuantityValue "2.8386"^^xsd:float ;
-  chr:hasUnit ex:unit_score ;
-  chr:hasMeasuredDate "2016-12-13T23:46:00"^^xsd:dateTime .
+ex:measurement_pain_2016_12_13_23_46_57
+    a chr:Measurement ;
+    chr:hasQuantityValue "2.8386"^^xsd:float ;
+    chr:hasCode <https://loinc.org/38208-5> ;
+    rdfs:label "Pain severity score" .
 
-ex:unit_score a sulo:Unit .
+ex:evaluation_2017_05_09_18_24_27
+    a chr:EvaluationProcess ;
+    chr:hasCondition ex:condition_cystitis_2017_05_09_18_24_27 ;
+    chr:hasObservation ex:diagnostic_cystitis_2017_05_09_18_24_27 ;
+    rdfs:label "Evaluation performed on 2017-05-09T18:24:27+02:00" .
 
-ex:evaluation_2017_05_09 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_acute_cystitis ;
-  chr:hasPatient ex:patient_Angelic427_Callie226_Schaden604 .
+ex:condition_cystitis_2017_05_09_18_24_27
+    a chr:ClinicalCondition ;
+    chr:hasCode <http://snomed.info/id/307426000> ;
+    chr:hasRecordDate "2017-05-09T18:24:27+02:00"^^xsd:dateTime ;
+    rdfs:label "Acute infective cystitis" .
 
-ex:diagnostic_acute_cystitis a chr:DiagnosticStatement .
-
-ex:clinical_condition_acute_cystitis a chr:ClinicalCondition ;
-  chr:hasSeverity ex:severity_moderate ;
-  chr:hasRecordDate "2017-05-09T18:24:00"^^xsd:dateTime .
-
-ex:severity_moderate a chr:Severity .
-
-ex:care_plan_follow_up a chr:CarePlan .
+ex:diagnostic_cystitis_2017_05_09_18_24_27
+    a chr:DiagnosticStatement ;
+    chr:hasCode <http://snomed.info/id/307426000> ;
+    rdfs:label "Acute infective cystitis" .

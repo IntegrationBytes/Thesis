@@ -4,180 +4,268 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Bryant814Clarence5Grimes165 a chr:Person .
+# Patient
+ex:patient_Bryant814_Clarence5_Grimes165 a chr:Person ;
+    rdfs:label "Bryant814 Clarence5 Grimes165" .
 
-ex:visit_2013_01_30 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasCareProvider ex:doctor_Dana512Wilkinson796 ;
-  chr:hasCareUnit ex:care_unit_urgent_care .
+# Care provider (physician)
+ex:physician_Dana512_Wilkinson796 a chr:Person ;
+    rdfs:label "Dr. Dana512 Wilkinson796" .
 
-ex:care_unit_urgent_care a chr:CareUnit .
+# Care unit
+ex:careunit_urgent_care_physicians_pc a chr:CareUnit ;
+    rdfs:label "URGENT CARE PHYSICIANS PC" .
 
-ex:doctor_Dana512Wilkinson796 a chr:Person .
+# Clinical visit
+ex:visit_20130130T154723 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2013-01-30T15:47:23+01:00" ;
+    chr:hasDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasCareUnit ex:careunit_urgent_care_physicians_pc ;
+    chr:hasCareProvider ex:physician_Dana512_Wilkinson796 ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 .
 
-ex:glucose_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:glucose_measurement ;
-  chr:hasDevice ex:device_blood_analyzer .
+# Units
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
 
-ex:glucose_measurement a chr:Measurement ;
-  chr:hasQuantityValue "65.65"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> .
 
-ex:urea_nitrogen_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:urea_nitrogen_measurement .
+ex:unit_mL_per_min_per_1_73_m2 a chr:Unit ;
+    rdfs:label "mL/min/1.73 m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mLperminper1.73_m2> .
 
-ex:urea_nitrogen_measurement a chr:Measurement ;
-  chr:hasQuantityValue "7.32"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
 
-ex:creatinine_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:creatinine_measurement .
+ex:unit_nominal a chr:Unit ;
+    rdfs:label "nominal" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/1> .
 
-ex:creatinine_measurement a chr:Measurement ;
-  chr:hasQuantityValue "1.9642"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+ex:unit_pH a chr:Unit ;
+    rdfs:label "pH" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pH> .
 
-ex:calcium_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:calcium_measurement .
+# Measurements and measurement processes
 
-ex:calcium_measurement a chr:Measurement ;
-  chr:hasQuantityValue "10.12"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+## Glucose (Serum)
+ex:meas_glucose_serum_20130130T154723 a chr:Measurement ;
+    rdfs:label "Glucose 65.65 mg/dL" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "65.65"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/2345-7> .
 
-ex:sodium_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:sodium_measurement .
+ex:proc_glucose_serum_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement in Serum" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_glucose_serum_20130130T154723 .
 
-ex:sodium_measurement a chr:Measurement ;
-  chr:hasQuantityValue "137.85"^^xsd:float ;
-  chr:hasUnit sulo:mmol_per_L ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+## Urea nitrogen (Serum)
+ex:meas_urea_nitrogen_serum_20130130T154723 a chr:Measurement ;
+    rdfs:label "Urea nitrogen 7.32 mg/dL" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "7.32"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/3094-0> .
 
-ex:potassium_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:potassium_measurement .
+ex:proc_urea_nitrogen_serum_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement in Serum" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_urea_nitrogen_serum_20130130T154723 .
 
-ex:potassium_measurement a chr:Measurement ;
-  chr:hasQuantityValue "5.08"^^xsd:float ;
-  chr:hasUnit sulo:mmol_per_L ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+## Creatinine (Serum)
+ex:meas_creatinine_serum_20130130T154723 a chr:Measurement ;
+    rdfs:label "Creatinine 1.9642 mg/dL" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.9642"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/2160-0> .
 
-ex:chloride_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:chloride_measurement .
+ex:proc_creatinine_serum_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement in Serum" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_creatinine_serum_20130130T154723 .
 
-ex:chloride_measurement a chr:Measurement ;
-  chr:hasQuantityValue "107.09"^^xsd:float ;
-  chr:hasUnit sulo:mmol_per_L ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+## Calcium (Serum)
+ex:meas_calcium_serum_20130130T154723 a chr:Measurement ;
+    rdfs:label "Calcium 10.12 mg/dL" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "10.12"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/17861-6> .
 
-ex:carbon_dioxide_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:carbon_dioxide_measurement .
+ex:proc_calcium_serum_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement in Serum" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_calcium_serum_20130130T154723 .
 
-ex:carbon_dioxide_measurement a chr:Measurement ;
-  chr:hasQuantityValue "20.86"^^xsd:float ;
-  chr:hasUnit sulo:mmol_per_L ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+## Sodium (Serum)
+ex:meas_sodium_serum_20130130T154723 a chr:Measurement ;
+    rdfs:label "Sodium 137.85 mmol/L" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "137.85"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/2951-2> .
 
-ex:glomerular_filtration_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:glomerular_filtration_measurement .
+ex:proc_sodium_serum_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement in Serum" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_sodium_serum_20130130T154723 .
 
-ex:glomerular_filtration_measurement a chr:Measurement ;
-  chr:hasQuantityValue "49.072"^^xsd:float ;
-  chr:hasUnit ex:mL_per_min_per_1_73m2 ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+## Potassium (Serum)
+ex:meas_potassium_serum_20130130T154723 a chr:Measurement ;
+    rdfs:label "Potassium 5.08 mmol/L" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.08"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/2823-3> .
 
-ex:mL_per_min_per_1_73m2 a sulo:Unit .
+ex:proc_potassium_serum_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement in Serum" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_potassium_serum_20130130T154723 .
 
-ex:glucose_urine_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:glucose_urine_measurement .
+## Chloride (Serum)
+ex:meas_chloride_serum_20130130T154723 a chr:Measurement ;
+    rdfs:label "Chloride 107.09 mmol/L" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "107.09"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/2075-0> .
 
-ex:glucose_urine_measurement a chr:Measurement ;
-  chr:hasQuantityValue "0.83003"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+ex:proc_chloride_serum_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement in Serum" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_chloride_serum_20130130T154723 .
 
-ex:bilirubin_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:bilirubin_measurement .
+## Carbon dioxide, total (Serum)
+ex:meas_co2_total_serum_20130130T154723 a chr:Measurement ;
+    rdfs:label "Carbon dioxide, total 20.86 mmol/L" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "20.86"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/2028-9> .
 
-ex:bilirubin_measurement a chr:Measurement ;
-  chr:hasQuantityValue "0.398"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+ex:proc_co2_total_serum_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide, total measurement in Serum" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_co2_total_serum_20130130T154723 .
 
-ex:ketones_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:ketones_measurement .
+## Glomerular filtration rate (Serum)
+ex:meas_gfr_serum_20130130T154723 a chr:Measurement ;
+    rdfs:label "Glomerular filtration rate 49.072 mL/min/1.73 m2" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "49.072"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 ;
+    chr:hasCode <https://loinc.org/33914-3> .
 
-ex:ketones_measurement a chr:Measurement ;
-  chr:hasQuantityValue "19.956"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+ex:proc_gfr_serum_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Glomerular filtration rate measurement in Serum" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_gfr_serum_20130130T154723 .
 
-ex:specific_gravity_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:specific_gravity_measurement .
+## Glucose (Urine)
+ex:meas_glucose_urine_20130130T154723 a chr:Measurement ;
+    rdfs:label "Glucose (Urine) 0.83003 mg/dL" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.83003"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/5792-7> .
 
-ex:specific_gravity_measurement a chr:Measurement ;
-  chr:hasQuantityValue "1.0198"^^xsd:float ;
-  chr:hasUnit ex:nominal_unit ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+ex:proc_glucose_urine_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement in Urine" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_glucose_urine_20130130T154723 .
 
-ex:nominal_unit a sulo:Unit .
+## Bilirubin.total (Urine)
+ex:meas_bilirubin_urine_20130130T154723 a chr:Measurement ;
+    rdfs:label "Bilirubin.total 0.398 mg/dL" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.398"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/20505-4> .
 
-ex:ph_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:ph_measurement .
+ex:proc_bilirubin_urine_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Bilirubin.total measurement in Urine" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_bilirubin_urine_20130130T154723 .
 
-ex:ph_measurement a chr:Measurement ;
-  chr:hasQuantityValue "5.8474"^^xsd:float ;
-  chr:hasUnit ex:pH_unit ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+## Ketones (Urine)
+ex:meas_ketones_urine_20130130T154723 a chr:Measurement ;
+    rdfs:label "Ketones 19.956 mg/dL" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "19.956"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/5797-6> .
 
-ex:pH_unit a sulo:Unit .
+ex:proc_ketones_urine_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Ketones measurement in Urine" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_ketones_urine_20130130T154723 .
 
-ex:protein_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:protein_measurement .
+## Specific gravity (Urine)
+ex:meas_specific_gravity_urine_20130130T154723 a chr:Measurement ;
+    rdfs:label "Specific gravity 1.0198 nominal" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0198"^^xsd:float ;
+    chr:hasUnit ex:unit_nominal ;
+    chr:hasCode <https://loinc.org/5811-5> .
 
-ex:protein_measurement a chr:Measurement ;
-  chr:hasQuantityValue "227.3"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+ex:proc_specific_gravity_urine_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Specific gravity measurement in Urine" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_specific_gravity_urine_20130130T154723 .
 
-ex:hemoglobin_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Bryant814Clarence5Grimes165 ;
-  chr:hasResult ex:hemoglobin_measurement .
+## pH (Urine)
+ex:meas_ph_urine_20130130T154723 a chr:Measurement ;
+    rdfs:label "pH 5.8474 pH" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.8474"^^xsd:float ;
+    chr:hasUnit ex:unit_pH ;
+    chr:hasCode <https://loinc.org/5803-2> .
 
-ex:hemoglobin_measurement a chr:Measurement ;
-  chr:hasQuantityValue "2.88"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2013-01-30T15:47:00"^^xsd:dateTime .
+ex:proc_ph_urine_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "pH measurement in Urine" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_ph_urine_20130130T154723 .
 
-ex:evaluation_process a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_statement ;
-  chr:hasPerformedDate "2013-01-30T15:47:00"^^xsd:dateTime .
+## Protein (Urine)
+ex:meas_protein_urine_20130130T154723 a chr:Measurement ;
+    rdfs:label "Protein 227.3 mg/dL" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "227.3"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/5804-0> .
 
-ex:diagnostic_statement a chr:DiagnosticStatement .
+ex:proc_protein_urine_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Protein measurement in Urine" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_protein_urine_20130130T154723 .
 
-ex:medication_review_condition a chr:ClinicalCondition ;
-  chr:hasRecordDate "2013-01-30T15:47:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:moderate_severity .
+## Hemoglobin A1c (Blood)
+ex:meas_hba1c_blood_20130130T154723 a chr:Measurement ;
+    rdfs:label "Hemoglobin A1c 2.88 %" ;
+    chr:hasMeasuredDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.88"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasCode <https://loinc.org/4548-4> .
 
-ex:moderate_severity a chr:Severity .
+ex:proc_hba1c_blood_20130130T154723 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement in Blood" ;
+    chr:hasPatient ex:patient_Bryant814_Clarence5_Grimes165 ;
+    chr:hasResult ex:meas_hba1c_blood_20130130T154723 .
 
-ex:care_plan a chr:CarePlan .
+# Diagnostic statement
+ex:diag_medreview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
 
-ex:device_blood_analyzer a chr:Device .
+# Clinical condition
+ex:condition_medreview a chr:ClinicalCondition ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2013-01-30T15:47:23+01:00"^^xsd:dateTime .

@@ -4,215 +4,338 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Cory323Frank378Heller342 a chr:Person .
+# Persons
+ex:patient_Cory_Frank_Heller a chr:Person ;
+    rdfs:label "Cory323 Frank378 Heller342" .
 
-ex:visit_2025_05_25 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasCareProvider ex:doctor_Hank686Schneider199 ;
-  chr:hasCareUnit ex:care_unit_LowellFamilyMedicalCarePC .
+ex:physician_Hank_Schneider a chr:Person ;
+    rdfs:label "Dr. Hank686 Schneider199" .
 
-ex:care_unit_LowellFamilyMedicalCarePC a chr:CareUnit .
+# Care unit
+ex:careUnit_LOWELL a chr:CareUnit ;
+    rdfs:label "LOWELL FAMILY MEDICAL CARE PC" .
 
-ex:doctor_Hank686Schneider199 a chr:Person .
+# Clinical visit
+ex:visit_2025_05_25T11_44_05_0200 a chr:ClinicalVisit ;
+    rdfs:label "Visit 2025-05-25T11:44:05+02:00" ;
+    chr:hasDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_Hank_Schneider ;
+    chr:hasCareUnit ex:careUnit_LOWELL ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller .
 
-ex:proc_FEV1FVC_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_FEV1FVC_20250525 .
+# Units
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
 
-ex:meas_FEV1FVC_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "35.308"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:proc_height_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_height_20250525 .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:meas_height_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "164.0"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg%2Fm2> .
 
-ex:proc_pain_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_pain_20250525 .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%2Fmin> .
 
-ex:meas_pain_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "2.0"^^xsd:float ;
-  chr:hasUnit sulo:score ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:unit_10_3_per_uL a chr:Unit ;
+    rdfs:label "10*3/uL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/10%2A3%2FuL> .
 
-ex:proc_weight_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_weight_20250525 .
+ex:unit_10_6_per_uL a chr:Unit ;
+    rdfs:label "10*6/uL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/10%2A6%2FuL> .
 
-ex:meas_weight_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "81.4"^^xsd:float ;
-  chr:hasUnit sulo:kg ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:unit_g_per_dL a chr:Unit ;
+    rdfs:label "g/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/g%2FdL> .
 
-ex:proc_bmi_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_bmi_20250525 .
+ex:unit_fL a chr:Unit ;
+    rdfs:label "fL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/fL> .
 
-ex:meas_bmi_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "30.26"^^xsd:float ;
-  chr:hasUnit sulo:kg_per_m2 ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:unit_pg a chr:Unit ;
+    rdfs:label "pg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pg> .
 
-ex:proc_heartrate_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_heartrate_20250525 .
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
 
-ex:meas_heartrate_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "70.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+# Measurements (shared timestamp 2025-05-25T11:44:05+02:00)
+ex:measproc_19926-5_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "FEV1/FVC measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_19926-5_20250525T114405_0200 .
 
-ex:proc_resprate_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_resprate_20250525 .
+ex:meas_19926-5_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "FEV1/FVC measurement 35.308 %" ;
+    chr:hasCode <https://loinc.org/19926-5> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "35.308"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
 
-ex:meas_resprate_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "14.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:measproc_8302-2_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_8302-2_20250525T114405_0200 .
 
-ex:proc_leukocytes_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_leukocytes_20250525 .
+ex:meas_8302-2_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "Body Height measurement 164 cm" ;
+    chr:hasCode <https://loinc.org/8302-2> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "164.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
 
-ex:meas_leukocytes_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "6.556"^^xsd:float ;
-  chr:hasUnit sulo:10_3_per_uL ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:measproc_72514-3_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_72514-3_20250525T114405_0200 .
 
-ex:proc_erythrocytes_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_erythrocytes_20250525 .
+ex:meas_72514-3_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "Pain severity measurement 2 score" ;
+    chr:hasCode <https://loinc.org/72514-3> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
 
-ex:meas_erythrocytes_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "4.4587"^^xsd:float ;
-  chr:hasUnit sulo:10_6_per_uL ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:measproc_29463-7_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_29463-7_20250525T114405_0200 .
 
-ex:proc_hemoglobin_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_hemoglobin_20250525 .
+ex:meas_29463-7_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "Body Weight measurement 81.4 kg" ;
+    chr:hasCode <https://loinc.org/29463-7> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "81.4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
 
-ex:meas_hemoglobin_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "16.739"^^xsd:float ;
-  chr:hasUnit sulo:g_per_dL ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:measproc_39156-5_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "BMI measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_39156-5_20250525T114405_0200 .
 
-ex:proc_hematocrit_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_hematocrit_20250525 .
+ex:meas_39156-5_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "BMI measurement 30.26 kg/m2" ;
+    chr:hasCode <https://loinc.org/39156-5> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "30.26"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
 
-ex:meas_hematocrit_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "36.652"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:measproc_8867-4_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_8867-4_20250525T114405_0200 .
 
-ex:proc_mcv_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_mcv_20250525 .
+ex:meas_8867-4_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "Heart rate measurement 70 /min" ;
+    chr:hasCode <https://loinc.org/8867-4> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "70.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
 
-ex:meas_mcv_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "81.548"^^xsd:float ;
-  chr:hasUnit sulo:fL ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:measproc_9279-1_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_9279-1_20250525T114405_0200 .
 
-ex:proc_mch_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_mch_20250525 .
+ex:meas_9279-1_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "Respiratory rate measurement 14 /min" ;
+    chr:hasCode <https://loinc.org/9279-1> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
 
-ex:meas_mch_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "27.464"^^xsd:float ;
-  chr:hasUnit sulo:pg ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:measproc_6690-2_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "Leukocytes measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_6690-2_20250525T114405_0200 .
 
-ex:proc_mchc_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_mchc_20250525 .
+ex:meas_6690-2_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "Leukocytes measurement 6.556 10*3/uL" ;
+    chr:hasCode <https://loinc.org/6690-2> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.556"^^xsd:float ;
+    chr:hasUnit ex:unit_10_3_per_uL .
 
-ex:meas_mchc_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "35.55"^^xsd:float ;
-  chr:hasUnit sulo:g_per_dL ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:measproc_789-8_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "Erythrocytes measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_789-8_20250525T114405_0200 .
 
-ex:proc_erythrocytedistwidth_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_erythrocytedistwidth_20250525 .
+ex:meas_789-8_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "Erythrocytes measurement 4.4587 10*6/uL" ;
+    chr:hasCode <https://loinc.org/789-8> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.4587"^^xsd:float ;
+    chr:hasUnit ex:unit_10_6_per_uL .
 
-ex:meas_erythrocytedistwidth_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "42.265"^^xsd:float ;
-  chr:hasUnit sulo:fL ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:measproc_718-7_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_718-7_20250525T114405_0200 .
 
-ex:proc_platelets_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_platelets_20250525 .
+ex:meas_718-7_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "Hemoglobin measurement 16.739 g/dL" ;
+    chr:hasCode <https://loinc.org/718-7> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "16.739"^^xsd:float ;
+    chr:hasUnit ex:unit_g_per_dL .
 
-ex:meas_platelets_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "193.27"^^xsd:float ;
-  chr:hasUnit sulo:10_3_per_uL ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:measproc_4544-3_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "Hematocrit measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_4544-3_20250525T114405_0200 .
 
-ex:proc_plateletdistwidth_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_plateletdistwidth_20250525 .
+ex:meas_4544-3_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "Hematocrit measurement 36.652 %" ;
+    chr:hasCode <https://loinc.org/4544-3> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "36.652"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
 
-ex:meas_plateletdistwidth_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "483.05"^^xsd:float ;
-  chr:hasUnit sulo:fL ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:measproc_787-2_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "MCV measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_787-2_20250525T114405_0200 .
 
-ex:proc_plateletmeanvolume_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_plateletmeanvolume_20250525 .
+ex:meas_787-2_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "MCV measurement 81.548 fL" ;
+    chr:hasCode <https://loinc.org/787-2> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "81.548"^^xsd:float ;
+    chr:hasUnit ex:unit_fL .
 
-ex:meas_plateletmeanvolume_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "10.746"^^xsd:float ;
-  chr:hasUnit sulo:fL ;
-  chr:hasMeasuredDate "2025-05-25T11:44:00"^^xsd:dateTime .
+ex:measproc_785-6_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "MCH measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_785-6_20250525T114405_0200 .
 
-ex:proc_phq2_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_phq2_20250525 .
+ex:meas_785-6_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "MCH measurement 27.464 pg" ;
+    chr:hasCode <https://loinc.org/785-6> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.464"^^xsd:float ;
+    chr:hasUnit ex:unit_pg .
 
-ex:meas_phq2_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasUnit sulo:score ;
-  chr:hasMeasuredDate "2025-05-25T13:01:00"^^xsd:dateTime .
+ex:measproc_786-4_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "MCHC measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_786-4_20250525T114405_0200 .
 
-ex:proc_dast10_20250525 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:meas_dast10_20250525 .
+ex:meas_786-4_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "MCHC measurement 35.55 g/dL" ;
+    chr:hasCode <https://loinc.org/786-4> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "35.55"^^xsd:float ;
+    chr:hasUnit ex:unit_g_per_dL .
 
-ex:meas_dast10_20250525 a chr:Measurement ;
-  chr:hasQuantityValue "2.0"^^xsd:float ;
-  chr:hasUnit sulo:score ;
-  chr:hasMeasuredDate "2025-05-25T13:36:00"^^xsd:dateTime .
+ex:measproc_788-0_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "Erythrocyte DistWidth measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_788-0_20250525T114405_0200 .
 
-ex:eval_20250525 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:doctor_Hank686Schneider199 ;
-  chr:hasObservation ex:diag_parttimeemployment ;
-  chr:hasObservation ex:diag_socialisolation .
+ex:meas_788-0_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "Erythrocyte DistWidth measurement 42.265 fL" ;
+    chr:hasCode <https://loinc.org/788-0> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "42.265"^^xsd:float ;
+    chr:hasUnit ex:unit_fL .
 
-ex:diag_parttimeemployment a chr:DiagnosticStatement .
+ex:measproc_777-3_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "Platelets measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_777-3_20250525T114405_0200 .
 
-ex:cond_parttimeemployment a chr:ClinicalCondition ;
-  chr:hasRecordDate "2025-05-25T12:29:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:meas_777-3_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "Platelets measurement 193.27 10*3/uL" ;
+    chr:hasCode <https://loinc.org/777-3> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "193.27"^^xsd:float ;
+    chr:hasUnit ex:unit_10_3_per_uL .
 
-ex:diag_socialisolation a chr:DiagnosticStatement .
+ex:measproc_32207-3_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "Platelet distribution width measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_32207-3_20250525T114405_0200 .
 
-ex:cond_socialisolation a chr:ClinicalCondition ;
-  chr:hasRecordDate "2025-05-25T12:29:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:meas_32207-3_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "Platelet distribution width measurement 483.05 fL" ;
+    chr:hasCode <https://loinc.org/32207-3> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "483.05"^^xsd:float ;
+    chr:hasUnit ex:unit_fL .
 
-ex:severity_moderate a chr:Severity .
+ex:measproc_32623-1_20250525T114405_0200 a chr:MeasurementProcess ;
+    rdfs:label "Platelet mean volume measurement process 2025-05-25T11:44:05+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_32623-1_20250525T114405_0200 .
 
-ex:careplan_followup a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:proc_FEV1FVC_20250525 .
+ex:meas_32623-1_20250525T114405_0200 a chr:Measurement ;
+    rdfs:label "Platelet mean volume measurement 10.746 fL" ;
+    chr:hasCode <https://loinc.org/32623-1> ;
+    chr:hasMeasuredDate "2025-05-25T11:44:05+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "10.746"^^xsd:float ;
+    chr:hasUnit ex:unit_fL .
+
+# PHQ-2 score (different timestamp)
+ex:measproc_55758-7_20250525T130132_0200 a chr:MeasurementProcess ;
+    rdfs:label "PHQ-2 total score measurement process 2025-05-25T13:01:32+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_55758-7_20250525T130132_0200 .
+
+ex:meas_55758-7_20250525T130132_0200 a chr:Measurement ;
+    rdfs:label "PHQ-2 total score measurement 1 score" ;
+    chr:hasCode <https://loinc.org/55758-7> ;
+    chr:hasMeasuredDate "2025-05-25T13:01:32+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# DAST-10 score
+ex:measproc_82667-7_20250525T133635_0200 a chr:MeasurementProcess ;
+    rdfs:label "DAST-10 total score measurement process 2025-05-25T13:36:35+02:00" ;
+    chr:hasPatient ex:patient_Cory_Frank_Heller ;
+    chr:hasResult ex:meas_82667-7_20250525T133635_0200 .
+
+ex:meas_82667-7_20250525T133635_0200 a chr:Measurement ;
+    rdfs:label "DAST-10 total score measurement 2 score" ;
+    chr:hasCode <https://loinc.org/82667-7> ;
+    chr:hasMeasuredDate "2025-05-25T13:36:35+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# Diagnostic statements and clinical conditions
+ex:diag_parttime_employment a chr:DiagnosticStatement ;
+    rdfs:label "Part-time employment" ;
+    chr:hasCode <http://snomed.info/id/160904001> .
+
+ex:cond_parttime_employment a chr:ClinicalCondition ;
+    rdfs:label "Part-time employment" ;
+    chr:hasCode <http://snomed.info/id/160904001> ;
+    chr:hasRecordDate "2025-05-25T12:29:34+02:00"^^xsd:dateTime .
+
+ex:evaluation_20250525T122934_1 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation 2025-05-25T12:29:34+02:00 for Part-time employment" ;
+    chr:hasCondition ex:cond_parttime_employment ;
+    chr:hasObservation ex:diag_parttime_employment .
+
+ex:diag_social_isolation a chr:DiagnosticStatement ;
+    rdfs:label "Social isolation" ;
+    chr:hasCode <http://snomed.info/id/422650009> .
+
+ex:cond_social_isolation a chr:ClinicalCondition ;
+    rdfs:label "Social isolation" ;
+    chr:hasCode <http://snomed.info/id/422650009> ;
+    chr:hasRecordDate "2025-05-25T12:29:34+02:00"^^xsd:dateTime .
+
+ex:evaluation_20250525T122934_2 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation 2025-05-25T12:29:34+02:00 for Social isolation" ;
+    chr:hasCondition ex:cond_social_isolation ;
+    chr:hasObservation ex:diag_social_isolation .

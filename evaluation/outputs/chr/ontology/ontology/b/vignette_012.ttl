@@ -1,547 +1,429 @@
 @prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
 @prefix ex:   <http://example.org/clinical/> .
-@prefix sulo: <https://w3id.org/sulo/> .
+@prefix sulo: <https://w2id.org/sulo/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:visit_2018_04_30_0234 a chr:ClinicalVisit, sulo:Process ;
-  sulo:isIn ex:care_unit_primary_care_north_pc ;
-  sulo:atTime ex:time_visit_2018_04_30_0234 ;
-  sulo:hasPart ex:visit_role_patient_arturo47, ex:visit_role_provider_alan320, ex:visit_role_procedure_general_examination .
+# Persons
+ex:patient_Arturo a chr:Person .
+ex:provider_Alan a chr:Person .
+
+# Care unit
+ex:careunit_primary_care_north_pc a chr:CareUnit .
+
+# Clinical visit
+ex:visit_20180430T023422 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_visit_subject , ex:role_visit_provider ;
+    sulo:isIn ex:careunit_primary_care_north_pc ;
+    sulo:atTime ex:time_visit .
+
+ex:role_visit_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_visit_provider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:provider_Alan .
+
+ex:time_visit a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
+
+# Units
+ex:unit_percent a chr:Unit .
+ex:unit_cm a chr:Unit .
+ex:unit_kg a chr:Unit .
+ex:unit_kg_per_m2 a chr:Unit .
+ex:unit_per_min a chr:Unit .
+ex:unit_mmol_per_L a chr:Unit .
+ex:unit_mg_per_dL a chr:Unit .
+ex:unit_score a chr:Unit .
+
+# Process status
+ex:status_completed a chr:ProcessStatus .
+
+# Measurements --------------------------------------------------------------
+
+# Hemoglobin A1c
+ex:measurement_HbA1c a chr:Measurement ;
+    sulo:hasValue "6.1"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_HbA1c .
+
+ex:process_HbA1c a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HbA1c_subject , ex:role_HbA1c_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_HbA1c .
+
+ex:role_HbA1c_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_HbA1c_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HbA1c .
+
+ex:time_HbA1c a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
+
+# Body Height
+ex:measurement_Height a chr:Measurement ;
+    sulo:hasValue "181.4"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_Height .
+
+ex:process_Height a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Height_subject , ex:role_Height_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Height .
+
+ex:role_Height_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_Height_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Height .
+
+ex:time_Height a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
+
+# Pain severity
+ex:measurement_Pain a chr:Measurement ;
+    sulo:hasValue "3"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_Pain .
+
+ex:process_Pain a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Pain_subject , ex:role_Pain_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Pain .
+
+ex:role_Pain_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_Pain_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Pain .
+
+ex:time_Pain a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
+
+# Body Weight
+ex:measurement_Weight a chr:Measurement ;
+    sulo:hasValue "90.4"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_Weight .
+
+ex:process_Weight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Weight_subject , ex:role_Weight_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Weight .
+
+ex:role_Weight_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_Weight_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Weight .
+
+ex:time_Weight a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
 
-ex:care_unit_primary_care_north_pc a chr:CareUnit .
+# Body Mass Index
+ex:measurement_BMI a chr:Measurement ;
+    sulo:hasValue "27.47"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_BMI .
+
+ex:process_BMI a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_BMI_subject , ex:role_BMI_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_BMI .
+
+ex:role_BMI_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_BMI_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI .
+
+ex:time_BMI a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
 
-ex:time_visit_2018_04_30_0234 a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
+# Heart rate
+ex:measurement_HR a chr:Measurement ;
+    sulo:hasValue "60"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_HR .
+
+ex:process_HR a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HR_subject , ex:role_HR_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_HR .
+
+ex:role_HR_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_HR_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HR .
+
+ex:time_HR a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
 
-ex:patient_arturo47 a chr:Person .
+# Respiratory rate
+ex:measurement_RR a chr:Measurement ;
+    sulo:hasValue "14"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_RR .
+
+ex:process_RR a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_RR_subject , ex:role_RR_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_RR .
+
+ex:role_RR_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_RR_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RR .
+
+ex:time_RR a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
 
-ex:visit_role_patient_arturo47 a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
+# Glucose
+ex:measurement_Glucose a chr:Measurement ;
+    sulo:hasValue "99.22"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Glucose .
+
+ex:process_Glucose a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Glucose_subject , ex:role_Glucose_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Glucose .
+
+ex:role_Glucose_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_Glucose_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Glucose .
+
+ex:time_Glucose a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
 
-ex:visit_role_provider_alan320 a sulo:Role ;
-  sulo:relatesToRole chr:CareProviderRole ;
-  sulo:hasHolder ex:physician_alan320 .
+# Urea nitrogen
+ex:measurement_UreaNitrogen a chr:Measurement ;
+    sulo:hasValue "17.68"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_UreaNitrogen .
+
+ex:process_UreaNitrogen a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_UreaNitrogen_subject , ex:role_UreaNitrogen_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_UreaNitrogen .
+
+ex:role_UreaNitrogen_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_UreaNitrogen_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_UreaNitrogen .
+
+ex:time_UreaNitrogen a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
 
-ex:physician_alan320 a chr:Person .
+# Creatinine
+ex:measurement_Creatinine a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Creatinine .
+
+ex:process_Creatinine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Creatinine_subject , ex:role_Creatinine_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Creatinine .
+
+ex:role_Creatinine_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_Creatinine_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Creatinine .
+
+ex:time_Creatinine a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
 
-ex:procedure_general_examination a chr:MedicalProcedure ;
-  rdfs:label "General examination of patient" .
+# Calcium
+ex:measurement_Calcium a chr:Measurement ;
+    sulo:hasValue "8.87"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_Calcium .
+
+ex:process_Calcium a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Calcium_subject , ex:role_Calcium_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Calcium .
+
+ex:role_Calcium_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_Calcium_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Calcium .
+
+ex:time_Calcium a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
 
-ex:visit_role_procedure_general_examination a sulo:Role ;
-  sulo:relatesToRole sulo:ReferenceRole ;
-  sulo:hasHolder ex:procedure_general_examination .
+# Sodium
+ex:measurement_Sodium a chr:Measurement ;
+    sulo:hasValue "142.93"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_Sodium .
+
+ex:process_Sodium a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Sodium_subject , ex:role_Sodium_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Sodium .
+
+ex:role_Sodium_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
+
+ex:role_Sodium_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Sodium .
+
+ex:time_Sodium a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measurement_process_hba1c a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_hba1c ;
-  sulo:hasPart ex:measurement_role_patient_hba1c, ex:measurement_role_output_hba1c ;
-  sulo:hasFeature ex:process_status_completed_hba1c .
+# Potassium
+ex:measurement_Potassium a chr:Measurement ;
+    sulo:hasValue "4.5"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_Potassium .
 
-ex:time_measurement_hba1c a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
+ex:process_Potassium a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Potassium_subject , ex:role_Potassium_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Potassium .
 
-ex:measurement_role_patient_hba1c a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
+ex:role_Potassium_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
 
-ex:measurement_hba1c a chr:Measurement ;
-  sulo:hasValue "6.1"^^xsd:float ;
-  sulo:hasPart ex:unit_percent ;
-  sulo:atTime ex:time_measurement_hba1c .
+ex:role_Potassium_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Potassium .
 
-ex:unit_percent a sulo:Unit ;
-  rdfs:label "%" .
+ex:time_Potassium a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measurement_role_output_hba1c a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_hba1c .
+# Chloride
+ex:measurement_Chloride a chr:Measurement ;
+    sulo:hasValue "104.57"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_Chloride .
 
-ex:process_status_completed_hba1c a chr:ProcessStatus ;
-  rdfs:label "completed" .
+ex:process_Chloride a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Chloride_subject , ex:role_Chloride_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Chloride .
 
-ex:measurement_process_body_height a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_body_height ;
-  sulo:hasPart ex:measurement_role_patient_body_height, ex:measurement_role_output_body_height ;
-  sulo:hasFeature ex:process_status_completed_body_height .
+ex:role_Chloride_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
 
-ex:time_measurement_body_height a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
+ex:role_Chloride_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Chloride .
 
-ex:measurement_role_patient_body_height a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
+ex:time_Chloride a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measurement_body_height a chr:Measurement ;
-  sulo:hasValue "181.4"^^xsd:float ;
-  sulo:hasPart ex:unit_cm ;
-  sulo:atTime ex:time_measurement_body_height .
+# Carbon dioxide, total
+ex:measurement_CO2 a chr:Measurement ;
+    sulo:hasValue "22.6"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_CO2 .
 
-ex:unit_cm a sulo:Unit ;
-  rdfs:label "cm" .
+ex:process_CO2 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_CO2_subject , ex:role_CO2_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_CO2 .
 
-ex:measurement_role_output_body_height a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_body_height .
+ex:role_CO2_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
 
-ex:process_status_completed_body_height a chr:ProcessStatus ;
-  rdfs:label "completed" .
+ex:role_CO2_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_CO2 .
 
-ex:measurement_process_pain_severity a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_pain_severity ;
-  sulo:hasPart ex:measurement_role_patient_pain_severity, ex:measurement_role_output_pain_severity ;
-  sulo:hasFeature ex:process_status_completed_pain_severity .
+ex:time_CO2 a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
 
-ex:time_measurement_pain_severity a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
+# GAD-7
+ex:measurement_GAD7 a chr:Measurement ;
+    sulo:hasValue "3"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_GAD7 .
 
-ex:measurement_role_patient_pain_severity a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
+ex:process_GAD7 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_GAD7_subject , ex:role_GAD7_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_GAD7 .
 
-ex:measurement_pain_severity a chr:Measurement ;
-  sulo:hasValue "3.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score ;
-  sulo:atTime ex:time_measurement_pain_severity .
+ex:role_GAD7_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
 
-ex:unit_score a sulo:Unit ;
-  rdfs:label "score" .
+ex:role_GAD7_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GAD7 .
 
-ex:measurement_role_output_pain_severity a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_pain_severity .
+ex:time_GAD7 a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T03:29:12+02:00"^^xsd:dateTime .
 
-ex:process_status_completed_pain_severity a chr:ProcessStatus ;
-  rdfs:label "completed" .
+# PHQ-2
+ex:measurement_PHQ2 a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_PHQ2 .
 
-ex:measurement_process_body_weight a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_body_weight ;
-  sulo:hasPart ex:measurement_role_patient_body_weight, ex:measurement_role_output_body_weight ;
-  sulo:hasFeature ex:process_status_completed_body_weight .
+ex:process_PHQ2 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PHQ2_subject , ex:role_PHQ2_output ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_PHQ2 .
 
-ex:time_measurement_body_weight a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
+ex:role_PHQ2_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
 
-ex:measurement_role_patient_body_weight a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
+ex:role_PHQ2_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ2 .
 
-ex:measurement_body_weight a chr:Measurement ;
-  sulo:hasValue "90.4"^^xsd:float ;
-  sulo:hasPart ex:unit_kg ;
-  sulo:atTime ex:time_measurement_body_weight .
+ex:time_PHQ2 a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T04:04:26+02:00"^^xsd:dateTime .
 
-ex:unit_kg a sulo:Unit ;
-  rdfs:label "kg" .
+# Evaluations --------------------------------------------------------------
 
-ex:measurement_role_output_body_weight a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_body_weight .
+# Evaluation 1 – Medication review due
+ex:evaluation_1 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_eval1_subject , ex:role_eval1_performer , ex:role_eval1_output ;
+    sulo:atTime ex:time_eval1 .
 
-ex:process_status_completed_body_weight a chr:ProcessStatus ;
-  rdfs:label "completed" .
+ex:role_eval1_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
 
-ex:measurement_process_bmi a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_bmi ;
-  sulo:hasPart ex:measurement_role_patient_bmi, ex:measurement_role_output_bmi ;
-  sulo:hasFeature ex:process_status_completed_bmi .
+ex:role_eval1_performer a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Alan .
 
-ex:time_measurement_bmi a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
+ex:role_eval1_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnostic_MedReview .
 
-ex:measurement_role_patient_bmi a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
+ex:diagnostic_MedReview a chr:DiagnosticStatement .
 
-ex:measurement_bmi a chr:Measurement ;
-  sulo:hasValue "27.47"^^xsd:float ;
-  sulo:hasPart ex:unit_kg_m2 ;
-  sulo:atTime ex:time_measurement_bmi .
+ex:time_eval1 a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T02:34:22+02:00"^^xsd:dateTime .
 
-ex:unit_kg_m2 a sulo:Unit ;
-  rdfs:label "kg/m2" .
+# Evaluation 2 – Gingivitis
+ex:evaluation_2 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_eval2_subject , ex:role_eval2_performer , ex:role_eval2_output ;
+    sulo:atTime ex:time_eval2 .
 
-ex:measurement_role_output_bmi a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_bmi .
+ex:role_eval2_subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Arturo .
 
-ex:process_status_completed_bmi a chr:ProcessStatus ;
-  rdfs:label "completed" .
+ex:role_eval2_performer a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Alan .
 
-ex:measurement_process_heart_rate a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_heart_rate ;
-  sulo:hasPart ex:measurement_role_patient_heart_rate, ex:measurement_role_output_heart_rate ;
-  sulo:hasFeature ex:process_status_completed_heart_rate .
+ex:role_eval2_output a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnostic_Gingivitis .
 
-ex:time_measurement_heart_rate a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
+ex:diagnostic_Gingivitis a chr:DiagnosticStatement .
 
-ex:measurement_role_patient_heart_rate a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
+ex:time_eval2 a sulo:TimeInstant ;
+    sulo:hasValue "2018-04-30T04:04:26+02:00"^^xsd:dateTime .
 
-ex:measurement_heart_rate a chr:Measurement ;
-  sulo:hasValue "60.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min ;
-  sulo:atTime ex:time_measurement_heart_rate .
+# Care plan --------------------------------------------------------------
 
-ex:unit_per_min a sulo:Unit ;
-  rdfs:label "/min" .
+ex:careplan_1 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowupMonitoring .
 
-ex:measurement_role_output_heart_rate a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_heart_rate .
-
-ex:process_status_completed_heart_rate a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:measurement_process_respiratory_rate a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_respiratory_rate ;
-  sulo:hasPart ex:measurement_role_patient_respiratory_rate, ex:measurement_role_output_respiratory_rate ;
-  sulo:hasFeature ex:process_status_completed_respiratory_rate .
-
-ex:time_measurement_respiratory_rate a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
-
-ex:measurement_role_patient_respiratory_rate a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
-
-ex:measurement_respiratory_rate a chr:Measurement ;
-  sulo:hasValue "14.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min ;
-  sulo:atTime ex:time_measurement_respiratory_rate .
-
-ex:measurement_role_output_respiratory_rate a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_respiratory_rate .
-
-ex:process_status_completed_respiratory_rate a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:measurement_process_glucose a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_glucose ;
-  sulo:hasPart ex:measurement_role_patient_glucose, ex:measurement_role_output_glucose ;
-  sulo:hasFeature ex:process_status_completed_glucose .
-
-ex:time_measurement_glucose a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
-
-ex:measurement_role_patient_glucose a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
-
-ex:measurement_glucose a chr:Measurement ;
-  sulo:hasValue "99.22"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL ;
-  sulo:atTime ex:time_measurement_glucose .
-
-ex:unit_mg_dL a sulo:Unit ;
-  rdfs:label "mg/dL" .
-
-ex:measurement_role_output_glucose a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_glucose .
-
-ex:process_status_completed_glucose a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:measurement_process_urea_nitrogen a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_urea_nitrogen ;
-  sulo:hasPart ex:measurement_role_patient_urea_nitrogen, ex:measurement_role_output_urea_nitrogen ;
-  sulo:hasFeature ex:process_status_completed_urea_nitrogen .
-
-ex:time_measurement_urea_nitrogen a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
-
-ex:measurement_role_patient_urea_nitrogen a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
-
-ex:measurement_urea_nitrogen a chr:Measurement ;
-  sulo:hasValue "17.68"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL ;
-  sulo:atTime ex:time_measurement_urea_nitrogen .
-
-ex:measurement_role_output_urea_nitrogen a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_urea_nitrogen .
-
-ex:process_status_completed_urea_nitrogen a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:measurement_process_creatinine a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_creatinine ;
-  sulo:hasPart ex:measurement_role_patient_creatinine, ex:measurement_role_output_creatinine ;
-  sulo:hasFeature ex:process_status_completed_creatinine .
-
-ex:time_measurement_creatinine a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
-
-ex:measurement_role_patient_creatinine a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
-
-ex:measurement_creatinine a chr:Measurement ;
-  sulo:hasValue "1.0"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL ;
-  sulo:atTime ex:time_measurement_creatinine .
-
-ex:measurement_role_output_creatinine a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_creatinine .
-
-ex:process_status_completed_creatinine a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:measurement_process_calcium a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_calcium ;
-  sulo:hasPart ex:measurement_role_patient_calcium, ex:measurement_role_output_calcium ;
-  sulo:hasFeature ex:process_status_completed_calcium .
-
-ex:time_measurement_calcium a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
-
-ex:measurement_role_patient_calcium a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
-
-ex:measurement_calcium a chr:Measurement ;
-  sulo:hasValue "8.87"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL ;
-  sulo:atTime ex:time_measurement_calcium .
-
-ex:measurement_role_output_calcium a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_calcium .
-
-ex:process_status_completed_calcium a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:measurement_process_sodium a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_sodium ;
-  sulo:hasPart ex:measurement_role_patient_sodium, ex:measurement_role_output_sodium ;
-  sulo:hasFeature ex:process_status_completed_sodium .
-
-ex:time_measurement_sodium a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
-
-ex:measurement_role_patient_sodium a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
-
-ex:measurement_sodium a chr:Measurement ;
-  sulo:hasValue "142.93"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_L ;
-  sulo:atTime ex:time_measurement_sodium .
-
-ex:measurement_role_output_sodium a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_sodium .
-
-ex:process_status_completed_sodium a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:unit_mmol_L a sulo:Unit ;
-  rdfs:label "mmol/L" .
-
-ex:measurement_process_potassium a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_potassium ;
-  sulo:hasPart ex:measurement_role_patient_potassium, ex:measurement_role_output_potassium ;
-  sulo:hasFeature ex:process_status_completed_potassium .
-
-ex:time_measurement_potassium a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
-
-ex:measurement_role_patient_potassium a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
-
-ex:measurement_potassium a chr:Measurement ;
-  sulo:hasValue "4.5"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_L ;
-  sulo:atTime ex:time_measurement_potassium .
-
-ex:measurement_role_output_potassium a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_potassium .
-
-ex:process_status_completed_potassium a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:measurement_process_chloride a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_chloride ;
-  sulo:hasPart ex:measurement_role_patient_chloride, ex:measurement_role_output_chloride ;
-  sulo:hasFeature ex:process_status_completed_chloride .
-
-ex:time_measurement_chloride a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
-
-ex:measurement_role_patient_chloride a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
-
-ex:measurement_chloride a chr:Measurement ;
-  sulo:hasValue "104.57"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_L ;
-  sulo:atTime ex:time_measurement_chloride .
-
-ex:measurement_role_output_chloride a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_chloride .
-
-ex:process_status_completed_chloride a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:measurement_process_carbon_dioxide a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_carbon_dioxide ;
-  sulo:hasPart ex:measurement_role_patient_carbon_dioxide, ex:measurement_role_output_carbon_dioxide ;
-  sulo:hasFeature ex:process_status_completed_carbon_dioxide .
-
-ex:time_measurement_carbon_dioxide a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
-
-ex:measurement_role_patient_carbon_dioxide a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
-
-ex:measurement_carbon_dioxide a chr:Measurement ;
-  sulo:hasValue "22.6"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_L ;
-  sulo:atTime ex:time_measurement_carbon_dioxide .
-
-ex:measurement_role_output_carbon_dioxide a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_carbon_dioxide .
-
-ex:process_status_completed_carbon_dioxide a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:measurement_process_gad7 a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_gad7 ;
-  sulo:hasPart ex:measurement_role_patient_gad7, ex:measurement_role_output_gad7 ;
-  sulo:hasFeature ex:process_status_completed_gad7 .
-
-ex:time_measurement_gad7 a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T03:29:00"^^xsd:dateTime .
-
-ex:measurement_role_patient_gad7 a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
-
-ex:measurement_gad7 a chr:Measurement ;
-  sulo:hasValue "3.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score ;
-  sulo:atTime ex:time_measurement_gad7 .
-
-ex:measurement_role_output_gad7 a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_gad7 .
-
-ex:process_status_completed_gad7 a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:measurement_process_phq2 a chr:MeasurementProcess, sulo:Process ;
-  sulo:atTime ex:time_measurement_phq2 ;
-  sulo:hasPart ex:measurement_role_patient_phq2, ex:measurement_role_output_phq2 ;
-  sulo:hasFeature ex:process_status_completed_phq2 .
-
-ex:time_measurement_phq2 a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T04:04:00"^^xsd:dateTime .
-
-ex:measurement_role_patient_phq2 a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
-
-ex:measurement_phq2 a chr:Measurement ;
-  sulo:hasValue "2.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score ;
-  sulo:atTime ex:time_measurement_phq2 .
-
-ex:measurement_role_output_phq2 a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:measurement_phq2 .
-
-ex:process_status_completed_phq2 a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:evaluation_2018_04_30_0234 a chr:EvaluationProcess, sulo:Process ;
-  sulo:atTime ex:time_evaluation_2018_04_30_0234 ;
-  sulo:hasPart ex:evaluation_role_evaluator_alan320_0234, ex:evaluation_role_subject_arturo47_0234, ex:evaluation_role_output_medication_review .
-
-ex:time_evaluation_2018_04_30_0234 a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
-
-ex:evaluation_role_evaluator_alan320_0234 a sulo:Role ;
-  sulo:relatesToRole chr:PerformerRole ;
-  sulo:hasHolder ex:physician_alan320 .
-
-ex:evaluation_role_subject_arturo47_0234 a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
-
-ex:diagnostic_statement_medication_review a chr:DiagnosticStatement ;
-  rdfs:label "Medication review due (situation)" .
-
-ex:evaluation_role_output_medication_review a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:diagnostic_statement_medication_review .
-
-ex:clinical_condition_medication_review a chr:ClinicalCondition ;
-  sulo:atTime ex:time_condition_medication_review ;
-  sulo:hasFeature ex:severity_moderate_medication_review .
-
-ex:time_condition_medication_review a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T02:34:00"^^xsd:dateTime .
-
-ex:severity_moderate_medication_review a chr:Severity ;
-  rdfs:label "Moderate" .
-
-ex:evaluation_2018_04_30_0404 a chr:EvaluationProcess, sulo:Process ;
-  sulo:atTime ex:time_evaluation_2018_04_30_0404 ;
-  sulo:hasPart ex:evaluation_role_evaluator_alan320_0404, ex:evaluation_role_subject_arturo47_0404, ex:evaluation_role_output_gingivitis .
-
-ex:time_evaluation_2018_04_30_0404 a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T04:04:00"^^xsd:dateTime .
-
-ex:evaluation_role_evaluator_alan320_0404 a sulo:Role ;
-  sulo:relatesToRole chr:PerformerRole ;
-  sulo:hasHolder ex:physician_alan320 .
-
-ex:evaluation_role_subject_arturo47_0404 a sulo:Role ;
-  sulo:relatesToRole chr:SubjectOfCareRole ;
-  sulo:hasHolder ex:patient_arturo47 .
-
-ex:diagnostic_statement_gingivitis a chr:DiagnosticStatement ;
-  rdfs:label "Gingivitis (disorder)" .
-
-ex:evaluation_role_output_gingivitis a sulo:Role ;
-  sulo:relatesToRole chr:OutputRole ;
-  sulo:hasHolder ex:diagnostic_statement_gingivitis .
-
-ex:clinical_condition_gingivitis a chr:ClinicalCondition ;
-  sulo:atTime ex:time_condition_gingivitis ;
-  sulo:hasFeature ex:severity_moderate_gingivitis .
-
-ex:time_condition_gingivitis a sulo:TimeInstant ;
-  sulo:hasValue "2018-04-30T04:04:00"^^xsd:dateTime .
-
-ex:severity_moderate_gingivitis a chr:Severity ;
-  rdfs:label "Moderate" .
-
-ex:care_plan_follow_up a chr:CarePlan ;
-  sulo:hasPart ex:care_plan_role_procedure_follow_up_monitoring, ex:care_plan_role_procedure_routine_review .
-
-ex:procedure_follow_up_monitoring a chr:MedicalProcedure ;
-  rdfs:label "follow-up monitoring" .
-
-ex:procedure_routine_review a chr:MedicalProcedure ;
-  rdfs:label "routine review" .
-
-ex:care_plan_role_procedure_follow_up_monitoring a sulo:Role ;
-  sulo:relatesToRole sulo:ReferenceRole ;
-  sulo:hasHolder ex:procedure_follow_up_monitoring .
-
-ex:care_plan_role_procedure_routine_review a sulo:Role ;
-  sulo:relatesToRole sulo:ReferenceRole ;
-  sulo:hasHolder ex:procedure_routine_review .
+ex:procedure_FollowupMonitoring a chr:MedicalProcedure .

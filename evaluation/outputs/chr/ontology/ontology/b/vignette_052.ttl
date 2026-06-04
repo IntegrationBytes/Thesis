@@ -4,263 +4,228 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:visit_2020_12_04_0901 a chr:ClinicalVisit ;
-  sulo:isIn ex:care_unit_berkshire ;
-  sulo:atTime ex:time_visit_2020_12_04_0901 .
+# Persons
+ex:patient_Daren950 a chr:Person .
+ex:physician_Carroll471 a chr:Person .
+
+# Care unit
+ex:careunit_BerkshireMedicalCenter a chr:CareUnit .
+
+# Clinical visit
+ex:visit_20201204T090115 a chr:ClinicalVisit ;
+    sulo:atTime ex:time_visit_20201204T090115 ;
+    sulo:hasParticipant ex:role_VisitPatient ;
+    sulo:hasParticipant ex:role_VisitProvider .
+
+ex:time_visit_20201204T090115 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:15+01:00"^^xsd:dateTime .
+
+ex:role_VisitPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_VisitProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Carroll471 .
+
+# Units
+ex:unit_Celsius   a chr:Unit .
+ex:unit_per_min   a chr:Unit .
+ex:unit_percent   a chr:Unit .
+ex:unit_kg        a chr:Unit .
+
+# Measurement: Body temperature
+ex:proc_temp_20201204T090115 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_temp_20201204T090115 ;
+    sulo:hasParticipant ex:role_TempPatient ;
+    sulo:hasParticipant ex:role_TempOutput ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_temp_20201204T090115 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:15+01:00"^^xsd:dateTime .
+
+ex:role_TempPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_TempOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_temp_20201204T090115 .
+
+ex:measurement_temp_20201204T090115 a chr:Measurement ;
+    sulo:hasValue "38.656"^^xsd:float ;
+    sulo:hasPart ex:unit_Celsius ;
+    sulo:atTime ex:time_temp_20201204T090115 .
+
+# Measurement: Respiratory rate
+ex:proc_respRate_20201204T090115 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_respRate_20201204T090115 ;
+    sulo:hasParticipant ex:role_RespRatePatient ;
+    sulo:hasParticipant ex:role_RespRateOutput ;
+    sulo:hasFeature ex:status_completed .
+
+ex:time_respRate_20201204T090115 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:15+01:00"^^xsd:dateTime .
+
+ex:role_RespRatePatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_RespRateOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_respRate_20201204T090115 .
+
+ex:measurement_respRate_20201204T090115 a chr:Measurement ;
+    sulo:hasValue "18.345"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_respRate_20201204T090115 .
+
+# Measurement: Heart rate
+ex:proc_heartRate_20201204T090115 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_heartRate_20201204T090115 ;
+    sulo:hasParticipant ex:role_HeartRatePatient ;
+    sulo:hasParticipant ex:role_HeartRateOutput ;
+    sulo:hasFeature ex:status_completed .
 
-ex:care_unit_berkshire a chr:CareUnit ;
-  rdfs:label "BERKSHIRE MEDICAL CENTER INC" .
+ex:time_heartRate_20201204T090115 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:15+01:00"^^xsd:dateTime .
 
-ex:time_visit_2020_12_04_0901 a sulo:TimeInstant ;
-  sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+ex:role_HeartRatePatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
+
+ex:role_HeartRateOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_heartRate_20201204T090115 .
+
+ex:measurement_heartRate_20201204T090115 a chr:Measurement ;
+    sulo:hasValue "85.723"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_heartRate_20201204T090115 .
+
+# Measurement: Oxygen saturation
+ex:proc_o2Sat_20201204T090115 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_o2Sat_20201204T090115 ;
+    sulo:hasParticipant ex:role_O2SatPatient ;
+    sulo:hasParticipant ex:role_O2SatOutput ;
+    sulo:hasFeature ex:status_completed .
 
-ex:patient_Daren950 a chr:Person ;
-  rdfs:label "Daren950 Ed239 Strosin214" .
+ex:time_o2Sat_20201204T090115 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:15+01:00"^^xsd:dateTime .
 
-ex:provider_Carroll471 a chr:Person ;
-  rdfs:label "Dr. Carroll471 Eichmann909" .
+ex:role_O2SatPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
 
-ex:body_temp_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_patient_body_temp ;
-  sulo:hasParticipant ex:role_performer_body_temp ;
-  sulo:hasParticipant ex:role_output_body_temp ;
-  sulo:atTime ex:time_body_temp .
+ex:role_O2SatOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_o2Sat_20201204T090115 .
 
-ex:role_patient_body_temp a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Daren950 .
+ex:measurement_o2Sat_20201204T090115 a chr:Measurement ;
+    sulo:hasValue "82.21"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_o2Sat_20201204T090115 .
 
-ex:role_performer_body_temp a chr:PerformerRole ;
-  sulo:isFeatureOf ex:provider_Carroll471 .
+# Measurement: Body weight
+ex:proc_weight_20201204T090115 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_weight_20201204T090115 ;
+    sulo:hasParticipant ex:role_WeightPatient ;
+    sulo:hasParticipant ex:role_WeightOutput ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_output_body_temp a chr:OutputRole ;
-  sulo:isFeatureOf ex:body_temp_measurement .
+ex:time_weight_20201204T090115 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:15+01:00"^^xsd:dateTime .
 
-ex:body_temp_measurement a chr:Measurement ;
-  sulo:hasValue "38.656"^^xsd:float ;
-  sulo:hasPart <http://qudt.org/vocab/unit/DegreeCelsius> ;
-  sulo:atTime ex:time_body_temp .
+ex:role_WeightPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
 
-ex:time_body_temp a sulo:TimeInstant ;
-  sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+ex:role_WeightOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_weight_20201204T090115 .
 
-ex:resp_rate_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_patient_resp_rate ;
-  sulo:hasParticipant ex:role_performer_resp_rate ;
-  sulo:hasParticipant ex:role_output_resp_rate ;
-  sulo:atTime ex:time_resp_rate .
+ex:measurement_weight_20201204T090115 a chr:Measurement ;
+    sulo:hasValue "56.1"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_weight_20201204T090115 .
 
-ex:role_patient_resp_rate a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Daren950 .
+# Process status (shared)
+ex:status_completed a chr:ProcessStatus .
 
-ex:role_performer_resp_rate a chr:PerformerRole ;
-  sulo:isFeatureOf ex:provider_Carroll471 .
+# Evaluation: Cough
+ex:evaluation_cough_20201204T090115 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_eval_cough_20201204T090115 ;
+    sulo:hasParticipant ex:role_EvalPatient_cough ;
+    sulo:hasParticipant ex:role_EvalPerformer_cough ;
+    sulo:hasParticipant ex:role_EvalOutput_cough .
 
-ex:role_output_resp_rate a chr:OutputRole ;
-  sulo:isFeatureOf ex:resp_rate_measurement .
+ex:time_eval_cough_20201204T090115 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:15+01:00"^^xsd:dateTime .
 
-ex:resp_rate_measurement a chr:Measurement ;
-  sulo:hasValue "18.345"^^xsd:float ;
-  sulo:hasPart <http://qudt.org/vocab/unit/PerMinute> ;
-  sulo:atTime ex:time_resp_rate .
+ex:role_EvalPatient_cough a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
 
-ex:time_resp_rate a sulo:TimeInstant ;
-  sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+ex:role_EvalPerformer_cough a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Carroll471 .
 
-ex:heart_rate_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_patient_heart_rate ;
-  sulo:hasParticipant ex:role_performer_heart_rate ;
-  sulo:hasParticipant ex:role_output_heart_rate ;
-  sulo:atTime ex:time_heart_rate .
+ex:role_EvalOutput_cough a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_cough .
 
-ex:role_patient_heart_rate a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Daren950 .
+ex:diag_cough a chr:DiagnosticStatement .
 
-ex:role_performer_heart_rate a chr:PerformerRole ;
-  sulo:isFeatureOf ex:provider_Carroll471 .
+# Evaluation: Fever
+ex:evaluation_fever_20201204T090115 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_eval_fever_20201204T090115 ;
+    sulo:hasParticipant ex:role_EvalPatient_fever ;
+    sulo:hasParticipant ex:role_EvalPerformer_fever ;
+    sulo:hasParticipant ex:role_EvalOutput_fever .
 
-ex:role_output_heart_rate a chr:OutputRole ;
-  sulo:isFeatureOf ex:heart_rate_measurement .
+ex:time_eval_fever_20201204T090115 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:15+01:00"^^xsd:dateTime .
 
-ex:heart_rate_measurement a chr:Measurement ;
-  sulo:hasValue "85.723"^^xsd:float ;
-  sulo:hasPart <http://qudt.org/vocab/unit/PerMinute> ;
-  sulo:atTime ex:time_heart_rate .
+ex:role_EvalPatient_fever a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
 
-ex:time_heart_rate a sulo:TimeInstant ;
-  sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+ex:role_EvalPerformer_fever a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Carroll471 .
 
-ex:oxygen_saturation_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_patient_oxygen_saturation ;
-  sulo:hasParticipant ex:role_performer_oxygen_saturation ;
-  sulo:hasParticipant ex:role_output_oxygen_saturation ;
-  sulo:atTime ex:time_oxygen_saturation .
+ex:role_EvalOutput_fever a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_fever .
 
-ex:role_patient_oxygen_saturation a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Daren950 .
+ex:diag_fever a chr:DiagnosticStatement .
 
-ex:role_performer_oxygen_saturation a chr:PerformerRole ;
-  sulo:isFeatureOf ex:provider_Carroll471 .
+# Evaluation: Loss of taste
+ex:evaluation_lossTaste_20201204T090115 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_eval_lossTaste_20201204T090115 ;
+    sulo:hasParticipant ex:role_EvalPatient_lossTaste ;
+    sulo:hasParticipant ex:role_EvalPerformer_lossTaste ;
+    sulo:hasParticipant ex:role_EvalOutput_lossTaste .
 
-ex:role_output_oxygen_saturation a chr:OutputRole ;
-  sulo:isFeatureOf ex:oxygen_saturation_measurement .
+ex:time_eval_lossTaste_20201204T090115 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T09:01:15+01:00"^^xsd:dateTime .
 
-ex:oxygen_saturation_measurement a chr:Measurement ;
-  sulo:hasValue "82.21"^^xsd:float ;
-  sulo:hasPart <http://qudt.org/vocab/unit/Percent> ;
-  sulo:atTime ex:time_oxygen_saturation .
+ex:role_EvalPatient_lossTaste a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
 
-ex:time_oxygen_saturation a sulo:TimeInstant ;
-  sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+ex:role_EvalPerformer_lossTaste a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Carroll471 .
 
-ex:body_weight_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_patient_body_weight ;
-  sulo:hasParticipant ex:role_performer_body_weight ;
-  sulo:hasParticipant ex:role_output_body_weight ;
-  sulo:atTime ex:time_body_weight .
+ex:role_EvalOutput_lossTaste a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_lossTaste .
 
-ex:role_patient_body_weight a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Daren950 .
+ex:diag_lossTaste a chr:DiagnosticStatement .
 
-ex:role_performer_body_weight a chr:PerformerRole ;
-  sulo:isFeatureOf ex:provider_Carroll471 .
+# Evaluation: COVID‑19 disease
+ex:evaluation_covid_20201204T100643 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_eval_covid_20201204T100643 ;
+    sulo:hasParticipant ex:role_EvalPatient_covid ;
+    sulo:hasParticipant ex:role_EvalPerformer_covid ;
+    sulo:hasParticipant ex:role_EvalOutput_covid .
 
-ex:role_output_body_weight a chr:OutputRole ;
-  sulo:isFeatureOf ex:body_weight_measurement .
+ex:time_eval_covid_20201204T100643 a sulo:TimeInstant ;
+    sulo:hasValue "2020-12-04T10:06:43+01:00"^^xsd:dateTime .
 
-ex:body_weight_measurement a chr:Measurement ;
-  sulo:hasValue "56.1"^^xsd:float ;
-  sulo:hasPart <http://qudt.org/vocab/unit/Kilogram> ;
-  sulo:atTime ex:time_body_weight .
+ex:role_EvalPatient_covid a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Daren950 .
 
-ex:time_body_weight a sulo:TimeInstant ;
-  sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
+ex:role_EvalPerformer_covid a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Carroll471 .
 
-ex:evaluation_cough a chr:EvaluationProcess ;
-  sulo:hasParticipant ex:role_patient_eval_cough ;
-  sulo:hasParticipant ex:role_performer_eval_cough ;
-  sulo:hasParticipant ex:role_output_eval_cough ;
-  sulo:atTime ex:time_eval_cough .
+ex:role_EvalOutput_covid a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_covid .
 
-ex:role_patient_eval_cough a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Daren950 .
+ex:diag_covid a chr:DiagnosticStatement .
 
-ex:role_performer_eval_cough a chr:PerformerRole ;
-  sulo:isFeatureOf ex:provider_Carroll471 .
+# Care plan
+ex:careplan_20201204 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup .
 
-ex:role_output_eval_cough a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_cough .
-
-ex:diagnostic_cough a chr:DiagnosticStatement ;
-  rdfs:label "Cough (finding)" .
-
-ex:time_eval_cough a sulo:TimeInstant ;
-  sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
-
-ex:clinical_condition_cough a chr:ClinicalCondition ;
-  sulo:hasFeature ex:severity_moderate_cough ;
-  sulo:atTime ex:time_condition_cough .
-
-ex:severity_moderate_cough a chr:Severity ;
-  rdfs:label "Moderate" .
-
-ex:time_condition_cough a sulo:TimeInstant ;
-  sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
-
-ex:evaluation_fever a chr:EvaluationProcess ;
-  sulo:hasParticipant ex:role_patient_eval_fever ;
-  sulo:hasParticipant ex:role_performer_eval_fever ;
-  sulo:hasParticipant ex:role_output_eval_fever ;
-  sulo:atTime ex:time_eval_fever .
-
-ex:role_patient_eval_fever a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Daren950 .
-
-ex:role_performer_eval_fever a chr:PerformerRole ;
-  sulo:isFeatureOf ex:provider_Carroll471 .
-
-ex:role_output_eval_fever a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_fever .
-
-ex:diagnostic_fever a chr:DiagnosticStatement ;
-  rdfs:label "Fever (finding)" .
-
-ex:time_eval_fever a sulo:TimeInstant ;
-  sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
-
-ex:clinical_condition_fever a chr:ClinicalCondition ;
-  sulo:hasFeature ex:severity_moderate_fever ;
-  sulo:atTime ex:time_condition_fever .
-
-ex:severity_moderate_fever a chr:Severity ;
-  rdfs:label "Moderate" .
-
-ex:time_condition_fever a sulo:TimeInstant ;
-  sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
-
-ex:evaluation_loss_taste a chr:EvaluationProcess ;
-  sulo:hasParticipant ex:role_patient_eval_loss_taste ;
-  sulo:hasParticipant ex:role_performer_eval_loss_taste ;
-  sulo:hasParticipant ex:role_output_eval_loss_taste ;
-  sulo:atTime ex:time_eval_loss_taste .
-
-ex:role_patient_eval_loss_taste a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Daren950 .
-
-ex:role_performer_eval_loss_taste a chr:PerformerRole ;
-  sulo:isFeatureOf ex:provider_Carroll471 .
-
-ex:role_output_eval_loss_taste a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_loss_taste .
-
-ex:diagnostic_loss_taste a chr:DiagnosticStatement ;
-  rdfs:label "Loss of taste (finding)" .
-
-ex:time_eval_loss_taste a sulo:TimeInstant ;
-  sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
-
-ex:clinical_condition_loss_taste a chr:ClinicalCondition ;
-  sulo:hasFeature ex:severity_moderate_loss_taste ;
-  sulo:atTime ex:time_condition_loss_taste .
-
-ex:severity_moderate_loss_taste a chr:Severity ;
-  rdfs:label "Moderate" .
-
-ex:time_condition_loss_taste a sulo:TimeInstant ;
-  sulo:hasValue "2020-12-04T09:01:00"^^xsd:dateTime .
-
-ex:evaluation_covid a chr:EvaluationProcess ;
-  sulo:hasParticipant ex:role_patient_eval_covid ;
-  sulo:hasParticipant ex:role_performer_eval_covid ;
-  sulo:hasParticipant ex:role_output_eval_covid ;
-  sulo:atTime ex:time_eval_covid .
-
-ex:role_patient_eval_covid a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Daren950 .
-
-ex:role_performer_eval_covid a chr:PerformerRole ;
-  sulo:isFeatureOf ex:provider_Carroll471 .
-
-ex:role_output_eval_covid a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_covid .
-
-ex:diagnostic_covid a chr:DiagnosticStatement ;
-  rdfs:label "Disease caused by severe acute respiratory syndrome coronavirus 2 (disorder)" .
-
-ex:time_eval_covid a sulo:TimeInstant ;
-  sulo:hasValue "2020-12-04T10:06:00"^^xsd:dateTime .
-
-ex:clinical_condition_covid a chr:ClinicalCondition ;
-  sulo:hasFeature ex:severity_moderate_covid ;
-  sulo:atTime ex:time_condition_covid .
-
-ex:severity_moderate_covid a chr:Severity ;
-  rdfs:label "Moderate" .
-
-ex:time_condition_covid a sulo:TimeInstant ;
-  sulo:hasValue "2020-12-04T10:06:00"^^xsd:dateTime .
-
-ex:care_plan a chr:CarePlan ;
-  sulo:refersTo ex:follow_up_monitoring .
-
-ex:follow_up_monitoring a chr:MedicalProcedure ;
-  rdfs:label "follow-up monitoring" .
+ex:procedure_followup a chr:MedicalProcedure .

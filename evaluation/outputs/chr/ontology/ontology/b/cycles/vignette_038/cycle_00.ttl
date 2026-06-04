@@ -4,291 +4,334 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Cory323_Frank378_Heller342 a chr:Person .
+# Persons
+ex:patient_Cory_Heller a chr:Person .
+ex:physician_Margene_Schamberger a chr:Person .
 
+# Care unit
+ex:careunit_LowellHospital a chr:CareUnit .
+
+# Clinical visit
 ex:visit_2016_10_09 a chr:ClinicalVisit ;
-  sulo:atTime ex:time_visit_2016_10_09 ;
-  sulo:hasParticipant ex:role_patient_visit_2016_10_09 , ex:role_provider_visit_2016_10_09 .
+    sulo:isIn ex:careunit_LowellHospital ;
+    sulo:hasParticipant ex:role_VisitSubject_Patient ,
+                       ex:role_VisitProvider_Physician ;
+    sulo:atTime ex:time_visit_2016_10_09 .
+
+ex:role_VisitSubject_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Cory_Heller .
+
+ex:role_VisitProvider_Physician a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Margene_Schamberger .
+
+ex:time_visit_2016_10_09 sulo:hasValue "2016-10-09T11:44:05+02:00"^^xsd:dateTime .
+
+# Process status
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Units
+ex:unit_percent      a sulo:Unit ; rdfs:label "%" .
+ex:unit_cm           a sulo:Unit ; rdfs:label "cm" .
+ex:unit_kg           a sulo:Unit ; rdfs:label "kg" .
+ex:unit_kg_per_m2    a sulo:Unit ; rdfs:label "kg/m2" .
+ex:unit_per_min      a sulo:Unit ; rdfs:label "/min" .
+ex:unit_score        a sulo:Unit ; rdfs:label "score" .
+
+# 1. FEV1/FVC measurement
+ex:measurement_FEV1_FVC a chr:Measurement ;
+    sulo:hasValue "72.195"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_measure_FEV1_FVC .
+
+ex:proc_measure_FEV1_FVC a chr:MeasurementProcess ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_FEV1 ,
+                       ex:role_Performer_FEV1 ,
+                       ex:output_FEV1 ;
+    sulo:atTime ex:time_measure_FEV1_FVC .
+
+ex:role_Subject_FEV1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Cory_Heller .
+
+ex:role_Performer_FEV1 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Margene_Schamberger .
+
+ex:output_FEV1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_FEV1_FVC .
+
+ex:time_measure_FEV1_FVC sulo:hasValue "2016-10-09T11:44:05+02:00"^^xsd:dateTime .
+
+# 2. Body Height measurement
+ex:measurement_BodyHeight a chr:Measurement ;
+    sulo:hasValue "164"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_measure_BodyHeight .
+
+ex:proc_measure_BodyHeight a chr:MeasurementProcess ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_Height ,
+                       ex:role_Performer_Height ,
+                       ex:output_Height ;
+    sulo:atTime ex:time_measure_BodyHeight .
+
+ex:role_Subject_Height a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Cory_Heller .
+
+ex:role_Performer_Height a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Margene_Schamberger .
+
+ex:output_Height a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyHeight .
+
+ex:time_measure_BodyHeight sulo:hasValue "2016-10-09T11:44:05+02:00"^^xsd:dateTime .
+
+# 3. Pain severity measurement
+ex:measurement_PainSeverity a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_measure_PainSeverity .
+
+ex:proc_measure_PainSeverity a chr:MeasurementProcess ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_Pain ,
+                       ex:role_Performer_Pain ,
+                       ex:output_Pain ;
+    sulo:atTime ex:time_measure_PainSeverity .
+
+ex:role_Subject_Pain a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Cory_Heller .
+
+ex:role_Performer_Pain a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Margene_Schamberger .
+
+ex:output_Pain a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PainSeverity .
+
+ex:time_measure_PainSeverity sulo:hasValue "2016-10-09T11:44:05+02:00"^^xsd:dateTime .
+
+# 4. Body Weight measurement
+ex:measurement_BodyWeight a chr:Measurement ;
+    sulo:hasValue "81.4"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_measure_BodyWeight .
+
+ex:proc_measure_BodyWeight a chr:MeasurementProcess ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_Weight ,
+                       ex:role_Performer_Weight ,
+                       ex:output_Weight ;
+    sulo:atTime ex:time_measure_BodyWeight .
+
+ex:role_Subject_Weight a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Cory_Heller .
 
-ex:time_visit_2016_10_09 a sulo:TimeInstant ;
-  sulo:hasValue "2016-10-09T11:44:00"^^xsd:dateTime .
+ex:role_Performer_Weight a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Margene_Schamberger .
 
-ex:role_patient_visit_2016_10_09 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+ex:output_Weight a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BodyWeight .
 
-ex:role_provider_visit_2016_10_09 a chr:CareProviderRole ;
-  sulo:isFeatureOf ex:doctor_Margene509_Schamberger479 .
+ex:time_measure_BodyWeight sulo:hasValue "2016-10-09T11:44:05+02:00"^^xsd:dateTime .
 
-ex:doctor_Margene509_Schamberger479 a chr:Person .
+# 5. BMI measurement
+ex:measurement_BMI a chr:Measurement ;
+    sulo:hasValue "30.26"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_measure_BMI .
+
+ex:proc_measure_BMI a chr:MeasurementProcess ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_BMI ,
+                       ex:role_Performer_BMI ,
+                       ex:output_BMI ;
+    sulo:atTime ex:time_measure_BMI .
+
+ex:role_Subject_BMI a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Cory_Heller .
 
-ex:lowell_general_hospital a chr:CareUnit .
+ex:role_Performer_BMI a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Margene_Schamberger .
 
-ex:visit_2016_10_09 sulo:isIn ex:lowell_general_hospital .
+ex:output_BMI a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI .
 
-ex:measurement_process_FEV1_2016_10_09 a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_FEV1_2016_10_09 ;
-  sulo:hasParticipant ex:role_patient_measurement_FEV1_2016_10_09 , ex:role_status_measurement_FEV1_2016_10_09 , ex:role_output_measurement_FEV1_2016_10_09 .
+ex:time_measure_BMI sulo:hasValue "2016-10-09T11:44:05+02:00"^^xsd:dateTime .
 
-ex:time_measurement_FEV1_2016_10_09 a sulo:TimeInstant ;
-  sulo:hasValue "2016-10-09T11:44:00"^^xsd:dateTime .
+# 6. Heart rate measurement
+ex:measurement_HeartRate a chr:Measurement ;
+    sulo:hasValue "68"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_measure_HeartRate .
+
+ex:proc_measure_HeartRate a chr:MeasurementProcess ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_HR ,
+                       ex:role_Performer_HR ,
+                       ex:output_HR ;
+    sulo:atTime ex:time_measure_HeartRate .
+
+ex:role_Subject_HR a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Cory_Heller .
 
-ex:role_patient_measurement_FEV1_2016_10_09 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+ex:role_Performer_HR a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Margene_Schamberger .
 
-ex:role_status_measurement_FEV1_2016_10_09 a chr:ProcessStatus ;
-  sulo:isFeatureOf ex:status_completed .
+ex:output_HR a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HeartRate .
 
-ex:status_completed a chr:ProcessStatus .
+ex:time_measure_HeartRate sulo:hasValue "2016-10-09T11:44:05+02:00"^^xsd:dateTime .
 
-ex:role_output_measurement_FEV1_2016_10_09 a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_FEV1_2016_10_09 .
+# 7. Respiratory rate measurement
+ex:measurement_RespRate a chr:Measurement ;
+    sulo:hasValue "14"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_measure_RespRate .
+
+ex:proc_measure_RespRate a chr:MeasurementProcess ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_RR ,
+                       ex:role_Performer_RR ,
+                       ex:output_RR ;
+    sulo:atTime ex:time_measure_RespRate .
+
+ex:role_Subject_RR a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Cory_Heller .
 
-ex:measurement_FEV1_2016_10_09 a chr:Measurement ;
-  sulo:hasValue "72.195"^^xsd:float ;
-  sulo:atTime ex:time_measurement_FEV1_2016_10_09 .
+ex:role_Performer_RR a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Margene_Schamberger .
 
-ex:measurement_process_height_2016_10_09 a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_height_2016_10_09 ;
-  sulo:hasParticipant ex:role_patient_measurement_height_2016_10_09 , ex:role_status_measurement_height_2016_10_09, ex:role_output_measurement_height_2016_10_09 .
+ex:output_RR a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_RespRate .
 
-ex:time_measurement_height_2016_10_09 a sulo:TimeInstant ;
-  sulo:hasValue "2016-10-09T11:44:00"^^xsd:dateTime .
+ex:time_measure_RespRate sulo:hasValue "2016-10-09T11:44:05+02:00"^^xsd:dateTime .
 
-ex:role_patient_measurement_height_2016_10_09 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+# 8. GAD-7 total score measurement
+ex:measurement_GAD7 a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_measure_GAD7 .
+
+ex:proc_measure_GAD7 a chr:MeasurementProcess ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_GAD7 ,
+                       ex:role_Performer_GAD7 ,
+                       ex:output_GAD7 ;
+    sulo:atTime ex:time_measure_GAD7 .
+
+ex:role_Subject_GAD7 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Cory_Heller .
 
-ex:role_status_measurement_height_2016_10_09 a chr:ProcessStatus ;
-  sulo:isFeatureOf ex:status_completed .
+ex:role_Performer_GAD7 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Margene_Schamberger .
 
-ex:role_output_measurement_height_2016_10_09 a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_height_2016_10_09 .
+ex:output_GAD7 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_GAD7 .
 
-ex:measurement_height_2016_10_09 a chr:Measurement ;
-  sulo:hasValue "164.0"^^xsd:float ;
-  sulo:atTime ex:time_measurement_height_2016_10_09 .
+ex:time_measure_GAD7 sulo:hasValue "2016-10-09T13:03:18+02:00"^^xsd:dateTime .
 
-ex:measurement_process_pain_2016_10_09 a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_pain_2016_10_09 ;
-  sulo:hasParticipant ex:role_patient_measurement_pain_2016_10_09 , ex:role_status_measurement_pain_2016_10_09, ex:role_output_measurement_pain_2016_10_09 .
+# 9. HARK total score measurement
+ex:measurement_HARK a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_measure_HARK .
 
-ex:time_measurement_pain_2016_10_09 a sulo:TimeInstant ;
-  sulo:hasValue "2016-10-09T11:44:00"^^xsd:dateTime .
+ex:proc_measure_HARK a chr:MeasurementProcess ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_HARK ,
+                       ex:role_Performer_HARK ,
+                       ex:output_HARK ;
+    sulo:atTime ex:time_measure_HARK .
 
-ex:role_patient_measurement_pain_2016_10_09 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+ex:role_Subject_HARK a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Cory_Heller .
 
-ex:role_status_measurement_pain_2016_10_09 a chr:ProcessStatus ;
-  sulo:isFeatureOf ex:status_completed .
+ex:role_Performer_HARK a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Margene_Schamberger .
 
-ex:role_output_measurement_pain_2016_10_09 a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_pain_2016_10_09 .
+ex:output_HARK a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_HARK .
 
-ex:measurement_pain_2016_10_09 a chr:Measurement ;
-  sulo:hasValue "0.0"^^xsd:float ;
-  sulo:atTime ex:time_measurement_pain_2016_10_09 .
+ex:time_measure_HARK sulo:hasValue "2016-10-09T13:32:28+02:00"^^xsd:dateTime .
 
-ex:measurement_process_weight_2016_10_09 a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_weight_2016_10_09 ;
-  sulo:hasParticipant ex:role_patient_measurement_weight_2016_10_09 , ex:role_status_measurement_weight_2016_10_09, ex:role_output_measurement_weight_2016_10_09 .
+# 10. PHQ-2 total score measurement
+ex:measurement_PHQ2 a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_measure_PHQ2 .
 
-ex:time_measurement_weight_2016_10_09 a sulo:TimeInstant ;
-  sulo:hasValue "2016-10-09T11:44:00"^^xsd:dateTime .
+ex:proc_measure_PHQ2 a chr:MeasurementProcess ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_PHQ2 ,
+                       ex:role_Performer_PHQ2 ,
+                       ex:output_PHQ2 ;
+    sulo:atTime ex:time_measure_PHQ2 .
 
-ex:role_patient_measurement_weight_2016_10_09 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+ex:role_Subject_PHQ2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Cory_Heller .
 
-ex:role_status_measurement_weight_2016_10_09 a chr:ProcessStatus ;
-  sulo:isFeatureOf ex:status_completed .
+ex:role_Performer_PHQ2 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Margene_Schamberger .
 
-ex:role_output_measurement_weight_2016_10_09 a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_weight_2016_10_09 .
+ex:output_PHQ2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ2 .
 
-ex:measurement_weight_2016_10_09 a chr:Measurement ;
-  sulo:hasValue "81.4"^^xsd:float ;
-  sulo:atTime ex:time_measurement_weight_2016_10_09 .
+ex:time_measure_PHQ2 sulo:hasValue "2016-10-09T14:10:10+02:00"^^xsd:dateTime .
 
-ex:measurement_process_bmi_2016_10_09 a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_bmi_2016_10_09 ;
-  sulo:hasParticipant ex:role_patient_measurement_bmi_2016_10_09 , ex:role_status_measurement_bmi_2016_10_09, ex:role_output_measurement_bmi_2016_10_09 .
+# 11. DAST-10 total score measurement
+ex:measurement_DAST10 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_measure_DAST10 .
 
-ex:time_measurement_bmi_2016_10_09 a sulo:TimeInstant ;
-  sulo:hasValue "2016-10-09T11:44:00"^^xsd:dateTime .
+ex:proc_measure_DAST10 a chr:MeasurementProcess ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_Subject_DAST10 ,
+                       ex:role_Performer_DAST10 ,
+                       ex:output_DAST10 ;
+    sulo:atTime ex:time_measure_DAST10 .
 
-ex:role_patient_measurement_bmi_2016_10_09 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+ex:role_Subject_DAST10 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Cory_Heller .
 
-ex:role_status_measurement_bmi_2016_10_09 a chr:ProcessStatus ;
-  sulo:isFeatureOf ex:status_completed .
+ex:role_Performer_DAST10 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Margene_Schamberger .
 
-ex:role_output_measurement_bmi_2016_10_09 a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_bmi_2016_10_09 .
+ex:output_DAST10 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_DAST10 .
 
-ex:measurement_bmi_2016_10_09 a chr:Measurement ;
-  sulo:hasValue "30.26"^^xsd:float ;
-  sulo:atTime ex:time_measurement_bmi_2016_10_09 .
+ex:time_measure_DAST10 sulo:hasValue "2016-10-09T14:47:26+02:00"^^xsd:dateTime .
 
-ex:measurement_process_heartrate_2016_10_09 a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_heartrate_2016_10_09 ;
-  sulo:hasParticipant ex:role_patient_measurement_heartrate_2016_10_09 , ex:role_status_measurement_heartrate_2016_10_09, ex:role_output_measurement_heartrate_2016_10_09 .
+# Evaluation process producing diagnostic statements
+ex:evaluation_2016_10_09 a chr:EvaluationProcess ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_EvalSubject ,
+                       ex:role_EvalPerformer ,
+                       ex:output_DiagFulltime ,
+                       ex:output_DiagLimited ;
+    sulo:atTime ex:time_evaluation_2016_10_09 .
 
-ex:time_measurement_heartrate_2016_10_09 a sulo:TimeInstant ;
-  sulo:hasValue "2016-10-09T11:44:00"^^xsd:dateTime .
+ex:role_EvalSubject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Cory_Heller .
 
-ex:role_patient_measurement_heartrate_2016_10_09 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+ex:role_EvalPerformer a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Margene_Schamberger .
 
-ex:role_status_measurement_heartrate_2016_10_09 a chr:ProcessStatus ;
-  sulo:isFeatureOf ex:status_completed .
+ex:diag_fulltime_employment a chr:DiagnosticStatement ;
+    rdfs:label "Full-time employment (finding)" .
 
-ex:role_output_measurement_heartrate_2016_10_09 a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_heartrate_2016_10_09 .
+ex:output_DiagFulltime a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_fulltime_employment .
 
-ex:measurement_heartrate_2016_10_09 a chr:Measurement ;
-  sulo:hasValue "68.0"^^xsd:float ;
-  sulo:atTime ex:time_measurement_heartrate_2016_10_09 .
+ex:diag_limited_social_contact a chr:DiagnosticStatement ;
+    rdfs:label "Limited social contact (finding)" .
 
-ex:measurement_process_respiratoryrate_2016_10_09 a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_respiratoryrate_2016_10_09 ;
-  sulo:hasParticipant ex:role_patient_measurement_respiratoryrate_2016_10_09 , ex:role_status_measurement_respiratoryrate_2016_10_09, ex:role_output_measurement_respiratoryrate_2016_10_09 .
+ex:output_DiagLimited a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_limited_social_contact .
 
-ex:time_measurement_respiratoryrate_2016_10_09 a sulo:TimeInstant ;
-  sulo:hasValue "2016-10-09T11:44:00"^^xsd:dateTime .
+ex:time_evaluation_2016_10_09 sulo:hasValue "2016-10-09T12:35:47+02:00"^^xsd:dateTime .
 
-ex:role_patient_measurement_respiratoryrate_2016_10_09 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
-
-ex:role_status_measurement_respiratoryrate_2016_10_09 a chr:ProcessStatus ;
-  sulo:isFeatureOf ex:status_completed .
-
-ex:role_output_measurement_respiratoryrate_2016_10_09 a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_respiratoryrate_2016_10_09 .
-
-ex:measurement_respiratoryrate_2016_10_09 a chr:Measurement ;
-  sulo:hasValue "14.0"^^xsd:float ;
-  sulo:atTime ex:time_measurement_respiratoryrate_2016_10_09 .
-
-ex:measurement_process_gad7_2016_10_09 a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_gad7_2016_10_09 ;
-  sulo:hasParticipant ex:role_patient_measurement_gad7_2016_10_09 , ex:role_status_measurement_gad7_2016_10_09, ex:role_output_measurement_gad7_2016_10_09 .
-
-ex:time_measurement_gad7_2016_10_09 a sulo:TimeInstant ;
-  sulo:hasValue "2016-10-09T13:03:00"^^xsd:dateTime .
-
-ex:role_patient_measurement_gad7_2016_10_09 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
-
-ex:role_status_measurement_gad7_2016_10_09 a chr:ProcessStatus ;
-  sulo:isFeatureOf ex:status_completed .
-
-ex:role_output_measurement_gad7_2016_10_09 a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_gad7_2016_10_09 .
-
-ex:measurement_gad7_2016_10_09 a chr:Measurement ;
-  sulo:hasValue "0.0"^^xsd:float ;
-  sulo:atTime ex:time_measurement_gad7_2016_10_09 .
-
-ex:measurement_process_hark_2016_10_09 a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_hark_2016_10_09 ;
-  sulo:hasParticipant ex:role_patient_measurement_hark_2016_10_09 , ex:role_status_measurement_hark_2016_10_09, ex:role_output_measurement_hark_2016_10_09 .
-
-ex:time_measurement_hark_2016_10_09 a sulo:TimeInstant ;
-  sulo:hasValue "2016-10-09T13:32:00"^^xsd:dateTime .
-
-ex:role_patient_measurement_hark_2016_10_09 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
-
-ex:role_status_measurement_hark_2016_10_09 a chr:ProcessStatus ;
-  sulo:isFeatureOf ex:status_completed .
-
-ex:role_output_measurement_hark_2016_10_09 a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_hark_2016_10_09 .
-
-ex:measurement_hark_2016_10_09 a chr:Measurement ;
-  sulo:hasValue "0.0"^^xsd:float ;
-  sulo:atTime ex:time_measurement_hark_2016_10_09 .
-
-ex:measurement_process_phq2_2016_10_09 a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_phq2_2016_10_09 ;
-  sulo:hasParticipant ex:role_patient_measurement_phq2_2016_10_09 , ex:role_status_measurement_phq2_2016_10_09, ex:role_output_measurement_phq2_2016_10_09 .
-
-ex:time_measurement_phq2_2016_10_09 a sulo:TimeInstant ;
-  sulo:hasValue "2016-10-09T14:10:00"^^xsd:dateTime .
-
-ex:role_patient_measurement_phq2_2016_10_09 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
-
-ex:role_status_measurement_phq2_2016_10_09 a chr:ProcessStatus ;
-  sulo:isFeatureOf ex:status_completed .
-
-ex:role_output_measurement_phq2_2016_10_09 a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_phq2_2016_10_09 .
-
-ex:measurement_phq2_2016_10_09 a chr:Measurement ;
-  sulo:hasValue "0.0"^^xsd:float ;
-  sulo:atTime ex:time_measurement_phq2_2016_10_09 .
-
-ex:measurement_process_dast10_2016_10_09 a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_dast10_2016_10_09 ;
-  sulo:hasParticipant ex:role_patient_measurement_dast10_2016_10_09 , ex:role_status_measurement_dast10_2016_10_09, ex:role_output_measurement_dast10_2016_10_09 .
-
-ex:time_measurement_dast10_2016_10_09 a sulo:TimeInstant ;
-  sulo:hasValue "2016-10-09T14:47:00"^^xsd:dateTime .
-
-ex:role_patient_measurement_dast10_2016_10_09 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
-
-ex:role_status_measurement_dast10_2016_10_09 a chr:ProcessStatus ;
-  sulo:isFeatureOf ex:status_completed .
-
-ex:role_output_measurement_dast10_2016_10_09 a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_dast10_2016_10_09 .
-
-ex:measurement_dast10_2016_10_09 a chr:Measurement ;
-  sulo:hasValue "1.0"^^xsd:float ;
-  sulo:atTime ex:time_measurement_dast10_2016_10_09 .
-
-ex:evaluation_2016_10_09_1235_employment a chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation_2016_10_09_1235_employment ;
-  sulo:hasParticipant ex:role_patient_evaluation_2016_10_09_1235_employment , ex:role_provider_evaluation_2016_10_09_1235_employment, ex:role_output_evaluation_2016_10_09_1235_employment .
-
-ex:time_evaluation_2016_10_09_1235_employment a sulo:TimeInstant ;
-  sulo:hasValue "2016-10-09T12:35:00"^^xsd:dateTime .
-
-ex:role_patient_evaluation_2016_10_09_1235_employment a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
-
-ex:role_provider_evaluation_2016_10_09_1235_employment a chr:PerformerRole ;
-  sulo:isFeatureOf ex:doctor_Margene509_Schamberger479 .
-
-ex:role_output_evaluation_2016_10_09_1235_employment a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_statement_employment .
-
-ex:diagnostic_statement_employment a chr:DiagnosticStatement .
-
-ex:diagnostic_statement_employment sulo:hasFeature ex:severity_moderate_employment .
-
-ex:severity_moderate_employment a chr:Severity .
-
-ex:evaluation_2016_10_09_1235_social a chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation_2016_10_09_1235_social ;
-  sulo:hasParticipant ex:role_patient_evaluation_2016_10_09_1235_social , ex:role_provider_evaluation_2016_10_09_1235_social, ex:role_output_evaluation_2016_10_09_1235_social .
-
-ex:time_evaluation_2016_10_09_1235_social a sulo:TimeInstant ;
-  sulo:hasValue "2016-10-09T12:35:00"^^xsd:dateTime .
-
-ex:role_patient_evaluation_2016_10_09_1235_social a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
-
-ex:role_provider_evaluation_2016_10_09_1235_social a chr:PerformerRole ;
-  sulo:isFeatureOf ex:doctor_Margene509_Schamberger479 .
-
-ex:role_output_evaluation_2016_10_09_1235_social a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_statement_social .
-
-ex:diagnostic_statement_social a chr:DiagnosticStatement .
-
-ex:diagnostic_statement_social sulo:hasFeature ex:severity_moderate_social .
-
-ex:severity_moderate_social a chr:Severity .
-
-ex:care_plan_followup a chr:CarePlan .
+# Care plan and referenced procedure
+ex:careplan_1 a chr:CarePlan .
+ex:procedure_followup_monitoring a chr:MedicalProcedure .
+ex:careplan_1 sulo:refersTo ex:procedure_followup_monitoring .

@@ -1,13 +1,235 @@
-@prefix chr: <http://example.org/chr/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-chr:patient1 a chr:Patient ;
-    chr:age "65"^^xsd:integer ;
-    chr:gender chr:Male ;
-    chr:hasFinding chr:finding1 .
+# Patient
+ex:patient_Casey401_Elijah719_Parker433 a chr:Person ;
+    rdfs:label "Casey401 Elijah719 Parker433" .
 
-chr:finding1 a chr:Finding ;
-    chr:bodySite chr:Lung ;
-    chr:findingType chr:Mass .
+# Care provider
+ex:person_Eldridge_Marquardt a chr:Person ;
+    rdfs:label "Dr. Eldridge Marquardt" .
+
+# Care unit
+ex:careunit_JewishFamilyChildrenService a chr:CareUnit ;
+    rdfs:label "JEWISH FAMILY & CHILDREN'S SERVICE" .
+
+# Clinical visit
+ex:visit_2019_10_10_18_59_56 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2019-10-10T18:59:56+02:00" ;
+    chr:hasDate "2019-10-10T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:person_Eldridge_Marquardt ;
+    chr:hasCareUnit ex:careunit_JewishFamilyChildrenService ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 .
+
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
+
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/1> .
+
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
+
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kgperm2> .
+
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min> .
+
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
+
+# Height
+ex:meas_height_20191010T185956 a chr:Measurement ;
+    rdfs:label "172.7 cm" ;
+    chr:hasQuantityValue "172.7"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2019-10-10T18:59:56+02:00"^^xsd:dateTime .
+
+ex:measproc_height_20191010T185956 a chr:MeasurementProcess ;
+    rdfs:label "Height measurement process" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_height_20191010T185956 .
+
+# Pain severity
+ex:meas_pain_20191010T185956 a chr:Measurement ;
+    rdfs:label "2 score" ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2019-10-10T18:59:56+02:00"^^xsd:dateTime .
+
+ex:measproc_pain_20191010T185956 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_pain_20191010T185956 .
+
+# Weight
+ex:meas_weight_20191010T185956 a chr:Measurement ;
+    rdfs:label "82.2 kg" ;
+    chr:hasQuantityValue "82.2"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2019-10-10T18:59:56+02:00"^^xsd:dateTime .
+
+ex:measproc_weight_20191010T185956 a chr:MeasurementProcess ;
+    rdfs:label "Weight measurement process" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_weight_20191010T185956 .
+
+# BMI
+ex:meas_bmi_20191010T185956 a chr:Measurement ;
+    rdfs:label "27.56 kg/m2" ;
+    chr:hasQuantityValue "27.56"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2019-10-10T18:59:56+02:00"^^xsd:dateTime .
+
+ex:measproc_bmi_20191010T185956 a chr:MeasurementProcess ;
+    rdfs:label "BMI measurement process" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_bmi_20191010T185956 .
+
+# Heart rate
+ex:meas_hr_20191010T185956 a chr:Measurement ;
+    rdfs:label "83 /min" ;
+    chr:hasQuantityValue "83.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2019-10-10T18:59:56+02:00"^^xsd:dateTime .
+
+ex:measproc_hr_20191010T185956 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_hr_20191010T185956 .
+
+# Respiratory rate
+ex:meas_rr_20191010T185956 a chr:Measurement ;
+    rdfs:label "14 /min" ;
+    chr:hasQuantityValue "14.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2019-10-10T18:59:56+02:00"^^xsd:dateTime .
+
+ex:measproc_rr_20191010T185956 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_rr_20191010T185956 .
+
+# Cholesterol total
+ex:meas_chol_total_20191010T185956 a chr:Measurement ;
+    rdfs:label "159.79 mg/dL" ;
+    chr:hasQuantityValue "159.79"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2019-10-10T18:59:56+02:00"^^xsd:dateTime .
+
+ex:measproc_chol_total_20191010T185956 a chr:MeasurementProcess ;
+    rdfs:label "Total cholesterol measurement process" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_chol_total_20191010T185956 .
+
+# Triglyceride
+ex:meas_triglyceride_20191010T185956 a chr:Measurement ;
+    rdfs:label "115.95 mg/dL" ;
+    chr:hasQuantityValue "115.95"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2019-10-10T18:59:56+02:00"^^xsd:dateTime .
+
+ex:measproc_triglyceride_20191010T185956 a chr:MeasurementProcess ;
+    rdfs:label "Triglyceride measurement process" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_triglyceride_20191010T185956 .
+
+# LDL cholesterol
+ex:meas_ldl_20191010T185956 a chr:Measurement ;
+    rdfs:label "84.75 mg/dL" ;
+    chr:hasQuantityValue "84.75"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2019-10-10T18:59:56+02:00"^^xsd:dateTime .
+
+ex:measproc_ldl_20191010T185956 a chr:MeasurementProcess ;
+    rdfs:label "LDL cholesterol measurement process" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_ldl_20191010T185956 .
+
+# HDL cholesterol
+ex:meas_hdl_20191010T185956 a chr:Measurement ;
+    rdfs:label "51.85 mg/dL" ;
+    chr:hasQuantityValue "51.85"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2019-10-10T18:59:56+02:00"^^xsd:dateTime .
+
+ex:measproc_hdl_20191010T185956 a chr:MeasurementProcess ;
+    rdfs:label "HDL cholesterol measurement process" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_hdl_20191010T185956 .
+
+# GAD-7 total score
+ex:meas_gad7_20191010T195514 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2019-10-10T19:55:14+02:00"^^xsd:dateTime .
+
+ex:measproc_gad7_20191010T195514 a chr:MeasurementProcess ;
+    rdfs:label "GAD-7 measurement process" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_gad7_20191010T195514 .
+
+# Fall risk total
+ex:meas_fallrisk_20191010T202220 a chr:Measurement ;
+    rdfs:label "34 score" ;
+    chr:hasQuantityValue "34.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2019-10-10T20:22:20+02:00"^^xsd:dateTime .
+
+ex:measproc_fallrisk_20191010T202220 a chr:MeasurementProcess ;
+    rdfs:label "Fall risk measurement process" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_fallrisk_20191010T202220 .
+
+# PHQ-2 total score
+ex:meas_phq2_20191010T210038 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2019-10-10T21:00:38+02:00"^^xsd:dateTime .
+
+ex:measproc_phq2_20191010T210038 a chr:MeasurementProcess ;
+    rdfs:label "PHQ-2 measurement process" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_phq2_20191010T210038 .
+
+# AUDIT-C total score
+ex:meas_auditc_20191010T213857 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2019-10-10T21:38:57+02:00"^^xsd:dateTime .
+
+ex:measproc_auditc_20191010T213857 a chr:MeasurementProcess ;
+    rdfs:label "AUDIT-C measurement process" ;
+    chr:hasPatient ex:patient_Casey401_Elijah719_Parker433 ;
+    chr:hasResult ex:meas_auditc_20191010T213857 .
+
+# Diagnostic statements
+ex:diag_medreview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+ex:diag_not_in_labor a chr:DiagnosticStatement ;
+    rdfs:label "Not in labor force" ;
+    chr:hasCode <http://snomed.info/id/741062008> .
+
+ex:diag_stress a chr:DiagnosticStatement ;
+    rdfs:label "Stress" ;
+    chr:hasCode <http://snomed.info/id/73595000> .
+
+ex:diag_victim_abuse a chr:DiagnosticStatement ;
+    rdfs:label "Victim of intimate partner abuse" ;
+    chr:hasCode <http://snomed.info/id/706893006> .

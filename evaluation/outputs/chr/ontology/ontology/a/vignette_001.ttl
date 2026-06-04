@@ -4,76 +4,70 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:visit_2016_08_07_0624 a chr:ClinicalVisit ;
-  sulo:atTime ex:time_visit_2016_08_07_0624 ;
-  sulo:isIn ex:care_unit_boston .
+# Persons
+ex:patient_Angelic_Callie_Schaden a chr:Person .
+ex:physician_Willian_Batz a chr:Person .
 
-ex:time_visit_2016_08_07_0624 a sulo:TimeInstant ;
-  sulo:hasValue "2016-08-07T06:24:00"^^xsd:dateTime .
+# Care unit
+ex:careunit_Boston_Medical_Center a chr:CareUnit .
 
-ex:care_unit_boston a chr:CareUnit ;
-  rdfs:label "BOSTON MEDICAL CENTER CORPORATION-" .
+# Clinical visit
+ex:visit_2016_08_07 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_VisitPatient , ex:role_VisitProvider ;
+    sulo:isIn ex:careunit_Boston_Medical_Center ;
+    sulo:atTime ex:time_visit_2016_08_07 .
 
-ex:patient_angelic427 a chr:Person ;
-  rdfs:label "Angelic427 Callie226 Schaden604" .
+ex:role_VisitPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Angelic_Callie_Schaden .
+ex:role_VisitProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Willian_Batz .
 
-ex:physician_batz141 a chr:Person ;
-  rdfs:label "Dr. Willian804 Batz141" .
+ex:time_visit_2016_08_07 sulo:hasValue "2016-08-07T06:24:27+02:00"^^xsd:dateTime .
 
-ex:temp_measurement_process a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_patient_temp_measurement ;
-  sulo:hasParticipant ex:role_output_temp_measurement ;
-  sulo:atTime ex:time_temp_measurement ;
-  sulo:hasFeature ex:process_status_completed .
+# Temperature measurement process
+ex:process_measurement_body_temp_2016_08_07 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_MeasureSubject , ex:role_MeasurePerformer , ex:role_MeasureOutput ;
+    sulo:atTime ex:time_measurement_2016_08_07 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_patient_temp_measurement a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_angelic427 .
+ex:role_MeasureSubject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Angelic_Callie_Schaden .
+ex:role_MeasurePerformer a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Willian_Batz .
+ex:role_MeasureOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_body_temp_2016_08_07 .
 
-ex:role_output_temp_measurement a chr:OutputRole ;
-  sulo:isFeatureOf ex:temp_measurement .
+ex:status_completed a chr:ProcessStatus .
 
-ex:temp_measurement a chr:Measurement ;
-  sulo:hasValue "37.816"^^xsd:float ;
-  sulo:atTime ex:time_temp_measurement .
+ex:time_measurement_2016_08_07 sulo:hasValue "2016-08-07T06:24:27+02:00"^^xsd:dateTime .
 
-ex:time_temp_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2016-08-07T06:24:00"^^xsd:dateTime .
+# Measurement result
+ex:measurement_body_temp_2016_08_07 a chr:Measurement ;
+    sulo:hasValue "37.816"^^xsd:float ;
+    sulo:hasPart ex:unit_Celsius ;
+    sulo:atTime ex:time_measurement_2016_08_07 .
 
-ex:evaluation_process a chr:EvaluationProcess ;
-  sulo:hasParticipant ex:role_patient_evaluation ;
-  sulo:hasParticipant ex:role_performer_evaluation ;
-  sulo:hasParticipant ex:role_output_evaluation ;
-  sulo:atTime ex:time_evaluation .
+ex:unit_Celsius a chr:Unit .
 
-ex:role_patient_evaluation a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_angelic427 .
+# Evaluation process
+ex:evaluation_2016_08_07 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalSubject , ex:role_EvalPerformer , ex:role_EvalOutput ;
+    sulo:atTime ex:time_evaluation_2016_08_07 .
 
-ex:role_performer_evaluation a chr:PerformerRole ;
-  sulo:isFeatureOf ex:physician_batz141 .
+ex:role_EvalSubject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Angelic_Callie_Schaden .
+ex:role_EvalPerformer a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Willian_Batz .
+ex:role_EvalOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_acute_viral_pharyngitis_2016_08_07 .
 
-ex:role_output_evaluation a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_statement .
+ex:time_evaluation_2016_08_07 sulo:hasValue "2016-08-07T06:24:27+02:00"^^xsd:dateTime .
 
-ex:diagnostic_statement a chr:DiagnosticStatement ;
-  rdfs:label "Acute viral pharyngitis (disorder)" ;
-  sulo:atTime ex:time_evaluation ;
-  sulo:hasFeature ex:severity_moderate .
+# Diagnostic statement
+ex:diag_acute_viral_pharyngitis_2016_08_07 a chr:DiagnosticStatement .
 
-ex:time_evaluation a sulo:TimeInstant ;
-  sulo:hasValue "2016-08-07T06:24:00"^^xsd:dateTime .
+# Care plan and referenced procedure
+ex:careplan_2016_08_07 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup_monitoring .
 
-ex:severity_moderate a chr:Severity ;
-  rdfs:label "Moderate" .
-
-ex:process_status_completed a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:care_plan a chr:CarePlan ;
-  sulo:refersTo ex:follow_up_monitoring ;
-  sulo:refersTo ex:routine_review .
-
-ex:follow_up_monitoring a chr:MedicalProcedure ;
-  rdfs:label "follow-up monitoring" .
-
-ex:routine_review a chr:MedicalProcedure ;
-  rdfs:label "routine review" .
+ex:procedure_followup_monitoring a chr:MedicalProcedure .

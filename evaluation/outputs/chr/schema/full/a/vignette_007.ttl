@@ -4,219 +4,371 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Arleen939Marlyn309Bergstrom287 a chr:Person .
+# Person (patient)
+ex:patient_Arleen_Bergstrom a chr:Person ;
+    rdfs:label "Arleen939 Marlyn309 Bergstrom287" .
 
-ex:care_unit_NashobaValleyMedicalCenter a chr:CareUnit .
+# Person (physician)
+ex:physician_Lynwood_Tromp a chr:Person ;
+    rdfs:label "Dr. Lynwood354 Tromp100" .
 
-ex:physician_Lynwood354Tromp100 a chr:Person .
+# Care unit
+ex:careunit_Nashoba_Valley_Medical_Center a chr:CareUnit ;
+    rdfs:label "NASHOBA VALLEY MEDICAL CENTER" .
 
-ex:visit_2022_03_18 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:physician_Lynwood354Tromp100 ;
-  chr:hasCareUnit ex:care_unit_NashobaValleyMedicalCenter ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 .
+# Clinical visit
+ex:visit_20220318T141314p01_00 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2022-03-18T14:13:14+01:00" ;
+    chr:hasDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_Lynwood_Tromp ;
+    chr:hasCareUnit ex:careunit_Nashoba_Valley_Medical_Center ;
+    chr:hasProcedure ex:procedure_general_examination .
 
-ex:proc_body_height_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_body_height_2022_03_18 .
+# Medical procedure (encounter)
+ex:procedure_general_examination a chr:MedicalProcedure ;
+    rdfs:label "General examination of patient" ;
+    chr:hasPerformedDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasPerformer ex:physician_Lynwood_Tromp ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_body_height_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "159.0"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
 
-ex:proc_pain_severity_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_pain_severity_2022_03_18 .
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:meas_pain_severity_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasUnit ex:score ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:proc_body_weight_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_body_weight_2022_03_18 .
+ex:unit_kg_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg.m-2> .
 
-ex:meas_body_weight_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "63.2"^^xsd:float ;
-  chr:hasUnit sulo:kg ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+ex:unit_min_1 a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min-1> .
 
-ex:proc_bmi_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_bmi_2022_03_18 .
+ex:unit_pct a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pct> .
 
-ex:meas_bmi_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "25.01"^^xsd:float ;
-  chr:hasUnit ex:kg_m2 ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+ex:unit_fL a chr:Unit ;
+    rdfs:label "fL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/fL> .
 
-ex:proc_heart_rate_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_heart_rate_2022_03_18 .
+ex:unit_pg a chr:Unit ;
+    rdfs:label "pg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pg> .
 
-ex:meas_heart_rate_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "63.0"^^xsd:float ;
-  chr:hasUnit ex:per_min ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+ex:unit_g_dL a chr:Unit ;
+    rdfs:label "g/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/g/dL> .
 
-ex:proc_resp_rate_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_resp_rate_2022_03_18 .
+ex:unit_10_3_per_uL a chr:Unit ;
+    rdfs:label "10*3/uL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/10*3/uL> .
 
-ex:meas_resp_rate_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "12.0"^^xsd:float ;
-  chr:hasUnit ex:per_min ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+ex:unit_10_6_per_uL a chr:Unit ;
+    rdfs:label "10*6/uL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/10*6/uL> .
 
-ex:proc_leukocytes_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_leukocytes_2022_03_18 .
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/1> .
 
-ex:meas_leukocytes_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "8.6497"^^xsd:float ;
-  chr:hasUnit ex:10_3_uL ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+# Measurement: Body Height
+ex:measproc_Height_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_Height_20220318T141314p01_00 .
 
-ex:proc_erythrocytes_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_erythrocytes_2022_03_18 .
+ex:meas_Height_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "159 cm" ;
+    chr:hasQuantityValue "159.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/8302-2> .
 
-ex:meas_erythrocytes_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "5.0555"^^xsd:float ;
-  chr:hasUnit ex:10_6_uL ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+# Measurement: Pain severity score
+ex:measproc_PainSeverity_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_PainSeverity_20220318T141314p01_00 .
 
-ex:proc_hemoglobin_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_hemoglobin_2022_03_18 .
+ex:meas_PainSeverity_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/72514-3> .
 
-ex:meas_hemoglobin_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "17.362"^^xsd:float ;
-  chr:hasUnit ex:g_dL ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+# Measurement: Body Weight
+ex:measproc_Weight_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_Weight_20220318T141314p01_00 .
 
-ex:proc_hematocrit_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_hematocrit_2022_03_18 .
+ex:meas_Weight_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "63.2 kg" ;
+    chr:hasQuantityValue "63.2"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/29463-7> .
 
-ex:meas_hematocrit_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "41.118"^^xsd:float ;
-  chr:hasUnit ex:percent ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+# Measurement: BMI
+ex:measproc_BMI_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "BMI measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_BMI_20220318T141314p01_00 .
 
-ex:proc_mcv_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_mcv_2022_03_18 .
+ex:meas_BMI_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "25.01 kg/m2" ;
+    chr:hasQuantityValue "25.01"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_m2 ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/39156-5> .
 
-ex:meas_mcv_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "91.275"^^xsd:float ;
-  chr:hasUnit ex:fL ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+# Measurement: Heart rate
+ex:measproc_HeartRate_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_HeartRate_20220318T141314p01_00 .
 
-ex:proc_mch_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_mch_2022_03_18 .
+ex:meas_HeartRate_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "63 /min" ;
+    chr:hasQuantityValue "63.0"^^xsd:float ;
+    chr:hasUnit ex:unit_min_1 ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/8867-4> .
 
-ex:meas_mch_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "28.121"^^xsd:float ;
-  chr:hasUnit ex:pg ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+# Measurement: Respiratory rate
+ex:measproc_RespRate_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_RespRate_20220318T141314p01_00 .
 
-ex:proc_mchc_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_mchc_2022_03_18 .
+ex:meas_RespRate_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "12 /min" ;
+    chr:hasQuantityValue "12.0"^^xsd:float ;
+    chr:hasUnit ex:unit_min_1 ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/9279-1> .
 
-ex:meas_mchc_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "35.27"^^xsd:float ;
-  chr:hasUnit ex:g_dL ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+# Measurement: Leukocytes
+ex:measproc_Leukocytes_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Leukocytes measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_Leukocytes_20220318T141314p01_00 .
 
-ex:proc_erythrocyte_distwidth_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_erythrocyte_distwidth_2022_03_18 .
+ex:meas_Leukocytes_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "8.6497 10*3/uL" ;
+    chr:hasQuantityValue "8.6497"^^xsd:float ;
+    chr:hasUnit ex:unit_10_3_per_uL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/6690-2> .
 
-ex:meas_erythrocyte_distwidth_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "44.402"^^xsd:float ;
-  chr:hasUnit ex:fL ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+# Measurement: Erythrocytes
+ex:measproc_Erythrocytes_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Erythrocytes measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_Erythrocytes_20220318T141314p01_00 .
 
-ex:proc_platelets_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_platelets_2022_03_18 .
+ex:meas_Erythrocytes_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "5.0555 10*6/uL" ;
+    chr:hasQuantityValue "5.0555"^^xsd:float ;
+    chr:hasUnit ex:unit_10_6_per_uL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/789-8> .
 
-ex:meas_platelets_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "301.32"^^xsd:float ;
-  chr:hasUnit ex:10_3_uL ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+# Measurement: Hemoglobin
+ex:measproc_Hemoglobin_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_Hemoglobin_20220318T141314p01_00 .
 
-ex:proc_platelet_distwidth_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_platelet_distwidth_2022_03_18 .
+ex:meas_Hemoglobin_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "17.362 g/dL" ;
+    chr:hasQuantityValue "17.362"^^xsd:float ;
+    chr:hasUnit ex:unit_g_dL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/718-7> .
 
-ex:meas_platelet_distwidth_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "217.5"^^xsd:float ;
-  chr:hasUnit ex:fL ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+# Measurement: Hematocrit
+ex:measproc_Hematocrit_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Hematocrit measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_Hematocrit_20220318T141314p01_00 .
 
-ex:proc_platelet_meanvolume_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_platelet_meanvolume_2022_03_18 .
+ex:meas_Hematocrit_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "41.118 %" ;
+    chr:hasQuantityValue "41.118"^^xsd:float ;
+    chr:hasUnit ex:unit_pct ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/4544-3> .
 
-ex:meas_platelet_meanvolume_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "12.265"^^xsd:float ;
-  chr:hasUnit ex:fL ;
-  chr:hasMeasuredDate "2022-03-18T14:13:00"^^xsd:dateTime .
+# Measurement: MCV
+ex:measproc_MCV_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "MCV measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_MCV_20220318T141314p01_00 .
 
-ex:proc_gad7_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_gad7_2022_03_18 .
+ex:meas_MCV_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "91.275 fL" ;
+    chr:hasQuantityValue "91.275"^^xsd:float ;
+    chr:hasUnit ex:unit_fL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/787-2> .
 
-ex:meas_gad7_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasUnit ex:score ;
-  chr:hasMeasuredDate "2022-03-18T15:24:00"^^xsd:dateTime .
+# Measurement: MCH
+ex:measproc_MCH_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "MCH measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_MCH_20220318T141314p01_00 .
 
-ex:proc_hark_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_hark_2022_03_18 .
+ex:meas_MCH_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "28.121 pg" ;
+    chr:hasQuantityValue "28.121"^^xsd:float ;
+    chr:hasUnit ex:unit_pg ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/785-6> .
 
-ex:meas_hark_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasUnit ex:score ;
-  chr:hasMeasuredDate "2022-03-18T16:07:00"^^xsd:dateTime .
+# Measurement: MCHC
+ex:measproc_MCHC_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "MCHC measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_MCHC_20220318T141314p01_00 .
 
-ex:proc_phq2_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_phq2_2022_03_18 .
+ex:meas_MCHC_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "35.27 g/dL" ;
+    chr:hasQuantityValue "35.27"^^xsd:float ;
+    chr:hasUnit ex:unit_g_dL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/786-4> .
 
-ex:meas_phq2_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "2.0"^^xsd:float ;
-  chr:hasUnit ex:score ;
-  chr:hasMeasuredDate "2022-03-18T16:46:00"^^xsd:dateTime .
+# Measurement: Erythrocyte DistWidth
+ex:measproc_ErythrocyteDistWidth_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Erythrocyte DistWidth measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_ErythrocyteDistWidth_20220318T141314p01_00 .
 
-ex:proc_auditc_2022_03_18 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:meas_auditc_2022_03_18 .
+ex:meas_ErythrocyteDistWidth_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "44.402 fL" ;
+    chr:hasQuantityValue "44.402"^^xsd:float ;
+    chr:hasUnit ex:unit_fL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/788-0> .
 
-ex:meas_auditc_2022_03_18 a chr:Measurement ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasUnit ex:score ;
-  chr:hasMeasuredDate "2022-03-18T17:30:00"^^xsd:dateTime .
+# Measurement: Platelets
+ex:measproc_Platelets_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Platelets measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_Platelets_20220318T141314p01_00 .
 
-ex:eval_2022_03_18 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_medication_review_due ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 .
+ex:meas_Platelets_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "301.32 10*3/uL" ;
+    chr:hasQuantityValue "301.32"^^xsd:float ;
+    chr:hasUnit ex:unit_10_3_per_uL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/777-3> .
 
-ex:diag_medication_review_due a chr:DiagnosticStatement .
+# Measurement: Platelet distribution width
+ex:measproc_PDW_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Platelet distribution width measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_PDW_20220318T141314p01_00 .
 
-ex:condition_medication_review_due a chr:ClinicalCondition ;
-  chr:hasRecordDate "2022-03-18T14:13:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:meas_PDW_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "217.5 fL" ;
+    chr:hasQuantityValue "217.5"^^xsd:float ;
+    chr:hasUnit ex:unit_fL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/32207-3> .
 
-ex:severity_moderate a chr:Severity .
+# Measurement: Platelet mean volume
+ex:measproc_PlateletMeanVol_20220318T141314p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Platelet mean volume measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_PlateletMeanVol_20220318T141314p01_00 .
 
-ex:careplan_followup a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:proc_routine_review .
+ex:meas_PlateletMeanVol_20220318T141314p01_00 a chr:Measurement ;
+    rdfs:label "12.265 fL" ;
+    chr:hasQuantityValue "12.265"^^xsd:float ;
+    chr:hasUnit ex:unit_fL ;
+    chr:hasMeasuredDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/32623-1> .
 
-ex:proc_routine_review a chr:MedicalProcedure .
+# Measurement: GAD-7 total score
+ex:measproc_GAD7_20220318T152421p01_00 a chr:MeasurementProcess ;
+    rdfs:label "GAD-7 total score measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_GAD7_20220318T152421p01_00 .
+
+ex:meas_GAD7_20220318T152421p01_00 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2022-03-18T15:24:21+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/70274-6> .
+
+# Measurement: Total score HARK
+ex:measproc_HARK_20220318T160725p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Total score HARK measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_HARK_20220318T160725p01_00 .
+
+ex:meas_HARK_20220318T160725p01_00 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2022-03-18T16:07:25+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/76504-0> .
+
+# Measurement: PHQ-2 total score
+ex:measproc_PHQ2_20220318T164652p01_00 a chr:MeasurementProcess ;
+    rdfs:label "PHQ-2 total score measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_PHQ2_20220318T164652p01_00 .
+
+ex:meas_PHQ2_20220318T164652p01_00 a chr:Measurement ;
+    rdfs:label "2 score" ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2022-03-18T16:46:52+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/55758-7> .
+
+# Measurement: AUDIT-C total score
+ex:measproc_AUDITC_20220318T173056p01_00 a chr:MeasurementProcess ;
+    rdfs:label "AUDIT-C total score measurement process" ;
+    chr:hasPatient ex:patient_Arleen_Bergstrom ;
+    chr:hasResult ex:meas_AUDITC_20220318T173056p01_00 .
+
+ex:meas_AUDITC_20220318T173056p01_00 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2022-03-18T17:30:56+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/75626-2> .
+
+# Diagnostic statement
+ex:diagstmt_MedicationReview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+# Clinical condition
+ex:condition_MedicationReview a chr:ClinicalCondition ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2022-03-18T14:13:14+01:00"^^xsd:dateTime .
+
+# Evaluation process
+ex:evaluation_20220318T141314p01_00 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Lynwood Tromp" ;
+    chr:hasCondition ex:condition_MedicationReview ;
+    chr:hasObservation ex:diagstmt_MedicationReview .
+
+# Care plan
+ex:careplan_FollowUp a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review" .

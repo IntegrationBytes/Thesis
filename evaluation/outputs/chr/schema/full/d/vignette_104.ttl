@@ -4,35 +4,50 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Aracely711Devon268Collins926 a chr:Person .
+ex:patient_AracelyDevonCollins a chr:Person ;
+    rdfs:label "Aracely711 Devon268 Collins926" .
 
-ex:visit_2019_06_28 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:doctor_Margaret865Reinger292 ;
-  chr:hasCareUnit ex:care_unit_CarneyHospital ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 .
+ex:provider_MargaretReinger a chr:Person ;
+    rdfs:label "Dr. Margaret865 Reinger292" .
 
-ex:care_unit_CarneyHospital a chr:CareUnit .
+ex:careunit_CARNEY_HOSPITAL a chr:CareUnit ;
+    rdfs:label "CARNEY HOSPITAL" .
 
-ex:doctor_Margaret865Reinger292 a chr:Person .
+ex:visit_2019_06_28_T15_04_38 a chr:ClinicalVisit ;
+    chr:hasDate "2019-06-28T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCareUnit ex:careunit_CARNEY_HOSPITAL ;
+    chr:hasCareProvider ex:provider_MargaretReinger ;
+    chr:hasPatient ex:patient_AracelyDevonCollins .
 
-ex:temp_measurement_process_20190628 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:temp_measurement_20190628 .
+ex:unit_Cel a chr:Unit ;
+    rdfs:label "Cel" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/Cel> .
 
-ex:temp_measurement_20190628 a chr:Measurement ;
-  chr:hasQuantityValue "37.279"^^xsd:float ;
-  chr:hasUnit sulo:Cel ;
-  chr:hasMeasuredDate "2019-06-28T15:04:00"^^xsd:dateTime .
+ex:measurement_temp_20190628T150438 a chr:Measurement ;
+    rdfs:label "Body temperature measurement" ;
+    chr:hasMeasuredDate "2019-06-28T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "37.279"^^xsd:float ;
+    chr:hasUnit ex:unit_Cel ;
+    chr:hasCode <https://loinc.org/8310-5> .
 
-ex:evaluation_20190628 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_statement_pharyngitis .
+ex:measproc_temp_20190628T150438 a chr:MeasurementProcess ;
+    rdfs:label "Temperature measurement process" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:measurement_temp_20190628T150438 .
 
-ex:diagnostic_statement_pharyngitis a chr:DiagnosticStatement .
+ex:diagnostic_AcuteViralPharyngitis a chr:DiagnosticStatement ;
+    rdfs:label "Acute viral pharyngitis" ;
+    chr:hasCode <http://snomed.info/id/195662009> .
 
-ex:condition_pharyngitis a chr:ClinicalCondition ;
-  chr:hasRecordDate "2019-06-28T15:04:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:condition_AcuteViralPharyngitis a chr:ClinicalCondition ;
+    rdfs:label "Acute viral pharyngitis condition" ;
+    chr:hasCode <http://snomed.info/id/195662009> ;
+    chr:hasRecordDate "2019-06-28T15:04:38+02:00"^^xsd:dateTime .
 
-ex:severity_moderate a chr:Severity .
+ex:evaluation_20190628T150438 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation process" ;
+    chr:hasCondition ex:condition_AcuteViralPharyngitis ;
+    chr:hasObservation ex:diagnostic_AcuteViralPharyngitis .
 
-ex:care_plan_pharyngitis a chr:CarePlan .
+ex:careplan_20190628T150438 a chr:CarePlan ;
+    rdfs:label "Care plan for follow-up monitoring and routine review" .

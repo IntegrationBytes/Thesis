@@ -4,92 +4,158 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Daren950_Ed239_Strosin214 a chr:Person .
+# Person (patient)
+ex:patient_Daren950_Ed239_Strosin214 a chr:Person ;
+    rdfs:label "Daren950 Ed239 Strosin214" .
 
-ex:care_unit_CHP a chr:CareUnit .
+# Care unit
+ex:careunit_CommunityHealthProgramsInc a chr:CareUnit ;
+    rdfs:label "COMMUNITY HEALTH PROGRAMS INC" .
 
-ex:care_provider_Dr_Weissnat a chr:Person .
+# Care provider (physician)
+ex:provider_Ping698_Weissnat378 a chr:Person ;
+    rdfs:label "Dr. Ping698 Weissnat378" .
 
-ex:visit_2018_09_15 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:care_provider_Dr_Weissnat ;
-  chr:hasCareUnit ex:care_unit_CHP .
+# Clinical visit
+ex:visit_2018_09_15T10_01_15p02_00 a chr:ClinicalVisit ;
+    chr:hasDate "2018-09-15T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCareUnit ex:careunit_CommunityHealthProgramsInc ;
+    chr:hasCareProvider ex:provider_Ping698_Weissnat378 ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasProcedure ex:procedure_WellChildVisit_2018_09_15T10_01_15p02_00 ;
+    rdfs:label "Clinical visit on 2018-09-15T10:01:15+02:00" .
 
-ex:height_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
-  chr:hasResult ex:height_measurement .
+# Procedure for the encounter
+ex:procedure_WellChildVisit_2018_09_15T10_01_15p02_00 a chr:MedicalProcedure ;
+    rdfs:label "Well child visit (procedure)" .
 
-ex:height_measurement a chr:Measurement ;
-  chr:hasQuantityValue "165.3"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2018-09-15T10:01:00"^^xsd:dateTime .
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:pain_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
-  chr:hasResult ex:pain_measurement .
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
 
-ex:pain_measurement a chr:Measurement ;
-  chr:hasQuantityValue "2.0"^^xsd:float ;
-  chr:hasUnit ex:score ;
-  chr:hasMeasuredDate "2018-09-15T10:01:00"^^xsd:dateTime .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:weight_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
-  chr:hasResult ex:weight_measurement .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg/m2> .
 
-ex:weight_measurement a chr:Measurement ;
-  chr:hasQuantityValue "46.5"^^xsd:float ;
-  chr:hasUnit sulo:kg ;
-  chr:hasMeasuredDate "2018-09-15T10:01:00"^^xsd:dateTime .
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
 
-ex:bmi_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
-  chr:hasResult ex:bmi_measurement .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%2Fmin> .
 
-ex:bmi_measurement a chr:Measurement ;
-  chr:hasQuantityValue "17.02"^^xsd:float ;
-  chr:hasUnit ex:kg_per_m2 ;
-  chr:hasMeasuredDate "2018-09-15T10:01:00"^^xsd:dateTime .
+# Height measurement
+ex:measurement_height_2018_09_15T10_01_15p02_00 a chr:Measurement ;
+    rdfs:label "165.3 cm" ;
+    chr:hasQuantityValue "165.3"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2018-09-15T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/8302-2> .
 
-ex:bmi_percentile_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
-  chr:hasResult ex:bmi_percentile_measurement .
+ex:measproc_height_2018_09_15T10_01_15p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Height measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_height_2018_09_15T10_01_15p02_00 .
 
-ex:bmi_percentile_measurement a chr:Measurement ;
-  chr:hasQuantityValue "15.143"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2018-09-15T10:01:00"^^xsd:dateTime .
+# Pain severity measurement
+ex:measurement_pain_2018_09_15T10_01_15p02_00 a chr:Measurement ;
+    rdfs:label "2 score" ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2018-09-15T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/72514-3> .
 
-ex:heart_rate_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
-  chr:hasResult ex:heart_rate_measurement .
+ex:measproc_pain_2018_09_15T10_01_15p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_pain_2018_09_15T10_01_15p02_00 .
 
-ex:heart_rate_measurement a chr:Measurement ;
-  chr:hasQuantityValue "77.0"^^xsd:float ;
-  chr:hasUnit ex:per_min ;
-  chr:hasMeasuredDate "2018-09-15T10:01:00"^^xsd:dateTime .
+# Weight measurement
+ex:measurement_weight_2018_09_15T10_01_15p02_00 a chr:Measurement ;
+    rdfs:label "46.5 kg" ;
+    chr:hasQuantityValue "46.5"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2018-09-15T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/29463-7> .
 
-ex:respiratory_rate_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
-  chr:hasResult ex:respiratory_rate_measurement .
+ex:measproc_weight_2018_09_15T10_01_15p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Weight measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_weight_2018_09_15T10_01_15p02_00 .
 
-ex:respiratory_rate_measurement a chr:Measurement ;
-  chr:hasQuantityValue "12.0"^^xsd:float ;
-  chr:hasUnit ex:per_min ;
-  chr:hasMeasuredDate "2018-09-15T10:01:00"^^xsd:dateTime .
+# BMI ratio measurement
+ex:measurement_bmi_ratio_2018_09_15T10_01_15p02_00 a chr:Measurement ;
+    rdfs:label "17.02 kg/m2" ;
+    chr:hasQuantityValue "17.02"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2018-09-15T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/39156-5> .
 
-ex:evaluation_process a chr:EvaluationProcess ;
-  chr:hasObservation ex:gingivitis_diagnosis .
+ex:measproc_bmi_ratio_2018_09_15T10_01_15p02_00 a chr:MeasurementProcess ;
+    rdfs:label "BMI ratio measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_bmi_ratio_2018_09_15T10_01_15p02_00 .
 
-ex:gingivitis_diagnosis a chr:DiagnosticStatement .
+# BMI percentile measurement
+ex:measurement_bmi_percentile_2018_09_15T10_01_15p02_00 a chr:Measurement ;
+    rdfs:label "15.143 %" ;
+    chr:hasQuantityValue "15.143"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2018-09-15T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/59576-9> .
 
-ex:gingivitis_condition a chr:ClinicalCondition ;
-  chr:hasRecordDate "2018-09-15T10:42:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:moderate_severity .
+ex:measproc_bmi_percentile_2018_09_15T10_01_15p02_00 a chr:MeasurementProcess ;
+    rdfs:label "BMI percentile measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_bmi_percentile_2018_09_15T10_01_15p02_00 .
 
-ex:moderate_severity a chr:Severity .
+# Heart rate measurement
+ex:measurement_heart_rate_2018_09_15T10_01_15p02_00 a chr:Measurement ;
+    rdfs:label "77 /min" ;
+    chr:hasQuantityValue "77.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2018-09-15T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/8867-4> .
 
-ex:care_plan a chr:CarePlan .
+ex:measproc_heart_rate_2018_09_15T10_01_15p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_heart_rate_2018_09_15T10_01_15p02_00 .
 
-ex:well_child_visit a chr:MedicalProcedure ;
-  chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
-  chr:hasPerformedDate "2018-09-15T10:01:00"^^xsd:dateTime .
+# Respiratory rate measurement
+ex:measurement_respiratory_rate_2018_09_15T10_01_15p02_00 a chr:Measurement ;
+    rdfs:label "12 /min" ;
+    chr:hasQuantityValue "12.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2018-09-15T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/9279-1> .
+
+ex:measproc_respiratory_rate_2018_09_15T10_01_15p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult ex:measurement_respiratory_rate_2018_09_15T10_01_15p02_00 .
+
+# Diagnostic statement (Gingivitis)
+ex:diagnostic_gingivitis_2018_09_15T10_42_47p02_00 a chr:DiagnosticStatement ;
+    rdfs:label "Gingivitis (disorder)" ;
+    chr:hasCode <http://snomed.info/id/66383009> .
+
+# Evaluation process
+ex:evaluation_2018_09_15T10_42_47p02_00 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Ping698 Weissnat378" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasObservation ex:diagnostic_gingivitis_2018_09_15T10_42_47p02_00 .
+
+# Care plan
+ex:careplan_followup_2018_09_15 a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review" .

@@ -1,0 +1,301 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_ArturoHeidenreich a chr:Person ;
+    rdfs:label "Arturo47 Lauren941 Heidenreich818" .
+
+ex:provider_AlanKeeling a chr:Person ;
+    rdfs:label "Dr. Alan320 Keeling57" .
+
+# Care unit
+ex:careunit_PRIMARY_CARE_NORTH_PC a chr:CareUnit ;
+    rdfs:label "PRIMARY CARE NORTH PC" .
+
+# Clinical visit
+ex:visit_20210517T023422+02_00 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2021-05-17T02:34:22+02:00" ;
+    chr:hasDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:provider_AlanKeeling ;
+    chr:hasCareUnit ex:careunit_PRIMARY_CARE_NORTH_PC ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasProcedure ex:procedure_general_exam .
+
+ex:procedure_general_exam a chr:MedicalProcedure ;
+    rdfs:label "General examination of patient" .
+
+# Units
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
+
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
+
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
+
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg.m2> .
+
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min-1> .
+
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
+
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> .
+
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
+
+# Measurements and measurement processes
+# 1. Hemoglobin A1c
+ex:measurement_HbA1c_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "5.93 %" ;
+    chr:hasQuantityValue "5.93"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_HbA1c_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_HbA1c_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/4548-4> .
+
+# 2. Body Height
+ex:measurement_Height_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "181.4 cm" ;
+    chr:hasQuantityValue "181.4"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_Height_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Height_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/8302-2> .
+
+# 3. Pain severity
+ex:measurement_PainSeverity_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "4 score" ;
+    chr:hasQuantityValue "4"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_PainSeverity_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_PainSeverity_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/72514-3> .
+
+# 4. Body Weight
+ex:measurement_Weight_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "90.4 kg" ;
+    chr:hasQuantityValue "90.4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_Weight_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Weight_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/29463-7> .
+
+# 5. BMI
+ex:measurement_BMI_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "27.47 kg/m2" ;
+    chr:hasQuantityValue "27.47"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_BMI_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Body mass index measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_BMI_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/39156-5> .
+
+# 6. Heart rate
+ex:measurement_HeartRate_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "76 /min" ;
+    chr:hasQuantityValue "76"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_HeartRate_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_HeartRate_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/8867-4> .
+
+# 7. Respiratory rate
+ex:measurement_RespRate_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "16 /min" ;
+    chr:hasQuantityValue "16"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_RespRate_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_RespRate_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/9279-1> .
+
+# 8. Glucose
+ex:measurement_Glucose_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "97.54 mg/dL" ;
+    chr:hasQuantityValue "97.54"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_Glucose_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Glucose_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/2339-0> .
+
+# 9. Urea nitrogen
+ex:measurement_UreaNitrogen_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "12.44 mg/dL" ;
+    chr:hasQuantityValue "12.44"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_UreaNitrogen_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_UreaNitrogen_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/6299-2> .
+
+# 10. Creatinine
+ex:measurement_Creatinine_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "0.97 mg/dL" ;
+    chr:hasQuantityValue "0.97"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_Creatinine_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Creatinine_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/38483-4> .
+
+# 11. Calcium
+ex:measurement_Calcium_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "10.03 mg/dL" ;
+    chr:hasQuantityValue "10.03"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_Calcium_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Calcium_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/49765-1> .
+
+# 12. Sodium
+ex:measurement_Sodium_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "138.45 mmol/L" ;
+    chr:hasQuantityValue "138.45"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_Sodium_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Sodium_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/2947-0> .
+
+# 13. Potassium
+ex:measurement_Potassium_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "4.84 mmol/L" ;
+    chr:hasQuantityValue "4.84"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_Potassium_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Potassium_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/6298-4> .
+
+# 14. Chloride
+ex:measurement_Chloride_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "108.62 mmol/L" ;
+    chr:hasQuantityValue "108.62"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_Chloride_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Chloride_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/2069-3> .
+
+# 15. Carbon dioxide, total
+ex:measurement_CO2_20210517T023422+02_00 a chr:Measurement ;
+    rdfs:label "26.03 mmol/L" ;
+    chr:hasQuantityValue "26.03"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-05-17T02:34:22+02:00"^^xsd:dateTime .
+
+ex:measproc_CO2_20210517T023422+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide, total measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_CO2_20210517T023422+02_00 ;
+    chr:hasCode <http://snomed.info/id/20565-8> .
+
+# 16. Total score (HARK)
+ex:measurement_TotalScore_20210517T035700+02_00 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2021-05-17T03:57:00+02:00"^^xsd:dateTime .
+
+ex:measproc_TotalScore_20210517T035700+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Total score measurement" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_TotalScore_20210517T035700+02_00 ;
+    chr:hasCode <http://snomed.info/id/76504-0> .
+
+# Diagnostic statements and clinical conditions
+ex:diag_fulltime_employment a chr:DiagnosticStatement ;
+    rdfs:label "Full-time employment" ;
+    chr:hasCode <http://snomed.info/id/160903007> .
+
+ex:cond_fulltime_employment a chr:ClinicalCondition ;
+    rdfs:label "Full-time employment" ;
+    chr:hasCode <http://snomed.info/id/160903007> ;
+    chr:hasRecordDate "2021-05-17T03:13:24+02:00"^^xsd:dateTime .
+
+ex:evaluation_fulltime_20210517T031324+02_00 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation for Full-time employment" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasCondition ex:cond_fulltime_employment ;
+    chr:hasObservation ex:diag_fulltime_employment .
+
+ex:diag_social_isolation a chr:DiagnosticStatement ;
+    rdfs:label "Social isolation" ;
+    chr:hasCode <http://snomed.info/id/422650009> .
+
+ex:cond_social_isolation a chr:ClinicalCondition ;
+    rdfs:label "Social isolation" ;
+    chr:hasCode <http://snomed.info/id/422650009> ;
+    chr:hasRecordDate "2021-05-17T03:13:24+02:00"^^xsd:dateTime .
+
+ex:evaluation_social_20210517T031324+02_00 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation for Social isolation" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasCondition ex:cond_social_isolation ;
+    chr:hasObservation ex:diag_social_isolation .

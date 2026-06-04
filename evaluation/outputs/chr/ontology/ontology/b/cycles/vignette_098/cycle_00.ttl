@@ -4,101 +4,87 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:visit_2019_07_08
-  a chr:ClinicalVisit ;
-  sulo:atTime ex:time_visit_2019_07_08 ;
-  sulo:isIn ex:care_unit_acushnet .
+# Persons
+ex:patient_Harvey a chr:Person .
+ex:physician_Victor a chr:Person .
 
-ex:time_visit_2019_07_08
-  a sulo:TimeInstant ;
-  sulo:hasValue "2019-07-08T15:30:00"^^xsd:dateTime .
+# Care unit
+ex:careunit_4499 a chr:CareUnit .
 
-ex:care_unit_acushnet
-  a chr:CareUnit .
+# Clinical visit
+ex:visit_2019-07-08T15:30:59+02:00 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_SubjectOfCare_VisitPatient ,
+                       ex:role_CareProvider_VisitPhysician ;
+    sulo:isIn ex:careunit_4499 ;
+    sulo:atTime ex:time_visit .
 
-ex:role_VisitProvider_Chavez
-  a chr:CareProviderRole ;
-  sulo:isFeatureOf ex:doctor_Chavez .
+ex:role_SubjectOfCare_VisitPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Harvey .
 
-ex:doctor_Chavez
-  a chr:Person .
+ex:role_CareProvider_VisitPhysician a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Victor .
 
-ex:patient_Homenick
-  a chr:Person .
+ex:time_visit a sulo:TimeInstant ;
+    sulo:hasValue "2019-07-08T15:30:59+02:00"^^xsd:dateTime .
 
-ex:role_VisitSubject_Homenick
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Homenick .
+# Measurement (body temperature)
+ex:measurement_body_temp_2019-07-08T15:30:59+02:00 a chr:Measurement ;
+    sulo:hasValue "37.063"^^xsd:float ;
+    sulo:hasPart ex:unit_celsius ;
+    sulo:atTime ex:time_measure .
 
-ex:temp_measurement_process
-  a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_TempSubject_Homenick ;
-  sulo:hasOutput ex:temp_measurement ;
-  sulo:atTime ex:time_temp_measurement .
+ex:unit_celsius a chr:Unit .
 
-ex:role_TempSubject_Homenick
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Homenick .
+ex:time_measure a sulo:TimeInstant ;
+    sulo:hasValue "2019-07-08T15:30:59+02:00"^^xsd:dateTime .
 
-ex:temp_measurement
-  a chr:Measurement ;
-  sulo:hasValue "37.063"^^xsd:float ;
-  sulo:hasPart ex:unit_cel ;
-  sulo:atTime ex:time_temp_measurement .
+# Measurement process
+ex:process_measure_temp_2019-07-08T15:30:59+02:00 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_MeasurePatient ,
+                       ex:role_CareProvider_MeasurePhysician ,
+                       ex:role_Output_MeasureResult ;
+    sulo:hasFeature ex:status_completed .
 
-ex:unit_cel
-  a sulo:Unit .
+ex:role_SubjectOfCare_MeasurePatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Harvey .
 
-ex:time_temp_measurement
-  a sulo:TimeInstant ;
-  sulo:hasValue "2019-07-08T15:30:00"^^xsd:dateTime .
+ex:role_CareProvider_MeasurePhysician a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Victor .
 
-ex:process_status_completed
-  a chr:ProcessStatus .
+ex:role_Output_MeasureResult a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_body_temp_2019-07-08T15:30:59+02:00 .
 
-ex:temp_measurement_process
-  sulo:hasFeature ex:process_status_completed .
+ex:status_completed a chr:ProcessStatus .
 
-ex:evaluation_process
-  a chr:EvaluationProcess ;
-  sulo:hasParticipant ex:role_EvalProvider_Chavez ;
-  sulo:hasParticipant ex:role_EvalSubject_Homenick ;
-  sulo:hasOutput ex:diagnostic_statement ;
-  sulo:atTime ex:time_evaluation .
+# Evaluation process (diagnostic)
+ex:evaluation_2019-07-08T15:30:59+02:00 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_EvalPatient ,
+                       ex:role_CareProvider_EvalPhysician ,
+                       ex:role_Output_DiagnosticStatement ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_evaluation .
 
-ex:role_EvalProvider_Chavez
-  a chr:PerformerRole ;
-  sulo:isFeatureOf ex:doctor_Chavez .
+ex:role_SubjectOfCare_EvalPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Harvey .
 
-ex:role_EvalSubject_Homenick
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Homenick .
+ex:role_CareProvider_EvalPhysician a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Victor .
 
-ex:diagnostic_statement
-  a chr:DiagnosticStatement ;
-  sulo:atTime ex:time_evaluation .
+ex:role_Output_DiagnosticStatement a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_AcuteViralPharyngitis .
 
-ex:time_evaluation
-  a sulo:TimeInstant ;
-  sulo:hasValue "2019-07-08T15:30:00"^^xsd:dateTime .
+ex:time_evaluation a sulo:TimeInstant ;
+    sulo:hasValue "2019-07-08T15:30:59+02:00"^^xsd:dateTime .
 
-ex:acute_viral_pharyngitis
-  a chr:ClinicalCondition ;
-  sulo:hasFeature ex:severity_moderate .
+# Diagnostic statement
+ex:diag_AcuteViralPharyngitis a chr:DiagnosticStatement .
 
-ex:diagnostic_statement
-  sulo:isFeatureOf ex:acute_viral_pharyngitis .
+# Clinical condition
+ex:condition_AcuteViralPharyngitis a chr:ClinicalCondition ;
+    sulo:hasFeature ex:diag_AcuteViralPharyngitis .
 
-ex:severity_moderate
-  a chr:Severity .
+# Care plan
+ex:careplan_followup a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup .
 
-ex:care_plan
-  a chr:CarePlan ;
-  sulo:refersTo ex:follow_up_monitoring ;
-  sulo:refersTo ex:routine_review .
-
-ex:follow_up_monitoring
-  a chr:MedicalProcedure .
-
-ex:routine_review
-  a chr:MedicalProcedure .
+ex:procedure_followup a chr:MedicalProcedure .

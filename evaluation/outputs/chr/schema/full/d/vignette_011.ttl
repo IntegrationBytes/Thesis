@@ -4,255 +4,355 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Arturo47_Lauren941_Heidenreich818 a chr:Person .
+# Patient
+ex:patient_ArturoHeidenreich a chr:Person ;
+    rdfs:label "Arturo47 Lauren941 Heidenreich818" .
 
-ex:care_unit_PrimaryCareNorthPC a chr:CareUnit .
+# Care provider
+ex:provider_AlanKeeling a chr:Person ;
+    rdfs:label "Dr. Alan320 Keeling57" .
 
-ex:care_provider_Alan320_Keeling57 a chr:Person .
+# Care unit
+ex:careunit_PRIMARY_CARE_NORTH_PC a chr:CareUnit ;
+    rdfs:label "PRIMARY CARE NORTH PC" .
 
-ex:visit_2017_04_24 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasCareUnit ex:care_unit_PrimaryCareNorthPC ;
-  chr:hasCareProvider ex:care_provider_Alan320_Keeling57 .
+# Clinical visit
+ex:visit_20170424T023422p02_00 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2017-04-24T02:34:22+02:00" ;
+    chr:hasDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasCareProvider ex:provider_AlanKeeling ;
+    chr:hasCareUnit ex:careunit_PRIMARY_CARE_NORTH_PC .
 
-ex:measproc_HbA1c_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_HbA1c_20170424 .
+# Units
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%> .
 
-ex:meas_HbA1c_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "5.89"^^xsd:float ;
-  chr:hasUnit "%"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:measproc_height_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_height_20170424 .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:meas_height_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "181.4"^^xsd:float ;
-  chr:hasUnit "cm"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg/m2> .
 
-ex:measproc_pain_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_pain_20170424 .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min^-1> .
 
-ex:meas_pain_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "2.0"^^xsd:float ;
-  chr:hasUnit "{score}"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
 
-ex:measproc_weight_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_weight_20170424 .
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> .
 
-ex:meas_weight_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "90.4"^^xsd:float ;
-  chr:hasUnit "kg"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
 
-ex:measproc_bmi_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_bmi_20170424 .
+# Measurements and measurement processes
 
-ex:meas_bmi_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "27.47"^^xsd:float ;
-  chr:hasUnit "kg/m2"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 1. Hemoglobin A1c
+ex:measurement_HbA1c_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Hemoglobin A1c 5.89 %" ;
+    chr:hasQuantityValue "5.89"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_heartrate_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_heartrate_20170424 .
+ex:measproc_HbA1c_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_HbA1c_20170424T023422p02_00 .
 
-ex:meas_heartrate_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "89.0"^^xsd:float ;
-  chr:hasUnit "/min"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 2. Body Height
+ex:measurement_Height_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Body Height 181.4 cm" ;
+    chr:hasQuantityValue "181.4"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_resprate_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_resprate_20170424 .
+ex:measproc_Height_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Height_20170424T023422p02_00 .
 
-ex:meas_resprate_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "13.0"^^xsd:float ;
-  chr:hasUnit "/min"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 3. Pain severity
+ex:measurement_Pain_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Pain severity 2 score" ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_glucose_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_glucose_20170424 .
+ex:measproc_Pain_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Pain_20170424T023422p02_00 .
 
-ex:meas_glucose_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "98.2"^^xsd:float ;
-  chr:hasUnit "mg/dL"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 4. Body Weight
+ex:measurement_Weight_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Body Weight 90.4 kg" ;
+    chr:hasQuantityValue "90.4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_ureanitrogen_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_ureanitrogen_20170424 .
+ex:measproc_Weight_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Weight_20170424T023422p02_00 .
 
-ex:meas_ureanitrogen_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "7.64"^^xsd:float ;
-  chr:hasUnit "mg/dL"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 5. BMI
+ex:measurement_BMI_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Body mass index 27.47 kg/m2" ;
+    chr:hasQuantityValue "27.47"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_creatinine_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_creatinine_20170424 .
+ex:measproc_BMI_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "BMI measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_BMI_20170424T023422p02_00 .
 
-ex:meas_creatinine_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "1.18"^^xsd:float ;
-  chr:hasUnit "mg/dL"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 6. Heart rate
+ex:measurement_HR_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Heart rate 89 /min" ;
+    chr:hasQuantityValue "89"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_calcium_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_calcium_20170424 .
+ex:measproc_HR_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_HR_20170424T023422p02_00 .
 
-ex:meas_calcium_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "9.55"^^xsd:float ;
-  chr:hasUnit "mg/dL"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 7. Respiratory rate
+ex:measurement_RR_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Respiratory rate 13 /min" ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_sodium_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_sodium_20170424 .
+ex:measproc_RR_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_RR_20170424T023422p02_00 .
 
-ex:meas_sodium_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "139.71"^^xsd:float ;
-  chr:hasUnit "mmol/L"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 8. Glucose
+ex:measurement_Glucose_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Glucose 98.2 mg/dL" ;
+    chr:hasQuantityValue "98.2"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_potassium_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_potassium_20170424 .
+ex:measproc_Glucose_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Glucose_20170424T023422p02_00 .
 
-ex:meas_potassium_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "4.05"^^xsd:float ;
-  chr:hasUnit "mmol/L"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 9. Urea nitrogen
+ex:measurement_UreaN_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Urea nitrogen 7.64 mg/dL" ;
+    chr:hasQuantityValue "7.64"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_chloride_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_chloride_20170424 .
+ex:measproc_UreaN_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_UreaN_20170424T023422p02_00 .
 
-ex:meas_chloride_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "103.07"^^xsd:float ;
-  chr:hasUnit "mmol/L"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 10. Creatinine
+ex:measurement_Creatinine_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Creatinine 1.18 mg/dL" ;
+    chr:hasQuantityValue "1.18"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_carbondioxide_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_carbondioxide_20170424 .
+ex:measproc_Creatinine_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Creatinine_20170424T023422p02_00 .
 
-ex:meas_carbondioxide_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "26.07"^^xsd:float ;
-  chr:hasUnit "mmol/L"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 11. Calcium
+ex:measurement_Calcium_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Calcium 9.55 mg/dL" ;
+    chr:hasQuantityValue "9.55"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_cholesterol_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_cholesterol_20170424 .
+ex:measproc_Calcium_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Calcium_20170424T023422p02_00 .
 
-ex:meas_cholesterol_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "161.52"^^xsd:float ;
-  chr:hasUnit "mg/dL"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 12. Sodium
+ex:measurement_Sodium_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Sodium 139.71 mmol/L" ;
+    chr:hasQuantityValue "139.71"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_triglyceride_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_triglyceride_20170424 .
+ex:measproc_Sodium_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Sodium_20170424T023422p02_00 .
 
-ex:meas_triglyceride_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "111.61"^^xsd:float ;
-  chr:hasUnit "mg/dL"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 13. Potassium
+ex:measurement_Potassium_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Potassium 4.05 mmol/L" ;
+    chr:hasQuantityValue "4.05"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_ldlcholesterol_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_ldlcholesterol_20170424 .
+ex:measproc_Potassium_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Potassium_20170424T023422p02_00 .
 
-ex:meas_ldlcholesterol_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "82.35"^^xsd:float ;
-  chr:hasUnit "mg/dL"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 14. Chloride
+ex:measurement_Chloride_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Chloride 103.07 mmol/L" ;
+    chr:hasQuantityValue "103.07"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_hdlcholesterol_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_hdlcholesterol_20170424 .
+ex:measproc_Chloride_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Chloride_20170424T023422p02_00 .
 
-ex:meas_hdlcholesterol_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "56.85"^^xsd:float ;
-  chr:hasUnit "mg/dL"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T02:34:00"^^xsd:dateTime .
+# 15. Carbon dioxide, total
+ex:measurement_CO2_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Carbon dioxide, total 26.07 mmol/L" ;
+    chr:hasQuantityValue "26.07"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_gad7_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_gad7_20170424 .
+ex:measproc_CO2_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_CO2_20170424T023422p02_00 .
 
-ex:meas_gad7_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasUnit "{score}"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T03:34:00"^^xsd:dateTime .
+# 16. Cholesterol
+ex:measurement_Cholesterol_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Cholesterol 161.52 mg/dL" ;
+    chr:hasQuantityValue "161.52"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_phq2_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_phq2_20170424 .
+ex:measproc_Cholesterol_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Cholesterol_20170424T023422p02_00 .
 
-ex:meas_phq2_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "6.0"^^xsd:float ;
-  chr:hasUnit "{score}"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T04:16:00"^^xsd:dateTime .
+# 17. Triglyceride
+ex:measurement_Triglyceride_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "Triglyceride 111.61 mg/dL" ;
+    chr:hasQuantityValue "111.61"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:measproc_phq9_20170424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_phq9_20170424 .
+ex:measproc_Triglyceride_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "Triglyceride measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Triglyceride_20170424T023422p02_00 .
 
-ex:meas_phq9_20170424 a chr:Measurement ;
-  chr:hasQuantityValue "11.0"^^xsd:float ;
-  chr:hasUnit "{score}"^^xsd:string ;
-  chr:hasMeasuredDate "2017-04-24T04:46:00"^^xsd:dateTime .
+# 18. LDL Cholesterol
+ex:measurement_LDL_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "LDL Cholesterol 82.35 mg/dL" ;
+    chr:hasQuantityValue "82.35"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:eval_medicationreview_20170424 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:care_provider_Alan320_Keeling57 ;
-  chr:hasObservation ex:diag_medicationreview_20170424 .
+ex:measproc_LDL_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "LDL Cholesterol measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_LDL_20170424T023422p02_00 .
 
-ex:diag_medicationreview_20170424 a chr:DiagnosticStatement .
+# 19. HDL Cholesterol
+ex:measurement_HDL_20170424T023422p02_00 a chr:Measurement ;
+    rdfs:label "HDL Cholesterol 56.85 mg/dL" ;
+    chr:hasQuantityValue "56.85"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2017-04-24T02:34:22+02:00"^^xsd:dateTime .
 
-ex:cond_medicationreview_20170424 a chr:ClinicalCondition ;
-  chr:hasRecordDate "2017-04-24T02:34:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:measproc_HDL_20170424T023422p02_00 a chr:MeasurementProcess ;
+    rdfs:label "HDL Cholesterol measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_HDL_20170424T023422p02_00 .
 
-ex:eval_employment_20170424 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:care_provider_Alan320_Keeling57 ;
-  chr:hasObservation ex:diag_employment_20170424 .
+# 20. GAD-7
+ex:measurement_GAD7_20170424T033434p02_00 a chr:Measurement ;
+    rdfs:label "GAD-7 total score 1 score" ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2017-04-24T03:34:34+02:00"^^xsd:dateTime .
 
-ex:diag_employment_20170424 a chr:DiagnosticStatement .
+ex:measproc_GAD7_20170424T033434p02_00 a chr:MeasurementProcess ;
+    rdfs:label "GAD-7 measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_GAD7_20170424T033434p02_00 .
 
-ex:cond_employment_20170424 a chr:ClinicalCondition ;
-  chr:hasRecordDate "2017-04-24T03:07:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+# 21. PHQ-2
+ex:measurement_PHQ2_20170424T041633p02_00 a chr:Measurement ;
+    rdfs:label "PHQ-2 total score 6 score" ;
+    chr:hasQuantityValue "6"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2017-04-24T04:16:33+02:00"^^xsd:dateTime .
 
-ex:eval_socialcontact_20170424 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:care_provider_Alan320_Keeling57 ;
-  chr:hasObservation ex:diag_socialcontact_20170424 .
+ex:measproc_PHQ2_20170424T041633p02_00 a chr:MeasurementProcess ;
+    rdfs:label "PHQ-2 measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_PHQ2_20170424T041633p02_00 .
 
-ex:diag_socialcontact_20170424 a chr:DiagnosticStatement .
+# 22. PHQ-9
+ex:measurement_PHQ9_20170424T044622p02_00 a chr:Measurement ;
+    rdfs:label "PHQ-9 total score 11 score" ;
+    chr:hasQuantityValue "11"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2017-04-24T04:46:22+02:00"^^xsd:dateTime .
 
-ex:cond_socialcontact_20170424 a chr:ClinicalCondition ;
-  chr:hasRecordDate "2017-04-24T03:07:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:measproc_PHQ9_20170424T044622p02_00 a chr:MeasurementProcess ;
+    rdfs:label "PHQ-9 measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_PHQ9_20170424T044622p02_00 .
 
-ex:eval_stress_20170424 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:care_provider_Alan320_Keeling57 ;
-  chr:hasObservation ex:diag_stress_20170424 .
+# Diagnostic statements
+ex:diag_MedicationReview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
 
-ex:diag_stress_20170424 a chr:DiagnosticStatement .
+ex:diag_FullTimeEmployment a chr:DiagnosticStatement ;
+    rdfs:label "Full-time employment (finding)" ;
+    chr:hasCode <http://snomed.info/id/160903007> .
 
-ex:cond_stress_20170424 a chr:ClinicalCondition ;
-  chr:hasRecordDate "2017-04-24T03:07:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:diag_LimitedSocialContact a chr:DiagnosticStatement ;
+    rdfs:label "Limited social contact (finding)" ;
+    chr:hasCode <http://snomed.info/id/423315002> .
 
-ex:severity_moderate a chr:Severity .
+ex:diag_Stress a chr:DiagnosticStatement ;
+    rdfs:label "Stress (finding)" ;
+    chr:hasCode <http://snomed.info/id/73595000> .
 
-ex:careplan_followup a chr:CarePlan .
+# Evaluation processes
+ex:evaluation_20170424T023422p02_00_1 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2017-04-24T02:34:22+02:00 (Medication review)" ;
+    chr:hasObservation ex:diag_MedicationReview .
+
+ex:evaluation_20170424T030702p02_00_1 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2017-04-24T03:07:02+02:00 (Full-time employment)" ;
+    chr:hasObservation ex:diag_FullTimeEmployment .
+
+ex:evaluation_20170424T030702p02_00_2 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2017-04-24T03:07:02+02:00 (Limited social contact)" ;
+    chr:hasObservation ex:diag_LimitedSocialContact .
+
+ex:evaluation_20170424T030702p02_00_3 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2017-04-24T03:07:02+02:00 (Stress)" ;
+    chr:hasObservation ex:diag_Stress .

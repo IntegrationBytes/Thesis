@@ -4,239 +4,418 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Arturo47Lauren941Heidenreich818 a chr:Person .
+# Person – patient
+ex:patient_P_622122bd
+    a chr:Person ;
+    rdfs:label "Arturo Lauren Heidenreich" .
 
-ex:visit_2025_11_24_0134 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasCareProvider ex:doctor_Brian582Cummerata161 ;
-  chr:hasCareUnit ex:care_unit_LynnUrgentCare .
+# Person – provider
+ex:provider_BrianCummerata
+    a chr:Person ;
+    rdfs:label "Dr. Brian Cummerata" .
 
-ex:care_unit_LynnUrgentCare a chr:CareUnit .
+# Care unit
+ex:careunit_LYNN_URGENT_CARE
+    a chr:CareUnit ;
+    rdfs:label "LYNN URGENT CARE LLC" .
 
-ex:doctor_Brian582Cummerata161 a chr:Person .
+# Clinical visit
+ex:visit_2025_11_24T013422
+    a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2025-11-24T01:34:22+01:00" ;
+    chr:hasDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:provider_BrianCummerata ;
+    chr:hasCareUnit ex:careunit_LYNN_URGENT_CARE ;
+    chr:hasPatient ex:patient_P_622122bd .
 
-ex:proc_HbA1c_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_HbA1c_20251124 .
+# Units
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%> .
 
-ex:meas_HbA1c_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "6.87"^^xsd:float ;
-  chr:hasUnit "%" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:proc_height_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_height_20251124 .
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
 
-ex:meas_height_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "181.4"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:proc_pain_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_pain_20251124 .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg/m2> .
 
-ex:meas_pain_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "3.0"^^xsd:float ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%2Fmin> .
 
-ex:proc_weight_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_weight_20251124 .
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mg/dL> .
 
-ex:meas_weight_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "90.4"^^xsd:float ;
-  chr:hasUnit sulo:kg ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmol/L> .
 
-ex:proc_bmi_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_bmi_20251124 .
+ex:unit_mg_per_g a chr:Unit ;
+    rdfs:label "mg/g" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mg/g> .
 
-ex:meas_bmi_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "27.47"^^xsd:float ;
-  chr:hasUnit "kg/m2" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+ex:unit_mL_per_min_per_1_73_m2 a chr:Unit ;
+    rdfs:label "mL/min/{1.73_m2}" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mL/min/%7B1.73_m2%7D> .
 
-ex:proc_heartrate_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_heartrate_20251124 .
+# Diagnostic statement
+ex:diag_Hypertriglyceridemia
+    a chr:DiagnosticStatement ;
+    rdfs:label "Hypertriglyceridemia" ;
+    chr:hasCode <http://snomed.info/id/302870006> .
 
-ex:meas_heartrate_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "77.0"^^xsd:float ;
-  chr:hasUnit "/min" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# Evaluation process
+ex:evaluation_2025_11_24T013422
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2025-11-24T01:34:22+01:00" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasObservation ex:diag_Hypertriglyceridemia .
 
-ex:proc_resprate_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_resprate_20251124 .
+# Helper function to create measurement & process triples (repeated for each measurement)
 
-ex:meas_resprate_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "15.0"^^xsd:float ;
-  chr:hasUnit "/min" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 1. Hemoglobin A1c
+ex:meas_4548_4_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Hemoglobin A1c 6.87 %" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.87"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
 
-ex:proc_glucose_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_glucose_20251124 .
+ex:proc_4548_4_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_4548_4_20251124T013422 .
 
-ex:meas_glucose_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "100.51"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 2. Body Height
+ex:meas_8302_2_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Body Height 181.4 cm" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "181.4"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
 
-ex:proc_ureanitrogen_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_ureanitrogen_20251124 .
+ex:proc_8302_2_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_8302_2_20251124T013422 .
 
-ex:meas_ureanitrogen_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "12.38"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 3. Pain severity
+ex:meas_72514_3_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Pain severity 3 score" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
 
-ex:proc_creatinine_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_creatinine_20251124 .
+ex:proc_72514_3_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_72514_3_20251124T013422 .
 
-ex:meas_creatinine_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "0.92"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 4. Body Weight
+ex:meas_29463_7_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Body Weight 90.4 kg" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "90.4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
 
-ex:proc_calcium_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_calcium_20251124 .
+ex:proc_29463_7_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_29463_7_20251124T013422 .
 
-ex:meas_calcium_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "9.34"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 5. Body mass index
+ex:meas_39156_5_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Body mass index 27.47 kg/m2" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.47"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
 
-ex:proc_sodium_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_sodium_20251124 .
+ex:proc_39156_5_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Body mass index measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_39156_5_20251124T013422 .
 
-ex:meas_sodium_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "139.15"^^xsd:float ;
-  chr:hasUnit "mmol/L" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 6. Heart rate
+ex:meas_8867_4_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Heart rate 77 /min" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "77"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
 
-ex:proc_potassium_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_potassium_20251124 .
+ex:proc_8867_4_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_8867_4_20251124T013422 .
 
-ex:meas_potassium_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "4.52"^^xsd:float ;
-  chr:hasUnit "mmol/L" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 7. Respiratory rate
+ex:meas_9279_1_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Respiratory rate 15 /min" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "15"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
 
-ex:proc_chloride_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_chloride_20251124 .
+ex:proc_9279_1_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_9279_1_20251124T013422 .
 
-ex:meas_chloride_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "109.82"^^xsd:float ;
-  chr:hasUnit "mmol/L" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 8. Glucose
+ex:meas_2339_0_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Glucose 100.51 mg/dL" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "100.51"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
 
-ex:proc_carbondioxide_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_carbondioxide_20251124 .
+ex:proc_2339_0_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_2339_0_20251124T013422 .
 
-ex:meas_carbondioxide_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "22.0"^^xsd:float ;
-  chr:hasUnit "mmol/L" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 9. Urea nitrogen
+ex:meas_6299_2_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Urea nitrogen 12.38 mg/dL" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12.38"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
 
-ex:proc_cholesterol_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_cholesterol_20251124 .
+ex:proc_6299_2_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_6299_2_20251124T013422 .
 
-ex:meas_cholesterol_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "213.63"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 10. Creatinine
+ex:meas_38483_4_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Creatinine 0.92 mg/dL" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.92"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
 
-ex:proc_triglyceride_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_triglyceride_20251124 .
+ex:proc_38483_4_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_38483_4_20251124T013422 .
 
-ex:meas_triglyceride_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "160.28"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 11. Calcium
+ex:meas_49765_1_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Calcium 9.34 mg/dL" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.34"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
 
-ex:proc_ldlcholesterol_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_ldlcholesterol_20251124 .
+ex:proc_49765_1_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_49765_1_20251124T013422 .
 
-ex:meas_ldlcholesterol_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "130.03"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 12. Sodium
+ex:meas_2947_0_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Sodium 139.15 mmol/L" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "139.15"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
 
-ex:proc_hdlcholesterol_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_hdlcholesterol_20251124 .
+ex:proc_2947_0_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_2947_0_20251124T013422 .
 
-ex:meas_hdlcholesterol_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "51.54"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 13. Potassium
+ex:meas_6298_4_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Potassium 4.52 mmol/L" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.52"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
 
-ex:proc_microalbumin_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_microalbumin_20251124 .
+ex:proc_6298_4_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_6298_4_20251124T013422 .
 
-ex:meas_microalbumin_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "7.78"^^xsd:float ;
-  chr:hasUnit "mg/g" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 14. Chloride
+ex:meas_2069_3_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Chloride 109.82 mmol/L" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "109.82"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
 
-ex:proc_glomerularfiltration_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_glomerularfiltration_20251124 .
+ex:proc_2069_3_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_2069_3_20251124T013422 .
 
-ex:meas_glomerularfiltration_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "142.52"^^xsd:float ;
-  chr:hasUnit "mL/min/{1.73_m2}" ;
-  chr:hasMeasuredDate "2025-11-24T01:34:00"^^xsd:dateTime .
+# 15. Carbon dioxide, total
+ex:meas_20565_8_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Carbon dioxide, total 22 mmol/L" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "22"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
 
-ex:proc_gad7_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_gad7_20251124 .
+ex:proc_20565_8_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide, total measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_20565_8_20251124T013422 .
 
-ex:meas_gad7_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasMeasuredDate "2025-11-24T02:28:00"^^xsd:dateTime .
+# 16. Cholesterol
+ex:meas_2093_3_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Cholesterol 213.63 mg/dL" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "213.63"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
 
-ex:proc_fallrisk_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_fallrisk_20251124 .
+ex:proc_2093_3_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_2093_3_20251124T013422 .
 
-ex:meas_fallrisk_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "25.0"^^xsd:float ;
-  chr:hasMeasuredDate "2025-11-24T02:58:00"^^xsd:dateTime .
+# 17. Triglyceride
+ex:meas_2571_8_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Triglyceride 160.28 mg/dL" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "160.28"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
 
-ex:proc_hark_20251124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47Lauren941Heidenreich818 ;
-  chr:hasResult ex:meas_hark_20251124 .
+ex:proc_2571_8_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Triglyceride measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_2571_8_20251124T013422 .
 
-ex:meas_hark_20251124 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasMeasuredDate "2025-11-24T03:39:00"^^xsd:dateTime .
+# 18. LDL Cholesterol
+ex:meas_18262_6_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "LDL Cholesterol 130.03 mg/dL" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "130.03"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
 
-ex:eval_20251124_0134 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:doctor_Brian582Cummerata161 ;
-  chr:hasObservation ex:diag_hypertriglyceridemia .
+ex:proc_18262_6_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "LDL Cholesterol measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_18262_6_20251124T013422 .
 
-ex:diag_hypertriglyceridemia a chr:DiagnosticStatement .
+# 19. HDL Cholesterol
+ex:meas_2085_9_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "HDL Cholesterol 51.54 mg/dL" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "51.54"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
 
-ex:condition_hypertriglyceridemia a chr:ClinicalCondition ;
-  chr:hasSeverity ex:severity_moderate ;
-  chr:hasRecordDate "2025-11-24T01:34:00"^^xsd:dateTime .
+ex:proc_2085_9_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "HDL Cholesterol measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_2085_9_20251124T013422 .
 
-ex:severity_moderate a chr:Severity .
+# 20. Microalbumin/Creatinine ratio
+ex:meas_14959_1_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Microalbumin/Creatinine 7.78 mg/g" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "7.78"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_g .
 
-ex:careplan_followup a chr:CarePlan .
+ex:proc_14959_1_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Microalbumin/Creatinine measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_14959_1_20251124T013422 .
+
+# 21. Glomerular filtration rate
+ex:meas_33914_3_20251124T013422
+    a chr:Measurement ;
+    rdfs:label "Glomerular filtration rate 142.52 mL/min/{1.73_m2}" ;
+    chr:hasMeasuredDate "2025-11-24T01:34:22+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "142.52"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 .
+
+ex:proc_33914_3_20251124T013422
+    a chr:MeasurementProcess ;
+    rdfs:label "Glomerular filtration rate measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_33914_3_20251124T013422 .
+
+# 22. GAD-7 total score
+ex:meas_70274_6_20251124T022850
+    a chr:Measurement ;
+    rdfs:label "GAD-7 total score 0 score" ;
+    chr:hasMeasuredDate "2025-11-24T02:28:50+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:proc_70274_6_20251124T022850
+    a chr:MeasurementProcess ;
+    rdfs:label "GAD-7 measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_70274_6_20251124T022850 .
+
+# 23. Fall risk total
+ex:meas_59460_6_20251124T025831
+    a chr:Measurement ;
+    rdfs:label "Fall risk total 25 score" ;
+    chr:hasMeasuredDate "2025-11-24T02:58:31+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "25"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:proc_59460_6_20251124T025831
+    a chr:MeasurementProcess ;
+    rdfs:label "Fall risk measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_59460_6_20251124T025831 .
+
+# 24. Total score (HARK)
+ex:meas_76504_0_20251124T033900
+    a chr:Measurement ;
+    rdfs:label "Total score 0 score" ;
+    chr:hasMeasuredDate "2025-11-24T03:39:00+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:proc_76504_0_20251124T033900
+    a chr:MeasurementProcess ;
+    rdfs:label "Total score measurement process" ;
+    chr:hasPatient ex:patient_P_622122bd ;
+    chr:hasResult ex:meas_76504_0_20251124T033900 .

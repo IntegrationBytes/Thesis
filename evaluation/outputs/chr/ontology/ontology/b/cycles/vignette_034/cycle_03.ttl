@@ -1,0 +1,564 @@
+@prefix chr: <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex: <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Casey401_Elijah719_Parker433 a chr:Person .
+ex:physician_Eldridge510_Marquardt819 a chr:Person .
+
+# Care unit
+ex:careunit_JewishFamilyChildrenService a chr:CareUnit .
+
+# Common roles for the visit
+ex:role_subject_patient_visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
+
+ex:role_provider_physician_visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+# Visit
+ex:visit_2022_10_27T18_59_56+02_00 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_provider_physician_visit ;
+    sulo:isIn ex:careunit_JewishFamilyChildrenService ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 .
+
+# Time instant for the main visit (used by many measurements)
+ex:time_2022_10_27T18_59_56+02_00 sulo:hasValue "2022-10-27T18:59:56+02:00"^^xsd:dateTime .
+
+# Process status (completed) – reused for all processes
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+# Units
+ex:unit_cm a chr:Unit .
+ex:unit_kg a chr:Unit .
+ex:unit_kg_per_m2 a chr:Unit .
+ex:unit_per_min a chr:Unit .
+ex:unit_mg_per_dL a chr:Unit .
+ex:unit_10_3_per_uL a chr:Unit .
+ex:unit_10_6_per_uL a chr:Unit .
+ex:unit_g_per_dL a chr:Unit .
+ex:unit_percent a chr:Unit .
+ex:unit_fL a chr:Unit .
+ex:unit_pg a chr:Unit .
+ex:unit_score a chr:Unit .
+
+#########################
+# 1. Body Height
+#########################
+ex:role_performer_physician_bodyHeight a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_bodyHeight a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_bodyHeight .
+
+ex:measurement_bodyHeight a chr:Measurement ;
+    sulo:hasValue "172.7"^^xsd:float ;
+    sulo:hasPart ex:unit_cm .
+
+ex:process_bodyHeight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_bodyHeight ;
+    sulo:hasParticipant ex:role_output_bodyHeight ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 2. Pain severity (score)
+#########################
+ex:role_performer_physician_painSeverity a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_painSeverity a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_painSeverity .
+
+ex:measurement_painSeverity a chr:Measurement ;
+    sulo:hasValue "3"^^xsd:float ;
+    sulo:hasPart ex:unit_score .
+
+ex:process_painSeverity a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_painSeverity ;
+    sulo:hasParticipant ex:role_output_painSeverity ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 3. Body Weight
+#########################
+ex:role_performer_physician_bodyWeight a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_bodyWeight a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_bodyWeight .
+
+ex:measurement_bodyWeight a chr:Measurement ;
+    sulo:hasValue "82.2"^^xsd:float ;
+    sulo:hasPart ex:unit_kg .
+
+ex:process_bodyWeight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_bodyWeight ;
+    sulo:hasParticipant ex:role_output_bodyWeight ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 4. BMI
+#########################
+ex:role_performer_physician_BMI a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_BMI a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_BMI .
+
+ex:measurement_BMI a chr:Measurement ;
+    sulo:hasValue "27.56"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 .
+
+ex:process_BMI a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_BMI ;
+    sulo:hasParticipant ex:role_output_BMI ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 5. Heart rate
+#########################
+ex:role_performer_physician_heartRate a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_heartRate a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_heartRate .
+
+ex:measurement_heartRate a chr:Measurement ;
+    sulo:hasValue "89"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min .
+
+ex:process_heartRate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_heartRate ;
+    sulo:hasParticipant ex:role_output_heartRate ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 6. Respiratory rate
+#########################
+ex:role_performer_physician_respiratoryRate a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_respiratoryRate a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_respiratoryRate .
+
+ex:measurement_respiratoryRate a chr:Measurement ;
+    sulo:hasValue "13"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min .
+
+ex:process_respiratoryRate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_respiratoryRate ;
+    sulo:hasParticipant ex:role_output_respiratoryRate ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 7. Cholesterol (total)
+#########################
+ex:role_performer_physician_cholesterolTotal a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_cholesterolTotal a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_cholesterolTotal .
+
+ex:measurement_cholesterolTotal a chr:Measurement ;
+    sulo:hasValue "201.41"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL .
+
+ex:process_cholesterolTotal a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_cholesterolTotal ;
+    sulo:hasParticipant ex:role_output_cholesterolTotal ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 8. Triglyceride
+#########################
+ex:role_performer_physician_triglyceride a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_triglyceride a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_triglyceride .
+
+ex:measurement_triglyceride a chr:Measurement ;
+    sulo:hasValue "133.95"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL .
+
+ex:process_triglyceride a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_triglyceride ;
+    sulo:hasParticipant ex:role_output_triglyceride ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 9. LDL Cholesterol
+#########################
+ex:role_performer_physician_cholesterolLDL a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_cholesterolLDL a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_cholesterolLDL .
+
+ex:measurement_cholesterolLDL a chr:Measurement ;
+    sulo:hasValue "117.13"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL .
+
+ex:process_cholesterolLDL a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_cholesterolLDL ;
+    sulo:hasParticipant ex:role_output_cholesterolLDL ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 10. HDL Cholesterol
+#########################
+ex:role_performer_physician_cholesterolHDL a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_cholesterolHDL a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_cholesterolHDL .
+
+ex:measurement_cholesterolHDL a chr:Measurement ;
+    sulo:hasValue "57.49"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL .
+
+ex:process_cholesterolHDL a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_cholesterolHDL ;
+    sulo:hasParticipant ex:role_output_cholesterolHDL ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 11. Leukocytes
+#########################
+ex:role_performer_physician_leukocytes a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_leukocytes a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_leukocytes .
+
+ex:measurement_leukocytes a chr:Measurement ;
+    sulo:hasValue "3.662"^^xsd:float ;
+    sulo:hasPart ex:unit_10_3_per_uL .
+
+ex:process_leukocytes a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_leukocytes ;
+    sulo:hasParticipant ex:role_output_leukocytes ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 12. Erythrocytes
+#########################
+ex:role_performer_physician_erythrocytes a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_erythrocytes a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_erythrocytes .
+
+ex:measurement_erythrocytes a chr:Measurement ;
+    sulo:hasValue "4.0125"^^xsd:float ;
+    sulo:hasPart ex:unit_10_6_per_uL .
+
+ex:process_erythrocytes a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_erythrocytes ;
+    sulo:hasParticipant ex:role_output_erythrocytes ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 13. Hemoglobin
+#########################
+ex:role_performer_physician_hemoglobin a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_hemoglobin a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_hemoglobin .
+
+ex:measurement_hemoglobin a chr:Measurement ;
+    sulo:hasValue "16.346"^^xsd:float ;
+    sulo:hasPart ex:unit_g_per_dL .
+
+ex:process_hemoglobin a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_hemoglobin ;
+    sulo:hasParticipant ex:role_output_hemoglobin ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 14. Hematocrit
+#########################
+ex:role_performer_physician_hematocrit a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_hematocrit a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_hematocrit .
+
+ex:measurement_hematocrit a chr:Measurement ;
+    sulo:hasValue "44.41"^^xsd:float ;
+    sulo:hasPart ex:unit_percent .
+
+ex:process_hematocrit a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_hematocrit ;
+    sulo:hasParticipant ex:role_output_hematocrit ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 15. MCV
+#########################
+ex:role_performer_physician_MCV a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_MCV a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_MCV .
+
+ex:measurement_MCV a chr:Measurement ;
+    sulo:hasValue "89.925"^^xsd:float ;
+    sulo:hasPart ex:unit_fL .
+
+ex:process_MCV a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_MCV ;
+    sulo:hasParticipant ex:role_output_MCV ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 16. MCH
+#########################
+ex:role_performer_physician_MCH a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_MCH a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_MCH .
+
+ex:measurement_MCH a chr:Measurement ;
+    sulo:hasValue "29.232"^^xsd:float ;
+    sulo:hasPart ex:unit_pg .
+
+ex:process_MCH a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_MCH ;
+    sulo:hasParticipant ex:role_output_MCH ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 17. MCHC
+#########################
+ex:role_performer_physician_MCHC a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_MCHC a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_MCHC .
+
+ex:measurement_MCHC a chr:Measurement ;
+    sulo:hasValue "34.624"^^xsd:float ;
+    sulo:hasPart ex:unit_g_per_dL .
+
+ex:process_MCHC a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_MCHC ;
+    sulo:hasParticipant ex:role_output_MCHC ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 18. Erythrocyte (size)
+#########################
+ex:role_performer_physician_erythrocyteSize a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_erythrocyteSize a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_erythrocyteSize .
+
+ex:measurement_erythrocyteSize a chr:Measurement ;
+    sulo:hasValue "45.989"^^xsd:float ;
+    sulo:hasPart ex:unit_fL .
+
+ex:process_erythrocyteSize a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_erythrocyteSize ;
+    sulo:hasParticipant ex:role_output_erythrocyteSize ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 19. Platelets
+#########################
+ex:role_performer_physician_platelets a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_platelets a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_platelets .
+
+ex:measurement_platelets a chr:Measurement ;
+    sulo:hasValue "162.1"^^xsd:float ;
+    sulo:hasPart ex:unit_10_3_per_uL .
+
+ex:process_platelets a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_platelets ;
+    sulo:hasParticipant ex:role_output_platelets ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 20. Platelet distribution width
+#########################
+ex:role_performer_physician_PDW a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_PDW a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PDW .
+
+ex:measurement_PDW a chr:Measurement ;
+    sulo:hasValue "216.92"^^xsd:float ;
+    sulo:hasPart ex:unit_fL .
+
+ex:process_PDW a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_PDW ;
+    sulo:hasParticipant ex:role_output_PDW ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 21. Platelet (mean volume)
+#########################
+ex:role_performer_physician_plateletMeanVol a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_plateletMeanVol a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_plateletMeanVol .
+
+ex:measurement_plateletMeanVol a chr:Measurement ;
+    sulo:hasValue "10.588"^^xsd:float ;
+    sulo:hasPart ex:unit_fL .
+
+ex:process_plateletMeanVol a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_plateletMeanVol ;
+    sulo:hasParticipant ex:role_output_plateletMeanVol ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 22. Fall risk total (Morse)
+#########################
+ex:time_2022_10_27T20_16_40+02_00 sulo:hasValue "2022-10-27T20:16:40+02:00"^^xsd:dateTime .
+
+ex:role_performer_physician_fallRisk a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_fallRisk a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_fallRisk .
+
+ex:measurement_fallRisk a chr:Measurement ;
+    sulo:hasValue "62"^^xsd:float ;
+    sulo:hasPart ex:unit_score .
+
+ex:process_fallRisk a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_fallRisk ;
+    sulo:hasParticipant ex:role_output_fallRisk ;
+    sulo:atTime ex:time_2022_10_27T20_16_40+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 23. PHQ-2 total score
+#########################
+ex:time_2022_10_27T20_51_01+02_00 sulo:hasValue "2022-10-27T20:51:01+02:00"^^xsd:dateTime .
+
+ex:role_performer_physician_PHQ2 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_PHQ2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PHQ2 .
+
+ex:measurement_PHQ2 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score .
+
+ex:process_PHQ2 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_PHQ2 ;
+    sulo:hasParticipant ex:role_output_PHQ2 ;
+    sulo:atTime ex:time_2022_10_27T20_51_01+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# 24. AUDIT‑C total score
+#########################
+ex:time_2022_10_27T21_25_08+02_00 sulo:hasValue "2022-10-27T21:25:08+02:00"^^xsd:dateTime .
+
+ex:role_performer_physician_AUDITC a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_output_AUDITC a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_AUDITC .
+
+ex:measurement_AUDITC a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score .
+
+ex:process_AUDITC a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_subject_patient_visit ;
+    sulo:hasParticipant ex:role_performer_physician_AUDITC ;
+    sulo:hasParticipant ex:role_output_AUDITC ;
+    sulo:atTime ex:time_2022_10_27T21_25_08+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# Evaluation (diagnostic statement)
+#########################
+ex:role_performer_physician_evaluation a chr:PerformerRole ;
+    sulo:isFeatureOf ex:physician_Eldridge510_Marquardt819 .
+
+ex:role_subject_patient_evaluation a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
+
+ex:role_output_diagnostic a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnostic_MedicationReviewDue .
+
+ex:diagnostic_MedicationReviewDue a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" .
+
+ex:evaluation_2022_10_27T18_59_56+02_00 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_performer_physician_evaluation ;
+    sulo:hasParticipant ex:role_subject_patient_evaluation ;
+    sulo:hasParticipant ex:role_output_diagnostic ;
+    sulo:atTime ex:time_2022_10_27T18_59_56+02_00 ;
+    sulo:hasFeature ex:status_completed .
+
+#########################
+# Care plan
+#########################
+ex:procedure_followup_monitoring_and_routine_review a chr:MedicalProcedure ;
+    rdfs:label "follow‑up monitoring and routine review" .
+
+ex:careplan_2022_10_27T18_59_56+02_00 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup_monitoring_and_routine_review .

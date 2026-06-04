@@ -190,16 +190,12 @@ def main() -> None:
     BAND_GREY = "#eef0f3"
 
     sources_schema = [
-        ("Gemini", GEMINI_BLUE, "o",
+        ("gpt-oss-120b", GPTOSS_ORANGE, "s",
          ROOT / "evaluation/outputs/chr/schema/full/b/cycles"),
-        ("gpt-oss", GPTOSS_ORANGE, "s",
-         ROOT / "evaluation/outputs_freemodel/chr/schema/full/b/cycles"),
     ]
     sources_ontology = [
-        ("Gemini", GEMINI_BLUE, "o",
+        ("gpt-oss-120b", GPTOSS_ORANGE, "s",
          ROOT / "evaluation/outputs/chr/ontology/ontology/b/cycles"),
-        ("gpt-oss", GPTOSS_ORANGE, "s",
-         ROOT / "evaluation/outputs_freemodel/chr/ontology/ontology/b/cycles"),
     ]
 
     fig, (ax_s, ax_o) = plt.subplots(1, 2, figsize=(11.5, 4.4), sharey=True,

@@ -4,51 +4,77 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Arlen68_Olson653 a chr:Person .
+ex:patient_Arlen68_Olson653
+    a chr:Person ;
+    rdfs:label "Arlen68 Olson653" .
 
-ex:visit_2021_01_09 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:doctor_Irvin970_Emard19 ;
-  chr:hasCareUnit ex:care_unit_Spectrum ;
-  chr:hasPatient ex:patient_Arlen68_Olson653 .
+ex:provider_Irvin970_Emard19
+    a chr:Person ;
+    rdfs:label "Dr. Irvin970 Emard19" .
 
-ex:doctor_Irvin970_Emard19 a chr:Person .
+ex:careunit_Spectrum_Home_Health_and_Hospice_Care
+    a chr:CareUnit ;
+    rdfs:label "SPECTRUM HOME HEALTH AND HOSPICE CARE" .
 
-ex:care_unit_Spectrum a chr:CareUnit .
+ex:visit_2021_01_09_165633
+    a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit 2021-01-09T16:56:33+01:00" ;
+    chr:hasDate "2021-01-09T16:56:33+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:provider_Irvin970_Emard19 ;
+    chr:hasCareUnit ex:careunit_Spectrum_Home_Health_and_Hospice_Care ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 .
 
-ex:measurement_process_bone_density_2021_01_09 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arlen68_Olson653 ;
-  chr:hasResult ex:measurement_bone_density_2021_01_09 .
+ex:condition_Fracture_of_bone_20210109T165633
+    a chr:ClinicalCondition ;
+    rdfs:label "Fracture of bone" ;
+    chr:hasCode <http://snomed.info/id/125605004> ;
+    chr:hasRecordDate "2021-01-09T16:56:33+01:00"^^xsd:dateTime .
 
-ex:measurement_bone_density_2021_01_09 a chr:Measurement ;
-  chr:hasQuantityValue "-0.028448"^^xsd:float ;
-  chr:hasUnit ex:unit_t_score ;
-  chr:hasMeasuredDate "2021-01-09T17:33:00"^^xsd:dateTime .
+ex:condition_Fracture_of_ankle_20210109T165633
+    a chr:ClinicalCondition ;
+    rdfs:label "Fracture of ankle" ;
+    chr:hasCode <http://snomed.info/id/16114001> ;
+    chr:hasRecordDate "2021-01-09T16:56:33+01:00"^^xsd:dateTime .
 
-ex:unit_t_score a chr:Unit .
+ex:diagstmt_Fracture_of_bone_20210109T165633
+    a chr:DiagnosticStatement ;
+    rdfs:label "Fracture of bone" ;
+    chr:hasCode <http://snomed.info/id/125605004> .
 
-ex:evaluation_fracture_bone_2021_01_09 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_statement_fracture_bone ;
-  chr:hasPatient ex:patient_Arlen68_Olson653 .
+ex:diagstmt_Fracture_of_ankle_20210109T165633
+    a chr:DiagnosticStatement ;
+    rdfs:label "Fracture of ankle" ;
+    chr:hasCode <http://snomed.info/id/16114001> .
 
-ex:diagnostic_statement_fracture_bone a chr:DiagnosticStatement .
+ex:evaluation_20210109T165633_1
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Irvin970 Emard19 on 2021-01-09T16:56:33+01:00 (Fracture of bone)" ;
+    chr:hasObservation ex:diagstmt_Fracture_of_bone_20210109T165633 ;
+    chr:hasCondition ex:condition_Fracture_of_bone_20210109T165633 .
 
-ex:clinical_condition_fracture_bone a chr:ClinicalCondition ;
-  chr:hasSeverity ex:severity_moderate ;
-  chr:hasRecordDate "2021-01-09T16:56:00"^^xsd:dateTime .
+ex:evaluation_20210109T165633_2
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Irvin970 Emard19 on 2021-01-09T16:56:33+01:00 (Fracture of ankle)" ;
+    chr:hasObservation ex:diagstmt_Fracture_of_ankle_20210109T165633 ;
+    chr:hasCondition ex:condition_Fracture_of_ankle_20210109T165633 .
 
-ex:evaluation_fracture_ankle_2021_01_09 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_statement_fracture_ankle ;
-  chr:hasPatient ex:patient_Arlen68_Olson653 .
+ex:measurement_Tscore_20210109T173331
+    a chr:Measurement ;
+    rdfs:label "-0.028448 T-score" ;
+    chr:hasMeasuredDate "2021-01-09T17:33:31+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "-0.028448"^^xsd:float .
 
-ex:diagnostic_statement_fracture_ankle a chr:DiagnosticStatement .
+ex:measproc_DXA_Radius_Ulna_20210109T173331
+    a chr:MeasurementProcess ;
+    rdfs:label "DXA Radius and Ulna measurement" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_Tscore_20210109T173331 .
 
-ex:clinical_condition_fracture_ankle a chr:ClinicalCondition ;
-  chr:hasSeverity ex:severity_moderate ;
-  chr:hasRecordDate "2021-01-09T16:56:00"^^xsd:dateTime .
+ex:careplan_followup
+    a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review" ;
+    chr:hasMedicalProcedure ex:procedure_followup .
 
-ex:severity_moderate a chr:Severity .
-
-ex:care_plan_follow_up a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:procedure_follow_up .
-
-ex:procedure_follow_up a chr:MedicalProcedure .
+ex:procedure_followup
+    a chr:MedicalProcedure ;
+    rdfs:label "Follow-up monitoring procedure" .

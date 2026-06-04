@@ -4,100 +4,198 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Hallie315_Tasha327_Grant908 a chr:Person .
+# Patient
+ex:patient_Hallie315_Tasha327_Grant908
+    a chr:Person ;
+    rdfs:label "Hallie315 Tasha327 Grant908" .
 
-ex:careUnit_CaringHealthCenter a chr:CareUnit .
+# Care unit
+ex:careunit_CARING_HEALTH_CENTER_INC
+    a chr:CareUnit ;
+    rdfs:label "CARING HEALTH CENTER, INC" .
 
-ex:careProvider_Teresa94_Tapia475 a chr:Person .
+# Attending physician
+ex:person_Teresa94_Tapia475
+    a chr:Person ;
+    rdfs:label "Dr. Teresa94 Tapia475" .
 
-ex:visit_2022_08_10 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:careProvider_Teresa94_Tapia475 ;
-  chr:hasCareUnit ex:careUnit_CaringHealthCenter .
+# Medical procedure for the encounter (well‑child visit)
+ex:procedure_WellChildVisit
+    a chr:MedicalProcedure ;
+    rdfs:label "Well child visit" ;
+    chr:hasPerformedDate "2022-08-10T16:30:02+02:00"^^xsd:dateTime .
 
-ex:measProc_height_20220810 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:meas_height_20220810 .
+# Clinical visit
+ex:visit_2022_08_10T163002_plus02
+    a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2022-08-10T16:30:02+02:00" ;
+    chr:hasDate "2022-08-10T16:30:02+02:00"^^xsd:dateTime ;
+    chr:hasCareUnit ex:careunit_CARING_HEALTH_CENTER_INC ;
+    chr:hasCareProvider ex:person_Teresa94_Tapia475 ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasProcedure ex:procedure_WellChildVisit .
 
-ex:meas_height_20220810 a chr:Measurement ;
-  chr:hasQuantityValue "77.1"^^xsd:float ;
-  chr:hasUnit sulo:centimeter ;
-  chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime .
+# Units
+ex:unit_cm
+    a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:measProc_pain_20220810 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:meas_pain_20220810 .
+ex:unit_kg
+    a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:meas_pain_20220810 a chr:Measurement ;
-  chr:hasQuantityValue "4.0"^^xsd:float ;
-  chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime .
+ex:unit_percent
+    a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
 
-ex:measProc_weight_20220810 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:meas_weight_20220810 .
+ex:unit_per_min
+    a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%2Fmin> .
 
-ex:meas_weight_20220810 a chr:Measurement ;
-  chr:hasQuantityValue "11.8"^^xsd:float ;
-  chr:hasUnit sulo:kilogram ;
-  chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime .
+ex:unit_score
+    a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
 
-ex:measProc_weightForLength_20220810 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:meas_weightForLength_20220810 .
+# Height measurement
+ex:measproc_Height_2022_08_10T163002
+    a chr:MeasurementProcess ;
+    rdfs:label "Height measurement process" ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_Height_2022_08_10T163002 .
 
-ex:meas_weightForLength_20220810 a chr:Measurement ;
-  chr:hasQuantityValue "96.761"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime .
+ex:meas_Height_2022_08_10T163002
+    a chr:Measurement ;
+    rdfs:label "77.1 cm" ;
+    chr:hasMeasuredDate "2022-08-10T16:30:02+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "77.1"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasCode <http://snomed.info/id/8302-2> .   # LOINC 8302-2
 
-ex:measProc_headCircPercentile_20220810 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:meas_headCircPercentile_20220810 .
+# Weight measurement
+ex:measproc_Weight_2022_08_10T163002
+    a chr:MeasurementProcess ;
+    rdfs:label "Weight measurement process" ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_Weight_2022_08_10T163002 .
 
-ex:meas_headCircPercentile_20220810 a chr:Measurement ;
-  chr:hasQuantityValue "57.73"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime .
+ex:meas_Weight_2022_08_10T163002
+    a chr:Measurement ;
+    rdfs:label "11.8 kg" ;
+    chr:hasMeasuredDate "2022-08-10T16:30:02+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "11.8"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasCode <http://snomed.info/id/29463-7> .   # LOINC 29463-7
 
-ex:measProc_headCirc_20220810 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:meas_headCirc_20220810 .
+# Weight‑for‑length measurement
+ex:measproc_WeightForLength_2022_08_10T163002
+    a chr:MeasurementProcess ;
+    rdfs:label "Weight‑for‑length measurement process" ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_WeightForLength_2022_08_10T163002 .
 
-ex:meas_headCirc_20220810 a chr:Measurement ;
-  chr:hasQuantityValue "46.0"^^xsd:float ;
-  chr:hasUnit sulo:centimeter ;
-  chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime .
+ex:meas_WeightForLength_2022_08_10T163002
+    a chr:Measurement ;
+    rdfs:label "96.761 %" ;
+    chr:hasMeasuredDate "2022-08-10T16:30:02+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "96.761"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasCode <http://snomed.info/id/77606-2> .   # LOINC 77606-2
 
-ex:measProc_heartRate_20220810 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:meas_heartRate_20220810 .
+# Head circumference percentile measurement
+ex:measproc_HeadCircPercentile_2022_08_10T163002
+    a chr:MeasurementProcess ;
+    rdfs:label "Head circumference percentile measurement process" ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_HeadCircPercentile_2022_08_10T163002 .
 
-ex:meas_heartRate_20220810 a chr:Measurement ;
-  chr:hasQuantityValue "65.0"^^xsd:float ;
-  chr:hasUnit sulo:perMinute ;
-  chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime .
+ex:meas_HeadCircPercentile_2022_08_10T163002
+    a chr:Measurement ;
+    rdfs:label "57.73 %" ;
+    chr:hasMeasuredDate "2022-08-10T16:30:02+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "57.73"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasCode <http://snomed.info/id/8289-1> .   # LOINC 8289-1
 
-ex:measProc_respiratoryRate_20220810 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
-  chr:hasResult ex:meas_respiratoryRate_20220810 .
+# Head circumference measurement
+ex:measproc_HeadCirc_2022_08_10T163002
+    a chr:MeasurementProcess ;
+    rdfs:label "Head circumference measurement process" ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_HeadCirc_2022_08_10T163002 .
 
-ex:meas_respiratoryRate_20220810 a chr:Measurement ;
-  chr:hasQuantityValue "12.0"^^xsd:float ;
-  chr:hasUnit sulo:perMinute ;
-  chr:hasMeasuredDate "2022-08-10T16:30:00"^^xsd:dateTime .
+ex:meas_HeadCirc_2022_08_10T163002
+    a chr:Measurement ;
+    rdfs:label "46 cm" ;
+    chr:hasMeasuredDate "2022-08-10T16:30:02+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "46.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasCode <http://snomed.info/id/9843-4> .   # LOINC 9843-4
 
-ex:evalProc_20220810 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_medicationReviewDue ;
-  chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 .
+# Heart rate measurement
+ex:measproc_HeartRate_2022_08_10T163002
+    a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_HeartRate_2022_08_10T163002 .
 
-ex:diag_medicationReviewDue a chr:DiagnosticStatement .
+ex:meas_HeartRate_2022_08_10T163002
+    a chr:Measurement ;
+    rdfs:label "65 /min" ;
+    chr:hasMeasuredDate "2022-08-10T16:30:02+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "65.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <http://snomed.info/id/8867-4> .   # LOINC 8867-4
 
-ex:condition_medicationReviewDue a chr:ClinicalCondition ;
-  chr:hasRecordDate "2022-08-10T16:30:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+# Respiratory rate measurement
+ex:measproc_RespRate_2022_08_10T163002
+    a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_RespRate_2022_08_10T163002 .
 
-ex:severity_moderate a chr:Severity .
+ex:meas_RespRate_2022_08_10T163002
+    a chr:Measurement ;
+    rdfs:label "12 /min" ;
+    chr:hasMeasuredDate "2022-08-10T16:30:02+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <http://snomed.info/id/9279-1> .   # LOINC 9279-1
 
-ex:carePlan_followUp a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:procedure_medicationReview .
+# Pain severity measurement
+ex:measproc_PainSeverity_2022_08_10T163002
+    a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasResult ex:meas_PainSeverity_2022_08_10T163002 .
 
-ex:procedure_medicationReview a chr:MedicalProcedure .
+ex:meas_PainSeverity_2022_08_10T163002
+    a chr:Measurement ;
+    rdfs:label "4 score" ;
+    chr:hasMeasuredDate "2022-08-10T16:30:02+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasCode <http://snomed.info/id/72514-3> .   # LOINC 72514-3
+
+# Diagnostic statement from evaluation
+ex:diag_MedicationReviewDue
+    a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+# Evaluation process
+ex:evaluation_2022_08_10T163002
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Teresa94 Tapia475" ;
+    chr:hasPatient ex:patient_Hallie315_Tasha327_Grant908 ;
+    chr:hasObservation ex:diag_MedicationReviewDue .
+
+# Care plan (now linked to a medical procedure)
+ex:careplan_FollowUpMonitoring
+    a chr:CarePlan ;
+    rdfs:label "Follow‑up monitoring and routine review" ;
+    chr:hasMedicalProcedure ex:procedure_WellChildVisit .

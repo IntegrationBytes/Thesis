@@ -4,228 +4,244 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_P_5e117ba0 a chr:Person .
+# Persons
+ex:patient_Angelic427_Callie226_Schaden604 a chr:Person .
+ex:provider_Sherita708_Hudson301 a chr:Person .
+
+# Care unit
+ex:careunit_SouthBostonCommunityHealthCenterInc a chr:CareUnit .
+
+# Clinical visit
+ex:visit_2017_11_24T172427 a chr:ClinicalVisit ;
+    sulo:isIn ex:careunit_SouthBostonCommunityHealthCenterInc ;
+    sulo:hasParticipant ex:role_SubjectOfCare_visit_1 , ex:role_CareProvider_visit_1 ;
+    sulo:atTime ex:time_visit_2017_11_24T172427 .
+
+ex:role_SubjectOfCare_visit_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Angelic427_Callie226_Schaden604 .
+
+ex:role_CareProvider_visit_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:provider_Sherita708_Hudson301 .
+
+ex:time_visit_2017_11_24T172427 a sulo:TimeInstant ;
+    sulo:hasValue "2017-11-24T17:24:27+01:00"^^xsd:dateTime .
+
+# Process status
+ex:status_completed a chr:ProcessStatus .
+
+# Units
+ex:unit_cm a chr:Unit .
+ex:unit_kg a chr:Unit .
+ex:unit_kg_per_m2 a chr:Unit .
+ex:unit_percent a chr:Unit .
+ex:unit_per_min a chr:Unit .
+ex:unit_score a chr:Unit .
+
+# Body Height measurement
+ex:proc_measure_bodyHeight_20171124T172427 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_bodyHeight_1 , ex:role_Performer_bodyHeight_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_bodyHeight_2017_11_24T172427 .
+
+ex:role_SubjectOfCare_bodyHeight_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Angelic427_Callie226_Schaden604 .
+
+ex:role_Performer_bodyHeight_1 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Sherita708_Hudson301 .
+
+ex:measurement_bodyHeight_20171124T172427 a chr:Measurement ;
+    sulo:hasValue "160.9"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_bodyHeight_2017_11_24T172427 .
+
+ex:time_bodyHeight_2017_11_24T172427 a sulo:TimeInstant ;
+    sulo:hasValue "2017-11-24T17:24:27+01:00"^^xsd:dateTime .
+
+# Pain severity measurement
+ex:proc_measure_painSeverity_20171124T172427 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_pain_1 , ex:role_Performer_pain_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_pain_2017_11_24T172427 .
+
+ex:role_SubjectOfCare_pain_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Angelic427_Callie226_Schaden604 .
+
+ex:role_Performer_pain_1 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Sherita708_Hudson301 .
+
+ex:measurement_painSeverity_20171124T172427 a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_pain_2017_11_24T172427 .
+
+ex:time_pain_2017_11_24T172427 a sulo:TimeInstant ;
+    sulo:hasValue "2017-11-24T17:24:27+01:00"^^xsd:dateTime .
+
+# Body Weight measurement
+ex:proc_measure_bodyWeight_20171124T172427 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_weight_1 , ex:role_Performer_weight_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_weight_2017_11_24T172427 .
+
+ex:role_SubjectOfCare_weight_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Angelic427_Callie226_Schaden604 .
+
+ex:role_Performer_weight_1 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Sherita708_Hudson301 .
+
+ex:measurement_bodyWeight_20171124T172427 a chr:Measurement ;
+    sulo:hasValue "48.7"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_weight_2017_11_24T172427 .
+
+ex:time_weight_2017_11_24T172427 a sulo:TimeInstant ;
+    sulo:hasValue "2017-11-24T17:24:27+01:00"^^xsd:dateTime .
+
+# BMI (ratio) measurement
+ex:proc_measure_BMI_ratio_20171124T172427 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_BMIratio_1 , ex:role_Performer_BMIratio_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_BMIratio_2017_11_24T172427 .
+
+ex:role_SubjectOfCare_BMIratio_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Angelic427_Callie226_Schaden604 .
+
+ex:role_Performer_BMIratio_1 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Sherita708_Hudson301 .
 
-ex:visit_2017_11_24_1724 a chr:ClinicalVisit ;
-  sulo:atTime ex:time_visit_2017_11_24_1724 ;
-  sulo:hasParticipant ex:role_visit_patient_P_5e117ba0 , ex:role_visit_provider_Hudson301 .
+ex:measurement_BMI_ratio_20171124T172427 a chr:Measurement ;
+    sulo:hasValue "18.78"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_BMIratio_2017_11_24T172427 .
 
-ex:time_visit_2017_11_24_1724 a sulo:TimeInstant ;
-  sulo:hasValue "2017-11-24T17:24:00"^^xsd:dateTime .
+ex:time_BMIratio_2017_11_24T172427 a sulo:TimeInstant ;
+    sulo:hasValue "2017-11-24T17:24:27+01:00"^^xsd:dateTime .
 
-ex:role_visit_patient_P_5e117ba0 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_P_5e117ba0 .
+# BMI (percentile) measurement
+ex:proc_measure_BMI_percentile_20171124T172427 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_BMIperc_1 , ex:role_Performer_BMIperc_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_BMIperc_2017_11_24T172427 .
 
-ex:provider_Hudson301 a chr:Person .
+ex:role_SubjectOfCare_BMIperc_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Angelic427_Callie226_Schaden604 .
 
-ex:role_visit_provider_Hudson301 a chr:CareProviderRole ;
-  sulo:isFeatureOf ex:provider_Hudson301 .
+ex:role_Performer_BMIperc_1 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Sherita708_Hudson301 .
 
-ex:care_unit_SBCHC a chr:CareUnit .
+ex:measurement_BMI_percentile_20171124T172427 a chr:Measurement ;
+    sulo:hasValue "13.62"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_BMIperc_2017_11_24T172427 .
 
-ex:visit_2017_11_24_1724 sulo:isIn ex:care_unit_SBCHC .
+ex:time_BMIperc_2017_11_24T172427 a sulo:TimeInstant ;
+    sulo:hasValue "2017-11-24T17:24:27+01:00"^^xsd:dateTime .
 
-ex:height_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_height_measurement ;
-  sulo:hasParticipant ex:role_height_measurement_patient_P_5e117ba0 ;
-  sulo:hasFeature ex:process_status_completed ;
-  sulo:hasParticipant ex:height_measurement .
+# Heart rate measurement
+ex:proc_measure_heartRate_20171124T172427 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_heartRate_1 , ex:role_Performer_heartRate_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_heartRate_2017_11_24T172427 .
 
-ex:time_height_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2017-11-24T17:24:00"^^xsd:dateTime .
+ex:role_SubjectOfCare_heartRate_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Angelic427_Callie226_Schaden604 .
 
-ex:role_height_measurement_patient_P_5e117ba0 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_P_5e117ba0 .
+ex:role_Performer_heartRate_1 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Sherita708_Hudson301 .
 
-ex:height_measurement a chr:Measurement ;
-  sulo:hasValue "160.9"^^xsd:float ;
-  sulo:hasPart ex:unit_cm ;
-  sulo:atTime ex:time_height_measurement .
+ex:measurement_heartRate_20171124T172427 a chr:Measurement ;
+    sulo:hasValue "70"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_heartRate_2017_11_24T172427 .
 
-ex:unit_cm a sulo:Unit .
+ex:time_heartRate_2017_11_24T172427 a sulo:TimeInstant ;
+    sulo:hasValue "2017-11-24T17:24:27+01:00"^^xsd:dateTime .
 
-ex:pain_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_pain_measurement ;
-  sulo:hasParticipant ex:role_pain_measurement_patient_P_5e117ba0 ;
-  sulo:hasFeature ex:process_status_completed ;
-  sulo:hasParticipant ex:pain_measurement .
+# Respiratory rate measurement
+ex:proc_measure_respiratoryRate_20171124T172427 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_respRate_1 , ex:role_Performer_respRate_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_respRate_2017_11_24T172427 .
 
-ex:time_pain_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2017-11-24T17:24:00"^^xsd:dateTime .
+ex:role_SubjectOfCare_respRate_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Angelic427_Callie226_Schaden604 .
 
-ex:role_pain_measurement_patient_P_5e117ba0 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_P_5e117ba0 .
+ex:role_Performer_respRate_1 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Sherita708_Hudson301 .
 
-ex:pain_measurement a chr:Measurement ;
-  sulo:hasValue "1.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score ;
-  sulo:atTime ex:time_pain_measurement .
+ex:measurement_respiratoryRate_20171124T172427 a chr:Measurement ;
+    sulo:hasValue "14"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_respRate_2017_11_24T172427 .
 
-ex:unit_score a sulo:Unit .
+ex:time_respRate_2017_11_24T172427 a sulo:TimeInstant ;
+    sulo:hasValue "2017-11-24T17:24:27+01:00"^^xsd:dateTime .
 
-ex:weight_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_weight_measurement ;
-  sulo:hasParticipant ex:role_weight_measurement_patient_P_5e117ba0 ;
-  sulo:hasFeature ex:process_status_completed ;
-  sulo:hasParticipant ex:weight_measurement .
+# AUDIT‑C total score measurement
+ex:proc_measure_AUDITC_20171124T190225 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_auditc_1 , ex:role_Performer_auditc_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_auditc_2017_11_24T190225 .
 
-ex:time_weight_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2017-11-24T17:24:00"^^xsd:dateTime .
+ex:role_SubjectOfCare_auditc_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Angelic427_Callie226_Schaden604 .
 
-ex:role_weight_measurement_patient_P_5e117ba0 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_P_5e117ba0 .
+ex:role_Performer_auditc_1 a chr:PerformerRole ;
+    sulo:isFeatureOf ex:provider_Sherita708_Hudson301 .
 
-ex:weight_measurement a chr:Measurement ;
-  sulo:hasValue "48.7"^^xsd:float ;
-  sulo:hasPart ex:unit_kg ;
-  sulo:atTime ex:time_weight_measurement .
+ex:measurement_AUDITC_20171124T190225 a chr:Measurement ;
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_auditc_2017_11_24T190225 .
 
-ex:unit_kg a sulo:Unit .
+ex:time_auditc_2017_11_24T190225 a sulo:TimeInstant ;
+    sulo:hasValue "2017-11-24T19:02:25+01:00"^^xsd:dateTime .
 
-ex:bmi_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_bmi_measurement ;
-  sulo:hasParticipant ex:role_bmi_measurement_patient_P_5e117ba0 ;
-  sulo:hasFeature ex:process_status_completed ;
-  sulo:hasParticipant ex:bmi_measurement .
+# Evaluation 1 – Medication review due
+ex:evaluation_1_20171124T172427 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_eval1_1 , ex:role_CareProvider_eval1_1 , ex:role_Output_eval1_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_eval1_2017_11_24T172427 .
 
-ex:time_bmi_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2017-11-24T17:24:00"^^xsd:dateTime .
+ex:role_SubjectOfCare_eval1_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Angelic427_Callie226_Schaden604 .
 
-ex:role_bmi_measurement_patient_P_5e117ba0 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_P_5e117ba0 .
+ex:role_CareProvider_eval1_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:provider_Sherita708_Hudson301 .
 
-ex:bmi_measurement a chr:Measurement ;
-  sulo:hasValue "18.78"^^xsd:float ;
-  sulo:hasPart ex:unit_kg_m2 ;
-  sulo:atTime ex:time_bmi_measurement .
+ex:role_Output_eval1_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_medication_review_due .
 
-ex:unit_kg_m2 a sulo:Unit .
+ex:diag_medication_review_due a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" .
 
-ex:bmi_percentile_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_bmi_percentile_measurement ;
-  sulo:hasParticipant ex:role_bmi_percentile_measurement_patient_P_5e117ba0 ;
-  sulo:hasFeature ex:process_status_completed ;
-  sulo:hasParticipant ex:bmi_percentile_measurement .
+ex:time_eval1_2017_11_24T172427 a sulo:TimeInstant ;
+    sulo:hasValue "2017-11-24T17:24:27+01:00"^^xsd:dateTime .
 
-ex:time_bmi_percentile_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2017-11-24T17:24:00"^^xsd:dateTime .
+# Evaluation 2 – Social isolation
+ex:evaluation_2_20171124T182341 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_SubjectOfCare_eval2_1 , ex:role_CareProvider_eval2_1 , ex:role_Output_eval2_1 ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_eval2_2017_11_24T182341 .
 
-ex:role_bmi_percentile_measurement_patient_P_5e117ba0 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_P_5e117ba0 .
+ex:role_SubjectOfCare_eval2_1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Angelic427_Callie226_Schaden604 .
 
-ex:bmi_percentile_measurement a chr:Measurement ;
-  sulo:hasValue "13.62"^^xsd:float ;
-  sulo:hasPart ex:unit_percent ;
-  sulo:atTime ex:time_bmi_percentile_measurement .
+ex:role_CareProvider_eval2_1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:provider_Sherita708_Hudson301 .
 
-ex:unit_percent a sulo:Unit .
+ex:role_Output_eval2_1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_social_isolation .
 
-ex:heart_rate_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_heart_rate_measurement ;
-  sulo:hasParticipant ex:role_heart_rate_measurement_patient_P_5e117ba0 ;
-  sulo:hasFeature ex:process_status_completed ;
-  sulo:hasParticipant ex:heart_rate_measurement .
+ex:diag_social_isolation a chr:DiagnosticStatement ;
+    rdfs:label "Social isolation (finding)" .
 
-ex:time_heart_rate_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2017-11-24T17:24:00"^^xsd:dateTime .
+ex:time_eval2_2017_11_24T182341 a sulo:TimeInstant ;
+    sulo:hasValue "2017-11-24T18:23:41+01:00"^^xsd:dateTime .
 
-ex:role_heart_rate_measurement_patient_P_5e117ba0 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_P_5e117ba0 .
+# Care plan
+ex:careplan_20171124 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup_monitoring .
 
-ex:heart_rate_measurement a chr:Measurement ;
-  sulo:hasValue "70.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min ;
-  sulo:atTime ex:time_heart_rate_measurement .
-
-ex:unit_per_min a sulo:Unit .
-
-ex:respiratory_rate_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_respiratory_rate_measurement ;
-  sulo:hasParticipant ex:role_respiratory_rate_measurement_patient_P_5e117ba0 ;
-  sulo:hasFeature ex:process_status_completed ;
-  sulo:hasParticipant ex:respiratory_rate_measurement .
-
-ex:time_respiratory_rate_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2017-11-24T17:24:00"^^xsd:dateTime .
-
-ex:role_respiratory_rate_measurement_patient_P_5e117ba0 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_P_5e117ba0 .
-
-ex:respiratory_rate_measurement a chr:Measurement ;
-  sulo:hasValue "14.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min ;
-  sulo:atTime ex:time_respiratory_rate_measurement .
-
-ex:audit_c_measurement_process a chr:MeasurementProcess ;
-  sulo:atTime ex:time_audit_c_measurement ;
-  sulo:hasParticipant ex:role_audit_c_measurement_patient_P_5e117ba0 ;
-  sulo:hasFeature ex:process_status_completed ;
-  sulo:hasParticipant ex:audit_c_measurement .
-
-ex:time_audit_c_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2017-11-24T19:02:00"^^xsd:dateTime .
-
-ex:role_audit_c_measurement_patient_P_5e117ba0 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_P_5e117ba0 .
-
-ex:audit_c_measurement a chr:Measurement ;
-  sulo:hasValue "0.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score ;
-  sulo:atTime ex:time_audit_c_measurement .
-
-ex:evaluation_medication_review a chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation_medication_review ;
-  sulo:hasParticipant ex:role_evaluation_medication_review_patient_P_5e117ba0 , ex:role_evaluation_medication_review_provider_Hudson301 ;
-  sulo:hasParticipant ex:diagnostic_statement_medication_review .
-
-ex:time_evaluation_medication_review a sulo:TimeInstant ;
-  sulo:hasValue "2017-11-24T17:24:00"^^xsd:dateTime .
-
-ex:role_evaluation_medication_review_patient_P_5e117ba0 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_P_5e117ba0 .
-
-ex:role_evaluation_medication_review_provider_Hudson301 a chr:PerformerRole ;
-  sulo:isFeatureOf ex:provider_Hudson301 .
-
-ex:diagnostic_statement_medication_review a chr:DiagnosticStatement ;
-  sulo:atTime ex:time_diagnostic_statement_medication_review .
-
-ex:time_diagnostic_statement_medication_review a sulo:TimeInstant ;
-  sulo:hasValue "2017-11-24T17:24:00"^^xsd:dateTime .
-
-ex:clinical_condition_medication_review a chr:ClinicalCondition ;
-  sulo:hasFeature ex:severity_moderate .
-
-ex:severity_moderate a chr:Severity .
-
-ex:evaluation_social_isolation a chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation_social_isolation ;
-  sulo:hasParticipant ex:role_evaluation_social_isolation_patient_P_5e117ba0 , ex:role_evaluation_social_isolation_provider_Hudson301 ;
-  sulo:hasParticipant ex:diagnostic_statement_social_isolation .
-
-ex:time_evaluation_social_isolation a sulo:TimeInstant ;
-  sulo:hasValue "2017-11-24T18:23:00"^^xsd:dateTime .
-
-ex:role_evaluation_social_isolation_patient_P_5e117ba0 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_P_5e117ba0 .
-
-ex:role_evaluation_social_isolation_provider_Hudson301 a chr:PerformerRole ;
-  sulo:isFeatureOf ex:provider_Hudson301 .
-
-ex:diagnostic_statement_social_isolation a chr:DiagnosticStatement ;
-  sulo:atTime ex:time_diagnostic_statement_social_isolation .
-
-ex:time_diagnostic_statement_social_isolation a sulo:TimeInstant ;
-  sulo:hasValue "2017-11-24T18:23:00"^^xsd:dateTime .
-
-ex:clinical_condition_social_isolation a chr:ClinicalCondition ;
-  sulo:hasFeature ex:severity_moderate .
-
-ex:care_plan a chr:CarePlan ;
-  sulo:refersTo ex:medical_procedure_follow_up_monitoring , ex:medical_procedure_routine_review .
-
-ex:medical_procedure_follow_up_monitoring a chr:MedicalProcedure .
-
-ex:medical_procedure_routine_review a chr:MedicalProcedure .
-
-ex:process_status_completed a chr:ProcessStatus .
+ex:procedure_followup_monitoring a chr:MedicalProcedure ;
+    rdfs:label "follow-up monitoring and routine review" .

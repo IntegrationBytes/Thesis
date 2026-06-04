@@ -4,44 +4,80 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Harvey63Napoleon578Homenick806 a chr:Person .
+# Persons
+ex:person_Harvey_Napoleon_Homenick a chr:Person ;
+    rdfs:label "Harvey63 Napoleon578 Homenick806" .
 
-ex:visit_2019_04_25 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasCareProvider ex:doctor_Victor493Chavez927 ;
-  chr:hasCareUnit ex:care_unit_4499Acushnet .
+ex:person_Victor_Chavez a chr:Person ;
+    rdfs:label "Dr. Víctor493 Chávez927" .
 
-ex:care_unit_4499Acushnet a chr:CareUnit .
+# Care Unit
+ex:careunit_4499_Acushnet_Avenue a chr:CareUnit ;
+    rdfs:label "4499 ACUSHNET AVENUE OPERATING COMPANY, LLC" .
 
-ex:doctor_Victor493Chavez927 a chr:Person .
+# Clinical Visit
+ex:visit_2019_04_25T211155p02_00 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2019-04-25T21:11:55+02:00" ;
+    chr:hasDate "2019-04-25T21:11:55+02:00"^^xsd:dateTime ;
+    chr:hasPatient ex:person_Harvey_Napoleon_Homenick ;
+    chr:hasCareProvider ex:person_Victor_Chavez ;
+    chr:hasCareUnit ex:careunit_4499_Acushnet_Avenue .
 
-ex:measproc_polyp_size_20190425 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_polyp_size_20190425 .
+# Units
+ex:unit_mm a chr:Unit ;
+    rdfs:label "mm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mm> .
 
-ex:meas_polyp_size_20190425 a chr:Measurement ;
-  chr:hasQuantityValue "5.8247"^^xsd:float ;
-  chr:hasUnit sulo:millimeter ;
-  chr:hasMeasuredDate "2019-04-25T21:49:00"^^xsd:dateTime .
+ex:unit_ng_per_mL a chr:Unit ;
+    rdfs:label "ng/mL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/ng%2FmL> .
 
-ex:measproc_stool_hemoglobin_20190425 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Harvey63Napoleon578Homenick806 ;
-  chr:hasResult ex:meas_stool_hemoglobin_20190425 .
+# Measurement 1 – Polyp size greatest dimension
+ex:measurement_1 a chr:Measurement ;
+    rdfs:label "Polyp size greatest dimension measurement" ;
+    chr:hasQuantityValue "5.8247"^^xsd:float ;
+    chr:hasUnit ex:unit_mm ;
+    chr:hasMeasuredDate "2019-04-25T21:49:47+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/33756-8> .
 
-ex:meas_stool_hemoglobin_20190425 a chr:Measurement ;
-  chr:hasQuantityValue "20.354"^^xsd:float ;
-  chr:hasUnit sulo:ng_per_mL ;
-  chr:hasMeasuredDate "2019-04-25T21:49:00"^^xsd:dateTime .
+ex:measurementProcess_1 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Polyp size greatest dimension" ;
+    chr:hasPatient ex:person_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_1 ;
+    chr:hasDate "2019-04-25T21:49:47+02:00"^^xsd:dateTime .
 
-ex:eval_20190425 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_polyp_colon .
+# Measurement 2 – Hemoglobin in stool
+ex:measurement_2 a chr:Measurement ;
+    rdfs:label "Hemoglobin.gastrointestinal.lower [Presence] in Stool by Immunoassay measurement" ;
+    chr:hasQuantityValue "20.354"^^xsd:float ;
+    chr:hasUnit ex:unit_ng_per_mL ;
+    chr:hasMeasuredDate "2019-04-25T21:49:47+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/57905-2> .
 
-ex:diag_polyp_colon a chr:DiagnosticStatement .
+ex:measurementProcess_2 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Hemoglobin in stool" ;
+    chr:hasPatient ex:person_Harvey_Napoleon_Homenick ;
+    chr:hasResult ex:measurement_2 ;
+    chr:hasDate "2019-04-25T21:49:47+02:00"^^xsd:dateTime .
 
-ex:condition_polyp_colon a chr:ClinicalCondition ;
-  chr:hasSeverity ex:severity_moderate ;
-  chr:hasRecordDate "2019-04-25T21:49:00"^^xsd:dateTime .
+# Clinical Condition
+ex:condition_Polyp_of_colon a chr:ClinicalCondition ;
+    rdfs:label "Polyp of colon (disorder)" ;
+    chr:hasCode <http://snomed.info/id/68496003> ;
+    chr:hasRecordDate "2019-04-25T21:49:47+02:00"^^xsd:dateTime .
 
-ex:severity_moderate a chr:Severity .
+# Diagnostic Statement
+ex:diagnostic_Polyp_of_colon a chr:DiagnosticStatement ;
+    rdfs:label "Diagnostic statement: Polyp of colon (disorder)" ;
+    chr:hasCode <http://snomed.info/id/68496003> .
 
-ex:careplan_followup a chr:CarePlan .
+# Evaluation Process
+ex:evaluation_2019_04_25T214947p02_00 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Víctor Chávez on 2019-04-25T21:49:47+02:00" ;
+    chr:hasCondition ex:condition_Polyp_of_colon ;
+    chr:hasObservation ex:diagnostic_Polyp_of_colon ;
+    chr:hasDate "2019-04-25T21:49:47+02:00"^^xsd:dateTime .
+
+# Care Plan
+ex:careplan_followup a chr:CarePlan ;
+    rdfs:label "Care plan for follow‑up monitoring and routine review" .

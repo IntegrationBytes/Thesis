@@ -1,1 +1,72 @@
-# LLM call failed: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/workspaces/default/keys/904bef16ba07bd440ba9135faeee6cdc6097bd01c0e2a9aec4949d13006f4f81', 'code': 403}}
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:patient_ArlenOlson a chr:Person ;
+    rdfs:label "Arlen68 Olson653" .
+
+ex:physician_IrvinEmard a chr:Person ;
+    rdfs:label "Dr. Irvin970 Emard19" .
+
+ex:careunit_SpectrumHomeHealth a chr:CareUnit ;
+    rdfs:label "SPECTRUM HOME HEALTH AND HOSPICE CARE" .
+
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
+
+ex:procedure_ERAdmission a chr:MedicalProcedure ;
+    rdfs:label "Emergency room admission" ;
+    chr:hasPerformedDate "2021-01-09T16:56:33+01:00"^^xsd:dateTime ;
+    chr:hasPerformer ex:physician_IrvinEmard ;
+    chr:hasStatus ex:status_completed .
+
+ex:visit_2021_01_09T16_56_33 a chr:ClinicalVisit ;
+    rdfs:label "Visit on 2021-01-09T16:56:33+01:00" ;
+    chr:hasDate "2021-01-09T16:56:33+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_IrvinEmard ;
+    chr:hasCareUnit ex:careunit_SpectrumHomeHealth ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasProcedure ex:procedure_ERAdmission .
+
+ex:measurement_Tscore_2021_01_09T17_33_31 a chr:Measurement ;
+    rdfs:label "-0.028448 T-score" ;
+    chr:hasQuantityValue "-0.028448"^^xsd:float ;
+    chr:hasMeasuredDate "2021-01-09T17:33:31+01:00"^^xsd:dateTime .
+
+ex:measproc_DXA_Radius_Ulna_2021_01_09T17_33_31 a chr:MeasurementProcess ;
+    rdfs:label "DXA Radius and Ulna measurement process" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:measurement_Tscore_2021_01_09T17_33_31 .
+
+ex:diagstmt_fracture_bone a chr:DiagnosticStatement ;
+    rdfs:label "Fracture of bone (disorder)" ;
+    chr:hasCode <http://snomed.info/id/125605004> .
+
+ex:condition_fracture_bone a chr:ClinicalCondition ;
+    rdfs:label "Fracture of bone (disorder)" ;
+    chr:hasCode <http://snomed.info/id/125605004> ;
+    chr:hasRecordDate "2021-01-09T16:56:33+01:00"^^xsd:dateTime .
+
+ex:evaluation_2021_01_09T16_56_33_bone a chr:EvaluationProcess ;
+    rdfs:label "Evaluation for Fracture of bone" ;
+    chr:hasCondition ex:condition_fracture_bone ;
+    chr:hasObservation ex:diagstmt_fracture_bone .
+
+ex:diagstmt_fracture_ankle a chr:DiagnosticStatement ;
+    rdfs:label "Fracture of ankle (disorder)" ;
+    chr:hasCode <http://snomed.info/id/16114001> .
+
+ex:condition_fracture_ankle a chr:ClinicalCondition ;
+    rdfs:label "Fracture of ankle (disorder)" ;
+    chr:hasCode <http://snomed.info/id/16114001> ;
+    chr:hasRecordDate "2021-01-09T16:56:33+01:00"^^xsd:dateTime .
+
+ex:evaluation_2021_01_09T16_56_33_ankle a chr:EvaluationProcess ;
+    rdfs:label "Evaluation for Fracture of ankle" ;
+    chr:hasCondition ex:condition_fracture_ankle ;
+    chr:hasObservation ex:diagstmt_fracture_ankle .
+
+ex:careplan_followup a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review" .

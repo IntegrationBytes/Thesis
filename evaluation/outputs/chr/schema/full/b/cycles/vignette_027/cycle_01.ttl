@@ -4,47 +4,82 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Casey401Elijah719Parker433 a chr:Person .
+ex:patient_CaseyElijahParker
+    a chr:Person ;
+    rdfs:label "Casey401 Elijah719 Parker433" .
 
-ex:visit_2019_05_19 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:doctor_Jacque955Streich926 ;
-  chr:hasCareUnit ex:care_unit_ACCLAIM ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 .
+ex:provider_JacqueStreich
+    a chr:Person ;
+    rdfs:label "Dr. Jacque955 Streich926" .
 
-ex:care_unit_ACCLAIM a chr:CareUnit .
+ex:careunit_AcclaimHomeHealthCareInc
+    a chr:CareUnit ;
+    rdfs:label "ACCLAIM HOME HEALTH CARE, INC" .
 
-ex:doctor_Jacque955Streich926 a chr:Person .
+ex:visit_20190519T185956
+    a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2019-05-19T18:59:56+02:00" ;
+    chr:hasDate "2019-05-19T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:provider_JacqueStreich ;
+    chr:hasCareUnit ex:careunit_AcclaimHomeHealthCareInc ;
+    chr:hasProcedure ex:procedure_ER_admission .
 
-ex:bone_density_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:bone_density_measurement_result .
+ex:procedure_ER_admission
+    a chr:MedicalProcedure ;
+    rdfs:label "Emergency room admission" ;
+    chr:hasPerformedDate "2019-05-19T18:59:56+02:00"^^xsd:dateTime ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasPerformer ex:provider_JacqueStreich .
 
-ex:bone_density_measurement_result a chr:Measurement ;
-  chr:hasQuantityValue "0.33092"^^xsd:float ;
-  chr:hasUnit sulo:TScore ;
-  chr:hasMeasuredDate "2019-05-19T19:21:00"^^xsd:dateTime .
+ex:measproc_DXA_Radius_Ulna_20190519T192120
+    a chr:MeasurementProcess ;
+    rdfs:label "DXA Radius and Ulna measurement" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasResult ex:measurement_Tscore_20190519T192120 .
 
-ex:evaluation_process_fracture_bone a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_statement_fracture_bone .
+ex:measurement_Tscore_20190519T192120
+    a chr:Measurement ;
+    rdfs:label "T-score 0.33092" ;
+    chr:hasMeasuredDate "2019-05-19T19:21:20+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.33092"^^xsd:float .
 
-ex:diagnostic_statement_fracture_bone a chr:DiagnosticStatement .
+ex:diagstmt_fracture_bone
+    a chr:DiagnosticStatement ;
+    rdfs:label "Fracture of bone (disorder)" ;
+    chr:hasCode <http://snomed.info/id/125605004> .
 
-ex:clinical_condition_fracture_bone a chr:ClinicalCondition ;
-  chr:hasRecordDate "2019-05-19T18:59:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:diagstmt_fracture_ankle
+    a chr:DiagnosticStatement ;
+    rdfs:label "Fracture of ankle (disorder)" ;
+    chr:hasCode <http://snomed.info/id/16114001> .
 
-ex:evaluation_process_fracture_ankle a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_statement_fracture_ankle .
+ex:condition_fracture_bone
+    a chr:ClinicalCondition ;
+    rdfs:label "Fracture of bone (disorder)" ;
+    chr:hasCode <http://snomed.info/id/125605004> ;
+    chr:hasRecordDate "2019-05-19T18:59:56+02:00"^^xsd:dateTime .
 
-ex:diagnostic_statement_fracture_ankle a chr:DiagnosticStatement .
+ex:condition_fracture_ankle
+    a chr:ClinicalCondition ;
+    rdfs:label "Fracture of ankle (disorder)" ;
+    chr:hasCode <http://snomed.info/id/16114001> ;
+    chr:hasRecordDate "2019-05-19T18:59:56+02:00"^^xsd:dateTime .
 
-ex:clinical_condition_fracture_ankle a chr:ClinicalCondition ;
-  chr:hasRecordDate "2019-05-19T18:59:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:evaluation_20190519T185956_1
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2019-05-19T18:59:56+02:00 (fracture bone)" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasCondition ex:condition_fracture_bone ;
+    chr:hasObservation ex:diagstmt_fracture_bone .
 
-ex:severity_moderate a chr:Severity .
+ex:evaluation_20190519T185956_2
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2019-05-19T18:59:56+02:00 (fracture ankle)" ;
+    chr:hasPatient ex:patient_CaseyElijahParker ;
+    chr:hasCondition ex:condition_fracture_ankle ;
+    chr:hasObservation ex:diagstmt_fracture_ankle .
 
-ex:care_plan a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:medical_procedure_ankle .
-
-ex:medical_procedure_ankle a chr:MedicalProcedure .
+ex:careplan_followup
+    a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review" ;
+    chr:hasMedicalProcedure ex:procedure_ER_admission .

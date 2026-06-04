@@ -1,0 +1,185 @@
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Daren950_Ed239_Strosin214 a chr:Person ;
+    rdfs:label "Daren950 Ed239 Strosin214" .
+
+ex:physician_Ping698_Weissnat378 a chr:Person ;
+    rdfs:label "Dr. Ping698 Weissnat378" .
+
+# Care unit
+ex:careunit_community_health_programs_inc a chr:CareUnit ;
+    rdfs:label "COMMUNITY HEALTH PROGRAMS INC" .
+
+# Clinical visit
+<http://example.org/clinical/visit_2019_09_21T10:01:15+02:00> a chr:ClinicalVisit ;
+    rdfs:label "Visit 2019-09-21T10:01:15+02:00" ;
+    chr:hasDate "2019-09-21T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_Ping698_Weissnat378 ;
+    chr:hasCareUnit ex:careunit_community_health_programs_inc ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasProcedure ex:procedure_well_child_visit .
+
+ex:procedure_well_child_visit a chr:MedicalProcedure ;
+    rdfs:label "Well child visit" ;
+    chr:hasPerformedDate "2019-09-21T10:01:15+02:00"^^xsd:dateTime .
+
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
+
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
+
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kgperm2> .
+
+ex:unit_pct a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pct> .
+
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/permin> .
+
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
+
+# Height measurement
+<http://example.org/clinical/measproc_height_2019_09_21T10:01:15+02:00> a chr:MeasurementProcess ;
+    rdfs:label "Height measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult <http://example.org/clinical/meas_height_2019_09_21T10:01:15+02:00> .
+
+<http://example.org/clinical/meas_height_2019_09_21T10:01:15+02:00> a chr:Measurement ;
+    rdfs:label "171.1 cm" ;
+    chr:hasQuantityValue "171.1"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2019-09-21T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/8302-2> .
+
+# Pain severity measurement
+<http://example.org/clinical/measproc_pain_severity_2019_09_21T10:01:15+02:00> a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult <http://example.org/clinical/meas_pain_severity_2019_09_21T10:01:15+02:00> .
+
+<http://example.org/clinical/meas_pain_severity_2019_09_21T10:01:15+02:00> a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2019-09-21T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/72514-3> .
+
+# Body weight measurement
+<http://example.org/clinical/measproc_weight_2019_09_21T10:01:15+02:00> a chr:MeasurementProcess ;
+    rdfs:label "Weight measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult <http://example.org/clinical/meas_weight_2019_09_21T10:01:15+02:00> .
+
+<http://example.org/clinical/meas_weight_2019_09_21T10:01:15+02:00> a chr:Measurement ;
+    rdfs:label "53.7 kg" ;
+    chr:hasQuantityValue "53.7"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2019-09-21T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/29463-7> .
+
+# BMI ratio measurement
+<http://example.org/clinical/measproc_bmi_ratio_2019_09_21T10:01:15+02:00> a chr:MeasurementProcess ;
+    rdfs:label "BMI ratio measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult <http://example.org/clinical/meas_bmi_ratio_2019_09_21T10:01:15+02:00> .
+
+<http://example.org/clinical/meas_bmi_ratio_2019_09_21T10:01:15+02:00> a chr:Measurement ;
+    rdfs:label "18.33 kg/m2" ;
+    chr:hasQuantityValue "18.33"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2019-09-21T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/39156-5> .
+
+# BMI percentile measurement
+<http://example.org/clinical/measproc_bmi_percentile_2019_09_21T10:01:15+02:00> a chr:MeasurementProcess ;
+    rdfs:label "BMI percentile measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult <http://example.org/clinical/meas_bmi_percentile_2019_09_21T10:01:15+02:00> .
+
+<http://example.org/clinical/meas_bmi_percentile_2019_09_21T10:01:15+02:00> a chr:Measurement ;
+    rdfs:label "25.024 %" ;
+    chr:hasQuantityValue "25.024"^^xsd:float ;
+    chr:hasUnit ex:unit_pct ;
+    chr:hasMeasuredDate "2019-09-21T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/59576-9> .
+
+# Heart rate measurement
+<http://example.org/clinical/measproc_heart_rate_2019_09_21T10:01:15+02:00> a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult <http://example.org/clinical/meas_heart_rate_2019_09_21T10:01:15+02:00> .
+
+<http://example.org/clinical/meas_heart_rate_2019_09_21T10:01:15+02:00> a chr:Measurement ;
+    rdfs:label "86 /min" ;
+    chr:hasQuantityValue "86.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2019-09-21T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/8867-4> .
+
+# Respiratory rate measurement
+<http://example.org/clinical/measproc_respiratory_rate_2019_09_21T10:01:15+02:00> a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult <http://example.org/clinical/meas_respiratory_rate_2019_09_21T10:01:15+02:00> .
+
+<http://example.org/clinical/meas_respiratory_rate_2019_09_21T10:01:15+02:00> a chr:Measurement ;
+    rdfs:label "15 /min" ;
+    chr:hasQuantityValue "15.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2019-09-21T10:01:15+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/9279-1> .
+
+# GAD-7 measurement
+<http://example.org/clinical/measproc_gad7_2019_09_21T10:25:51+02:00> a chr:MeasurementProcess ;
+    rdfs:label "GAD-7 measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult <http://example.org/clinical/meas_gad7_2019_09_21T10:25:51+02:00> .
+
+<http://example.org/clinical/meas_gad7_2019_09_21T10:25:51+02:00> a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2019-09-21T10:25:51+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/70274-6> .
+
+# PHQ-9 measurement
+<http://example.org/clinical/measproc_phq9_2019_09_21T11:06:18+02:00> a chr:MeasurementProcess ;
+    rdfs:label "PHQ-9 measurement process" ;
+    chr:hasPatient ex:patient_Daren950_Ed239_Strosin214 ;
+    chr:hasResult <http://example.org/clinical/meas_phq9_2019_09_21T11:06:18+02:00> .
+
+<http://example.org/clinical/meas_phq9_2019_09_21T11:06:18+02:00> a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2019-09-21T11:06:18+02:00"^^xsd:dateTime ;
+    chr:hasCode <http://loinc.org/89204-2> .
+
+# Diagnostic statement
+ex:diag_med_review a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+# Evaluation process
+<http://example.org/clinical/evaluation_2019_09_21T10:01:15+02:00> a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2019-09-21T10:01:15+02:00" ;
+    chr:hasObservation ex:diag_med_review .
+
+# Care plan
+ex:careplan_2019_09_21 a chr:CarePlan ;
+    rdfs:label "Care plan established on 2019-09-21" .

@@ -4,112 +4,172 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Arleen939Marlyn309Bergstrom287 a chr:Person .
+# Persons
+ex:patient_ArleenBergstrom a chr:Person ;
+    rdfs:label "Arleen939 Marlyn309 Bergstrom287" .
 
-ex:visit_2022_05_20 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasCareProvider ex:doctor_Clelia416Morissette863 ;
-  chr:hasCareUnit ex:care_unit_CircleHealth .
+ex:physician_CleliaMorissette a chr:Person ;
+    rdfs:label "Dr. Clelia416 Morissette863" .
 
-ex:care_unit_CircleHealth a chr:CareUnit .
+# Care unit
+ex:careunit_CIRCLE_HEALTH_URGENT_CARE a chr:CareUnit ;
+    rdfs:label "CIRCLE HEALTH URGENT CARE LLC" .
 
-ex:doctor_Clelia416Morissette863 a chr:Person .
+# Clinical visit
+ex:visit_2022_05_20_151314 a chr:ClinicalVisit ;
+    rdfs:label "Visit on 2022-05-20T15:13:14+02:00" ;
+    chr:hasDate "2022-05-20T15:13:14+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_CleliaMorissette ;
+    chr:hasCareUnit ex:careunit_CIRCLE_HEALTH_URGENT_CARE ;
+    chr:hasPatient ex:patient_ArleenBergstrom .
 
-ex:height_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:height_measurement .
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:height_measurement a chr:Measurement ;
-  chr:hasQuantityValue "159.0"^^xsd:float ;
-  chr:hasUnit sulo:centimeter ;
-  chr:hasMeasuredDate "2022-05-20T15:13:00"^^xsd:dateTime .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:pain_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:pain_measurement .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg.m2> .
 
-ex:pain_measurement a chr:Measurement ;
-  chr:hasQuantityValue "3.0"^^xsd:float ;
-  chr:hasMeasuredDate "2022-05-20T15:13:00"^^xsd:dateTime .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min> .
 
-ex:weight_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:weight_measurement .
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
 
-ex:weight_measurement a chr:Measurement ;
-  chr:hasQuantityValue "63.2"^^xsd:float ;
-  chr:hasUnit sulo:kilogram ;
-  chr:hasMeasuredDate "2022-05-20T15:13:00"^^xsd:dateTime .
+# Measurements and measurement processes
 
-ex:bmi_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:bmi_measurement .
+## Body Height
+ex:measurement_bodyHeight_2022_05_20_151314 a chr:Measurement ;
+    rdfs:label "159 cm" ;
+    chr:hasMeasuredDate "2022-05-20T15:13:14+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "159.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
 
-ex:bmi_measurement a chr:Measurement ;
-  chr:hasQuantityValue "25.01"^^xsd:float ;
-  chr:hasUnit sulo:kilogramPerSquareMeter ;
-  chr:hasMeasuredDate "2022-05-20T15:13:00"^^xsd:dateTime .
+ex:measproc_bodyHeight_2022_05_20_151314 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:measurement_bodyHeight_2022_05_20_151314 .
 
-ex:heart_rate_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:heart_rate_measurement .
+## Pain Severity
+ex:measurement_painSeverity_2022_05_20_151314 a chr:Measurement ;
+    rdfs:label "3 score" ;
+    chr:hasMeasuredDate "2022-05-20T15:13:14+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
 
-ex:heart_rate_measurement a chr:Measurement ;
-  chr:hasQuantityValue "91.0"^^xsd:float ;
-  chr:hasUnit sulo:perMinute ;
-  chr:hasMeasuredDate "2022-05-20T15:13:00"^^xsd:dateTime .
+ex:measproc_painSeverity_2022_05_20_151314 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:measurement_painSeverity_2022_05_20_151314 .
 
-ex:respiratory_rate_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:respiratory_rate_measurement .
+## Body Weight
+ex:measurement_bodyWeight_2022_05_20_151314 a chr:Measurement ;
+    rdfs:label "63.2 kg" ;
+    chr:hasMeasuredDate "2022-05-20T15:13:14+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "63.2"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
 
-ex:respiratory_rate_measurement a chr:Measurement ;
-  chr:hasQuantityValue "14.0"^^xsd:float ;
-  chr:hasUnit sulo:perMinute ;
-  chr:hasMeasuredDate "2022-05-20T15:13:00"^^xsd:dateTime .
+ex:measproc_bodyWeight_2022_05_20_151314 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:measurement_bodyWeight_2022_05_20_151314 .
 
-ex:gad7_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:gad7_measurement .
+## Body Mass Index
+ex:measurement_BMI_2022_05_20_151314 a chr:Measurement ;
+    rdfs:label "25.01 kg/m2" ;
+    chr:hasMeasuredDate "2022-05-20T15:13:14+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "25.01"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
 
-ex:gad7_measurement a chr:Measurement ;
-  chr:hasQuantityValue "18.0"^^xsd:float ;
-  chr:hasMeasuredDate "2022-05-20T16:25:00"^^xsd:dateTime .
+ex:measproc_BMI_2022_05_20_151314 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:measurement_BMI_2022_05_20_151314 .
 
-ex:phq2_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:phq2_measurement .
+## Heart Rate
+ex:measurement_heartRate_2022_05_20_151314 a chr:Measurement ;
+    rdfs:label "91 /min" ;
+    chr:hasMeasuredDate "2022-05-20T15:13:14+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "91.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
 
-ex:phq2_measurement a chr:Measurement ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasMeasuredDate "2022-05-20T17:03:00"^^xsd:dateTime .
+ex:measproc_heartRate_2022_05_20_151314 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:measurement_heartRate_2022_05_20_151314 .
 
-ex:auditc_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arleen939Marlyn309Bergstrom287 ;
-  chr:hasResult ex:auditc_measurement .
+## Respiratory Rate
+ex:measurement_respiratoryRate_2022_05_20_151314 a chr:Measurement ;
+    rdfs:label "14 /min" ;
+    chr:hasMeasuredDate "2022-05-20T15:13:14+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
 
-ex:auditc_measurement a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasMeasuredDate "2022-05-20T17:44:00"^^xsd:dateTime .
+ex:measproc_respiratoryRate_2022_05_20_151314 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:measurement_respiratoryRate_2022_05_20_151314 .
 
-ex:evaluation_2022_05_20_1558 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_statement_stress .
+## GAD-7 Total Score
+ex:measurement_GAD7_2022_05_20_162514 a chr:Measurement ;
+    rdfs:label "18 score" ;
+    chr:hasMeasuredDate "2022-05-20T16:25:14+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "18.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
 
-ex:diagnostic_statement_stress a chr:DiagnosticStatement .
+ex:measproc_GAD7_2022_05_20_162514 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:measurement_GAD7_2022_05_20_162514 .
 
-ex:clinical_condition_stress a chr:ClinicalCondition ;
-  chr:hasRecordDate "2022-05-20T15:58:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+## PHQ-2 Total Score
+ex:measurement_PHQ2_2022_05_20_170312 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasMeasuredDate "2022-05-20T17:03:12+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
 
-ex:severity_moderate a chr:Severity .
+ex:measproc_PHQ2_2022_05_20_170312 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:measurement_PHQ2_2022_05_20_170312 .
 
-ex:evaluation_2022_05_20_1625 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_statement_anxiety .
+## AUDIT-C Total Score
+ex:measurement_AUDITC_2022_05_20_174402 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasMeasuredDate "2022-05-20T17:44:02+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
 
-ex:diagnostic_statement_anxiety a chr:DiagnosticStatement .
+ex:measproc_AUDITC_2022_05_20_174402 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArleenBergstrom ;
+    chr:hasResult ex:measurement_AUDITC_2022_05_20_174402 .
 
-ex:clinical_condition_anxiety a chr:ClinicalCondition ;
-  chr:hasRecordDate "2022-05-20T16:25:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+# Diagnostic statements
+ex:diag_Stress a chr:DiagnosticStatement ;
+    rdfs:label "Stress (finding)" ;
+    chr:hasCode <http://snomed.info/id/73595000> .
 
-ex:care_plan a chr:CarePlan .
+ex:diag_SevereAnxiety a chr:DiagnosticStatement ;
+    rdfs:label "Severe anxiety (panic) (finding)" ;
+    chr:hasCode <http://snomed.info/id/80583007> .
+
+# Clinical conditions
+ex:condition_Stress_2022_05_20_155818 a chr:ClinicalCondition ;
+    rdfs:label "Stress" ;
+    chr:hasCode <http://snomed.info/id/73595000> ;
+    chr:hasRecordDate "2022-05-20T15:58:18+02:00"^^xsd:dateTime .
+
+ex:condition_SevereAnxiety_2022_05_20_162514 a chr:ClinicalCondition ;
+    rdfs:label "Severe anxiety (panic)" ;
+    chr:hasCode <http://snomed.info/id/80583007> ;
+    chr:hasRecordDate "2022-05-20T16:25:14+02:00"^^xsd:dateTime .
+
+# Evaluation processes
+ex:evaluation_1_2022_05_20_155818 a chr:EvaluationProcess ;
+    chr:hasCondition ex:condition_Stress_2022_05_20_155818 ;
+    chr:hasObservation ex:diag_Stress .
+
+ex:evaluation_2_2022_05_20_162514 a chr:EvaluationProcess ;
+    chr:hasCondition ex:condition_SevereAnxiety_2022_05_20_162514 ;
+    chr:hasObservation ex:diag_SevereAnxiety .

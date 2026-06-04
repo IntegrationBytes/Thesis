@@ -1,1 +1,587 @@
-# LLM call failed: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/workspaces/default/keys/904bef16ba07bd440ba9135faeee6cdc6097bd01c0e2a9aec4949d13006f4f81', 'code': 403}}
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Person (patient)
+ex:patient_Arlen68_Olson653 a chr:Person ;
+    rdfs:label "Arlen68 Olson653" .
+
+# Person (physician)
+ex:person_Domenic627_Blick895 a chr:Person ;
+    rdfs:label "Dr. Domenic627 Blick895" .
+
+# Care unit
+ex:careunit_VIBRA_HOSPITAL_OF_WESTERN_MASS_CENTRAL_CAMPUS a chr:CareUnit ;
+    rdfs:label "VIBRA HOSPITAL OF WESTERN MASS - CENTRAL CAMPUS" .
+
+# Clinical visit
+ex:visit_2026_04_15_16_47_23 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2026-04-15T16:47:23+02:00" ;
+    chr:hasDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:person_Domenic627_Blick895 ;
+    chr:hasCareUnit ex:careunit_VIBRA_HOSPITAL_OF_WESTERN_MASS_CENTRAL_CAMPUS ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 .
+
+# Units
+ex:unit_mgperdL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
+
+ex:unit_mmolperL a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> .
+
+ex:unit_mLperminper{1.73_m2} a chr:Unit ;
+    rdfs:label "mL/min/{1.73_m2}" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mLperminper{1.73_m2}> .
+
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
+
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
+
+ex:unit_kgperm2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kgperm2> .
+
+ex:unit_permin a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/permin> .
+
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
+
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
+
+ex:unit_pH a chr:Unit ;
+    rdfs:label "pH" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pH> .
+
+ex:unit_nominal a chr:Unit ;
+    rdfs:label "nominal" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/nominal> .
+
+# Helper to create measurement result and process
+# Template: ex:measproc_{loinc}_{ts}_{n}
+#          ex:measurement_{loinc}_{ts}_{n}
+
+# 1. Glucose in Serum (LOINC 2345-7) 163.22 mg/dL
+ex:measproc_2345-7_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement process (LOINC 2345-7) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_2345-7_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_2345-7_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Glucose 163.22 mg/dL" ;
+    chr:hasQuantityValue "163.22"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 2. Urea nitrogen in Serum (LOINC 3094-0) 16.32 mg/dL
+ex:measproc_3094-0_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement process (LOINC 3094-0) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_3094-0_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_3094-0_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Urea nitrogen 16.32 mg/dL" ;
+    chr:hasQuantityValue "16.32"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 3. Creatinine in Serum (LOINC 2160-0) 1.9085 mg/dL
+ex:measproc_2160-0_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement process (LOINC 2160-0) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_2160-0_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_2160-0_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Creatinine 1.9085 mg/dL" ;
+    chr:hasQuantityValue "1.9085"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 4. Calcium in Serum (LOINC 17861-6) 9.79 mg/dL
+ex:measproc_17861-6_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement process (LOINC 17861-6) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_17861-6_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_17861-6_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Calcium 9.79 mg/dL" ;
+    chr:hasQuantityValue "9.79"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 5. Sodium in Serum (LOINC 2951-2) 137.52 mmol/L
+ex:measproc_2951-2_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement process (LOINC 2951-2) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_2951-2_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_2951-2_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Sodium 137.52 mmol/L" ;
+    chr:hasQuantityValue "137.52"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 6. Potassium in Serum (LOINC 2823-3) 5.01 mmol/L
+ex:measproc_2823-3_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement process (LOINC 2823-3) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_2823-3_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_2823-3_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Potassium 5.01 mmol/L" ;
+    chr:hasQuantityValue "5.01"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 7. Chloride in Serum (LOINC 2075-0) 110.41 mmol/L
+ex:measproc_2075-0_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement process (LOINC 2075-0) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_2075-0_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_2075-0_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Chloride 110.41 mmol/L" ;
+    chr:hasQuantityValue "110.41"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 8. Carbon dioxide, total in Serum (LOINC 2028-9) 21.75 mmol/L
+ex:measproc_2028-9_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide total measurement process (LOINC 2028-9) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_2028-9_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_2028-9_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Carbon dioxide total 21.75 mmol/L" ;
+    chr:hasQuantityValue "21.75"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 9. GFR in Serum (LOINC 33914-3) 51.594 mL/min/{1.73_m2}
+ex:measproc_33914-3_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "GFR measurement process (LOINC 33914-3) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_33914-3_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_33914-3_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "GFR 51.594 mL/min/{1.73_m2}" ;
+    chr:hasQuantityValue "51.594"^^xsd:float ;
+    chr:hasUnit ex:unit_mLperminper{1.73_m2} ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 10. Glucose in Urine (LOINC 5792-7) 1.0863 mg/dL
+ex:measproc_5792-7_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Glucose urine measurement process (LOINC 5792-7) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_5792-7_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_5792-7_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Glucose (urine) 1.0863 mg/dL" ;
+    chr:hasQuantityValue "1.0863"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 11. Bilirubin.total in Urine (LOINC 20505-4) 0.21647 mg/dL
+ex:measproc_20505-4_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Bilirubin.total urine measurement process (LOINC 20505-4) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_20505-4_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_20505-4_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Bilirubin.total 0.21647 mg/dL" ;
+    chr:hasQuantityValue "0.21647"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 12. Ketones in Urine (LOINC 5797-6) 12.639 mg/dL
+ex:measproc_5797-6_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Ketones urine measurement process (LOINC 5797-6) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_5797-6_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_5797-6_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Ketones 12.639 mg/dL" ;
+    chr:hasQuantityValue "12.639"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 13. Specific gravity of Urine (LOINC 5811-5) 1.0382 (nominal)
+ex:measproc_5811-5_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Specific gravity urine measurement process (LOINC 5811-5) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_5811-5_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_5811-5_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Specific gravity 1.0382 (nominal)" ;
+    chr:hasQuantityValue "1.0382"^^xsd:float ;
+    chr:hasUnit ex:unit_nominal ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 14. pH of Urine (LOINC 5803-2) 5.587 pH
+ex:measproc_5803-2_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "pH urine measurement process (LOINC 5803-2) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_5803-2_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_5803-2_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "pH 5.587" ;
+    chr:hasQuantityValue "5.587"^^xsd:float ;
+    chr:hasUnit ex:unit_pH ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 15. Protein in Urine (LOINC 5804-0) 313.46 mg/dL
+ex:measproc_5804-0_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Protein urine measurement process (LOINC 5804-0) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_5804-0_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_5804-0_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Protein 313.46 mg/dL" ;
+    chr:hasQuantityValue "313.46"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 16. Hemoglobin A1c in Blood (LOINC 4548-4) 5.36 %
+ex:measproc_4548-4_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement process (LOINC 4548-4) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_4548-4_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_4548-4_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Hemoglobin A1c 5.36 %" ;
+    chr:hasQuantityValue "5.36"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 17. Body Height (LOINC 8302-2) 177 cm
+ex:measproc_8302-2_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement process (LOINC 8302-2) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_8302-2_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_8302-2_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Body Height 177 cm" ;
+    chr:hasQuantityValue "177"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 18. Pain severity (LOINC 72514-3) 1 score
+ex:measproc_72514-3_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process (LOINC 72514-3) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_72514-3_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_72514-3_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Pain severity 1 score" ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 19. Body Weight (LOINC 29463-7) 86 kg
+ex:measproc_29463-7_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement process (LOINC 29463-7) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_29463-7_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_29463-7_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Body Weight 86 kg" ;
+    chr:hasQuantityValue "86"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 20. Body mass index (BMI) (LOINC 39156-5) 27.45 kg/m2
+ex:measproc_39156-5_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "BMI measurement process (LOINC 39156-5) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_39156-5_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_39156-5_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "BMI 27.45 kg/m2" ;
+    chr:hasQuantityValue "27.45"^^xsd:float ;
+    chr:hasUnit ex:unit_kgperm2 ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 21. Heart rate (LOINC 8867-4) 61 /min
+ex:measproc_8867-4_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process (LOINC 8867-4) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_8867-4_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_8867-4_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Heart rate 61 /min" ;
+    chr:hasQuantityValue "61"^^xsd:float ;
+    chr:hasUnit ex:unit_permin ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 22. Respiratory rate (LOINC 9279-1) 15 /min
+ex:measproc_9279-1_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process (LOINC 9279-1) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_9279-1_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_9279-1_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Respiratory rate 15 /min" ;
+    chr:hasQuantityValue "15"^^xsd:float ;
+    chr:hasUnit ex:unit_permin ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 23. Glucose in Blood (LOINC 2339-0) 163.22 mg/dL
+ex:measproc_2339-0_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Glucose blood measurement process (LOINC 2339-0) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_2339-0_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_2339-0_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Glucose (blood) 163.22 mg/dL" ;
+    chr:hasQuantityValue "163.22"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 24. Urea nitrogen in Blood (LOINC 6299-2) 16.32 mg/dL
+ex:measproc_6299-2_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen blood measurement process (LOINC 6299-2) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_6299-2_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_6299-2_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Urea nitrogen (blood) 16.32 mg/dL" ;
+    chr:hasQuantityValue "16.32"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 25. Creatinine in Blood (LOINC 38483-4) 2.83 mg/dL
+ex:measproc_38483-4_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine blood measurement process (LOINC 38483-4) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_38483-4_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_38483-4_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Creatinine (blood) 2.83 mg/dL" ;
+    chr:hasQuantityValue "2.83"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 26. Calcium in Blood (LOINC 49765-1) 9.79 mg/dL
+ex:measproc_49765-1_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Calcium blood measurement process (LOINC 49765-1) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_49765-1_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_49765-1_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Calcium (blood) 9.79 mg/dL" ;
+    chr:hasQuantityValue "9.79"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 27. Sodium in Blood (LOINC 2947-0) 137.52 mmol/L
+ex:measproc_2947-0_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Sodium blood measurement process (LOINC 2947-0) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_2947-0_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_2947-0_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Sodium (blood) 137.52 mmol/L" ;
+    chr:hasQuantityValue "137.52"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 28. Potassium in Blood (LOINC 6298-4) 5.01 mmol/L
+ex:measproc_6298-4_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Potassium blood measurement process (LOINC 6298-4) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_6298-4_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_6298-4_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Potassium (blood) 5.01 mmol/L" ;
+    chr:hasQuantityValue "5.01"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 29. Chloride in Blood (LOINC 2069-3) 110.41 mmol/L
+ex:measproc_2069-3_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Chloride blood measurement process (LOINC 2069-3) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_2069-3_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_2069-3_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Chloride (blood) 110.41 mmol/L" ;
+    chr:hasQuantityValue "110.41"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 30. Carbon dioxide, total in Blood (LOINC 20565-8) 21.75 mmol/L
+ex:measproc_20565-8_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide total blood measurement process (LOINC 20565-8) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_20565-8_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_20565-8_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Carbon dioxide total (blood) 21.75 mmol/L" ;
+    chr:hasQuantityValue "21.75"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 31. Cholesterol in Serum (LOINC 2093-3) 247.01 mg/dL
+ex:measproc_2093-3_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol serum measurement process (LOINC 2093-3) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_2093-3_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_2093-3_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Cholesterol 247.01 mg/dL" ;
+    chr:hasQuantityValue "247.01"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 32. Triglyceride in Serum (LOINC 2571-8) 492.17 mg/dL
+ex:measproc_2571-8_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Triglyceride serum measurement process (LOINC 2571-8) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_2571-8_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_2571-8_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Triglyceride 492.17 mg/dL" ;
+    chr:hasQuantityValue "492.17"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 33. LDL Cholesterol in Serum (LOINC 18262-6) 110.71 mg/dL
+ex:measproc_18262-6_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "LDL Cholesterol serum measurement process (LOINC 18262-6) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_18262-6_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_18262-6_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "LDL Cholesterol 110.71 mg/dL" ;
+    chr:hasQuantityValue "110.71"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 34. HDL Cholesterol in Serum (LOINC 2085-9) 37.86 mg/dL
+ex:measproc_2085-9_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "HDL Cholesterol serum measurement process (LOINC 2085-9) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_2085-9_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_2085-9_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "HDL Cholesterol 37.86 mg/dL" ;
+    chr:hasQuantityValue "37.86"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 35. Microalbumin/Creatinine ratio in Urine (LOINC 14959-1) 196.67 mg/g
+ex:measproc_14959-1_2026-04-15T16:47:23+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "Microalbumin/Creatinine ratio urine measurement process (LOINC 14959-1) at 2026-04-15T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_14959-1_2026-04-15T16:47:23+02:00_1 .
+
+ex:measurement_14959-1_2026-04-15T16:47:23+02:00_1 a chr:Measurement ;
+    rdfs:label "Microalbumin/Creatinine 196.67 mg/g" ;
+    chr:hasQuantityValue "196.67"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL ;  # using mg/dL as proxy for mg/g (simplified)
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 36. GFR in Serum (second entry) (LOINC 33914-3) 28.24 mL/min/{1.73_m2}
+ex:measproc_33914-3_2026-04-15T16:47:23+02:00_2 a chr:MeasurementProcess ;
+    rdfs:label "GFR measurement process (LOINC 33914-3) at 2026-04-15T16:47:23+02:00 (second)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_33914-3_2026-04-15T16:47:23+02:00_2 .
+
+ex:measurement_33914-3_2026-04-15T16:47:23+02:00_2 a chr:Measurement ;
+    rdfs:label "GFR 28.24 mL/min/{1.73_m2}" ;
+    chr:hasQuantityValue "28.24"^^xsd:float ;
+    chr:hasUnit ex:unit_mLperminper{1.73_m2} ;
+    chr:hasMeasuredDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+# 37. GAD-7 total score (LOINC 70274-6) 2 score (timestamp 2026-04-15T17:53:34+02:00)
+ex:measproc_70274-6_2026-04-15T17:53:34+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "GAD-7 total score measurement process (LOINC 70274-6) at 2026-04-15T17:53:34+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_70274-6_2026-04-15T17:53:34+02:00_1 .
+
+ex:measurement_70274-6_2026-04-15T17:53:34+02:00_1 a chr:Measurement ;
+    rdfs:label "GAD-7 total score 2 score" ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2026-04-15T17:53:34+02:00"^^xsd:dateTime .
+
+# 38. PHQ-2 total score (LOINC 55758-7) 5 score (timestamp 2026-04-15T18:37:50+02:00)
+ex:measproc_55758-7_2026-04-15T18:37:50+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "PHQ-2 total score measurement process (LOINC 55758-7) at 2026-04-15T18:37:50+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_55758-7_2026-04-15T18:37:50+02:00_1 .
+
+ex:measurement_55758-7_2026-04-15T18:37:50+02:00_1 a chr:Measurement ;
+    rdfs:label "PHQ-2 total score 5 score" ;
+    chr:hasQuantityValue "5"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2026-04-15T18:37:50+02:00"^^xsd:dateTime .
+
+# 39. PHQ-9 total score (LOINC 44261-6) 10 score (timestamp 2026-04-15T19:00:31+02:00)
+ex:measproc_44261-6_2026-04-15T19:00:31+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "PHQ-9 total score measurement process (LOINC 44261-6) at 2026-04-15T19:00:31+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_44261-6_2026-04-15T19:00:31+02:00_1 .
+
+ex:measurement_44261-6_2026-04-15T19:00:31+02:00_1 a chr:Measurement ;
+    rdfs:label "PHQ-9 total score 10 score" ;
+    chr:hasQuantityValue "10"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2026-04-15T19:00:31+02:00"^^xsd:dateTime .
+
+# 40. AUDIT-C total score (LOINC 75626-2) 1 score (timestamp 2026-04-15T19:35:51+02:00)
+ex:measproc_75626-2_2026-04-15T19:35:51+02:00_1 a chr:MeasurementProcess ;
+    rdfs:label "AUDIT-C total score measurement process (LOINC 75626-2) at 2026-04-15T19:35:51+02:00" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:measurement_75626-2_2026-04-15T19:35:51+02:00_1 .
+
+ex:measurement_75626-2_2026-04-15T19:35:51+02:00_1 a chr:Measurement ;
+    rdfs:label "AUDIT-C total score 1 score" ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2026-04-15T19:35:51+02:00"^^xsd:dateTime .
+
+# Clinical conditions and diagnostic statements
+ex:condition_Medication_review_due a chr:ClinicalCondition ;
+    rdfs:label "Medication review due" ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2026-04-15T16:47:23+02:00"^^xsd:dateTime .
+
+ex:diagstmt_Medication_review_due a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+ex:evaluation_2026_04_15_16_47_23 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2026-04-15T16:47:23+02:00" ;
+    chr:hasCondition ex:condition_Medication_review_due ;
+    chr:hasObservation ex:diagstmt_Medication_review_due .
+
+ex:condition_Stress a chr:ClinicalCondition ;
+    rdfs:label "Stress" ;
+    chr:hasCode <http://snomed.info/id/73595000> ;
+    chr:hasRecordDate "2026-04-15T17:31:42+02:00"^^xsd:dateTime .
+
+ex:diagstmt_Stress a chr:DiagnosticStatement ;
+    rdfs:label "Stress (finding)" ;
+    chr:hasCode <http://snomed.info/id/73595000> .
+
+ex:evaluation_2026_04_15_17_31_42 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2026-04-15T17:31:42+02:00" ;
+    chr:hasCondition ex:condition_Stress ;
+    chr:hasObservation ex:diagstmt_Stress .
+
+# Care plan (no further details required)
+ex:careplan_followup a chr:CarePlan ;
+    rdfs:label "Follow‑up monitoring and routine review care plan" .

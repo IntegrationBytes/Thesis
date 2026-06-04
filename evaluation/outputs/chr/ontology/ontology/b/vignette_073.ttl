@@ -4,272 +4,216 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Dolores502_Marisol435_Nevárez403 a chr:Person .
+# Persons
+ex:patient_Nevarez a chr:Person ;
+    rdfs:label "Dolores502 Marisol435 Nevárez403" .
 
+ex:physician_Kohler a chr:Person ;
+    rdfs:label "Dr. Cari853 Kohler843" .
+
+# Care unit
+ex:careunit_DRHEs a chr:CareUnit ;
+    rdfs:label "DR. HE'S PRIMARY CARE FOR ADULTS INC" .
+
+# Clinical visit
 ex:visit_2025_11_25 a chr:ClinicalVisit ;
-  sulo:isIn ex:care_unit_He ;
-  sulo:atTime ex:time_visit_2025_11_25 .
+    sulo:hasParticipant ex:role_Subject_Visit ,
+                       ex:role_Provider_Visit ;
+    sulo:atTime ex:time_visit ;
+    sulo:isIn ex:careunit_DRHEs .
 
-ex:time_visit_2025_11_25 a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:20:00"^^xsd:dateTime .
+ex:role_Subject_Visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
 
-ex:care_unit_He a chr:CareUnit .
+ex:role_Provider_Visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
 
-ex:role_VisitProvider_Kohler a chr:CareProviderRole ;
-  sulo:isFeatureOf ex:doctor_Cari853_Kohler843 .
+# Time instants
+ex:time_visit a sulo:TimeInstant ;
+    sulo:hasValue "2025-11-25T04:20:29+01:00"^^xsd:dateTime .
 
-ex:doctor_Cari853_Kohler843 a chr:Person .
+ex:time_eval1 a sulo:TimeInstant ;
+    sulo:hasValue "2025-11-25T04:20:29+01:00"^^xsd:dateTime .
 
-ex:visit_2025_11_25 sulo:hasParticipant ex:role_VisitProvider_Kohler .
+ex:time_eval2 a sulo:TimeInstant ;
+    sulo:hasValue "2025-11-25T04:57:57+01:00"^^xsd:dateTime .
 
-ex:role_Patient_Dolores502 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Dolores502_Marisol435_Nevárez403 .
+# Process status
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
 
-ex:visit_2025_11_25 sulo:hasParticipant ex:role_Patient_Dolores502 .
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" .
 
-ex:procedure_WellChildVisit a chr:MedicalProcedure ;
-  sulo:atTime ex:time_procedure_2025_11_25 .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" .
 
-ex:time_procedure_2025_11_25 a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:20:00"^^xsd:dateTime .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" .
+
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" .
+
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" .
+
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" .
+
+# Height measurement
+ex:proc_height a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Height ;
+    sulo:atTime ex:time_visit ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_Subject_Height a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
 
 ex:measurement_height a chr:Measurement ;
-  sulo:hasValue "162.9"^^xsd:float ;
-  sulo:hasPart ex:unit_cm ;
-  sulo:atTime ex:time_height_2025_11_25 .
+    sulo:hasValue "162.9"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_visit .
 
-ex:unit_cm a sulo:Unit .
+# Weight measurement
+ex:proc_weight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Weight ;
+    sulo:atTime ex:time_visit ;
+    sulo:hasFeature ex:status_completed .
 
-ex:process_height a chr:MeasurementProcess ;
-  sulo:atTime ex:time_height_2025_11_25 .
-
-ex:time_height_2025_11_25 a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:20:00"^^xsd:dateTime .
-
-ex:process_height sulo:hasParticipant ex:role_Patient_Dolores502 .
-
-ex:role_Output_height a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_height .
-
-ex:process_height sulo:hasParticipant ex:role_Output_height .
-
-ex:process_height sulo:hasFeature ex:status_completed .
-
-ex:status_completed a chr:ProcessStatus .
-
-ex:measurement_pain a chr:Measurement ;
-  sulo:hasValue "1.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score ;
-  sulo:atTime ex:time_pain_2025_11_25 .
-
-ex:unit_score a sulo:Unit .
-
-ex:process_pain a chr:MeasurementProcess ;
-  sulo:atTime ex:time_pain_2025_11_25 .
-
-ex:time_pain_2025_11_25 a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:20:00"^^xsd:dateTime .
-
-ex:process_pain sulo:hasParticipant ex:role_Patient_Dolores502 .
-
-ex:role_Output_pain a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_pain .
-
-ex:process_pain sulo:hasParticipant ex:role_Output_pain .
-
-ex:process_pain sulo:hasFeature ex:status_completed .
+ex:role_Subject_Weight a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
 
 ex:measurement_weight a chr:Measurement ;
-  sulo:hasValue "65.1"^^xsd:float ;
-  sulo:hasPart ex:unit_kg ;
-  sulo:atTime ex:time_weight_2025_11_25 .
+    sulo:hasValue "65.1"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_visit .
 
-ex:unit_kg a sulo:Unit .
+# BMI ratio measurement
+ex:proc_bmi_ratio a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_BMI_Ratio ;
+    sulo:atTime ex:time_visit ;
+    sulo:hasFeature ex:status_completed .
 
-ex:process_weight a chr:MeasurementProcess ;
-  sulo:atTime ex:time_weight_2025_11_25 .
+ex:role_Subject_BMI_Ratio a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
 
-ex:time_weight_2025_11_25 a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:20:00"^^xsd:dateTime .
+ex:measurement_bmi_ratio a chr:Measurement ;
+    sulo:hasValue "24.55"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_visit .
 
-ex:process_weight sulo:hasParticipant ex:role_Patient_Dolores502 .
+# BMI percentile measurement
+ex:proc_bmi_percentile a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_BMI_Percentile ;
+    sulo:atTime ex:time_visit ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_Output_weight a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_weight .
-
-ex:process_weight sulo:hasParticipant ex:role_Output_weight .
-
-ex:process_weight sulo:hasFeature ex:status_completed .
-
-ex:measurement_bmi a chr:Measurement ;
-  sulo:hasValue "24.55"^^xsd:float ;
-  sulo:hasPart ex:unit_kg_m2 ;
-  sulo:atTime ex:time_bmi_2025_11_25 .
-
-ex:unit_kg_m2 a sulo:Unit .
-
-ex:process_bmi a chr:MeasurementProcess ;
-  sulo:atTime ex:time_bmi_2025_11_25 .
-
-ex:time_bmi_2025_11_25 a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:20:00"^^xsd:dateTime .
-
-ex:process_bmi sulo:hasParticipant ex:role_Patient_Dolores502 .
-
-ex:role_Output_bmi a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_bmi .
-
-ex:process_bmi sulo:hasParticipant ex:role_Output_bmi .
-
-ex:process_bmi sulo:hasFeature ex:status_completed .
+ex:role_Subject_BMI_Percentile a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
 
 ex:measurement_bmi_percentile a chr:Measurement ;
-  sulo:hasValue "91.807"^^xsd:float ;
-  sulo:hasPart ex:unit_percent ;
-  sulo:atTime ex:time_bmi_percentile_2025_11_25 .
+    sulo:hasValue "91.807"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_visit .
 
-ex:unit_percent a sulo:Unit .
+# Heart rate measurement
+ex:proc_heart_rate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_HeartRate ;
+    sulo:atTime ex:time_visit ;
+    sulo:hasFeature ex:status_completed .
 
-ex:process_bmi_percentile a chr:MeasurementProcess ;
-  sulo:atTime ex:time_bmi_percentile_2025_11_25 .
-
-ex:time_bmi_percentile_2025_11_25 a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:20:00"^^xsd:dateTime .
-
-ex:process_bmi_percentile sulo:hasParticipant ex:role_Patient_Dolores502 .
-
-ex:role_Output_bmi_percentile a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_bmi_percentile .
-
-ex:process_bmi_percentile sulo:hasParticipant ex:role_Output_bmi_percentile .
-
-ex:process_bmi_percentile sulo:hasFeature ex:status_completed .
+ex:role_Subject_HeartRate a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
 
 ex:measurement_heart_rate a chr:Measurement ;
-  sulo:hasValue "72.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min ;
-  sulo:atTime ex:time_heart_rate_2025_11_25 .
+    sulo:hasValue "72"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_visit .
 
-ex:unit_per_min a sulo:Unit .
+# Respiratory rate measurement
+ex:proc_resp_rate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_RespRate ;
+    sulo:atTime ex:time_visit ;
+    sulo:hasFeature ex:status_completed .
 
-ex:process_heart_rate a chr:MeasurementProcess ;
-  sulo:atTime ex:time_heart_rate_2025_11_25 .
+ex:role_Subject_RespRate a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
 
-ex:time_heart_rate_2025_11_25 a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:20:00"^^xsd:dateTime .
+ex:measurement_resp_rate a chr:Measurement ;
+    sulo:hasValue "13"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_visit .
 
-ex:process_heart_rate sulo:hasParticipant ex:role_Patient_Dolores502 .
+# Pain severity measurement
+ex:proc_pain_severity a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Pain ;
+    sulo:atTime ex:time_visit ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_Output_heart_rate a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_heart_rate .
+ex:role_Subject_Pain a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
 
-ex:process_heart_rate sulo:hasParticipant ex:role_Output_heart_rate .
+ex:measurement_pain_severity a chr:Measurement ;
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_visit .
 
-ex:process_heart_rate sulo:hasFeature ex:status_completed .
+# PHQ‑9 measurement
+ex:proc_phq9 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_PHQ9 ;
+    sulo:atTime ex:time_eval2 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:measurement_respiratory_rate a chr:Measurement ;
-  sulo:hasValue "13.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min ;
-  sulo:atTime ex:time_respiratory_rate_2025_11_25 .
-
-ex:process_respiratory_rate a chr:MeasurementProcess ;
-  sulo:atTime ex:time_respiratory_rate_2025_11_25 .
-
-ex:time_respiratory_rate_2025_11_25 a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:20:00"^^xsd:dateTime .
-
-ex:process_respiratory_rate sulo:hasParticipant ex:role_Patient_Dolores502 .
-
-ex:role_Output_respiratory_rate a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_respiratory_rate .
-
-ex:process_respiratory_rate sulo:hasParticipant ex:role_Output_respiratory_rate .
-
-ex:process_respiratory_rate sulo:hasFeature ex:status_completed .
+ex:role_Subject_PHQ9 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
 
 ex:measurement_phq9 a chr:Measurement ;
-  sulo:hasValue "1.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score ;
-  sulo:atTime ex:time_phq9_2025_11_25 .
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_eval2 .
 
-ex:process_phq9 a chr:MeasurementProcess ;
-  sulo:atTime ex:time_phq9_2025_11_25 .
+# Evaluation 1 – Medication review
+ex:evaluation1 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Eval1 ,
+                       ex:role_Provider_Eval1 ,
+                       ex:role_Output_Diagnosis1 ;
+    sulo:atTime ex:time_eval1 .
 
-ex:time_phq9_2025_11_25 a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:57:00"^^xsd:dateTime .
+ex:role_Subject_Eval1 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
 
-ex:process_phq9 sulo:hasParticipant ex:role_Patient_Dolores502 .
+ex:role_Provider_Eval1 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
 
-ex:role_Output_phq9 a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_phq9 .
+ex:role_Output_Diagnosis1 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnosis_medreview .
 
-ex:process_phq9 sulo:hasParticipant ex:role_Output_phq9 .
+ex:diagnosis_medreview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" .
 
-ex:process_phq9 sulo:hasFeature ex:status_completed .
+# Evaluation 2 – Gingivitis
+ex:evaluation2 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Subject_Eval2 ,
+                       ex:role_Provider_Eval2 ,
+                       ex:role_Output_Diagnosis2 ;
+    sulo:atTime ex:time_eval2 .
 
-ex:evaluation_1 a chr:EvaluationProcess ;
-  sulo:atTime ex:time_eval_1_performed .
+ex:role_Subject_Eval2 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Nevarez .
 
-ex:time_eval_1_performed a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:20:00"^^xsd:dateTime .
+ex:role_Provider_Eval2 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Kohler .
 
-ex:evaluation_1 sulo:hasParticipant ex:role_VisitProvider_Kohler .
+ex:role_Output_Diagnosis2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnosis_gingivitis .
 
-ex:evaluation_1 sulo:hasParticipant ex:role_Patient_Dolores502 .
+ex:diagnosis_gingivitis a chr:DiagnosticStatement ;
+    rdfs:label "Gingivitis (disorder)" .
 
-ex:diagnostic_statement_med_review a chr:DiagnosticStatement ;
-  sulo:atTime ex:time_diag_med_review .
+# Care plan
+ex:careplan_2025_11_25 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup_monitoring .
 
-ex:time_diag_med_review a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:20:00"^^xsd:dateTime .
-
-ex:role_Output_diag_med_review a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_statement_med_review .
-
-ex:evaluation_1 sulo:hasParticipant ex:role_Output_diag_med_review .
-
-ex:condition_med_review a chr:ClinicalCondition ;
-  sulo:atTime ex:time_condition_med_review .
-
-ex:time_condition_med_review a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:20:00"^^xsd:dateTime .
-
-ex:condition_med_review sulo:hasFeature ex:severity_moderate .
-
-ex:severity_moderate a chr:Severity .
-
-ex:evaluation_2 a chr:EvaluationProcess ;
-  sulo:atTime ex:time_eval_2_performed .
-
-ex:time_eval_2_performed a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:57:00"^^xsd:dateTime .
-
-ex:evaluation_2 sulo:hasParticipant ex:role_VisitProvider_Kohler .
-
-ex:evaluation_2 sulo:hasParticipant ex:role_Patient_Dolores502 .
-
-ex:diagnostic_statement_gingivitis a chr:DiagnosticStatement ;
-  sulo:atTime ex:time_diag_gingivitis .
-
-ex:time_diag_gingivitis a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:57:00"^^xsd:dateTime .
-
-ex:role_Output_diag_gingivitis a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_statement_gingivitis .
-
-ex:evaluation_2 sulo:hasParticipant ex:role_Output_diag_gingivitis .
-
-ex:condition_gingivitis a chr:ClinicalCondition ;
-  sulo:atTime ex:time_condition_gingivitis .
-
-ex:time_condition_gingivitis a sulo:TimeInstant ;
-  sulo:hasValue "2025-11-25T04:57:00"^^xsd:dateTime .
-
-ex:condition_gingivitis sulo:hasFeature ex:severity_moderate .
-
-ex:care_plan a chr:CarePlan ;
-  sulo:refersTo ex:procedure_follow_up , ex:procedure_routine_review .
-
-ex:procedure_follow_up a chr:MedicalProcedure .
-
-ex:procedure_routine_review a chr:MedicalProcedure .
+ex:procedure_followup_monitoring a chr:MedicalProcedure ;
+    rdfs:label "follow‑up monitoring and routine review" .

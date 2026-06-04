@@ -1,41 +1,64 @@
 @prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
 @prefix ex:   <http://example.org/clinical/> .
-@prefix sulo: <https://w3id.org/sulo/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Estela596Yetta429Grant908 a chr:Person .
+ex:patient_EstelaYettaGrant
+    a chr:Person ;
+    rdfs:label "Estela596 Yetta429 Grant908" .
 
-ex:visit_2000_02_13 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:doctor_Nickolas58Schumm995 ;
-  chr:hasCareUnit ex:care_unit_EncompassBraintree ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 .
+ex:person_Nickolas_Schumm
+    a chr:Person ;
+    rdfs:label "Dr. Nickolas58 Schumm995" .
 
-ex:care_unit_EncompassBraintree a chr:CareUnit .
+ex:careunit_ENCOMPASS_HEALTH_BRAINTREE_HOSPITAL_OF_BRAINTREE
+    a chr:CareUnit ;
+    rdfs:label "ENCOMPASS HEALTH BRAINTREE HOSPITAL OF BRAINTREE" .
 
-ex:doctor_Nickolas58Schumm995 a chr:Person .
+ex:visit_2000_02_13T113554_01_00
+    a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2000-02-13T11:35:54+01:00" ;
+    chr:hasDate "2000-02-13T11:35:54+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:person_Nickolas_Schumm ;
+    chr:hasCareUnit ex:careunit_ENCOMPASS_HEALTH_BRAINTREE_HOSPITAL_OF_BRAINTREE ;
+    chr:hasPatient ex:patient_EstelaYettaGrant .
 
-ex:temp_meas_proc_2000_02_13 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:temp_meas_2000_02_13 .
+ex:measproc_Temp_2000_02_13T113554_01_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Temperature measurement process on 2000-02-13T11:35:54+01:00" ;
+    chr:hasPatient ex:patient_EstelaYettaGrant ;
+    chr:hasResult ex:measurement_Temp_2000_02_13T113554_01_00 .
 
-ex:temp_meas_2000_02_13 a chr:Measurement ;
-  chr:hasQuantityValue "37.436"^^xsd:float ;
-  chr:hasUnit sulo:Cel ;
-  chr:hasMeasuredDate "2000-02-13T11:35:00"^^xsd:dateTime .
+ex:measurement_Temp_2000_02_13T113554_01_00
+    a chr:Measurement ;
+    rdfs:label "37.436 Cel" ;
+    chr:hasMeasuredDate "2000-02-13T11:35:54+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "37.436"^^xsd:float ;
+    chr:hasUnit ex:unit_Cel .
 
-ex:evaluation_2000_02_13 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnosis_pharyngitis .
+ex:unit_Cel
+    a chr:Unit ;
+    rdfs:label "Cel" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/Cel> .
 
-ex:diagnosis_pharyngitis a chr:DiagnosticStatement .
+ex:diag_AcuteViralPharyngitis
+    a chr:DiagnosticStatement ;
+    rdfs:label "Acute viral pharyngitis" ;
+    chr:hasCode <http://snomed.info/id/195662009> .
 
-ex:condition_pharyngitis a chr:ClinicalCondition ;
-  chr:hasRecordDate "2000-02-13T11:35:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:condition_AcuteViralPharyngitis
+    a chr:ClinicalCondition ;
+    rdfs:label "Acute viral pharyngitis" ;
+    chr:hasCode <http://snomed.info/id/195662009> ;
+    chr:hasRecordDate "2000-02-13T11:35:54+01:00"^^xsd:dateTime .
 
-ex:severity_moderate a chr:Severity .
+ex:evaluation_2000_02_13T113554_01_00
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation of patient on 2000-02-13T11:35:54+01:00" ;
+    chr:hasPatient ex:patient_EstelaYettaGrant ;
+    chr:hasObservation ex:diag_AcuteViralPharyngitis ;
+    chr:hasCondition ex:condition_AcuteViralPharyngitis .
 
-ex:care_plan_pharyngitis a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:procedure_pharyngitis .
-
-ex:procedure_pharyngitis a chr:MedicalProcedure .
+ex:careplan_Followup
+    a chr:CarePlan ;
+    rdfs:label "Care plan for follow-up monitoring and routine review" .

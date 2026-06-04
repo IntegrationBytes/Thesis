@@ -4,50 +4,85 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Cory323Frank378Heller342 a chr:Person .
+ex:patient_P0c9a1821
+    a chr:Person ;
+    rdfs:label "Cory323 Frank378 Heller342" .
 
-ex:visit_2017_04_11 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasCareProvider ex:doctor_Margene509Schamberger479 ;
-  chr:hasCareUnit ex:care_unit_LowellGeneral .
+ex:careunit_LOWELL_GENERAL_HOSPITAL
+    a chr:CareUnit ;
+    rdfs:label "THE LOWELL GENERAL HOSPITAL" .
 
-ex:care_unit_LowellGeneral a chr:CareUnit .
+ex:person_Margene_Schamberger
+    a chr:Person ;
+    rdfs:label "Dr. Margene509 Schamberger479" .
 
-ex:doctor_Margene509Schamberger479 a chr:Person .
+ex:visit_2017_04_11_14_32_19
+    a chr:ClinicalVisit ;
+    rdfs:label "Visit 2017-04-11T14:32:19+02:00" ;
+    chr:hasDate "2017-04-11T14:32:19+02:00"^^xsd:dateTime ;
+    chr:hasCareUnit ex:careunit_LOWELL_GENERAL_HOSPITAL ;
+    chr:hasCareProvider ex:person_Margene_Schamberger ;
+    chr:hasPatient ex:patient_P0c9a1821 .
 
-ex:measurement_process_polyp_size a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:measurement_polyp_size .
+ex:unit_mm
+    a chr:Unit ;
+    rdfs:label "mm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mm> .
 
-ex:measurement_polyp_size a chr:Measurement ;
-  chr:hasQuantityValue "11.962"^^xsd:float ;
-  chr:hasUnit sulo:millimeter ;
-  chr:hasMeasuredDate "2017-04-11T15:00:00"^^xsd:dateTime .
+ex:measproc_PolypSize_20170411T150014
+    a chr:MeasurementProcess ;
+    rdfs:label "Polyp size greatest dimension measurement" ;
+    chr:hasPatient ex:patient_P0c9a1821 ;
+    chr:hasResult ex:measurement_PolypSize_20170411T150014 ;
+    chr:hasCode <https://loinc.org/33756-8> .
 
-ex:measurement_process_hemoglobin a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Cory323Frank378Heller342 ;
-  chr:hasResult ex:measurement_hemoglobin .
+ex:measurement_PolypSize_20170411T150014
+    a chr:Measurement ;
+    rdfs:label "11.962 mm" ;
+    chr:hasMeasuredDate "2017-04-11T15:00:14+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "11.962"^^xsd:float ;
+    chr:hasUnit ex:unit_mm .
 
-ex:measurement_hemoglobin a chr:Measurement ;
-  chr:hasQuantityValue "242.07"^^xsd:float ;
-  chr:hasUnit sulo:ng_per_mL ;
-  chr:hasMeasuredDate "2017-04-11T15:00:00"^^xsd:dateTime .
+ex:unit_ng_per_mL
+    a chr:Unit ;
+    rdfs:label "ng/mL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/ngpermL> .
 
-ex:evaluation_2017_04_11 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_polyp_colon .
+ex:measproc_HemoglobinStool_20170411T150014
+    a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin.gastrointestinal.lower [Presence] in Stool measurement" ;
+    chr:hasPatient ex:patient_P0c9a1821 ;
+    chr:hasResult ex:measurement_HemoglobinStool_20170411T150014 ;
+    chr:hasCode <https://loinc.org/57905-2> .
 
-ex:diagnostic_polyp_colon a chr:DiagnosticStatement .
+ex:measurement_HemoglobinStool_20170411T150014
+    a chr:Measurement ;
+    rdfs:label "242.07 ng/mL" ;
+    chr:hasMeasuredDate "2017-04-11T15:00:14+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "242.07"^^xsd:float ;
+    chr:hasUnit ex:unit_ng_per_mL .
 
-ex:clinical_condition_polyp_colon a chr:ClinicalCondition ;
-  chr:hasLocatedIn ex:anatomical_structure_colon ;
-  chr:hasSeverity ex:severity_moderate ;
-  chr:hasRecordDate "2017-04-11T15:00:00"^^xsd:dateTime .
+ex:diagnostic_PolypColon
+    a chr:DiagnosticStatement ;
+    rdfs:label "Polyp of colon (disorder)" ;
+    chr:hasCode <http://snomed.info/id/68496003> .
 
-ex:anatomical_structure_colon a chr:AnatomicalStructure .
+ex:condition_PolypColon
+    a chr:ClinicalCondition ;
+    rdfs:label "Polyp of colon" ;
+    chr:hasRecordDate "2017-04-11T15:00:14+02:00"^^xsd:dateTime .
 
-ex:severity_moderate a chr:Severity .
+ex:evaluation_20170411T150014
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation of patient" ;
+    chr:hasCondition ex:condition_PolypColon ;
+    chr:hasObservation ex:diagnostic_PolypColon .
 
-ex:care_plan_polyp_colon a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:procedure_colonoscopy .
+ex:careplan_followup
+    a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review" ;
+    chr:hasMedicalProcedure ex:procedure_colonoscopy .
 
-ex:procedure_colonoscopy a chr:MedicalProcedure .
+ex:procedure_colonoscopy
+    a chr:MedicalProcedure ;
+    rdfs:label "Colonoscopy" .

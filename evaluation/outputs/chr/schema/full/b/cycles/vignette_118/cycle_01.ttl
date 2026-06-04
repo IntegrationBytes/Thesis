@@ -2,12 +2,517 @@
 @prefix ex:   <http://example.org/clinical/> .
 @prefix sulo: <https://w3id.org/sulo/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient1
-    chr:age "67"^^xsd:integer ;
-    chr:gender "female" ;
-    chr:hasCondition ex:condition1 .
+# Persons
+ex:patient_AracelyDevonCollins a chr:Person ;
+    rdfs:label "Aracely711 Devon268 Collins926" .
 
-ex:condition1
-    chr:bodySite "chest" ;
-    chr:finding "pain" .
+ex:provider_MargaretReinger a chr:Person ;
+    rdfs:label "Dr. Margaret865 Reinger292" .
+
+# Care unit
+ex:careunit_CarneyHospital a chr:CareUnit ;
+    rdfs:label "CARNEY HOSPITAL" .
+
+# Clinical visit
+ex:visit_2025_11_14T14_04_38+01_00 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit 2025-11-14T14:04:38+01:00" ;
+    chr:hasDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasCareUnit ex:careunit_CarneyHospital ;
+    chr:hasCareProvider ex:provider_MargaretReinger ;
+    chr:hasPatient ex:patient_AracelyDevonCollins .
+
+# Units
+ex:unit_mgperdL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
+
+ex:unit_mmolperL a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> .
+
+ex:unit_mLperminper1_73_m2 a chr:Unit ;
+    rdfs:label "mL/min/{1.73_m2}" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mLperminper1.73_m2> .
+
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
+
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
+
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
+
+ex:unit_kgperm2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kgperm2> .
+
+ex:unit_permin a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/permin> .
+
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/percent> .
+
+ex:unit_nominal a chr:Unit ;
+    rdfs:label "nominal" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/nominal> .
+
+ex:unit_pH a chr:Unit ;
+    rdfs:label "pH" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pH> .
+
+ex:unit_count a chr:Unit ;
+    rdfs:label "#" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/count> .
+
+# Measurements and measurement processes (Serum/Plasma)
+ex:meas_Glucose_Serum_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "66.44 mg/dL" ;
+    chr:hasCode <https://loinc.org/2345-7> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "66.44"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL .
+
+ex:proc_Glucose_Serum_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement in Serum 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Glucose_Serum_20251114T140438+01_00 .
+
+ex:meas_UreaNitrogen_Serum_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "19.29 mg/dL" ;
+    chr:hasCode <https://loinc.org/3094-0> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "19.29"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL .
+
+ex:proc_UreaNitrogen_Serum_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement in Serum 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_UreaNitrogen_Serum_20251114T140438+01_00 .
+
+ex:meas_Creatinine_Serum_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "2.0731 mg/dL" ;
+    chr:hasCode <https://loinc.org/2160-0> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.0731"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL .
+
+ex:proc_Creatinine_Serum_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement in Serum 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Creatinine_Serum_20251114T140438+01_00 .
+
+ex:meas_Calcium_Serum_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "8.54 mg/dL" ;
+    chr:hasCode <https://loinc.org/17861-6> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.54"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL .
+
+ex:proc_Calcium_Serum_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement in Serum 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Calcium_Serum_20251114T140438+01_00 .
+
+ex:meas_Sodium_Serum_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "136.05 mmol/L" ;
+    chr:hasCode <https://loinc.org/2951-2> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "136.05"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL .
+
+ex:proc_Sodium_Serum_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement in Serum 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Sodium_Serum_20251114T140438+01_00 .
+
+ex:meas_Potassium_Serum_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "4.53 mmol/L" ;
+    chr:hasCode <https://loinc.org/2823-3> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.53"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL .
+
+ex:proc_Potassium_Serum_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement in Serum 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Potassium_Serum_20251114T140438+01_00 .
+
+ex:meas_Chloride_Serum_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "103.79 mmol/L" ;
+    chr:hasCode <https://loinc.org/2075-0> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "103.79"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL .
+
+ex:proc_Chloride_Serum_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement in Serum 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Chloride_Serum_20251114T140438+01_00 .
+
+ex:meas_CO2_Serum_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "20.12 mmol/L" ;
+    chr:hasCode <https://loinc.org/2028-9> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "20.12"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL .
+
+ex:proc_CO2_Serum_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide, total measurement in Serum 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_CO2_Serum_20251114T140438+01_00 .
+
+ex:meas_GFR_Serum_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "49.068 mL/min/{1.73_m2}" ;
+    chr:hasCode <https://loinc.org/33914-3> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "49.068"^^xsd:float ;
+    chr:hasUnit ex:unit_mLperminper1_73_m2 .
+
+ex:proc_GFR_Serum_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Glomerular filtration rate measurement in Serum 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_GFR_Serum_20251114T140438+01_00 .
+
+# Urine measurements (same timestamp)
+ex:meas_Glucose_Urine_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "2.2562 mg/dL" ;
+    chr:hasCode <https://loinc.org/5792-7> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.2562"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL .
+
+ex:proc_Glucose_Urine_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement in Urine 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Glucose_Urine_20251114T140438+01_00 .
+
+ex:meas_Bilirubin_Urine_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "1.1799 mg/dL" ;
+    chr:hasCode <https://loinc.org/20505-4> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.1799"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL .
+
+ex:proc_Bilirubin_Urine_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Bilirubin.total measurement in Urine 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Bilirubin_Urine_20251114T140438+01_00 .
+
+ex:meas_Ketones_Urine_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "8.7996 mg/dL" ;
+    chr:hasCode <https://loinc.org/5797-6> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.7996"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL .
+
+ex:proc_Ketones_Urine_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Ketones measurement in Urine 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Ketones_Urine_20251114T140438+01_00 .
+
+ex:meas_SpecificGravity_Urine_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "1.0108 nominal" ;
+    chr:hasCode <https://loinc.org/5811-5> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0108"^^xsd:float ;
+    chr:hasUnit ex:unit_nominal .
+
+ex:proc_SpecificGravity_Urine_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Specific gravity measurement in Urine 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_SpecificGravity_Urine_20251114T140438+01_00 .
+
+ex:meas_pH_Urine_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "6.0044 pH" ;
+    chr:hasCode <https://loinc.org/5803-2> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.0044"^^xsd:float ;
+    chr:hasUnit ex:unit_pH .
+
+ex:proc_pH_Urine_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "pH measurement in Urine 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_pH_Urine_20251114T140438+01_00 .
+
+ex:meas_Protein_Urine_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "240.41 mg/dL" ;
+    chr:hasCode <https://loinc.org/5804-0> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "240.41"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL .
+
+ex:proc_Protein_Urine_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Protein measurement in Urine 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Protein_Urine_20251114T140438+01_00 .
+
+# Blood measurements (same timestamp)
+ex:meas_HbA1c_Blood_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "2.97 %" ;
+    chr:hasCode <https://loinc.org/4548-4> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.97"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+ex:proc_HbA1c_Blood_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement in Blood 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_HbA1c_Blood_20251114T140438+01_00 .
+
+ex:meas_Height_Body_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "172 cm" ;
+    chr:hasCode <https://loinc.org/8302-2> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "172"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+ex:proc_Height_Body_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Height_Body_20251114T140438+01_00 .
+
+ex:meas_PainSeverity_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "2 score" ;
+    chr:hasCode <https://loinc.org/72514-3> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:proc_PainSeverity_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_PainSeverity_20251114T140438+01_00 .
+
+ex:meas_Weight_Body_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "82.2 kg" ;
+    chr:hasCode <https://loinc.org/29463-7> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82.2"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+ex:proc_Weight_Body_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Weight_Body_20251114T140438+01_00 .
+
+ex:meas_BMI_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "27.79 kg/m2" ;
+    chr:hasCode <https://loinc.org/39156-5> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.79"^^xsd:float ;
+    chr:hasUnit ex:unit_kgperm2 .
+
+ex:proc_BMI_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Body mass index measurement 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_BMI_20251114T140438+01_00 .
+
+ex:meas_HeartRate_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "80 /min" ;
+    chr:hasCode <https://loinc.org/8867-4> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "80"^^xsd:float ;
+    chr:hasUnit ex:unit_permin .
+
+ex:proc_HeartRate_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_HeartRate_20251114T140438+01_00 .
+
+ex:meas_RespiratoryRate_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "14 /min" ;
+    chr:hasCode <https://loinc.org/9279-1> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit ex:unit_permin .
+
+ex:proc_RespiratoryRate_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_RespiratoryRate_20251114T140438+01_00 .
+
+ex:meas_Glucose_Blood_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "66.44 mg/dL" ;
+    chr:hasCode <https://loinc.org/2339-0> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "66.44"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL .
+
+ex:proc_Glucose_Blood_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement in Blood 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Glucose_Blood_20251114T140438+01_00 .
+
+ex:meas_UreaNitrogen_Blood_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "19.29 mg/dL" ;
+    chr:hasCode <https://loinc.org/6299-2> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "19.29"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL .
+
+ex:proc_UreaNitrogen_Blood_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement in Blood 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_UreaNitrogen_Blood_20251114T140438+01_00 .
+
+ex:meas_Creatinine_Blood_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "2.66 mg/dL" ;
+    chr:hasCode <https://loinc.org/38483-4> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2.66"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL .
+
+ex:proc_Creatinine_Blood_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement in Blood 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Creatinine_Blood_20251114T140438+01_00 .
+
+ex:meas_Calcium_Blood_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "8.54 mg/dL" ;
+    chr:hasCode <https://loinc.org/49765-1> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "8.54"^^xsd:float ;
+    chr:hasUnit ex:unit_mgperdL .
+
+ex:proc_Calcium_Blood_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement in Blood 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Calcium_Blood_20251114T140438+01_00 .
+
+ex:meas_Sodium_Blood_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "136.05 mmol/L" ;
+    chr:hasCode <https://loinc.org/2947-0> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "136.05"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL .
+
+ex:proc_Sodium_Blood_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement in Blood 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Sodium_Blood_20251114T140438+01_00 .
+
+ex:meas_Potassium_Blood_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "4.53 mmol/L" ;
+    chr:hasCode <https://loinc.org/6298-4> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.53"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL .
+
+ex:proc_Potassium_Blood_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement in Blood 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Potassium_Blood_20251114T140438+01_00 .
+
+ex:meas_Chloride_Blood_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "103.79 mmol/L" ;
+    chr:hasCode <https://loinc.org/2069-3> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "103.79"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL .
+
+ex:proc_Chloride_Blood_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement in Blood 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_Chloride_Blood_20251114T140438+01_00 .
+
+ex:meas_CO2_Blood_20251114T140438+01_00 a chr:Measurement ;
+    rdfs:label "20.12 mmol/L" ;
+    chr:hasCode <https://loinc.org/20565-8> ;
+    chr:hasMeasuredDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "20.12"^^xsd:float ;
+    chr:hasUnit ex:unit_mmolperL .
+
+ex:proc_CO2_Blood_20251114T140438+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide, total measurement in Blood 2025-11-14T14:04:38+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_CO2_Blood_20251114T140438+01_00 .
+
+# Later measurements
+ex:meas_FallRisk_20251114T153056+01_00 a chr:Measurement ;
+    rdfs:label "32 #" ;
+    chr:hasCode <https://loinc.org/59460-6> ;
+    chr:hasMeasuredDate "2025-11-14T15:30:56+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "32"^^xsd:float ;
+    chr:hasUnit ex:unit_count .
+
+ex:proc_FallRisk_20251114T153056+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Fall risk total measurement 2025-11-14T15:30:56+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_FallRisk_20251114T153056+01_00 .
+
+ex:meas_HARK_20251114T161525+01_00 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasCode <https://loinc.org/76504-0> ;
+    chr:hasMeasuredDate "2025-11-14T16:15:25+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:proc_HARK_20251114T161525+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Total score (HARK) measurement 2025-11-14T16:15:25+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_HARK_20251114T161525+01_00 .
+
+ex:meas_PHQ2_20251114T165907+01_00 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasCode <https://loinc.org/55758-7> ;
+    chr:hasMeasuredDate "2025-11-14T16:59:07+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:proc_PHQ2_20251114T165907+01_00 a chr:MeasurementProcess ;
+    rdfs:label "PHQ-2 total score measurement 2025-11-14T16:59:07+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_PHQ2_20251114T165907+01_00 .
+
+ex:meas_DAST10_20251114T173745+01_00 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasCode <https://loinc.org/82667-7> ;
+    chr:hasMeasuredDate "2025-11-14T17:37:45+01:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:proc_DAST10_20251114T173745+01_00 a chr:MeasurementProcess ;
+    rdfs:label "Total score (DAST-10) measurement 2025-11-14T17:37:45+01:00" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_DAST10_20251114T173745+01_00 .
+
+# Diagnostic statements and clinical conditions (evaluations)
+ex:diag_MedicationReview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+ex:cond_MedicationReview a chr:ClinicalCondition ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2025-11-14T14:04:38+01:00"^^xsd:dateTime .
+
+ex:evaluation_20251114T140438+01_00 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Margaret865 Reinger292 on 2025-11-14T14:04:38+01:00" ;
+    chr:hasObservation ex:diag_MedicationReview ;
+    chr:hasCondition ex:cond_MedicationReview .
+
+ex:diag_SocialIsolation a chr:DiagnosticStatement ;
+    rdfs:label "Social isolation (finding)" ;
+    chr:hasCode <http://snomed.info/id/422650009> .
+
+ex:cond_SocialIsolation a chr:ClinicalCondition ;
+    rdfs:label "Social isolation (finding)" ;
+    chr:hasCode <http://snomed.info/id/422650009> ;
+    chr:hasRecordDate "2025-11-14T15:01:13+01:00"^^xsd:dateTime .
+
+ex:evaluation_20251114T150113+01_00 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Margaret865 Reinger292 on 2025-11-14T15:01:13+01:00" ;
+    chr:hasObservation ex:diag_SocialIsolation ;
+    chr:hasCondition ex:cond_SocialIsolation .
+
+# Care plan
+ex:careplan_20251114 a chr:CarePlan ;
+    rdfs:label "Care plan for follow‑up monitoring and routine review" .

@@ -4,177 +4,83 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Casey401_Elijah719_Parker433
-  a chr:Person .
+# Persons
+ex:person_Casey401_Elijah719_Parker433 a chr:Person .
+ex:physician_Jacque955_Streich926 a chr:Person .
 
-ex:care_unit_ACCLAIM
-  a chr:CareUnit .
+# Care unit
+ex:careUnit_AcclaimHomeHealth a chr:CareUnit .
 
-ex:visit_2019_05_19
-  a chr:ClinicalVisit ;
-  sulo:isIn ex:care_unit_ACCLAIM ;
-  sulo:atTime ex:time_visit_2019_05_19 .
+# Clinical visit
+ex:visit_2019_05_19T185956 a chr:ClinicalVisit ;
+    sulo:atTime ex:time_visit_2019_05_19T185956 ;
+    sulo:isIn ex:careUnit_AcclaimHomeHealth ;
+    sulo:hasParticipant ex:role_VisitSubject , ex:role_VisitProvider .
 
-ex:time_visit_2019_05_19
-  sulo:hasValue "2019-05-19T18:59:00"^^xsd:dateTime .
+ex:time_visit_2019_05_19T185956 a sulo:TimeInstant ;
+    sulo:hasValue "2019-05-19T18:59:56+02:00"^^xsd:dateTime .
 
-ex:role_visit_patient_Casey401
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
+ex:role_VisitSubject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
 
-ex:visit_2019_05_19
-  sulo:hasParticipant ex:role_visit_patient_Casey401 .
+ex:role_VisitProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Jacque955_Streich926 .
 
-ex:physician_Streich926
-  a chr:Person .
+# Measurement process (DXA T‑score)
+ex:measurementProcess_2019_05_19T192120 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_meas_2019_05_19T192120 ;
+    sulo:hasParticipant ex:role_MeasSubject , ex:role_MeasProvider .
 
-ex:role_visit_provider_Streich926
-  a chr:CareProviderRole ;
-  sulo:isFeatureOf ex:physician_Streich926 .
+ex:time_meas_2019_05_19T192120 a sulo:TimeInstant ;
+    sulo:hasValue "2019-05-19T19:21:20+02:00"^^xsd:dateTime .
 
-ex:visit_2019_05_19
-  sulo:hasParticipant ex:role_visit_provider_Streich926 .
+ex:role_MeasSubject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
 
-ex:emergency_room_admission
-  a chr:MedicalProcedure ;
-  rdfs:label "Emergency room admission" .
+ex:role_MeasProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Jacque955_Streich926 .
 
-ex:bone_density_measurement
-  a chr:MeasurementProcess ;
-  sulo:atTime ex:time_bone_density_measurement .
+ex:measurement_Tscore a chr:Measurement ;
+    sulo:hasValue "0.33092"^^xsd:float ;
+    sulo:hasPart ex:unit_Tscore ;
+    sulo:atTime ex:time_meas_2019_05_19T192120 .
 
-ex:time_bone_density_measurement
-  sulo:hasValue "2019-05-19T19:21:00"^^xsd:dateTime .
+ex:unit_Tscore a chr:Unit .
 
-ex:role_bone_density_patient_Casey401
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
+# First diagnostic statement (Fracture of bone)
+ex:diag_FractureBone a chr:DiagnosticStatement .
 
-ex:bone_density_measurement
-  sulo:hasParticipant ex:role_bone_density_patient_Casey401 .
+ex:evaluation_1_2019_05_19T185956 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_visit_2019_05_19T185956 ;
+    sulo:hasParticipant ex:role_Eval1Subject , ex:role_Eval1Provider , ex:role_Eval1Output .
 
-ex:bone_density_result
-  a chr:Measurement ;
-  sulo:hasValue "0.33092"^^xsd:float ;
-  sulo:hasPart ex:unit_T_score ;
-  sulo:atTime ex:time_bone_density_measurement .
+ex:role_Eval1Subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
 
-ex:unit_T_score
-  a sulo:Unit ;
-  rdfs:label "T-score" .
+ex:role_Eval1Provider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Jacque955_Streich926 .
 
-ex:bone_density_measurement
-  sulo:hasParticipant ex:bone_density_result .
+ex:role_Eval1Output a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_FractureBone .
 
-ex:process_status_completed
-  a chr:ProcessStatus ;
-  rdfs:label "completed" .
+# Second diagnostic statement (Fracture of ankle)
+ex:diag_FractureAnkle a chr:DiagnosticStatement .
 
-ex:bone_density_measurement
-  sulo:hasFeature ex:process_status_completed .
+ex:evaluation_2_2019_05_19T185956 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_visit_2019_05_19T185956 ;
+    sulo:hasParticipant ex:role_Eval2Subject , ex:role_Eval2Provider , ex:role_Eval2Output .
 
-ex:evaluation_2019_05_19_1
-  a chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation_2019_05_19_1 .
+ex:role_Eval2Subject a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
 
-ex:time_evaluation_2019_05_19_1
-  sulo:hasValue "2019-05-19T18:59:00"^^xsd:dateTime .
+ex:role_Eval2Provider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Jacque955_Streich926 .
 
-ex:role_evaluation_patient_Casey401_1
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
+ex:role_Eval2Output a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_FractureAnkle .
 
-ex:evaluation_2019_05_19_1
-  sulo:hasParticipant ex:role_evaluation_patient_Casey401_1 .
+# Care plan and referenced procedure
+ex:carePlan_001 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowupMonitoring .
 
-ex:role_evaluation_provider_Streich926_1
-  a chr:PerformerRole ;
-  sulo:isFeatureOf ex:physician_Streich926 .
-
-ex:evaluation_2019_05_19_1
-  sulo:hasParticipant ex:role_evaluation_provider_Streich926_1 .
-
-ex:diagnostic_statement_fracture_bone
-  a chr:DiagnosticStatement ;
-  rdfs:label "Fracture of bone (disorder)" .
-
-ex:evaluation_2019_05_19_1
-  sulo:hasParticipant ex:diagnostic_statement_fracture_bone .
-
-ex:clinical_condition_fracture_bone
-  a chr:ClinicalCondition .
-
-ex:diagnostic_statement_fracture_bone
-  sulo:isFeatureOf ex:clinical_condition_fracture_bone .
-
-ex:clinical_condition_fracture_bone
-  sulo:atTime ex:time_condition_fracture_bone .
-
-ex:time_condition_fracture_bone
-  sulo:hasValue "2019-05-19T18:59:00"^^xsd:dateTime .
-
-ex:severity_moderate_1
-  a chr:Severity ;
-  rdfs:label "Moderate" .
-
-ex:clinical_condition_fracture_bone
-  sulo:hasFeature ex:severity_moderate_1 .
-
-ex:evaluation_2019_05_19_2
-  a chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation_2019_05_19_2 .
-
-ex:time_evaluation_2019_05_19_2
-  sulo:hasValue "2019-05-19T18:59:00"^^xsd:dateTime .
-
-ex:role_evaluation_patient_Casey401_2
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Casey401_Elijah719_Parker433 .
-
-ex:evaluation_2019_05_19_2
-  sulo:hasParticipant ex:role_evaluation_patient_Casey401_2 .
-
-ex:role_evaluation_provider_Streich926_2
-  a chr:PerformerRole ;
-  sulo:isFeatureOf ex:physician_Streich926 .
-
-ex:evaluation_2019_05_19_2
-  sulo:hasParticipant ex:role_evaluation_provider_Streich926_2 .
-
-ex:diagnostic_statement_fracture_ankle
-  a chr:DiagnosticStatement ;
-  rdfs:label "Fracture of ankle (disorder)" .
-
-ex:evaluation_2019_05_19_2
-  sulo:hasParticipant ex:diagnostic_statement_fracture_ankle .
-
-ex:clinical_condition_fracture_ankle
-  a chr:ClinicalCondition .
-
-ex:diagnostic_statement_fracture_ankle
-  sulo:isFeatureOf ex:clinical_condition_fracture_ankle .
-
-ex:clinical_condition_fracture_ankle
-  sulo:atTime ex:time_condition_fracture_ankle .
-
-ex:time_condition_fracture_ankle
-  sulo:hasValue "2019-05-19T18:59:00"^^xsd:dateTime .
-
-ex:severity_moderate_2
-  a chr:Severity ;
-  rdfs:label "Moderate" .
-
-ex:clinical_condition_fracture_ankle
-  sulo:hasFeature ex:severity_moderate_2 .
-
-ex:care_plan_follow_up
-  a chr:CarePlan ;
-  sulo:refersTo ex:follow_up_monitoring , ex:routine_review .
-
-ex:follow_up_monitoring
-  a chr:MedicalProcedure ;
-  rdfs:label "follow-up monitoring" .
-
-ex:routine_review
-  a chr:MedicalProcedure ;
-  rdfs:label "routine review" .
+ex:procedure_FollowupMonitoring a chr:MedicalProcedure .

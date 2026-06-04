@@ -1,569 +1,328 @@
-@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix chr:<https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
 @prefix ex:   <http://example.org/clinical/> .
 @prefix sulo: <https://w3id.org/sulo/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Estela596_Yetta429_Grant908 a chr:Person .
+# Persons
+ex:patient_Estela_Grant a chr:Person .
+ex:physician_Ivonne_Turcotte a chr:Person .
 
-ex:visit_2007_01_01_20_35 a chr:ClinicalVisit ;
-  sulo:atTime ex:time_visit_2007_01_01_20_35 ;
-  sulo:isIn ex:care_unit_Zion .
+# Care unit
+ex:careunit_ZION a chr:CareUnit .
 
-ex:time_visit_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
+# Roles linking persons
+ex:role_Subject_Estela a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:patient_Estela_Grant .
 
-ex:care_unit_Zion a chr:CareUnit .
+ex:role_Provider_Ivonne a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:physician_Ivonne_Turcotte .
 
-ex:role_visit_patient_Estela596_Yetta429_Grant908 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
+# Time instants
+ex:time_2007_01_01T20_35_54 a sulo:TimeInstant ;
+    sulo:hasValue "2007-01-01T20:35:54+01:00"^^xsd:dateTime .
 
-ex:visit_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_visit_patient_Estela596_Yetta429_Grant908 ;
-  sulo:involves ex:visit_2007_01_01_20_35 .
+ex:time_2007_01_01T21_45_48 a sulo:TimeInstant ;
+    sulo:hasValue "2007-01-01T21:45:48+01:00"^^xsd:dateTime .
 
-ex:physician_Ivonne773_Turcotte120 a chr:Person .
+ex:time_2007_01_01T22_23_14 a sulo:TimeInstant ;
+    sulo:hasValue "2007-01-01T22:23:14+01:00"^^xsd:dateTime .
 
-ex:role_visit_provider_Ivonne773_Turcotte120 a chr:CareProviderRole ;
-  sulo:isFeatureOf ex:physician_Ivonne773_Turcotte120 .
+# Process status
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
 
-ex:visit_provider_participation a sulo:Participation ;
-  sulo:hasRole ex:role_visit_provider_Ivonne773_Turcotte120 ;
-  sulo:involves ex:visit_2007_01_01_20_35 .
+# Units
+ex:unit_percent        a chr:Unit .
+ex:unit_cm            a chr:Unit .
+ex:unit_score         a chr:Unit .
+ex:unit_kg            a chr:Unit .
+ex:unit_kg_per_m2     a chr:Unit .
+ex:unit_per_min       a chr:Unit .
+ex:unit_mg_per_dL     a chr:Unit .
+ex:unit_mmol_per_L    a chr:Unit .
 
-ex:procedure_general_examination a chr:MedicalProcedure .
+# Clinical visit (entity)
+ex:visit_2007_01_01T20_35_54 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_Provider_Ivonne ;
+    sulo:isIn ex:careunit_ZION ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:visit_procedure_reference a sulo:Reference ;
-  sulo:pointsTo ex:procedure_general_examination ;
-  sulo:isPointedToBy ex:visit_2007_01_01_20_35 .
+# ---- Measurements ----
 
-ex:measurement_process_hemoglobin a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_hemoglobin_2007_01_01_20_35 .
+# Hemoglobin A1c
+ex:proc_hemoglobin a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_hemoglobin ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:time_measurement_hemoglobin_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
-
-ex:role_measurement_hemoglobin_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_hemoglobin_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_hemoglobin_patient ;
-  sulo:involves ex:measurement_process_hemoglobin .
+ex:role_output_hemoglobin a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_hemoglobin .
 
 ex:measurement_hemoglobin a chr:Measurement ;
-  sulo:hasValue "5.97"^^xsd:float ;
-  sulo:hasPart ex:unit_percent ;
-  sulo:atTime ex:time_measurement_hemoglobin_2007_01_01_20_35 .
+    sulo:hasValue "5.97"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:unit_percent a sulo:Unit .
+# Body Height
+ex:proc_body_height a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_body_height ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_measurement_hemoglobin_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_hemoglobin .
+ex:role_output_body_height a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_body_height .
 
-ex:measurement_hemoglobin_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_hemoglobin_output ;
-  sulo:involves ex:measurement_process_hemoglobin .
+ex:measurement_body_height a chr:Measurement ;
+    sulo:hasValue "156.6"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:process_status_completed_hemoglobin a chr:ProcessStatus .
+# Pain severity
+ex:proc_pain_severity a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_pain_severity ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:measurement_hemoglobin_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_hemoglobin ;
-  sulo:to ex:process_status_completed_hemoglobin .
+ex:role_output_pain_severity a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_pain_severity .
 
-ex:measurement_process_height a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_height_2007_01_01_20_35 .
+ex:measurement_pain_severity a chr:Measurement ;
+    sulo:hasValue "2"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:time_measurement_height_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
+# Body Weight
+ex:proc_body_weight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_body_weight ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_measurement_height_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
+ex:role_output_body_weight a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_body_weight .
 
-ex:measurement_height_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_height_patient ;
-  sulo:involves ex:measurement_process_height .
+ex:measurement_body_weight a chr:Measurement ;
+    sulo:hasValue "73.7"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:measurement_height a chr:Measurement ;
-  sulo:hasValue "156.6"^^xsd:float ;
-  sulo:hasPart ex:unit_cm ;
-  sulo:atTime ex:time_measurement_height_2007_01_01_20_35 .
+# Body Mass Index
+ex:proc_bmi a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_bmi ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:unit_cm a sulo:Unit .
-
-ex:role_measurement_height_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_height .
-
-ex:measurement_height_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_height_output ;
-  sulo:involves ex:measurement_process_height .
-
-ex:process_status_completed_height a chr:ProcessStatus .
-
-ex:measurement_height_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_height ;
-  sulo:to ex:process_status_completed_height .
-
-ex:measurement_process_pain a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_pain_2007_01_01_20_35 .
-
-ex:time_measurement_pain_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
-
-ex:role_measurement_pain_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_pain_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_pain_patient ;
-  sulo:involves ex:measurement_process_pain .
-
-ex:measurement_pain a chr:Measurement ;
-  sulo:hasValue "2.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score ;
-  sulo:atTime ex:time_measurement_pain_2007_01_01_20_35 .
-
-ex:unit_score a sulo:Unit .
-
-ex:role_measurement_pain_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_pain .
-
-ex:measurement_pain_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_pain_output ;
-  sulo:involves ex:measurement_process_pain .
-
-ex:process_status_completed_pain a chr:ProcessStatus .
-
-ex:measurement_pain_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_pain ;
-  sulo:to ex:process_status_completed_pain .
-
-ex:measurement_process_weight a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_weight_2007_01_01_20_35 .
-
-ex:time_measurement_weight_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
-
-ex:role_measurement_weight_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_weight_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_weight_patient ;
-  sulo:involves ex:measurement_process_weight .
-
-ex:measurement_weight a chr:Measurement ;
-  sulo:hasValue "73.7"^^xsd:float ;
-  sulo:hasPart ex:unit_kg ;
-  sulo:atTime ex:time_measurement_weight_2007_01_01_20_35 .
-
-ex:unit_kg a sulo:Unit .
-
-ex:role_measurement_weight_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_weight .
-
-ex:measurement_weight_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_weight_output ;
-  sulo:involves ex:measurement_process_weight .
-
-ex:process_status_completed_weight a chr:ProcessStatus .
-
-ex:measurement_weight_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_weight ;
-  sulo:to ex:process_status_completed_weight .
-
-ex:measurement_process_bmi a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_bmi_2007_01_01_20_35 .
-
-ex:time_measurement_bmi_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
-
-ex:role_measurement_bmi_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_bmi_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_bmi_patient ;
-  sulo:involves ex:measurement_process_bmi .
+ex:role_output_bmi a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_bmi .
 
 ex:measurement_bmi a chr:Measurement ;
-  sulo:hasValue "30.05"^^xsd:float ;
-  sulo:hasPart ex:unit_kg_m2 ;
-  sulo:atTime ex:time_measurement_bmi_2007_01_01_20_35 .
+    sulo:hasValue "30.05"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:unit_kg_m2 a sulo:Unit .
+# Heart rate
+ex:proc_heart_rate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_heart_rate ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_measurement_bmi_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_bmi .
-
-ex:measurement_bmi_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_bmi_output ;
-  sulo:involves ex:measurement_process_bmi .
-
-ex:process_status_completed_bmi a chr:ProcessStatus .
-
-ex:measurement_bmi_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_bmi ;
-  sulo:to ex:process_status_completed_bmi .
-
-ex:measurement_process_heart_rate a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_heart_rate_2007_01_01_20_35 .
-
-ex:time_measurement_heart_rate_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
-
-ex:role_measurement_heart_rate_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_heart_rate_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_heart_rate_patient ;
-  sulo:involves ex:measurement_process_heart_rate .
+ex:role_output_heart_rate a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_heart_rate .
 
 ex:measurement_heart_rate a chr:Measurement ;
-  sulo:hasValue "79.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min ;
-  sulo:atTime ex:time_measurement_heart_rate_2007_01_01_20_35 .
+    sulo:hasValue "79"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:unit_per_min a sulo:Unit .
+# Respiratory rate
+ex:proc_respiratory_rate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_respiratory_rate ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_measurement_heart_rate_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_heart_rate .
-
-ex:measurement_heart_rate_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_heart_rate_output ;
-  sulo:involves ex:measurement_process_heart_rate .
-
-ex:process_status_completed_heart_rate a chr:ProcessStatus .
-
-ex:measurement_heart_rate_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_heart_rate ;
-  sulo:to ex:process_status_completed_heart_rate .
-
-ex:measurement_process_respiratory_rate a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_respiratory_rate_2007_01_01_20_35 .
-
-ex:time_measurement_respiratory_rate_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
-
-ex:role_measurement_respiratory_rate_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_respiratory_rate_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_respiratory_rate_patient ;
-  sulo:involves ex:measurement_process_respiratory_rate .
+ex:role_output_respiratory_rate a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_respiratory_rate .
 
 ex:measurement_respiratory_rate a chr:Measurement ;
-  sulo:hasValue "14.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min ;
-  sulo:atTime ex:time_measurement_respiratory_rate_2007_01_01_20_35 .
+    sulo:hasValue "14"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:role_measurement_respiratory_rate_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_respiratory_rate .
+# Glucose
+ex:proc_glucose a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_glucose ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:measurement_respiratory_rate_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_respiratory_rate_output ;
-  sulo:involves ex:measurement_process_respiratory_rate .
-
-ex:process_status_completed_respiratory_rate a chr:ProcessStatus .
-
-ex:measurement_respiratory_rate_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_respiratory_rate ;
-  sulo:to ex:process_status_completed_respiratory_rate .
-
-ex:measurement_process_glucose a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_glucose_2007_01_01_20_35 .
-
-ex:time_measurement_glucose_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
-
-ex:role_measurement_glucose_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_glucose_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_glucose_patient ;
-  sulo:involves ex:measurement_process_glucose .
+ex:role_output_glucose a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_glucose .
 
 ex:measurement_glucose a chr:Measurement ;
-  sulo:hasValue "70.52"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL ;
-  sulo:atTime ex:time_measurement_glucose_2007_01_01_20_35 .
+    sulo:hasValue "70.52"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:role_measurement_glucose_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_glucose .
+# Urea nitrogen
+ex:proc_urea_nitrogen a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_urea_nitrogen ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:measurement_glucose_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_glucose_output ;
-  sulo:involves ex:measurement_process_glucose .
-
-ex:process_status_completed_glucose a chr:ProcessStatus .
-
-ex:measurement_glucose_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_glucose ;
-  sulo:to ex:process_status_completed_glucose .
-
-ex:measurement_process_urea_nitrogen a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_urea_nitrogen_2007_01_01_20_35 .
-
-ex:time_measurement_urea_nitrogen_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
-
-ex:role_measurement_urea_nitrogen_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_urea_nitrogen_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_urea_nitrogen_patient ;
-  sulo:involves ex:measurement_process_urea_nitrogen .
+ex:role_output_urea_nitrogen a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_urea_nitrogen .
 
 ex:measurement_urea_nitrogen a chr:Measurement ;
-  sulo:hasValue "18.79"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL ;
-  sulo:atTime ex:time_measurement_urea_nitrogen_2007_01_01_20_35 .
+    sulo:hasValue "18.79"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:role_measurement_urea_nitrogen_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_urea_nitrogen .
+# Creatinine
+ex:proc_creatinine a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_creatinine ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:measurement_urea_nitrogen_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_urea_nitrogen_output ;
-  sulo:involves ex:measurement_process_urea_nitrogen .
-
-ex:process_status_completed_urea_nitrogen a chr:ProcessStatus .
-
-ex:measurement_urea_nitrogen_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_urea_nitrogen ;
-  sulo:to ex:process_status_completed_urea_nitrogen .
-
-ex:measurement_process_creatinine a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_creatinine_2007_01_01_20_35 .
-
-ex:time_measurement_creatinine_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
-
-ex:role_measurement_creatinine_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_creatinine_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_creatinine_patient ;
-  sulo:involves ex:measurement_process_creatinine .
+ex:role_output_creatinine a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_creatinine .
 
 ex:measurement_creatinine a chr:Measurement ;
-  sulo:hasValue "1.13"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL ;
-  sulo:atTime ex:time_measurement_creatinine_2007_01_01_20_35 .
+    sulo:hasValue "1.13"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:role_measurement_creatinine_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_creatinine .
+# Calcium
+ex:proc_calcium a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_calcium ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:measurement_creatinine_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_creatinine_output ;
-  sulo:involves ex:measurement_process_creatinine .
-
-ex:process_status_completed_creatinine a chr:ProcessStatus .
-
-ex:measurement_creatinine_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_creatinine ;
-  sulo:to ex:process_status_completed_creatinine .
-
-ex:measurement_process_calcium a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_calcium_2007_01_01_20_35 .
-
-ex:time_measurement_calcium_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
-
-ex:role_measurement_calcium_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_calcium_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_calcium_patient ;
-  sulo:involves ex:measurement_process_calcium .
+ex:role_output_calcium a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_calcium .
 
 ex:measurement_calcium a chr:Measurement ;
-  sulo:hasValue "9.54"^^xsd:float ;
-  sulo:hasPart ex:unit_mg_dL ;
-  sulo:atTime ex:time_measurement_calcium_2007_01_01_20_35 .
+    sulo:hasValue "9.54"^^xsd:float ;
+    sulo:hasPart ex:unit_mg_per_dL ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:role_measurement_calcium_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_calcium .
+# Sodium
+ex:proc_sodium a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_sodium ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:measurement_calcium_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_calcium_output ;
-  sulo:involves ex:measurement_process_calcium .
-
-ex:process_status_completed_calcium a chr:ProcessStatus .
-
-ex:measurement_calcium_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_calcium ;
-  sulo:to ex:process_status_completed_calcium .
-
-ex:measurement_process_sodium a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_sodium_2007_01_01_20_35 .
-
-ex:time_measurement_sodium_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
-
-ex:role_measurement_sodium_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_sodium_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_sodium_patient ;
-  sulo:involves ex:measurement_process_sodium .
+ex:role_output_sodium a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_sodium .
 
 ex:measurement_sodium a chr:Measurement ;
-  sulo:hasValue "139.65"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_L ;
-  sulo:atTime ex:time_measurement_sodium_2007_01_01_20_35 .
+    sulo:hasValue "139.65"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:role_measurement_sodium_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_sodium .
+# Potassium
+ex:proc_potassium a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_potassium ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:measurement_sodium_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_sodium_output ;
-  sulo:involves ex:measurement_process_sodium .
-
-ex:process_status_completed_sodium a chr:ProcessStatus .
-
-ex:measurement_sodium_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_sodium ;
-  sulo:to ex:process_status_completed_sodium .
-
-ex:measurement_process_potassium a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_potassium_2007_01_01_20_35 .
-
-ex:time_measurement_potassium_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
-
-ex:role_measurement_potassium_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_potassium_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_potassium_patient ;
-  sulo:involves ex:measurement_process_potassium .
+ex:role_output_potassium a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_potassium .
 
 ex:measurement_potassium a chr:Measurement ;
-  sulo:hasValue "4.66"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_L ;
-  sulo:atTime ex:time_measurement_potassium_2007_01_01_20_35 .
+    sulo:hasValue "4.66"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:role_measurement_potassium_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_potassium .
+# Chloride
+ex:proc_chloride a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_chloride ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:measurement_potassium_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_potassium_output ;
-  sulo:involves ex:measurement_process_potassium .
-
-ex:process_status_completed_potassium a chr:ProcessStatus .
-
-ex:measurement_potassium_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_potassium ;
-  sulo:to ex:process_status_completed_potassium .
-
-ex:measurement_process_chloride a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_chloride_2007_01_01_20_35 .
-
-ex:time_measurement_chloride_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
-
-ex:role_measurement_chloride_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_chloride_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_chloride_patient ;
-  sulo:involves ex:measurement_process_chloride .
+ex:role_output_chloride a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_chloride .
 
 ex:measurement_chloride a chr:Measurement ;
-  sulo:hasValue "103.35"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_L ;
-  sulo:atTime ex:time_measurement_chloride_2007_01_01_20_35 .
+    sulo:hasValue "103.35"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:role_measurement_chloride_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_chloride .
+# Carbon dioxide total
+ex:proc_co2_total a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_co2_total ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:measurement_chloride_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_chloride_output ;
-  sulo:involves ex:measurement_process_chloride .
+ex:role_output_co2_total a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_co2_total .
 
-ex:process_status_completed_chloride a chr:ProcessStatus .
+ex:measurement_co2_total a chr:Measurement ;
+    sulo:hasValue "24.5"^^xsd:float ;
+    sulo:hasPart ex:unit_mmol_per_L ;
+    sulo:atTime ex:time_2007_01_01T20_35_54 .
 
-ex:measurement_chloride_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_chloride ;
-  sulo:to ex:process_status_completed_chloride .
+# PHQ-2 score
+ex:proc_phq2 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_phq2 ;
+    sulo:atTime ex:time_2007_01_01T21_45_48 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:measurement_process_carbon_dioxide a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_carbon_dioxide_2007_01_01_20_35 .
-
-ex:time_measurement_carbon_dioxide_2007_01_01_20_35 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T20:35:00"^^xsd:dateTime .
-
-ex:role_measurement_carbon_dioxide_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_carbon_dioxide_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_carbon_dioxide_patient ;
-  sulo:involves ex:measurement_process_carbon_dioxide .
-
-ex:measurement_carbon_dioxide a chr:Measurement ;
-  sulo:hasValue "24.5"^^xsd:float ;
-  sulo:hasPart ex:unit_mmol_L ;
-  sulo:atTime ex:time_measurement_carbon_dioxide_2007_01_01_20_35 .
-
-ex:role_measurement_carbon_dioxide_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_carbon_dioxide .
-
-ex:measurement_carbon_dioxide_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_carbon_dioxide_output ;
-  sulo:involves ex:measurement_process_carbon_dioxide .
-
-ex:process_status_completed_carbon_dioxide a chr:ProcessStatus .
-
-ex:measurement_carbon_dioxide_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_carbon_dioxide ;
-  sulo:to ex:process_status_completed_carbon_dioxide .
-
-ex:measurement_process_phq2 a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_phq2_2007_01_01_21_45 .
-
-ex:time_measurement_phq2_2007_01_01_21_45 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T21:45:00"^^xsd:dateTime .
-
-ex:role_measurement_phq2_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_phq2_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_phq2_patient ;
-  sulo:involves ex:measurement_process_phq2 .
+ex:role_output_phq2 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_phq2 .
 
 ex:measurement_phq2 a chr:Measurement ;
-  sulo:hasValue "1.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score ;
-  sulo:atTime ex:time_measurement_phq2_2007_01_01_21_45 .
+    sulo:hasValue "1"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2007_01_01T21_45_48 .
 
-ex:role_measurement_phq2_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_phq2 .
+# DAST-10 total score
+ex:proc_dast10 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_dast10 ;
+    sulo:atTime ex:time_2007_01_01T22_23_14 ;
+    sulo:hasFeature ex:status_completed .
 
-ex:measurement_phq2_output_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_phq2_output ;
-  sulo:involves ex:measurement_process_phq2 .
-
-ex:process_status_completed_phq2 a chr:ProcessStatus .
-
-ex:measurement_phq2_status_association a sulo:Association ;
-  sulo:relates ex:measurement_process_phq2 ;
-  sulo:to ex:process_status_completed_phq2 .
-
-ex:measurement_process_dast10 a chr:MeasurementProcess ;
-  sulo:atTime ex:time_measurement_dast10_2007_01_01_22_23 .
-
-ex:time_measurement_dast10_2007_01_01_22_23 a sulo:TimeInstant ;
-  sulo:hasValue "2007-01-01T22:23:00"^^xsd:dateTime .
-
-ex:role_measurement_dast10_patient a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
-
-ex:measurement_dast10_patient_participation a sulo:Participation ;
-  sulo:hasRole ex:role_measurement_dast10_patient ;
-  sulo:involves ex:measurement_process_dast10 .
+ex:role_output_dast10 a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_dast10 .
 
 ex:measurement_dast10 a chr:Measurement ;
-  sulo:hasValue "0.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score ;
-  sulo:atTime ex:time_measurement_dast10_2007_01_01_22_23 .
+    sulo:hasValue "0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_2007_01_01T22_23_14 .
 
-ex:role_measurement_dast10_output a chr:OutputRole ;
-  sulo:isFeatureOf ex:measurement_dast10 .
+# ---- Evaluation and Diagnostic Statement ----
 
-ex:measurement_d
+ex:evaluation_2007_01_01T22_23_14 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_Provider_Ivonne ;
+    sulo:hasParticipant ex:role_Subject_Estela ;
+    sulo:hasParticipant ex:role_output_diagnosis ;
+    sulo:atTime ex:time_2007_01_01T22_23_14 ;
+    sulo:hasFeature ex:status_completed .
+
+ex:role_output_diagnosis a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnostic_gingivitis .
+
+ex:diagnostic_gingivitis a chr:DiagnosticStatement .
+
+# ---- Care Plan ----
+
+ex:careplan_2007_01_01 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_followup .
+
+ex:procedure_followup a chr:MedicalProcedure .

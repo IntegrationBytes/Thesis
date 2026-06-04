@@ -4,31 +4,583 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Aracely711Devon268Collins926 a chr:Person .
+# Patient
+ex:patient_AracelyDevonCollins a chr:Person ;
+    rdfs:label "Aracely711 Devon268 Collins926" .
 
-ex:care_unit_FathersBillsPlace a chr:CareUnit .
+# Care provider
+ex:provider_EdmundoEichmann a chr:Person ;
+    rdfs:label "Dr. Edmundo94 Eichmann909" .
 
-ex:physician_Edmundo94Eichmann909 a chr:Person .
+# Care unit
+ex:careunit_FATHER_BILL_PLACE a chr:CareUnit ;
+    rdfs:label "FATHER BILL'S PLACE" .
 
-ex:visit_2021_07_02 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:physician_Edmundo94Eichmann909 ;
-  chr:hasCareUnit ex:care_unit_FathersBillsPlace ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 .
+# Clinical visit
+ex:visit_2021_07_02_15_04_38 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2021-07-02T15:04:38+02:00" ;
+    chr:hasDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCareUnit ex:careunit_FATHER_BILL_PLACE ;
+    chr:hasCareProvider ex:provider_EdmundoEichmann ;
+    chr:hasPatient ex:patient_AracelyDevonCollins .
 
-ex:proc_glucose_serum_20210702 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_glucose_serum_20210702 .
+# Units
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
 
-ex:meas_glucose_serum_20210702 a chr:Measurement ;
-  chr:hasQuantityValue "95.87"^^xsd:float ;
-  chr:hasUnit sulo:mg_dL ;
-  chr:hasMeasuredDate "2021-07-02T15:04:00"^^xsd:dateTime .
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> .
 
-ex:proc_urea_serum_20210702 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Aracely711Devon268Collins926 ;
-  chr:hasResult ex:meas_urea_serum_20210702 .
+ex:unit_mL_per_min_per_1_73_m2 a chr:Unit ;
+    rdfs:label "mL/min/1.73 m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mLperminper1.73m2> .
 
-ex:meas_urea_serum_20210702 a chr:Measurement ;
-  chr:hasQuantityValue "10.19"^^xsd:float ;
-  chr:hasUnit sulo:mg_dL ;
-  chr:hasMeasuredDate "2021-07
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
+
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
+
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
+
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kgperm2> .
+
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/1permin> .
+
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
+
+ex:unit_unitless a chr:Unit ;
+    rdfs:label "unitless" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/1> .
+
+ex:unit_pH a chr:Unit ;
+    rdfs:label "pH" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pH> .
+
+# Measurements (measurement process + measurement)
+
+# 1 Glucose Serum
+ex:measproc_2345-7_2021-07-02T15_04_38_1 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Glucose (LOINC 2345-7)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_2345-7_2021-07-02T15_04_38_1 .
+
+ex:meas_2345-7_2021-07-02T15_04_38_1 a chr:Measurement ;
+    rdfs:label "95.87 mg/dL" ;
+    chr:hasQuantityValue "95.87"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2345-7> .
+
+# 2 Urea nitrogen Serum
+ex:measproc_3094-0_2021-07-02T15_04_38_2 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Urea nitrogen (LOINC 3094-0)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_3094-0_2021-07-02T15_04_38_2 .
+
+ex:meas_3094-0_2021-07-02T15_04_38_2 a chr:Measurement ;
+    rdfs:label "10.19 mg/dL" ;
+    chr:hasQuantityValue "10.19"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/3094-0> .
+
+# 3 Creatinine Serum
+ex:measproc_2160-0_2021-07-02T15_04_38_3 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Creatinine (LOINC 2160-0)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_2160-0_2021-07-02T15_04_38_3 .
+
+ex:meas_2160-0_2021-07-02T15_04_38_3 a chr:Measurement ;
+    rdfs:label "1.5606 mg/dL" ;
+    chr:hasQuantityValue "1.5606"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2160-0> .
+
+# 4 Calcium Serum
+ex:measproc_17861-6_2021-07-02T15_04_38_4 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Calcium (LOINC 17861-6)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_17861-6_2021-07-02T15_04_38_4 .
+
+ex:meas_17861-6_2021-07-02T15_04_38_4 a chr:Measurement ;
+    rdfs:label "10.11 mg/dL" ;
+    chr:hasQuantityValue "10.11"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/17861-6> .
+
+# 5 Sodium Serum
+ex:measproc_2951-2_2021-07-02T15_04_38_5 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Sodium (LOINC 2951-2)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_2951-2_2021-07-02T15_04_38_5 .
+
+ex:meas_2951-2_2021-07-02T15_04_38_5 a chr:Measurement ;
+    rdfs:label "142.72 mmol/L" ;
+    chr:hasQuantityValue "142.72"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2951-2> .
+
+# 6 Potassium Serum
+ex:measproc_2823-3_2021-07-02T15_04_38_6 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Potassium (LOINC 2823-3)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_2823-3_2021-07-02T15_04_38_6 .
+
+ex:meas_2823-3_2021-07-02T15_04_38_6 a chr:Measurement ;
+    rdfs:label "4.07 mmol/L" ;
+    chr:hasQuantityValue "4.07"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2823-3> .
+
+# 7 Chloride Serum
+ex:measproc_2075-0_2021-07-02T15_04_38_7 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Chloride (LOINC 2075-0)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_2075-0_2021-07-02T15_04_38_7 .
+
+ex:meas_2075-0_2021-07-02T15_04_38_7 a chr:Measurement ;
+    rdfs:label "102.6 mmol/L" ;
+    chr:hasQuantityValue "102.6"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2075-0> .
+
+# 8 Carbon dioxide total Serum
+ex:measproc_2028-9_2021-07-02T15_04_38_8 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Carbon dioxide, total (LOINC 2028-9)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_2028-9_2021-07-02T15_04_38_8 .
+
+ex:meas_2028-9_2021-07-02T15_04_38_8 a chr:Measurement ;
+    rdfs:label "21.02 mmol/L" ;
+    chr:hasQuantityValue "21.02"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2028-9> .
+
+# 9 GFR
+ex:measproc_33914-3_2021-07-02T15_04_38_9 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Glomerular filtration rate (LOINC 33914-3)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_33914-3_2021-07-02T15_04_38_9 .
+
+ex:meas_33914-3_2021-07-02T15_04_38_9 a chr:Measurement ;
+    rdfs:label "131.45 mL/min/1.73 m2" ;
+    chr:hasQuantityValue "131.45"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/33914-3> .
+
+# 10 Glucose Urine
+ex:measproc_5792-7_2021-07-02T15_04_38_10 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Glucose (LOINC 5792-7)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_5792-7_2021-07-02T15_04_38_10 .
+
+ex:meas_5792-7_2021-07-02T15_04_38_10 a chr:Measurement ;
+    rdfs:label "2.4087 mg/dL" ;
+    chr:hasQuantityValue "2.4087"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5792-7> .
+
+# 11 Bilirubin.total Urine
+ex:measproc_20505-4_2021-07-02T15_04_38_11 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Bilirubin.total (LOINC 20505-4)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_20505-4_2021-07-02T15_04_38_11 .
+
+ex:meas_20505-4_2021-07-02T15_04_38_11 a chr:Measurement ;
+    rdfs:label "0.46424 mg/dL" ;
+    chr:hasQuantityValue "0.46424"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/20505-4> .
+
+# 12 Ketones Urine
+ex:measproc_5797-6_2021-07-02T15_04_38_12 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Ketones (LOINC 5797-6)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_5797-6_2021-07-02T15_04_38_12 .
+
+ex:meas_5797-6_2021-07-02T15_04_38_12 a chr:Measurement ;
+    rdfs:label "2.1568 mg/dL" ;
+    chr:hasQuantityValue "2.1568"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5797-6> .
+
+# 13 Specific gravity Urine
+ex:measproc_5811-5_2021-07-02T15_04_38_13 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Specific gravity of Urine (LOINC 5811-5)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_5811-5_2021-07-02T15_04_38_13 .
+
+ex:meas_5811-5_2021-07-02T15_04_38_13 a chr:Measurement ;
+    rdfs:label "1.0018 unitless" ;
+    chr:hasQuantityValue "1.0018"^^xsd:float ;
+    chr:hasUnit ex:unit_unitless ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5811-5> .
+
+# 14 pH Urine
+ex:measproc_5803-2_2021-07-02T15_04_38_14 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for pH of Urine (LOINC 5803-2)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_5803-2_2021-07-02T15_04_38_14 .
+
+ex:meas_5803-2_2021-07-02T15_04_38_14 a chr:Measurement ;
+    rdfs:label "6.659 pH" ;
+    chr:hasQuantityValue "6.659"^^xsd:float ;
+    chr:hasUnit ex:unit_pH ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5803-2> .
+
+# 15 Protein Urine
+ex:measproc_5804-0_2021-07-02T15_04_38_15 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Protein (LOINC 5804-0)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_5804-0_2021-07-02T15_04_38_15 .
+
+ex:meas_5804-0_2021-07-02T15_04_38_15 a chr:Measurement ;
+    rdfs:label "55.814 mg/dL" ;
+    chr:hasQuantityValue "55.814"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5804-0> .
+
+# 16 Hemoglobin A1c
+ex:measproc_4548-4_2021-07-02T15_04_38_16 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Hemoglobin A1c/Hemoglobin.total (LOINC 4548-4)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_4548-4_2021-07-02T15_04_38_16 .
+
+ex:meas_4548-4_2021-07-02T15_04_38_16 a chr:Measurement ;
+    rdfs:label "3.13 %" ;
+    chr:hasQuantityValue "3.13"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/4548-4> .
+
+# 17 Body Height
+ex:measproc_8302-2_2021-07-02T15_04_38_17 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Body Height (LOINC 8302-2)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_8302-2_2021-07-02T15_04_38_17 .
+
+ex:meas_8302-2_2021-07-02T15_04_38_17 a chr:Measurement ;
+    rdfs:label "172 cm" ;
+    chr:hasQuantityValue "172"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/8302-2> .
+
+# 18 Pain severity
+ex:measproc_72514-3_2021-07-02T15_04_38_18 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Pain severity (LOINC 72514-3)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_72514-3_2021-07-02T15_04_38_18 .
+
+ex:meas_72514-3_2021-07-02T15_04_38_18 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/72514-3> .
+
+# 19 Body Weight
+ex:measproc_29463-7_2021-07-02T15_04_38_19 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Body Weight (LOINC 29463-7)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_29463-7_2021-07-02T15_04_38_19 .
+
+ex:meas_29463-7_2021-07-02T15_04_38_19 a chr:Measurement ;
+    rdfs:label "82.2 kg" ;
+    chr:hasQuantityValue "82.2"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/29463-7> .
+
+# 20 Body Mass Index
+ex:measproc_39156-5_2021-07-02T15_04_38_20 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Body mass index (BMI) (LOINC 39156-5)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_39156-5_2021-07-02T15_04_38_20 .
+
+ex:meas_39156-5_2021-07-02T15_04_38_20 a chr:Measurement ;
+    rdfs:label "27.79 kg/m2" ;
+    chr:hasQuantityValue "27.79"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/39156-5> .
+
+# 21 Heart rate
+ex:measproc_8867-4_2021-07-02T15_04_38_21 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Heart rate (LOINC 8867-4)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_8867-4_2021-07-02T15_04_38_21 .
+
+ex:meas_8867-4_2021-07-02T15_04_38_21 a chr:Measurement ;
+    rdfs:label "79 /min" ;
+    chr:hasQuantityValue "79"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/8867-4> .
+
+# 22 Respiratory rate
+ex:measproc_9279-1_2021-07-02T15_04_38_22 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Respiratory rate (LOINC 9279-1)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_9279-1_2021-07-02T15_04_38_22 .
+
+ex:meas_9279-1_2021-07-02T15_04_38_22 a chr:Measurement ;
+    rdfs:label "15 /min" ;
+    chr:hasQuantityValue "15"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/9279-1> .
+
+# 23 Glucose Blood
+ex:measproc_2339-0_2021-07-02T15_04_38_23 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Glucose (LOINC 2339-0)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_2339-0_2021-07-02T15_04_38_23 .
+
+ex:meas_2339-0_2021-07-02T15_04_38_23 a chr:Measurement ;
+    rdfs:label "95.87 mg/dL" ;
+    chr:hasQuantityValue "95.87"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2339-0> .
+
+# 24 Urea nitrogen Blood
+ex:measproc_6299-2_2021-07-02T15_04_38_24 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Urea nitrogen (LOINC 6299-2)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_6299-2_2021-07-02T15_04_38_24 .
+
+ex:meas_6299-2_2021-07-02T15_04_38_24 a chr:Measurement ;
+    rdfs:label "10.19 mg/dL" ;
+    chr:hasQuantityValue "10.19"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/6299-2> .
+
+# 25 Creatinine Blood
+ex:measproc_38483-4_2021-07-02T15_04_38_25 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Creatinine (LOINC 38483-4)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_38483-4_2021-07-02T15_04_38_25 .
+
+ex:meas_38483-4_2021-07-02T15_04_38_25 a chr:Measurement ;
+    rdfs:label "0.98 mg/dL" ;
+    chr:hasQuantityValue "0.98"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/38483-4> .
+
+# 26 Calcium Blood
+ex:measproc_49765-1_2021-07-02T15_04_38_26 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Calcium (LOINC 49765-1)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_49765-1_2021-07-02T15_04_38_26 .
+
+ex:meas_49765-1_2021-07-02T15_04_38_26 a chr:Measurement ;
+    rdfs:label "10.11 mg/dL" ;
+    chr:hasQuantityValue "10.11"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/49765-1> .
+
+# 27 Sodium Blood
+ex:measproc_2947-0_2021-07-02T15_04_38_27 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Sodium (LOINC 2947-0)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_2947-0_2021-07-02T15_04_38_27 .
+
+ex:meas_2947-0_2021-07-02T15_04_38_27 a chr:Measurement ;
+    rdfs:label "142.72 mmol/L" ;
+    chr:hasQuantityValue "142.72"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2947-0> .
+
+# 28 Potassium Blood
+ex:measproc_6298-4_2021-07-02T15_04_38_28 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Potassium (LOINC 6298-4)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_6298-4_2021-07-02T15_04_38_28 .
+
+ex:meas_6298-4_2021-07-02T15_04_38_28 a chr:Measurement ;
+    rdfs:label "4.07 mmol/L" ;
+    chr:hasQuantityValue "4.07"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/6298-4> .
+
+# 29 Chloride Blood
+ex:measproc_2069-3_2021-07-02T15_04_38_29 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Chloride (LOINC 2069-3)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_2069-3_2021-07-02T15_04_38_29 .
+
+ex:meas_2069-3_2021-07-02T15_04_38_29 a chr:Measurement ;
+    rdfs:label "102.6 mmol/L" ;
+    chr:hasQuantityValue "102.6"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2069-3> .
+
+# 30 Carbon dioxide total Blood
+ex:measproc_20565-8_2021-07-02T15_04_38_30 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Carbon dioxide, total (LOINC 20565-8)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_20565-8_2021-07-02T15_04_38_30 .
+
+ex:meas_20565-8_2021-07-02T15_04_38_30 a chr:Measurement ;
+    rdfs:label "21.02 mmol/L" ;
+    chr:hasQuantityValue "21.02"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/20565-8> .
+
+# 31 Cholesterol Serum
+ex:measproc_2093-3_2021-07-02T15_04_38_31 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Cholesterol (LOINC 2093-3)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_2093-3_2021-07-02T15_04_38_31 .
+
+ex:meas_2093-3_2021-07-02T15_04_38_31 a chr:Measurement ;
+    rdfs:label "318.41 mg/dL" ;
+    chr:hasQuantityValue "318.41"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2093-3> .
+
+# 32 Triglyceride Serum
+ex:measproc_2571-8_2021-07-02T15_04_38_32 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Triglyceride (LOINC 2571-8)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_2571-8_2021-07-02T15_04_38_32 .
+
+ex:meas_2571-8_2021-07-02T15_04_38_32 a chr:Measurement ;
+    rdfs:label "111.54 mg/dL" ;
+    chr:hasQuantityValue "111.54"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2571-8> .
+
+# 33 LDL Cholesterol Serum
+ex:measproc_18262-6_2021-07-02T15_04_38_33 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Cholesterol in LDL (LOINC 18262-6)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_18262-6_2021-07-02T15_04_38_33 .
+
+ex:meas_18262-6_2021-07-02T15_04_38_33 a chr:Measurement ;
+    rdfs:label "252.72 mg/dL" ;
+    chr:hasQuantityValue "252.72"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/18262-6> .
+
+# 34 HDL Cholesterol Serum
+ex:measproc_2085-9_2021-07-02T15_04_38_34 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Cholesterol in HDL (LOINC 2085-9)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_2085-9_2021-07-02T15_04_38_34 .
+
+ex:meas_2085-9_2021-07-02T15_04_38_34 a chr:Measurement ;
+    rdfs:label "43.38 mg/dL" ;
+    chr:hasQuantityValue "43.38"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2085-9> .
+
+# 35 GAD-7 total score
+ex:measproc_70274-6_2021-07-02T16_15_24_35 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Generalized anxiety disorder 7 item (GAD-7) total score (LOINC 70274-6)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_70274-6_2021-07-02T16_15_24_35 .
+
+ex:meas_70274-6_2021-07-02T16_15_24_35 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2021-07-02T16:15:24+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/70274-6> .
+
+# 36 Fall risk total
+ex:measproc_59460-6_2021-07-02T16_37_07_36 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Fall risk total (LOINC 59460-6)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_59460-6_2021-07-02T16_37_07_36 .
+
+ex:meas_59460-6_2021-07-02T16_37_07_36 a chr:Measurement ;
+    rdfs:label "14 score" ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2021-07-02T16:37:07+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/59460-6> .
+
+# 37 PHQ-2 total score
+ex:measproc_55758-7_2021-07-02T17_16_04_37 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Patient Health Questionnaire 2 item (PHQ-2) total score (LOINC 55758-7)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_55758-7_2021-07-02T17_16_04_37 .
+
+ex:meas_55758-7_2021-07-02T17_16_04_37 a chr:Measurement ;
+    rdfs:label "2 score" ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2021-07-02T17:16:04+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/55758-7> .
+
+# 38 DAST-10 total score
+ex:measproc_82667-7_2021-07-02T17_56_59_38 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Total score (DAST-10) (LOINC 82667-7)" ;
+    chr:hasPatient ex:patient_AracelyDevonCollins ;
+    chr:hasResult ex:meas_82667-7_2021-07-02T17_56_59_38 .
+
+ex:meas_82667-7_2021-07-02T17_56_59_38 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2021-07-02T17:56:59+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/82667-7> .
+
+# Clinical conditions (diagnostic statements)
+ex:cond_Metabolic_syndrome_X a chr:ClinicalCondition ;
+    rdfs:label "Metabolic syndrome X" ;
+    chr:hasCode <http://snomed.info/id/237602007> ;
+    chr:hasRecordDate "2021-07-02T15:04:38+02:00"^^xsd:dateTime .
+
+ex:cond_Not_in_labor_force a chr:ClinicalCondition ;
+    rdfs:label "Not in labor force" ;
+    chr:hasCode <http://snomed.info/id/741062008> ;
+    chr:hasRecordDate "2021-07-02T16:00:21+02:00"^^xsd:dateTime .
+
+ex:cond_Limited_social_contact a chr:ClinicalCondition ;
+    rdfs:label "Limited social contact" ;
+    chr:hasCode <http://snomed.info/id/423315002> ;
+    chr:hasRecordDate "2021-07-02T16:00:21+02:00"^^xsd:dateTime .
+
+# Care plan
+ex:careplan_2021_07_02 a chr:CarePlan ;
+    rdfs:label "Care plan for follow‑up monitoring and routine review" .

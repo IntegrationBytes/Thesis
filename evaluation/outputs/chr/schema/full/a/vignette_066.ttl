@@ -4,93 +4,173 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Dolores502Marisol435Nevárez403 a chr:Person .
+# Patient
+ex:patient_P70538f53
+    a chr:Person ;
+    rdfs:label "Dolores Marisol Nevárez" .
 
-ex:visit_2017_07_18 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasCareProvider ex:doctor_Gregg522Willms744 ;
-  chr:hasCareUnit ex:care_unit_Marlborough .
+# Care Unit
+ex:careunit_Marlborough_Hospital_Corp
+    a chr:CareUnit ;
+    rdfs:label "MARLBOROUGH HOSPITAL CORP" .
 
-ex:care_unit_Marlborough a chr:CareUnit .
+# Attending Physician
+ex:physician_Gregg_Willms
+    a chr:Person ;
+    rdfs:label "Dr. Gregg Willms" .
 
-ex:doctor_Gregg522Willms744 a chr:Person .
+# Clinical Visit
+ex:visit_2017_07_18T05_20_29
+    a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2017-07-18T05:20:29+02:00" ;
+    chr:hasDate "2017-07-18T05:20:29+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_Gregg_Willms ;
+    chr:hasCareUnit ex:careunit_Marlborough_Hospital_Corp ;
+    chr:hasPatient ex:patient_P70538f53 .
 
-ex:height_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:height_measurement_result .
+# Units
+ex:unit_cm
+    a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:height_measurement_result a chr:Measurement ;
-  chr:hasQuantityValue "109.4"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2017-07-18T05:20:00"^^xsd:dateTime .
+ex:unit_kg
+    a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:pain_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:pain_measurement_result .
+ex:unit_kg_per_m2
+    a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg/m2> .
 
-ex:pain_measurement_result a chr:Measurement ;
-  chr:hasQuantityValue "2.0"^^xsd:float ;
-  chr:hasUnit ex:score ;
-  chr:hasMeasuredDate "2017-07-18T05:20:00"^^xsd:dateTime .
+ex:unit_percent
+    a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
 
-ex:weight_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:weight_measurement_result .
+ex:unit_per_min
+    a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%2Fmin> .
 
-ex:weight_measurement_result a chr:Measurement ;
-  chr:hasQuantityValue "20.6"^^xsd:float ;
-  chr:hasUnit sulo:kg ;
-  chr:hasMeasuredDate "2017-07-18T05:20:00"^^xsd:dateTime .
+# Height Measurement
+ex:measproc_height_2017_07_18T05_20_29
+    a chr:MeasurementProcess ;
+    rdfs:label "Height measurement process on 2017-07-18T05:20:29+02:00" ;
+    chr:hasPatient ex:patient_P70538f53 ;
+    chr:hasResult ex:measurement_height_2017_07_18T05_20_29 .
 
-ex:bmi_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:bmi_measurement_result .
+ex:measurement_height_2017_07_18T05_20_29
+    a chr:Measurement ;
+    rdfs:label "109.4 cm" ;
+    chr:hasMeasuredDate "2017-07-18T05:20:29+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "109.4"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasCode <https://loinc.org/8302-2> .
 
-ex:bmi_measurement_result a chr:Measurement ;
-  chr:hasQuantityValue "17.19"^^xsd:float ;
-  chr:hasUnit ex:kg_per_m2 ;
-  chr:hasMeasuredDate "2017-07-18T05:20:00"^^xsd:dateTime .
+# Pain Severity Measurement
+ex:measproc_pain_2017_07_18T05_20_29
+    a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process on 2017-07-18T05:20:29+02:00" ;
+    chr:hasPatient ex:patient_P70538f53 ;
+    chr:hasResult ex:measurement_pain_2017_07_18T05_20_29 .
 
-ex:bmi_percentile_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:bmi_percentile_measurement_result .
+ex:measurement_pain_2017_07_18T05_20_29
+    a chr:Measurement ;
+    rdfs:label "2" ;
+    chr:hasMeasuredDate "2017-07-18T05:20:29+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasCode <https://loinc.org/72514-3> .
 
-ex:bmi_percentile_measurement_result a chr:Measurement ;
-  chr:hasQuantityValue "89.401"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2017-07-18T05:20:00"^^xsd:dateTime .
+# Weight Measurement
+ex:measproc_weight_2017_07_18T05_20_29
+    a chr:MeasurementProcess ;
+    rdfs:label "Weight measurement process on 2017-07-18T05:20:29+02:00" ;
+    chr:hasPatient ex:patient_P70538f53 ;
+    chr:hasResult ex:measurement_weight_2017_07_18T05_20_29 .
 
-ex:heart_rate_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:heart_rate_measurement_result .
+ex:measurement_weight_2017_07_18T05_20_29
+    a chr:Measurement ;
+    rdfs:label "20.6 kg" ;
+    chr:hasMeasuredDate "2017-07-18T05:20:29+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "20.6"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasCode <https://loinc.org/29463-7> .
 
-ex:heart_rate_measurement_result a chr:Measurement ;
-  chr:hasQuantityValue "80.0"^^xsd:float ;
-  chr:hasUnit ex:per_min ;
-  chr:hasMeasuredDate "2017-07-18T05:20:00"^^xsd:dateTime .
+# BMI (Ratio) Measurement
+ex:measproc_bmi_ratio_2017_07_18T05_20_29
+    a chr:MeasurementProcess ;
+    rdfs:label "BMI (ratio) measurement process on 2017-07-18T05:20:29+02:00" ;
+    chr:hasPatient ex:patient_P70538f53 ;
+    chr:hasResult ex:measurement_bmi_ratio_2017_07_18T05_20_29 .
 
-ex:respiratory_rate_measurement_process a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:respiratory_rate_measurement_result .
+ex:measurement_bmi_ratio_2017_07_18T05_20_29
+    a chr:Measurement ;
+    rdfs:label "17.19 kg/m2" ;
+    chr:hasMeasuredDate "2017-07-18T05:20:29+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "17.19"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasCode <https://loinc.org/39156-5> .
 
-ex:respiratory_rate_measurement_result a chr:Measurement ;
-  chr:hasQuantityValue "13.0"^^xsd:float ;
-  chr:hasUnit ex:per_min ;
-  chr:hasMeasuredDate "2017-07-18T05:20:00"^^xsd:dateTime .
+# BMI (Percentile) Measurement
+ex:measproc_bmi_percentile_2017_07_18T05_20_29
+    a chr:MeasurementProcess ;
+    rdfs:label "BMI (percentile) measurement process on 2017-07-18T05:20:29+02:00" ;
+    chr:hasPatient ex:patient_P70538f53 ;
+    chr:hasResult ex:measurement_bmi_percentile_2017_07_18T05_20_29 .
 
-ex:evaluation_process a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_statement_medication_review .
+ex:measurement_bmi_percentile_2017_07_18T05_20_29
+    a chr:Measurement ;
+    rdfs:label "89.401 %" ;
+    chr:hasMeasuredDate "2017-07-18T05:20:29+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "89.401"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasCode <https://loinc.org/59576-9> .
 
-ex:diagnostic_statement_medication_review a chr:DiagnosticStatement .
+# Heart Rate Measurement
+ex:measproc_heart_rate_2017_07_18T05_20_29
+    a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process on 2017-07-18T05:20:29+02:00" ;
+    chr:hasPatient ex:patient_P70538f53 ;
+    chr:hasResult ex:measurement_heart_rate_2017_07_18T05_20_29 .
 
-ex:condition_medication_review a chr:ClinicalCondition ;
-  chr:hasRecordDate "2017-07-18T05:20:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:measurement_heart_rate_2017_07_18T05_20_29
+    a chr:Measurement ;
+    rdfs:label "80 /min" ;
+    chr:hasMeasuredDate "2017-07-18T05:20:29+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "80"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <https://loinc.org/8867-4> .
 
-ex:severity_moderate a chr:Severity .
+# Respiratory Rate Measurement
+ex:measproc_respiratory_rate_2017_07_18T05_20_29
+    a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process on 2017-07-18T05:20:29+02:00" ;
+    chr:hasPatient ex:patient_P70538f53 ;
+    chr:hasResult ex:measurement_respiratory_rate_2017_07_18T05_20_29 .
 
-ex:care_plan a chr:CarePlan .
+ex:measurement_respiratory_rate_2017_07_18T05_20_29
+    a chr:Measurement ;
+    rdfs:label "13 /min" ;
+    chr:hasMeasuredDate "2017-07-18T05:20:29+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasCode <https://loinc.org/9279-1> .
 
-ex:score a sulo:Unit .
-ex:kg_per_m2 a sulo:Unit .
-ex:per_min a sulo:Unit .
+# Diagnostic Statement
+ex:diagstmt_medication_review
+    a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+# Evaluation Process
+ex:evaluation_2017_07_18T05_20_29
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Gregg Willms on 2017-07-18T05:20:29+02:00" ;
+    chr:hasObservation ex:diagstmt_medication_review .
+
+# Care Plan
+ex:careplan_2017_07_18T05_20_29
+    a chr:CarePlan ;
+    rdfs:label "Care plan established on 2017-07-18T05:20:29+02:00" .

@@ -4,189 +4,219 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Cory323_Frank378_Heller342 a chr:Person .
+# Persons
+ex:person_Cory_Heller a chr:Person .
+ex:person_Hank_Schneider a chr:Person .
 
-ex:visit_2019_04_21 a chr:ClinicalVisit ;
-  sulo:isIn ex:care_unit_lowell ;
-  sulo:atTime ex:time_visit_2019_04_21 .
+# Care unit
+ex:careunit_LOWELL a chr:CareUnit .
 
-ex:time_visit_2019_04_21 a sulo:TimeInstant ;
-  sulo:hasValue "2019-04-21T11:44:00"^^xsd:dateTime .
+# Clinical visit
+ex:visit_2019_04_21T11_44_05 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_VisitPatient_Cory ;
+    sulo:hasParticipant ex:role_VisitProvider_Hank ;
+    sulo:isIn ex:careunit_LOWELL ;
+    sulo:atTime ex:time_visit .
 
-ex:care_unit_lowell a chr:CareUnit .
+ex:role_VisitPatient_Cory a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Cory_Heller .
 
-ex:provider_Hank686_Schneider199 a chr:Person .
+ex:role_VisitProvider_Hank a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Hank_Schneider .
 
-ex:role_visit_provider_Schneider199 a chr:CareProviderRole ;
-  sulo:isFeatureOf ex:provider_Hank686_Schneider199 .
+ex:time_visit a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-21T11:44:05+02:00"^^xsd:dateTime .
 
-ex:role_visit_patient_Cory323 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+# Common status
+ex:status_completed a chr:ProcessStatus ;
+    rdfs:label "completed" .
 
-ex:exam_procedure a chr:MedicalProcedure .
+# Units
+ex:unit_percent      a chr:Unit .
+ex:unit_cm           a chr:Unit .
+ex:unit_score        a chr:Unit .
+ex:unit_kg           a chr:Unit .
+ex:unit_kg_per_m2    a chr:Unit .
+ex:unit_per_min      a chr:Unit .
 
-ex:measurement_process_FEV1_2019_04_21 a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_measurement_patient_Cory323_FEV1 ;
-  sulo:atTime ex:time_measurement_FEV1_2019_04_21 ;
-  sulo:hasFeature ex:process_status_completed_FEV1 .
+# FEV1/FVC measurement
+ex:measurement_FEV1 a chr:Measurement ;
+    sulo:hasValue "49.314"^^xsd:float ;
+    sulo:hasPart ex:unit_percent ;
+    sulo:atTime ex:time_FEV1 .
 
-ex:time_measurement_FEV1_2019_04_21 a sulo:TimeInstant ;
-  sulo:hasValue "2019-04-21T11:44:00"^^xsd:dateTime .
+ex:time_FEV1 a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-21T11:44:05+02:00"^^xsd:dateTime .
 
-ex:role_measurement_patient_Cory323_FEV1 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+ex:proc_FEV1 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_FEV1_Patient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_FEV1 .
 
-ex:measurement_FEV1_2019_04_21 a chr:Measurement ;
-  sulo:hasValue "49.314"^^xsd:float .
+ex:role_FEV1_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Cory_Heller .
 
-ex:process_status_completed_FEV1 a chr:ProcessStatus .
+# Body Height measurement
+ex:measurement_Height a chr:Measurement ;
+    sulo:hasValue "164.0"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_Height .
 
-ex:measurement_process_height_2019_04_21 a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_measurement_patient_Cory323_height ;
-  sulo:atTime ex:time_measurement_height_2019_04_21 ;
-  sulo:hasFeature ex:process_status_completed_height .
+ex:time_Height a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-21T11:44:05+02:00"^^xsd:dateTime .
 
-ex:time_measurement_height_2019_04_21 a sulo:TimeInstant ;
-  sulo:hasValue "2019-04-21T11:44:00"^^xsd:dateTime .
+ex:proc_Height a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Height_Patient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Height .
 
-ex:role_measurement_patient_Cory323_height a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+ex:role_Height_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Cory_Heller .
 
-ex:measurement_height_2019_04_21 a chr:Measurement ;
-  sulo:hasValue "164.0"^^xsd:float .
+# Pain severity measurement
+ex:measurement_Pain a chr:Measurement ;
+    sulo:hasValue "3.0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_Pain .
 
-ex:process_status_completed_height a chr:ProcessStatus .
+ex:time_Pain a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-21T11:44:05+02:00"^^xsd:dateTime .
 
-ex:measurement_process_pain_2019_04_21 a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_measurement_patient_Cory323_pain ;
-  sulo:atTime ex:time_measurement_pain_2019_04_21 ;
-  sulo:hasFeature ex:process_status_completed_pain .
+ex:proc_Pain a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Pain_Patient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Pain .
 
-ex:time_measurement_pain_2019_04_21 a sulo:TimeInstant ;
-  sulo:hasValue "2019-04-21T11:44:00"^^xsd:dateTime .
+ex:role_Pain_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Cory_Heller .
 
-ex:role_measurement_patient_Cory323_pain a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+# Body Weight measurement
+ex:measurement_Weight a chr:Measurement ;
+    sulo:hasValue "76.9"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_Weight .
 
-ex:measurement_pain_2019_04_21 a chr:Measurement ;
-  sulo:hasValue "3.0"^^xsd:float .
+ex:time_Weight a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-21T11:44:05+02:00"^^xsd:dateTime .
 
-ex:process_status_completed_pain a chr:ProcessStatus .
+ex:proc_Weight a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_Weight_Patient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_Weight .
 
-ex:measurement_process_weight_2019_04_21 a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_measurement_patient_Cory323_weight ;
-  sulo:atTime ex:time_measurement_weight_2019_04_21 ;
-  sulo:hasFeature ex:process_status_completed_weight .
+ex:role_Weight_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Cory_Heller .
 
-ex:time_measurement_weight_2019_04_21 a sulo:TimeInstant ;
-  sulo:hasValue "2019-04-21T11:44:00"^^xsd:dateTime .
+# BMI measurement
+ex:measurement_BMI a chr:Measurement ;
+    sulo:hasValue "28.58"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_BMI .
 
-ex:role_measurement_patient_Cory323_weight a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+ex:time_BMI a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-21T11:44:05+02:00"^^xsd:dateTime .
 
-ex:measurement_weight_2019_04_21 a chr:Measurement ;
-  sulo:hasValue "76.9"^^xsd:float .
+ex:proc_BMI a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_BMI_Patient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_BMI .
 
-ex:process_status_completed_weight a chr:ProcessStatus .
+ex:role_BMI_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Cory_Heller .
 
-ex:measurement_process_bmi_2019_04_21 a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_measurement_patient_Cory323_bmi ;
-  sulo:atTime ex:time_measurement_bmi_2019_04_21 ;
-  sulo:hasFeature ex:process_status_completed_bmi .
+# Heart rate measurement
+ex:measurement_HeartRate a chr:Measurement ;
+    sulo:hasValue "66.0"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_HeartRate .
 
-ex:time_measurement_bmi_2019_04_21 a sulo:TimeInstant ;
-  sulo:hasValue "2019-04-21T11:44:00"^^xsd:dateTime .
+ex:time_HeartRate a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-21T11:44:05+02:00"^^xsd:dateTime .
 
-ex:role_measurement_patient_Cory323_bmi a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+ex:proc_HeartRate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_HeartRate_Patient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_HeartRate .
 
-ex:measurement_bmi_2019_04_21 a chr:Measurement ;
-  sulo:hasValue "28.58"^^xsd:float .
+ex:role_HeartRate_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Cory_Heller .
 
-ex:process_status_completed_bmi a chr:ProcessStatus .
+# Respiratory rate measurement
+ex:measurement_RespRate a chr:Measurement ;
+    sulo:hasValue "13.0"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_RespRate .
 
-ex:measurement_process_heartrate_2019_04_21 a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_measurement_patient_Cory323_heartrate ;
-  sulo:atTime ex:time_measurement_heartrate_2019_04_21 ;
-  sulo:hasFeature ex:process_status_completed_heartrate .
+ex:time_RespRate a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-21T11:44:05+02:00"^^xsd:dateTime .
 
-ex:time_measurement_heartrate_2019_04_21 a sulo:TimeInstant ;
-  sulo:hasValue "2019-04-21T11:44:00"^^xsd:dateTime .
+ex:proc_RespRate a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_RespRate_Patient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_RespRate .
 
-ex:role_measurement_patient_Cory323_heartrate a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+ex:role_RespRate_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Cory_Heller .
 
-ex:measurement_heartrate_2019_04_21 a chr:Measurement ;
-  sulo:hasValue "66.0"^^xsd:float .
+# PHQ-2 measurement
+ex:measurement_PHQ2 a chr:Measurement ;
+    sulo:hasValue "2.0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_PHQ2 .
 
-ex:process_status_completed_heartrate a chr:ProcessStatus .
+ex:time_PHQ2 a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-21T13:23:42+02:00"^^xsd:dateTime .
 
-ex:measurement_process_resprate_2019_04_21 a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_measurement_patient_Cory323_resprate ;
-  sulo:atTime ex:time_measurement_resprate_2019_04_21 ;
-  sulo:hasFeature ex:process_status_completed_resprate .
+ex:proc_PHQ2 a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_PHQ2_Patient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_PHQ2 .
 
-ex:time_measurement_resprate_2019_04_21 a sulo:TimeInstant ;
-  sulo:hasValue "2019-04-21T11:44:00"^^xsd:dateTime .
+ex:role_PHQ2_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Cory_Heller .
 
-ex:role_measurement_patient_Cory323_resprate a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+# AUDIT-C measurement
+ex:measurement_AUDITC a chr:Measurement ;
+    sulo:hasValue "0.0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_AUDITC .
 
-ex:measurement_resprate_2019_04_21 a chr:Measurement ;
-  sulo:hasValue "13.0"^^xsd:float .
+ex:time_AUDITC a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-21T14:01:15+02:00"^^xsd:dateTime .
 
-ex:process_status_completed_resprate a chr:ProcessStatus .
+ex:proc_AUDITC a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_AUDITC_Patient ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:atTime ex:time_AUDITC .
 
-ex:measurement_process_phq2_2019_04_21 a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_measurement_patient_Cory323_phq2 ;
-  sulo:atTime ex:time_measurement_phq2_2019_04_21 ;
-  sulo:hasFeature ex:process_status_completed_phq2 .
+ex:role_AUDITC_Patient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Cory_Heller .
 
-ex:time_measurement_phq2_2019_04_21 a sulo:TimeInstant ;
-  sulo:hasValue "2019-04-21T13:23:00"^^xsd:dateTime .
+# Evaluation (diagnostic statement)
+ex:evaluation_2019_04_21T12_42_40 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient ;
+    sulo:hasParticipant ex:role_EvalProvider ;
+    sulo:hasParticipant ex:role_EvalOutput ;
+    sulo:atTime ex:time_Eval .
 
-ex:role_measurement_patient_Cory323_phq2 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+ex:role_EvalPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Cory_Heller .
 
-ex:measurement_phq2_2019_04_21 a chr:Measurement ;
-  sulo:hasValue "2.0"^^xsd:float .
+ex:role_EvalProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Hank_Schneider .
 
-ex:process_status_completed_phq2 a chr:ProcessStatus .
+ex:role_EvalOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnostic_PartTimeEmployment .
 
-ex:measurement_process_auditc_2019_04_21 a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_measurement_patient_Cory323_auditc ;
-  sulo:atTime ex:time_measurement_auditc_2019_04_21 ;
-  sulo:hasFeature ex:process_status_completed_auditc .
+ex:diagnostic_PartTimeEmployment a chr:DiagnosticStatement ;
+    rdfs:label "Part-time employment" .
 
-ex:time_measurement_auditc_2019_04_21 a sulo:TimeInstant ;
-  sulo:hasValue "2019-04-21T14:01:00"^^xsd:dateTime .
+ex:time_Eval a sulo:TimeInstant ;
+    sulo:hasValue "2019-04-21T12:42:40+02:00"^^xsd:dateTime .
 
-ex:role_measurement_patient_Cory323_auditc a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
+# Care plan
+ex:careplan_2019_04_21 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUp .
 
-ex:measurement_auditc_2019_04_21 a chr:Measurement ;
-  sulo:hasValue "0.0"^^xsd:float .
-
-ex:process_status_completed_auditc a chr:ProcessStatus .
-
-ex:evaluation_2019_04_21 a chr:EvaluationProcess ;
-  sulo:hasParticipant ex:role_evaluator_Schneider199 ;
-  sulo:hasParticipant ex:role_evaluated_patient_Cory323 ;
-  sulo:atTime ex:time_evaluation_2019_04_21 .
-
-ex:time_evaluation_2019_04_21 a sulo:TimeInstant ;
-  sulo:hasValue "2019-04-21T12:42:00"^^xsd:dateTime .
-
-ex:role_evaluator_Schneider199 a chr:PerformerRole ;
-  sulo:isFeatureOf ex:provider_Hank686_Schneider199 .
-
-ex:role_evaluated_patient_Cory323 a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Cory323_Frank378_Heller342 .
-
-ex:diagnostic_statement_employment a chr:DiagnosticStatement ;
-  sulo:hasFeature ex:severity_moderate .
-
-ex:severity_moderate a chr:Severity .
-
-ex:careplan_followup a chr:CarePlan ;
-  sulo:refersTo ex:exam_procedure .
+ex:procedure_FollowUp a chr:MedicalProcedure ;
+    rdfs:label "follow-up monitoring and routine review" .

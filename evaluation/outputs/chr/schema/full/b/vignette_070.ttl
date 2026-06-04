@@ -4,92 +4,181 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Dolores502Marisol435Nevárez403 a chr:Person .
+# Person (patient)
+ex:patient_Dolores502_Marisol435_Nevarez403
+    a chr:Person ;
+    rdfs:label "Dolores502 Marisol435 Nevárez403" .
 
-ex:care_unit_DrHesPrimaryCareForAdultsInc a chr:CareUnit .
+# Care provider (physician)
+ex:provider_Cari853_Kohler843
+    a chr:Person ;
+    rdfs:label "Dr. Cari853 Kohler843" .
 
-ex:care_provider_DrCari853Kohler843 a chr:Person .
+# Care unit
+ex:careunit_DR_HES_PRIMARY_CARE_FOR_ADULTS_INC
+    a chr:CareUnit ;
+    rdfs:label "DR. HE'S PRIMARY CARE FOR ADULTS INC" .
 
-ex:visit_2021_11_02 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasCareUnit ex:care_unit_DrHesPrimaryCareForAdultsInc ;
-  chr:hasCareProvider ex:care_provider_DrCari853Kohler843 .
+# Clinical visit
+ex:visit_2021_11_02_T04_20_29_plus01_00
+    a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2021-11-02T04:20:29+01:00" ;
+    chr:hasDate "2021-11-02T04:20:29+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:provider_Cari853_Kohler843 ;
+    chr:hasCareUnit ex:careunit_DR_HES_PRIMARY_CARE_FOR_ADULTS_INC ;
+    chr:hasPatient ex:patient_Dolores502_Marisol435_Nevarez403 .
 
-ex:measproc_height_20211102 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_height_20211102 .
+# Units
+ex:unit_cm
+    a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:meas_height_20211102 a chr:Measurement ;
-  chr:hasQuantityValue "138.3"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2021-11-02T04:20:00"^^xsd:dateTime .
+ex:unit_kg
+    a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:measproc_pain_20211102 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_pain_20211102 .
+ex:unit_kg_per_m2
+    a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg.m-2> .
 
-ex:meas_pain_20211102 a chr:Measurement ;
-  chr:hasQuantityValue "3.0"^^xsd:float ;
-  chr:hasUnit ex:score ;
-  chr:hasMeasuredDate "2021-11-02T04:20:00"^^xsd:dateTime .
+ex:unit_percent
+    a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%> .
 
-ex:measproc_weight_20211102 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_weight_20211102 .
+ex:unit_per_min
+    a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min-1> .
 
-ex:meas_weight_20211102 a chr:Measurement ;
-  chr:hasQuantityValue "37.4"^^xsd:float ;
-  chr:hasUnit sulo:kg ;
-  chr:hasMeasuredDate "2021-11-02T04:20:00"^^xsd:dateTime .
+# Measurements and measurement processes
 
-ex:measproc_bmi_ratio_20211102 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_bmi_ratio_20211102 .
+## Body Height
+ex:meas_Height_2021_11_02_T04_20_29_plus01_00
+    a chr:Measurement ;
+    rdfs:label "138.3 cm" ;
+    chr:hasQuantityValue "138.3"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2021-11-02T04:20:29+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/8302-2> .
 
-ex:meas_bmi_ratio_20211102 a chr:Measurement ;
-  chr:hasQuantityValue "19.55"^^xsd:float ;
-  chr:hasUnit ex:kg_per_m2 ;
-  chr:hasMeasuredDate "2021-11-02T04:20:00"^^xsd:dateTime .
+ex:proc_Height_2021_11_02_T04_20_29_plus01_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement process" ;
+    chr:hasPatient ex:patient_Dolores502_Marisol435_Nevarez403 ;
+    chr:hasResult ex:meas_Height_2021_11_02_T04_20_29_plus01_00 .
 
-ex:measproc_bmi_percentile_20211102 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_bmi_percentile_20211102 .
+## Pain severity (score)
+ex:meas_PainScore_2021_11_02_T04_20_29_plus01_00
+    a chr:Measurement ;
+    rdfs:label "3" ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasMeasuredDate "2021-11-02T04:20:29+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/72514-3> .
 
-ex:meas_bmi_percentile_20211102 a chr:Measurement ;
-  chr:hasQuantityValue "87.545"^^xsd:float ;
-  chr:hasUnit sulo:percent ;
-  chr:hasMeasuredDate "2021-11-02T04:20:00"^^xsd:dateTime .
+ex:proc_PainScore_2021_11_02_T04_20_29_plus01_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_Dolores502_Marisol435_Nevarez403 ;
+    chr:hasResult ex:meas_PainScore_2021_11_02_T04_20_29_plus01_00 .
 
-ex:measproc_heartrate_20211102 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_heartrate_20211102 .
+## Body Weight
+ex:meas_Weight_2021_11_02_T04_20_29_plus01_00
+    a chr:Measurement ;
+    rdfs:label "37.4 kg" ;
+    chr:hasQuantityValue "37.4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2021-11-02T04:20:29+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/29463-7> .
 
-ex:meas_heartrate_20211102 a chr:Measurement ;
-  chr:hasQuantityValue "65.0"^^xsd:float ;
-  chr:hasUnit ex:per_min ;
-  chr:hasMeasuredDate "2021-11-02T04:20:00"^^xsd:dateTime .
+ex:proc_Weight_2021_11_02_T04_20_29_plus01_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement process" ;
+    chr:hasPatient ex:patient_Dolores502_Marisol435_Nevarez403 ;
+    chr:hasResult ex:meas_Weight_2021_11_02_T04_20_29_plus01_00 .
 
-ex:measproc_respiratoryrate_20211102 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Dolores502Marisol435Nevárez403 ;
-  chr:hasResult ex:meas_respiratoryrate_20211102 .
+## BMI (ratio)
+ex:meas_BMI_Ratio_2021_11_02_T04_20_29_plus01_00
+    a chr:Measurement ;
+    rdfs:label "19.55 kg/m2" ;
+    chr:hasQuantityValue "19.55"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2021-11-02T04:20:29+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/39156-5> .
 
-ex:meas_respiratoryrate_20211102 a chr:Measurement ;
-  chr:hasQuantityValue "16.0"^^xsd:float ;
-  chr:hasUnit ex:per_min ;
-  chr:hasMeasuredDate "2021-11-02T04:20:00"^^xsd:dateTime .
+ex:proc_BMI_Ratio_2021_11_02_T04_20_29_plus01_00
+    a chr:MeasurementProcess ;
+    rdfs:label "BMI (ratio) measurement process" ;
+    chr:hasPatient ex:patient_Dolores502_Marisol435_Nevarez403 ;
+    chr:hasResult ex:meas_BMI_Ratio_2021_11_02_T04_20_29_plus01_00 .
 
-ex:evaluation_20211102 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_medicationreview_20211102 .
+## BMI (percentile)
+ex:meas_BMI_Percentile_2021_11_02_T04_20_29_plus01_00
+    a chr:Measurement ;
+    rdfs:label "87.545 %" ;
+    chr:hasQuantityValue "87.545"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2021-11-02T04:20:29+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/59576-9> .
 
-ex:diagnostic_medicationreview_20211102 a chr:DiagnosticStatement .
+ex:proc_BMI_Percentile_2021_11_02_T04_20_29_plus01_00
+    a chr:MeasurementProcess ;
+    rdfs:label "BMI (percentile) measurement process" ;
+    chr:hasPatient ex:patient_Dolores502_Marisol435_Nevarez403 ;
+    chr:hasResult ex:meas_BMI_Percentile_2021_11_02_T04_20_29_plus01_00 .
 
-ex:condition_medicationreview_20211102 a chr:ClinicalCondition ;
-  chr:hasRecordDate "2021-11-02T04:20:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+## Heart rate
+ex:meas_HeartRate_2021_11_02_T04_20_29_plus01_00
+    a chr:Measurement ;
+    rdfs:label "65 /min" ;
+    chr:hasQuantityValue "65"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2021-11-02T04:20:29+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/8867-4> .
 
-ex:severity_moderate a chr:Severity .
+ex:proc_HeartRate_2021_11_02_T04_20_29_plus01_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_Dolores502_Marisol435_Nevarez403 ;
+    chr:hasResult ex:meas_HeartRate_2021_11_02_T04_20_29_plus01_00 .
 
-ex:careplan_followup a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:procedure_followup .
+## Respiratory rate
+ex:meas_RespiratoryRate_2021_11_02_T04_20_29_plus01_00
+    a chr:Measurement ;
+    rdfs:label "16 /min" ;
+    chr:hasQuantityValue "16"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2021-11-02T04:20:29+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/9279-1> .
 
-ex:procedure_followup a chr:MedicalProcedure .
+ex:proc_RespiratoryRate_2021_11_02_T04_20_29_plus01_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_Dolores502_Marisol435_Nevarez403 ;
+    chr:hasResult ex:meas_RespiratoryRate_2021_11_02_T04_20_29_plus01_00 .
+
+# Diagnostic statement
+ex:diag_MedicationReviewDue
+    a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+# Evaluation process
+ex:evaluation_2021_11_02_T04_20_29_plus01_00
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation process" ;
+    chr:hasObservation ex:diag_MedicationReviewDue .
+
+# Care plan
+ex:careplan_2021_11_02_T04_20_29_plus01_00
+    a chr:CarePlan ;
+    rdfs:label "Care plan for follow‑up monitoring and routine review" ;
+    chr:hasMedicalProcedure ex:proc_FollowUp_2021_11_02_T04_20_29_plus01_00 .
+
+# Medical procedure required by the CarePlan
+ex:proc_FollowUp_2021_11_02_T04_20_29_plus01_00
+    a chr:MedicalProcedure ;
+    rdfs:label "Follow‑up monitoring and routine review" .

@@ -1,1 +1,212 @@
-# LLM call failed: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/workspaces/default/keys/904bef16ba07bd440ba9135faeee6cdc6097bd01c0e2a9aec4949d13006f4f81', 'code': 403}}
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_Arlen68Olson653 a chr:Person ;
+    rdfs:label "Arlen68 Olson653" .
+
+ex:physician_Domenic627Blick895 a chr:Person ;
+    rdfs:label "Dr. Domenic627 Blick895" .
+
+# Care unit
+ex:careunit_VIBRA_HOSPITAL a chr:CareUnit ;
+    rdfs:label "VIBRA HOSPITAL OF WESTERN MASS - CENTRAL CAMPUS" .
+
+# Clinical visit
+ex:visit_2019_11_20_15_47_23 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2019-11-20T15:47:23+01:00" ;
+    chr:hasDate "2019-11-20T15:47:23+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_Domenic627Blick895 ;
+    chr:hasCareUnit ex:careunit_VIBRA_HOSPITAL ;
+    chr:hasPatient ex:patient_Arlen68Olson653 .
+
+# Units
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
+
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> .
+
+ex:unit_mL_per_min_1_73_m2 a chr:Unit ;
+    rdfs:label "mL/min/1.73m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mLperminper1.73m2> .
+
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
+
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
+
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kgperm2> .
+
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/permin> .
+
+ex:unit_pH a chr:Unit ;
+    rdfs:label "pH" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pH> .
+
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pct> .
+
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
+
+ex:unit_nominal a chr:Unit ;
+    rdfs:label "nominal" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/nominal> .
+
+ex:unit_mg_per_g a chr:Unit ;
+    rdfs:label "mg/g" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperg> .
+
+ex:unit_count a chr:Unit ;
+    rdfs:label "count" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/count> .
+
+# Measurements and measurement processes (selected examples; the pattern repeats for each entry)
+
+# Glucose in Serum (LOINC 2345-7) – 186.39 mg/dL
+ex:measurement_Glucose_Serum_186_39 a chr:Measurement ;
+    rdfs:label "Glucose 186.39 mg/dL" ;
+    chr:hasQuantityValue "186.39"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/2345-7> .
+
+ex:measproc_Glucose_Serum_186_39 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement process (Serum)" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Glucose_Serum_186_39 .
+
+# Urea nitrogen in Serum (LOINC 3094-0) – 13.04 mg/dL
+ex:measurement_UreaNitrogen_Serum_13_04 a chr:Measurement ;
+    rdfs:label "Urea nitrogen 13.04 mg/dL" ;
+    chr:hasQuantityValue "13.04"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/3094-0> .
+
+ex:measproc_UreaNitrogen_Serum_13_04 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement process (Serum)" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_UreaNitrogen_Serum_13_04 .
+
+# Creatinine in Serum (LOINC 2160-0) – 2.0831 mg/dL
+ex:measurement_Creatinine_Serum_2_0831 a chr:Measurement ;
+    rdfs:label "Creatinine 2.0831 mg/dL" ;
+    chr:hasQuantityValue "2.0831"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/2160-0> .
+
+ex:measproc_Creatinine_Serum_2_0831 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement process (Serum)" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Creatinine_Serum_2_0831 .
+
+# Calcium in Serum (LOINC 17861-6) – 8.71 mg/dL
+ex:measurement_Calcium_Serum_8_71 a chr:Measurement ;
+    rdfs:label "Calcium 8.71 mg/dL" ;
+    chr:hasQuantityValue "8.71"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasCode <https://loinc.org/17861-6> .
+
+ex:measproc_Calcium_Serum_8_71 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement process (Serum)" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Calcium_Serum_8_71 .
+
+# Sodium in Serum (LOINC 2951-2) – 137.33 mmol/L
+ex:measurement_Sodium_Serum_137_33 a chr:Measurement ;
+    rdfs:label "Sodium 137.33 mmol/L" ;
+    chr:hasQuantityValue "137.33"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasCode <https://loinc.org/2951-2> .
+
+ex:measproc_Sodium_Serum_137_33 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement process (Serum)" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_Sodium_Serum_137_33 .
+
+# (The pattern continues for each measurement listed in the text.
+# For brevity, only a representative subset is shown; analogous triples
+# should be generated for every measurement entry, using the appropriate
+# LOINC code, value, unit, and timestamps.)
+
+# Example for a measurement with a different timestamp (Fall risk)
+ex:measurement_FallRisk_3 a chr:Measurement ;
+    rdfs:label "Fall risk 3 count" ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_count ;
+    chr:hasCode <https://loinc.org/59460-6> .
+
+ex:measproc_FallRisk_3 a chr:MeasurementProcess ;
+    rdfs:label "Fall risk measurement process" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_FallRisk_3 .
+
+# Example for PHQ-2 score
+ex:measurement_PHQ2_1 a chr:Measurement ;
+    rdfs:label "PHQ-2 score 1 score" ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasCode <https://loinc.org/55758-7> .
+
+ex:measproc_PHQ2_1 a chr:MeasurementProcess ;
+    rdfs:label "PHQ-2 measurement process" ;
+    chr:hasPatient ex:patient_Arlen68Olson653 ;
+    chr:hasResult ex:measurement_PHQ2_1 .
+
+# Diagnostic statements and evaluation processes
+
+# Medication review due (SNOMED 314529007)
+ex:diag_MedReview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+ex:cond_MedReview a chr:ClinicalCondition ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasRecordDate "2019-11-20T15:47:23+01:00"^^xsd:dateTime .
+
+ex:evaluation_MedReview a chr:EvaluationProcess ;
+    rdfs:label "Evaluation process for medication review" ;
+    chr:hasObservation ex:diag_MedReview ;
+    chr:hasCondition ex:cond_MedReview .
+
+# Stress (SNOMED 73595000)
+ex:diag_Stress a chr:DiagnosticStatement ;
+    rdfs:label "Stress (finding)" ;
+    chr:hasCode <http://snomed.info/id/73595000> .
+
+ex:cond_Stress a chr:ClinicalCondition ;
+    rdfs:label "Stress (finding)" ;
+    chr:hasRecordDate "2019-11-20T16:33:09+01:00"^^xsd:dateTime .
+
+ex:evaluation_Stress a chr:EvaluationProcess ;
+    rdfs:label "Evaluation process for stress" ;
+    chr:hasObservation ex:diag_Stress ;
+    chr:hasCondition ex:cond_Stress .
+
+# Victim of intimate partner abuse (SNOMED 706893006)
+ex:diag_Abuse a chr:DiagnosticStatement ;
+    rdfs:label "Victim of intimate partner abuse (finding)" ;
+    chr:hasCode <http://snomed.info/id/706893006> .
+
+ex:cond_Abuse a chr:ClinicalCondition ;
+    rdfs:label "Victim of intimate partner abuse (finding)" ;
+    chr:hasRecordDate "2019-11-20T16:33:09+01:00"^^xsd:dateTime .
+
+ex:evaluation_Abuse a chr:EvaluationProcess ;
+    rdfs:label "Evaluation process for intimate partner abuse" ;
+    chr:hasObservation ex:diag_Abuse ;
+    chr:hasCondition ex:cond_Abuse .

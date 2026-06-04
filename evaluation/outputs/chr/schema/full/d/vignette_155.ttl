@@ -1,1 +1,556 @@
-# LLM call failed: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/workspaces/default/keys/904bef16ba07bd440ba9135faeee6cdc6097bd01c0e2a9aec4949d13006f4f81', 'code': 403}}
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Patient
+ex:patient_ArlenOlson a chr:Person ;
+    rdfs:label "Arlen68 Olson653" .
+
+# Care provider
+ex:physician_DomenicBlick a chr:Person ;
+    rdfs:label "Dr. Domenic627 Blick895" .
+
+# Care unit
+ex:careunit_VIBRA_HOSPITAL a chr:CareUnit ;
+    rdfs:label "VIBRA HOSPITAL OF WESTERN MASS - CENTRAL CAMPUS" .
+
+# Clinical visit
+ex:visit_2022_08_10_16_47_23 a chr:ClinicalVisit ;
+    rdfs:label "Visit on 2022-08-10T16:47:23+02:00" ;
+    chr:hasDate "2022-08-10T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_DomenicBlick ;
+    chr:hasCareUnit ex:careunit_VIBRA_HOSPITAL ;
+    chr:hasPatient ex:patient_ArlenOlson .
+
+# Units
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
+
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> .
+
+ex:unit_mL_per_min_1_73_m2 a chr:Unit ;
+    rdfs:label "mL/min/{1.73_m2}" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mLperminper1.73_m2> .
+
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
+
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
+
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
+
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kgperm2> .
+
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/permin> .
+
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/percent> .
+
+ex:unit_mg_per_g a chr:Unit ;
+    rdfs:label "mg/g" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperg> .
+
+ex:unit_nominal a chr:Unit ;
+    rdfs:label "nominal" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/1> .
+
+ex:unit_pH a chr:Unit ;
+    rdfs:label "pH" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pH> .
+
+ex:unit_hash a chr:Unit ;
+    rdfs:label "#" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/count> .
+
+# Measurement processes and measurements (example for first three; the rest follow the same pattern)
+
+# 1. Glucose serum
+ex:measproc_glucose_serum_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Glucose serum measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_glucose_serum_2022_08_10_16_47_23 .
+
+ex:meas_glucose_serum_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "197.32 mg/dL" ;
+    chr:hasQuantityValue "197.32"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 2. Urea nitrogen serum
+ex:measproc_urea_nitrogen_serum_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen serum measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_urea_nitrogen_serum_2022_08_10_16_47_23 .
+
+ex:meas_urea_nitrogen_serum_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "10.93 mg/dL" ;
+    chr:hasQuantityValue "10.93"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 3. Creatinine serum
+ex:measproc_creatinine_serum_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine serum measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_creatinine_serum_2022_08_10_16_47_23 .
+
+ex:meas_creatinine_serum_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "1.9863 mg/dL" ;
+    chr:hasQuantityValue "1.9863"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 4. Calcium serum
+ex:measproc_calcium_serum_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Calcium serum measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_calcium_serum_2022_08_10_16_47_23 .
+
+ex:meas_calcium_serum_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "9.02 mg/dL" ;
+    chr:hasQuantityValue "9.02"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 5. Sodium serum
+ex:measproc_sodium_serum_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Sodium serum measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_sodium_serum_2022_08_10_16_47_23 .
+
+ex:meas_sodium_serum_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "139.7 mmol/L" ;
+    chr:hasQuantityValue "139.7"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 6. Potassium serum
+ex:measproc_potassium_serum_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Potassium serum measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_potassium_serum_2022_08_10_16_47_23 .
+
+ex:meas_potassium_serum_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "3.76 mmol/L" ;
+    chr:hasQuantityValue "3.76"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 7. Chloride serum
+ex:measproc_chloride_serum_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Chloride serum measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_chloride_serum_2022_08_10_16_47_23 .
+
+ex:meas_chloride_serum_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "105.54 mmol/L" ;
+    chr:hasQuantityValue "105.54"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 8. Carbon dioxide total serum
+ex:measproc_co2_serum_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide total serum measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_co2_serum_2022_08_10_16_47_23 .
+
+ex:meas_co2_serum_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "26.82 mmol/L" ;
+    chr:hasQuantityValue "26.82"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 9. GFR serum
+ex:measproc_gfr_serum_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Glomerular filtration rate serum measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_gfr_serum_2022_08_10_16_47_23 .
+
+ex:meas_gfr_serum_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "43.062 mL/min/{1.73_m2}" ;
+    chr:hasQuantityValue "43.062"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_1_73_m2 .
+
+# 10. Glucose urine
+ex:measproc_glucose_urine_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Glucose urine measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_glucose_urine_2022_08_10_16_47_23 .
+
+ex:meas_glucose_urine_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "2.0881 mg/dL" ;
+    chr:hasQuantityValue "2.0881"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 11. Bilirubin.total urine
+ex:measproc_bilirubin_urine_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Bilirubin.total urine measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_bilirubin_urine_2022_08_10_16_47_23 .
+
+ex:meas_bilirubin_urine_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "0.24256 mg/dL" ;
+    chr:hasQuantityValue "0.24256"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 12. Ketones urine
+ex:measproc_ketones_urine_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Ketones urine measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_ketones_urine_2022_08_10_16_47_23 .
+
+ex:meas_ketones_urine_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "18.703 mg/dL" ;
+    chr:hasQuantityValue "18.703"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 13. Specific gravity urine
+ex:measproc_specific_gravity_urine_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Specific gravity urine measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_specific_gravity_urine_2022_08_10_16_47_23 .
+
+ex:meas_specific_gravity_urine_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "1.0212 {nominal}" ;
+    chr:hasQuantityValue "1.0212"^^xsd:float ;
+    chr:hasUnit ex:unit_nominal .
+
+# 14. pH urine
+ex:measproc_ph_urine_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "pH urine measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_ph_urine_2022_08_10_16_47_23 .
+
+ex:meas_ph_urine_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "6.1795 pH" ;
+    chr:hasQuantityValue "6.1795"^^xsd:float ;
+    chr:hasUnit ex:unit_pH .
+
+# 15. Protein urine
+ex:measproc_protein_urine_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Protein urine measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_protein_urine_2022_08_10_16_47_23 .
+
+ex:meas_protein_urine_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "266.44 mg/dL" ;
+    chr:hasQuantityValue "266.44"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 16. Hemoglobin A1c
+ex:measproc_hba1c_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_hba1c_2022_08_10_16_47_23 .
+
+ex:meas_hba1c_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "5.36 %" ;
+    chr:hasQuantityValue "5.36"^^xsd:float ;
+    chr:hasUnit ex:unit_percent .
+
+# 17. Body Height
+ex:measproc_height_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_height_2022_08_10_16_47_23 .
+
+ex:meas_height_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "177 cm" ;
+    chr:hasQuantityValue "177.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+# 18. Pain severity
+ex:measproc_pain_severity_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_pain_severity_2022_08_10_16_47_23 .
+
+ex:meas_pain_severity_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "1 {score}" ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# 19. Body Weight
+ex:measproc_weight_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_weight_2022_08_10_16_47_23 .
+
+ex:meas_weight_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "86 kg" ;
+    chr:hasQuantityValue "86.0"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+# 20. BMI
+ex:measproc_bmi_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Body mass index measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_bmi_2022_08_10_16_47_23 .
+
+ex:meas_bmi_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "27.45 kg/m2" ;
+    chr:hasQuantityValue "27.45"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
+
+# 21. Heart rate
+ex:measproc_heart_rate_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_heart_rate_2022_08_10_16_47_23 .
+
+ex:meas_heart_rate_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "66 /min" ;
+    chr:hasQuantityValue "66.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# 22. Respiratory rate
+ex:measproc_respiratory_rate_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_respiratory_rate_2022_08_10_16_47_23 .
+
+ex:meas_respiratory_rate_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "14 /min" ;
+    chr:hasQuantityValue "14.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+# 23. Glucose blood
+ex:measproc_glucose_blood_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Glucose blood measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_glucose_blood_2022_08_10_16_47_23 .
+
+ex:meas_glucose_blood_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "197.32 mg/dL" ;
+    chr:hasQuantityValue "197.32"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 24. Urea nitrogen blood
+ex:measproc_urea_nitrogen_blood_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen blood measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_urea_nitrogen_blood_2022_08_10_16_47_23 .
+
+ex:meas_urea_nitrogen_blood_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "10.93 mg/dL" ;
+    chr:hasQuantityValue "10.93"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 25. Creatinine blood
+ex:measproc_creatinine_blood_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine blood measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_creatinine_blood_2022_08_10_16_47_23 .
+
+ex:meas_creatinine_blood_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "3.69 mg/dL" ;
+    chr:hasQuantityValue "3.69"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 26. Calcium blood
+ex:measproc_calcium_blood_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Calcium blood measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_calcium_blood_2022_08_10_16_47_23 .
+
+ex:meas_calcium_blood_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "9.02 mg/dL" ;
+    chr:hasQuantityValue "9.02"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 27. Sodium blood
+ex:measproc_sodium_blood_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Sodium blood measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_sodium_blood_2022_08_10_16_47_23 .
+
+ex:meas_sodium_blood_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "139.7 mmol/L" ;
+    chr:hasQuantityValue "139.7"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 28. Potassium blood
+ex:measproc_potassium_blood_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Potassium blood measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_potassium_blood_2022_08_10_16_47_23 .
+
+ex:meas_potassium_blood_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "3.76 mmol/L" ;
+    chr:hasQuantityValue "3.76"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 29. Chloride blood
+ex:measproc_chloride_blood_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Chloride blood measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_chloride_blood_2022_08_10_16_47_23 .
+
+ex:meas_chloride_blood_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "105.54 mmol/L" ;
+    chr:hasQuantityValue "105.54"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 30. Carbon dioxide total blood
+ex:measproc_co2_blood_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide total blood measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_co2_blood_2022_08_10_16_47_23 .
+
+ex:meas_co2_blood_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "26.82 mmol/L" ;
+    chr:hasQuantityValue "26.82"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+# 31. Cholesterol serum
+ex:measproc_cholesterol_serum_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol serum measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_cholesterol_serum_2022_08_10_16_47_23 .
+
+ex:meas_cholesterol_serum_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "255.74 mg/dL" ;
+    chr:hasQuantityValue "255.74"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 32. Triglyceride serum
+ex:measproc_triglyceride_serum_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Triglyceride serum measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_triglyceride_serum_2022_08_10_16_47_23 .
+
+ex:meas_triglyceride_serum_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "377.64 mg/dL" ;
+    chr:hasQuantityValue "377.64"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 33. LDL cholesterol serum
+ex:measproc_ldl_cholesterol_serum_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "LDL Cholesterol serum measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_ldl_cholesterol_serum_2022_08_10_16_47_23 .
+
+ex:meas_ldl_cholesterol_serum_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "153.27 mg/dL" ;
+    chr:hasQuantityValue "153.27"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 34. HDL cholesterol serum
+ex:measproc_hdl_cholesterol_serum_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "HDL Cholesterol serum measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_hdl_cholesterol_serum_2022_08_10_16_47_23 .
+
+ex:meas_hdl_cholesterol_serum_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "26.94 mg/dL" ;
+    chr:hasQuantityValue "26.94"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+# 35. Microalbumin/Creatinine urine
+ex:measproc_microalbumin_creatinine_urine_2022_08_10_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Microalbumin/Creatinine urine measurement on 2022-08-10T16:47:23+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_microalbumin_creatinine_urine_2022_08_10_16_47_23 .
+
+ex:meas_microalbumin_creatinine_urine_2022_08_10_16_47_23 a chr:Measurement ;
+    rdfs:label "61.74 mg/g" ;
+    chr:hasQuantityValue "61.74"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_g .
+
+# 36. GFR serum (second record)
+ex:measproc_gfr_serum_2022_08_10_16_47_23_2 a chr:MeasurementProcess ;
+    rdfs:label "Glomerular filtration rate serum measurement on 2022-08-10T16:47:23+02:00 (second)" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_gfr_serum_2022_08_10_16_47_23_2 .
+
+ex:meas_gfr_serum_2022_08_10_16_47_23_2 a chr:Measurement ;
+    rdfs:label "22.96 mL/min/{1.73_m2}" ;
+    chr:hasQuantityValue "22.96"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_1_73_m2 .
+
+# 37. GAD-7
+ex:measproc_gad7_2022_08_10_18_14_50 a chr:MeasurementProcess ;
+    rdfs:label "GAD-7 measurement on 2022-08-10T18:14:50+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_gad7_2022_08_10_18_14_50 .
+
+ex:meas_gad7_2022_08_10_18_14_50 a chr:Measurement ;
+    rdfs:label "1 {score}" ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# 38. Fall risk
+ex:measproc_fall_risk_2022_08_10_18_33_25 a chr:MeasurementProcess ;
+    rdfs:label "Fall risk measurement on 2022-08-10T18:33:25+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_fall_risk_2022_08_10_18_33_25 .
+
+ex:meas_fall_risk_2022_08_10_18_33_25 a chr:Measurement ;
+    rdfs:label "93 {#}" ;
+    chr:hasQuantityValue "93.0"^^xsd:float ;
+    chr:hasUnit ex:unit_hash .
+
+# 39. PHQ-2
+ex:measproc_phq2_2022_08_10_19_15_24 a chr:MeasurementProcess ;
+    rdfs:label "PHQ-2 measurement on 2022-08-10T19:15:24+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_phq2_2022_08_10_19_15_24 .
+
+ex:meas_phq2_2022_08_10_19_15_24 a chr:Measurement ;
+    rdfs:label "1 {score}" ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# 40. DAST-10
+ex:measproc_dast10_2022_08_10_19_53_10 a chr:MeasurementProcess ;
+    rdfs:label "DAST-10 measurement on 2022-08-10T19:53:10+02:00" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_dast10_2022_08_10_19_53_10 .
+
+ex:meas_dast10_2022_08_10_19_53_10 a chr:Measurement ;
+    rdfs:label "0 {score}" ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+# Diagnostic statements and clinical conditions (evaluations)
+
+# 1. Medication review due
+ex:cond_medication_review a chr:ClinicalCondition ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2022-08-10T16:47:23+02:00"^^xsd:dateTime .
+
+ex:diag_medication_review a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+ex:eval_medication_review_2022_08_10_16_47_23 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2022-08-10T16:47:23+02:00 (Medication review)" ;
+    chr:hasCondition ex:cond_medication_review ;
+    chr:hasObservation ex:diag_medication_review .
+
+# 2. Full-time employment
+ex:cond_fulltime_employment a chr:ClinicalCondition ;
+    rdfs:label "Full-time employment (finding)" ;
+    chr:hasCode <http://snomed.info/id/160903007> ;
+    chr:hasRecordDate "2022-08-10T17:45:38+02:00"^^xsd:dateTime .
+
+ex:diag_fulltime_employment a chr:DiagnosticStatement ;
+    rdfs:label "Full-time employment (finding)" ;
+    chr:hasCode <http://snomed.info/id/160903007> .
+
+ex:eval_fulltime_employment_2022_08_10_17_45_38 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2022-08-10T17:45:38+02:00 (Full-time employment)" ;
+    chr:hasCondition ex:cond_fulltime_employment ;
+    chr:hasObservation ex:diag_fulltime_employment .
+
+# Care plan (generic)
+ex:careplan_followup a chr:CarePlan ;
+    rdfs:label "Follow‑up monitoring and routine review care plan" .

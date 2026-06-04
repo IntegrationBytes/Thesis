@@ -4,181 +4,109 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Parker433
-  a chr:Person .
+# Persons
+ex:person_Casey401_Elijah719_Parker433 a chr:Person .
+ex:person_Rhett759_Padberg411 a chr:Person .
 
-ex:care_unit_Vibra
-  a chr:CareUnit .
+# Care unit
+ex:careUnit_VIBRA_HOSPITAL a chr:CareUnit ;
+    rdfs:label "VIBRA HOSPITAL OF WESTERN MASSACHUSETTS LLC" .
 
-ex:visit_2021_11_12
-  a chr:ClinicalVisit ;
-  sulo:atTime ex:time_visit_2021_11_12 ;
-  sulo:isIn ex:care_unit_Vibra .
+# Clinical visit
+ex:visit_2021_11_12T22_03_18 a chr:ClinicalVisit ;
+    sulo:hasParticipant ex:role_VisitPatient_Casey ;
+    sulo:hasParticipant ex:role_VisitProvider_Rhett ;
+    sulo:isIn ex:careUnit_VIBRA_HOSPITAL ;
+    sulo:atTime ex:time_visit .
 
-ex:time_visit_2021_11_12
-  sulo:hasValue "2021-11-12T22:03:00"^^xsd:dateTime .
+ex:role_VisitPatient_Casey a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
 
-ex:physician_Padberg411
-  a chr:Person .
+ex:role_VisitProvider_Rhett a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Rhett759_Padberg411 .
 
-ex:role_VisitProvider_Padberg411
-  a chr:CareProviderRole ;
-  sulo:isFeatureOf ex:physician_Padberg411 .
+ex:time_visit a sulo:TimeInstant ;
+    sulo:hasValue "2021-11-12T22:03:18+01:00"^^xsd:dateTime .
 
-ex:visit_2021_11_12
-  sulo:hasParticipant ex:role_VisitProvider_Padberg411 .
+# Measurement 1 – Polyp size
+ex:proc_MeasurePolypSize a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_MeasPolypPatient ;
+    sulo:hasParticipant ex:outputRole_MeasPolyp ;
+    sulo:hasFeature ex:status_completed1 ;
+    sulo:atTime ex:time_MeasPolyp .
 
-ex:role_VisitPatient_Parker433
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Parker433 .
+ex:role_MeasPolypPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
 
-ex:visit_2021_11_12
-  sulo:hasParticipant ex:role_VisitPatient_Parker433 .
+ex:status_completed1 a chr:ProcessStatus ;
+    rdfs:label "completed" .
 
-ex:checkup_procedure
-  a chr:MedicalProcedure .
+ex:time_MeasPolyp a sulo:TimeInstant ;
+    sulo:hasValue "2021-11-12T22:48:07+01:00"^^xsd:dateTime .
 
-ex:visit_2021_11_12
-  sulo:refersTo ex:checkup_procedure .
+ex:measurement_PolypSize a chr:Measurement ;
+    sulo:hasValue "2.4093"^^xsd:float ;
+    sulo:hasPart ex:unit_mm ;
+    sulo:atTime ex:time_MeasPolyp .
 
-ex:polyp_size_measurement_process
-  a chr:MeasurementProcess ;
-  sulo:atTime ex:time_polyp_size_measurement .
+ex:unit_mm a sulo:Unit ;
+    rdfs:label "mm" .
 
-ex:time_polyp_size_measurement
-  sulo:hasValue "2021-11-12T22:48:00"^^xsd:dateTime .
+ex:outputRole_MeasPolyp a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_PolypSize .
 
-ex:role_PolypSizePatient_Parker433
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Parker433 .
+# Measurement 2 – Hemoglobin in stool
+ex:proc_MeasHemoglobin a chr:MeasurementProcess ;
+    sulo:hasParticipant ex:role_MeasHemoPatient ;
+    sulo:hasParticipant ex:outputRole_MeasHemoglobin ;
+    sulo:hasFeature ex:status_completed2 ;
+    sulo:atTime ex:time_MeasHemoglobin .
 
-ex:polyp_size_measurement_process
-  sulo:hasParticipant ex:role_PolypSizePatient_Parker433 .
+ex:role_MeasHemoPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
 
-ex:polyp_size_measurement
-  a chr:Measurement ;
-  sulo:hasValue "2.4093"^^xsd:float ;
-  sulo:hasPart ex:unit_mm ;
-  sulo:atTime ex:time_polyp_size_measurement .
+ex:status_completed2 a chr:ProcessStatus ;
+    rdfs:label "completed" .
 
-ex:unit_mm
-  a sulo:Unit ;
-  rdfs:label "mm" .
+ex:time_MeasHemoglobin a sulo:TimeInstant ;
+    sulo:hasValue "2021-11-12T22:48:07+01:00"^^xsd:dateTime .
 
-ex:role_PolypSizeOutput
-  a chr:OutputRole ;
-  sulo:isFeatureOf ex:polyp_size_measurement .
+ex:measurement_Hemoglobin a chr:Measurement ;
+    sulo:hasValue "24.389"^^xsd:float ;
+    sulo:hasPart ex:unit_ng_per_mL ;
+    sulo:atTime ex:time_MeasHemoglobin .
 
-ex:polyp_size_measurement_process
-  sulo:hasParticipant ex:role_PolypSizeOutput .
+ex:unit_ng_per_mL a sulo:Unit ;
+    rdfs:label "ng/mL" .
 
-ex:process_status_completed_polyp_size
-  a chr:ProcessStatus ;
-  rdfs:label "completed" .
+ex:outputRole_MeasHemoglobin a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_Hemoglobin .
 
-ex:polyp_size_measurement_process
-  sulo:hasFeature ex:process_status_completed_polyp_size .
+# Evaluation process producing diagnostic statement
+ex:evaluation_2021_11_12T22_48_07 a chr:EvaluationProcess ;
+    sulo:hasParticipant ex:role_EvalPatient ;
+    sulo:hasParticipant ex:role_EvalProvider ;
+    sulo:hasParticipant ex:outputRole_Diagnostic ;
+    sulo:atTime ex:time_Eval .
 
-ex:stool_measurement_process
-  a chr:MeasurementProcess ;
-  sulo:atTime ex:time_stool_measurement .
+ex:role_EvalPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Casey401_Elijah719_Parker433 .
 
-ex:time_stool_measurement
-  sulo:hasValue "2021-11-12T22:48:00"^^xsd:dateTime .
+ex:role_EvalProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Rhett759_Padberg411 .
 
-ex:role_StoolPatient_Parker433
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Parker433 .
+ex:time_Eval a sulo:TimeInstant ;
+    sulo:hasValue "2021-11-12T22:48:07+01:00"^^xsd:dateTime .
 
-ex:stool_measurement_process
-  sulo:hasParticipant ex:role_StoolPatient_Parker433 .
+ex:diag_PolypColon a chr:DiagnosticStatement ;
+    rdfs:label "Polyp of colon (disorder)" .
 
-ex:stool_measurement
-  a chr:Measurement ;
-  sulo:hasValue "24.389"^^xsd:float ;
-  sulo:hasPart ex:unit_ng_mL ;
-  sulo:atTime ex:time_stool_measurement .
+ex:outputRole_Diagnostic a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_PolypColon .
 
-ex:unit_ng_mL
-  a sulo:Unit ;
-  rdfs:label "ng/mL" .
+# Care plan referencing a follow‑up medical procedure
+ex:carePlan_2021_11_12 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
 
-ex:role_StoolOutput
-  a chr:OutputRole ;
-  sulo:isFeatureOf ex:stool_measurement .
-
-ex:stool_measurement_process
-  sulo:hasParticipant ex:role_StoolOutput .
-
-ex:process_status_completed_stool
-  a chr:ProcessStatus ;
-  rdfs:label "completed" .
-
-ex:stool_measurement_process
-  sulo:hasFeature ex:process_status_completed_stool .
-
-ex:evaluation_process
-  a chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation .
-
-ex:time_evaluation
-  sulo:hasValue "2021-11-12T22:48:00"^^xsd:dateTime .
-
-ex:role_EvaluationPatient_Parker433
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Parker433 .
-
-ex:evaluation_process
-  sulo:hasParticipant ex:role_EvaluationPatient_Parker433 .
-
-ex:role_EvaluationPerformer_Padberg411
-  a chr:PerformerRole ;
-  sulo:isFeatureOf ex:physician_Padberg411 .
-
-ex:evaluation_process
-  sulo:hasParticipant ex:role_EvaluationPerformer_Padberg411 .
-
-ex:diagnostic_statement
-  a chr:DiagnosticStatement ;
-  rdfs:label "Polyp of colon (disorder)" .
-
-ex:role_EvaluationOutput
-  a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_statement .
-
-ex:evaluation_process
-  sulo:hasParticipant ex:role_EvaluationOutput .
-
-ex:polyp_condition
-  a chr:ClinicalCondition ;
-  sulo:atTime ex:time_condition_recorded .
-
-ex:time_condition_recorded
-  sulo:hasValue "2021-11-12T22:48:00"^^xsd:dateTime .
-
-ex:polyp_condition
-  sulo:refersTo ex:diagnostic_statement .
-
-ex:severity_moderate
-  a chr:Severity ;
-  rdfs:label "Moderate" .
-
-ex:polyp_condition
-  sulo:hasFeature ex:severity_moderate .
-
-ex:care_plan
-  a chr:CarePlan .
-
-ex:follow_up_monitoring
-  a chr:MedicalProcedure ;
-  rdfs:label "follow-up monitoring" .
-
-ex:routine_review
-  a chr:MedicalProcedure ;
-  rdfs:label "routine review" .
-
-ex:care_plan
-  sulo:refersTo ex:follow_up_monitoring .
-
-ex:care_plan
-  sulo:refersTo ex:routine_review .
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "follow‑up monitoring and routine review" .

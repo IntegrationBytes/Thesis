@@ -4,215 +4,355 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Angelic427Callie226Schaden604 a chr:Person .
+# Persons
+ex:patient_Angel_Callie_Schaden a chr:Person ;
+    rdfs:label "Angelic427 Callie226 Schaden604" .
 
-ex:care_unit_SouthBoston a chr:CareUnit .
+ex:physician_Sherita_Hudson a chr:Person ;
+    rdfs:label "Dr. Sherita708 Hudson301" .
 
-ex:care_provider_DrSherita708Hudson301 a chr:Person .
+# Care unit
+ex:careUnit_SouthBostonCHC a chr:CareUnit ;
+    rdfs:label "SOUTH BOSTON COMMUNITY HEALTH CENTER INC" .
 
-ex:visit_2023_12_01 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:care_provider_DrSherita708Hudson301 ;
-  chr:hasCareUnit ex:care_unit_SouthBoston ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 .
+# Clinical visit
+ex:visit_20231201T172427p01_00 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2023-12-01T17:24:27+01:00" ;
+    chr:hasDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_Sherita_Hudson ;
+    chr:hasCareUnit ex:careUnit_SouthBostonCHC ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden .
 
-ex:measProc_HbA1c_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_HbA1c_20231201 .
+# Units
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pct> .
 
-ex:meas_HbA1c_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "6.27"^^xsd:float ;
-  chr:hasUnit "%" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:measProc_height_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_height_20231201 .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:meas_height_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "161.0"^^xsd:float ;
-  chr:hasUnit "cm" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg.m2> .
 
-ex:measProc_pain_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_pain_20231201 .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min> .
 
-ex:meas_pain_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasUnit "{score}" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mg.dL> .
 
-ex:measProc_weight_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_weight_20231201 .
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmol.L> .
 
-ex:meas_weight_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "58.8"^^xsd:float ;
-  chr:hasUnit "kg" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
 
-ex:measProc_bmi_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_bmi_20231201 .
+# Measurements (first batch – same timestamp)
+# 1. Hemoglobin A1c
+ex:measurement_HbA1c_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "6.27 %" ;
+    chr:hasQuantityValue "6.27"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/4548-4> .
 
-ex:meas_bmi_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "22.68"^^xsd:float ;
-  chr:hasUnit "kg/m2" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:measproc_HbA1c_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_HbA1c_20231201T172427p01_00 .
 
-ex:measProc_heartRate_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_heartRate_20231201 .
+# 2. Body Height
+ex:measurement_Height_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "161 cm" ;
+    chr:hasQuantityValue "161.0"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/8302-2> .
 
-ex:meas_heartRate_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "93.0"^^xsd:float ;
-  chr:hasUnit "/min" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:measproc_Height_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_Height_20231201T172427p01_00 .
 
-ex:measProc_respRate_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_respRate_20231201 .
+# 3. Pain severity
+ex:measurement_Pain_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/72514-3> .
 
-ex:meas_respRate_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "14.0"^^xsd:float ;
-  chr:hasUnit "/min" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:measproc_Pain_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_Pain_20231201T172427p01_00 .
 
-ex:measProc_glucose_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_glucose_20231201 .
+# 4. Body Weight
+ex:measurement_Weight_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "58.8 kg" ;
+    chr:hasQuantityValue "58.8"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/29463-7> .
 
-ex:meas_glucose_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "64.73"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:measproc_Weight_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_Weight_20231201T172427p01_00 .
 
-ex:measProc_ureaNitrogen_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_ureaNitrogen_20231201 .
+# 5. BMI
+ex:measurement_BMI_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "22.68 kg/m2" ;
+    chr:hasQuantityValue "22.68"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/39156-5> .
 
-ex:meas_ureaNitrogen_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "7.89"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:measproc_BMI_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Body mass index measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_BMI_20231201T172427p01_00 .
 
-ex:measProc_creatinine_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_creatinine_20231201 .
+# 6. Heart rate
+ex:measurement_HR_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "93 /min" ;
+    chr:hasQuantityValue "93.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/8867-4> .
 
-ex:meas_creatinine_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "0.81"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:measproc_HR_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_HR_20231201T172427p01_00 .
 
-ex:measProc_calcium_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_calcium_20231201 .
+# 7. Respiratory rate
+ex:measurement_RR_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "14 /min" ;
+    chr:hasQuantityValue "14.0"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/9279-1> .
 
-ex:meas_calcium_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "8.97"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:measproc_RR_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_RR_20231201T172427p01_00 .
 
-ex:measProc_sodium_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_sodium_20231201 .
+# 8. Glucose
+ex:measurement_Glucose_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "64.73 mg/dL" ;
+    chr:hasQuantityValue "64.73"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2339-0> .
 
-ex:meas_sodium_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "136.93"^^xsd:float ;
-  chr:hasUnit "mmol/L" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:measproc_Glucose_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_Glucose_20231201T172427p01_00 .
 
-ex:measProc_potassium_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_potassium_20231201 .
+# 9. Urea nitrogen
+ex:measurement_UreaN_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "7.89 mg/dL" ;
+    chr:hasQuantityValue "7.89"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/6299-2> .
 
-ex:meas_potassium_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "4.48"^^xsd:float ;
-  chr:hasUnit "mmol/L" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:measproc_UreaN_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_UreaN_20231201T172427p01_00 .
 
-ex:measProc_chloride_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_chloride_20231201 .
+# 10. Creatinine
+ex:measurement_Creatinine_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "0.81 mg/dL" ;
+    chr:hasQuantityValue "0.81"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/38483-4> .
 
-ex:meas_chloride_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "109.03"^^xsd:float ;
-  chr:hasUnit "mmol/L" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:measproc_Creatinine_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_Creatinine_20231201T172427p01_00 .
 
-ex:measProc_carbonDioxide_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_carbonDioxide_20231201 .
+# 11. Calcium
+ex:measurement_Calcium_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "8.97 mg/dL" ;
+    chr:hasQuantityValue "8.97"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/49765-1> .
 
-ex:meas_carbonDioxide_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "26.37"^^xsd:float ;
-  chr:hasUnit "mmol/L" ;
-  chr:hasMeasuredDate "2023-12-01T17:24:00"^^xsd:dateTime .
+ex:measproc_Calcium_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_Calcium_20231201T172427p01_00 .
 
-ex:measProc_gad7_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_gad7_20231201 .
+# 12. Sodium
+ex:measurement_Sodium_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "136.93 mmol/L" ;
+    chr:hasQuantityValue "136.93"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2947-0> .
 
-ex:meas_gad7_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "3.0"^^xsd:float ;
-  chr:hasUnit "{score}" ;
-  chr:hasMeasuredDate "2023-12-01T18:31:00"^^xsd:dateTime .
+ex:measproc_Sodium_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_Sodium_20231201T172427p01_00 .
 
-ex:measProc_phq2_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_phq2_20231201 .
+# 13. Potassium
+ex:measurement_Potassium_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "4.48 mmol/L" ;
+    chr:hasQuantityValue "4.48"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/6298-4> .
 
-ex:meas_phq2_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "2.0"^^xsd:float ;
-  chr:hasUnit "{score}" ;
-  chr:hasMeasuredDate "2023-12-01T19:06:00"^^xsd:dateTime .
+ex:measproc_Potassium_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_Potassium_20231201T172427p01_00 .
 
-ex:measProc_dast10_20231201 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_dast10_20231201 .
+# 14. Chloride
+ex:measurement_Chloride_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "109.03 mmol/L" ;
+    chr:hasQuantityValue "109.03"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2069-3> .
 
-ex:meas_dast10_20231201 a chr:Measurement ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasUnit "{score}" ;
-  chr:hasMeasuredDate "2023-12-01T19:44:00"^^xsd:dateTime .
+ex:measproc_Chloride_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_Chloride_20231201T172427p01_00 .
 
-ex:eval_20231201_1724_medReview a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_medReview .
+# 15. Carbon dioxide, total
+ex:measurement_CO2_20231201T172427p01_00 a chr:Measurement ;
+    rdfs:label "26.37 mmol/L" ;
+    chr:hasQuantityValue "26.37"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/20565-8> .
 
-ex:diag_medReview a chr:DiagnosticStatement .
+ex:measproc_CO2_20231201T172427p01_00 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide, total measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_CO2_20231201T172427p01_00 .
 
-ex:condition_medReview a chr:ClinicalCondition ;
-  chr:hasRecordDate "2023-12-01T17:24:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+# 16. GAD-7
+ex:measurement_GAD7_20231201T183158p01_00 a chr:Measurement ;
+    rdfs:label "3 score" ;
+    chr:hasQuantityValue "3.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2023-12-01T18:31:58+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/70274-6> .
 
-ex:eval_20231201_1724_prediabetes a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_prediabetes .
+ex:measproc_GAD7_20231201T183158p01_00 a chr:MeasurementProcess ;
+    rdfs:label "GAD-7 measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_GAD7_20231201T183158p01_00 .
 
-ex:diag_prediabetes a chr:DiagnosticStatement .
+# 17. PHQ-2
+ex:measurement_PHQ2_20231201T190650p01_00 a chr:Measurement ;
+    rdfs:label "2 score" ;
+    chr:hasQuantityValue "2.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2023-12-01T19:06:50+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/55758-7> .
 
-ex:condition_prediabetes a chr:ClinicalCondition ;
-  chr:hasRecordDate "2023-12-01T17:24:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:measproc_PHQ2_20231201T190650p01_00 a chr:MeasurementProcess ;
+    rdfs:label "PHQ-2 measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_PHQ2_20231201T190650p01_00 .
 
-ex:eval_20231201_1724_anemia a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_anemia .
+# 18. DAST-10
+ex:measurement_DAST10_20231201T194403p01_00 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1.0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2023-12-01T19:44:03+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/82667-7> .
 
-ex:diag_anemia a chr:DiagnosticStatement .
+ex:measproc_DAST10_20231201T194403p01_00 a chr:MeasurementProcess ;
+    rdfs:label "DAST-10 measurement" ;
+    chr:hasPatient ex:patient_Angel_Callie_Schaden ;
+    chr:hasResult ex:measurement_DAST10_20231201T194403p01_00 .
 
-ex:condition_anemia a chr:ClinicalCondition ;
-  chr:hasRecordDate "2023-12-01T17:24:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+# Diagnostic statements and clinical conditions (evaluations at 17:24:27)
+ex:diag_MedReview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
 
-ex:eval_20231201_1804_partTime a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_partTime .
+ex:cond_MedReview a chr:ClinicalCondition ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime .
 
-ex:diag_partTime a chr:DiagnosticStatement .
+ex:diag_Prediabetes a chr:DiagnosticStatement ;
+    rdfs:label "Prediabetes (finding)" ;
+    chr:hasCode <http://snomed.info/id/714628002> .
 
-ex:condition_partTime a chr:ClinicalCondition ;
-  chr:hasRecordDate "2023-12-01T18:04:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:cond_Prediabetes a chr:ClinicalCondition ;
+    rdfs:label "Prediabetes (finding)" ;
+    chr:hasCode <http://snomed.info/id/714628002> ;
+    chr:hasRecordDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime .
 
-ex:severity_moderate a chr:Severity .
+ex:diag_Anemia a chr:DiagnosticStatement ;
+    rdfs:label "Anemia (disorder)" ;
+    chr:hasCode <http://snomed.info/id/271737000> .
 
-ex:carePlan_followUp a chr:CarePlan .
+ex:cond_Anemia a chr:ClinicalCondition ;
+    rdfs:label "Anemia (disorder)" ;
+    chr:hasCode <http://snomed.info/id/271737000> ;
+    chr:hasRecordDate "2023-12-01T17:24:27+01:00"^^xsd:dateTime .
+
+ex:diag_PartTimeEmployment a chr:DiagnosticStatement ;
+    rdfs:label "Part-time employment (finding)" ;
+    chr:hasCode <http://snomed.info/id/160904001> .
+
+ex:cond_PartTimeEmployment a chr:ClinicalCondition ;
+    rdfs:label "Part-time employment (finding)" ;
+    chr:hasCode <http://snomed.info/id/160904001> ;
+    chr:hasRecordDate "2023-12-01T18:04:38+01:00"^^xsd:dateTime .
+
+# Evaluation processes
+ex:evaluation_1_20231201T172427p01_00 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Sherita708 Hudson301 on 2023-12-01T17:24:27+01:00 (Medication review)" ;
+    chr:hasCondition ex:cond_MedReview ;
+    chr:hasObservation ex:diag_MedReview .
+
+ex:evaluation_2_20231201T172427p01_00 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Sherita708 Hudson301 on 2023-12-01T17:24:27+01:00 (Prediabetes)" ;
+    chr:hasCondition ex:cond_Prediabetes ;
+    chr:hasObservation ex:diag_Prediabetes .
+
+ex:evaluation_3_20231201T172427p01_00 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Sherita708 Hudson301 on 2023-12-01T17:24:27+01:00 (Anemia)" ;
+    chr:hasCondition ex:cond_Anemia ;
+    chr:hasObservation ex:diag_Anemia .
+
+ex:evaluation_4_20231201T180438p01_00 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Sherita708 Hudson301 on 2023-12-01T18:04:38+01:00 (Part-time employment)" ;
+    chr:hasCondition ex:cond_PartTimeEmployment ;
+    chr:hasObservation ex:diag_PartTimeEmployment .
+
+# Care plan and associated medical procedure
+ex:proc_FollowUp_20231201 a chr:MedicalProcedure ;
+    rdfs:label "Follow-up monitoring and routine review" .
+
+ex:careplan_20231201 a chr:CarePlan ;
+    rdfs:label "Care plan for follow‑up monitoring" ;
+    chr:hasMedicalProcedure ex:proc_FollowUp_20231201 .

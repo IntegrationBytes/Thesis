@@ -79,13 +79,13 @@ def draw_panel(ax, m_key: str, color: str, title: str) -> None:
 
 
 def main() -> None:
-    fig, (ax_l, ax_r) = plt.subplots(1, 2, figsize=(11.4, 3.6),
-                                      gridspec_kw={"width_ratios": [0.45, 1.0]})
+    fig, ax = plt.subplots(figsize=(6.5, 3.6))
 
-    draw_panel(ax_l, "gemini", GEMINI_BLUE,
-               "(a)  Gemini  ·  3 shape classes triggered, ≥97% resolved")
-    draw_panel(ax_r, "gptoss", GPTOSS_ORANGE,
-               "(b)  gpt-oss  ·  11 shape classes triggered, 5 retain residuals")
+    # Note: per-shape data is keyed by the historical "gemini" label but
+    # is now sourced from outputs/chr/... (gpt-oss-120b data per current
+    # codebase layout — see per_shape_violation_analysis.py).
+    draw_panel(ax, "gemini", GPTOSS_ORANGE,
+               "gpt-oss-120b · SHACL violations · cycle 0 (A) vs cycle 3 (B)")
 
     fig.tight_layout(pad=1.2)
     OUT.parent.mkdir(parents=True, exist_ok=True)

@@ -1,1 +1,631 @@
-# LLM call failed: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/workspaces/default/keys/904bef16ba07bd440ba9135faeee6cdc6097bd01c0e2a9aec4949d13006f4f81', 'code': 403}}
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Patient
+ex:patient_ArlenOlson a chr:Person ;
+    rdfs:label "Arlen68 Olson653" .
+
+# Physician
+ex:physician_DomenicBlick a chr:Person ;
+    rdfs:label "Dr. Domenic627 Blick895" .
+
+# Care unit
+ex:careunit_VIBRA a chr:CareUnit ;
+    rdfs:label "VIBRA HOSPITAL OF WESTERN MASS - CENTRAL CAMPUS" .
+
+# Clinical visit
+ex:visit_2024_10_23_16_47_23 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2024-10-23T16:47:23+02:00" ;
+    chr:hasDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_DomenicBlick ;
+    chr:hasCareUnit ex:careunit_VIBRA ;
+    chr:hasPatient ex:patient_ArlenOlson .
+
+# Units
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
+
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> .
+
+ex:unit_mL_per_min_per_1_73_m2 a chr:Unit ;
+    rdfs:label "mL/min/{1.73_m2}" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mLperminper1.73_m2> .
+
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
+
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
+
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
+
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kgperm2> .
+
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/permin> .
+
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/percent> .
+
+ex:unit_pH a chr:Unit ;
+    rdfs:label "pH" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pH> .
+
+ex:unit_nominal a chr:Unit ;
+    rdfs:label "nominal" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/nominal> .
+
+# ------------------------------
+# Measurements (Serum/Plasma)
+# ------------------------------
+
+# Glucose (Serum) 195.03 mg/dL
+ex:meas_Glucose_Serum_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "195.03 mg/dL" ;
+    chr:hasQuantityValue "195.03"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2345-7> .
+
+ex:measproc_Glucose_Serum_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement in Serum or Plasma" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Glucose_Serum_2024_10_23_16_47_23 .
+
+# Urea nitrogen (Serum) 16.45 mg/dL
+ex:meas_UreaNitrogen_Serum_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "16.45 mg/dL" ;
+    chr:hasQuantityValue "16.45"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/3094-0> .
+
+ex:measproc_UreaNitrogen_Serum_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement in Serum or Plasma" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_UreaNitrogen_Serum_2024_10_23_16_47_23 .
+
+# Creatinine (Serum) 1.9618 mg/dL
+ex:meas_Creatinine_Serum_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "1.9618 mg/dL" ;
+    chr:hasQuantityValue "1.9618"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2160-0> .
+
+ex:measproc_Creatinine_Serum_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement in Serum or Plasma" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Creatinine_Serum_2024_10_23_16_47_23 .
+
+# Calcium (Serum) 9.02 mg/dL
+ex:meas_Calcium_Serum_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "9.02 mg/dL" ;
+    chr:hasQuantityValue "9.02"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/17861-6> .
+
+ex:measproc_Calcium_Serum_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement in Serum or Plasma" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Calcium_Serum_2024_10_23_16_47_23 .
+
+# Sodium (Serum) 136.96 mmol/L
+ex:meas_Sodium_Serum_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "136.96 mmol/L" ;
+    chr:hasQuantityValue "136.96"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2951-2> .
+
+ex:measproc_Sodium_Serum_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement in Serum or Plasma" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Sodium_Serum_2024_10_23_16_47_23 .
+
+# Potassium (Serum) 4.3 mmol/L
+ex:meas_Potassium_Serum_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "4.3 mmol/L" ;
+    chr:hasQuantityValue "4.3"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2823-3> .
+
+ex:measproc_Potassium_Serum_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement in Serum or Plasma" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Potassium_Serum_2024_10_23_16_47_23 .
+
+# Chloride (Serum) 108.95 mmol/L
+ex:meas_Chloride_Serum_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "108.95 mmol/L" ;
+    chr:hasQuantityValue "108.95"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2075-0> .
+
+ex:measproc_Chloride_Serum_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement in Serum or Plasma" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Chloride_Serum_2024_10_23_16_47_23 .
+
+# Carbon dioxide, total (Serum) 28.34 mmol/L
+ex:meas_CO2_Serum_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "28.34 mmol/L" ;
+    chr:hasQuantityValue "28.34"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2028-9> .
+
+ex:measproc_CO2_Serum_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide, total measurement in Serum or Plasma" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_CO2_Serum_2024_10_23_16_47_23 .
+
+# GFR (Serum) 38.597 mL/min/{1.73_m2}
+ex:meas_GFR_Serum_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "38.597 mL/min/{1.73_m2}" ;
+    chr:hasQuantityValue "38.597"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/33914-3> .
+
+ex:measproc_GFR_Serum_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Glomerular filtration rate measurement in Serum or Plasma" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_GFR_Serum_2024_10_23_16_47_23 .
+
+# ------------------------------
+# Urine measurements (Test strip)
+# ------------------------------
+
+# Glucose (Urine) 1.8141 mg/dL
+ex:meas_Glucose_Urine_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "1.8141 mg/dL" ;
+    chr:hasQuantityValue "1.8141"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5792-7> .
+
+ex:measproc_Glucose_Urine_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement in Urine by Test strip" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Glucose_Urine_2024_10_23_16_47_23 .
+
+# Bilirubin.total (Urine) 0.28026 mg/dL
+ex:meas_Bilirubin_Urine_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "0.28026 mg/dL" ;
+    chr:hasQuantityValue "0.28026"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/20505-4> .
+
+ex:measproc_Bilirubin_Urine_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Bilirubin.total measurement in Urine by Test strip" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Bilirubin_Urine_2024_10_23_16_47_23 .
+
+# Ketones (Urine) 4.9551 mg/dL
+ex:meas_Ketones_Urine_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "4.9551 mg/dL" ;
+    chr:hasQuantityValue "4.9551"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5797-6> .
+
+ex:measproc_Ketones_Urine_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Ketones measurement in Urine by Test strip" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Ketones_Urine_2024_10_23_16_47_23 .
+
+# Specific gravity (Urine) 1.0032 nominal
+ex:meas_SpecificGravity_Urine_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "1.0032 nominal" ;
+    chr:hasQuantityValue "1.0032"^^xsd:float ;
+    chr:hasUnit ex:unit_nominal ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5811-5> .
+
+ex:measproc_SpecificGravity_Urine_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Specific gravity measurement in Urine by Test strip" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_SpecificGravity_Urine_2024_10_23_16_47_23 .
+
+# pH (Urine) 5.0607 pH
+ex:meas_pH_Urine_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "5.0607 pH" ;
+    chr:hasQuantityValue "5.0607"^^xsd:float ;
+    chr:hasUnit ex:unit_pH ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5803-2> .
+
+ex:measproc_pH_Urine_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "pH measurement in Urine by Test strip" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_pH_Urine_2024_10_23_16_47_23 .
+
+# Protein (Urine) 212.69 mg/dL
+ex:meas_Protein_Urine_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "212.69 mg/dL" ;
+    chr:hasQuantityValue "212.69"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/5804-0> .
+
+ex:measproc_Protein_Urine_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Protein measurement in Urine by Test strip" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Protein_Urine_2024_10_23_16_47_23 .
+
+# Hemoglobin A1c (Blood) 5.36 %
+ex:meas_HbA1c_Blood_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "5.36 %" ;
+    chr:hasQuantityValue "5.36"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/4548-4> .
+
+ex:measproc_HbA1c_Blood_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c/Hemoglobin.total measurement in Blood" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_HbA1c_Blood_2024_10_23_16_47_23 .
+
+# Body Height 177 cm
+ex:meas_Height_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "177 cm" ;
+    chr:hasQuantityValue "177"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/8302-2> .
+
+ex:measproc_Height_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Height_2024_10_23_16_47_23 .
+
+# Pain severity 4 score
+ex:meas_PainSeverity_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "4 score" ;
+    chr:hasQuantityValue "4"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/72514-3> .
+
+ex:measproc_PainSeverity_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_PainSeverity_2024_10_23_16_47_23 .
+
+# Body Weight 86 kg
+ex:meas_Weight_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "86 kg" ;
+    chr:hasQuantityValue "86"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/29463-7> .
+
+ex:measproc_Weight_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Weight_2024_10_23_16_47_23 .
+
+# Body Mass Index 27.45 kg/m2
+ex:meas_BMI_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "27.45 kg/m2" ;
+    chr:hasQuantityValue "27.45"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/39156-5> .
+
+ex:measproc_BMI_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Body mass index measurement" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_BMI_2024_10_23_16_47_23 .
+
+# Heart rate 89 /min
+ex:meas_HeartRate_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "89 /min" ;
+    chr:hasQuantityValue "89"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/8867-4> .
+
+ex:measproc_HeartRate_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_HeartRate_2024_10_23_16_47_23 .
+
+# Respiratory rate 13 /min
+ex:meas_RespRate_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "13 /min" ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/9279-1> .
+
+ex:measproc_RespRate_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_RespRate_2024_10_23_16_47_23 .
+
+# ------------------------------
+# Blood measurements (duplicate analytes)
+# ------------------------------
+
+# Glucose (Blood) 195.03 mg/dL
+ex:meas_Glucose_Blood_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "195.03 mg/dL" ;
+    chr:hasQuantityValue "195.03"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2339-0> .
+
+ex:measproc_Glucose_Blood_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement in Blood" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Glucose_Blood_2024_10_23_16_47_23 .
+
+# Urea nitrogen (Blood) 16.45 mg/dL
+ex:meas_UreaNitrogen_Blood_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "16.45 mg/dL" ;
+    chr:hasQuantityValue "16.45"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/6299-2> .
+
+ex:measproc_UreaNitrogen_Blood_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement in Blood" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_UreaNitrogen_Blood_2024_10_23_16_47_23 .
+
+# Creatinine (Blood) 4.05 mg/dL
+ex:meas_Creatinine_Blood_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "4.05 mg/dL" ;
+    chr:hasQuantityValue "4.05"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/38483-4> .
+
+ex:measproc_Creatinine_Blood_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement in Blood" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Creatinine_Blood_2024_10_23_16_47_23 .
+
+# Calcium (Blood) 9.02 mg/dL
+ex:meas_Calcium_Blood_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "9.02 mg/dL" ;
+    chr:hasQuantityValue "9.02"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/49765-1> .
+
+ex:measproc_Calcium_Blood_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement in Blood" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Calcium_Blood_2024_10_23_16_47_23 .
+
+# Sodium (Blood) 136.96 mmol/L
+ex:meas_Sodium_Blood_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "136.96 mmol/L" ;
+    chr:hasQuantityValue "136.96"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2947-0> .
+
+ex:measproc_Sodium_Blood_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement in Blood" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Sodium_Blood_2024_10_23_16_47_23 .
+
+# Potassium (Blood) 4.3 mmol/L
+ex:meas_Potassium_Blood_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "4.3 mmol/L" ;
+    chr:hasQuantityValue "4.3"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/6298-4> .
+
+ex:measproc_Potassium_Blood_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement in Blood" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Potassium_Blood_2024_10_23_16_47_23 .
+
+# Chloride (Blood) 108.95 mmol/L
+ex:meas_Chloride_Blood_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "108.95 mmol/L" ;
+    chr:hasQuantityValue "108.95"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2069-3> .
+
+ex:measproc_Chloride_Blood_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement in Blood" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Chloride_Blood_2024_10_23_16_47_23 .
+
+# Carbon dioxide, total (Blood) 28.34 mmol/L
+ex:meas_CO2_Blood_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "28.34 mmol/L" ;
+    chr:hasQuantityValue "28.34"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/20565-8> .
+
+ex:measproc_CO2_Blood_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide, total measurement in Blood" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_CO2_Blood_2024_10_23_16_47_23 .
+
+# Cholesterol (Serum) 243.66 mg/dL
+ex:meas_Cholesterol_Serum_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "243.66 mg/dL" ;
+    chr:hasQuantityValue "243.66"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2093-3> .
+
+ex:measproc_Cholesterol_Serum_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol measurement in Serum or Plasma" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Cholesterol_Serum_2024_10_23_16_47_23 .
+
+# Triglyceride (Serum) 324.82 mg/dL
+ex:meas_Triglyceride_Serum_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "324.82 mg/dL" ;
+    chr:hasQuantityValue "324.82"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2571-8> .
+
+ex:measproc_Triglyceride_Serum_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Triglyceride measurement in Serum or Plasma" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Triglyceride_Serum_2024_10_23_16_47_23 .
+
+# LDL Cholesterol (Serum) 154.11 mg/dL
+ex:meas_LDL_Cholesterol_Serum_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "154.11 mg/dL" ;
+    chr:hasQuantityValue "154.11"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/18262-6> .
+
+ex:measproc_LDL_Cholesterol_Serum_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol in LDL measurement in Serum or Plasma by Direct assay" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_LDL_Cholesterol_Serum_2024_10_23_16_47_23 .
+
+# HDL Cholesterol (Serum) 24.59 mg/dL
+ex:meas_HDL_Cholesterol_Serum_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "24.59 mg/dL" ;
+    chr:hasQuantityValue "24.59"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/2085-9> .
+
+ex:measproc_HDL_Cholesterol_Serum_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol in HDL measurement in Serum or Plasma" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_HDL_Cholesterol_Serum_2024_10_23_16_47_23 .
+
+# Microalbumin/Creatinine (Urine) 103.85 mg/g
+ex:meas_MicroalbuminCreatinine_Urine_2024_10_23_16_47_23 a chr:Measurement ;
+    rdfs:label "103.85 mg/g" ;
+    chr:hasQuantityValue "103.85"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ; # using mg/dL as closest unit (placeholder)
+    chr:hasMeasuredDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/14959-1> .
+
+ex:measproc_MicroalbuminCreatinine_Urine_2024_10_23_16_47_23 a chr:MeasurementProcess ;
+    rdfs:label "Microalbumin/Creatinine measurement in Urine" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_MicroalbuminCreatinine_Urine_2024_10_23_16_47_23 .
+
+# GFR (Serum) second record 20.36 mL/min/{1.73_m2}
+ex:meas_GFR_Serum_2024_10_23_20_36_13 a chr:Measurement ;
+    rdfs:label "20.36 mL/min/{1.73_m2}" ;
+    chr:hasQuantityValue "20.36"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 ;
+    chr:hasMeasuredDate "2024-10-23T20:36:13+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/33914-3> .
+
+ex:measproc_GFR_Serum_2024_10_23_20_36_13 a chr:MeasurementProcess ;
+    rdfs:label "Glomerular filtration rate measurement in Serum or Plasma" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_GFR_Serum_2024_10_23_20_36_13 .
+
+# ------------------------------
+# Mental health questionnaires
+# ------------------------------
+
+# GAD-7 total score 3
+ex:meas_GAD7_2024_10_23_18_02_00 a chr:Measurement ;
+    rdfs:label "3 score" ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2024-10-23T18:02:00+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/70274-6> .
+
+ex:measproc_GAD7_2024_10_23_18_02_00 a chr:MeasurementProcess ;
+    rdfs:label "Generalized anxiety disorder 7 item total score measurement" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_GAD7_2024_10_23_18_02_00 .
+
+# PHQ-2 total score 1
+ex:meas_PHQ2_2024_10_23_18_33_57 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2024-10-23T18:33:57+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/55758-7> .
+
+ex:measproc_PHQ2_2024_10_23_18_33_57 a chr:MeasurementProcess ;
+    rdfs:label "Patient Health Questionnaire 2 item total score measurement" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_PHQ2_2024_10_23_18_33_57 .
+
+# AUDIT-C total score 3
+ex:meas_AUDITC_2024_10_23_19_16_13 a chr:Measurement ;
+    rdfs:label "3 score" ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2024-10-23T19:16:13+02:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/75626-2> .
+
+ex:measproc_AUDITC_2024_10_23_19_16_13 a chr:MeasurementProcess ;
+    rdfs:label "Total score measurement (AUDIT-C)" ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_AUDITC_2024_10_23_19_16_13 .
+
+# ------------------------------
+# Evaluation processes and clinical conditions
+# ------------------------------
+
+# Evaluation 1 (Medication review)
+ex:condition_MedicationReview a chr:ClinicalCondition ;
+    rdfs:label "Medication review due" ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2024-10-23T16:47:23+02:00"^^xsd:dateTime .
+
+ex:diagstmt_MedicationReview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+ex:evaluation_MedicationReview a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Domenic627 Blick895 on 2024-10-23T16:47:23+02:00" ;
+    chr:hasCondition ex:condition_MedicationReview ;
+    chr:hasObservation ex:diagstmt_MedicationReview .
+
+# Evaluation 2 (Part-time employment)
+ex:condition_PartTimeEmployment a chr:ClinicalCondition ;
+    rdfs:label "Part-time employment" ;
+    chr:hasCode <http://snomed.info/id/160904001> ;
+    chr:hasRecordDate "2024-10-23T17:36:09+02:00"^^xsd:dateTime .
+
+ex:diagstmt_PartTimeEmployment a chr:DiagnosticStatement ;
+    rdfs:label "Part-time employment (finding)" ;
+    chr:hasCode <http://snomed.info/id/160904001> .
+
+ex:evaluation_PartTimeEmployment a chr:EvaluationProcess ;
+    rdfs:label "Evaluation by Dr. Domenic627 Blick895 on 2024-10-23T17:36:09+02:00" ;
+    chr:hasCondition ex:condition_PartTimeEmployment ;
+    chr:hasObservation ex:diagstmt_PartTimeEmployment .
+
+# Care plan
+ex:careplan_FollowUp a chr:CarePlan ;
+    rdfs:label "Care plan for follow-up monitoring and routine review" .

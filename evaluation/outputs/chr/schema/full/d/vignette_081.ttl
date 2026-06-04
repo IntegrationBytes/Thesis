@@ -4,35 +4,62 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Estela596Yetta429Grant908 a chr:Person .
+ex:patient_Estela596Yetta429Grant908
+    a chr:Person ;
+    rdfs:label "Estela596 Yetta429 Grant908" .
 
-ex:visit_2007_05_07 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasCareProvider ex:doctor_Nickolas58Schumm995 ;
-  chr:hasCareUnit ex:care_unit_Braintree .
+ex:person_Nickolas58Schumm995
+    a chr:Person ;
+    rdfs:label "Dr. Nickolas58 Schumm995" .
 
-ex:care_unit_Braintree a chr:CareUnit .
+ex:careunit_ENCOMPASS_HEALTH_BRAINTREE
+    a chr:CareUnit ;
+    rdfs:label "ENCOMPASS HEALTH BRAINTREE HOSPITAL OF BRAINTREE" .
 
-ex:doctor_Nickolas58Schumm995 a chr:Person .
+ex:visit_2007_05_07T033554
+    a chr:ClinicalVisit ;
+    rdfs:label "Visit 2007-05-07T03:35:54+02:00" ;
+    chr:hasDate "2007-05-07T03:35:54+02:00"^^xsd:dateTime ;
+    chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
+    chr:hasCareProvider ex:person_Nickolas58Schumm995 ;
+    chr:hasCareUnit ex:careunit_ENCOMPASS_HEALTH_BRAINTREE .
 
-ex:temp_meas_proc_2007_05_07 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:temp_meas_2007_05_07 .
+ex:unit_Cel
+    a chr:Unit ;
+    rdfs:label "Cel" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/Cel> .
 
-ex:temp_meas_2007_05_07 a chr:Measurement ;
-  chr:hasQuantityValue "38.234"^^xsd:float ;
-  chr:hasUnit sulo:Cel ;
-  chr:hasMeasuredDate "2007-05-07T03:35:00"^^xsd:dateTime .
+ex:measurement_temp_20070507T033554
+    a chr:Measurement ;
+    rdfs:label "38.234 Cel" ;
+    chr:hasMeasuredDate "2007-05-07T03:35:54+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "38.234"^^xsd:float ;
+    chr:hasUnit ex:unit_Cel ;
+    chr:hasCode <https://loinc.org/8310-5> .
 
-ex:eval_2007_05_07 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_strep_throat .
+ex:measproc_temp_20070507T033554
+    a chr:MeasurementProcess ;
+    rdfs:label "Temperature measurement process" ;
+    chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
+    chr:hasResult ex:measurement_temp_20070507T033554 .
 
-ex:diag_strep_throat a chr:DiagnosticStatement .
+ex:diag_StreptococcalSoreThroat
+    a chr:DiagnosticStatement ;
+    rdfs:label "Streptococcal sore throat" ;
+    chr:hasCode <http://snomed.info/id/43878008> .
 
-ex:condition_strep_throat a chr:ClinicalCondition ;
-  chr:hasRecordDate "2007-05-07T03:35:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:condition_StreptococcalSoreThroat
+    a chr:ClinicalCondition ;
+    rdfs:label "Streptococcal sore throat" ;
+    chr:hasCode <http://snomed.info/id/43878008> ;
+    chr:hasRecordDate "2007-05-07T03:35:54+02:00"^^xsd:dateTime .
 
-ex:severity_moderate a chr:Severity .
+ex:evaluation_20070507T033554
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2007-05-07T03:35:54+02:00" ;
+    chr:hasObservation ex:diag_StreptococcalSoreThroat ;
+    chr:hasCondition ex:condition_StreptococcalSoreThroat .
 
-ex:care_plan_strep_throat a chr:CarePlan .
+ex:careplan_followup
+    a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review care plan" .

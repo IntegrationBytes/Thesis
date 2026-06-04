@@ -4,269 +4,256 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:visit_2019_03_15
-  a chr:ClinicalVisit ;
-  sulo:atTime ex:time_visit_2019_03_15 ;
-  sulo:isIn ex:care_unit_nashoba ;
-  sulo:hasParticipant ex:role_visit_patient_Bergstrom287 ;
-  sulo:hasParticipant ex:role_visit_provider_Tromp100 .
+# Persons
+ex:person_Arleen939_Marlyn309_Bergstrom287 a chr:Person .
+ex:person_Dr_Lynwood354_Tromp100 a chr:Person .
 
-ex:time_visit_2019_03_15
-  sulo:hasValue "2019-03-15T14:13:00"^^xsd:dateTime .
+# Care unit
+ex:careunit_NASHOBA_VALLEY_MEDICAL_CENTER a chr:CareUnit .
 
-ex:role_visit_patient_Bergstrom287
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Bergstrom287 .
+# Clinical visit
+ex:visit_2019_03_15_T1413 a chr:ClinicalVisit ;
+    sulo:isIn ex:careunit_NASHOBA_VALLEY_MEDICAL_CENTER ;
+    sulo:atTime ex:time_visit_2019_03_15_T1413 ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Visit ,
+                       ex:role_CareProvider_Visit .
 
-ex:role_visit_provider_Tromp100
-  a chr:CareProviderRole ;
-  sulo:isFeatureOf ex:provider_Tromp100 .
+ex:time_visit_2019_03_15_T1413 a sulo:TimeInstant ;
+    sulo:hasValue "2019-03-15T14:13:14+01:00"^^xsd:dateTime .
 
-ex:patient_Bergstrom287
-  a chr:Person .
+ex:role_SubjectOfCare_Visit a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen939_Marlyn309_Bergstrom287 .
+ex:role_CareProvider_Visit a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Dr_Lynwood354_Tromp100 .
 
-ex:provider_Tromp100
-  a chr:Person .
+# Units
+ex:unit_cm a chr:Unit .
+ex:unit_kg a chr:Unit .
+ex:unit_kg_per_m2 a chr:Unit .
+ex:unit_per_min a chr:Unit .
+ex:unit_score a chr:Unit .
 
-ex:care_unit_nashoba
-  a chr:CareUnit .
+# Process status (shared)
+ex:status_completed a chr:ProcessStatus .
 
-ex:height_measurement_process
-  a chr:MeasurementProcess ;
-  sulo:atTime ex:time_height_measurement ;
-  sulo:hasParticipant ex:role_height_measurement_patient_Bergstrom287 ;
-  sulo:hasParticipant ex:role_height_measurement_output .
+# Height measurement
+ex:proc_Height_2019_03_15_T1413 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_height_2019_03_15_T1413 ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Height ,
+                       ex:role_CareProvider_Height ,
+                       ex:output_Height ;
+    sulo:hasFeature ex:status_completed .
 
-ex:time_height_measurement
-  sulo:hasValue "2019-03-15T14:13:00"^^xsd:dateTime .
+ex:time_height_2019_03_15_T1413 a sulo:TimeInstant ;
+    sulo:hasValue "2019-03-15T14:13:14+01:00"^^xsd:dateTime .
 
-ex:role_height_measurement_patient_Bergstrom287
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Bergstrom287 .
+ex:role_SubjectOfCare_Height a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen939_Marlyn309_Bergstrom287 .
+ex:role_CareProvider_Height a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Dr_Lynwood354_Tromp100 .
 
-ex:role_height_measurement_output
-  a chr:OutputRole ;
-  sulo:isFeatureOf ex:height_measurement .
+ex:output_Height a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Height .
 
-ex:height_measurement
-  a chr:Measurement ;
-  sulo:hasValue "159.0"^^xsd:float ;
-  sulo:hasPart ex:unit_cm .
+ex:meas_Height a chr:Measurement ;
+    sulo:hasValue "159.0"^^xsd:float ;
+    sulo:hasPart ex:unit_cm ;
+    sulo:atTime ex:time_height_2019_03_15_T1413 .
 
-ex:unit_cm
-  a sulo:Unit ;
-  rdfs:label "cm" .
+# Pain severity measurement
+ex:proc_PainSeverity_2019_03_15_T1413 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_pain_2019_03_15_T1413 ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Pain ,
+                       ex:role_CareProvider_Pain ,
+                       ex:output_Pain ;
+    sulo:hasFeature ex:status_completed , ex:severity_0 .
 
-ex:pain_measurement_process
-  a chr:MeasurementProcess ;
-  sulo:atTime ex:time_pain_measurement ;
-  sulo:hasParticipant ex:role_pain_measurement_patient_Bergstrom287 ;
-  sulo:hasParticipant ex:role_pain_measurement_output .
+ex:time_pain_2019_03_15_T1413 a sulo:TimeInstant ;
+    sulo:hasValue "2019-03-15T14:13:14+01:00"^^xsd:dateTime .
 
-ex:time_pain_measurement
-  sulo:hasValue "2019-03-15T14:13:00"^^xsd:dateTime .
+ex:role_SubjectOfCare_Pain a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen939_Marlyn309_Bergstrom287 .
+ex:role_CareProvider_Pain a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Dr_Lynwood354_Tromp100 .
 
-ex:role_pain_measurement_patient_Bergstrom287
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Bergstrom287 .
+ex:output_Pain a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Pain .
 
-ex:role_pain_measurement_output
-  a chr:OutputRole ;
-  sulo:isFeatureOf ex:pain_measurement .
+ex:meas_Pain a chr:Measurement ;
+    sulo:hasValue "0.0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_pain_2019_03_15_T1413 .
 
-ex:pain_measurement
-  a chr:Measurement ;
-  sulo:hasValue "0.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
+ex:severity_0 a chr:Severity .
 
-ex:unit_score
-  a sulo:Unit ;
-  rdfs:label "score" .
+# Weight measurement
+ex:proc_Weight_2019_03_15_T1413 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_weight_2019_03_15_T1413 ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Weight ,
+                       ex:role_CareProvider_Weight ,
+                       ex:output_Weight ;
+    sulo:hasFeature ex:status_completed .
 
-ex:weight_measurement_process
-  a chr:MeasurementProcess ;
-  sulo:atTime ex:time_weight_measurement ;
-  sulo:hasParticipant ex:role_weight_measurement_patient_Bergstrom287 ;
-  sulo:hasParticipant ex:role_weight_measurement_output .
+ex:time_weight_2019_03_15_T1413 a sulo:TimeInstant ;
+    sulo:hasValue "2019-03-15T14:13:14+01:00"^^xsd:dateTime .
 
-ex:time_weight_measurement
-  sulo:hasValue "2019-03-15T14:13:00"^^xsd:dateTime .
+ex:role_SubjectOfCare_Weight a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen939_Marlyn309_Bergstrom287 .
+ex:role_CareProvider_Weight a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Dr_Lynwood354_Tromp100 .
 
-ex:role_weight_measurement_patient_Bergstrom287
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Bergstrom287 .
+ex:output_Weight a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_Weight .
 
-ex:role_weight_measurement_output
-  a chr:OutputRole ;
-  sulo:isFeatureOf ex:weight_measurement .
+ex:meas_Weight a chr:Measurement ;
+    sulo:hasValue "58.4"^^xsd:float ;
+    sulo:hasPart ex:unit_kg ;
+    sulo:atTime ex:time_weight_2019_03_15_T1413 .
 
-ex:weight_measurement
-  a chr:Measurement ;
-  sulo:hasValue "58.4"^^xsd:float ;
-  sulo:hasPart ex:unit_kg .
+# BMI measurement
+ex:proc_BMI_2019_03_15_T1413 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_bmi_2019_03_15_T1413 ;
+    sulo:hasParticipant ex:role_SubjectOfCare_BMI ,
+                       ex:role_CareProvider_BMI ,
+                       ex:output_BMI ;
+    sulo:hasFeature ex:status_completed .
 
-ex:unit_kg
-  a sulo:Unit ;
-  rdfs:label "kg" .
+ex:time_bmi_2019_03_15_T1413 a sulo:TimeInstant ;
+    sulo:hasValue "2019-03-15T14:13:14+01:00"^^xsd:dateTime .
 
-ex:bmi_measurement_process
-  a chr:MeasurementProcess ;
-  sulo:atTime ex:time_bmi_measurement ;
-  sulo:hasParticipant ex:role_bmi_measurement_patient_Bergstrom287 ;
-  sulo:hasParticipant ex:role_bmi_measurement_output .
+ex:role_SubjectOfCare_BMI a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen939_Marlyn309_Bergstrom287 .
+ex:role_CareProvider_BMI a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Dr_Lynwood354_Tromp100 .
 
-ex:time_bmi_measurement
-  sulo:hasValue "2019-03-15T14:13:00"^^xsd:dateTime .
+ex:output_BMI a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_BMI .
 
-ex:role_bmi_measurement_patient_Bergstrom287
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Bergstrom287 .
+ex:meas_BMI a chr:Measurement ;
+    sulo:hasValue "23.11"^^xsd:float ;
+    sulo:hasPart ex:unit_kg_per_m2 ;
+    sulo:atTime ex:time_bmi_2019_03_15_T1413 .
 
-ex:role_bmi_measurement_output
-  a chr:OutputRole ;
-  sulo:isFeatureOf ex:bmi_measurement .
+# Heart rate measurement
+ex:proc_HeartRate_2019_03_15_T1413 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_hr_2019_03_15_T1413 ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HR ,
+                       ex:role_CareProvider_HR ,
+                       ex:output_HR ;
+    sulo:hasFeature ex:status_completed .
 
-ex:bmi_measurement
-  a chr:Measurement ;
-  sulo:hasValue "23.11"^^xsd:float ;
-  sulo:hasPart ex:unit_kg_m2 .
+ex:time_hr_2019_03_15_T1413 a sulo:TimeInstant ;
+    sulo:hasValue "2019-03-15T14:13:14+01:00"^^xsd:dateTime .
 
-ex:unit_kg_m2
-  a sulo:Unit ;
-  rdfs:label "kg/m2" .
+ex:role_SubjectOfCare_HR a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen939_Marlyn309_Bergstrom287 .
+ex:role_CareProvider_HR a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Dr_Lynwood354_Tromp100 .
 
-ex:heart_rate_measurement_process
-  a chr:MeasurementProcess ;
-  sulo:atTime ex:time_heart_rate_measurement ;
-  sulo:hasParticipant ex:role_heart_rate_measurement_patient_Bergstrom287 ;
-  sulo:hasParticipant ex:role_heart_rate_measurement_output .
+ex:output_HR a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HR .
 
-ex:time_heart_rate_measurement
-  sulo:hasValue "2019-03-15T14:13:00"^^xsd:dateTime .
+ex:meas_HR a chr:Measurement ;
+    sulo:hasValue "63.0"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_hr_2019_03_15_T1413 .
 
-ex:role_heart_rate_measurement_patient_Bergstrom287
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Bergstrom287 .
+# Respiratory rate measurement
+ex:proc_RespRate_2019_03_15_T1413 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_rr_2019_03_15_T1413 ;
+    sulo:hasParticipant ex:role_SubjectOfCare_RR ,
+                       ex:role_CareProvider_RR ,
+                       ex:output_RR ;
+    sulo:hasFeature ex:status_completed .
 
-ex:role_heart_rate_measurement_output
-  a chr:OutputRole ;
-  sulo:isFeatureOf ex:heart_rate_measurement .
+ex:time_rr_2019_03_15_T1413 a sulo:TimeInstant ;
+    sulo:hasValue "2019-03-15T14:13:14+01:00"^^xsd:dateTime .
 
-ex:heart_rate_measurement
-  a chr:Measurement ;
-  sulo:hasValue "63.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min .
+ex:role_SubjectOfCare_RR a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen939_Marlyn309_Bergstrom287 .
+ex:role_CareProvider_RR a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Dr_Lynwood354_Tromp100 .
 
-ex:unit_per_min
-  a sulo:Unit ;
-  rdfs:label "/min" .
+ex:output_RR a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_RR .
 
-ex:respiratory_rate_measurement_process
-  a chr:MeasurementProcess ;
-  sulo:atTime ex:time_respiratory_rate_measurement ;
-  sulo:hasParticipant ex:role_respiratory_rate_measurement_patient_Bergstrom287 ;
-  sulo:hasParticipant ex:role_respiratory_rate_measurement_output .
+ex:meas_RR a chr:Measurement ;
+    sulo:hasValue "13.0"^^xsd:float ;
+    sulo:hasPart ex:unit_per_min ;
+    sulo:atTime ex:time_rr_2019_03_15_T1413 .
 
-ex:time_respiratory_rate_measurement
-  sulo:hasValue "2019-03-15T14:13:00"^^xsd:dateTime .
+# Total score HARK measurement
+ex:proc_HARK_2019_03_15_T1529 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_hark_2019_03_15_T1529 ;
+    sulo:hasParticipant ex:role_SubjectOfCare_HARK ,
+                       ex:role_CareProvider_HARK ,
+                       ex:output_HARK ;
+    sulo:hasFeature ex:status_completed , ex:severity_0 .
 
-ex:role_respiratory_rate_measurement_patient_Bergstrom287
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Bergstrom287 .
+ex:time_hark_2019_03_15_T1529 a sulo:TimeInstant ;
+    sulo:hasValue "2019-03-15T15:29:16+01:00"^^xsd:dateTime .
 
-ex:role_respiratory_rate_measurement_output
-  a chr:OutputRole ;
-  sulo:isFeatureOf ex:respiratory_rate_measurement .
+ex:role_SubjectOfCare_HARK a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen939_Marlyn309_Bergstrom287 .
+ex:role_CareProvider_HARK a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Dr_Lynwood354_Tromp100 .
 
-ex:respiratory_rate_measurement
-  a chr:Measurement ;
-  sulo:hasValue "13.0"^^xsd:float ;
-  sulo:hasPart ex:unit_per_min .
+ex:output_HARK a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_HARK .
 
-ex:hark_measurement_process
-  a chr:MeasurementProcess ;
-  sulo:atTime ex:time_hark_measurement ;
-  sulo:hasParticipant ex:role_hark_measurement_patient_Bergstrom287 ;
-  sulo:hasParticipant ex:role_hark_measurement_output .
+ex:meas_HARK a chr:Measurement ;
+    sulo:hasValue "0.0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_hark_2019_03_15_T1529 .
 
-ex:time_hark_measurement
-  sulo:hasValue "2019-03-15T15:29:00"^^xsd:dateTime .
+# Total score DAST-10 measurement
+ex:proc_DAST10_2019_03_15_T1608 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_dast10_2019_03_15_T1608 ;
+    sulo:hasParticipant ex:role_SubjectOfCare_DAST10 ,
+                       ex:role_CareProvider_DAST10 ,
+                       ex:output_DAST10 ;
+    sulo:hasFeature ex:status_completed , ex:severity_1 .
 
-ex:role_hark_measurement_patient_Bergstrom287
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Bergstrom287 .
+ex:time_dast10_2019_03_15_T1608 a sulo:TimeInstant ;
+    sulo:hasValue "2019-03-15T16:08:18+01:00"^^xsd:dateTime .
 
-ex:role_hark_measurement_output
-  a chr:OutputRole ;
-  sulo:isFeatureOf ex:hark_measurement .
+ex:role_SubjectOfCare_DAST10 a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen939_Marlyn309_Bergstrom287 .
+ex:role_CareProvider_DAST10 a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Dr_Lynwood354_Tromp100 .
 
-ex:hark_measurement
-  a chr:Measurement ;
-  sulo:hasValue "0.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
+ex:output_DAST10 a chr:OutputRole ;
+    sulo:isFeatureOf ex:meas_DAST10 .
 
-ex:dast10_measurement_process
-  a chr:MeasurementProcess ;
-  sulo:atTime ex:time_dast10_measurement ;
-  sulo:hasParticipant ex:role_dast10_measurement_patient_Bergstrom287 ;
-  sulo:hasParticipant ex:role_dast10_measurement_output .
+ex:meas_DAST10 a chr:Measurement ;
+    sulo:hasValue "1.0"^^xsd:float ;
+    sulo:hasPart ex:unit_score ;
+    sulo:atTime ex:time_dast10_2019_03_15_T1608 .
 
-ex:time_dast10_measurement
-  sulo:hasValue "2019-03-15T16:08:00"^^xsd:dateTime .
+ex:severity_1 a chr:Severity .
 
-ex:role_dast10_measurement_patient_Bergstrom287
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Bergstrom287 .
+# Evaluation process
+ex:evaluation_2019_03_15_T1456 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_evaluation_2019_03_15_T1456 ;
+    sulo:hasParticipant ex:role_SubjectOfCare_Eval ,
+                       ex:role_Performer_Eval ,
+                       ex:output_Eval .
 
-ex:role_dast10_measurement_output
-  a chr:OutputRole ;
-  sulo:isFeatureOf ex:dast10_measurement .
+ex:time_evaluation_2019_03_15_T1456 a sulo:TimeInstant ;
+    sulo:hasValue "2019-03-15T14:56:37+01:00"^^xsd:dateTime .
 
-ex:dast10_measurement
-  a chr:Measurement ;
-  sulo:hasValue "1.0"^^xsd:float ;
-  sulo:hasPart ex:unit_score .
+ex:role_SubjectOfCare_Eval a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Arleen939_Marlyn309_Bergstrom287 .
+ex:role_Performer_Eval a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Dr_Lynwood354_Tromp100 .
 
-ex:evaluation_process
-  a chr:EvaluationProcess ;
-  sulo:atTime ex:time_evaluation ;
-  sulo:hasParticipant ex:role_evaluation_patient_Bergstrom287 ;
-  sulo:hasParticipant ex:role_evaluation_provider_Tromp100 ;
-  sulo:hasParticipant ex:role_evaluation_output .
+ex:output_Eval a chr:OutputRole ;
+    sulo:isFeatureOf ex:diag_Stress .
 
-ex:time_evaluation
-  sulo:hasValue "2019-03-15T14:56:00"^^xsd:dateTime .
+ex:diag_Stress a chr:DiagnosticStatement .
 
-ex:role_evaluation_patient_Bergstrom287
-  a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Bergstrom287 .
+# Care plan
+ex:careplan_2019_03_15 a chr:CarePlan ;
+    sulo:refersTo ex:medicalproc_FollowUp .
 
-ex:role_evaluation_provider_Tromp100
-  a chr:PerformerRole ;
-  sulo:isFeatureOf ex:provider_Tromp100 .
-
-ex:role_evaluation_output
-  a chr:OutputRole ;
-  sulo:isFeatureOf ex:diagnostic_statement_stress .
-
-ex:diagnostic_statement_stress
-  a chr:DiagnosticStatement ;
-  sulo:atTime ex:time_diagnostic_statement ;
-  sulo:hasFeature ex:severity_moderate .
-
-ex:time_diagnostic_statement
-  sulo:hasValue "2019-03-15T14:56:00"^^xsd:dateTime .
-
-ex:severity_moderate
-  a chr:Severity .
-
-ex:care_plan
-  a chr:CarePlan ;
-  sulo:refersTo ex:follow_up_monitoring ;
-  sulo:refersTo ex:routine_review .
-
-ex:follow_up_monitoring
-  a chr:MedicalProcedure .
-
-ex:routine_review
-  a chr:MedicalProcedure .
+ex:medicalproc_FollowUp a chr:MedicalProcedure .

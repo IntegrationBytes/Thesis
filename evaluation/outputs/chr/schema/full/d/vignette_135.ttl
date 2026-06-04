@@ -1,1 +1,521 @@
-# LLM call failed: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/workspaces/default/keys/904bef16ba07bd440ba9135faeee6cdc6097bd01c0e2a9aec4949d13006f4f81', 'code': 403}}
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Persons
+ex:patient_ArlenOlson a chr:Person ;
+    rdfs:label "Arlen68 Olson653" .
+
+ex:physician_DomenicBlick a chr:Person ;
+    rdfs:label "Dr. Domenic627 Blick895" .
+
+# Care Unit
+ex:careunit_VIBRA_HOSPITAL a chr:CareUnit ;
+    rdfs:label "VIBRA HOSPITAL OF WESTERN MASS - CENTRAL CAMPUS" .
+
+# Clinical Visit
+ex:visit_2019_06_26T16_47_23p02_00 a chr:ClinicalVisit ;
+    chr:hasDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_DomenicBlick ;
+    chr:hasCareUnit ex:careunit_VIBRA_HOSPITAL ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    rdfs:label "Clinical visit on 2019-06-26T16:47:23+02:00" .
+
+# Units
+ex:unit_mg_per_dL a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> ;
+    rdfs:label "mg/dL" .
+
+ex:unit_mmol_per_L a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> ;
+    rdfs:label "mmol/L" .
+
+ex:unit_mL_per_min_per_1_73_m2 a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mLperminper{1.73_m2}> ;
+    rdfs:label "mL/min/{1.73_m2}" .
+
+ex:unit_cm a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> ;
+    rdfs:label "cm" .
+
+ex:unit_score a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> ;
+    rdfs:label "score" .
+
+ex:unit_kg a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> ;
+    rdfs:label "kg" .
+
+ex:unit_kg_per_m2 a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kgperm2> ;
+    rdfs:label "kg/m2" .
+
+ex:unit_per_min a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/permin> ;
+    rdfs:label "/min" .
+
+ex:unit_percent a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pct> ;
+    rdfs:label "%" .
+
+ex:unit_nominal a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/1> ;
+    rdfs:label "nominal" .
+
+ex:unit_pH a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pH> ;
+    rdfs:label "pH" .
+
+ex:unit_mg_per_g a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperg> ;
+    rdfs:label "mg/g" .
+
+ex:unit_fallrisk_score a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> ;
+    rdfs:label "score" .
+
+# Helper function to create measurement & process triples (repeated for each measurement)
+
+# Serum/Plasma measurements (mg/dL)
+ex:meas_Glucose_Serum_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "179.33"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Glucose 179.33 mg/dL" .
+
+ex:mp_Glucose_Serum_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Glucose_Serum_20190626T164723 ;
+    rdfs:label "Glucose measurement process (Serum) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_UreaNitrogen_Serum_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "19.13"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Urea nitrogen 19.13 mg/dL" .
+
+ex:mp_UreaNitrogen_Serum_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_UreaNitrogen_Serum_20190626T164723 ;
+    rdfs:label "Urea nitrogen measurement process (Serum) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Creatinine_Serum_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.946"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Creatinine 1.946 mg/dL" .
+
+ex:mp_Creatinine_Serum_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Creatinine_Serum_20190626T164723 ;
+    rdfs:label "Creatinine measurement process (Serum) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Calcium_Serum_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.68"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Calcium 9.68 mg/dL" .
+
+ex:mp_Calcium_Serum_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Calcium_Serum_20190626T164723 ;
+    rdfs:label "Calcium measurement process (Serum) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Sodium_Serum_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "137.88"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    rdfs:label "Sodium 137.88 mmol/L" .
+
+ex:mp_Sodium_Serum_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Sodium_Serum_20190626T164723 ;
+    rdfs:label "Sodium measurement process (Serum) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Potassium_Serum_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.49"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    rdfs:label "Potassium 4.49 mmol/L" .
+
+ex:mp_Potassium_Serum_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Potassium_Serum_20190626T164723 ;
+    rdfs:label "Potassium measurement process (Serum) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Chloride_Serum_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "108.31"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    rdfs:label "Chloride 108.31 mmol/L" .
+
+ex:mp_Chloride_Serum_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Chloride_Serum_20190626T164723 ;
+    rdfs:label "Chloride measurement process (Serum) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_CO2_Serum_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "23.55"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    rdfs:label "Carbon dioxide, total 23.55 mmol/L" .
+
+ex:mp_CO2_Serum_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_CO2_Serum_20190626T164723 ;
+    rdfs:label "Carbon dioxide measurement process (Serum) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_GFR_Serum_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "53.538"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 ;
+    rdfs:label "Glomerular filtration rate 53.538 mL/min/{1.73_m2}" .
+
+ex:mp_GFR_Serum_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_GFR_Serum_20190626T164723 ;
+    rdfs:label "GFR measurement process (Serum) on 2019-06-26T16:47:23+02:00" .
+
+# Urine measurements (mg/dL, etc.)
+ex:meas_Glucose_Urine_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.88369"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Glucose (Urine) 0.88369 mg/dL" .
+
+ex:mp_Glucose_Urine_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Glucose_Urine_20190626T164723 ;
+    rdfs:label "Glucose measurement process (Urine) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Bilirubin_Urine_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.21183"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Bilirubin.total (Urine) 0.21183 mg/dL" .
+
+ex:mp_Bilirubin_Urine_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Bilirubin_Urine_20190626T164723 ;
+    rdfs:label "Bilirubin measurement process (Urine) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Ketones_Urine_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.4514"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Ketones (Urine) 5.4514 mg/dL" .
+
+ex:mp_Ketones_Urine_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Ketones_Urine_20190626T164723 ;
+    rdfs:label "Ketones measurement process (Urine) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_SpecificGravity_Urine_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1.0135"^^xsd:float ;
+    chr:hasUnit ex:unit_nominal ;
+    rdfs:label "Specific gravity of Urine 1.0135" .
+
+ex:mp_SpecificGravity_Urine_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_SpecificGravity_Urine_20190626T164723 ;
+    rdfs:label "Specific gravity measurement process (Urine) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_pH_Urine_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "6.2258"^^xsd:float ;
+    chr:hasUnit ex:unit_pH ;
+    rdfs:label "pH of Urine 6.2258 pH" .
+
+ex:mp_pH_Urine_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_pH_Urine_20190626T164723 ;
+    rdfs:label "pH measurement process (Urine) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Protein_Urine_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "211.09"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Protein (Urine) 211.09 mg/dL" .
+
+ex:mp_Protein_Urine_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Protein_Urine_20190626T164723 ;
+    rdfs:label "Protein measurement process (Urine) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_HbA1c_Blood_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.36"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    rdfs:label "Hemoglobin A1c/Hemoglobin.total 5.36 %" .
+
+ex:mp_HbA1c_Blood_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_HbA1c_Blood_20190626T164723 ;
+    rdfs:label "HbA1c measurement process (Blood) on 2019-06-26T16:47:23+02:00" .
+
+# Body measurements
+ex:meas_Height_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "177"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    rdfs:label "Body Height 177 cm" .
+
+ex:mp_Height_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Height_20190626T164723 ;
+    rdfs:label "Height measurement process on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_PainSeverity_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    rdfs:label "Pain severity 1 {score}" .
+
+ex:mp_PainSeverity_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_PainSeverity_20190626T164723 ;
+    rdfs:label "Pain severity measurement process on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Weight_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "86"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    rdfs:label "Body Weight 86 kg" .
+
+ex:mp_Weight_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Weight_20190626T164723 ;
+    rdfs:label "Weight measurement process on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_BMI_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "27.45"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    rdfs:label "Body mass index (BMI) 27.45 kg/m2" .
+
+ex:mp_BMI_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_BMI_20190626T164723 ;
+    rdfs:label "BMI measurement process on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_HeartRate_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "82"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    rdfs:label "Heart rate 82 /min" .
+
+ex:mp_HeartRate_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_HeartRate_20190626T164723 ;
+    rdfs:label "Heart rate measurement process on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_RespiratoryRate_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "12"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    rdfs:label "Respiratory rate 12 /min" .
+
+ex:mp_RespiratoryRate_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_RespiratoryRate_20190626T164723 ;
+    rdfs:label "Respiratory rate measurement process on 2019-06-26T16:47:23+02:00" .
+
+# Blood measurements (mg/dL)
+ex:meas_Glucose_Blood_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "179.33"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Glucose (Blood) 179.33 mg/dL" .
+
+ex:mp_Glucose_Blood_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Glucose_Blood_20190626T164723 ;
+    rdfs:label "Glucose measurement process (Blood) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_UreaNitrogen_Blood_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "19.13"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Urea nitrogen (Blood) 19.13 mg/dL" .
+
+ex:mp_UreaNitrogen_Blood_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_UreaNitrogen_Blood_20190626T164723 ;
+    rdfs:label "Urea nitrogen measurement process (Blood) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Creatinine_Blood_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "5.43"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Creatinine (Blood) 5.43 mg/dL" .
+
+ex:mp_Creatinine_Blood_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Creatinine_Blood_20190626T164723 ;
+    rdfs:label "Creatinine measurement process (Blood) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Calcium_Blood_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "9.68"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Calcium (Blood) 9.68 mg/dL" .
+
+ex:mp_Calcium_Blood_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Calcium_Blood_20190626T164723 ;
+    rdfs:label "Calcium measurement process (Blood) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Sodium_Blood_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "137.88"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    rdfs:label "Sodium (Blood) 137.88 mmol/L" .
+
+ex:mp_Sodium_Blood_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Sodium_Blood_20190626T164723 ;
+    rdfs:label "Sodium measurement process (Blood) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Potassium_Blood_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "4.49"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    rdfs:label "Potassium (Blood) 4.49 mmol/L" .
+
+ex:mp_Potassium_Blood_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Potassium_Blood_20190626T164723 ;
+    rdfs:label "Potassium measurement process (Blood) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Chloride_Blood_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "108.31"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    rdfs:label "Chloride (Blood) 108.31 mmol/L" .
+
+ex:mp_Chloride_Blood_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Chloride_Blood_20190626T164723 ;
+    rdfs:label "Chloride measurement process (Blood) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_CO2_Blood_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "23.55"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    rdfs:label "Carbon dioxide, total (Blood) 23.55 mmol/L" .
+
+ex:mp_CO2_Blood_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_CO2_Blood_20190626T164723 ;
+    rdfs:label "Carbon dioxide measurement process (Blood) on 2019-06-26T16:47:23+02:00" .
+
+# Lipid panel (Serum)
+ex:meas_Cholesterol_Serum_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "241.19"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Cholesterol (Serum) 241.19 mg/dL" .
+
+ex:mp_Cholesterol_Serum_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Cholesterol_Serum_20190626T164723 ;
+    rdfs:label "Cholesterol measurement process (Serum) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_Triglyceride_Serum_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "414.83"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Triglyceride (Serum) 414.83 mg/dL" .
+
+ex:mp_Triglyceride_Serum_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_Triglyceride_Serum_20190626T164723 ;
+    rdfs:label "Triglyceride measurement process (Serum) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_LDL_Serum_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "120.67"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Cholesterol in LDL (Serum) 120.67 mg/dL" .
+
+ex:mp_LDL_Serum_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_LDL_Serum_20190626T164723 ;
+    rdfs:label "LDL measurement process (Serum) on 2019-06-26T16:47:23+02:00" .
+
+ex:meas_HDL_Serum_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "37.55"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    rdfs:label "Cholesterol in HDL (Serum) 37.55 mg/dL" .
+
+ex:mp_HDL_Serum_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_HDL_Serum_20190626T164723 ;
+    rdfs:label "HDL measurement process (Serum) on 2019-06-26T16:47:23+02:00" .
+
+# Microalbumin/Creatinine ratio (Urine)
+ex:meas_MicroalbuminCreatinine_Urine_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "71.96"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_g ;
+    rdfs:label "Microalbumin/Creatinine (Urine) 71.96 mg/g" .
+
+ex:mp_MicroalbuminCreatinine_Urine_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_MicroalbuminCreatinine_Urine_20190626T164723 ;
+    rdfs:label "Microalbumin/Creatinine measurement process (Urine) on 2019-06-26T16:47:23+02:00" .
+
+# Second GFR (Serum) – different value
+ex:meas_GFR_Serum_2_20190626T164723 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "16.29"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 ;
+    rdfs:label "Glomerular filtration rate 16.29 mL/min/{1.73_m2}" .
+
+ex:mp_GFR_Serum_2_20190626T164723 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_GFR_Serum_2_20190626T164723 ;
+    rdfs:label "GFR measurement process (Serum) on 2019-06-26T16:47:23+02:00" .
+
+# Fall risk score
+ex:meas_FallRisk_20190626T175216 a chr:Measurement ;
+    chr:hasMeasuredDate "2019-06-26T17:52:16+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "42"^^xsd:float ;
+    chr:hasUnit ex:unit_fallrisk_score ;
+    rdfs:label "Fall risk total 42 {#}" .
+
+ex:mp_FallRisk_20190626T175216 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasResult ex:meas_FallRisk_20190626T175216 ;
+    rdfs:label "Fall risk measurement process on 2019-06-26T17:52:16+02:00" .
+
+# Diagnostic statements and evaluation
+ex:diag_NotInLaborForce a chr:DiagnosticStatement ;
+    chr:hasCode <http://snomed.info/id/741062008> ;
+    rdfs:label "Not in labor force" .
+
+ex:cond_NotInLaborForce a chr:ClinicalCondition ;
+    chr:hasCode <http://snomed.info/id/741062008> ;
+    rdfs:label "Not in labor force" .
+
+ex:diag_Stress a chr:DiagnosticStatement ;
+    chr:hasCode <http://snomed.info/id/73595000> ;
+    rdfs:label "Stress" .
+
+ex:cond_Stress a chr:ClinicalCondition ;
+    chr:hasCode <http://snomed.info/id/73595000> ;
+    rdfs:label "Stress" .
+
+ex:eval_20190626T173105 a chr:EvaluationProcess ;
+    chr:hasPatient ex:patient_ArlenOlson ;
+    chr:hasCondition ex:cond_NotInLaborForce , ex:cond_Stress ;
+    chr:hasObservation ex:diag_NotInLaborForce , ex:diag_Stress ;
+    rdfs:label "Evaluation on 2019-06-26T17:31:05+02:00" .
+
+# Care Plan (generic – no detailed links required)
+ex:careplan_20190626 a chr:CarePlan ;
+    rdfs:label "Care plan established after evaluation" .

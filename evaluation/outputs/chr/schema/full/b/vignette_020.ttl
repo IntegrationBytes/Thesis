@@ -1,217 +1,286 @@
 @prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
 @prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Arturo47_Lauren941_Heidenreich818 a chr:Person .
+# Person (patient)
+ex:patient_arturo_heidenreich a chr:Person ;
+    rdfs:label "Arturo Lauren Heidenreich" .
 
-ex:care_unit_PrimaryCareNorthPC a chr:CareUnit .
+# Person (physician)
+ex:physician_alan_keeling a chr:Person ;
+    rdfs:label "Dr. Alan Keeling" .
 
-ex:physician_Alan320_Keeling57 a chr:Person .
+# Care unit
+ex:careunit_primary_care_north_pc a chr:CareUnit ;
+    rdfs:label "PRIMARY CARE NORTH PC" .
 
-ex:visit_2024_06_03_0234 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasCareUnit ex:care_unit_PrimaryCareNorthPC ;
-  chr:hasCareProvider ex:physician_Alan320_Keeling57 .
+# Clinical visit
+ex:visit_2024_06_03T023422 a chr:ClinicalVisit ;
+    chr:hasDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_alan_keeling ;
+    chr:hasCareUnit ex:careunit_primary_care_north_pc ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    rdfs:label "Clinical visit on 2024-06-03T02:34:22+02:00" .
 
-ex:measproc_HbA1c_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_HbA1c_20240603_0234 .
+# Units
+ex:unit_percent a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%> ;
+    rdfs:label "%" .
 
-ex:meas_HbA1c_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "5.99"^^xsd:float ;
-  chr:hasUnit ex:unit_percent ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
+ex:unit_cm a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> ;
+    rdfs:label "cm" .
 
-ex:measproc_height_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_height_20240603_0234 .
+ex:unit_kg a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> ;
+    rdfs:label "kg" .
 
-ex:meas_height_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "181.4"^^xsd:float ;
-  chr:hasUnit ex:unit_cm ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
+ex:unit_kg_per_m2 a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg.m-2> ;
+    rdfs:label "kg/m2" .
 
-ex:measproc_pain_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_pain_20240603_0234 .
+ex:unit_per_min a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min-1> ;
+    rdfs:label "/min" .
 
-ex:meas_pain_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasUnit ex:unit_score ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
+ex:unit_mg_per_dL a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mg/dL> ;
+    rdfs:label "mg/dL" .
 
-ex:measproc_weight_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_weight_20240603_0234 .
+ex:unit_mmol_per_L a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmol/L> ;
+    rdfs:label "mmol/L" .
 
-ex:meas_weight_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "90.4"^^xsd:float ;
-  chr:hasUnit ex:unit_kg ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
+ex:unit_score a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> ;
+    rdfs:label "score" .
 
-ex:measproc_bmi_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_bmi_20240603_0234 .
+# Measurement: Hemoglobin A1c
+ex:meas_hba1c_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "5.99"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Hemoglobin A1c 5.99 %" .
+ex:measproc_hba1c_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_hba1c_20240603T023422 ;
+    rdfs:label "Hemoglobin A1c measurement process" .
 
-ex:meas_bmi_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "27.47"^^xsd:float ;
-  chr:hasUnit ex:unit_kg_m2 ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
+# Measurement: Body Height
+ex:meas_height_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "181.4"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Body Height 181.4 cm" .
+ex:measproc_height_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_height_20240603T023422 ;
+    rdfs:label "Body Height measurement process" .
 
-ex:measproc_heartrate_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_heartrate_20240603_0234 .
+# Measurement: Pain severity
+ex:meas_pain_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Pain severity 0 score" .
+ex:measproc_pain_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_pain_20240603T023422 ;
+    rdfs:label "Pain severity measurement process" .
 
-ex:meas_heartrate_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "94.0"^^xsd:float ;
-  chr:hasUnit ex:unit_per_min ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
+# Measurement: Body Weight
+ex:meas_weight_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "90.4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Body Weight 90.4 kg" .
+ex:measproc_weight_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_weight_20240603T023422 ;
+    rdfs:label "Body Weight measurement process" .
 
-ex:measproc_resprate_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_resprate_20240603_0234 .
+# Measurement: BMI
+ex:meas_bmi_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "27.47"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "BMI 27.47 kg/m2" .
+ex:measproc_bmi_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_bmi_20240603T023422 ;
+    rdfs:label "BMI measurement process" .
 
-ex:meas_resprate_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "14.0"^^xsd:float ;
-  chr:hasUnit ex:unit_per_min ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
+# Measurement: Heart rate
+ex:meas_hr_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "94"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Heart rate 94 /min" .
+ex:measproc_hr_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_hr_20240603T023422 ;
+    rdfs:label "Heart rate measurement process" .
 
-ex:measproc_glucose_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_glucose_20240603_0234 .
+# Measurement: Respiratory rate
+ex:meas_rr_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Respiratory rate 14 /min" .
+ex:measproc_rr_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_rr_20240603T023422 ;
+    rdfs:label "Respiratory rate measurement process" .
 
-ex:meas_glucose_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "67.81"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
+# Measurement: Glucose
+ex:meas_glucose_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "67.81"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Glucose 67.81 mg/dL" .
+ex:measproc_glucose_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_glucose_20240603T023422 ;
+    rdfs:label "Glucose measurement process" .
 
-ex:measproc_ureanitrogen_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_ureanitrogen_20240603_0234 .
+# Measurement: Urea nitrogen
+ex:meas_urea_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "15.72"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Urea nitrogen 15.72 mg/dL" .
+ex:measproc_urea_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_urea_20240603T023422 ;
+    rdfs:label "Urea nitrogen measurement process" .
 
-ex:meas_ureanitrogen_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "15.72"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
+# Measurement: Creatinine
+ex:meas_creatinine_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "1.19"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Creatinine 1.19 mg/dL" .
+ex:measproc_creatinine_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_creatinine_20240603T023422 ;
+    rdfs:label "Creatinine measurement process" .
 
-ex:measproc_creatinine_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_creatinine_20240603_0234 .
+# Measurement: Calcium
+ex:meas_calcium_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "9.61"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Calcium 9.61 mg/dL" .
+ex:measproc_calcium_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_calcium_20240603T023422 ;
+    rdfs:label "Calcium measurement process" .
 
-ex:meas_creatinine_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "1.19"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
+# Measurement: Sodium
+ex:meas_sodium_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "141.26"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Sodium 141.26 mmol/L" .
+ex:measproc_sodium_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_sodium_20240603T023422 ;
+    rdfs:label "Sodium measurement process" .
 
-ex:measproc_calcium_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_calcium_20240603_0234 .
+# Measurement: Potassium
+ex:meas_potassium_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "4.05"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Potassium 4.05 mmol/L" .
+ex:measproc_potassium_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_potassium_20240603T023422 ;
+    rdfs:label "Potassium measurement process" .
 
-ex:meas_calcium_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "9.61"^^xsd:float ;
-  chr:hasUnit ex:unit_mg_dL ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
+# Measurement: Chloride
+ex:meas_chloride_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "102.06"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Chloride 102.06 mmol/L" .
+ex:measproc_chloride_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_chloride_20240603T023422 ;
+    rdfs:label "Chloride measurement process" .
 
-ex:measproc_sodium_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_sodium_20240603_0234 .
+# Measurement: Carbon dioxide
+ex:meas_co2_20240603T023422 a chr:Measurement ;
+    chr:hasQuantityValue "26.23"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Carbon dioxide 26.23 mmol/L" .
+ex:measproc_co2_20240603T023422 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_co2_20240603T023422 ;
+    rdfs:label "Carbon dioxide measurement process" .
 
-ex:meas_sodium_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "141.26"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
+# Measurement: PHQ-2
+ex:meas_phq2_20240603T040150 a chr:Measurement ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2024-06-03T04:01:50+02:00"^^xsd:dateTime ;
+    rdfs:label "PHQ-2 total score 3" .
+ex:measproc_phq2_20240603T040150 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_phq2_20240603T040150 ;
+    rdfs:label "PHQ-2 measurement process" .
 
-ex:measproc_potassium_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_potassium_20240603_0234 .
+# Measurement: PHQ-9
+ex:meas_phq9_20240603T042453 a chr:Measurement ;
+    chr:hasQuantityValue "22"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2024-06-03T04:24:53+02:00"^^xsd:dateTime ;
+    rdfs:label "PHQ-9 total score 22" .
+ex:measproc_phq9_20240603T042453 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_arturo_heidenreich ;
+    chr:hasResult ex:meas_phq9_20240603T042453 ;
+    rdfs:label "PHQ-9 measurement process" .
 
-ex:meas_potassium_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "4.05"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
+# Diagnostic statements and clinical conditions (evaluations)
 
-ex:measproc_chloride_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_chloride_20240603_0234 .
+## Evaluation 1 – Medication review due
+ex:condition_medreview a chr:ClinicalCondition ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2024-06-03T02:34:22+02:00"^^xsd:dateTime ;
+    rdfs:label "Medication review due" .
+ex:obs_medreview a chr:DiagnosticStatement ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    rdfs:label "Medication review due" .
+ex:evaluation_20240603T023422_1 a chr:EvaluationProcess ;
+    chr:hasCondition ex:condition_medreview ;
+    chr:hasObservation ex:obs_medreview ;
+    rdfs:label "Evaluation on 2024-06-03T02:34:22+02:00 (Medication review due)" .
 
-ex:meas_chloride_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "102.06"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
+## Evaluation 2 – Reports of violence in the environment
+ex:condition_violence a chr:ClinicalCondition ;
+    chr:hasCode <http://snomed.info/id/424393004> ;
+    chr:hasRecordDate "2024-06-03T03:28:35+02:00"^^xsd:dateTime ;
+    rdfs:label "Reports of violence in the environment" .
+ex:obs_violence a chr:DiagnosticStatement ;
+    chr:hasCode <http://snomed.info/id/424393004> ;
+    rdfs:label "Reports of violence in the environment" .
+ex:evaluation_20240603T032835 a chr:EvaluationProcess ;
+    chr:hasCondition ex:condition_violence ;
+    chr:hasObservation ex:obs_violence ;
+    rdfs:label "Evaluation on 2024-06-03T03:28:35+02:00 (Reports of violence)" .
 
-ex:measproc_carbondioxide_20240603_0234 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_carbondioxide_20240603_0234 .
-
-ex:meas_carbondioxide_20240603_0234 a chr:Measurement ;
-  chr:hasQuantityValue "26.23"^^xsd:float ;
-  chr:hasUnit ex:unit_mmol_L ;
-  chr:hasMeasuredDate "2024-06-03T02:34:00"^^xsd:dateTime .
-
-ex:measproc_phq2_20240603_0401 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_phq2_20240603_0401 .
-
-ex:meas_phq2_20240603_0401 a chr:Measurement ;
-  chr:hasQuantityValue "3.0"^^xsd:float ;
-  chr:hasUnit ex:unit_score ;
-  chr:hasMeasuredDate "2024-06-03T04:01:00"^^xsd:dateTime .
-
-ex:measproc_phq9_20240603_0424 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_phq9_20240603_0424 .
-
-ex:meas_phq9_20240603_0424 a chr:Measurement ;
-  chr:hasQuantityValue "22.0"^^xsd:float ;
-  chr:hasUnit ex:unit_score ;
-  chr:hasMeasuredDate "2024-06-03T04:24:00"^^xsd:dateTime .
-
-ex:eval_20240603_0234 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_medicationreviewdue .
-
-ex:diag_medicationreviewdue a chr:DiagnosticStatement .
-
-ex:condition_medicationreviewdue a chr:ClinicalCondition ;
-  chr:hasRecordDate "2024-06-03T02:34:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
-
-ex:eval_20240603_0328 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_reportsofviolence .
-
-ex:diag_reportsofviolence a chr:DiagnosticStatement .
-
-ex:condition_reportsofviolence a chr:ClinicalCondition ;
-  chr:hasRecordDate "2024-06-03T03:28:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
-
-ex:eval_20240603_0424 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_gingivitis .
-
-ex:diag_gingivitis a chr:DiagnosticStatement .
-
+## Evaluation 3 – Gingivitis
 ex:condition_gingivitis a chr:ClinicalCondition ;
-  chr:hasRecordDate "2024-06-03T04:24:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
-
-ex:severity_moderate a chr:Severity .
-
-ex:careplan_followup a chr:CarePlan ;
-  chr:hasMedicalProcedure ex:procedure_followup .
-
-ex:procedure_followup a chr:MedicalProcedure .
-
-ex:unit_percent a chr:Unit .
-
-ex:unit_cm a chr:Unit .
-
-ex:unit_score a chr:Unit .
-
-ex:unit_kg a chr:Unit .
-
-ex:unit_kg_m2 a chr:Unit .
-
-ex:unit_per_min a chr:Unit .
-
-ex:unit_mg_dL a chr:Unit .
-
-ex:unit_mmol_L a chr:Unit .
+    chr:hasCode <http://snomed.info/id/66383009> ;
+    chr:hasRecordDate "2024-06-03T04:24:53+02:00"^^xsd:dateTime ;
+    rdfs:label "Gingivitis" .
+ex:obs_gingivitis a chr:DiagnosticStatement ;
+    chr:hasCode <http://snomed.info/id/66383009> ;
+    rdfs:label "Gingivitis" .
+ex:evaluation_20240603T042453_3 a chr:EvaluationProcess ;
+    chr:hasCondition ex:condition_gingivitis ;
+    chr:hasObservation ex:obs_gingivitis ;
+    rdfs:label "Evaluation on 2024-06-03T04:24:53+02:00 (Gingivitis)" .

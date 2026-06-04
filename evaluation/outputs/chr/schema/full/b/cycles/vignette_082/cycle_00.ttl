@@ -4,51 +4,62 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Estela596Yetta429Grant908 a chr:Person .
+ex:patient_EstelaYettaGrant a chr:Person ;
+    rdfs:label "Estela596 Yetta429 Grant908" .
 
-ex:visit_2008_10_18 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasCareProvider ex:doctor_Nickolas58Schumm995 ;
-  chr:hasCareUnit ex:care_unit_Braintree .
+ex:provider_NickolasSchumm a chr:Person ;
+    rdfs:label "Dr. Nickolas58 Schumm995" .
 
-ex:care_unit_Braintree a chr:CareUnit .
+ex:careunit_ENCOMPASS_BRAINTREE a chr:CareUnit ;
+    rdfs:label "ENCOMPASS HEALTH BRAINTREE HOSPITAL OF BRAINTREE" .
 
-ex:doctor_Nickolas58Schumm995 a chr:Person .
+ex:visit_2008_10_18T213554 a chr:ClinicalVisit ;
+    chr:hasDate "2008-10-18T21:35:54+02:00"^^xsd:dateTime ;
+    chr:hasPatient ex:patient_EstelaYettaGrant ;
+    chr:hasCareProvider ex:provider_NickolasSchumm ;
+    chr:hasCareUnit ex:careunit_ENCOMPASS_BRAINTREE ;
+    rdfs:label "Clinical visit on 2008-10-18T21:35:54+02:00" .
 
-ex:measurement_process_tumor_size a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:measurement_tumor_size ;
-  chr:hasStatus ex:process_status_completed .
+ex:unit_cm a chr:Unit ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> ;
+    rdfs:label "cm" .
 
-ex:measurement_tumor_size a chr:Measurement ;
-  chr:hasQuantityValue "3.5292"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2008-10-18T22:53:00"^^xsd:dateTime .
+ex:measurement_TumorSize_20081018T225333 a chr:Measurement ;
+    chr:hasMeasuredDate "2008-10-18T22:53:33+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "3.5292"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    rdfs:label "3.5292 cm" .
 
-ex:measurement_process_lymph_nodes a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 ;
-  chr:hasResult ex:measurement_lymph_nodes ;
-  chr:hasStatus ex:process_status_completed .
+ex:measproc_TumorSize_20081018T225333 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaYettaGrant ;
+    chr:hasResult ex:measurement_TumorSize_20081018T225333 ;
+    chr:hasCode <https://loinc.org/33728-7> ;
+    rdfs:label "Tumor size measurement on 2008-10-18T22:53:33+02:00" .
 
-ex:measurement_lymph_nodes a chr:Measurement ;
-  chr:hasQuantityValue "0"^^xsd:float ;
-  chr:hasUnit ex:unit_count ;
-  chr:hasMeasuredDate "2008-10-18T22:53:00"^^xsd:dateTime .
+ex:measurement_LymphNodes_20081018T225333 a chr:Measurement ;
+    chr:hasMeasuredDate "2008-10-18T22:53:33+02:00"^^xsd:dateTime ;
+    chr:hasQuantityValue "0.0"^^xsd:float ;
+    rdfs:label "0" .
 
-ex:unit_count a sulo:Unit .
+ex:measproc_LymphNodes_20081018T225333 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_EstelaYettaGrant ;
+    chr:hasResult ex:measurement_LymphNodes_20081018T225333 ;
+    chr:hasCode <https://loinc.org/85352-3> ;
+    rdfs:label "Lymph nodes measurement on 2008-10-18T22:53:33+02:00" .
 
-ex:process_status_completed a chr:ProcessStatus .
+ex:condition_breast_cancer a chr:ClinicalCondition ;
+    chr:hasCode <http://snomed.info/id/254837009> ;
+    chr:hasRecordDate "2008-10-18T21:35:54+02:00"^^xsd:dateTime ;
+    rdfs:label "Malignant neoplasm of breast" .
 
-ex:evaluation_2008_10_18 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diagnostic_malignant_neoplasm ;
-  chr:hasPatient ex:patient_Estela596Yetta429Grant908 .
+ex:diagnostic_MalignantNeoplasmBreast a chr:DiagnosticStatement ;
+    chr:hasCode <http://snomed.info/id/254837009> ;
+    rdfs:label "Malignant neoplasm of breast" .
 
-ex:diagnostic_malignant_neoplasm a chr:DiagnosticStatement .
+ex:evaluation_20081018T213554 a chr:EvaluationProcess ;
+    chr:hasCondition ex:condition_breast_cancer ;
+    chr:hasObservation ex:diagnostic_MalignantNeoplasmBreast ;
+    rdfs:label "Evaluation on 2008-10-18T21:35:54+02:00" .
 
-ex:clinical_condition_malignant_neoplasm a chr:ClinicalCondition ;
-  chr:hasSeverity ex:severity_moderate ;
-  chr:hasRecordDate "2008-10-18T21:35:00"^^xsd:dateTime .
-
-ex:severity_moderate a chr:Severity .
-
-ex:care_plan_follow_up a chr:CarePlan .
+ex:careplan_followup a chr:CarePlan ;
+    rdfs:label "Follow-up monitoring and routine review care plan" .

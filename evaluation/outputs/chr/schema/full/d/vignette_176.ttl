@@ -1,1 +1,719 @@
-# LLM call failed: Error code: 403 - {'error': {'message': 'Key limit exceeded (total limit). Manage it using https://openrouter.ai/workspaces/default/keys/904bef16ba07bd440ba9135faeee6cdc6097bd01c0e2a9aec4949d13006f4f81', 'code': 403}}
+@prefix chr:  <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
+@prefix ex:   <http://example.org/clinical/> .
+@prefix sulo: <https://w3id.org/sulo/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Patient
+ex:patient_Arlen68_Olson653 a chr:Person ;
+    rdfs:label "Arlen68 Olson653" .
+
+# Care unit
+ex:careunit_VIBRA_HOSPITAL_OF_WESTERN_MASS_CENTRAL_CAMPUS a chr:CareUnit ;
+    rdfs:label "VIBRA HOSPITAL OF WESTERN MASS - CENTRAL CAMPUS" .
+
+# Attending physician
+ex:person_Domenic627_Blick895 a chr:Person ;
+    rdfs:label "Dr. Domenic627 Blick895" .
+
+# Clinical visit
+ex:visit_2025_07_23T16_47_23+02_00 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2025-07-23T16:47:23+02:00" ;
+    chr:hasDate "2025-07-23T16:47:23+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:person_Domenic627_Blick895 ;
+    chr:hasCareUnit ex:careunit_VIBRA_HOSPITAL_OF_WESTERN_MASS_CENTRAL_CAMPUS ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 .
+
+# Units
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
+
+ex:unit_mmol_per_L a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmolperL> .
+
+ex:unit_mL_per_min_per_1_73_m2 a chr:Unit ;
+    rdfs:label "mL/min/1.73 m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mLperminper1.73_m2> .
+
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
+
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
+
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
+
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kgperm2> .
+
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/1permin> .
+
+ex:unit_pct a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pct> .
+
+ex:unit_fL a chr:Unit ;
+    rdfs:label "fL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/fL> .
+
+ex:unit_pg a chr:Unit ;
+    rdfs:label "pg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pg> .
+
+ex:unit_g_per_dL a chr:Unit ;
+    rdfs:label "g/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/gperdL> .
+
+ex:unit_10_3_per_uL a chr:Unit ;
+    rdfs:label "10*3/uL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/10*3peruL> .
+
+ex:unit_10_6_per_uL a chr:Unit ;
+    rdfs:label "10*6/uL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/10*6peruL> .
+
+ex:unit_nominal a chr:Unit ;
+    rdfs:label "nominal" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/nominal> .
+
+ex:unit_pH a chr:Unit ;
+    rdfs:label "pH" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/pH> .
+
+ex:unit_mg_per_g a chr:Unit ;
+    rdfs:label "mg/g" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperg> .
+
+# Helper function to create measurement & process triples (repeated for each line)
+
+# 1. Glucose in Serum (LOINC 2345-7) – 190.37 mg/dL
+ex:meas_2345-7_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Glucose [Mass/volume] in Serum or Plasma" ;
+    chr:hasCode <https://loinc.org/2345-7> ;
+    chr:hasQuantityValue "190.37"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_2345-7_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Glucose (LOINC 2345-7)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_2345-7_2025_07_23T16_47_23+02_00 .
+
+# 2. Urea nitrogen in Serum (LOINC 3094-0) – 7.01 mg/dL
+ex:meas_3094-0_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Urea nitrogen [Mass/volume] in Serum or Plasma" ;
+    chr:hasCode <https://loinc.org/3094-0> ;
+    chr:hasQuantityValue "7.01"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_3094-0_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Urea nitrogen (LOINC 3094-0)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_3094-0_2025_07_23T16_47_23+02_00 .
+
+# 3. Creatinine in Serum (LOINC 2160-0) – 1.9673 mg/dL
+ex:meas_2160-0_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Creatinine [Mass/volume] in Serum or Plasma" ;
+    chr:hasCode <https://loinc.org/2160-0> ;
+    chr:hasQuantityValue "1.9673"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_2160-0_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Creatinine (LOINC 2160-0)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_2160-0_2025_07_23T16_47_23+02_00 .
+
+# 4. Calcium in Serum (LOINC 17861-6) – 8.99 mg/dL
+ex:meas_17861-6_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Calcium [Mass/volume] in Serum or Plasma" ;
+    chr:hasCode <https://loinc.org/17861-6> ;
+    chr:hasQuantityValue "8.99"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_17861-6_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Calcium (LOINC 17861-6)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_17861-6_2025_07_23T16_47_23+02_00 .
+
+# 5. Sodium in Serum (LOINC 2951-2) – 136.27 mmol/L
+ex:meas_2951-2_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Sodium [Moles/volume] in Serum or Plasma" ;
+    chr:hasCode <https://loinc.org/2951-2> ;
+    chr:hasQuantityValue "136.27"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:mp_2951-2_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Sodium (LOINC 2951-2)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_2951-2_2025_07_23T16_47_23+02_00 .
+
+# 6. Potassium in Serum (LOINC 2823-3) – 4.79 mmol/L
+ex:meas_2823-3_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Potassium [Moles/volume] in Serum or Plasma" ;
+    chr:hasCode <https://loinc.org/2823-3> ;
+    chr:hasQuantityValue "4.79"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:mp_2823-3_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Potassium (LOINC 2823-3)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_2823-3_2025_07_23T16_47_23+02_00 .
+
+# 7. Chloride in Serum (LOINC 2075-0) – 104.2 mmol/L
+ex:meas_2075-0_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Chloride [Moles/volume] in Serum or Plasma" ;
+    chr:hasCode <https://loinc.org/2075-0> ;
+    chr:hasQuantityValue "104.2"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:mp_2075-0_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Chloride (LOINC 2075-0)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_2075-0_2025_07_23T16_47_23+02_00 .
+
+# 8. Carbon dioxide, total in Serum (LOINC 2028-9) – 21.37 mmol/L
+ex:meas_2028-9_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Carbon dioxide, total [Moles/volume] in Serum or Plasma" ;
+    chr:hasCode <https://loinc.org/2028-9> ;
+    chr:hasQuantityValue "21.37"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:mp_2028-9_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Carbon dioxide, total (LOINC 2028-9)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_2028-9_2025_07_23T16_47_23+02_00 .
+
+# 9. GFR serum (LOINC 33914-3) – 40.391 mL/min/1.73 m2
+ex:meas_33914-3_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Glomerular filtration rate [Volume Rate/Area] in Serum or Plasma by Creatinine-based formula (MDRD)/1.73 sq M" ;
+    chr:hasCode <https://loinc.org/33914-3> ;
+    chr:hasQuantityValue "40.391"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 .
+
+ex:mp_33914-3_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for GFR (LOINC 33914-3)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_33914-3_2025_07_23T16_47_23+02_00 .
+
+# 10. Glucose in Urine (LOINC 5792-7) – 1.6138 mg/dL
+ex:meas_5792-7_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Glucose [Mass/volume] in Urine by Test strip" ;
+    chr:hasCode <https://loinc.org/5792-7> ;
+    chr:hasQuantityValue "1.6138"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_5792-7_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Glucose in Urine (LOINC 5792-7)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_5792-7_2025_07_23T16_47_23+02_00 .
+
+# 11. Bilirubin.total in Urine (LOINC 20505-4) – 1.1704 mg/dL
+ex:meas_20505-4_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Bilirubin.total [Mass/volume] in Urine by Test strip" ;
+    chr:hasCode <https://loinc.org/20505-4> ;
+    chr:hasQuantityValue "1.1704"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_20505-4_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Bilirubin.total (LOINC 20505-4)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_20505-4_2025_07_23T16_47_23+02_00 .
+
+# 12. Ketones in Urine (LOINC 5797-6) – 13.433 mg/dL
+ex:meas_5797-6_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Ketones [Mass/volume] in Urine by Test strip" ;
+    chr:hasCode <https://loinc.org/5797-6> ;
+    chr:hasQuantityValue "13.433"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_5797-6_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Ketones (LOINC 5797-6)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_5797-6_2025_07_23T16_47_23+02_00 .
+
+# 13. Specific gravity of Urine (LOINC 5811-5) – 1.0298 (nominal)
+ex:meas_5811-5_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Specific gravity of Urine by Test strip" ;
+    chr:hasCode <https://loinc.org/5811-5> ;
+    chr:hasQuantityValue "1.0298"^^xsd:float ;
+    chr:hasUnit ex:unit_nominal .
+
+ex:mp_5811-5_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Specific gravity (LOINC 5811-5)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_5811-5_2025_07_23T16_47_23+02_00 .
+
+# 14. pH of Urine (LOINC 5803-2) – 5.9436 pH
+ex:meas_5803-2_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "pH of Urine by Test strip" ;
+    chr:hasCode <https://loinc.org/5803-2> ;
+    chr:hasQuantityValue "5.9436"^^xsd:float ;
+    chr:hasUnit ex:unit_pH .
+
+ex:mp_5803-2_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for pH (LOINC 5803-2)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_5803-2_2025_07_23T16_47_23+02_00 .
+
+# 15. Protein in Urine (LOINC 5804-0) – 314.05 mg/dL
+ex:meas_5804-0_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Protein [Mass/volume] in Urine by Test strip" ;
+    chr:hasCode <https://loinc.org/5804-0> ;
+    chr:hasQuantityValue "314.05"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_5804-0_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Protein (LOINC 5804-0)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_5804-0_2025_07_23T16_47_23+02_00 .
+
+# 16. Hemoglobin A1c in Blood (LOINC 4548-4) – 5.36 %
+ex:meas_4548-4_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Hemoglobin A1c/Hemoglobin.total in Blood" ;
+    chr:hasCode <https://loinc.org/4548-4> ;
+    chr:hasQuantityValue "5.36"^^xsd:float ;
+    chr:hasUnit ex:unit_pct .
+
+ex:mp_4548-4_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Hemoglobin A1c (LOINC 4548-4)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_4548-4_2025_07_23T16_47_23+02_00 .
+
+# 17. Body Height (LOINC 8302-2) – 177 cm
+ex:meas_8302-2_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Body Height" ;
+    chr:hasCode <https://loinc.org/8302-2> ;
+    chr:hasQuantityValue "177"^^xsd:float ;
+    chr:hasUnit ex:unit_cm .
+
+ex:mp_8302-2_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Body Height (LOINC 8302-2)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_8302-2_2025_07_23T16_47_23+02_00 .
+
+# 18. Pain severity (LOINC 72514-3) – 0 score
+ex:meas_72514-3_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Pain severity - 0-10 verbal numeric rating [Score] - Reported" ;
+    chr:hasCode <https://loinc.org/72514-3> ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:mp_72514-3_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Pain severity (LOINC 72514-3)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_72514-3_2025_07_23T16_47_23+02_00 .
+
+# 19. Body Weight (LOINC 29463-7) – 86 kg
+ex:meas_29463-7_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Body Weight" ;
+    chr:hasCode <https://loinc.org/29463-7> ;
+    chr:hasQuantityValue "86"^^xsd:float ;
+    chr:hasUnit ex:unit_kg .
+
+ex:mp_29463-7_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Body Weight (LOINC 29463-7)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_29463-7_2025_07_23T16_47_23+02_00 .
+
+# 20. BMI (LOINC 39156-5) – 27.45 kg/m2
+ex:meas_39156-5_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Body mass index (BMI) [Ratio]" ;
+    chr:hasCode <https://loinc.org/39156-5> ;
+    chr:hasQuantityValue "27.45"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 .
+
+ex:mp_39156-5_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for BMI (LOINC 39156-5)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_39156-5_2025_07_23T16_47_23+02_00 .
+
+# 21. Heart rate (LOINC 8867-4) – 64 /min
+ex:meas_8867-4_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Heart rate" ;
+    chr:hasCode <https://loinc.org/8867-4> ;
+    chr:hasQuantityValue "64"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+ex:mp_8867-4_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Heart rate (LOINC 8867-4)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_8867-4_2025_07_23T16_47_23+02_00 .
+
+# 22. Respiratory rate (LOINC 9279-1) – 13 /min
+ex:meas_9279-1_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Respiratory rate" ;
+    chr:hasCode <https://loinc.org/9279-1> ;
+    chr:hasQuantityValue "13"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min .
+
+ex:mp_9279-1_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Respiratory rate (LOINC 9279-1)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_9279-1_2025_07_23T16_47_23+02_00 .
+
+# 23. Glucose in Blood (LOINC 2339-0) – 190.37 mg/dL
+ex:meas_2339-0_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Glucose [Mass/volume] in Blood" ;
+    chr:hasCode <https://loinc.org/2339-0> ;
+    chr:hasQuantityValue "190.37"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_2339-0_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Glucose in Blood (LOINC 2339-0)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_2339-0_2025_07_23T16_47_23+02_00 .
+
+# 24. Urea nitrogen in Blood (LOINC 6299-2) – 7.01 mg/dL
+ex:meas_6299-2_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Urea nitrogen [Mass/volume] in Blood" ;
+    chr:hasCode <https://loinc.org/6299-2> ;
+    chr:hasQuantityValue "7.01"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_6299-2_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Urea nitrogen in Blood (LOINC 6299-2)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_6299-2_2025_07_23T16_47_23+02_00 .
+
+# 25. Creatinine in Blood (LOINC 38483-4) – 3.22 mg/dL
+ex:meas_38483-4_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Creatinine [Mass/volume] in Blood" ;
+    chr:hasCode <https://loinc.org/38483-4> ;
+    chr:hasQuantityValue "3.22"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_38483-4_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Creatinine in Blood (LOINC 38483-4)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_38483-4_2025_07_23T16_47_23+02_00 .
+
+# 26. Calcium in Blood (LOINC 49765-1) – 8.99 mg/dL
+ex:meas_49765-1_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Calcium [Mass/volume] in Blood" ;
+    chr:hasCode <https://loinc.org/49765-1> ;
+    chr:hasQuantityValue "8.99"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_49765-1_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Calcium in Blood (LOINC 49765-1)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_49765-1_2025_07_23T16_47_23+02_00 .
+
+# 27. Sodium in Blood (LOINC 2947-0) – 136.27 mmol/L
+ex:meas_2947-0_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Sodium [Moles/volume] in Blood" ;
+    chr:hasCode <https://loinc.org/2947-0> ;
+    chr:hasQuantityValue "136.27"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:mp_2947-0_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Sodium in Blood (LOINC 2947-0)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_2947-0_2025_07_23T16_47_23+02_00 .
+
+# 28. Potassium in Blood (LOINC 6298-4) – 4.79 mmol/L
+ex:meas_6298-4_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Potassium [Moles/volume] in Blood" ;
+    chr:hasCode <https://loinc.org/6298-4> ;
+    chr:hasQuantityValue "4.79"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:mp_6298-4_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Potassium in Blood (LOINC 6298-4)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_6298-4_2025_07_23T16_47_23+02_00 .
+
+# 29. Chloride in Blood (LOINC 2069-3) – 104.2 mmol/L
+ex:meas_2069-3_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Chloride [Moles/volume] in Blood" ;
+    chr:hasCode <https://loinc.org/2069-3> ;
+    chr:hasQuantityValue "104.2"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:mp_2069-3_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Chloride in Blood (LOINC 2069-3)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_2069-3_2025_07_23T16_47_23+02_00 .
+
+# 30. Carbon dioxide, total in Blood (LOINC 20565-8) – 21.37 mmol/L
+ex:meas_20565-8_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Carbon dioxide, total [Moles/volume] in Blood" ;
+    chr:hasCode <https://loinc.org/20565-8> ;
+    chr:hasQuantityValue "21.37"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L .
+
+ex:mp_20565-8_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Carbon dioxide, total (LOINC 20565-8)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_20565-8_2025_07_23T16_47_23+02_00 .
+
+# 31. Cholesterol in Serum (LOINC 2093-3) – 246.17 mg/dL
+ex:meas_2093-3_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Cholesterol [Mass/volume] in Serum or Plasma" ;
+    chr:hasCode <https://loinc.org/2093-3> ;
+    chr:hasQuantityValue "246.17"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_2093-3_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Cholesterol (LOINC 2093-3)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_2093-3_2025_07_23T16_47_23+02_00 .
+
+# 32. Triglyceride in Serum (LOINC 2571-8) – 367.02 mg/dL
+ex:meas_2571-8_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Triglyceride [Mass/volume] in Serum or Plasma" ;
+    chr:hasCode <https://loinc.org/2571-8> ;
+    chr:hasQuantityValue "367.02"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_2571-8_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Triglyceride (LOINC 2571-8)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_2571-8_2025_07_23T16_47_23+02_00 .
+
+# 33. LDL Cholesterol (LOINC 18262-6) – 148.75 mg/dL
+ex:meas_18262-6_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Cholesterol in LDL [Mass/volume] in Serum or Plasma by Direct assay" ;
+    chr:hasCode <https://loinc.org/18262-6> ;
+    chr:hasQuantityValue "148.75"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_18262-6_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for LDL Cholesterol (LOINC 18262-6)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_18262-6_2025_07_23T16_47_23+02_00 .
+
+# 34. HDL Cholesterol (LOINC 2085-9) – 24.02 mg/dL
+ex:meas_2085-9_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Cholesterol in HDL [Mass/volume] in Serum or Plasma" ;
+    chr:hasCode <https://loinc.org/2085-9> ;
+    chr:hasQuantityValue "24.02"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL .
+
+ex:mp_2085-9_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for HDL Cholesterol (LOINC 2085-9)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_2085-9_2025_07_23T16_47_23+02_00 .
+
+# 35. Microalbumin/Creatinine ratio (LOINC 14959-1) – 125.86 mg/g
+ex:meas_14959-1_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Microalbumin/Creatinine [Mass Ratio] in Urine" ;
+    chr:hasCode <https://loinc.org/14959-1> ;
+    chr:hasQuantityValue "125.86"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_g .
+
+ex:mp_14959-1_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Microalbumin/Creatinine ratio (LOINC 14959-1)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_14959-1_2025_07_23T16_47_23+02_00 .
+
+# 36. Leukocytes (LOINC 6690-2) – 3.6855 10*3/uL
+ex:meas_6690-2_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Leukocytes [#/volume] in Blood by Automated count" ;
+    chr:hasCode <https://loinc.org/6690-2> ;
+    chr:hasQuantityValue "3.6855"^^xsd:float ;
+    chr:hasUnit ex:unit_10_3_per_uL .
+
+ex:mp_6690-2_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Leukocytes (LOINC 6690-2)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_6690-2_2025_07_23T16_47_23+02_00 .
+
+# 37. Erythrocytes (LOINC 789-8) – 4.4621 10*6/uL
+ex:meas_789-8_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Erythrocytes [#/volume] in Blood by Automated count" ;
+    chr:hasCode <https://loinc.org/789-8> ;
+    chr:hasQuantityValue "4.4621"^^xsd:float ;
+    chr:hasUnit ex:unit_10_6_per_uL .
+
+ex:mp_789-8_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Erythrocytes (LOINC 789-8)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_789-8_2025_07_23T16_47_23+02_00 .
+
+# 38. Hemoglobin (LOINC 718-7) – 17.376 g/dL
+ex:meas_718-7_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Hemoglobin [Mass/volume] in Blood" ;
+    chr:hasCode <https://loinc.org/718-7> ;
+    chr:hasQuantityValue "17.376"^^xsd:float ;
+    chr:hasUnit ex:unit_g_per_dL .
+
+ex:mp_718-7_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Hemoglobin (LOINC 718-7)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_718-7_2025_07_23T16_47_23+02_00 .
+
+# 39. Hematocrit (LOINC 4544-3) – 40.006 %
+ex:meas_4544-3_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Hematocrit [Volume Fraction] of Blood by Automated count" ;
+    chr:hasCode <https://loinc.org/4544-3> ;
+    chr:hasQuantityValue "40.006"^^xsd:float ;
+    chr:hasUnit ex:unit_pct .
+
+ex:mp_4544-3_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Hematocrit (LOINC 4544-3)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_4544-3_2025_07_23T16_47_23+02_00 .
+
+# 40. MCV (LOINC 787-2) – 82.866 fL
+ex:meas_787-2_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "MCV [Entitic mean volume] in Red Blood Cells by Automated count" ;
+    chr:hasCode <https://loinc.org/787-2> ;
+    chr:hasQuantityValue "82.866"^^xsd:float ;
+    chr:hasUnit ex:unit_fL .
+
+ex:mp_787-2_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for MCV (LOINC 787-2)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_787-2_2025_07_23T16_47_23+02_00 .
+
+# 41. MCH (LOINC 785-6) – 27.941 pg
+ex:meas_785-6_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "MCH [Entitic mass] by Automated count" ;
+    chr:hasCode <https://loinc.org/785-6> ;
+    chr:hasQuantityValue "27.941"^^xsd:float ;
+    chr:hasUnit ex:unit_pg .
+
+ex:mp_785-6_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for MCH (LOINC 785-6)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_785-6_2025_07_23T16_47_23+02_00 .
+
+# 42. MCHC (LOINC 786-4) – 35.634 g/dL
+ex:meas_786-4_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "MCHC [Entitic Mass/volume] in Red Blood Cells by Automated count" ;
+    chr:hasCode <https://loinc.org/786-4> ;
+    chr:hasQuantityValue "35.634"^^xsd:float ;
+    chr:hasUnit ex:unit_g_per_dL .
+
+ex:mp_786-4_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for MCHC (LOINC 786-4)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_786-4_2025_07_23T16_47_23+02_00 .
+
+# 43. Erythrocyte distribution width (LOINC 788-0) – 43.556 fL
+ex:meas_788-0_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Erythrocyte [DistWidth] in Blood by Automated count" ;
+    chr:hasCode <https://loinc.org/788-0> ;
+    chr:hasQuantityValue "43.556"^^xsd:float ;
+    chr:hasUnit ex:unit_fL .
+
+ex:mp_788-0_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Erythrocyte distribution width (LOINC 788-0)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_788-0_2025_07_23T16_47_23+02_00 .
+
+# 44. Platelets (LOINC 777-3) – 379.76 10*3/uL
+ex:meas_777-3_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Platelets [#/volume] in Blood by Automated count" ;
+    chr:hasCode <https://loinc.org/777-3> ;
+    chr:hasQuantityValue "379.76"^^xsd:float ;
+    chr:hasUnit ex:unit_10_3_per_uL .
+
+ex:mp_777-3_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Platelets (LOINC 777-3)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_777-3_2025_07_23T16_47_23+02_00 .
+
+# 45. Platelet distribution width (LOINC 32207-3) – 294.99 fL
+ex:meas_32207-3_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Platelet distribution width [Entitic volume] in Blood by Automated count" ;
+    chr:hasCode <https://loinc.org/32207-3> ;
+    chr:hasQuantityValue "294.99"^^xsd:float ;
+    chr:hasUnit ex:unit_fL .
+
+ex:mp_32207-3_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Platelet distribution width (LOINC 32207-3)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_32207-3_2025_07_23T16_47_23+02_00 .
+
+# 46. Platelet mean volume (LOINC 32623-1) – 11.531 fL
+ex:meas_32623-1_2025_07_23T16_47_23+02_00 a chr:Measurement ;
+    rdfs:label "Platelet [Entitic mean volume] in Blood by Automated count" ;
+    chr:hasCode <https://loinc.org/32623-1> ;
+    chr:hasQuantityValue "11.531"^^xsd:float ;
+    chr:hasUnit ex:unit_fL .
+
+ex:mp_32623-1_2025_07_23T16_47_23+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Platelet mean volume (LOINC 32623-1)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_32623-1_2025_07_23T16_47_23+02_00 .
+
+# 47. GFR serum repeat (LOINC 33914-3) – 25.19 mL/min/1.73 m2
+ex:meas_33914-3_2025_07_23T16_47_23+02_00_2 a chr:Measurement ;
+    rdfs:label "Glomerular filtration rate [Volume Rate/Area] in Serum or Plasma by Creatinine-based formula (MDRD)/1.73 sq M (repeat)" ;
+    chr:hasCode <https://loinc.org/33914-3> ;
+    chr:hasQuantityValue "25.19"^^xsd:float ;
+    chr:hasUnit ex:unit_mL_per_min_per_1_73_m2 .
+
+ex:mp_33914-3_2025_07_23T16_47_23+02_00_2 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for GFR (repeat) (LOINC 33914-3)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_33914-3_2025_07_23T16_47_23+02_00_2 .
+
+# 48. Fall risk (LOINC 59460-6) – 98 #
+ex:meas_59460-6_2025_07_23T17_37_10+02_00 a chr:Measurement ;
+    rdfs:label "Fall risk total [Morse Fall Scale]" ;
+    chr:hasCode <https://loinc.org/59460-6> ;
+    chr:hasQuantityValue "98"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:mp_59460-6_2025_07_23T17_37_10+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for Fall risk (LOINC 59460-6)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_59460-6_2025_07_23T17_37_10+02_00 .
+
+# 49. PHQ-2 (LOINC 55758-7) – 1 score
+ex:meas_55758-7_2025_07_23T18_17_53+02_00 a chr:Measurement ;
+    rdfs:label "Patient Health Questionnaire 2 item (PHQ-2) total score [Reported]" ;
+    chr:hasCode <https://loinc.org/55758-7> ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score .
+
+ex:mp_55758-7_2025_07_23T18_17_53+02_00 a chr:MeasurementProcess ;
+    rdfs:label "Measurement process for PHQ-2 (LOINC 55758-7)" ;
+    chr:hasPatient ex:patient_Arlen68_Olson653 ;
+    chr:hasResult ex:meas_55758-7_2025_07_23T18_17_53+02_00 .
+
+# Diagnostic statements
+ex:diag_med_review_due a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+ex:diag_stress a chr:DiagnosticStatement ;
+    rdfs:label "Stress (finding)" ;
+    chr:hasCode <http://snomed.info/id/73595000> .
+
+# Clinical conditions
+ex:cond_med_review_due a chr:ClinicalCondition ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2025-07-23T16:47:23+02:00"^^xsd:dateTime .
+
+ex:cond_stress a chr:ClinicalCondition ;
+    rdfs:label "Stress (finding)" ;
+    chr:hasCode <http://snomed.info/id/73595000> ;
+    chr:hasRecordDate "2025-07-23T17:17:25+02:00"^^xsd:dateTime .
+
+# Evaluation processes
+ex:evaluation_2025_07_23T16_47_23+02_00 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2025-07-23T16:47:23+02:00" ;
+    chr:hasCondition ex:cond_med_review_due ;
+    chr:hasObservation ex:diag_med_review_due .
+
+ex:evaluation_2025_07_23T17_17_25+02_00 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation on 2025-07-23T17:17:25+02:00" ;
+    chr:hasCondition ex:cond_stress ;
+    chr:hasObservation ex:diag_stress .
+
+# Care plan (generic, no specific links required)
+ex:careplan_2025_07_23 a chr:CarePlan ;
+    rdfs:label "Care plan established on 2025-07-23" .

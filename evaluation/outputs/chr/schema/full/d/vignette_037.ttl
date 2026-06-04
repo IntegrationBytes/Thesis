@@ -4,173 +4,275 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Casey401Elijah719Parker433 a chr:Person .
+# Persons
+ex:patient_Casey401Elijah719Parker433 a chr:Person ;
+    rdfs:label "Casey401 Elijah719 Parker433" .
 
-ex:care_unit_JFCS a chr:CareUnit .
+ex:physician_EldridgeMarquardt a chr:Person ;
+    rdfs:label "Dr. Eldridge510 Marquardt819" .
 
-ex:physician_Eldridge510Marquardt819 a chr:Person .
+# Care Unit
+ex:careUnit_JewishFamilyChildrenService a chr:CareUnit ;
+    rdfs:label "JEWISH FAMILY & CHILDREN'S SERVICE" .
 
-ex:visit_2025_11_13_1759 a chr:ClinicalVisit ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasCareProvider ex:physician_Eldridge510Marquardt819 ;
-  chr:hasCareUnit ex:care_unit_JFCS .
+# Clinical Visit
+ex:visit_2025_11_13_17_59_56 a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2025-11-13T17:59:56+01:00" ;
+    chr:hasDate "2025-11-13T17:59:56+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_EldridgeMarquardt ;
+    chr:hasCareUnit ex:careUnit_JewishFamilyChildrenService ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 .
 
-ex:proc_bone_density_20251113_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_bone_density_20251113_1759 .
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:meas_bone_density_20251113_1759 a chr:Measurement ;
-  chr:hasQuantityValue "-3.7739"^^xsd:float ;
-  chr:hasUnit sulo:TScore ;
-  chr:hasMeasuredDate "2025-11-13T17:59:00"^^xsd:dateTime .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:proc_height_20251113_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_height_20251113_1759 .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg.m-2> .
 
-ex:meas_height_20251113_1759 a chr:Measurement ;
-  chr:hasQuantityValue "172.7"^^xsd:float ;
-  chr:hasUnit sulo:cm ;
-  chr:hasMeasuredDate "2025-11-13T17:59:00"^^xsd:dateTime .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/min> .
 
-ex:proc_pain_20251113_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_pain_20251113_1759 .
+ex:unit_mg_per_dL a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mgperdL> .
 
-ex:meas_pain_20251113_1759 a chr:Measurement ;
-  chr:hasQuantityValue "3.0"^^xsd:float ;
-  chr:hasUnit sulo:score ;
-  chr:hasMeasuredDate "2025-11-13T17:59:00"^^xsd:dateTime .
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/1> .
 
-ex:proc_weight_20251113_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_weight_20251113_1759 .
+# Measurements (processes, results, units)
 
-ex:meas_weight_20251113_1759 a chr:Measurement ;
-  chr:hasQuantityValue "82.2"^^xsd:float ;
-  chr:hasUnit sulo:kg ;
-  chr:hasMeasuredDate "2025-11-13T17:59:00"^^xsd:dateTime .
+# 1. DXA Radius and Ulna T‑score
+ex:measProc_DXA_Tscore_2025_11_13_17_59_56 a chr:MeasurementProcess ;
+    rdfs:label "DXA Radius and Ulna T‑score measurement" ;
+    chr:hasCode <https://loinc.org/38265-5> ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:meas_DXA_Tscore_2025_11_13_17_59_56 .
 
-ex:proc_bmi_20251113_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_bmi_20251113_1759 .
+ex:meas_DXA_Tscore_2025_11_13_17_59_56 a chr:Measurement ;
+    rdfs:label "-3.7739 T‑score" ;
+    chr:hasQuantityValue "-3.7739"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2025-11-13T17:59:56+01:00"^^xsd:dateTime .
 
-ex:meas_bmi_20251113_1759 a chr:Measurement ;
-  chr:hasQuantityValue "27.56"^^xsd:float ;
-  chr:hasUnit sulo:kg_per_m2 ;
-  chr:hasMeasuredDate "2025-11-13T17:59:00"^^xsd:dateTime .
+# 2. Body Height
+ex:measProc_Height_2025_11_13_17_59_56 a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement" ;
+    chr:hasCode <https://loinc.org/8302-2> ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:meas_Height_2025_11_13_17_59_56 .
 
-ex:proc_heart_rate_20251113_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_heart_rate_20251113_1759 .
+ex:meas_Height_2025_11_13_17_59_56 a chr:Measurement ;
+    rdfs:label "172.7 cm" ;
+    chr:hasQuantityValue "172.7"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2025-11-13T17:59:56+01:00"^^xsd:dateTime .
 
-ex:meas_heart_rate_20251113_1759 a chr:Measurement ;
-  chr:hasQuantityValue "88.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min ;
-  chr:hasMeasuredDate "2025-11-13T17:59:00"^^xsd:dateTime .
+# 3. Pain severity score
+ex:measProc_PainScore_2025_11_13_17_59_56 a chr:MeasurementProcess ;
+    rdfs:label "Pain severity score measurement" ;
+    chr:hasCode <https://loinc.org/72514-3> ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:meas_PainScore_2025_11_13_17_59_56 .
 
-ex:proc_resp_rate_20251113_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_resp_rate_20251113_1759 .
+ex:meas_PainScore_2025_11_13_17_59_56 a chr:Measurement ;
+    rdfs:label "3 score" ;
+    chr:hasQuantityValue "3"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2025-11-13T17:59:56+01:00"^^xsd:dateTime .
 
-ex:meas_resp_rate_20251113_1759 a chr:Measurement ;
-  chr:hasQuantityValue "14.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min ;
-  chr:hasMeasuredDate "2025-11-13T17:59:00"^^xsd:dateTime .
+# 4. Body Weight
+ex:measProc_Weight_2025_11_13_17_59_56 a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement" ;
+    chr:hasCode <https://loinc.org/29463-7> ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:meas_Weight_2025_11_13_17_59_56 .
 
-ex:proc_cholesterol_20251113_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_cholesterol_20251113_1759 .
+ex:meas_Weight_2025_11_13_17_59_56 a chr:Measurement ;
+    rdfs:label "82.2 kg" ;
+    chr:hasQuantityValue "82.2"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2025-11-13T17:59:56+01:00"^^xsd:dateTime .
 
-ex:meas_cholesterol_20251113_1759 a chr:Measurement ;
-  chr:hasQuantityValue "136.18"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2025-11-13T17:59:00"^^xsd:dateTime .
+# 5. Body Mass Index
+ex:measProc_BMI_2025_11_13_17_59_56 a chr:MeasurementProcess ;
+    rdfs:label "Body mass index measurement" ;
+    chr:hasCode <https://loinc.org/39156-5> ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:meas_BMI_2025_11_13_17_59_56 .
 
-ex:proc_triglyceride_20251113_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_triglyceride_20251113_1759 .
+ex:meas_BMI_2025_11_13_17_59_56 a chr:Measurement ;
+    rdfs:label "27.56 kg/m2" ;
+    chr:hasQuantityValue "27.56"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2025-11-13T17:59:56+01:00"^^xsd:dateTime .
 
-ex:meas_triglyceride_20251113_1759 a chr:Measurement ;
-  chr:hasQuantityValue "140.55"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2025-11-13T17:59:00"^^xsd:dateTime .
+# 6. Heart rate
+ex:measProc_HeartRate_2025_11_13_17_59_56 a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement" ;
+    chr:hasCode <https://loinc.org/8867-4> ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:meas_HeartRate_2025_11_13_17_59_56 .
 
-ex:proc_ldl_20251113_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_ldl_20251113_1759 .
+ex:meas_HeartRate_2025_11_13_17_59_56 a chr:Measurement ;
+    rdfs:label "88 /min" ;
+    chr:hasQuantityValue "88"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2025-11-13T17:59:56+01:00"^^xsd:dateTime .
 
-ex:meas_ldl_20251113_1759 a chr:Measurement ;
-  chr:hasQuantityValue "45.49"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2025-11-13T17:59:00"^^xsd:dateTime .
+# 7. Respiratory rate
+ex:measProc_RespRate_2025_11_13_17_59_56 a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement" ;
+    chr:hasCode <https://loinc.org/9279-1> ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:meas_RespRate_2025_11_13_17_59_56 .
 
-ex:proc_hdl_20251113_1759 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_hdl_20251113_1759 .
+ex:meas_RespRate_2025_11_13_17_59_56 a chr:Measurement ;
+    rdfs:label "14 /min" ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2025-11-13T17:59:56+01:00"^^xsd:dateTime .
 
-ex:meas_hdl_20251113_1759 a chr:Measurement ;
-  chr:hasQuantityValue "62.58"^^xsd:float ;
-  chr:hasUnit sulo:mg_per_dL ;
-  chr:hasMeasuredDate "2025-11-13T17:59:00"^^xsd:dateTime .
+# 8. Cholesterol total
+ex:measProc_CholesterolTotal_2025_11_13_17_59_56 a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol measurement" ;
+    chr:hasCode <https://loinc.org/2093-3> ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:meas_CholesterolTotal_2025_11_13_17_59_56 .
 
-ex:proc_gad7_20251113_1906 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_gad7_20251113_1906 .
+ex:meas_CholesterolTotal_2025_11_13_17_59_56 a chr:Measurement ;
+    rdfs:label "136.18 mg/dL" ;
+    chr:hasQuantityValue "136.18"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2025-11-13T17:59:56+01:00"^^xsd:dateTime .
 
-ex:meas_gad7_20251113_1906 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasUnit sulo:score ;
-  chr:hasMeasuredDate "2025-11-13T19:06:00"^^xsd:dateTime .
+# 9. Triglyceride
+ex:measProc_Triglyceride_2025_11_13_17_59_56 a chr:MeasurementProcess ;
+    rdfs:label "Triglyceride measurement" ;
+    chr:hasCode <https://loinc.org/2571-8> ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:meas_Triglyceride_2025_11_13_17_59_56 .
 
-ex:proc_phq2_20251113_1945 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_phq2_20251113_1945 .
+ex:meas_Triglyceride_2025_11_13_17_59_56 a chr:Measurement ;
+    rdfs:label "140.55 mg/dL" ;
+    chr:hasQuantityValue "140.55"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2025-11-13T17:59:56+01:00"^^xsd:dateTime .
 
-ex:meas_phq2_20251113_1945 a chr:Measurement ;
-  chr:hasQuantityValue "2.0"^^xsd:float ;
-  chr:hasUnit sulo:score ;
-  chr:hasMeasuredDate "2025-11-13T19:45:00"^^xsd:dateTime .
+# 10. LDL Cholesterol
+ex:measProc_LDL_2025_11_13_17_59_56 a chr:MeasurementProcess ;
+    rdfs:label "LDL Cholesterol measurement" ;
+    chr:hasCode <https://loinc.org/18262-6> ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:meas_LDL_2025_11_13_17_59_56 .
 
-ex:proc_auditc_20251113_2018 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
-  chr:hasResult ex:meas_auditc_20251113_2018 .
+ex:meas_LDL_2025_11_13_17_59_56 a chr:Measurement ;
+    rdfs:label "45.49 mg/dL" ;
+    chr:hasQuantityValue "45.49"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2025-11-13T17:59:56+01:00"^^xsd:dateTime .
 
-ex:meas_auditc_20251113_2018 a chr:Measurement ;
-  chr:hasQuantityValue "2.0"^^xsd:float ;
-  chr:hasUnit sulo:score ;
-  chr:hasMeasuredDate "2025-11-13T20:18:00"^^xsd:dateTime .
+# 11. HDL Cholesterol
+ex:measProc_HDL_2025_11_13_17_59_56 a chr:MeasurementProcess ;
+    rdfs:label "HDL Cholesterol measurement" ;
+    chr:hasCode <https://loinc.org/2085-9> ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:meas_HDL_2025_11_13_17_59_56 .
 
-ex:eval_20251113_1759_med_review a chr:EvaluationProcess ;
-  chr:hasPerformer ex:physician_Eldridge510Marquardt819 ;
-  chr:hasObservation ex:diag_med_review .
+ex:meas_HDL_2025_11_13_17_59_56 a chr:Measurement ;
+    rdfs:label "62.58 mg/dL" ;
+    chr:hasQuantityValue "62.58"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2025-11-13T17:59:56+01:00"^^xsd:dateTime .
 
-ex:diag_med_review a chr:DiagnosticStatement .
+# 12. GAD‑7 total score
+ex:measProc_GAD7_2025_11_13_19_06_34 a chr:MeasurementProcess ;
+    rdfs:label "GAD‑7 total score measurement" ;
+    chr:hasCode <https://loinc.org/70274-6> ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:meas_GAD7_2025_11_13_19_06_34 .
 
-ex:cond_med_review a chr:ClinicalCondition ;
-  chr:hasRecordDate "2025-11-13T17:59:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:meas_GAD7_2025_11_13_19_06_34 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2025-11-13T19:06:34+01:00"^^xsd:dateTime .
 
-ex:eval_20251113_1759_osteo a chr:EvaluationProcess ;
-  chr:hasPerformer ex:physician_Eldridge510Marquardt819 ;
-  chr:hasObservation ex:diag_osteo .
+# 13. PHQ‑2 total score
+ex:measProc_PHQ2_2025_11_13_19_45_05 a chr:MeasurementProcess ;
+    rdfs:label "PHQ‑2 total score measurement" ;
+    chr:hasCode <https://loinc.org/55758-7> ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:meas_PHQ2_2025_11_13_19_45_05 .
 
-ex:diag_osteo a chr:DiagnosticStatement .
+ex:meas_PHQ2_2025_11_13_19_45_05 a chr:Measurement ;
+    rdfs:label "2 score" ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2025-11-13T19:45:05+01:00"^^xsd:dateTime .
 
-ex:cond_osteo a chr:ClinicalCondition ;
-  chr:hasRecordDate "2025-11-13T17:59:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+# 14. AUDIT‑C total score
+ex:measProc_AUDITC_2025_11_13_20_18_26 a chr:MeasurementProcess ;
+    rdfs:label "AUDIT‑C total score measurement" ;
+    chr:hasCode <https://loinc.org/75626-2> ;
+    chr:hasPatient ex:patient_Casey401Elijah719Parker433 ;
+    chr:hasResult ex:meas_AUDITC_2025_11_13_20_18_26 .
 
-ex:eval_20251113_1838_parttime a chr:EvaluationProcess ;
-  chr:hasPerformer ex:physician_Eldridge510Marquardt819 ;
-  chr:hasObservation ex:diag_parttime .
+ex:meas_AUDITC_2025_11_13_20_18_26 a chr:Measurement ;
+    rdfs:label "2 score" ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2025-11-13T20:18:26+01:00"^^xsd:dateTime .
 
-ex:diag_parttime a chr:DiagnosticStatement .
+# Clinical Conditions
+ex:cond_MedicationReviewDue a chr:ClinicalCondition ;
+    rdfs:label "Medication review due" ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2025-11-13T17:59:56+01:00"^^xsd:dateTime .
 
-ex:cond_parttime a chr:ClinicalCondition ;
-  chr:hasRecordDate "2025-11-13T18:38:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+ex:cond_Osteoporosis a chr:ClinicalCondition ;
+    rdfs:label "Osteoporosis" ;
+    chr:hasCode <http://snomed.info/id/64859006> ;
+    chr:hasRecordDate "2025-11-13T17:59:56+01:00"^^xsd:dateTime .
 
-ex:severity_moderate a chr:Severity .
+ex:cond_PartTimeEmployment a chr:ClinicalCondition ;
+    rdfs:label "Part-time employment" ;
+    chr:hasCode <http://snomed.info/id/160904001> ;
+    chr:hasRecordDate "2025-11-13T18:38:20+01:00"^^xsd:dateTime .
 
-ex:careplan_followup a chr:CarePlan .
+# Diagnostic Statements
+ex:diag_MedicationReviewDue a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
+
+ex:diag_Osteoporosis a chr:DiagnosticStatement ;
+    rdfs:label "Osteoporosis" ;
+    chr:hasCode <http://snomed.info/id/64859006> .
+
+ex:diag_PartTimeEmployment a chr:DiagnosticStatement ;
+    rdfs:label "Part-time employment" ;
+    chr:hasCode <http://snomed.info/id/160904001> .
+
+# Evaluation Processes
+ex:evaluation_2025_11_13_17_59_56_1 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation producing Medication review due" ;
+    chr:hasCondition ex:cond_MedicationReviewDue ;
+    chr:hasObservation ex:diag_MedicationReviewDue .
+
+ex:evaluation_2025_11_13_17_59_56_2 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation producing Osteoporosis" ;
+    chr:hasCondition ex:cond_Osteoporosis ;
+    chr:hasObservation ex:diag_Osteoporosis .
+
+ex:evaluation_2025_11_13_18_38_20 a chr:EvaluationProcess ;
+    rdfs:label "Evaluation producing Part-time employment" ;
+    chr:hasCondition ex:cond_PartTimeEmployment ;
+    chr:hasObservation ex:diag_PartTimeEmployment .

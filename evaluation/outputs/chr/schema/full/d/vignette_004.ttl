@@ -4,104 +4,178 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Angelic427Callie226Schaden604 a chr:Person .
+# Persons
+ex:patient_Angelic_Callie_Schaden a chr:Person ;
+    rdfs:label "Angelic427 Callie226 Schaden604" .
 
-ex:care_unit_SouthBoston a chr:CareUnit .
+ex:physician_Sherita_Hudson a chr:Person ;
+    rdfs:label "Dr. Sherita708 Hudson301" .
 
-ex:doctor_Sherita708Hudson301 a chr:Person .
+# Care Unit
+ex:careUnit_SOUTH_BOSTON_COMMUNITY_HEALTH_CENTER_INC a chr:CareUnit ;
+    rdfs:label "SOUTH BOSTON COMMUNITY HEALTH CENTER INC" .
 
-ex:visit_2017_11_24 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:doctor_Sherita708Hudson301 ;
-  chr:hasCareUnit ex:care_unit_SouthBoston .
+# Clinical Visit
+ex:visit_2017_11_24T172427 a chr:ClinicalVisit ;
+    rdfs:label "Visit 2017-11-24T17:24:27+01:00" ;
+    chr:hasDate "2017-11-24T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:physician_Sherita_Hudson ;
+    chr:hasCareUnit ex:careUnit_SOUTH_BOSTON_COMMUNITY_HEALTH_CENTER_INC ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden .
 
-ex:measProc_height_20171124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_height_20171124 .
+# Units
+ex:unit_cm a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:meas_height_20171124 a chr:Measurement ;
-  chr:hasMeasuredDate "2017-11-24T17:24:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "160.9"^^xsd:float ;
-  chr:hasUnit sulo:cm .
+ex:unit_kg a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:measProc_pain_20171124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_pain_20171124 .
+ex:unit_kg_per_m2 a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg.m2> .
 
-ex:meas_pain_20171124 a chr:Measurement ;
-  chr:hasMeasuredDate "2017-11-24T17:24:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "1.0"^^xsd:float .
+ex:unit_percent a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%> .
 
-ex:measProc_weight_20171124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_weight_20171124 .
+ex:unit_per_min a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%2Fmin> .
 
-ex:meas_weight_20171124 a chr:Measurement ;
-  chr:hasMeasuredDate "2017-11-24T17:24:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "48.7"^^xsd:float ;
-  chr:hasUnit sulo:kg .
+ex:unit_score a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
 
-ex:measProc_bmi_ratio_20171124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_bmi_ratio_20171124 .
+# Measurements and Measurement Processes
 
-ex:meas_bmi_ratio_20171124 a chr:Measurement ;
-  chr:hasMeasuredDate "2017-11-24T17:24:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "18.78"^^xsd:float ;
-  chr:hasUnit sulo:kg_per_m2 .
+## Body Height
+ex:measurement_bodyHeight_20171124T172427 a chr:Measurement ;
+    rdfs:label "160.9 cm" ;
+    chr:hasQuantityValue "160.9"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2017-11-24T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/8302-2> .
 
-ex:measProc_bmi_percentile_20171124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_bmi_percentile_20171124 .
+ex:proc_bodyHeight_20171124T172427 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_bodyHeight_20171124T172427 .
 
-ex:meas_bmi_percentile_20171124 a chr:Measurement ;
-  chr:hasMeasuredDate "2017-11-24T17:24:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "13.62"^^xsd:float ;
-  chr:hasUnit sulo:percent .
+## Pain Severity
+ex:measurement_painSeverity_20171124T172427 a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2017-11-24T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/72514-3> .
 
-ex:measProc_heartRate_20171124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_heartRate_20171124 .
+ex:proc_painSeverity_20171124T172427 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_painSeverity_20171124T172427 .
 
-ex:meas_heartRate_20171124 a chr:Measurement ;
-  chr:hasMeasuredDate "2017-11-24T17:24:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "70.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min .
+## Body Weight
+ex:measurement_bodyWeight_20171124T172427 a chr:Measurement ;
+    rdfs:label "48.7 kg" ;
+    chr:hasQuantityValue "48.7"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2017-11-24T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/29463-7> .
 
-ex:measProc_respRate_20171124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_respRate_20171124 .
+ex:proc_bodyWeight_20171124T172427 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_bodyWeight_20171124T172427 .
 
-ex:meas_respRate_20171124 a chr:Measurement ;
-  chr:hasMeasuredDate "2017-11-24T17:24:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "14.0"^^xsd:float ;
-  chr:hasUnit sulo:per_min .
+## BMI Ratio
+ex:measurement_BMI_ratio_20171124T172427 a chr:Measurement ;
+    rdfs:label "18.78 kg/m2" ;
+    chr:hasQuantityValue "18.78"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2017-11-24T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/39156-5> .
 
-ex:measProc_auditc_20171124 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Angelic427Callie226Schaden604 ;
-  chr:hasResult ex:meas_auditc_20171124 .
+ex:proc_BMI_ratio_20171124T172427 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_BMI_ratio_20171124T172427 .
 
-ex:meas_auditc_20171124 a chr:Measurement ;
-  chr:hasMeasuredDate "2017-11-24T19:02:00"^^xsd:dateTime ;
-  chr:hasQuantityValue "0.0"^^xsd:float .
+## BMI Percentile
+ex:measurement_BMI_percentile_20171124T172427 a chr:Measurement ;
+    rdfs:label "13.62 %" ;
+    chr:hasQuantityValue "13.62"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2017-11-24T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/59576-9> .
 
-ex:eval_20171124_1724 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_medicationReview .
+ex:proc_BMI_percentile_20171124T172427 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_BMI_percentile_20171124T172427 .
 
-ex:diag_medicationReview a chr:DiagnosticStatement .
+## Heart Rate
+ex:measurement_heartRate_20171124T172427 a chr:Measurement ;
+    rdfs:label "70 /min" ;
+    chr:hasQuantityValue "70"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2017-11-24T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/8867-4> .
 
+ex:proc_heartRate_20171124T172427 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_heartRate_20171124T172427 .
+
+## Respiratory Rate
+ex:measurement_respiratoryRate_20171124T172427 a chr:Measurement ;
+    rdfs:label "14 /min" ;
+    chr:hasQuantityValue "14"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2017-11-24T17:24:27+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/9279-1> .
+
+ex:proc_respiratoryRate_20171124T172427 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_respiratoryRate_20171124T172427 .
+
+## AUDIT-C Total Score
+ex:measurement_AUDITC_totalScore_20171124T190225 a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2017-11-24T19:02:25+01:00"^^xsd:dateTime ;
+    chr:hasCode <https://loinc.org/75626-2> .
+
+ex:proc_AUDITC_totalScore_20171124T190225 a chr:MeasurementProcess ;
+    chr:hasPatient ex:patient_Angelic_Callie_Schaden ;
+    chr:hasResult ex:measurement_AUDITC_totalScore_20171124T190225 .
+
+# Diagnostic Statements and Clinical Conditions
+
+## Medication Review
 ex:condition_medicationReview a chr:ClinicalCondition ;
-  chr:hasRecordDate "2017-11-24T17:24:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> ;
+    chr:hasRecordDate "2017-11-24T17:24:27+01:00"^^xsd:dateTime .
 
-ex:eval_20171124_1823 a chr:EvaluationProcess ;
-  chr:hasObservation ex:diag_socialIsolation .
+ex:diag_medicationReview a chr:DiagnosticStatement ;
+    rdfs:label "Medication review due (situation)" ;
+    chr:hasCode <http://snomed.info/id/314529007> .
 
-ex:diag_socialIsolation a chr:DiagnosticStatement .
+ex:evaluation_20171124T172427 a chr:EvaluationProcess ;
+    chr:hasCondition ex:condition_medicationReview ;
+    chr:hasObservation ex:diag_medicationReview .
 
+## Social Isolation
 ex:condition_socialIsolation a chr:ClinicalCondition ;
-  chr:hasRecordDate "2017-11-24T18:23:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_moderate .
+    rdfs:label "Social isolation (finding)" ;
+    chr:hasCode <http://snomed.info/id/422650009> ;
+    chr:hasRecordDate "2017-11-24T18:23:41+01:00"^^xsd:dateTime .
 
-ex:severity_moderate a chr:Severity .
+ex:diag_socialIsolation a chr:DiagnosticStatement ;
+    rdfs:label "Social isolation (finding)" ;
+    chr:hasCode <http://snomed.info/id/422650009> .
 
-ex:careplan_followup a chr:CarePlan .
+ex:evaluation_20171124T182341 a chr:EvaluationProcess ;
+    chr:hasCondition ex:condition_socialIsolation ;
+    chr:hasObservation ex:diag_socialIsolation .
+
+# Care Plan
+ex:carePlan_20171124T172427 a chr:CarePlan ;
+    rdfs:label "Care plan for follow-up monitoring and routine review" .

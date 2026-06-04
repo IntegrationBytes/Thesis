@@ -4,244 +4,485 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Arturo47_Lauren941_Heidenreich818 a chr:Person .
+# Persons
+ex:patient_ArturoHeidenreich
+    a chr:Person ;
+    rdfs:label "Arturo47 Lauren941 Heidenreich818" .
 
-ex:care_unit_PRIMARY_CARE_NORTH_PC a chr:CareUnit .
+ex:person_AlanKeeling
+    a chr:Person ;
+    rdfs:label "Dr. Alan320 Keeling57" .
 
-ex:care_provider_Alan320_Keeling57 a chr:Person .
+# Care unit
+ex:careUnit_PRIMARY_CARE_NORTH_PC
+    a chr:CareUnit ;
+    rdfs:label "PRIMARY CARE NORTH PC" .
 
-ex:visit_2023_05_29 a chr:ClinicalVisit ;
-  chr:hasCareProvider ex:care_provider_Alan320_Keeling57 ;
-  chr:hasCareUnit ex:care_unit_PRIMARY_CARE_NORTH_PC ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 .
+# Clinical visit
+ex:visit_2023_05_29T02_34_22p02_00
+    a chr:ClinicalVisit ;
+    rdfs:label "Clinical visit on 2023-05-29T02:34:22+02:00" ;
+    chr:hasDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime ;
+    chr:hasCareProvider ex:person_AlanKeeling ;
+    chr:hasCareUnit ex:careUnit_PRIMARY_CARE_NORTH_PC ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasProcedure ex:procedure_general_examination .
 
-ex:proc_HemoglobinA1c_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_HemoglobinA1c_2023_05_29 .
+ex:procedure_general_examination
+    a chr:MedicalProcedure ;
+    rdfs:label "General examination of patient" .
 
-ex:meas_HemoglobinA1c_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "6.11"^^xsd:float ;
-  chr:hasUnit "%" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+# Status
+ex:status_completed
+    a chr:ProcessStatus ;
+    rdfs:label "completed" .
 
-ex:proc_BodyHeight_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_BodyHeight_2023_05_29 .
+# Units
+ex:unit_percent
+    a chr:Unit ;
+    rdfs:label "%" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/%25> .
 
-ex:meas_BodyHeight_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "181.4"^^xsd:float ;
-  chr:hasUnit "cm" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:unit_cm
+    a chr:Unit ;
+    rdfs:label "cm" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/cm> .
 
-ex:proc_PainSeverity_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_PainSeverity_2023_05_29 .
+ex:unit_kg
+    a chr:Unit ;
+    rdfs:label "kg" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg> .
 
-ex:meas_PainSeverity_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "1.0"^^xsd:float ;
-  chr:hasUnit "{score}" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:unit_kg_per_m2
+    a chr:Unit ;
+    rdfs:label "kg/m2" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/kg%2Fm2> .
 
-ex:proc_BodyWeight_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_BodyWeight_2023_05_29 .
+ex:unit_per_min
+    a chr:Unit ;
+    rdfs:label "/min" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/1%2Fmin> .
 
-ex:meas_BodyWeight_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "90.4"^^xsd:float ;
-  chr:hasUnit "kg" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:unit_mmol_per_L
+    a chr:Unit ;
+    rdfs:label "mmol/L" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mmol%2FL> .
 
-ex:proc_BMI_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_BMI_2023_05_29 .
+ex:unit_mg_per_dL
+    a chr:Unit ;
+    rdfs:label "mg/dL" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/mg%2FdL> .
 
-ex:meas_BMI_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "27.47"^^xsd:float ;
-  chr:hasUnit "kg/m2" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:unit_score
+    a chr:Unit ;
+    rdfs:label "score" ;
+    chr:hasCode <https://biomedit.ch/rdf/sphn-resource/ucum/score> .
 
-ex:proc_HeartRate_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_HeartRate_2023_05_29 .
+# Measurements and measurement processes
+# Hemoglobin A1c
+ex:measProc_HbA1c_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Hemoglobin A1c measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_HbA1c_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_HeartRate_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "77.0"^^xsd:float ;
-  chr:hasUnit "/min" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:measurement_HbA1c_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "6.11 %" ;
+    chr:hasCode <https://loinc.org/4548-4> ;
+    chr:hasQuantityValue "6.11"^^xsd:float ;
+    chr:hasUnit ex:unit_percent ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_RespiratoryRate_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_RespiratoryRate_2023_05_29 .
+# Body Height
+ex:measProc_Height_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Body Height measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Height_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_RespiratoryRate_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "16.0"^^xsd:float ;
-  chr:hasUnit "/min" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:measurement_Height_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "181.4 cm" ;
+    chr:hasCode <https://loinc.org/8302-2> ;
+    chr:hasQuantityValue "181.4"^^xsd:float ;
+    chr:hasUnit ex:unit_cm ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_Glucose_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_Glucose_2023_05_29 .
+# Pain severity
+ex:measProc_Pain_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Pain severity measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Pain_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_Glucose_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "70.39"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:measurement_Pain_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "1 score" ;
+    chr:hasCode <https://loinc.org/72514-3> ;
+    chr:hasQuantityValue "1"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_UreaNitrogen_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_UreaNitrogen_2023_05_29 .
+# Body Weight
+ex:measProc_Weight_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Body Weight measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Weight_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_UreaNitrogen_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "12.31"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:measurement_Weight_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "90.4 kg" ;
+    chr:hasCode <https://loinc.org/29463-7> ;
+    chr:hasQuantityValue "90.4"^^xsd:float ;
+    chr:hasUnit ex:unit_kg ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_Creatinine_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_Creatinine_2023_05_29 .
+# BMI
+ex:measProc_BMI_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Body mass index measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_BMI_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_Creatinine_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "0.94"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:measurement_BMI_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "27.47 kg/m2" ;
+    chr:hasCode <https://loinc.org/39156-5> ;
+    chr:hasQuantityValue "27.47"^^xsd:float ;
+    chr:hasUnit ex:unit_kg_per_m2 ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_Calcium_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_Calcium_2023_05_29 .
+# Heart rate
+ex:measProc_HR_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Heart rate measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_HR_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_Calcium_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "10.07"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:measurement_HR_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "77 /min" ;
+    chr:hasCode <https://loinc.org/8867-4> ;
+    chr:hasQuantityValue "77"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_Sodium_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_Sodium_2023_05_29 .
+# Respiratory rate
+ex:measProc_RR_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Respiratory rate measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_RR_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_Sodium_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "140.6"^^xsd:float ;
-  chr:hasUnit "mmol/L" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:measurement_RR_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "16 /min" ;
+    chr:hasCode <https://loinc.org/9279-1> ;
+    chr:hasQuantityValue "16"^^xsd:float ;
+    chr:hasUnit ex:unit_per_min ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_Potassium_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_Potassium_2023_05_29 .
+# Glucose
+ex:measProc_Glucose_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Glucose measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Glucose_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_Potassium_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "4.5"^^xsd:float ;
-  chr:hasUnit "mmol/L" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:measurement_Glucose_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "70.39 mg/dL" ;
+    chr:hasCode <https://loinc.org/2339-0> ;
+    chr:hasQuantityValue "70.39"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_Chloride_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_Chloride_2023_05_29 .
+# Urea nitrogen
+ex:measProc_UreaN_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Urea nitrogen measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_UreaN_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_Chloride_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "109.79"^^xsd:float ;
-  chr:hasUnit "mmol/L" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:measurement_UreaN_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "12.31 mg/dL" ;
+    chr:hasCode <https://loinc.org/6299-2> ;
+    chr:hasQuantityValue "12.31"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_CarbonDioxide_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_CarbonDioxide_2023_05_29 .
+# Creatinine
+ex:measProc_Creatinine_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Creatinine measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Creatinine_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_CarbonDioxide_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "22.31"^^xsd:float ;
-  chr:hasUnit "mmol/L" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:measurement_Creatinine_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "0.94 mg/dL" ;
+    chr:hasCode <https://loinc.org/38483-4> ;
+    chr:hasQuantityValue "0.94"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_Cholesterol_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_Cholesterol_2023_05_29 .
+# Calcium
+ex:measProc_Calcium_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Calcium measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Calcium_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_Cholesterol_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "152.13"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:measurement_Calcium_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "10.07 mg/dL" ;
+    chr:hasCode <https://loinc.org/49765-1> ;
+    chr:hasQuantityValue "10.07"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_Triglyceride_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_Triglyceride_2023_05_29 .
+# Sodium
+ex:measProc_Sodium_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Sodium measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Sodium_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_Triglyceride_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "133.76"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:measurement_Sodium_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "140.6 mmol/L" ;
+    chr:hasCode <https://loinc.org/2947-0> ;
+    chr:hasQuantityValue "140.6"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_CholesterolLDL_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_CholesterolLDL_2023_05_29 .
+# Potassium
+ex:measProc_Potassium_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Potassium measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Potassium_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_CholesterolLDL_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "75.27"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:measurement_Potassium_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "4.5 mmol/L" ;
+    chr:hasCode <https://loinc.org/6298-4> ;
+    chr:hasQuantityValue "4.5"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_CholesterolHDL_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_CholesterolHDL_2023_05_29 .
+# Chloride
+ex:measProc_Chloride_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Chloride measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Chloride_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_CholesterolHDL_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "50.11"^^xsd:float ;
-  chr:hasUnit "mg/dL" ;
-  chr:hasMeasuredDate "2023-05-29T02:34:00"^^xsd:dateTime .
+ex:measurement_Chloride_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "109.79 mmol/L" ;
+    chr:hasCode <https://loinc.org/2069-3> ;
+    chr:hasQuantityValue "109.79"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_GAD7_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_GAD7_2023_05_29 .
+# Carbon dioxide
+ex:measProc_CO2_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Carbon dioxide, total measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_CO2_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_GAD7_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "2.0"^^xsd:float ;
-  chr:hasUnit "{score}" ;
-  chr:hasMeasuredDate "2023-05-29T03:34:00"^^xsd:dateTime .
+ex:measurement_CO2_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "22.31 mmol/L" ;
+    chr:hasCode <https://loinc.org/20565-8> ;
+    chr:hasQuantityValue "22.31"^^xsd:float ;
+    chr:hasUnit ex:unit_mmol_per_L ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_FallRisk_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_FallRisk_2023_05_29 .
+# Cholesterol
+ex:measProc_Cholesterol_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Cholesterol measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Cholesterol_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_FallRisk_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "110.0"^^xsd:float ;
-  chr:hasUnit "{#}" ;
-  chr:hasMeasuredDate "2023-05-29T03:49:00"^^xsd:dateTime .
+ex:measurement_Cholesterol_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "152.13 mg/dL" ;
+    chr:hasCode <https://loinc.org/2093-3> ;
+    chr:hasQuantityValue "152.13"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_HARK_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_HARK_2023_05_29 .
+# Triglyceride
+ex:measProc_Triglyceride_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Triglyceride measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_Triglyceride_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_HARK_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "0.0"^^xsd:float ;
-  chr:hasUnit "{score}" ;
-  chr:hasMeasuredDate "2023-05-29T04:23:00"^^xsd:dateTime .
+ex:measurement_Triglyceride_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "133.76 mg/dL" ;
+    chr:hasCode <https://loinc.org/2571-8> ;
+    chr:hasQuantityValue "133.76"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:proc_PHQ2_2023_05_29 a chr:MeasurementProcess ;
-  chr:hasPatient ex:patient_Arturo47_Lauren941_Heidenreich818 ;
-  chr:hasResult ex:meas_PHQ2_2023_05_29 .
+# LDL Cholesterol
+ex:measProc_LDL_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "LDL Cholesterol measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_LDL_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:meas_PHQ2_2023_05_29 a chr:Measurement ;
-  chr:hasQuantityValue "2.0"^^xsd:float ;
-  chr:hasUnit "{score}" ;
-  chr:hasMeasuredDate "2023-05-29T04:59:00"^^xsd:dateTime .
+ex:measurement_LDL_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "75.27 mg/dL" ;
+    chr:hasCode <https://loinc.org/18262-6> ;
+    chr:hasQuantityValue "75.27"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:eval_2023_05_29_0311 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:care_provider_Alan320_Keeling57 ;
-  chr:hasObservation ex:diag_Stress_2023_05_29_0311 .
+# HDL Cholesterol
+ex:measProc_HDL_2023_05_29T02_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "HDL Cholesterol measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_HDL_2023_05_29T02_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:diag_Stress_2023_05_29_0311 a chr:DiagnosticStatement .
+ex:measurement_HDL_2023_05_29T02_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "50.11 mg/dL" ;
+    chr:hasCode <https://loinc.org/2085-9> ;
+    chr:hasQuantityValue "50.11"^^xsd:float ;
+    chr:hasUnit ex:unit_mg_per_dL ;
+    chr:hasMeasuredDate "2023-05-29T02:34:22+02:00"^^xsd:dateTime .
 
-ex:condition_Stress_2023_05_29_0311 a chr:ClinicalCondition ;
-  chr:hasRecordDate "2023-05-29T03:11:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_Moderate .
+# GAD-7
+ex:measProc_GAD7_2023_05_29T03_34_22p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "GAD-7 measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_GAD7_2023_05_29T03_34_22p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:eval_Abuse_2023_05_29_0311 a chr:EvaluationProcess ;
-  chr:hasPerformer ex:care_provider_Alan320_Keeling57 ;
-  chr:hasObservation ex:diag_Abuse_2023_05_29_0311 .
+ex:measurement_GAD7_2023_05_29T03_34_22p02_00
+    a chr:Measurement ;
+    rdfs:label "2 score" ;
+    chr:hasCode <https://loinc.org/70274-6> ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2023-05-29T03:34:22+02:00"^^xsd:dateTime .
 
-ex:diag_Abuse_2023_05_29_0311 a chr:DiagnosticStatement .
+# Fall risk
+ex:measProc_FallRisk_2023_05_29T03_49_52p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "Fall risk measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_FallRisk_2023_05_29T03_49_52p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:condition_Abuse_2023_05_29_0311 a chr:ClinicalCondition ;
-  chr:hasRecordDate "2023-05-29T03:11:00"^^xsd:dateTime ;
-  chr:hasSeverity ex:severity_Moderate .
+ex:measurement_FallRisk_2023_05_29T03_49_52p02_00
+    a chr:Measurement ;
+    rdfs:label "110 score" ;
+    chr:hasCode <https://loinc.org/59460-6> ;
+    chr:hasQuantityValue "110"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2023-05-29T03:49:52+02:00"^^xsd:dateTime .
 
-ex:severity_Moderate a chr:Severity .
+# HARK total
+ex:measProc_HARK_2023_05_29T04_23_53p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "HARK measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_HARK_2023_05_29T04_23_53p02_00 ;
+    chr:hasStatus ex:status_completed .
 
-ex:careplan_followup a chr:CarePlan .
+ex:measurement_HARK_2023_05_29T04_23_53p02_00
+    a chr:Measurement ;
+    rdfs:label "0 score" ;
+    chr:hasCode <https://loinc.org/76504-0> ;
+    chr:hasQuantityValue "0"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2023-05-29T04:23:53+02:00"^^xsd:dateTime .
+
+# PHQ-2
+ex:measProc_PHQ2_2023_05_29T04_59_43p02_00
+    a chr:MeasurementProcess ;
+    rdfs:label "PHQ-2 measurement process" ;
+    chr:hasPatient ex:patient_ArturoHeidenreich ;
+    chr:hasResult ex:measurement_PHQ2_2023_05_29T04_59_43p02_00 ;
+    chr:hasStatus ex:status_completed .
+
+ex:measurement_PHQ2_2023_05_29T04_59_43p02_00
+    a chr:Measurement ;
+    rdfs:label "2 score" ;
+    chr:hasCode <https://loinc.org/55758-7> ;
+    chr:hasQuantityValue "2"^^xsd:float ;
+    chr:hasUnit ex:unit_score ;
+    chr:hasMeasuredDate "2023-05-29T04:59:43+02:00"^^xsd:dateTime .
+
+# Diagnostic statements and clinical conditions
+ex:diag_Stress
+    a chr:DiagnosticStatement ;
+    rdfs:label "Stress (finding)" ;
+    chr:hasCode <http://snomed.info/id/73595000> .
+
+ex:cond_Stress
+    a chr:ClinicalCondition ;
+    rdfs:label "Stress (finding)" ;
+    chr:hasCode <http://snomed.info/id/73595000> ;
+    chr:hasRecordDate "2023-05-29T03:11:22+02:00"^^xsd:dateTime .
+
+ex:evaluation_Stress_2023_05_29T03_11_22p02_00
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation for Stress" ;
+    chr:hasCondition ex:cond_Stress ;
+    chr:hasObservation ex:diag_Stress .
+
+ex:diag_VictimAbuse
+    a chr:DiagnosticStatement ;
+    rdfs:label "Victim of intimate partner abuse (finding)" ;
+    chr:hasCode <http://snomed.info/id/706893006> .
+
+ex:cond_VictimAbuse
+    a chr:ClinicalCondition ;
+    rdfs:label "Victim of intimate partner abuse (finding)" ;
+    chr:hasCode <http://snomed.info/id/706893006> ;
+    chr:hasRecordDate "2023-05-29T03:11:22+02:00"^^xsd:dateTime .
+
+ex:evaluation_VictimAbuse_2023_05_29T03_11_22p02_00
+    a chr:EvaluationProcess ;
+    rdfs:label "Evaluation for Victim of intimate partner abuse" ;
+    chr:hasCondition ex:cond_VictimAbuse ;
+    chr:hasObservation ex:diag_VictimAbuse .
+
+# Care plan
+ex:carePlan_2023_05_29
+    a chr:CarePlan ;
+    rdfs:label "Care plan for follow-up monitoring and routine review" .

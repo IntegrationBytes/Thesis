@@ -4,72 +4,75 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:patient_Estela596_Yetta429_Grant908 a chr:Person .
+# Persons
+ex:person_Estela_Grant a chr:Person .
+ex:person_Nickolas_Schumm a chr:Person .
 
-ex:visit_2007_05_07 a chr:ClinicalVisit ;
-  sulo:atTime ex:time_visit_2007_05_07 ;
-  sulo:isIn ex:care_unit_braintree .
+# Care unit
+ex:careunit_ENCOMPASS_HEALTH_BRAINTREE a chr:CareUnit .
 
-ex:time_visit_2007_05_07 a sulo:TimeInstant ;
-  sulo:hasValue "2007-05-07T03:35:00"^^xsd:dateTime .
+# Clinical visit
+ex:visit_2007_05_07T03_35_54 a chr:ClinicalVisit ;
+    sulo:atTime ex:time_visit ;
+    sulo:isIn ex:careunit_ENCOMPASS_HEALTH_BRAINTREE ;
+    sulo:hasParticipant ex:role_VisitPatient , ex:role_VisitProvider .
 
-ex:care_unit_braintree a chr:CareUnit .
+ex:time_visit a sulo:TimeInstant ;
+    sulo:hasValue "2007-05-07T03:35:54+02:00"^^xsd:dateTime .
 
-ex:body_temp_measurement a chr:MeasurementProcess ;
-  sulo:hasParticipant ex:role_patient_body_temp ;
-  sulo:hasParticipant ex:role_output_body_temp ;
-  sulo:atTime ex:time_body_temp_measurement .
+ex:role_VisitPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Estela_Grant .
 
-ex:role_patient_body_temp a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
+ex:role_VisitProvider a chr:CareProviderRole ;
+    sulo:isFeatureOf ex:person_Nickolas_Schumm .
 
-ex:role_output_body_temp a chr:OutputRole ;
-  sulo:isFeatureOf ex:body_temp_result .
+# Measurement process and result
+ex:measurementProcess_2007_05_07T03_35_54 a chr:MeasurementProcess ;
+    sulo:atTime ex:time_measurement ;
+    sulo:hasFeature ex:status_completed ;
+    sulo:hasParticipant ex:role_MeasurementPatient , ex:role_MeasurementOutput .
 
-ex:body_temp_result a chr:Measurement ;
-  sulo:hasValue "38.234"^^xsd:float ;
-  sulo:hasPart ex:unit_cel ;
-  sulo:atTime ex:time_body_temp_measurement .
+ex:time_measurement a sulo:TimeInstant ;
+    sulo:hasValue "2007-05-07T03:35:54+02:00"^^xsd:dateTime .
 
-ex:unit_cel a sulo:Unit .
+ex:status_completed a chr:ProcessStatus .
 
-ex:time_body_temp_measurement a sulo:TimeInstant ;
-  sulo:hasValue "2007-05-07T03:35:00"^^xsd:dateTime .
+ex:role_MeasurementPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Estela_Grant .
 
-ex:evaluation_2007_05_07 a chr:EvaluationProcess ;
-  sulo:hasParticipant ex:role_patient_evaluation ;
-  sulo:hasParticipant ex:role_performer_schumm ;
-  sulo:hasParticipant ex:role_output_strep_diagnosis ;
-  sulo:atTime ex:time_evaluation .
+ex:role_MeasurementOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:measurement_38_234 .
 
-ex:role_patient_evaluation a chr:SubjectOfCareRole ;
-  sulo:isFeatureOf ex:patient_Estela596_Yetta429_Grant908 .
+ex:measurement_38_234 a chr:Measurement ;
+    sulo:hasValue "38.234"^^xsd:float ;
+    sulo:hasPart ex:unit_Celsius ;
+    sulo:atTime ex:time_measurement .
 
-ex:role_performer_schumm a chr:PerformerRole ;
-  sulo:isFeatureOf ex:dr_schumm .
+ex:unit_Celsius a chr:Unit .
 
-ex:dr_schumm a chr:Person .
-
-ex:role_output_strep_diagnosis a chr:OutputRole ;
-  sulo:isFeatureOf ex:strep_diagnosis .
-
-ex:strep_diagnosis a chr:DiagnosticStatement ;
-  sulo:hasFeature ex:severity_moderate .
-
-ex:severity_moderate a chr:Severity .
+# Evaluation process and diagnostic statement
+ex:evaluationProcess_2007_05_07T03_35_54 a chr:EvaluationProcess ;
+    sulo:atTime ex:time_evaluation ;
+    sulo:hasParticipant ex:role_EvalPerformer , ex:role_EvalPatient , ex:role_EvalOutput .
 
 ex:time_evaluation a sulo:TimeInstant ;
-  sulo:hasValue "2007-05-07T03:35:00"^^xsd:dateTime .
+    sulo:hasValue "2007-05-07T03:35:54+02:00"^^xsd:dateTime .
 
-ex:condition_strep_throat a chr:ClinicalCondition ;
-  sulo:atTime ex:time_condition_recorded .
+ex:role_EvalPerformer a chr:PerformerRole ;
+    sulo:isFeatureOf ex:person_Nickolas_Schumm .
 
-ex:time_condition_recorded a sulo:TimeInstant ;
-  sulo:hasValue "2007-05-07T03:35:00"^^xsd:dateTime .
+ex:role_EvalPatient a chr:SubjectOfCareRole ;
+    sulo:isFeatureOf ex:person_Estela_Grant .
 
-ex:care_plan a chr:CarePlan ;
-  sulo:refersTo ex:follow_up_monitoring , ex:routine_review .
+ex:role_EvalOutput a chr:OutputRole ;
+    sulo:isFeatureOf ex:diagnostic_StrepSoreThroat .
 
-ex:follow_up_monitoring a chr:MedicalProcedure .
+ex:diagnostic_StrepSoreThroat a chr:DiagnosticStatement ;
+    rdfs:label "Streptococcal sore throat" .
 
-ex:routine_review a chr:MedicalProcedure .
+# Care plan and referenced procedure
+ex:carePlan_2007_05_07 a chr:CarePlan ;
+    sulo:refersTo ex:procedure_FollowUpMonitoring .
+
+ex:procedure_FollowUpMonitoring a chr:MedicalProcedure ;
+    rdfs:label "Follow-up monitoring and routine review" .
