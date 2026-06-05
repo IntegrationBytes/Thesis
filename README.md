@@ -12,11 +12,20 @@ in the report.
 ## 1. Prerequisites
 
 - macOS or Linux with Python **3.13**
-- An [OpenRouter](https://openrouter.ai/) API key (the pipeline calls three
-  models through OpenRouter: Gemini 2.0 Flash, gpt-oss-120b, Llama 3.3 70B)
-- ~20 USD of OpenRouter credit for a full end-to-end run (see budget table
+- An [OpenRouter](https://openrouter.ai/) API key. The pipeline calls two
+  models: the extractor **gpt-oss-120b** (open-weight, Apache 2.0) and the
+  cross-family LLM-as-judge **Llama 3.3 70B**.
+- ~10 USD of OpenRouter credit for a full end-to-end run (see budget table
   below). The repo already contains all model outputs, so reproduction
   without re-running the LLM is free.
+
+> **Model note.** The thesis uses a single extractor, **gpt-oss-120b**, whose
+> outputs are committed under `evaluation/outputs/`. The codebase still
+> contains historical scaffolding from an earlier dual-model exploration
+> (a `evaluation/outputs_freemodel/` directory and a Gemini default model
+> env var); **these are not used by the final single-model paper** and can be
+> ignored. Every table and figure in the report is computed from
+> `evaluation/outputs/`.
 
 ## 2. Install
 
@@ -32,21 +41,23 @@ cp .env.example .env                  # then edit .env to add OPENROUTER_API_KEY
 Verify the install:
 
 ```bash
-python -m pytest tests/               # 57 tests, all pass
+python -m pytest tests/
 ```
 
 ## 3. Reproduce results without re-running the LLM (fast path)
 
-The repo ships with every model output committed under `evaluation/outputs/`
-and `evaluation/outputs_freemodel/`. To regenerate the paper's tables and
-figures from those outputs only:
+The repo ships with every gpt-oss-120b output committed under
+`evaluation/outputs/`. To regenerate the paper's tables and figures from
+those outputs only:
 
 ```bash
-make all                                            # evaluate → stats → plots (~3 min)
-python scripts/make_n200_percycle_v2.py             # Figure 1
-python scripts/make_n200_decoupling_plot.py         # Figure 2
-python scripts/make_violation_resolution_figure.py  # Figure 3
-python scripts/make_pipeline_e2e_figure.py          # Figure 4
+make evaluate                                       # F1, SHACL, OWL, PC -> eval.json
+make stats                                          # paired sign tests, bootstrap CIs
+python scripts/make_percycle_v3.py                  # Figure 1 (per-cycle dynamics)
+python scripts/make_n200_decoupling_plot.py         # Figure 2 (decoupling)
+python scripts/make_pipeline_e2e_figure.py          # Figure 3 (single-case walkthrough)
+python scripts/make_violation_resolution_figure.py  # Figure 4 (per-violation, both tracks)
+python scripts/make_owl_process_figure.py           # Figure 5 (ontology-track loop)
 ```
 
 PNGs land in `report/figures/`.
@@ -54,8 +65,8 @@ PNGs land in `report/figures/`.
 ## 4. Reproduce results from scratch (full re-run)
 
 If you want to re-extract every graph with the LLM, run the steps below in
-order. Total wall-clock is ~6 hours on a 5-worker pool against OpenRouter
-free tiers; ~45 minutes on the paid gpt-oss endpoint.
+order. Total wall-clock is ~45 minutes on the paid gpt-oss-120b endpoint with
+a 20-worker pool.
 
 ### 4.1 Re-derive the corpus (optional)
 
@@ -64,8 +75,8 @@ The 200 vignettes and gold ABoxes are committed under
 bundles (also committed, at `evaluation/corpus/fhir_bundles/`):
 
 ```bash
-python scaling_n100/fhir_to_text.py   # FHIR → clinical-note text
-python scaling_n100/fhir_to_chr.py    # FHIR → schema-track gold ABox
+python scaling_n100/fhir_to_text.py   # FHIR -> clinical-note text
+python scaling_n100/fhir_to_chr.py    # FHIR -> schema-track gold ABox
 ```
 
 To regenerate the FHIR bundles themselves you need Synthea pinned to
@@ -76,51 +87,49 @@ glob `*`; complex-stratum runs use the disease modules
 `metabolic_syndrome`, `lung_cancer`, `breast_cancer_survivor`,
 `opioid_addiction`, `sepsis`.
 
-### 4.2 Run extraction — gpt-oss-120b (primary, open-weight)
+### 4.2 Run extraction — gpt-oss-120b (System A + System B)
 
-The codebase's default model env var is set to Gemini for historical
-reasons, so the primary model has to be passed explicitly. The
-`outputs_freemodel/` directory name is also historical — these are the
-primary-model outputs the paper leads with.
+The codebase's default model env var is a now-deprecated Gemini id for
+historical reasons, so the extractor must be passed explicitly. Outputs
+go to the default root `evaluation/outputs/` (do not override it; that is
+where the paper's numbers come from).
 
 ```bash
 OPENROUTER_MODEL_OVERRIDE="openai/gpt-oss-120b" \
 OPENROUTER_PROVIDER_SORT="throughput" \
-OUTPUTS_ROOT_OVERRIDE="$PWD/evaluation/outputs_freemodel" \
 python scaling_n100/extract_parallel.py \
-    --schema chr --track schema --prompt full --systems a,b --workers 5
+    --schema chr --track schema --prompt full --systems a,b --workers 20
 
 OPENROUTER_MODEL_OVERRIDE="openai/gpt-oss-120b" \
 OPENROUTER_PROVIDER_SORT="throughput" \
-OUTPUTS_ROOT_OVERRIDE="$PWD/evaluation/outputs_freemodel" \
 python scaling_n100/extract_parallel.py \
-    --schema chr --track ontology --prompt ontology --systems a,b --workers 5
+    --schema chr --track ontology --prompt ontology --systems a,b --workers 20
 ```
 
-### 4.3 Run extraction — Gemini 2.0 Flash (cross-model replication)
+### 4.3 Run compute-fair control (System C)
 
 ```bash
-# Schema track (SHACL validator)
-python scaling_n100/extract_parallel.py \
-    --schema chr --track schema --prompt full --systems a,b --workers 5
-
-# Ontology track (OWL-RL reasoner)
-python scaling_n100/extract_parallel.py \
-    --schema chr --track ontology --prompt ontology --systems a,b --workers 5
-```
-
-### 4.4 Run compute-fair control (System C)
-
-```bash
-python scripts/run_system_d.py --schema chr --track schema --workers 5
+OPENROUTER_MODEL_OVERRIDE="openai/gpt-oss-120b" \
+OPENROUTER_PROVIDER_SORT="throughput" \
+python scripts/run_system_d.py --schema chr --track schema --workers 20
 # The script file is named system_d for historical reasons; the paper
 # calls this System C.
+```
+
+### 4.4 Sanitise outputs (Turtle syntax normalisation, report §IV-B)
+
+gpt-oss-120b emits Turtle-invalid IRI local names (a '+' or extra ':' from
+ISO-8601 timezones) on ~14% of cases. Run the deterministic sanitiser pass
+before scoring. It is idempotent on already-clean files.
+
+```bash
+python scripts/sanitize_outputs.py
 ```
 
 ### 4.5 Score everything
 
 ```bash
-make evaluate                         # F1, SHACL conformance, PC, hallucination
+make evaluate                         # F1, SHACL conformance, OWL, PC
 make stats                            # paired sign tests, bootstrap CIs
 ```
 
@@ -131,7 +140,6 @@ JUDGE_MODEL="meta-llama/llama-3.3-70b-instruct" \
 python pipeline/llm_judge.py --schema chr --track schema --prompt full --system a
 JUDGE_MODEL="meta-llama/llama-3.3-70b-instruct" \
 python pipeline/llm_judge.py --schema chr --track schema --prompt full --system b
-# Repeat with OUTPUTS_ROOT_OVERRIDE for the gpt-oss outputs.
 ```
 
 ### 4.7 Supplementary analyses (per-shape, normaliser ablation, OWL conformance)
@@ -142,7 +150,7 @@ python scripts/owl_conformance_survey.py
 python scripts/f1_normalizer_ablation.py
 ```
 
-Then re-run the four figure scripts from §3 to refresh the PNGs from the new outputs.
+Then re-run the figure scripts from §3 to refresh the PNGs.
 
 ## 5. Configuration knobs
 
@@ -151,9 +159,9 @@ All set in `.env` or as environment variables:
 | Variable | Default | Notes |
 |---|---|---|
 | `OPENROUTER_API_KEY` | _(required)_ | OpenRouter credential |
-| `OPENROUTER_MODEL_OVERRIDE` | `google/gemini-2.0-flash-001` | Codebase default; set to `openai/gpt-oss-120b` for the primary-model runs |
-| `OPENROUTER_PROVIDER_SORT` | _(unset)_ | Set to `throughput` when running gpt-oss-120b (primary) on the paid endpoint |
-| `OUTPUTS_ROOT_OVERRIDE` | `evaluation/outputs` | Holds Gemini (replication) outputs. Set to `evaluation/outputs_freemodel` for gpt-oss-120b (primary) outputs |
+| `OPENROUTER_MODEL_OVERRIDE` | `google/gemini-2.0-flash-001` | Deprecated historical default; **set to `openai/gpt-oss-120b`** to reproduce the paper |
+| `OPENROUTER_PROVIDER_SORT` | _(unset)_ | Set to `throughput` for gpt-oss-120b on the paid endpoint |
+| `OUTPUTS_ROOT_OVERRIDE` | `evaluation/outputs` | The paper's gpt-oss-120b outputs live here. **Leave at default**; the legacy `evaluation/outputs_freemodel` directory is unused historical scaffolding |
 | `JUDGE_MODEL` | `meta-llama/llama-3.3-70b-instruct` | Cross-family judge |
 
 Hard-coded in `pipeline/extract.py`: temperature `0.1`, retry budget `k=3`,
@@ -175,11 +183,10 @@ thing to run.
 
 | Step | Calls | Model | ~USD |
 |---|---|---|---|
-| 4.2 gpt-oss schema + ontology, A+B (primary) | ~1,200 | gpt-oss-120b (paid) | 8 |
-| 4.3 Gemini schema + ontology, A+B (replication) | ~1,200 | gemini-2.0-flash | 2 |
-| 4.4 System C, both models | ~1,600 | both | 6 |
-| 4.6 Judge (4 cells × 200 cases × 2 systems) | ~1,600 | llama-3.3-70b | 3 |
-| **Total** | ~5,600 | | **~19** |
+| 4.2 gpt-oss schema + ontology, A+B | ~1,200 | gpt-oss-120b (paid) | 5 |
+| 4.3 System C (control) | ~800 | gpt-oss-120b (paid) | 3 |
+| 4.6 Judge (4 cells × 200 cases) | ~800 | llama-3.3-70b | 2 |
+| **Total** | ~2,800 | | **~10** |
 
 ---
 

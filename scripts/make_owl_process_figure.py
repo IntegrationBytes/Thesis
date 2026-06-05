@@ -75,28 +75,27 @@ rbox(175, 113, 60, 6, C_HDR, "3 · ROUTE", fs=9.4, bold=True)
 codebox(5, 89, 70, 21, color=C_INPUT,
         title="LLM candidate ABox (cycle 0)",
         title_color=BLUE,
-        text=("ex:visit_2019_03_15  a chr:ClinicalVisit ;\n"
-              "  chr:hasPatient ex:patient_M ;\n"
-              "  chr:hasDate \"2019-03-15\"^^xsd:date .\n"
-              "ex:patient_M  a chr:Person ,\n"
-              "             chr:Substance .   # ← clash"))
+        text=("ex:careplan_2020  a chr:CarePlan ,\n"
+              "                  chr:TreatmentPlan ;   # both -> clash\n"
+              "  chr:hasPatient ex:patient_M .\n"
+              "ex:patient_M  a chr:Person ;\n"
+              "  rdfs:label \"Maria\" ."))
 
 codebox(5, 64, 70, 22, color=C_ONTO,
         title="CHR TBox  (chr_ontology.ttl)",
         title_color="#7c2d12",
         text=("25 classes, 20 properties\n"
-              "chr:Person      rdfs:subClassOf  sulo:Role .\n"
-              "chr:Substance   rdfs:subClassOf  sulo:Substance .\n"
-              "chr:hasDate     a  owl:FunctionalProperty .\n"
+              "chr:CarePlan       rdfs:subClassOf sulo:InformationObject .\n"
+              "chr:TreatmentPlan  rdfs:subClassOf sulo:Process .\n"
               "(maps CHR vocabulary into SULO categories)"))
 
 codebox(5, 38, 70, 22, color=C_ONTO,
         title="SULO upper ontology  (sulo_fetched.ttl)",
         title_color="#7c2d12",
         text=("w3id.org/sulo/  ·  cached locally\n"
-              "sulo:Role       owl:disjointWith  sulo:Substance .\n"
-              "sulo:Process    owl:disjointWith  sulo:Role .\n"
-              "sulo:InformationObject  owl:disjointWith ...\n"
+              "sulo:InformationObject rdfs:subClassOf sulo:Object .\n"
+              "sulo:Object   owl:disjointWith  sulo:Process .\n"
+              "sulo:Feature  owl:disjointWith  sulo:SpatialObject .\n"
               "(SULO 1.0 axioms drive deductive closure)"))
 
 # Merge arrow
@@ -154,9 +153,10 @@ rbox(175, 89, 60, 12, C_VIO,
 codebox(175, 67, 60, 19, color="#ffffff",
         title="Format inconsistency report",
         title_color=RED,
-        text=("• ex:patient_M asserted both\n"
-              "  chr:Person  ∧  chr:Substance\n"
-              "  (disjoint by SULO Role vs Substance)\n"
+        text=("• ex:careplan_2020 entailed as both\n"
+              "  sulo:Object (via chr:CarePlan) and\n"
+              "  sulo:Process (via chr:TreatmentPlan)\n"
+              "  -> Object/Process disjointness clash\n"
               "→ append to prompt, retry (k ≤ 3)"))
 
 # Bottom: Consistent
