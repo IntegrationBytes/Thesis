@@ -40,10 +40,8 @@ def _check_one(path_str: str) -> tuple[str, str, bool]:
 
 def main() -> None:
     targets = [
-        ("Gemini ontology",
+        ("gpt-oss-120b ontology",
          "evaluation/outputs/chr/ontology/ontology"),
-        ("gpt-oss ontology",
-         "evaluation/outputs_freemodel/chr/ontology/ontology"),
     ]
     systems = [
         ("A (zero-shot)", "a"),

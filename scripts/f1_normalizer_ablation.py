@@ -91,8 +91,7 @@ def main() -> None:
     for gold in sorted(GOLD_DIR.glob("vignette_*_gold_schema.ttl")):
         vid = gold.stem.replace("_gold_schema", "")
         for model, root in [
-            ("gemini",  ROOT / "evaluation/outputs/chr/schema/full"),
-            ("gptoss",  ROOT / "evaluation/outputs_freemodel/chr/schema/full"),
+            ("gptoss",  ROOT / "evaluation/outputs/chr/schema/full"),
         ]:
             for sys_tag in ("a", "b"):
                 jobs.append((vid, model, sys_tag,

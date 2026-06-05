@@ -100,8 +100,7 @@ def main() -> None:
     for vid_path in sorted(GOLD_DIR.glob("vignette_*_gold_schema.ttl")):
         vid = vid_path.stem.replace("_gold_schema", "")
         for model, root in [
-            ("gemini", ROOT / "evaluation/outputs/chr/schema/full"),
-            ("gptoss", ROOT / "evaluation/outputs_freemodel/chr/schema/full"),
+            ("gptoss", ROOT / "evaluation/outputs/chr/schema/full"),
         ]:
             for sys_tag in ("a", "b"):
                 schema_jobs.append((vid, str(root / sys_tag / f"{vid}.ttl"), model, sys_tag))
@@ -126,8 +125,7 @@ def main() -> None:
     for vid_path in sorted(GOLD_DIR.glob("vignette_*_gold_schema.ttl")):
         vid = vid_path.stem.replace("_gold_schema", "")
         for model, root in [
-            ("gemini", ROOT / "evaluation/outputs/chr/ontology/ontology"),
-            ("gptoss", ROOT / "evaluation/outputs_freemodel/chr/ontology/ontology"),
+            ("gptoss", ROOT / "evaluation/outputs/chr/ontology/ontology"),
         ]:
             for sys_tag in ("a", "b"):
                 owl_jobs.append((vid, str(root / sys_tag / f"{vid}.ttl"), model, sys_tag))

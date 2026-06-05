@@ -20,12 +20,10 @@ Outputs land at::
 CLI::
 
     # Gemini schema D:
-    python scripts/run_system_d.py --schema chr --track schema --workers 5
-
-    # gpt-oss schema D:
+    # gpt-oss-120b System C (paper's model); outputs land in the default
+    # evaluation/outputs/ root used everywhere else.
     OPENROUTER_MODEL_OVERRIDE=openai/gpt-oss-120b \\
-    OUTPUTS_ROOT_OVERRIDE=$(pwd)/evaluation/outputs_freemodel \\
-    python scripts/run_system_d.py --schema chr --track schema --workers 5
+    python scripts/run_system_d.py --schema chr --track schema --workers 20
 """
 from __future__ import annotations
 
