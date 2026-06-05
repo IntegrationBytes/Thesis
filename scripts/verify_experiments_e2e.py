@@ -129,14 +129,14 @@ def test_iri_normalizer() -> None:
 @prefix chr: <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
 @prefix ex: <http://example.org/clinical/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-ex:patient_5e117ba0_uuid a chr:Patient ;
+ex:patient_5e117ba0_uuid a chr:Person ;
     rdfs:label "Alice Smith" .
 """
     llm_ttl = """
 @prefix chr: <https://w3id.org/shexmap/resource/ontology-schema/d285f599-dc2e-4bd0-83f3-df21defa8821/> .
 @prefix ex: <http://example.org/clinical/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-ex:patient_Alice_Smith a chr:Patient ;
+ex:patient_Alice_Smith a chr:Person ;
     rdfs:label "alice smith" .
 """
     gold_g = rdflib.Graph()
@@ -227,17 +227,17 @@ def test_judge_parser() -> None:
 # Component 6: Cross-check with real corpus data
 # ============================================================================
 def test_real_data_pipeline() -> None:
-    print("\n=== Component 6: Real-data sanity check (vignette_030) ===")
+    print("\n=== Component 6: Real-data sanity check (vignette_001) ===")
     from extract import validate_with_shacl
     from owl_validator import validate_with_owl
     from prompts import chr_context
 
-    vid = "vignette_030"
+    vid = "vignette_001"
     schema_a = ROOT / f"evaluation/outputs/chr/schema/full/a/{vid}.ttl"
     schema_b = ROOT / f"evaluation/outputs/chr/schema/full/b/{vid}.ttl"
 
     if not (schema_a.exists() and schema_b.exists()):
-        FAILED.append(("Real-data sanity", "vignette_030 outputs missing"))
+        FAILED.append(("Real-data sanity", "vignette_001 outputs missing"))
         return
 
     ctx = chr_context("schema")
@@ -246,9 +246,9 @@ def test_real_data_pipeline() -> None:
 
     a_ok, _ = validate_with_shacl(a_content, ctx)
     b_ok, _ = validate_with_shacl(b_content, ctx)
-    check("Real data: vignette_030 System A FAILS SHACL (as documented)",
+    check("Real data: vignette_001 System A FAILS SHACL (as documented)",
           a_ok is False, f"A conforms={a_ok}")
-    check("Real data: vignette_030 System B PASSES SHACL (as documented)",
+    check("Real data: vignette_001 System B PASSES SHACL (as documented)",
           b_ok is True, f"B conforms={b_ok}")
 
     # OWL validator on a real ontology-track output

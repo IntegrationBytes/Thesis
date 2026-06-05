@@ -137,9 +137,8 @@ def draw_ontology_summary(ax, color: str) -> None:
 def main() -> None:
     d = json.load(open(DATA))
 
-    # Panel (a): schema track. The historical "gemini" key now points to
-    # gpt-oss-120b data (outputs/chr/...).
-    schema_md = model_data(d.get("schema", {}), "gemini_a_all", "gemini_b_all")
+    # Panel (a): schema track (gpt-oss-120b, outputs/chr/...).
+    schema_md = model_data(d.get("schema", {}), "gptoss_a_all", "gptoss_b_all")
     schema_items = sorted(
         [(short_shape(n), a, b) for n, (a, b) in schema_md.items() if a >= 1],
         key=lambda r: r[1], reverse=True,

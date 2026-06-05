@@ -16,12 +16,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
+# The five figures in the report, in order. These read the committed
+# gpt-oss-120b outputs under evaluation/outputs/ (see README section 3).
 SCRIPTS = [
-    "make_n200_stratified_plot.py",
-    "make_n200_percycle_plot.py",
-    "make_n200_percycle_v2.py",
-    "make_n200_decoupling_plot.py",
-    "make_connectivity_plot.py",
+    "make_percycle_v3.py",                # Figure 1 (per-cycle dynamics)
+    "make_n200_decoupling_plot.py",       # Figure 2 (decoupling)
+    "make_pipeline_e2e_figure.py",        # Figure 3 (single-case walkthrough)
+    "make_violation_resolution_figure.py",# Figure 4 (per-violation, both tracks)
+    "make_owl_process_figure.py",         # Figure 5 (ontology-track loop)
 ]
 
 
