@@ -15,11 +15,10 @@ basically inference-time scaling and SHACL adds no real signal.
 
 Outputs land at::
 
-    evaluation/outputs[_freemodel]/chr/schema/full/d/vignette_NNN.ttl
+    evaluation/outputs/chr/schema/full/d/vignette_NNN.ttl
 
 CLI::
 
-    # Gemini schema D:
     # gpt-oss-120b System C (paper's model); outputs land in the default
     # evaluation/outputs/ root used everywhere else.
     OPENROUTER_MODEL_OVERRIDE=openai/gpt-oss-120b \\

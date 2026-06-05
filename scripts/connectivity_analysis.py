@@ -29,8 +29,6 @@ from iri_normalizer import normalize_llm_to_gold  # noqa: E402
 GOLD_DIR = ROOT / "evaluation/corpus/abox_gold"
 OUT_SCHEMA = ROOT / "evaluation/outputs/chr/schema/full"
 OUT_ONTOLOGY = ROOT / "evaluation/outputs/chr/ontology/ontology"
-OUT_FREEMODEL_SCHEMA = ROOT / "evaluation/outputs_freemodel/chr/schema/full"
-OUT_FREEMODEL_ONTOLOGY = ROOT / "evaluation/outputs_freemodel/chr/ontology/ontology"
 CHR_ONT = ROOT / "evaluation/corpus/tbox/chr_ontology.owl.ttl"
 
 
@@ -147,8 +145,7 @@ def main() -> None:
     schema_jobs = []
     for vid in sorted_vids:
         gold = GOLD_DIR / f"{vid}_gold_schema.ttl"
-        for model_tag, root in [("gemini", OUT_SCHEMA),
-                                 ("gptoss", OUT_FREEMODEL_SCHEMA)]:
+        for model_tag, root in [("gptoss", OUT_SCHEMA)]:
             for sys_tag in ("a", "b"):
                 gen = root / sys_tag / f"{vid}.ttl"
                 schema_jobs.append((vid, str(gen), str(gold), model_tag, sys_tag))
@@ -164,8 +161,7 @@ def main() -> None:
     print("\n[3/3] Ontology track: OWL on 800 graphs...", flush=True)
     owl_jobs = []
     for vid in sorted_vids:
-        for model_tag, root in [("gemini", OUT_ONTOLOGY),
-                                 ("gptoss", OUT_FREEMODEL_ONTOLOGY)]:
+        for model_tag, root in [("gptoss", OUT_ONTOLOGY)]:
             for sys_tag in ("a", "b"):
                 gen = root / sys_tag / f"{vid}.ttl"
                 owl_jobs.append((vid, str(gen), model_tag, sys_tag))
@@ -216,7 +212,7 @@ def main() -> None:
         print(f"\n{tier.upper()} CONNECTIVITY  "
               f"(n={len(vids)}, entities {min(sizes)}–{max(sizes)} mean {mean(sizes):.0f}, "
               f"linked-fraction mean {mean(linked):.2f})")
-        for model in ("gemini", "gptoss"):
+        for model in ("gptoss",):
             sa = schema_by_bucket[tier][f"{model}_a"]
             sb = schema_by_bucket[tier][f"{model}_b"]
             sa_f1 = mean(sa["f1s"]) if sa["f1s"] else 0
@@ -227,7 +223,7 @@ def main() -> None:
                   f"F1 A={sa_f1:.3f} B={sb_f1:.3f}   "
                   f"SHACL A={sa_sh:5.1f}% B={sb_sh:5.1f}%   "
                   f"ΔSHACL=+{sb_sh - sa_sh:.1f}pp")
-        for model in ("gemini", "gptoss"):
+        for model in ("gptoss",):
             oa = owl_by_bucket[tier][f"{model}_a"]
             ob = owl_by_bucket[tier][f"{model}_b"]
             oa_pct = 100 * oa["owl_pass"] / oa["n"] if oa["n"] else 0

@@ -2,7 +2,7 @@
 
 Rates generated knowledge graphs against source text + gold using a
 DIFFERENT-FAMILY LLM (Llama 3.3 70B by default — different family from
-the Gemini and gpt-oss extractors) to reduce same-family judge bias.
+the gpt-oss-120b extractor) to reduce same-family judge bias.
 Three Likert scores per (source, gold, generated) triple:
 
     - faithfulness : do generated facts match the source text?
@@ -50,8 +50,8 @@ JUDGE_OUTPUT = _REPO_ROOT / "evaluation" / "outputs" / "judge_scores.json"
 
 load_dotenv(_REPO_ROOT / ".env")
 
-# Judge model is intentionally different-family from the extractors
-# (Gemini, gpt-oss) to reduce same-family bias.
+# Judge model is intentionally different-family from the
+# gpt-oss-120b extractor to reduce same-family bias.
 OPENROUTER_BASE = "https://openrouter.ai/api/v1"
 JUDGE_MODEL = os.getenv("JUDGE_MODEL", "meta-llama/llama-3.3-70b-instruct")
 
@@ -331,7 +331,8 @@ def main() -> None:
     parser.add_argument("--system", choices=("a", "b", "c"), required=True)
     parser.add_argument(
         "--freemodel", action="store_true",
-        help="Score the gpt-oss outputs (outputs_freemodel/) instead of Gemini (outputs/).",
+        help="Legacy flag: score the archived evaluation/outputs_freemodel/ "
+             "outputs instead of the main evaluation/outputs/ (gpt-oss-120b).",
     )
     parser.add_argument(
         "--limit", type=int, default=None,

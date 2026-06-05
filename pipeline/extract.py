@@ -68,8 +68,8 @@ OPENROUTER_BASE = "https://openrouter.ai/api/v1"
 OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL_OVERRIDE", "google/gemini-2.0-flash-001")
 MAX_SHACL_RETRIES = 3
 CORPUS_ROOT = PROJECT_ROOT / "evaluation" / "corpus"
-# Outputs root can be redirected via env var so a free-model rerun
-# doesn't overwrite the Gemini-baseline outputs.
+# Outputs root can be redirected via env var so an alternate rerun
+# doesn't overwrite the main outputs.
 OUTPUTS_ROOT = Path(os.getenv("OUTPUTS_ROOT_OVERRIDE",
                               str(PROJECT_ROOT / "evaluation" / "outputs")))
 

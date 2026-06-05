@@ -147,7 +147,7 @@ def main() -> None:
     print("\n" + "=" * 86)
     print("SCHEMA TRACK — SHACL shapes ranked by fix rate (overall, n=200)")
     print("=" * 86)
-    for model in ("gemini", "gptoss"):
+    for model in ("gptoss",):
         print(f"\n{model.upper()}")
         a_total = schema_agg.get((model, "a", "all"), Counter())
         b_total = schema_agg.get((model, "b", "all"), Counter())
@@ -167,7 +167,7 @@ def main() -> None:
     print("\n" + "=" * 86)
     print("ONTOLOGY TRACK — OWL violation types (overall, n=200)")
     print("=" * 86)
-    for model in ("gemini", "gptoss"):
+    for model in ("gptoss",):
         print(f"\n{model.upper()}")
         a_total = owl_agg.get((model, "a", "all"), Counter())
         b_total = owl_agg.get((model, "b", "all"), Counter())
@@ -183,19 +183,19 @@ def main() -> None:
         for vt, a, b, pct in rows:
             print(f"  {vt:<40} {a:>5} {b:>5} {pct:>6.1f}%")
 
-    # ---- Bucket × shape (Gemini schema only — full matrix would be too wide) ----
+    # ---- Bucket × shape (schema track — full matrix would be too wide) ----
     print("\n" + "=" * 86)
-    print("GEMINI SCHEMA — top 5 most-violated shapes, fix-rate per connectivity bucket")
+    print("GPT-OSS-120B SCHEMA — top 5 most-violated shapes, fix-rate per connectivity bucket")
     print("=" * 86)
-    a_overall = schema_agg.get(("gemini", "a", "all"), Counter())
+    a_overall = schema_agg.get(("gptoss", "a", "all"), Counter())
     top5 = [s for s, _ in a_overall.most_common(5)]
     for shape in top5:
         short = shape.rsplit("/", 1)[-1].rsplit("#", 1)[-1][:50]
         print(f"\n  {short}")
         print(f"    {'Bucket':<10} {'A':>4} {'B':>4} {'fix%':>7}")
         for bucket in ("low", "medium", "high"):
-            a_n = schema_agg.get(("gemini", "a", bucket), Counter()).get(shape, 0)
-            b_n = schema_agg.get(("gemini", "b", bucket), Counter()).get(shape, 0)
+            a_n = schema_agg.get(("gptoss", "a", bucket), Counter()).get(shape, 0)
+            b_n = schema_agg.get(("gptoss", "b", bucket), Counter()).get(shape, 0)
             fix_pct = (1 - b_n / a_n) * 100 if a_n else 0
             print(f"    {bucket:<10} {a_n:>4} {b_n:>4} {fix_pct:>6.1f}%")
 

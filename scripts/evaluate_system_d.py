@@ -3,7 +3,7 @@
 Answers the reviewer's apples-to-apples question: "what does the verifier
 add beyond just running the language model more times?"
 
-For each model (Gemini, gpt-oss):
+For gpt-oss-120b:
   - A: zero-shot
   - B: SHACL-feedback retry loop (existing data)
   - D: 4 sequential calls, no feedback (NEW)
@@ -34,8 +34,7 @@ from prompts import chr_context  # noqa: E402
 from iri_normalizer import normalize_llm_to_gold  # noqa: E402
 
 GOLD_DIR = ROOT / "evaluation/corpus/abox_gold"
-OUT_GEMINI = ROOT / "evaluation/outputs/chr/schema/full"
-OUT_GPTOSS = ROOT / "evaluation/outputs_freemodel/chr/schema/full"
+OUT_GPTOSS = ROOT / "evaluation/outputs/chr/schema/full"
 
 
 def _stratum(vid: str) -> str:
@@ -81,17 +80,14 @@ def _worker(args) -> tuple[str, str, str, float | None, bool | None, int]:
 
 def main() -> None:
     # Discover D outputs
-    gemini_d = OUT_GEMINI / "d"
     gptoss_d = OUT_GPTOSS / "d"
-    print(f"Gemini D outputs: {len(list(gemini_d.glob('vignette_*.ttl'))) if gemini_d.exists() else 0}")
-    print(f"gpt-oss D outputs: {len(list(gptoss_d.glob('vignette_*.ttl'))) if gptoss_d.exists() else 0}")
+    print(f"gpt-oss-120b D outputs: {len(list(gptoss_d.glob('vignette_*.ttl'))) if gptoss_d.exists() else 0}")
 
     # Build all job tuples
     jobs = []
     for gold in sorted(GOLD_DIR.glob("vignette_*_gold_schema.ttl")):
         vid = gold.stem.replace("_gold_schema", "")
-        for model_tag, root in [("gemini", OUT_GEMINI),
-                                 ("gptoss", OUT_GPTOSS)]:
+        for model_tag, root in [("gptoss", OUT_GPTOSS)]:
             for sys_tag in ("a", "b", "d"):
                 gen = root / sys_tag / f"{vid}.ttl"
                 jobs.append((vid, str(gen), str(gold), model_tag, sys_tag))
@@ -123,7 +119,7 @@ def main() -> None:
     print("\n" + "=" * 90)
     print("SYSTEM D EVALUATION — compute-fair baseline (4 calls no feedback)")
     print("=" * 90)
-    for model in ("gemini", "gptoss"):
+    for model in ("gptoss",):
         print(f"\n{model.upper()}")
         print(f"  {'Stratum':<10} {'Sys':<5} {'n':<5} {'F1':>6} {'P':>6} {'R':>6} "
               f"{'SHACL':>8} {'triples':>9}")

@@ -18,10 +18,6 @@ evaluate:
 	$(PYTHON) pipeline/evaluate.py --schema $(SCHEMA) --track schema --prompt full
 	@echo "=== Evaluating ontology/ontology ==="
 	$(PYTHON) pipeline/evaluate.py --schema $(SCHEMA) --track ontology --prompt ontology
-	@echo "=== Evaluating free-model schema/full ==="
-	OUTPUTS_ROOT_OVERRIDE=$(PWD)/evaluation/outputs_freemodel $(PYTHON) pipeline/evaluate.py --schema $(SCHEMA) --track schema --prompt full
-	@echo "=== Evaluating free-model ontology/ontology ==="
-	OUTPUTS_ROOT_OVERRIDE=$(PWD)/evaluation/outputs_freemodel $(PYTHON) pipeline/evaluate.py --schema $(SCHEMA) --track ontology --prompt ontology
 
 stats:
 	@echo "=== Regenerating stats report ==="

@@ -128,8 +128,7 @@ def test_b_vs_bshacl_differ() -> None:
     print("\n=== 3. Validator-choice ablation: b/ (OWL retry) vs b_shacl/ (SHACL retry) ===")
 
     for label, root in [
-        ("Gemini ontology", ROOT / "evaluation/outputs/chr/ontology/ontology"),
-        ("gpt-oss ontology", ROOT / "evaluation/outputs_freemodel/chr/ontology/ontology"),
+        ("gpt-oss-120b ontology", ROOT / "evaluation/outputs/chr/ontology/ontology"),
     ]:
         b_dir = root / "b"
         shacl_dir = root / "b_shacl"

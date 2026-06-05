@@ -42,8 +42,8 @@ from iri_normalizer import normalize_llm_to_gold  # noqa: E402
 PROJECT_ROOT = _PIPELINE_DIR.parent
 CORPUS_GOLD_DIR = PROJECT_ROOT / "evaluation" / "corpus" / "abox_gold"
 CORPUS_VIGNETTES_DIR = PROJECT_ROOT / "evaluation" / "corpus" / "vignettes"
-# Outputs root redirectable via env var so a free-model rerun's outputs
-# can be evaluated without overwriting the Gemini-baseline eval.json.
+# Outputs root redirectable via env var so an alternate rerun's outputs
+# can be evaluated without overwriting the main eval.json.
 OUTPUTS_ROOT = Path(os.getenv("OUTPUTS_ROOT_OVERRIDE",
                               str(PROJECT_ROOT / "evaluation" / "outputs")))
 

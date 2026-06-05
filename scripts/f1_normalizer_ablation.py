@@ -125,7 +125,7 @@ def main() -> None:
     print(f"\n{'Model':<10} {'Stratum':<10} {'Sys':<4} "
           f"{'F1 raw':>8} {'F1 norm':>8} {'Δ':>7}")
     print("-" * 78)
-    for model in ("gemini", "gptoss"):
+    for model in ("gptoss",):
         for stratum in ("general", "complex"):
             for sys_tag in ("a", "b"):
                 d = agg.get((model, sys_tag, stratum), {})

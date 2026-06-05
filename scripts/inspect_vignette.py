@@ -30,10 +30,12 @@ import rdflib  # noqa: E402
 
 TEXT_DIR = ROOT / "evaluation/corpus/vignettes"
 GOLD_DIR = ROOT / "evaluation/corpus/abox_gold"
+# Single model (gpt-oss-120b) under the main outputs root. The duplicate
+# bindings are kept so existing references in this debug helper still resolve.
 OUT_GEMINI_SCHEMA = ROOT / "evaluation/outputs/chr/schema/full"
 OUT_GEMINI_ONT    = ROOT / "evaluation/outputs/chr/ontology/ontology"
-OUT_GPTOSS_SCHEMA = ROOT / "evaluation/outputs_freemodel/chr/schema/full"
-OUT_GPTOSS_ONT    = ROOT / "evaluation/outputs_freemodel/chr/ontology/ontology"
+OUT_GPTOSS_SCHEMA = ROOT / "evaluation/outputs/chr/schema/full"
+OUT_GPTOSS_ONT    = ROOT / "evaluation/outputs/chr/ontology/ontology"
 JUDGE_FILE = ROOT / "evaluation/outputs/judge_scores.json"
 CHR_ONT = ROOT / "evaluation/corpus/tbox/chr_ontology.owl.ttl"
 
