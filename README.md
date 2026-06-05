@@ -4,8 +4,8 @@
 Vincent Viitala — BSc Data Science and Artificial Intelligence, Maastricht University, 2026
 Supervisors: Remzi Çelebi, Michel Dumontier
 
-This README contains the recipe to reproduce every number, table, and figure
-in the report.
+This README is the recipe to reproduce every result this codebase
+produces: evaluation metrics, statistics, and figures.
 
 ---
 
@@ -23,9 +23,8 @@ in the report.
 > outputs are committed under `evaluation/outputs/`. The codebase still
 > contains historical scaffolding from an earlier dual-model exploration
 > (a `evaluation/outputs_freemodel/` directory and a Gemini default model
-> env var); **these are not used by the final single-model paper** and can be
-> ignored. Every table and figure in the report is computed from
-> `evaluation/outputs/`.
+> env var); **these are not used by the final single-model pipeline** and can
+> be ignored. Every result is computed from `evaluation/outputs/`.
 
 ## 2. Install
 
@@ -47,17 +46,17 @@ python -m pytest tests/
 ## 3. Reproduce results without re-running the LLM (fast path)
 
 The repo ships with every gpt-oss-120b output committed under
-`evaluation/outputs/`. To regenerate the paper's tables and figures from
-those outputs only:
+`evaluation/outputs/`. To regenerate the evaluation tables and figures
+from those outputs only:
 
 ```bash
 make evaluate                                       # F1, SHACL, OWL, PC -> eval.json
 make stats                                          # paired sign tests, bootstrap CIs
-python scripts/make_percycle_v3.py                  # Figure 1 (per-cycle dynamics)
-python scripts/make_n200_decoupling_plot.py         # Figure 2 (decoupling)
-python scripts/make_pipeline_e2e_figure.py          # Figure 3 (single-case walkthrough)
-python scripts/make_violation_resolution_figure.py  # Figure 4 (per-violation, both tracks)
-python scripts/make_owl_process_figure.py           # Figure 5 (ontology-track loop)
+python scripts/make_percycle_v3.py                  # per-cycle dynamics
+python scripts/make_n200_decoupling_plot.py         # structure-vs-content decoupling
+python scripts/make_pipeline_e2e_figure.py          # single-case walkthrough
+python scripts/make_violation_resolution_figure.py  # per-violation resolution, both tracks
+python scripts/make_owl_process_figure.py           # ontology-track verifier loop
 ```
 
 PNGs land in `report/figures/`.
@@ -92,7 +91,7 @@ glob `*`; complex-stratum runs use the disease modules
 The codebase's default model env var is a now-deprecated Gemini id for
 historical reasons, so the extractor must be passed explicitly. Outputs
 go to the default root `evaluation/outputs/` (do not override it; that is
-where the paper's numbers come from).
+where the committed results come from).
 
 ```bash
 OPENROUTER_MODEL_OVERRIDE="openai/gpt-oss-120b" \
@@ -112,11 +111,11 @@ python scaling_n100/extract_parallel.py \
 OPENROUTER_MODEL_OVERRIDE="openai/gpt-oss-120b" \
 OPENROUTER_PROVIDER_SORT="throughput" \
 python scripts/run_system_d.py --schema chr --track schema --workers 20
-# The script file is named system_d for historical reasons; the paper
-# calls this System C.
+# The script file is named system_d for historical reasons; this is
+# the compute-fair control (System C).
 ```
 
-### 4.4 Sanitise outputs (Turtle syntax normalisation, report §IV-B)
+### 4.4 Sanitise outputs (Turtle syntax normalisation)
 
 gpt-oss-120b emits Turtle-invalid IRI local names (a '+' or extra ':' from
 ISO-8601 timezones) on ~14% of cases. Run the deterministic sanitiser pass
@@ -150,7 +149,7 @@ python scripts/owl_conformance_survey.py
 python scripts/f1_normalizer_ablation.py
 ```
 
-Then re-run the figure scripts from §3 to refresh the PNGs.
+Then re-run the figure scripts from section 3 to refresh the PNGs.
 
 ## 5. Configuration knobs
 
@@ -159,9 +158,9 @@ All set in `.env` or as environment variables:
 | Variable | Default | Notes |
 |---|---|---|
 | `OPENROUTER_API_KEY` | _(required)_ | OpenRouter credential |
-| `OPENROUTER_MODEL_OVERRIDE` | `google/gemini-2.0-flash-001` | Deprecated historical default; **set to `openai/gpt-oss-120b`** to reproduce the paper |
+| `OPENROUTER_MODEL_OVERRIDE` | `google/gemini-2.0-flash-001` | Deprecated historical default; **set to `openai/gpt-oss-120b`** to reproduce the committed results |
 | `OPENROUTER_PROVIDER_SORT` | _(unset)_ | Set to `throughput` for gpt-oss-120b on the paid endpoint |
-| `OUTPUTS_ROOT_OVERRIDE` | `evaluation/outputs` | The paper's gpt-oss-120b outputs live here. **Leave at default**; the legacy `evaluation/outputs_freemodel` directory is unused historical scaffolding |
+| `OUTPUTS_ROOT_OVERRIDE` | `evaluation/outputs` | The gpt-oss-120b outputs live here. **Leave at default**; the legacy `evaluation/outputs_freemodel` directory is unused historical scaffolding |
 | `JUDGE_MODEL` | `meta-llama/llama-3.3-70b-instruct` | Cross-family judge |
 
 Hard-coded in `pipeline/extract.py`: temperature `0.1`, retry budget `k=3`,
@@ -175,9 +174,8 @@ python scripts/verify_experiments_e2e.py      # end-to-end claim verification
 ```
 
 `verify_experiments_e2e.py` reads `evaluation/outputs/*.json` and asserts
-every quantitative claim in the paper still holds against the committed
-data. If you re-run extraction and any number drifts, this is the first
-thing to run.
+every quantitative result still holds against the committed data. If you
+re-run extraction and any number drifts, this is the first thing to run.
 
 ## 7. Cost budget (if running from scratch)
 
