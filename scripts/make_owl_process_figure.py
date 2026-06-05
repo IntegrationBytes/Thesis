@@ -7,7 +7,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
-OUT = Path("/Users/vincentviitala/Downloads/Thesis/thesiscode/report/figures/fig_owl_process.png")
+OUT = Path(__file__).resolve().parent.parent / "report/figures/fig_owl_process.png"
 
 C_INPUT  = "#dfe4f5"
 C_ONTO   = "#fff2c4"
