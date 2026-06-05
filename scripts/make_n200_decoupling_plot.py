@@ -2,8 +2,8 @@
 
 The thesis finding: structural conformance and content fidelity are
 INDEPENDENT axes. ΔSHACL moves +66 to +69pp while ΔF1 moves −0.008 to
-−0.001. The decoupling ratio (ΔSHACL / |ΔF1|) is in the tens of
-thousands.
+−0.001. The decoupling ratio (ΔSHACL / |ΔF1|, both as [0,1]
+proportions) is roughly 90× (general) to 485× (complex).
 
 Output: report/figures/fig_decoupling_n200.png
 """
@@ -69,7 +69,9 @@ def main() -> None:
     ax.set_axisbelow(True)
 
     # Decoupling-ratio footer
-    ratios = [f"{r[0]} {r[1]}: ΔSH/|ΔF1| = {r[3]/max(abs(r[2]), 0.0001):.0f}×"
+    # ΔSHACL stored in pp; divide by 100 so numerator and denominator are
+    # both [0,1] proportions, giving a dimensionless ratio (~90x / ~485x).
+    ratios = [f"{r[0]} {r[1]}: ΔSH/|ΔF1| = {(r[3]/100.0)/max(abs(r[2]), 0.0001):.0f}×"
               for r in ROWS]
     fig.text(0.5, -0.05,
              "Decoupling ratios:  " + "    ".join(ratios),
