@@ -46,7 +46,7 @@ C: compute-fair control).
 | 17 | IRI normalizer: patient label mismatch (`"Ms. Angelic427"` vs `"Angelic427"`) | `iri_normalizer.py`: added label-token Jaccard to `_score` — matches on shared name tokens regardless of title prefixes |
 | 18 | IRI normalizer: unit not used to disambiguate measurements | `iri_normalizer.py`: added `"hasUnit"` to `_VALUE_KEYS[Measurement]` — unit IRI now a matching signal alongside value and date |
 
-### F1 progression on vignette_001 (Gemini 3.5 Flash, schema track)
+### F1 progression on vignette_001 (early Gemini-era pilot, schema track; superseded by the gpt-oss-120b run)
 
 | Stage | F1 | TP | FP | FN | Gold | Notes |
 |---|---|---|---|---|---|---|
@@ -154,7 +154,7 @@ Same pattern for vignette texts — replace `convert_encounter` with `render` fr
 ## How to Re-Run Single-Vignette Extraction
 
 ```bash
-OPENROUTER_MODEL_OVERRIDE="google/gemini-3.5-flash" \
+OPENROUTER_MODEL_OVERRIDE="openai/gpt-oss-120b" \
 python3 pipeline/extract.py --schema chr --track schema --systems a,b --only vignette_001
 ```
 

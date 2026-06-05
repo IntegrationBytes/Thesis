@@ -12,12 +12,14 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Recomputed from n=200 stratified eval (2026-06-04, gpt-oss-120b, clean).
+# Recomputed from n=200 stratified eval (gpt-oss-120b, clean).
+# dF1 values are the exact unrounded means so the printed decoupling
+# ratios are accurate (bar labels round to 3 decimals for display).
 # Schema track only (F1 is valid here; ontology track has no F1).
 ROWS = [
     # (model, stratum, dF1, dSHACL_pp)
-    ("gpt-oss-120b", "general", -0.008, 69.0),
-    ("gpt-oss-120b", "complex", -0.001, 66.0),
+    ("gpt-oss-120b", "general", -0.00767, 69.0),
+    ("gpt-oss-120b", "complex", -0.00136, 66.0),
 ]
 
 
