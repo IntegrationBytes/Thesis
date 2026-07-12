@@ -151,6 +151,17 @@ python scripts/f1_normalizer_ablation.py
 
 Then re-run the figure scripts from section 3 to refresh the PNGs.
 
+### 4.8 Supervisor-revision analyses (fast path, no LLM calls)
+
+Back appendices A, B, C. Outputs land in `evaluation/outputs/`.
+
+```bash
+python scripts/er_ablation.py            # entity-resolution signal ablation
+python scripts/owl_on_schema_abox.py     # OWL-RL on the schema-track ABox
+python scripts/owl_fault_injection.py    # OWL fault-injection (detection / false-positive)
+python scripts/shacl_structural_prf1.py  # graded entity-level SHACL P/R/F1
+```
+
 ## 5. Configuration knobs
 
 All set in `.env` or as environment variables:
